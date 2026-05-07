@@ -1,0 +1,21 @@
+Title: Data Augmentation For Children's Speech Recognition -- The "Ethiopian" System For The SLT 2021 Children Speech Recognition Challenge
+
+Authors: Guoguo Chen, Xingyu Na, Yongqing Wang, Zhiyong Yan, Junbo Zhang, Sifan Ma, Yujun Wang
+
+Published: 2020-11-09
+
+Categories: cs.SD, eess.AS
+
+Abstract:
+This paper presents the "Ethiopian" system for the SLT 2021 Children Speech Recognition Challenge. Various data processing and augmentation techniques are proposed to tackle children's speech recognition problem, especially the lack of the children's speech recognition training data issue. Detailed experiments are designed and conducted to show the effectiveness of each technique, across different speech recognition toolkits and model architectures. Step by step, we explain how we come up with our final system, which provides the state-of-the-art results in the SLT 2021 Children Speech Recognition Challenge, with 21.66% CER on the Track 1 evaluation set (4th place overall), and 16.53% CER on the Track 2 evaluation set (1st place overall). Post-challenge analysis shows that our system actually achieves 18.82% CER on the Track 1 evaluation set, but we submitted the wrong version to the challenge organizer for Track 1.
+
+Paper ID: 2011.04547v1
+
+Summary:
+This paper titled "Data Augmentation For Children's Speech Recognition -- The "Ethiopian" System For The SLT 2021 Children Speech Recognition Challenge" was authored by Guoguo Chen, Xingyu Na, Yongqing Wang, Zhiyong Yan, Junbo Zhang, Sifan Ma, Yujun Wang and published on 2020-11-09.
+It falls under the categories: cs.SD, eess.AS.
+The research explores the following topic: This paper presents the "Ethiopian" system for the SLT 2021 Children Speech Recognition Challenge. Various data processing and augmentation techniques are proposed to tackle children's speech recognition problem, especially the lack of the children's speech recognition training data issue. Detailed experiments are designed and conducted to show the effectiveness of each technique, across different speech recognition toolkits and model architectures. Step by step, we explain how we come up with our final system, which provides the state-of-the-art results in the SLT 2021 Children Speech Recognition Challenge, with 21.66% CER on the Track 1 evaluation set (4th place overall), and 16.53% CER on the Track 2 evaluation set (1st place overall). Post-challenge analysis shows that our system actually achieves 18.82% CER on the Track 1 evaluation set, but we submitted the wrong version to the challenge organizer for Track 1.
+
+Links:
+  - https://arxiv.org/abs/2011.04547v1
+  - https://arxiv.org/pdf/2011.04547v1

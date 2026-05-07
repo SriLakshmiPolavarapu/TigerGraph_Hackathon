@@ -1,0 +1,21 @@
+Title: Cross-language Learning with Adversarial Neural Networks: Application to Community Question Answering
+
+Authors: Shafiq Joty, Preslav Nakov, Lluís Màrquez, Israa Jaradat
+
+Published: 2017-06-21
+
+Categories: cs.CL
+
+Abstract:
+We address the problem of cross-language adaptation for question-question similarity reranking in community question answering, with the objective to port a system trained on one input language to another input language given labeled training data for the first language and only unlabeled data for the second language. In particular, we propose to use adversarial training of neural networks to learn high-level features that are discriminative for the main learning task, and at the same time are invariant across the input languages. The evaluation results show sizable improvements for our cross-language adversarial neural network (CLANN) model over a strong non-adversarial system.
+
+Paper ID: 1706.06749v1
+
+Summary:
+This paper titled "Cross-language Learning with Adversarial Neural Networks: Application to Community Question Answering" was authored by Shafiq Joty, Preslav Nakov, Lluís Màrquez, Israa Jaradat and published on 2017-06-21.
+It falls under the categories: cs.CL.
+The research explores the following topic: We address the problem of cross-language adaptation for question-question similarity reranking in community question answering, with the objective to port a system trained on one input language to another input language given labeled training data for the first language and only unlabeled data for the second language. In particular, we propose to use adversarial training of neural networks to learn high-level features that are discriminative for the main learning task, and at the same time are invariant across the input languages. The evaluation results show sizable improvements for our cross-language adversarial neural network (CLANN) model over a strong non-adversarial system.
+
+Links:
+  - https://arxiv.org/abs/1706.06749v1
+  - https://arxiv.org/pdf/1706.06749v1

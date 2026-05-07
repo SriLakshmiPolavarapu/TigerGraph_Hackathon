@@ -1,0 +1,21 @@
+Title: Evaluating Class Membership Relations in Knowledge Graphs using Large Language Models
+
+Authors: Bradley P. Allen, Paul T. Groth
+
+Published: 2024-04-25
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+A backbone of knowledge graphs are their class membership relations, which assign entities to a given class. As part of the knowledge engineering process, we propose a new method for evaluating the quality of these relations by processing descriptions of a given entity and class using a zero-shot chain-of-thought classifier that uses a natural language intensional definition of a class. We evaluate the method using two publicly available knowledge graphs, Wikidata and CaLiGraph, and 7 large language models. Using the gpt-4-0125-preview large language model, the method's classification performance achieves a macro-averaged F1-score of 0.830 on data from Wikidata and 0.893 on data from CaLiGraph. Moreover, a manual analysis of the classification errors shows that 40.9% of errors were due to the knowledge graphs, with 16.0% due to missing relations and 24.9% due to incorrectly asserted relations. These results show how large language models can assist knowledge engineers in the process of knowledge graph refinement. The code and data are available on Github.
+
+Paper ID: 2404.17000v1
+
+Summary:
+This paper titled "Evaluating Class Membership Relations in Knowledge Graphs using Large Language Models" was authored by Bradley P. Allen, Paul T. Groth and published on 2024-04-25.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: A backbone of knowledge graphs are their class membership relations, which assign entities to a given class. As part of the knowledge engineering process, we propose a new method for evaluating the quality of these relations by processing descriptions of a given entity and class using a zero-shot chain-of-thought classifier that uses a natural language intensional definition of a class. We evaluate the method using two publicly available knowledge graphs, Wikidata and CaLiGraph, and 7 large language models. Using the gpt-4-0125-preview large language model, the method's classification performance achieves a macro-averaged F1-score of 0.830 on data from Wikidata and 0.893 on data from CaLiGraph. Moreover, a manual analysis of the classification errors shows that 40.9% of errors were due to the knowledge graphs, with 16.0% due to missing relations and 24.9% due to incorrectly asserted relations. These results show how large language models can assist knowledge engineers in the process of knowledge graph refinement. The code and data are available on Github.
+
+Links:
+  - https://arxiv.org/abs/2404.17000v1
+  - https://arxiv.org/pdf/2404.17000v1

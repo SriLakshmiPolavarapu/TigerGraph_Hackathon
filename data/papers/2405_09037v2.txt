@@ -1,0 +1,21 @@
+Title: SSFL: Discovering Sparse Unified Subnetworks at Initialization for Efficient Federated Learning
+
+Authors: Riyasat Ohib, Bishal Thapaliya, Gintare Karolina Dziugaite, Jingyu Liu, Vince Calhoun, Sergey Plis
+
+Published: 2024-05-15
+
+Categories: cs.LG, cs.AI, cs.DC
+
+Abstract:
+In this work, we propose Salient Sparse Federated Learning (SSFL), a streamlined approach for sparse federated learning with efficient communication. SSFL identifies a sparse subnetwork prior to training, leveraging parameter saliency scores computed separately on local client data in non-IID scenarios, and then aggregated, to determine a global mask. Only the sparse model weights are trained and communicated each round between the clients and the server. On standard benchmarks including CIFAR-10, CIFAR-100, and Tiny-ImageNet, SSFL consistently improves the accuracy sparsity trade off, achieving more than 20\% relative error reduction on CIFAR-10 compared to the strongest sparse baseline, while reducing communication costs by $2 \times$ relative to dense FL. Finally, in a real-world federated learning deployment, SSFL delivers over $2.3 \times$ faster communication time, underscoring its practical efficiency.
+
+Paper ID: 2405.09037v2
+
+Summary:
+This paper titled "SSFL: Discovering Sparse Unified Subnetworks at Initialization for Efficient Federated Learning" was authored by Riyasat Ohib, Bishal Thapaliya, Gintare Karolina Dziugaite, Jingyu Liu, Vince Calhoun, Sergey Plis and published on 2024-05-15.
+It falls under the categories: cs.LG, cs.AI, cs.DC.
+The research explores the following topic: In this work, we propose Salient Sparse Federated Learning (SSFL), a streamlined approach for sparse federated learning with efficient communication. SSFL identifies a sparse subnetwork prior to training, leveraging parameter saliency scores computed separately on local client data in non-IID scenarios, and then aggregated, to determine a global mask. Only the sparse model weights are trained and communicated each round between the clients and the server. On standard benchmarks including CIFAR-10, CIFAR-100, and Tiny-ImageNet, SSFL consistently improves the accuracy sparsity trade off, achieving more than 20\% relative error reduction on CIFAR-10 compared to the strongest sparse baseline, while reducing communication costs by $2 \times$ relative to dense FL. Finally, in a real-world federated learning deployment, SSFL delivers over $2.3 \times$ faster communication time, underscoring its practical efficiency.
+
+Links:
+  - https://arxiv.org/abs/2405.09037v2
+  - https://arxiv.org/pdf/2405.09037v2

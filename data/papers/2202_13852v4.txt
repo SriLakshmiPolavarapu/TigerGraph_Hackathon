@@ -1,0 +1,21 @@
+Title: Hyperbolic Graph Neural Networks: A Review of Methods and Applications
+
+Authors: Menglin Yang, Min Zhou, Tong Zhang, Jiahong Liu, Zhihao Li, Lujia Pan, Hui Xiong, Irwin King
+
+Published: 2022-02-28
+
+Categories: cs.LG
+
+Abstract:
+Graph representation learning in Euclidean space, despite its widespread adoption and proven utility in many domains, often struggles to effectively capture the inherent hierarchical and complex relational structures prevalent in real-world data, particularly for datasets exhibiting a highly non-Euclidean latent anatomy or power-law distributions. Hyperbolic geometry, with its constant negative curvature and exponential growth property, naturally accommodates such structures, offering a promising alternative for learning rich graph representations. This survey paper provides a comprehensive review of the rapidly evolving field of Hyperbolic Graph Learning (HGL). We systematically categorize and analyze existing methods broadly dividing them into (1) hyperbolic graph embedding-based techniques, (2) graph neural network-based hyperbolic models, and (3) emerging paradigms. Beyond methodologies, we extensively discuss diverse applications of HGL across multiple domains, including recommender systems, knowledge graphs, bioinformatics, and other relevant scenarios, demonstrating the broad applicability and effectiveness of hyperbolic geometry in real-world graph learning tasks. Most importantly, we identify several key challenges that serve as directions for advancing HGL, including handling complex data structures, developing geometry-aware learning objectives, ensuring trustworthy and scalable implementations, and integrating with foundation models, e.g., large language models. We highlight promising research opportunities in this exciting interdisciplinary area. A comprehensive repository can be found at https://github.com/digailab/awesome-hyperbolic-graph-learning.
+
+Paper ID: 2202.13852v4
+
+Summary:
+This paper titled "Hyperbolic Graph Neural Networks: A Review of Methods and Applications" was authored by Menglin Yang, Min Zhou, Tong Zhang, Jiahong Liu, Zhihao Li, Lujia Pan, Hui Xiong, Irwin King and published on 2022-02-28.
+It falls under the categories: cs.LG.
+The research explores the following topic: Graph representation learning in Euclidean space, despite its widespread adoption and proven utility in many domains, often struggles to effectively capture the inherent hierarchical and complex relational structures prevalent in real-world data, particularly for datasets exhibiting a highly non-Euclidean latent anatomy or power-law distributions. Hyperbolic geometry, with its constant negative curvature and exponential growth property, naturally accommodates such structures, offering a promising alternative for learning rich graph representations. This survey paper provides a comprehensive review of the rapidly evolving field of Hyperbolic Graph Learning (HGL). We systematically categorize and analyze existing methods broadly dividing them into (1) hyperbolic graph embedding-based techniques, (2) graph neural network-based hyperbolic models, and (3) emerging paradigms. Beyond methodologies, we extensively discuss diverse applications of HGL across multiple domains, including recommender systems, knowledge graphs, bioinformatics, and other relevant scenarios, demonstrating the broad applicability and effectiveness of hyperbolic geometry in real-world graph learning tasks. Most importantly, we identify several key challenges that serve as directions for advancing HGL, including handling complex data structures, developing geometry-aware learning objectives, ensuring trustworthy and scalable implementations, and integrating with foundation models, e.g., large language models. We highlight promising research opportunities in this exciting interdisciplinary area. A comprehensive repository can be found at https://github.com/digailab/awesome-hyperbolic-graph-learning.
+
+Links:
+  - https://arxiv.org/abs/2202.13852v4
+  - https://arxiv.org/pdf/2202.13852v4

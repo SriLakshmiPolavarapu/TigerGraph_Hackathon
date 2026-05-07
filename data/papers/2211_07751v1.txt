@@ -1,0 +1,21 @@
+Title: Arbitrary Style Guidance for Enhanced Diffusion-Based Text-to-Image Generation
+
+Authors: Zhihong Pan, Xin Zhou, Hao Tian
+
+Published: 2022-11-14
+
+Categories: cs.CV, eess.IV
+
+Abstract:
+Diffusion-based text-to-image generation models like GLIDE and DALLE-2 have gained wide success recently for their superior performance in turning complex text inputs into images of high quality and wide diversity. In particular, they are proven to be very powerful in creating graphic arts of various formats and styles. Although current models supported specifying style formats like oil painting or pencil drawing, fine-grained style features like color distributions and brush strokes are hard to specify as they are randomly picked from a conditional distribution based on the given text input. Here we propose a novel style guidance method to support generating images using arbitrary style guided by a reference image. The generation method does not require a separate style transfer model to generate desired styles while maintaining image quality in generated content as controlled by the text input. Additionally, the guidance method can be applied without a style reference, denoted as self style guidance, to generate images of more diverse styles. Comprehensive experiments prove that the proposed method remains robust and effective in a wide range of conditions, including diverse graphic art forms, image content types and diffusion models.
+
+Paper ID: 2211.07751v1
+
+Summary:
+This paper titled "Arbitrary Style Guidance for Enhanced Diffusion-Based Text-to-Image Generation" was authored by Zhihong Pan, Xin Zhou, Hao Tian and published on 2022-11-14.
+It falls under the categories: cs.CV, eess.IV.
+The research explores the following topic: Diffusion-based text-to-image generation models like GLIDE and DALLE-2 have gained wide success recently for their superior performance in turning complex text inputs into images of high quality and wide diversity. In particular, they are proven to be very powerful in creating graphic arts of various formats and styles. Although current models supported specifying style formats like oil painting or pencil drawing, fine-grained style features like color distributions and brush strokes are hard to specify as they are randomly picked from a conditional distribution based on the given text input. Here we propose a novel style guidance method to support generating images using arbitrary style guided by a reference image. The generation method does not require a separate style transfer model to generate desired styles while maintaining image quality in generated content as controlled by the text input. Additionally, the guidance method can be applied without a style reference, denoted as self style guidance, to generate images of more diverse styles. Comprehensive experiments prove that the proposed method remains robust and effective in a wide range of conditions, including diverse graphic art forms, image content types and diffusion models.
+
+Links:
+  - https://arxiv.org/abs/2211.07751v1
+  - https://arxiv.org/pdf/2211.07751v1

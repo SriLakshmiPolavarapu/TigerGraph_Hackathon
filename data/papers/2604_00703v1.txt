@@ -1,0 +1,21 @@
+Title: G-ICSO-NAS: Shifting Gears between Gradient and Swarm for Robust Neural Architecture Search
+
+Authors: Xingbang Du, Enzhi Zhang, Rui Zhong, Yang Cao, Masaharu Munetomo
+
+Published: 2026-04-01
+
+Categories: cs.NE
+
+Abstract:
+Neural Architecture Search (NAS) has become a pivotal technique in automated machine learning. Evolutionary Algorithm (EA)-based methods demonstrate superior search quality but suffer from prohibitive computational costs, while gradient-based approaches like DARTS offer high efficiency but are prone to premature convergence and performance collapse. To bridge this gap, we propose G-ICSO-NAS, a hybrid framework implementing a three-stage optimization strategy. The Warm-up Phase pre-trains supernet weights ($w$) via differentiable methods while architecture parameters ($α$) remain frozen. The Exploration Phase adopts a hybrid co-optimization mechanism: an Improved Competitive Swarm Optimizer (ICSO) with diversity-aware fitness navigates the architecture space to update $α$, while gradient descent concurrently updates $w$. The Stability Phase employs fine-grained gradient-based search with early stopping to converge to the optimal architecture. By synergizing ICSO's global navigation capability with differentiable methods' efficiency, G-ICSO-NAS achieves remarkable performance with minimal cost. In the context of the DARTS search space, an accuracy of 97.46\% is achieved on CIFAR-10 with a computational budget of just 0.15 GPU-Days. The method also exhibits strong transfer potential, recording accuracies of 83.1\% (CIFAR-100) and 75.02\% (ImageNet). Furthermore, regarding the NAS-Bench-201 benchmark, G-ICSO-NAS is shown to deliver state-of-the-art results across all evaluated datasets.
+
+Paper ID: 2604.00703v1
+
+Summary:
+This paper titled "G-ICSO-NAS: Shifting Gears between Gradient and Swarm for Robust Neural Architecture Search" was authored by Xingbang Du, Enzhi Zhang, Rui Zhong, Yang Cao, Masaharu Munetomo and published on 2026-04-01.
+It falls under the categories: cs.NE.
+The research explores the following topic: Neural Architecture Search (NAS) has become a pivotal technique in automated machine learning. Evolutionary Algorithm (EA)-based methods demonstrate superior search quality but suffer from prohibitive computational costs, while gradient-based approaches like DARTS offer high efficiency but are prone to premature convergence and performance collapse. To bridge this gap, we propose G-ICSO-NAS, a hybrid framework implementing a three-stage optimization strategy. The Warm-up Phase pre-trains supernet weights ($w$) via differentiable methods while architecture parameters ($α$) remain frozen. The Exploration Phase adopts a hybrid co-optimization mechanism: an Improved Competitive Swarm Optimizer (ICSO) with diversity-aware fitness navigates the architecture space to update $α$, while gradient descent concurrently updates $w$. The Stability Phase employs fine-grained gradient-based search with early stopping to converge to the optimal architecture. By synergizing ICSO's global navigation capability with differentiable methods' efficiency, G-ICSO-NAS achieves remarkable performance with minimal cost. In the context of the DARTS search space, an accuracy of 97.46\% is achieved on CIFAR-10 with a computational budget of just 0.15 GPU-Days. The method also exhibits strong transfer potential, recording accuracies of 83.1\% (CIFAR-100) and 75.02\% (ImageNet). Furthermore, regarding the NAS-Bench-201 benchmark, G-ICSO-NAS is shown to deliver state-of-the-art results across all evaluated datasets.
+
+Links:
+  - https://arxiv.org/abs/2604.00703v1
+  - https://arxiv.org/pdf/2604.00703v1

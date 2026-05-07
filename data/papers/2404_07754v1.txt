@@ -1,0 +1,21 @@
+Title: Generating Synthetic Satellite Imagery With Deep-Learning Text-to-Image Models -- Technical Challenges and Implications for Monitoring and Verification
+
+Authors: Tuong Vy Nguyen, Alexander Glaser, Felix Biessmann
+
+Published: 2024-04-11
+
+Categories: cs.CV, cs.AI, cs.HC, cs.LG
+
+Abstract:
+Novel deep-learning (DL) architectures have reached a level where they can generate digital media, including photorealistic images, that are difficult to distinguish from real data. These technologies have already been used to generate training data for Machine Learning (ML) models, and large text-to-image models like DALL-E 2, Imagen, and Stable Diffusion are achieving remarkable results in realistic high-resolution image generation. Given these developments, issues of data authentication in monitoring and verification deserve a careful and systematic analysis: How realistic are synthetic images? How easily can they be generated? How useful are they for ML researchers, and what is their potential for Open Science? In this work, we use novel DL models to explore how synthetic satellite images can be created using conditioning mechanisms. We investigate the challenges of synthetic satellite image generation and evaluate the results based on authenticity and state-of-the-art metrics. Furthermore, we investigate how synthetic data can alleviate the lack of data in the context of ML methods for remote-sensing. Finally we discuss implications of synthetic satellite imagery in the context of monitoring and verification.
+
+Paper ID: 2404.07754v1
+
+Summary:
+This paper titled "Generating Synthetic Satellite Imagery With Deep-Learning Text-to-Image Models -- Technical Challenges and Implications for Monitoring and Verification" was authored by Tuong Vy Nguyen, Alexander Glaser, Felix Biessmann and published on 2024-04-11.
+It falls under the categories: cs.CV, cs.AI, cs.HC, cs.LG.
+The research explores the following topic: Novel deep-learning (DL) architectures have reached a level where they can generate digital media, including photorealistic images, that are difficult to distinguish from real data. These technologies have already been used to generate training data for Machine Learning (ML) models, and large text-to-image models like DALL-E 2, Imagen, and Stable Diffusion are achieving remarkable results in realistic high-resolution image generation. Given these developments, issues of data authentication in monitoring and verification deserve a careful and systematic analysis: How realistic are synthetic images? How easily can they be generated? How useful are they for ML researchers, and what is their potential for Open Science? In this work, we use novel DL models to explore how synthetic satellite images can be created using conditioning mechanisms. We investigate the challenges of synthetic satellite image generation and evaluate the results based on authenticity and state-of-the-art metrics. Furthermore, we investigate how synthetic data can alleviate the lack of data in the context of ML methods for remote-sensing. Finally we discuss implications of synthetic satellite imagery in the context of monitoring and verification.
+
+Links:
+  - https://arxiv.org/abs/2404.07754v1
+  - https://arxiv.org/pdf/2404.07754v1

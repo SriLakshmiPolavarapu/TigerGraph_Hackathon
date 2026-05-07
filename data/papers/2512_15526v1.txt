@@ -1,0 +1,21 @@
+Title: BERT and CNN integrated Neural Collaborative Filtering for Recommender Systems
+
+Authors: Abdullah Al Munem, Sumona Yeasmin, Mohammad Rezwanul Huq
+
+Published: 2025-12-17
+
+Categories: cs.IR, cs.AI
+
+Abstract:
+Every day, a significant number of users visit the internet for different needs. The owners of a website generate profits from the user interaction with the contents or items of the website. A robust recommendation system can increase user interaction with a website by recommending items according to the user's unique preferences. BERT and CNN-integrated neural collaborative filtering (NCF) have been proposed for the recommendation system in this experiment. The proposed model takes inputs from the user and item profile and finds the user's interest. This model can handle numeric, categorical, and image data to extract the latent features from the inputs. The model is trained and validated on a small sample of the MovieLens dataset for 25 epochs. The same dataset has been used to train and validate a simple NCF and a BERT-based NCF model and compared with the proposed model. The proposed model outperformed those two baseline models. The obtained result for the proposed model is 0.72 recall and 0.486 Hit Ratio @ 10 for 799 users on the MovieLens dataset. This experiment concludes that considering both categorical and image data can improve the performance of a recommendation system.
+
+Paper ID: 2512.15526v1
+
+Summary:
+This paper titled "BERT and CNN integrated Neural Collaborative Filtering for Recommender Systems" was authored by Abdullah Al Munem, Sumona Yeasmin, Mohammad Rezwanul Huq and published on 2025-12-17.
+It falls under the categories: cs.IR, cs.AI.
+The research explores the following topic: Every day, a significant number of users visit the internet for different needs. The owners of a website generate profits from the user interaction with the contents or items of the website. A robust recommendation system can increase user interaction with a website by recommending items according to the user's unique preferences. BERT and CNN-integrated neural collaborative filtering (NCF) have been proposed for the recommendation system in this experiment. The proposed model takes inputs from the user and item profile and finds the user's interest. This model can handle numeric, categorical, and image data to extract the latent features from the inputs. The model is trained and validated on a small sample of the MovieLens dataset for 25 epochs. The same dataset has been used to train and validate a simple NCF and a BERT-based NCF model and compared with the proposed model. The proposed model outperformed those two baseline models. The obtained result for the proposed model is 0.72 recall and 0.486 Hit Ratio @ 10 for 799 users on the MovieLens dataset. This experiment concludes that considering both categorical and image data can improve the performance of a recommendation system.
+
+Links:
+  - https://arxiv.org/abs/2512.15526v1
+  - https://arxiv.org/pdf/2512.15526v1

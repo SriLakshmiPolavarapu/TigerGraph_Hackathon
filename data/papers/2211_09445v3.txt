@@ -1,0 +1,21 @@
+Title: aiMotive Dataset: A Multimodal Dataset for Robust Autonomous Driving with Long-Range Perception
+
+Authors: Tamás Matuszka, Iván Barton, Ádám Butykai, Péter Hajas, Dávid Kiss, Domonkos Kovács, Sándor Kunsági-Máté, Péter Lengyel, Gábor Németh, Levente Pető, Dezső Ribli, Dávid Szeghy, Szabolcs Vajna, Bálint Varga
+
+Published: 2022-11-17
+
+Categories: cs.CV
+
+Abstract:
+Autonomous driving is a popular research area within the computer vision research community. Since autonomous vehicles are highly safety-critical, ensuring robustness is essential for real-world deployment. While several public multimodal datasets are accessible, they mainly comprise two sensor modalities (camera, LiDAR) which are not well suited for adverse weather. In addition, they lack far-range annotations, making it harder to train neural networks that are the base of a highway assistant function of an autonomous vehicle. Therefore, we introduce a multimodal dataset for robust autonomous driving with long-range perception. The dataset consists of 176 scenes with synchronized and calibrated LiDAR, camera, and radar sensors covering a 360-degree field of view. The collected data was captured in highway, urban, and suburban areas during daytime, night, and rain and is annotated with 3D bounding boxes with consistent identifiers across frames. Furthermore, we trained unimodal and multimodal baseline models for 3D object detection. Data are available at \url{https://github.com/aimotive/aimotive_dataset}.
+
+Paper ID: 2211.09445v3
+
+Summary:
+This paper titled "aiMotive Dataset: A Multimodal Dataset for Robust Autonomous Driving with Long-Range Perception" was authored by Tamás Matuszka, Iván Barton, Ádám Butykai, Péter Hajas, Dávid Kiss, Domonkos Kovács, Sándor Kunsági-Máté, Péter Lengyel, Gábor Németh, Levente Pető, Dezső Ribli, Dávid Szeghy, Szabolcs Vajna, Bálint Varga and published on 2022-11-17.
+It falls under the categories: cs.CV.
+The research explores the following topic: Autonomous driving is a popular research area within the computer vision research community. Since autonomous vehicles are highly safety-critical, ensuring robustness is essential for real-world deployment. While several public multimodal datasets are accessible, they mainly comprise two sensor modalities (camera, LiDAR) which are not well suited for adverse weather. In addition, they lack far-range annotations, making it harder to train neural networks that are the base of a highway assistant function of an autonomous vehicle. Therefore, we introduce a multimodal dataset for robust autonomous driving with long-range perception. The dataset consists of 176 scenes with synchronized and calibrated LiDAR, camera, and radar sensors covering a 360-degree field of view. The collected data was captured in highway, urban, and suburban areas during daytime, night, and rain and is annotated with 3D bounding boxes with consistent identifiers across frames. Furthermore, we trained unimodal and multimodal baseline models for 3D object detection. Data are available at \url{https://github.com/aimotive/aimotive_dataset}.
+
+Links:
+  - https://arxiv.org/abs/2211.09445v3
+  - https://arxiv.org/pdf/2211.09445v3

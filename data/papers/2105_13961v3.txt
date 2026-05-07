@@ -1,0 +1,22 @@
+Title: A Study about the Knowledge and Use of Requirements Engineering Standards in Industry
+
+Authors: Xavier Franch, Martin Glinz, Daniel Mendez, Norbert Seyff
+
+Published: 2021-05-28
+
+Categories: cs.SE
+
+Abstract:
+Context: The use of standards is considered a vital part of any engineering discipline. So one could expect that standards play an important role in Requirements Engineering (RE) as well. However, little is known about the actual knowledge and use of RE-related standards in industry. Objective: In this article, we investigate to which extent standards and related artifacts such as templates or guidelines are known and used by RE practitioners. Method: To this end, we have conducted a questionnaire-based online survey. We could analyze the replies from 90 RE practitioners using a combination of closed and open-text questions. Results: Our results indicate that the knowledge and use of standards and related artifacts in RE is less widespread than one might expect from an engineering perspective. For example, about 47% of the respondents working as requirements engineers or business analysts do not know the core standard in RE, ISO/IEC/IEEE 29148. Participants in our study mostly use standards by personal decision rather than being imposed by their respective company, customer, or regulator. Beyond insufficient knowledge, we also found cultural and organizational factors impeding the widespread adoption of standards in RE. Conclusions: Overall, our results provide empirically informed insights into the actual use of standards and related artifacts in RE practice and - indirectly - about the value that the current standards create for RE practitioners.
+
+Paper ID: 2105.13961v3
+
+Summary:
+This paper titled "A Study about the Knowledge and Use of Requirements Engineering Standards in Industry" was authored by Xavier Franch, Martin Glinz, Daniel Mendez, Norbert Seyff and published on 2021-05-28.
+It falls under the categories: cs.SE.
+The research explores the following topic: Context: The use of standards is considered a vital part of any engineering discipline. So one could expect that standards play an important role in Requirements Engineering (RE) as well. However, little is known about the actual knowledge and use of RE-related standards in industry. Objective: In this article, we investigate to which extent standards and related artifacts such as templates or guidelines are known and used by RE practitioners. Method: To this end, we have conducted a questionnaire-based online survey. We could analyze the replies from 90 RE practitioners using a combination of closed and open-text questions. Results: Our results indicate that the knowledge and use of standards and related artifacts in RE is less widespread than one might expect from an engineering perspective. For example, about 47% of the respondents working as requirements engineers or business analysts do not know the core standard in RE, ISO/IEC/IEEE 29148. Participants in our study mostly use standards by personal decision rather than being imposed by their respective company, customer, or regulator. Beyond insufficient knowledge, we also found cultural and organizational factors impeding the widespread adoption of standards in RE. Conclusions: Overall, our results provide empirically informed insights into the actual use of standards and related artifacts in RE practice and - indirectly - about the value that the current standards create for RE practitioners.
+
+Links:
+  - https://arxiv.org/abs/2105.13961v3
+  - https://arxiv.org/pdf/2105.13961v3
+  - https://doi.org/10.1109/TSE.2021.3087792

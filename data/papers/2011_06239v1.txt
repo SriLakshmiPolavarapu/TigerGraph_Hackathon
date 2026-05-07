@@ -1,0 +1,21 @@
+Title: The CUHK-TUDELFT System for The SLT 2021 Children Speech Recognition Challenge
+
+Authors: Si-Ioi Ng, Wei Liu, Zhiyuan Peng, Siyuan Feng, Hing-Pang Huang, Odette Scharenborg, Tan Lee
+
+Published: 2020-11-12
+
+Categories: eess.AS, cs.SD
+
+Abstract:
+This technical report describes our submission to the 2021 SLT Children Speech Recognition Challenge (CSRC) Track 1. Our approach combines the use of a joint CTC-attention end-to-end (E2E) speech recognition framework, transfer learning, data augmentation and development of various language models. Procedures of data pre-processing, the background and the course of system development are described. The analysis of the experiment results, as well as the comparison between the E2E and DNN-HMM hybrid system are discussed in detail. Our system achieved a character error rate (CER) of 20.1% in our designated test set, and 23.6% in the official evaluation set, which is placed at 10-th overall.
+
+Paper ID: 2011.06239v1
+
+Summary:
+This paper titled "The CUHK-TUDELFT System for The SLT 2021 Children Speech Recognition Challenge" was authored by Si-Ioi Ng, Wei Liu, Zhiyuan Peng, Siyuan Feng, Hing-Pang Huang, Odette Scharenborg, Tan Lee and published on 2020-11-12.
+It falls under the categories: eess.AS, cs.SD.
+The research explores the following topic: This technical report describes our submission to the 2021 SLT Children Speech Recognition Challenge (CSRC) Track 1. Our approach combines the use of a joint CTC-attention end-to-end (E2E) speech recognition framework, transfer learning, data augmentation and development of various language models. Procedures of data pre-processing, the background and the course of system development are described. The analysis of the experiment results, as well as the comparison between the E2E and DNN-HMM hybrid system are discussed in detail. Our system achieved a character error rate (CER) of 20.1% in our designated test set, and 23.6% in the official evaluation set, which is placed at 10-th overall.
+
+Links:
+  - https://arxiv.org/abs/2011.06239v1
+  - https://arxiv.org/pdf/2011.06239v1

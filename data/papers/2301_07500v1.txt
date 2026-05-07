@@ -1,0 +1,26 @@
+Title: Multi-objective Software Architecture Refactoring driven by Quality Attributes
+
+Authors: Daniele Di Pompeo, Michele Tucci
+
+Published: 2023-01-18
+
+Categories: cs.SE
+
+Abstract:
+Architecture optimization is the process of automatically generating design options, typically to enhance software's quantifiable quality attributes, such as performance and reliability. Multi-objective optimization approaches have been used in this situation to assist the designer in selecting appropriate trade-offs between a number of non-functional features. Through automated refactoring, design alternatives can be produced in this process, and assessed using non-functional models.
+  This type of optimization tasks are hard and time- and resource-intensive, which frequently hampers their use in software engineering procedures.
+  In this paper, we present our optimization framework where we examined the performance of various genetic algorithms. We also exercised our framework with two case studies with various levels of size, complexity, and domain served as our test subjects.
+
+Paper ID: 2301.07500v1
+
+Summary:
+This paper titled "Multi-objective Software Architecture Refactoring driven by Quality Attributes" was authored by Daniele Di Pompeo, Michele Tucci and published on 2023-01-18.
+It falls under the categories: cs.SE.
+The research explores the following topic: Architecture optimization is the process of automatically generating design options, typically to enhance software's quantifiable quality attributes, such as performance and reliability. Multi-objective optimization approaches have been used in this situation to assist the designer in selecting appropriate trade-offs between a number of non-functional features. Through automated refactoring, design alternatives can be produced in this process, and assessed using non-functional models.
+  This type of optimization tasks are hard and time- and resource-intensive, which frequently hampers their use in software engineering procedures.
+  In this paper, we present our optimization framework where we examined the performance of various genetic algorithms. We also exercised our framework with two case studies with various levels of size, complexity, and domain served as our test subjects.
+
+Links:
+  - https://arxiv.org/abs/2301.07500v1
+  - https://arxiv.org/pdf/2301.07500v1
+  - https://doi.org/10.1109/ICSA-C57050.2023.00046

@@ -1,0 +1,21 @@
+Title: A Closer Look at Rehearsal-Free Continual Learning
+
+Authors: James Seale Smith, Junjiao Tian, Shaunak Halbe, Yen-Chang Hsu, Zsolt Kira
+
+Published: 2022-03-31
+
+Categories: cs.LG, cs.AI, cs.CV
+
+Abstract:
+Continual learning is a setting where machine learning models learn novel concepts from continuously shifting training data, while simultaneously avoiding degradation of knowledge on previously seen classes which may disappear from the training data for extended periods of time (a phenomenon known as the catastrophic forgetting problem). Current approaches for continual learning of a single expanding task (aka class-incremental continual learning) require extensive rehearsal of previously seen data to avoid this degradation of knowledge. Unfortunately, rehearsal comes at a cost to memory, and it may also violate data-privacy. Instead, we explore combining knowledge distillation and parameter regularization in new ways to achieve strong continual learning performance without rehearsal. Specifically, we take a deep dive into common continual learning techniques: prediction distillation, feature distillation, L2 parameter regularization, and EWC parameter regularization. We first disprove the common assumption that parameter regularization techniques fail for rehearsal-free continual learning of a single, expanding task. Next, we explore how to leverage knowledge from a pre-trained model in rehearsal-free continual learning and find that vanilla L2 parameter regularization outperforms EWC parameter regularization and feature distillation. Finally, we explore the recently popular ImageNet-R benchmark, and show that L2 parameter regularization implemented in self-attention blocks of a ViT transformer outperforms recent popular prompting for continual learning methods.
+
+Paper ID: 2203.17269v2
+
+Summary:
+This paper titled "A Closer Look at Rehearsal-Free Continual Learning" was authored by James Seale Smith, Junjiao Tian, Shaunak Halbe, Yen-Chang Hsu, Zsolt Kira and published on 2022-03-31.
+It falls under the categories: cs.LG, cs.AI, cs.CV.
+The research explores the following topic: Continual learning is a setting where machine learning models learn novel concepts from continuously shifting training data, while simultaneously avoiding degradation of knowledge on previously seen classes which may disappear from the training data for extended periods of time (a phenomenon known as the catastrophic forgetting problem). Current approaches for continual learning of a single expanding task (aka class-incremental continual learning) require extensive rehearsal of previously seen data to avoid this degradation of knowledge. Unfortunately, rehearsal comes at a cost to memory, and it may also violate data-privacy. Instead, we explore combining knowledge distillation and parameter regularization in new ways to achieve strong continual learning performance without rehearsal. Specifically, we take a deep dive into common continual learning techniques: prediction distillation, feature distillation, L2 parameter regularization, and EWC parameter regularization. We first disprove the common assumption that parameter regularization techniques fail for rehearsal-free continual learning of a single, expanding task. Next, we explore how to leverage knowledge from a pre-trained model in rehearsal-free continual learning and find that vanilla L2 parameter regularization outperforms EWC parameter regularization and feature distillation. Finally, we explore the recently popular ImageNet-R benchmark, and show that L2 parameter regularization implemented in self-attention blocks of a ViT transformer outperforms recent popular prompting for continual learning methods.
+
+Links:
+  - https://arxiv.org/abs/2203.17269v2
+  - https://arxiv.org/pdf/2203.17269v2

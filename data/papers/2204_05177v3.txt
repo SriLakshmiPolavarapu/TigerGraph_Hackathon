@@ -1,0 +1,22 @@
+Title: The PartialSpoof Database and Countermeasures for the Detection of Short Fake Speech Segments Embedded in an Utterance
+
+Authors: Lin Zhang, Xin Wang, Erica Cooper, Nicholas Evans, Junichi Yamagishi
+
+Published: 2022-04-11
+
+Categories: eess.AS, cs.CR, cs.SD
+
+Abstract:
+Automatic speaker verification is susceptible to various manipulations and spoofing, such as text-to-speech synthesis, voice conversion, replay, tampering, adversarial attacks, and so on. We consider a new spoofing scenario called "Partial Spoof" (PS) in which synthesized or transformed speech segments are embedded into a bona fide utterance. While existing countermeasures (CMs) can detect fully spoofed utterances, there is a need for their adaptation or extension to the PS scenario. We propose various improvements to construct a significantly more accurate CM that can detect and locate short-generated spoofed speech segments at finer temporal resolutions. First, we introduce newly developed self-supervised pre-trained models as enhanced feature extractors. Second, we extend our PartialSpoof database by adding segment labels for various temporal resolutions. Since the short spoofed speech segments to be embedded by attackers are of variable length, six different temporal resolutions are considered, ranging from as short as 20 ms to as large as 640 ms. Third, we propose a new CM that enables the simultaneous use of the segment-level labels at different temporal resolutions as well as utterance-level labels to execute utterance- and segment-level detection at the same time. We also show that the proposed CM is capable of detecting spoofing at the utterance level with low error rates in the PS scenario as well as in a related logical access (LA) scenario. The equal error rates of utterance-level detection on the PartialSpoof database and ASVspoof 2019 LA database were 0.77 and 0.90%, respectively.
+
+Paper ID: 2204.05177v3
+
+Summary:
+This paper titled "The PartialSpoof Database and Countermeasures for the Detection of Short Fake Speech Segments Embedded in an Utterance" was authored by Lin Zhang, Xin Wang, Erica Cooper, Nicholas Evans, Junichi Yamagishi and published on 2022-04-11.
+It falls under the categories: eess.AS, cs.CR, cs.SD.
+The research explores the following topic: Automatic speaker verification is susceptible to various manipulations and spoofing, such as text-to-speech synthesis, voice conversion, replay, tampering, adversarial attacks, and so on. We consider a new spoofing scenario called "Partial Spoof" (PS) in which synthesized or transformed speech segments are embedded into a bona fide utterance. While existing countermeasures (CMs) can detect fully spoofed utterances, there is a need for their adaptation or extension to the PS scenario. We propose various improvements to construct a significantly more accurate CM that can detect and locate short-generated spoofed speech segments at finer temporal resolutions. First, we introduce newly developed self-supervised pre-trained models as enhanced feature extractors. Second, we extend our PartialSpoof database by adding segment labels for various temporal resolutions. Since the short spoofed speech segments to be embedded by attackers are of variable length, six different temporal resolutions are considered, ranging from as short as 20 ms to as large as 640 ms. Third, we propose a new CM that enables the simultaneous use of the segment-level labels at different temporal resolutions as well as utterance-level labels to execute utterance- and segment-level detection at the same time. We also show that the proposed CM is capable of detecting spoofing at the utterance level with low error rates in the PS scenario as well as in a related logical access (LA) scenario. The equal error rates of utterance-level detection on the PartialSpoof database and ASVspoof 2019 LA database were 0.77 and 0.90%, respectively.
+
+Links:
+  - https://arxiv.org/abs/2204.05177v3
+  - https://arxiv.org/pdf/2204.05177v3
+  - https://doi.org/10.1109/TASLP.2022.3233236

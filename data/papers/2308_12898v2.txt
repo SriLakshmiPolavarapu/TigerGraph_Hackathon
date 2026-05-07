@@ -1,0 +1,21 @@
+Title: Can Linguistic Knowledge Improve Multimodal Alignment in Vision-Language Pretraining?
+
+Authors: Fei Wang, Liang Ding, Jun Rao, Ye Liu, Li Shen, Changxing Ding
+
+Published: 2023-08-24
+
+Categories: cs.MM, cs.AI, cs.CL, cs.CV
+
+Abstract:
+The multimedia community has shown a significant interest in perceiving and representing the physical world with multimodal pretrained neural network models, and among them, the visual-language pertaining (VLP) is, currently, the most captivating topic. However, there have been few endeavors dedicated to the exploration of 1) whether essential linguistic knowledge (e.g., semantics and syntax) can be extracted during VLP, and 2) how such linguistic knowledge impact or enhance the multimodal alignment. In response, here we aim to elucidate the impact of comprehensive linguistic knowledge, including semantic expression and syntactic structure, on multimodal alignment. Specifically, we design and release the SNARE, the first large-scale multimodal alignment probing benchmark, to detect the vital linguistic components, e.g., lexical, semantic, and syntax knowledge, containing four tasks: Semantic structure, Negation logic, Attribute ownership, and Relationship composition. Based on our proposed probing benchmarks, our holistic analyses of five advanced VLP models illustrate that the VLP model: i) shows insensitivity towards complex syntax structures and relies on content words for sentence comprehension; ii) demonstrates limited comprehension of combinations between sentences and negations; iii) faces challenges in determining the presence of actions or spatial relationships within visual information and struggles with verifying the correctness of triple combinations. We make our benchmark and code available at \url{https://github.com/WangFei-2019/SNARE/}.
+
+Paper ID: 2308.12898v2
+
+Summary:
+This paper titled "Can Linguistic Knowledge Improve Multimodal Alignment in Vision-Language Pretraining?" was authored by Fei Wang, Liang Ding, Jun Rao, Ye Liu, Li Shen, Changxing Ding and published on 2023-08-24.
+It falls under the categories: cs.MM, cs.AI, cs.CL, cs.CV.
+The research explores the following topic: The multimedia community has shown a significant interest in perceiving and representing the physical world with multimodal pretrained neural network models, and among them, the visual-language pertaining (VLP) is, currently, the most captivating topic. However, there have been few endeavors dedicated to the exploration of 1) whether essential linguistic knowledge (e.g., semantics and syntax) can be extracted during VLP, and 2) how such linguistic knowledge impact or enhance the multimodal alignment. In response, here we aim to elucidate the impact of comprehensive linguistic knowledge, including semantic expression and syntactic structure, on multimodal alignment. Specifically, we design and release the SNARE, the first large-scale multimodal alignment probing benchmark, to detect the vital linguistic components, e.g., lexical, semantic, and syntax knowledge, containing four tasks: Semantic structure, Negation logic, Attribute ownership, and Relationship composition. Based on our proposed probing benchmarks, our holistic analyses of five advanced VLP models illustrate that the VLP model: i) shows insensitivity towards complex syntax structures and relies on content words for sentence comprehension; ii) demonstrates limited comprehension of combinations between sentences and negations; iii) faces challenges in determining the presence of actions or spatial relationships within visual information and struggles with verifying the correctness of triple combinations. We make our benchmark and code available at \url{https://github.com/WangFei-2019/SNARE/}.
+
+Links:
+  - https://arxiv.org/abs/2308.12898v2
+  - https://arxiv.org/pdf/2308.12898v2

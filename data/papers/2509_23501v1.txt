@@ -1,0 +1,21 @@
+Title: The Impact of Role Design in In-Context Learning for Large Language Models
+
+Authors: Hamidreza Rouzegar, Masoud Makrehchi
+
+Published: 2025-09-27
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+In-context learning (ICL) enables Large Language Models (LLMs) to generate predictions based on prompts without additional fine-tuning. While prompt engineering has been widely studied, the impact of role design within prompts remains underexplored. This study examines the influence of role configurations in zero-shot and few-shot learning scenarios using GPT-3.5 and GPT-4o from OpenAI and Llama2-7b and Llama2-13b from Meta. We evaluate the models' performance across datasets, focusing on tasks like sentiment analysis, text classification, question answering, and math reasoning. Our findings suggest the potential of role-based prompt structuring to enhance LLM performance.
+
+Paper ID: 2509.23501v1
+
+Summary:
+This paper titled "The Impact of Role Design in In-Context Learning for Large Language Models" was authored by Hamidreza Rouzegar, Masoud Makrehchi and published on 2025-09-27.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: In-context learning (ICL) enables Large Language Models (LLMs) to generate predictions based on prompts without additional fine-tuning. While prompt engineering has been widely studied, the impact of role design within prompts remains underexplored. This study examines the influence of role configurations in zero-shot and few-shot learning scenarios using GPT-3.5 and GPT-4o from OpenAI and Llama2-7b and Llama2-13b from Meta. We evaluate the models' performance across datasets, focusing on tasks like sentiment analysis, text classification, question answering, and math reasoning. Our findings suggest the potential of role-based prompt structuring to enhance LLM performance.
+
+Links:
+  - https://arxiv.org/abs/2509.23501v1
+  - https://arxiv.org/pdf/2509.23501v1

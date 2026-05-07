@@ -1,0 +1,21 @@
+Title: Continual Learning with Self-Organizing Maps
+
+Authors: Pouya Bashivan, Martin Schrimpf, Robert Ajemian, Irina Rish, Matthew Riemer, Yuhai Tu
+
+Published: 2019-04-19
+
+Categories: cs.NE
+
+Abstract:
+Despite remarkable successes achieved by modern neural networks in a wide range of applications, these networks perform best in domain-specific stationary environments where they are trained only once on large-scale controlled data repositories. When exposed to non-stationary learning environments, current neural networks tend to forget what they had previously learned, a phenomena known as catastrophic forgetting. Most previous approaches to this problem rely on memory replay buffers which store samples from previously learned tasks, and use them to regularize the learning on new ones. This approach suffers from the important disadvantage of not scaling well to real-life problems in which the memory requirements become enormous. We propose a memoryless method that combines standard supervised neural networks with self-organizing maps to solve the continual learning problem. The role of the self-organizing map is to adaptively cluster the inputs into appropriate task contexts - without explicit labels - and allocate network resources accordingly. Thus, it selectively routes the inputs in accord with previous experience, ensuring that past learning is maintained and does not interfere with current learning. Out method is intuitive, memoryless, and performs on par with current state-of-the-art approaches on standard benchmarks.
+
+Paper ID: 1904.09330v1
+
+Summary:
+This paper titled "Continual Learning with Self-Organizing Maps" was authored by Pouya Bashivan, Martin Schrimpf, Robert Ajemian, Irina Rish, Matthew Riemer, Yuhai Tu and published on 2019-04-19.
+It falls under the categories: cs.NE.
+The research explores the following topic: Despite remarkable successes achieved by modern neural networks in a wide range of applications, these networks perform best in domain-specific stationary environments where they are trained only once on large-scale controlled data repositories. When exposed to non-stationary learning environments, current neural networks tend to forget what they had previously learned, a phenomena known as catastrophic forgetting. Most previous approaches to this problem rely on memory replay buffers which store samples from previously learned tasks, and use them to regularize the learning on new ones. This approach suffers from the important disadvantage of not scaling well to real-life problems in which the memory requirements become enormous. We propose a memoryless method that combines standard supervised neural networks with self-organizing maps to solve the continual learning problem. The role of the self-organizing map is to adaptively cluster the inputs into appropriate task contexts - without explicit labels - and allocate network resources accordingly. Thus, it selectively routes the inputs in accord with previous experience, ensuring that past learning is maintained and does not interfere with current learning. Out method is intuitive, memoryless, and performs on par with current state-of-the-art approaches on standard benchmarks.
+
+Links:
+  - https://arxiv.org/abs/1904.09330v1
+  - https://arxiv.org/pdf/1904.09330v1

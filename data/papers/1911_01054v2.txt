@@ -1,0 +1,21 @@
+Title: SoildNet: Soiling Degradation Detection in Autonomous Driving
+
+Authors: Arindam Das
+
+Published: 2019-11-04
+
+Categories: cs.CV, cs.LG, cs.RO, eess.IV
+
+Abstract:
+In the field of autonomous driving, camera sensors are extremely prone to soiling because they are located outside of the car and interact with environmental sources of soiling such as rain drops, snow, dust, sand, mud and so on. This can lead to either partial or complete vision degradation. Hence detecting such decay in vision is very important for safety and overall to preserve the functionality of the "autonomous" components in autonomous driving. The contribution of this work involves: 1) Designing a Deep Convolutional Neural Network (DCNN) based baseline network, 2) Exploiting several network remodelling techniques such as employing static and dynamic group convolution, channel reordering to compress the baseline architecture and make it suitable for low power embedded systems with nearly 1 TOPS, 3) Comparing various result metrics of all interim networks dedicated for soiling degradation detection at tile level of size 64 x 64 on input resolution 1280 x 768. The compressed network, is called SoildNet (Sand, snOw, raIn/dIrt, oiL, Dust/muD) that uses only 9.72% trainable parameters of the base network and reduces the model size by more than 7 times with no loss in accuracy
+
+Paper ID: 1911.01054v2
+
+Summary:
+This paper titled "SoildNet: Soiling Degradation Detection in Autonomous Driving" was authored by Arindam Das and published on 2019-11-04.
+It falls under the categories: cs.CV, cs.LG, cs.RO, eess.IV.
+The research explores the following topic: In the field of autonomous driving, camera sensors are extremely prone to soiling because they are located outside of the car and interact with environmental sources of soiling such as rain drops, snow, dust, sand, mud and so on. This can lead to either partial or complete vision degradation. Hence detecting such decay in vision is very important for safety and overall to preserve the functionality of the "autonomous" components in autonomous driving. The contribution of this work involves: 1) Designing a Deep Convolutional Neural Network (DCNN) based baseline network, 2) Exploiting several network remodelling techniques such as employing static and dynamic group convolution, channel reordering to compress the baseline architecture and make it suitable for low power embedded systems with nearly 1 TOPS, 3) Comparing various result metrics of all interim networks dedicated for soiling degradation detection at tile level of size 64 x 64 on input resolution 1280 x 768. The compressed network, is called SoildNet (Sand, snOw, raIn/dIrt, oiL, Dust/muD) that uses only 9.72% trainable parameters of the base network and reduces the model size by more than 7 times with no loss in accuracy
+
+Links:
+  - https://arxiv.org/abs/1911.01054v2
+  - https://arxiv.org/pdf/1911.01054v2

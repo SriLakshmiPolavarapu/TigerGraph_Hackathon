@@ -1,0 +1,21 @@
+Title: How and Where to Translate? The Impact of Translation Strategies in Cross-lingual LLM Prompting
+
+Authors: Aman Gupta, Yingying Zhuang, Zhou Yu, Ziji Zhang, Anurag Beniwal
+
+Published: 2025-07-21
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Despite advances in the multilingual capabilities of Large Language Models (LLMs), their performance varies substantially across different languages and tasks. In multilingual retrieval-augmented generation (RAG)-based systems, knowledge bases (KB) are often shared from high-resource languages (such as English) to low-resource ones, resulting in retrieved information from the KB being in a different language than the rest of the context. In such scenarios, two common practices are pre-translation to create a mono-lingual prompt and cross-lingual prompting for direct inference. However, the impact of these choices remains unclear. In this paper, we systematically evaluate the impact of different prompt translation strategies for classification tasks with RAG-enhanced LLMs in multilingual systems. Experimental results show that an optimized prompting strategy can significantly improve knowledge sharing across languages, therefore improve the performance on the downstream classification task. The findings advocate for a broader utilization of multilingual resource sharing and cross-lingual prompt optimization for non-English languages, especially the low-resource ones.
+
+Paper ID: 2507.22923v1
+
+Summary:
+This paper titled "How and Where to Translate? The Impact of Translation Strategies in Cross-lingual LLM Prompting" was authored by Aman Gupta, Yingying Zhuang, Zhou Yu, Ziji Zhang, Anurag Beniwal and published on 2025-07-21.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Despite advances in the multilingual capabilities of Large Language Models (LLMs), their performance varies substantially across different languages and tasks. In multilingual retrieval-augmented generation (RAG)-based systems, knowledge bases (KB) are often shared from high-resource languages (such as English) to low-resource ones, resulting in retrieved information from the KB being in a different language than the rest of the context. In such scenarios, two common practices are pre-translation to create a mono-lingual prompt and cross-lingual prompting for direct inference. However, the impact of these choices remains unclear. In this paper, we systematically evaluate the impact of different prompt translation strategies for classification tasks with RAG-enhanced LLMs in multilingual systems. Experimental results show that an optimized prompting strategy can significantly improve knowledge sharing across languages, therefore improve the performance on the downstream classification task. The findings advocate for a broader utilization of multilingual resource sharing and cross-lingual prompt optimization for non-English languages, especially the low-resource ones.
+
+Links:
+  - https://arxiv.org/abs/2507.22923v1
+  - https://arxiv.org/pdf/2507.22923v1

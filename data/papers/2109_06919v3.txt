@@ -1,0 +1,21 @@
+Title: Deploying clinical machine learning? Consider the following...
+
+Authors: Charles Lu, Ken Chang, Praveer Singh, Stuart Pomerantz, Sean Doyle, Sujay Kakarmath, Christopher Bridge, Jayashree Kalpathy-Cramer
+
+Published: 2021-09-14
+
+Categories: cs.LG, cs.CY
+
+Abstract:
+Despite the intense attention and considerable investment into clinical machine learning research, relatively few applications have been deployed at a large-scale in a real-world clinical environment. While research is important in advancing the state-of-the-art, translation is equally important in bringing these techniques and technologies into a position to ultimately impact healthcare. We believe a lack of appreciation for several considerations are a major cause for this discrepancy between expectation and reality. To better characterize a holistic perspective among researchers and practitioners, we survey several practitioners with commercial experience in developing CML for clinical deployment. Using these insights, we identify several main categories of challenges in order to better design and develop clinical machine learning applications.
+
+Paper ID: 2109.06919v3
+
+Summary:
+This paper titled "Deploying clinical machine learning? Consider the following..." was authored by Charles Lu, Ken Chang, Praveer Singh, Stuart Pomerantz, Sean Doyle, Sujay Kakarmath, Christopher Bridge, Jayashree Kalpathy-Cramer and published on 2021-09-14.
+It falls under the categories: cs.LG, cs.CY.
+The research explores the following topic: Despite the intense attention and considerable investment into clinical machine learning research, relatively few applications have been deployed at a large-scale in a real-world clinical environment. While research is important in advancing the state-of-the-art, translation is equally important in bringing these techniques and technologies into a position to ultimately impact healthcare. We believe a lack of appreciation for several considerations are a major cause for this discrepancy between expectation and reality. To better characterize a holistic perspective among researchers and practitioners, we survey several practitioners with commercial experience in developing CML for clinical deployment. Using these insights, we identify several main categories of challenges in order to better design and develop clinical machine learning applications.
+
+Links:
+  - https://arxiv.org/abs/2109.06919v3
+  - https://arxiv.org/pdf/2109.06919v3

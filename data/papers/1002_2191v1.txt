@@ -1,0 +1,21 @@
+Title: Vision Based Game Development Using Human Computer Interaction
+
+Authors: S. Sumathi, S. K. Srivatsa, M. Uma Maheswari
+
+Published: 2010-02-10
+
+Categories: cs.HC, cs.CV, cs.MM
+
+Abstract:
+A Human Computer Interface (HCI) System for playing games is designed here for more natural communication with the machines. The system presented here is a vision-based system for detection of long voluntary eye blinks and interpretation of blink patterns for communication between man and machine. This system replaces the mouse with the human face as a new way to interact with the computer. Facial features (nose tip and eyes) are detected and tracked in realtime to use their actions as mouse events. The coordinates and movement of the nose tip in the live video feed are translated to become the coordinates and movement of the mouse pointer on the application. The left or right eye blinks fire left or right mouse click events. The system works with inexpensive USB cameras and runs at a frame rate of 30 frames per second.
+
+Paper ID: 1002.2191v1
+
+Summary:
+This paper titled "Vision Based Game Development Using Human Computer Interaction" was authored by S. Sumathi, S. K. Srivatsa, M. Uma Maheswari and published on 2010-02-10.
+It falls under the categories: cs.HC, cs.CV, cs.MM.
+The research explores the following topic: A Human Computer Interface (HCI) System for playing games is designed here for more natural communication with the machines. The system presented here is a vision-based system for detection of long voluntary eye blinks and interpretation of blink patterns for communication between man and machine. This system replaces the mouse with the human face as a new way to interact with the computer. Facial features (nose tip and eyes) are detected and tracked in realtime to use their actions as mouse events. The coordinates and movement of the nose tip in the live video feed are translated to become the coordinates and movement of the mouse pointer on the application. The left or right eye blinks fire left or right mouse click events. The system works with inexpensive USB cameras and runs at a frame rate of 30 frames per second.
+
+Links:
+  - https://arxiv.org/abs/1002.2191v1
+  - https://arxiv.org/pdf/1002.2191v1

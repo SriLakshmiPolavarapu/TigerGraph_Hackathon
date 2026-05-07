@@ -1,0 +1,22 @@
+Title: This Reads Like That: Deep Learning for Interpretable Natural Language Processing
+
+Authors: Claudio Fanconi, Moritz Vandenhirtz, Severin Husmann, Julia E. Vogt
+
+Published: 2023-10-25
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Prototype learning, a popular machine learning method designed for inherently interpretable decisions, leverages similarities to learned prototypes for classifying new data. While it is mainly applied in computer vision, in this work, we build upon prior research and further explore the extension of prototypical networks to natural language processing. We introduce a learned weighted similarity measure that enhances the similarity computation by focusing on informative dimensions of pre-trained sentence embeddings. Additionally, we propose a post-hoc explainability mechanism that extracts prediction-relevant words from both the prototype and input sentences. Finally, we empirically demonstrate that our proposed method not only improves predictive performance on the AG News and RT Polarity datasets over a previous prototype-based approach, but also improves the faithfulness of explanations compared to rationale-based recurrent convolutions.
+
+Paper ID: 2310.17010v1
+
+Summary:
+This paper titled "This Reads Like That: Deep Learning for Interpretable Natural Language Processing" was authored by Claudio Fanconi, Moritz Vandenhirtz, Severin Husmann, Julia E. Vogt and published on 2023-10-25.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Prototype learning, a popular machine learning method designed for inherently interpretable decisions, leverages similarities to learned prototypes for classifying new data. While it is mainly applied in computer vision, in this work, we build upon prior research and further explore the extension of prototypical networks to natural language processing. We introduce a learned weighted similarity measure that enhances the similarity computation by focusing on informative dimensions of pre-trained sentence embeddings. Additionally, we propose a post-hoc explainability mechanism that extracts prediction-relevant words from both the prototype and input sentences. Finally, we empirically demonstrate that our proposed method not only improves predictive performance on the AG News and RT Polarity datasets over a previous prototype-based approach, but also improves the faithfulness of explanations compared to rationale-based recurrent convolutions.
+
+Links:
+  - https://arxiv.org/abs/2310.17010v1
+  - https://arxiv.org/pdf/2310.17010v1
+  - https://doi.org/10.18653/v1/2023.emnlp-main.869

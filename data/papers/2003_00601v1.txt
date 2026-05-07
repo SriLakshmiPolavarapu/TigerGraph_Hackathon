@@ -1,0 +1,21 @@
+Title: 3D Point Cloud Processing and Learning for Autonomous Driving
+
+Authors: Siheng Chen, Baoan Liu, Chen Feng, Carlos Vallespi-Gonzalez, Carl Wellington
+
+Published: 2020-03-01
+
+Categories: cs.CV, eess.SP
+
+Abstract:
+We present a review of 3D point cloud processing and learning for autonomous driving. As one of the most important sensors in autonomous vehicles, light detection and ranging (LiDAR) sensors collect 3D point clouds that precisely record the external surfaces of objects and scenes. The tools for 3D point cloud processing and learning are critical to the map creation, localization, and perception modules in an autonomous vehicle. While much attention has been paid to data collected from cameras, such as images and videos, an increasing number of researchers have recognized the importance and significance of LiDAR in autonomous driving and have proposed processing and learning algorithms to exploit 3D point clouds. We review the recent progress in this research area and summarize what has been tried and what is needed for practical and safe autonomous vehicles. We also offer perspectives on open issues that are needed to be solved in the future.
+
+Paper ID: 2003.00601v1
+
+Summary:
+This paper titled "3D Point Cloud Processing and Learning for Autonomous Driving" was authored by Siheng Chen, Baoan Liu, Chen Feng, Carlos Vallespi-Gonzalez, Carl Wellington and published on 2020-03-01.
+It falls under the categories: cs.CV, eess.SP.
+The research explores the following topic: We present a review of 3D point cloud processing and learning for autonomous driving. As one of the most important sensors in autonomous vehicles, light detection and ranging (LiDAR) sensors collect 3D point clouds that precisely record the external surfaces of objects and scenes. The tools for 3D point cloud processing and learning are critical to the map creation, localization, and perception modules in an autonomous vehicle. While much attention has been paid to data collected from cameras, such as images and videos, an increasing number of researchers have recognized the importance and significance of LiDAR in autonomous driving and have proposed processing and learning algorithms to exploit 3D point clouds. We review the recent progress in this research area and summarize what has been tried and what is needed for practical and safe autonomous vehicles. We also offer perspectives on open issues that are needed to be solved in the future.
+
+Links:
+  - https://arxiv.org/abs/2003.00601v1
+  - https://arxiv.org/pdf/2003.00601v1

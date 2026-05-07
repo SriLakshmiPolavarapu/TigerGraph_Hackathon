@@ -1,0 +1,21 @@
+Title: Overcoming Catastrophic Forgetting by XAI
+
+Authors: Giang Nguyen
+
+Published: 2022-11-25
+
+Categories: cs.LG
+
+Abstract:
+Explaining the behaviors of deep neural networks, usually considered as black boxes, is critical especially when they are now being adopted over diverse aspects of human life. Taking the advantages of interpretable machine learning (interpretable ML), this work proposes a novel tool called Catastrophic Forgetting Dissector (or CFD) to explain catastrophic forgetting in continual learning settings. We also introduce a new method called Critical Freezing based on the observations of our tool. Experiments on ResNet articulate how catastrophic forgetting happens, particularly showing which components of this famous network are forgetting. Our new continual learning algorithm defeats various recent techniques by a significant margin, proving the capability of the investigation. Critical freezing not only attacks catastrophic forgetting but also exposes explainability.
+
+Paper ID: 2211.14177v1
+
+Summary:
+This paper titled "Overcoming Catastrophic Forgetting by XAI" was authored by Giang Nguyen and published on 2022-11-25.
+It falls under the categories: cs.LG.
+The research explores the following topic: Explaining the behaviors of deep neural networks, usually considered as black boxes, is critical especially when they are now being adopted over diverse aspects of human life. Taking the advantages of interpretable machine learning (interpretable ML), this work proposes a novel tool called Catastrophic Forgetting Dissector (or CFD) to explain catastrophic forgetting in continual learning settings. We also introduce a new method called Critical Freezing based on the observations of our tool. Experiments on ResNet articulate how catastrophic forgetting happens, particularly showing which components of this famous network are forgetting. Our new continual learning algorithm defeats various recent techniques by a significant margin, proving the capability of the investigation. Critical freezing not only attacks catastrophic forgetting but also exposes explainability.
+
+Links:
+  - https://arxiv.org/abs/2211.14177v1
+  - https://arxiv.org/pdf/2211.14177v1

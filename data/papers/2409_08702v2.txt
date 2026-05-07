@@ -1,0 +1,22 @@
+Title: A Dual-Branch Parallel Network for Speech Enhancement and Restoration
+
+Authors: Da-Hee Yang, Dail Kim, Joon-Hyuk Chang, Jeonghwan Choi, Han-gil Moon
+
+Published: 2024-09-13
+
+Categories: eess.AS, cs.AI
+
+Abstract:
+We present a novel general speech restoration model, DBP-Net (dual-branch parallel network), designed to effectively handle complex real-world distortions including noise, reverberation, and bandwidth degradation. Unlike prior approaches that rely on a single processing path or separate models for enhancement and restoration, DBP-Net introduces a unified architecture with dual parallel branches-a masking-based branch for distortion suppression and a mapping-based branch for spectrum reconstruction. A key innovation behind DBP-Net lies in the parameter sharing between the two branches and a cross-branch skip fusion, where the output of the masking branch is explicitly fused into the mapping branch. This design enables DBP-Net to simultaneously leverage complementary learning strategies-suppression and generation-within a lightweight framework. Experimental results show that DBP-Net significantly outperforms existing baselines in comprehensive speech restoration tasks while maintaining a compact model size. These findings suggest that DBP-Net offers an effective and scalable solution for unified speech enhancement and restoration in diverse distortion scenarios.
+
+Paper ID: 2409.08702v2
+
+Summary:
+This paper titled "A Dual-Branch Parallel Network for Speech Enhancement and Restoration" was authored by Da-Hee Yang, Dail Kim, Joon-Hyuk Chang, Jeonghwan Choi, Han-gil Moon and published on 2024-09-13.
+It falls under the categories: eess.AS, cs.AI.
+The research explores the following topic: We present a novel general speech restoration model, DBP-Net (dual-branch parallel network), designed to effectively handle complex real-world distortions including noise, reverberation, and bandwidth degradation. Unlike prior approaches that rely on a single processing path or separate models for enhancement and restoration, DBP-Net introduces a unified architecture with dual parallel branches-a masking-based branch for distortion suppression and a mapping-based branch for spectrum reconstruction. A key innovation behind DBP-Net lies in the parameter sharing between the two branches and a cross-branch skip fusion, where the output of the masking branch is explicitly fused into the mapping branch. This design enables DBP-Net to simultaneously leverage complementary learning strategies-suppression and generation-within a lightweight framework. Experimental results show that DBP-Net significantly outperforms existing baselines in comprehensive speech restoration tasks while maintaining a compact model size. These findings suggest that DBP-Net offers an effective and scalable solution for unified speech enhancement and restoration in diverse distortion scenarios.
+
+Links:
+  - https://arxiv.org/abs/2409.08702v2
+  - https://arxiv.org/pdf/2409.08702v2
+  - https://doi.org/10.1016/j.csl.2026.101959

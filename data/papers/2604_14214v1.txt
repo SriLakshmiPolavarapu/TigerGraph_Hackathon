@@ -1,0 +1,21 @@
+Title: CROP: Token-Efficient Reasoning in Large Language Models via Regularized Prompt Optimization
+
+Authors: Deep Shah, Sanket Badhe, Nehal Kathrotia, Priyanka Tiwari
+
+Published: 2026-04-08
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Large Language Models utilizing reasoning techniques improve task performance but incur significant latency and token costs due to verbose generation. Existing automatic prompt optimization(APO) frameworks target task accuracy exclusively at the expense of generating long reasoning traces. We propose Cost-Regularized Optimization of Prompts (CROP), an APO method that introduces regularization on response length by generating textual feedback in addition to standard accuracy feedback. This forces the optimization process to produce prompts that elicit concise responses containing only critical information and reasoning. We evaluate our approach on complex reasoning datasets, specifically GSM8K, LogiQA and BIG-Bench Hard. We achieved an 80.6\% reduction in token consumption while maintaining competitive accuracy, seeing only a nominal decline in performance. This presents a pragmatic solution for deploying token-efficient and cost-effective agentic AI systems in production pipelines.
+
+Paper ID: 2604.14214v1
+
+Summary:
+This paper titled "CROP: Token-Efficient Reasoning in Large Language Models via Regularized Prompt Optimization" was authored by Deep Shah, Sanket Badhe, Nehal Kathrotia, Priyanka Tiwari and published on 2026-04-08.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Large Language Models utilizing reasoning techniques improve task performance but incur significant latency and token costs due to verbose generation. Existing automatic prompt optimization(APO) frameworks target task accuracy exclusively at the expense of generating long reasoning traces. We propose Cost-Regularized Optimization of Prompts (CROP), an APO method that introduces regularization on response length by generating textual feedback in addition to standard accuracy feedback. This forces the optimization process to produce prompts that elicit concise responses containing only critical information and reasoning. We evaluate our approach on complex reasoning datasets, specifically GSM8K, LogiQA and BIG-Bench Hard. We achieved an 80.6\% reduction in token consumption while maintaining competitive accuracy, seeing only a nominal decline in performance. This presents a pragmatic solution for deploying token-efficient and cost-effective agentic AI systems in production pipelines.
+
+Links:
+  - https://arxiv.org/abs/2604.14214v1
+  - https://arxiv.org/pdf/2604.14214v1

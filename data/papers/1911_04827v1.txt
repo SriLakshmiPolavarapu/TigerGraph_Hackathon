@@ -1,0 +1,21 @@
+Title: Artist and style exposure bias in collaborative filtering based music recommendations
+
+Authors: Andres Ferraro, Dmitry Bogdanov, Xavier Serra, Jason Yoon
+
+Published: 2019-11-12
+
+Categories: cs.IR
+
+Abstract:
+Algorithms have an increasing influence on the music that we consume and understanding their behavior is fundamental to make sure they give a fair exposure to all artists across different styles. In this on-going work we contribute to this research direction analyzing the impact of collaborative filtering recommendations from the perspective of artist and music style exposure given by the system. We first analyze the distribution of the recommendations considering the exposure of different styles or genres and compare it to the users' listening behavior. This comparison suggests that the system is reinforcing the popularity of the items. Then, we simulate the effect of the system in the long term with a feedback loop. From this simulation we can see how the system gives less opportunity to the majority of artists, concentrating the users on fewer items. The results of our analysis demonstrate the need for a better evaluation methodology for current music recommendation algorithms, not only limited to user-focused relevance metrics.
+
+Paper ID: 1911.04827v1
+
+Summary:
+This paper titled "Artist and style exposure bias in collaborative filtering based music recommendations" was authored by Andres Ferraro, Dmitry Bogdanov, Xavier Serra, Jason Yoon and published on 2019-11-12.
+It falls under the categories: cs.IR.
+The research explores the following topic: Algorithms have an increasing influence on the music that we consume and understanding their behavior is fundamental to make sure they give a fair exposure to all artists across different styles. In this on-going work we contribute to this research direction analyzing the impact of collaborative filtering recommendations from the perspective of artist and music style exposure given by the system. We first analyze the distribution of the recommendations considering the exposure of different styles or genres and compare it to the users' listening behavior. This comparison suggests that the system is reinforcing the popularity of the items. Then, we simulate the effect of the system in the long term with a feedback loop. From this simulation we can see how the system gives less opportunity to the majority of artists, concentrating the users on fewer items. The results of our analysis demonstrate the need for a better evaluation methodology for current music recommendation algorithms, not only limited to user-focused relevance metrics.
+
+Links:
+  - https://arxiv.org/abs/1911.04827v1
+  - https://arxiv.org/pdf/1911.04827v1

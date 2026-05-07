@@ -1,0 +1,22 @@
+Title: A multi-level collaborative filtering method that improves recommendations
+
+Authors: Nikolaos Polatidis, Christos K. Georgiadis
+
+Published: 2018-04-24
+
+Categories: cs.IR
+
+Abstract:
+Collaborative filtering is one of the most used approaches for providing recommendations in various online environments. Even though collaborative recommendation methods have been widely utilized due to their simplicity and ease of use, accuracy is still an issue. In this paper we propose a multi-level recommendation method with its main purpose being to assist users in decision making by providing recommendations of better quality. The proposed method can be applied in different online domains that use collaborative recommender systems, thus improving the overall user experience. The efficiency of the proposed method is shown by providing an extensive experimental evaluation using five real datasets and with comparisons to alternatives.
+
+Paper ID: 1804.08891v1
+
+Summary:
+This paper titled "A multi-level collaborative filtering method that improves recommendations" was authored by Nikolaos Polatidis, Christos K. Georgiadis and published on 2018-04-24.
+It falls under the categories: cs.IR.
+The research explores the following topic: Collaborative filtering is one of the most used approaches for providing recommendations in various online environments. Even though collaborative recommendation methods have been widely utilized due to their simplicity and ease of use, accuracy is still an issue. In this paper we propose a multi-level recommendation method with its main purpose being to assist users in decision making by providing recommendations of better quality. The proposed method can be applied in different online domains that use collaborative recommender systems, thus improving the overall user experience. The efficiency of the proposed method is shown by providing an extensive experimental evaluation using five real datasets and with comparisons to alternatives.
+
+Links:
+  - https://arxiv.org/abs/1804.08891v1
+  - https://arxiv.org/pdf/1804.08891v1
+  - https://doi.org/10.1016/j.eswa.2015.11.023

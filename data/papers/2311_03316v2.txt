@@ -1,0 +1,21 @@
+Title: Improving Collaborative Filtering Recommendation via Graph Learning
+
+Authors: Yongyu Wang
+
+Published: 2023-11-06
+
+Categories: cs.IR, cs.HC
+
+Abstract:
+Recommendation systems aim to provide personalized predictions by identifying items that are most appealing to individual users. Among various recommendation approaches, k-nearest-neighbor (kNN)-based collaborative filtering (CF) remains one of the most widely used in practice. However, the kNN scheme often results in running the algorithm on a highly dense graph, which degrades computational efficiency. In addition, enforcing a uniform neighborhood size is not well suited to capturing the true underlying structure of the data. In this paper, we leverage recent advances in graph signal processing (GSP) to learn a sparse yet high-quality graph, improving the efficiency of collaborative filtering without sacrificing recommendation accuracy. Experiments on benchmark datasets demonstrate that our method can successfully perform CF-based recommendation using an extremely sparse graph while maintaining competitive performance.
+
+Paper ID: 2311.03316v2
+
+Summary:
+This paper titled "Improving Collaborative Filtering Recommendation via Graph Learning" was authored by Yongyu Wang and published on 2023-11-06.
+It falls under the categories: cs.IR, cs.HC.
+The research explores the following topic: Recommendation systems aim to provide personalized predictions by identifying items that are most appealing to individual users. Among various recommendation approaches, k-nearest-neighbor (kNN)-based collaborative filtering (CF) remains one of the most widely used in practice. However, the kNN scheme often results in running the algorithm on a highly dense graph, which degrades computational efficiency. In addition, enforcing a uniform neighborhood size is not well suited to capturing the true underlying structure of the data. In this paper, we leverage recent advances in graph signal processing (GSP) to learn a sparse yet high-quality graph, improving the efficiency of collaborative filtering without sacrificing recommendation accuracy. Experiments on benchmark datasets demonstrate that our method can successfully perform CF-based recommendation using an extremely sparse graph while maintaining competitive performance.
+
+Links:
+  - https://arxiv.org/abs/2311.03316v2
+  - https://arxiv.org/pdf/2311.03316v2

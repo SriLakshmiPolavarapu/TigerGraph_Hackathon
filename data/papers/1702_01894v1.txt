@@ -1,0 +1,21 @@
+Title: CAAD: Computer Architecture for Autonomous Driving
+
+Authors: Shaoshan Liu, Jie Tang, Zhe Zhang, Jean-Luc Gaudiot
+
+Published: 2017-02-07
+
+Categories: cs.AR, cs.RO
+
+Abstract:
+We describe the computing tasks involved in autonomous driving, examine existing autonomous driving computing platform implementations. To enable autonomous driving, the computing stack needs to simultaneously provide high performance, low power consumption, and low thermal dissipation, at low cost. We discuss possible approaches to design computing platforms that will meet these needs.
+
+Paper ID: 1702.01894v1
+
+Summary:
+This paper titled "CAAD: Computer Architecture for Autonomous Driving" was authored by Shaoshan Liu, Jie Tang, Zhe Zhang, Jean-Luc Gaudiot and published on 2017-02-07.
+It falls under the categories: cs.AR, cs.RO.
+The research explores the following topic: We describe the computing tasks involved in autonomous driving, examine existing autonomous driving computing platform implementations. To enable autonomous driving, the computing stack needs to simultaneously provide high performance, low power consumption, and low thermal dissipation, at low cost. We discuss possible approaches to design computing platforms that will meet these needs.
+
+Links:
+  - https://arxiv.org/abs/1702.01894v1
+  - https://arxiv.org/pdf/1702.01894v1

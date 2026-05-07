@@ -1,0 +1,21 @@
+Title: fairadapt: Causal Reasoning for Fair Data Pre-processing
+
+Authors: Drago Plečko, Nicolas Bennett, Nicolai Meinshausen
+
+Published: 2021-10-19
+
+Categories: cs.LG, cs.AI, cs.CY, stat.ML
+
+Abstract:
+Machine learning algorithms are useful for various predictions tasks, but they can also learn how to discriminate, based on gender, race or other sensitive attributes. This realization gave rise to the field of fair machine learning, which aims to measure and mitigate such algorithmic bias. This manuscript describes the R-package fairadapt, which implements a causal inference pre-processing method. By making use of a causal graphical model and the observed data, the method can be used to address hypothetical questions of the form "What would my salary have been, had I been of a different gender/race?". Such individual level counterfactual reasoning can help eliminate discrimination and help justify fair decisions. We also discuss appropriate relaxations which assume certain causal pathways from the sensitive attribute to the outcome are not discriminatory.
+
+Paper ID: 2110.10200v1
+
+Summary:
+This paper titled "fairadapt: Causal Reasoning for Fair Data Pre-processing" was authored by Drago Plečko, Nicolas Bennett, Nicolai Meinshausen and published on 2021-10-19.
+It falls under the categories: cs.LG, cs.AI, cs.CY, stat.ML.
+The research explores the following topic: Machine learning algorithms are useful for various predictions tasks, but they can also learn how to discriminate, based on gender, race or other sensitive attributes. This realization gave rise to the field of fair machine learning, which aims to measure and mitigate such algorithmic bias. This manuscript describes the R-package fairadapt, which implements a causal inference pre-processing method. By making use of a causal graphical model and the observed data, the method can be used to address hypothetical questions of the form "What would my salary have been, had I been of a different gender/race?". Such individual level counterfactual reasoning can help eliminate discrimination and help justify fair decisions. We also discuss appropriate relaxations which assume certain causal pathways from the sensitive attribute to the outcome are not discriminatory.
+
+Links:
+  - https://arxiv.org/abs/2110.10200v1
+  - https://arxiv.org/pdf/2110.10200v1

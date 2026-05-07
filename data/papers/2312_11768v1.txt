@@ -1,0 +1,21 @@
+Title: Curriculum Learning for Cooperation in Multi-Agent Reinforcement Learning
+
+Authors: Rupali Bhati, Sai Krishna Gottipati, Clodéric Mars, Matthew E. Taylor
+
+Published: 2023-12-19
+
+Categories: cs.AI, cs.LG, cs.MA
+
+Abstract:
+While there has been significant progress in curriculum learning and continuous learning for training agents to generalize across a wide variety of environments in the context of single-agent reinforcement learning, it is unclear if these algorithms would still be valid in a multi-agent setting. In a competitive setting, a learning agent can be trained by making it compete with a curriculum of increasingly skilled opponents. However, a general intelligent agent should also be able to learn to act around other agents and cooperate with them to achieve common goals. When cooperating with other agents, the learning agent must (a) learn how to perform the task (or subtask), and (b) increase the overall team reward. In this paper, we aim to answer the question of what kind of cooperative teammate, and a curriculum of teammates should a learning agent be trained with to achieve these two objectives. Our results on the game Overcooked show that a pre-trained teammate who is less skilled is the best teammate for overall team reward but the worst for the learning of the agent. Moreover, somewhat surprisingly, a curriculum of teammates with decreasing skill levels performs better than other types of curricula.
+
+Paper ID: 2312.11768v1
+
+Summary:
+This paper titled "Curriculum Learning for Cooperation in Multi-Agent Reinforcement Learning" was authored by Rupali Bhati, Sai Krishna Gottipati, Clodéric Mars, Matthew E. Taylor and published on 2023-12-19.
+It falls under the categories: cs.AI, cs.LG, cs.MA.
+The research explores the following topic: While there has been significant progress in curriculum learning and continuous learning for training agents to generalize across a wide variety of environments in the context of single-agent reinforcement learning, it is unclear if these algorithms would still be valid in a multi-agent setting. In a competitive setting, a learning agent can be trained by making it compete with a curriculum of increasingly skilled opponents. However, a general intelligent agent should also be able to learn to act around other agents and cooperate with them to achieve common goals. When cooperating with other agents, the learning agent must (a) learn how to perform the task (or subtask), and (b) increase the overall team reward. In this paper, we aim to answer the question of what kind of cooperative teammate, and a curriculum of teammates should a learning agent be trained with to achieve these two objectives. Our results on the game Overcooked show that a pre-trained teammate who is less skilled is the best teammate for overall team reward but the worst for the learning of the agent. Moreover, somewhat surprisingly, a curriculum of teammates with decreasing skill levels performs better than other types of curricula.
+
+Links:
+  - https://arxiv.org/abs/2312.11768v1
+  - https://arxiv.org/pdf/2312.11768v1

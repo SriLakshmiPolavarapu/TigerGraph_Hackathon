@@ -1,0 +1,22 @@
+Title: A Survey on Accuracy-oriented Neural Recommendation: From Collaborative Filtering to Information-rich Recommendation
+
+Authors: Le Wu, Xiangnan He, Xiang Wang, Kun Zhang, Meng Wang
+
+Published: 2021-04-27
+
+Categories: cs.IR, cs.LG
+
+Abstract:
+Influenced by the great success of deep learning in computer vision and language understanding, research in recommendation has shifted to inventing new recommender models based on neural networks. In recent years, we have witnessed significant progress in developing neural recommender models, which generalize and surpass traditional recommender models owing to the strong representation power of neural networks. In this survey paper, we conduct a systematic review on neural recommender models from the perspective of recommendation modeling with the accuracy goal, aiming to summarize this field to facilitate researchers and practitioners working on recommender systems. Specifically, based on the data usage during recommendation modeling, we divide the work into collaborative filtering and information-rich recommendation: 1) collaborative filtering, which leverages the key source of user-item interaction data; 2) content enriched recommendation, which additionally utilizes the side information associated with users and items, like user profile and item knowledge graph; and 3) temporal/sequential recommendation, which accounts for the contextual information associated with an interaction, such as time, location, and the past interactions. After reviewing representative work for each type, we finally discuss some promising directions in this field.
+
+Paper ID: 2104.13030v3
+
+Summary:
+This paper titled "A Survey on Accuracy-oriented Neural Recommendation: From Collaborative Filtering to Information-rich Recommendation" was authored by Le Wu, Xiangnan He, Xiang Wang, Kun Zhang, Meng Wang and published on 2021-04-27.
+It falls under the categories: cs.IR, cs.LG.
+The research explores the following topic: Influenced by the great success of deep learning in computer vision and language understanding, research in recommendation has shifted to inventing new recommender models based on neural networks. In recent years, we have witnessed significant progress in developing neural recommender models, which generalize and surpass traditional recommender models owing to the strong representation power of neural networks. In this survey paper, we conduct a systematic review on neural recommender models from the perspective of recommendation modeling with the accuracy goal, aiming to summarize this field to facilitate researchers and practitioners working on recommender systems. Specifically, based on the data usage during recommendation modeling, we divide the work into collaborative filtering and information-rich recommendation: 1) collaborative filtering, which leverages the key source of user-item interaction data; 2) content enriched recommendation, which additionally utilizes the side information associated with users and items, like user profile and item knowledge graph; and 3) temporal/sequential recommendation, which accounts for the contextual information associated with an interaction, such as time, location, and the past interactions. After reviewing representative work for each type, we finally discuss some promising directions in this field.
+
+Links:
+  - https://arxiv.org/abs/2104.13030v3
+  - https://arxiv.org/pdf/2104.13030v3
+  - https://doi.org/10.1109/TKDE.2022.3145690

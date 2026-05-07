@@ -1,0 +1,21 @@
+Title: Completing partial recipes using item-based collaborative filtering to recommend ingredients
+
+Authors: Paula Fermín Cueto, Meeke Roet, Agnieszka Słowik
+
+Published: 2019-07-23
+
+Categories: cs.IR, cs.LG, stat.ML
+
+Abstract:
+Increased public interest in healthy lifestyles has motivated the study of algorithms that encourage people to follow a healthy diet. Applying collaborative filtering to build recommendation systems in domains where only implicit feedback is available is also a rapidly growing research area. In this report we combine these two trends by developing a recommendation system to suggest ingredients that can be added to a partial recipe. We implement the item-based collaborative filtering algorithm using a high-dimensional, sparse dataset of recipes, which inherently contains only implicit feedback. We explore the effect of different similarity measures and dimensionality reduction on the quality of the recommendations, and find that our best method achieves a recall@10 of circa 40%.
+
+Paper ID: 1907.12380v2
+
+Summary:
+This paper titled "Completing partial recipes using item-based collaborative filtering to recommend ingredients" was authored by Paula Fermín Cueto, Meeke Roet, Agnieszka Słowik and published on 2019-07-23.
+It falls under the categories: cs.IR, cs.LG, stat.ML.
+The research explores the following topic: Increased public interest in healthy lifestyles has motivated the study of algorithms that encourage people to follow a healthy diet. Applying collaborative filtering to build recommendation systems in domains where only implicit feedback is available is also a rapidly growing research area. In this report we combine these two trends by developing a recommendation system to suggest ingredients that can be added to a partial recipe. We implement the item-based collaborative filtering algorithm using a high-dimensional, sparse dataset of recipes, which inherently contains only implicit feedback. We explore the effect of different similarity measures and dimensionality reduction on the quality of the recommendations, and find that our best method achieves a recall@10 of circa 40%.
+
+Links:
+  - https://arxiv.org/abs/1907.12380v2
+  - https://arxiv.org/pdf/1907.12380v2

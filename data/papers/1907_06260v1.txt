@@ -1,0 +1,21 @@
+Title: Counterfactual Reasoning for Fair Clinical Risk Prediction
+
+Authors: Stephen Pfohl, Tony Duan, Daisy Yi Ding, Nigam H. Shah
+
+Published: 2019-07-14
+
+Categories: cs.LG, cs.CY, stat.ML
+
+Abstract:
+The use of machine learning systems to support decision making in healthcare raises questions as to what extent these systems may introduce or exacerbate disparities in care for historically underrepresented and mistreated groups, due to biases implicitly embedded in observational data in electronic health records. To address this problem in the context of clinical risk prediction models, we develop an augmented counterfactual fairness criteria to extend the group fairness criteria of equalized odds to an individual level. We do so by requiring that the same prediction be made for a patient, and a counterfactual patient resulting from changing a sensitive attribute, if the factual and counterfactual outcomes do not differ. We investigate the extent to which the augmented counterfactual fairness criteria may be applied to develop fair models for prolonged inpatient length of stay and mortality with observational electronic health records data. As the fairness criteria is ill-defined without knowledge of the data generating process, we use a variational autoencoder to perform counterfactual inference in the context of an assumed causal graph. While our technique provides a means to trade off maintenance of fairness with reduction in predictive performance in the context of a learned generative model, further work is needed to assess the generality of this approach.
+
+Paper ID: 1907.06260v1
+
+Summary:
+This paper titled "Counterfactual Reasoning for Fair Clinical Risk Prediction" was authored by Stephen Pfohl, Tony Duan, Daisy Yi Ding, Nigam H. Shah and published on 2019-07-14.
+It falls under the categories: cs.LG, cs.CY, stat.ML.
+The research explores the following topic: The use of machine learning systems to support decision making in healthcare raises questions as to what extent these systems may introduce or exacerbate disparities in care for historically underrepresented and mistreated groups, due to biases implicitly embedded in observational data in electronic health records. To address this problem in the context of clinical risk prediction models, we develop an augmented counterfactual fairness criteria to extend the group fairness criteria of equalized odds to an individual level. We do so by requiring that the same prediction be made for a patient, and a counterfactual patient resulting from changing a sensitive attribute, if the factual and counterfactual outcomes do not differ. We investigate the extent to which the augmented counterfactual fairness criteria may be applied to develop fair models for prolonged inpatient length of stay and mortality with observational electronic health records data. As the fairness criteria is ill-defined without knowledge of the data generating process, we use a variational autoencoder to perform counterfactual inference in the context of an assumed causal graph. While our technique provides a means to trade off maintenance of fairness with reduction in predictive performance in the context of a learned generative model, further work is needed to assess the generality of this approach.
+
+Links:
+  - https://arxiv.org/abs/1907.06260v1
+  - https://arxiv.org/pdf/1907.06260v1

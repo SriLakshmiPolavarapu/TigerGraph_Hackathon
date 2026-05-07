@@ -1,0 +1,22 @@
+Title: An Experiment with a User Manual of a Programming Language Based on a Denotational Semantics
+
+Authors: Andrzej Blikle
+
+Published: 2019-05-28
+
+Categories: cs.PL
+
+Abstract:
+Denotational models should provide an opportunity for the revision of current practices seen in the manuals of programming languages. New styles should on one hand base on denotational models but on the other - do not assume that today readers are acquainted in this field. A manual should, therefore, provide some basic knowledge and notation needed to understand the definition of a programming language written in a new style. At the same time - I strongly believe that - it should be written for professional programmers rather than for amateurs. The role of a manual is not to teach the skills of programming. Such textbooks are, of course, necessary, but they should tell the readers what the programming is about rather than the technicalities of a concrete language. The paper contains an example of a manual for a virtual programming language Lingua developed in our project.
+
+Paper ID: 1905.12444v1
+
+Summary:
+This paper titled "An Experiment with a User Manual of a Programming Language Based on a Denotational Semantics" was authored by Andrzej Blikle and published on 2019-05-28.
+It falls under the categories: cs.PL.
+The research explores the following topic: Denotational models should provide an opportunity for the revision of current practices seen in the manuals of programming languages. New styles should on one hand base on denotational models but on the other - do not assume that today readers are acquainted in this field. A manual should, therefore, provide some basic knowledge and notation needed to understand the definition of a programming language written in a new style. At the same time - I strongly believe that - it should be written for professional programmers rather than for amateurs. The role of a manual is not to teach the skills of programming. Such textbooks are, of course, necessary, but they should tell the readers what the programming is about rather than the technicalities of a concrete language. The paper contains an example of a manual for a virtual programming language Lingua developed in our project.
+
+Links:
+  - https://arxiv.org/abs/1905.12444v1
+  - https://arxiv.org/pdf/1905.12444v1
+  - https://doi.org/10.13140/RG.2.2.23355.67366

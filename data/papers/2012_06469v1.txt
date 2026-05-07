@@ -1,0 +1,21 @@
+Title: DILIE: Deep Internal Learning for Image Enhancement
+
+Authors: Indra Deep Mastan, Shanmuganathan Raman
+
+Published: 2020-12-11
+
+Categories: cs.CV
+
+Abstract:
+We consider the generic deep image enhancement problem where an input image is transformed into a perceptually better-looking image. Recent methods for image enhancement consider the problem by performing style transfer and image restoration. The methods mostly fall into two categories: training data-based and training data-independent (deep internal learning methods). We perform image enhancement in the deep internal learning framework. Our Deep Internal Learning for Image Enhancement framework enhances content features and style features and uses contextual content loss for preserving image context in the enhanced image. We show results on both hazy and noisy image enhancement. To validate the results, we use structure similarity and perceptual error, which is efficient in measuring the unrealistic deformation present in the images. We show that the proposed framework outperforms the relevant state-of-the-art works for image enhancement.
+
+Paper ID: 2012.06469v1
+
+Summary:
+This paper titled "DILIE: Deep Internal Learning for Image Enhancement" was authored by Indra Deep Mastan, Shanmuganathan Raman and published on 2020-12-11.
+It falls under the categories: cs.CV.
+The research explores the following topic: We consider the generic deep image enhancement problem where an input image is transformed into a perceptually better-looking image. Recent methods for image enhancement consider the problem by performing style transfer and image restoration. The methods mostly fall into two categories: training data-based and training data-independent (deep internal learning methods). We perform image enhancement in the deep internal learning framework. Our Deep Internal Learning for Image Enhancement framework enhances content features and style features and uses contextual content loss for preserving image context in the enhanced image. We show results on both hazy and noisy image enhancement. To validate the results, we use structure similarity and perceptual error, which is efficient in measuring the unrealistic deformation present in the images. We show that the proposed framework outperforms the relevant state-of-the-art works for image enhancement.
+
+Links:
+  - https://arxiv.org/abs/2012.06469v1
+  - https://arxiv.org/pdf/2012.06469v1

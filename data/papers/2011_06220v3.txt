@@ -1,0 +1,21 @@
+Title: Artificial Neural Variability for Deep Learning: On Overfitting, Noise Memorization, and Catastrophic Forgetting
+
+Authors: Zeke Xie, Fengxiang He, Shaopeng Fu, Issei Sato, Dacheng Tao, Masashi Sugiyama
+
+Published: 2020-11-12
+
+Categories: cs.LG
+
+Abstract:
+Deep learning is often criticized by two serious issues which rarely exist in natural nervous systems: overfitting and catastrophic forgetting. It can even memorize randomly labelled data, which has little knowledge behind the instance-label pairs. When a deep network continually learns over time by accommodating new tasks, it usually quickly overwrites the knowledge learned from previous tasks. Referred to as the {\it neural variability}, it is well-known in neuroscience that human brain reactions exhibit substantial variability even in response to the same stimulus. This mechanism balances accuracy and plasticity/flexibility in the motor learning of natural nervous systems. Thus it motivates us to design a similar mechanism named {\it artificial neural variability} (ANV), which helps artificial neural networks learn some advantages from ``natural'' neural networks. We rigorously prove that ANV plays as an implicit regularizer of the mutual information between the training data and the learned model. This result theoretically guarantees ANV a strictly improved generalizability, robustness to label noise, and robustness to catastrophic forgetting. We then devise a {\it neural variable risk minimization} (NVRM) framework and {\it neural variable optimizers} to achieve ANV for conventional network architectures in practice. The empirical studies demonstrate that NVRM can effectively relieve overfitting, label noise memorization, and catastrophic forgetting at negligible costs. \footnote{Code: \url{https://github.com/zeke-xie/artificial-neural-variability-for-deep-learning}.
+
+Paper ID: 2011.06220v3
+
+Summary:
+This paper titled "Artificial Neural Variability for Deep Learning: On Overfitting, Noise Memorization, and Catastrophic Forgetting" was authored by Zeke Xie, Fengxiang He, Shaopeng Fu, Issei Sato, Dacheng Tao, Masashi Sugiyama and published on 2020-11-12.
+It falls under the categories: cs.LG.
+The research explores the following topic: Deep learning is often criticized by two serious issues which rarely exist in natural nervous systems: overfitting and catastrophic forgetting. It can even memorize randomly labelled data, which has little knowledge behind the instance-label pairs. When a deep network continually learns over time by accommodating new tasks, it usually quickly overwrites the knowledge learned from previous tasks. Referred to as the {\it neural variability}, it is well-known in neuroscience that human brain reactions exhibit substantial variability even in response to the same stimulus. This mechanism balances accuracy and plasticity/flexibility in the motor learning of natural nervous systems. Thus it motivates us to design a similar mechanism named {\it artificial neural variability} (ANV), which helps artificial neural networks learn some advantages from ``natural'' neural networks. We rigorously prove that ANV plays as an implicit regularizer of the mutual information between the training data and the learned model. This result theoretically guarantees ANV a strictly improved generalizability, robustness to label noise, and robustness to catastrophic forgetting. We then devise a {\it neural variable risk minimization} (NVRM) framework and {\it neural variable optimizers} to achieve ANV for conventional network architectures in practice. The empirical studies demonstrate that NVRM can effectively relieve overfitting, label noise memorization, and catastrophic forgetting at negligible costs. \footnote{Code: \url{https://github.com/zeke-xie/artificial-neural-variability-for-deep-learning}.
+
+Links:
+  - https://arxiv.org/abs/2011.06220v3
+  - https://arxiv.org/pdf/2011.06220v3

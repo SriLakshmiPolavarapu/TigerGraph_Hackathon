@@ -1,0 +1,22 @@
+Title: A projected nonlinear state-space model for forecasting time series signals
+
+Authors: Christian Donner, Anuj Mishra, Hideaki Shimazaki
+
+Published: 2023-11-22
+
+Categories: stat.ME, stat.ML
+
+Abstract:
+Learning and forecasting stochastic time series is essential in various scientific fields. However, despite the proposals of nonlinear filters and deep-learning methods, it remains challenging to capture nonlinear dynamics from a few noisy samples and predict future trajectories with uncertainty estimates while maintaining computational efficiency. Here, we propose a fast algorithm to learn and forecast nonlinear dynamics from noisy time series data. A key feature of the proposed model is kernel functions applied to projected lines, enabling fast and efficient capture of nonlinearities in the latent dynamics. Through empirical case studies and benchmarking, the model demonstrates its effectiveness in learning and forecasting complex nonlinear dynamics, offering a valuable tool for researchers and practitioners in time series analysis.
+
+Paper ID: 2311.13247v2
+
+Summary:
+This paper titled "A projected nonlinear state-space model for forecasting time series signals" was authored by Christian Donner, Anuj Mishra, Hideaki Shimazaki and published on 2023-11-22.
+It falls under the categories: stat.ME, stat.ML.
+The research explores the following topic: Learning and forecasting stochastic time series is essential in various scientific fields. However, despite the proposals of nonlinear filters and deep-learning methods, it remains challenging to capture nonlinear dynamics from a few noisy samples and predict future trajectories with uncertainty estimates while maintaining computational efficiency. Here, we propose a fast algorithm to learn and forecast nonlinear dynamics from noisy time series data. A key feature of the proposed model is kernel functions applied to projected lines, enabling fast and efficient capture of nonlinearities in the latent dynamics. Through empirical case studies and benchmarking, the model demonstrates its effectiveness in learning and forecasting complex nonlinear dynamics, offering a valuable tool for researchers and practitioners in time series analysis.
+
+Links:
+  - https://arxiv.org/abs/2311.13247v2
+  - https://arxiv.org/pdf/2311.13247v2
+  - https://doi.org/10.1016/j.ijforecast.2025.01.002

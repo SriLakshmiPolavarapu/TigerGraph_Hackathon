@@ -1,0 +1,21 @@
+Title: SPARQL Generation with Entity Pre-trained GPT for KG Question Answering
+
+Authors: Diego Bustamante, Hideaki Takeda
+
+Published: 2024-02-01
+
+Categories: cs.CL, cs.AI, cs.DB, cs.IR
+
+Abstract:
+Knowledge Graphs popularity has been rapidly growing in last years. All that knowledge is available for people to query it through the many online databases on the internet. Though, it would be a great achievement if non-programmer users could access whatever information they want to know. There has been a lot of effort oriented to solve this task using natural language processing tools and creativity encouragement by way of many challenges. Our approach focuses on assuming a correct entity linking on the natural language questions and training a GPT model to create SPARQL queries from them. We managed to isolate which property of the task can be the most difficult to solve at few or zero-shot and we proposed pre-training on all entities (under CWA) to improve the performance. We obtained a 62.703% accuracy of exact SPARQL matches on testing at 3-shots, a F1 of 0.809 on the entity linking challenge and a F1 of 0.009 on the question answering challenge.
+
+Paper ID: 2402.00969v1
+
+Summary:
+This paper titled "SPARQL Generation with Entity Pre-trained GPT for KG Question Answering" was authored by Diego Bustamante, Hideaki Takeda and published on 2024-02-01.
+It falls under the categories: cs.CL, cs.AI, cs.DB, cs.IR.
+The research explores the following topic: Knowledge Graphs popularity has been rapidly growing in last years. All that knowledge is available for people to query it through the many online databases on the internet. Though, it would be a great achievement if non-programmer users could access whatever information they want to know. There has been a lot of effort oriented to solve this task using natural language processing tools and creativity encouragement by way of many challenges. Our approach focuses on assuming a correct entity linking on the natural language questions and training a GPT model to create SPARQL queries from them. We managed to isolate which property of the task can be the most difficult to solve at few or zero-shot and we proposed pre-training on all entities (under CWA) to improve the performance. We obtained a 62.703% accuracy of exact SPARQL matches on testing at 3-shots, a F1 of 0.809 on the entity linking challenge and a F1 of 0.009 on the question answering challenge.
+
+Links:
+  - https://arxiv.org/abs/2402.00969v1
+  - https://arxiv.org/pdf/2402.00969v1

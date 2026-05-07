@@ -1,0 +1,22 @@
+Title: Acoustic modeling for Overlapping Speech Recognition: JHU Chime-5 Challenge System
+
+Authors: Vimal Manohar, Szu-Jui Chen, Zhiqi Wang, Yusuke Fujita, Shinji Watanabe, Sanjeev Khudanpur
+
+Published: 2024-05-17
+
+Categories: eess.AS
+
+Abstract:
+This paper summarizes our acoustic modeling efforts in the Johns Hopkins University speech recognition system for the CHiME-5 challenge to recognize highly-overlapped dinner party speech recorded by multiple microphone arrays. We explore data augmentation approaches, neural network architectures, front-end speech dereverberation, beamforming and robust i-vector extraction with comparisons of our in-house implementations and publicly available tools. We finally achieved a word error rate of 69.4% on the development set, which is a 11.7% absolute improvement over the previous baseline of 81.1%, and release this improved baseline with refined techniques/tools as an advanced CHiME-5 recipe.
+
+Paper ID: 2405.11078v1
+
+Summary:
+This paper titled "Acoustic modeling for Overlapping Speech Recognition: JHU Chime-5 Challenge System" was authored by Vimal Manohar, Szu-Jui Chen, Zhiqi Wang, Yusuke Fujita, Shinji Watanabe, Sanjeev Khudanpur and published on 2024-05-17.
+It falls under the categories: eess.AS.
+The research explores the following topic: This paper summarizes our acoustic modeling efforts in the Johns Hopkins University speech recognition system for the CHiME-5 challenge to recognize highly-overlapped dinner party speech recorded by multiple microphone arrays. We explore data augmentation approaches, neural network architectures, front-end speech dereverberation, beamforming and robust i-vector extraction with comparisons of our in-house implementations and publicly available tools. We finally achieved a word error rate of 69.4% on the development set, which is a 11.7% absolute improvement over the previous baseline of 81.1%, and release this improved baseline with refined techniques/tools as an advanced CHiME-5 recipe.
+
+Links:
+  - https://arxiv.org/abs/2405.11078v1
+  - https://arxiv.org/pdf/2405.11078v1
+  - https://doi.org/0.1109/ICASSP.2019.8682556

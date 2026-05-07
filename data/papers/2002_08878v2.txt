@@ -1,0 +1,21 @@
+Title: Multi-Agent Reinforcement Learning as a Computational Tool for Language Evolution Research: Historical Context and Future Challenges
+
+Authors: Clément Moulin-Frier, Pierre-Yves Oudeyer
+
+Published: 2020-02-20
+
+Categories: cs.MA, cs.CL, cs.LG
+
+Abstract:
+Computational models of emergent communication in agent populations are currently gaining interest in the machine learning community due to recent advances in Multi-Agent Reinforcement Learning (MARL). Current contributions are however still relatively disconnected from the earlier theoretical and computational literature aiming at understanding how language might have emerged from a prelinguistic substance. The goal of this paper is to position recent MARL contributions within the historical context of language evolution research, as well as to extract from this theoretical and computational background a few challenges for future research.
+
+Paper ID: 2002.08878v2
+
+Summary:
+This paper titled "Multi-Agent Reinforcement Learning as a Computational Tool for Language Evolution Research: Historical Context and Future Challenges" was authored by Clément Moulin-Frier, Pierre-Yves Oudeyer and published on 2020-02-20.
+It falls under the categories: cs.MA, cs.CL, cs.LG.
+The research explores the following topic: Computational models of emergent communication in agent populations are currently gaining interest in the machine learning community due to recent advances in Multi-Agent Reinforcement Learning (MARL). Current contributions are however still relatively disconnected from the earlier theoretical and computational literature aiming at understanding how language might have emerged from a prelinguistic substance. The goal of this paper is to position recent MARL contributions within the historical context of language evolution research, as well as to extract from this theoretical and computational background a few challenges for future research.
+
+Links:
+  - https://arxiv.org/abs/2002.08878v2
+  - https://arxiv.org/pdf/2002.08878v2

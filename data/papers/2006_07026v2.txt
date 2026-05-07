@@ -1,0 +1,21 @@
+Title: Backdoor Attacks on Federated Meta-Learning
+
+Authors: Chien-Lun Chen, Leana Golubchik, Marco Paolieri
+
+Published: 2020-06-12
+
+Categories: cs.LG, cs.CR, cs.DC, stat.ML
+
+Abstract:
+Federated learning allows multiple users to collaboratively train a shared classification model while preserving data privacy. This approach, where model updates are aggregated by a central server, was shown to be vulnerable to poisoning backdoor attacks: a malicious user can alter the shared model to arbitrarily classify specific inputs from a given class. In this paper, we analyze the effects of backdoor attacks on federated meta-learning, where users train a model that can be adapted to different sets of output classes using only a few examples. While the ability to adapt could, in principle, make federated learning frameworks more robust to backdoor attacks (when new training examples are benign), we find that even 1-shot~attacks can be very successful and persist after additional training. To address these vulnerabilities, we propose a defense mechanism inspired by matching networks, where the class of an input is predicted from the similarity of its features with a support set of labeled examples. By removing the decision logic from the model shared with the federation, success and persistence of backdoor attacks are greatly reduced.
+
+Paper ID: 2006.07026v2
+
+Summary:
+This paper titled "Backdoor Attacks on Federated Meta-Learning" was authored by Chien-Lun Chen, Leana Golubchik, Marco Paolieri and published on 2020-06-12.
+It falls under the categories: cs.LG, cs.CR, cs.DC, stat.ML.
+The research explores the following topic: Federated learning allows multiple users to collaboratively train a shared classification model while preserving data privacy. This approach, where model updates are aggregated by a central server, was shown to be vulnerable to poisoning backdoor attacks: a malicious user can alter the shared model to arbitrarily classify specific inputs from a given class. In this paper, we analyze the effects of backdoor attacks on federated meta-learning, where users train a model that can be adapted to different sets of output classes using only a few examples. While the ability to adapt could, in principle, make federated learning frameworks more robust to backdoor attacks (when new training examples are benign), we find that even 1-shot~attacks can be very successful and persist after additional training. To address these vulnerabilities, we propose a defense mechanism inspired by matching networks, where the class of an input is predicted from the similarity of its features with a support set of labeled examples. By removing the decision logic from the model shared with the federation, success and persistence of backdoor attacks are greatly reduced.
+
+Links:
+  - https://arxiv.org/abs/2006.07026v2
+  - https://arxiv.org/pdf/2006.07026v2

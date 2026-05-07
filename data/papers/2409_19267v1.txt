@@ -1,0 +1,21 @@
+Title: Utilizing Collaborative Filtering in a Personalized Research-Paper Recommendation System
+
+Authors: Mahamudul Hasan, Anika Tasnim Islam, Nabila Islam
+
+Published: 2024-09-28
+
+Categories: cs.IR
+
+Abstract:
+Recommendation system is such a platform that helps people to easily find out the things they need within a few seconds. It is implemented based on the preferences of similar users or items. In this digital era, the internet has provided us with huge opportunities to use a lot of open resources for our own needs. But there are too many resources on the internet from which finding the precise one is a difficult job. Recommendation system has made this easier for people. Research-paper recommendation system is a system that is developed for people with common research interests using a collaborative filtering recommender system. In this paper, coauthor, keyword, reference, and common citation similarities are calculated using Jaccard Similarity to find the final similarity and to find the top-n similar users. Based on the test of top-n similar users of the target user research paper recommendations have been made. Finally, the accuracy of our recommendation system has been calculated. An impressive result has been found using our proposed system.
+
+Paper ID: 2409.19267v1
+
+Summary:
+This paper titled "Utilizing Collaborative Filtering in a Personalized Research-Paper Recommendation System" was authored by Mahamudul Hasan, Anika Tasnim Islam, Nabila Islam and published on 2024-09-28.
+It falls under the categories: cs.IR.
+The research explores the following topic: Recommendation system is such a platform that helps people to easily find out the things they need within a few seconds. It is implemented based on the preferences of similar users or items. In this digital era, the internet has provided us with huge opportunities to use a lot of open resources for our own needs. But there are too many resources on the internet from which finding the precise one is a difficult job. Recommendation system has made this easier for people. Research-paper recommendation system is a system that is developed for people with common research interests using a collaborative filtering recommender system. In this paper, coauthor, keyword, reference, and common citation similarities are calculated using Jaccard Similarity to find the final similarity and to find the top-n similar users. Based on the test of top-n similar users of the target user research paper recommendations have been made. Finally, the accuracy of our recommendation system has been calculated. An impressive result has been found using our proposed system.
+
+Links:
+  - https://arxiv.org/abs/2409.19267v1
+  - https://arxiv.org/pdf/2409.19267v1

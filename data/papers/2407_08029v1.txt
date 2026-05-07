@@ -1,0 +1,21 @@
+Title: A Critical Review of Causal Reasoning Benchmarks for Large Language Models
+
+Authors: Linying Yang, Vik Shirvaikar, Oscar Clivio, Fabian Falck
+
+Published: 2024-07-10
+
+Categories: cs.LG, cs.CL
+
+Abstract:
+Numerous benchmarks aim to evaluate the capabilities of Large Language Models (LLMs) for causal inference and reasoning. However, many of them can likely be solved through the retrieval of domain knowledge, questioning whether they achieve their purpose. In this review, we present a comprehensive overview of LLM benchmarks for causality. We highlight how recent benchmarks move towards a more thorough definition of causal reasoning by incorporating interventional or counterfactual reasoning. We derive a set of criteria that a useful benchmark or set of benchmarks should aim to satisfy. We hope this work will pave the way towards a general framework for the assessment of causal understanding in LLMs and the design of novel benchmarks.
+
+Paper ID: 2407.08029v1
+
+Summary:
+This paper titled "A Critical Review of Causal Reasoning Benchmarks for Large Language Models" was authored by Linying Yang, Vik Shirvaikar, Oscar Clivio, Fabian Falck and published on 2024-07-10.
+It falls under the categories: cs.LG, cs.CL.
+The research explores the following topic: Numerous benchmarks aim to evaluate the capabilities of Large Language Models (LLMs) for causal inference and reasoning. However, many of them can likely be solved through the retrieval of domain knowledge, questioning whether they achieve their purpose. In this review, we present a comprehensive overview of LLM benchmarks for causality. We highlight how recent benchmarks move towards a more thorough definition of causal reasoning by incorporating interventional or counterfactual reasoning. We derive a set of criteria that a useful benchmark or set of benchmarks should aim to satisfy. We hope this work will pave the way towards a general framework for the assessment of causal understanding in LLMs and the design of novel benchmarks.
+
+Links:
+  - https://arxiv.org/abs/2407.08029v1
+  - https://arxiv.org/pdf/2407.08029v1

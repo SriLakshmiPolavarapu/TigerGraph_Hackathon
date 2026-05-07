@@ -1,0 +1,21 @@
+Title: Continual Learning Beyond a Single Model
+
+Authors: Thang Doan, Seyed Iman Mirzadeh, Mehrdad Farajtabar
+
+Published: 2022-02-20
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+A growing body of research in continual learning focuses on the catastrophic forgetting problem. While many attempts have been made to alleviate this problem, the majority of the methods assume a single model in the continual learning setup. In this work, we question this assumption and show that employing ensemble models can be a simple yet effective method to improve continual performance. However, ensembles' training and inference costs can increase significantly as the number of models grows. Motivated by this limitation, we study different ensemble models to understand their benefits and drawbacks in continual learning scenarios. Finally, to overcome the high compute cost of ensembles, we leverage recent advances in neural network subspace to propose a computationally cheap algorithm with similar runtime to a single model yet enjoying the performance benefits of ensembles.
+
+Paper ID: 2202.09826v3
+
+Summary:
+This paper titled "Continual Learning Beyond a Single Model" was authored by Thang Doan, Seyed Iman Mirzadeh, Mehrdad Farajtabar and published on 2022-02-20.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: A growing body of research in continual learning focuses on the catastrophic forgetting problem. While many attempts have been made to alleviate this problem, the majority of the methods assume a single model in the continual learning setup. In this work, we question this assumption and show that employing ensemble models can be a simple yet effective method to improve continual performance. However, ensembles' training and inference costs can increase significantly as the number of models grows. Motivated by this limitation, we study different ensemble models to understand their benefits and drawbacks in continual learning scenarios. Finally, to overcome the high compute cost of ensembles, we leverage recent advances in neural network subspace to propose a computationally cheap algorithm with similar runtime to a single model yet enjoying the performance benefits of ensembles.
+
+Links:
+  - https://arxiv.org/abs/2202.09826v3
+  - https://arxiv.org/pdf/2202.09826v3

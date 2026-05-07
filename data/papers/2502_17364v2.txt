@@ -1,0 +1,22 @@
+Title: Bridging Gaps in Natural Language Processing for Yorùbá: A Systematic Review of a Decade of Progress and Prospects
+
+Authors: Toheeb Aduramomi Jimoh, Tabea De Wille, Nikola S. Nikolov
+
+Published: 2025-02-24
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Natural Language Processing (NLP) is becoming a dominant subset of artificial intelligence as the need to help machines understand human language looks indispensable. Several NLP applications are ubiquitous, partly due to the myriad of datasets being churned out daily through mediums like social networking sites. However, the growing development has not been evident in most African languages due to the persisting resource limitations, among other issues. Yorùbá language, a tonal and morphologically rich African language, suffers a similar fate, resulting in limited NLP usage. To encourage further research towards improving this situation, this systematic literature review aims to comprehensively analyse studies addressing NLP development for Yorùbá, identifying challenges, resources, techniques, and applications. A well-defined search string from a structured protocol was employed to search, select, and analyse 105 primary studies between 2014 and 2024 from reputable databases. The review highlights the scarcity of annotated corpora, the limited availability of pre-trained language models, and linguistic challenges like tonal complexity and diacritic dependency as significant obstacles. It also revealed the prominent techniques, including rule-based methods, among others. The findings reveal a growing body of multilingual and monolingual resources, even though the field is constrained by socio-cultural factors such as code-switching and the desertion of language for digital usage. This review synthesises existing research, providing a foundation for advancing NLP for Yorùbá and in African languages generally. It aims to guide future research by identifying gaps and opportunities, thereby contributing to the broader inclusion of Yorùbá and other under-resourced African languages in global NLP advancements.
+
+Paper ID: 2502.17364v2
+
+Summary:
+This paper titled "Bridging Gaps in Natural Language Processing for Yorùbá: A Systematic Review of a Decade of Progress and Prospects" was authored by Toheeb Aduramomi Jimoh, Tabea De Wille, Nikola S. Nikolov and published on 2025-02-24.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Natural Language Processing (NLP) is becoming a dominant subset of artificial intelligence as the need to help machines understand human language looks indispensable. Several NLP applications are ubiquitous, partly due to the myriad of datasets being churned out daily through mediums like social networking sites. However, the growing development has not been evident in most African languages due to the persisting resource limitations, among other issues. Yorùbá language, a tonal and morphologically rich African language, suffers a similar fate, resulting in limited NLP usage. To encourage further research towards improving this situation, this systematic literature review aims to comprehensively analyse studies addressing NLP development for Yorùbá, identifying challenges, resources, techniques, and applications. A well-defined search string from a structured protocol was employed to search, select, and analyse 105 primary studies between 2014 and 2024 from reputable databases. The review highlights the scarcity of annotated corpora, the limited availability of pre-trained language models, and linguistic challenges like tonal complexity and diacritic dependency as significant obstacles. It also revealed the prominent techniques, including rule-based methods, among others. The findings reveal a growing body of multilingual and monolingual resources, even though the field is constrained by socio-cultural factors such as code-switching and the desertion of language for digital usage. This review synthesises existing research, providing a foundation for advancing NLP for Yorùbá and in African languages generally. It aims to guide future research by identifying gaps and opportunities, thereby contributing to the broader inclusion of Yorùbá and other under-resourced African languages in global NLP advancements.
+
+Links:
+  - https://arxiv.org/abs/2502.17364v2
+  - https://arxiv.org/pdf/2502.17364v2
+  - https://doi.org/10.1016/j.nlp.2025.100194

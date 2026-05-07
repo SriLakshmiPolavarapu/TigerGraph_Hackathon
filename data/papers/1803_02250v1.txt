@@ -1,0 +1,22 @@
+Title: CF4CF: Recommending Collaborative Filtering algorithms using Collaborative Filtering
+
+Authors: Tiago Cunha, Carlos Soares, André C. P. L. F. de Carvalho
+
+Published: 2018-03-06
+
+Categories: cs.IR
+
+Abstract:
+Automatic solutions which enable the selection of the best algorithms for a new problem are commonly found in the literature. One research area which has recently received considerable efforts is Collaborative Filtering. Existing work includes several approaches using Metalearning, which relate the characteristics of datasets with the performance of the algorithms. This work explores an alternative approach to tackle this problem. Since, in essence, both are recommendation problems, this work uses Collaborative Filtering algorithms to select Collaborative Filtering algorithms. Our approach integrates subsampling landmarkers, which are a data characterization approach commonly used in Metalearning, with a standard Collaborative Filtering method. The experimental results show that CF4CF competes with standard Metalearning strategies in the problem of Collaborative Filtering algorithm selection.
+
+Paper ID: 1803.02250v1
+
+Summary:
+This paper titled "CF4CF: Recommending Collaborative Filtering algorithms using Collaborative Filtering" was authored by Tiago Cunha, Carlos Soares, André C. P. L. F. de Carvalho and published on 2018-03-06.
+It falls under the categories: cs.IR.
+The research explores the following topic: Automatic solutions which enable the selection of the best algorithms for a new problem are commonly found in the literature. One research area which has recently received considerable efforts is Collaborative Filtering. Existing work includes several approaches using Metalearning, which relate the characteristics of datasets with the performance of the algorithms. This work explores an alternative approach to tackle this problem. Since, in essence, both are recommendation problems, this work uses Collaborative Filtering algorithms to select Collaborative Filtering algorithms. Our approach integrates subsampling landmarkers, which are a data characterization approach commonly used in Metalearning, with a standard Collaborative Filtering method. The experimental results show that CF4CF competes with standard Metalearning strategies in the problem of Collaborative Filtering algorithm selection.
+
+Links:
+  - https://arxiv.org/abs/1803.02250v1
+  - https://arxiv.org/pdf/1803.02250v1
+  - https://doi.org/10.1145/3240323.3240378

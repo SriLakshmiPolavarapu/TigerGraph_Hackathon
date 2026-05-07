@@ -1,0 +1,22 @@
+Title: Object Detection with Multimodal Large Vision-Language Models: An In-depth Review
+
+Authors: Ranjan Sapkota, Manoj Karkee
+
+Published: 2025-08-25
+
+Categories: cs.CV, cs.AI, cs.CL
+
+Abstract:
+The fusion of language and vision in large vision-language models (LVLMs) has revolutionized deep learning-based object detection by enhancing adaptability, contextual reasoning, and generalization beyond traditional architectures. This in-depth review presents a structured exploration of the state-of-the-art in LVLMs, systematically organized through a three-step research review process. First, we discuss the functioning of vision language models (VLMs) for object detection, describing how these models harness natural language processing (NLP) and computer vision (CV) techniques to revolutionize object detection and localization. We then explain the architectural innovations, training paradigms, and output flexibility of recent LVLMs for object detection, highlighting how they achieve advanced contextual understanding for object detection. The review thoroughly examines the approaches used in integration of visual and textual information, demonstrating the progress made in object detection using VLMs that facilitate more sophisticated object detection and localization strategies. This review presents comprehensive visualizations demonstrating LVLMs' effectiveness in diverse scenarios including localization and segmentation, and then compares their real-time performance, adaptability, and complexity to traditional deep learning systems. Based on the review, its is expected that LVLMs will soon meet or surpass the performance of conventional methods in object detection. The review also identifies a few major limitations of the current LVLM modes, proposes solutions to address those challenges, and presents a clear roadmap for the future advancement in this field. We conclude, based on this study, that the recent advancement in LVLMs have made and will continue to make a transformative impact on object detection and robotic applications in the future.
+
+Paper ID: 2508.19294v2
+
+Summary:
+This paper titled "Object Detection with Multimodal Large Vision-Language Models: An In-depth Review" was authored by Ranjan Sapkota, Manoj Karkee and published on 2025-08-25.
+It falls under the categories: cs.CV, cs.AI, cs.CL.
+The research explores the following topic: The fusion of language and vision in large vision-language models (LVLMs) has revolutionized deep learning-based object detection by enhancing adaptability, contextual reasoning, and generalization beyond traditional architectures. This in-depth review presents a structured exploration of the state-of-the-art in LVLMs, systematically organized through a three-step research review process. First, we discuss the functioning of vision language models (VLMs) for object detection, describing how these models harness natural language processing (NLP) and computer vision (CV) techniques to revolutionize object detection and localization. We then explain the architectural innovations, training paradigms, and output flexibility of recent LVLMs for object detection, highlighting how they achieve advanced contextual understanding for object detection. The review thoroughly examines the approaches used in integration of visual and textual information, demonstrating the progress made in object detection using VLMs that facilitate more sophisticated object detection and localization strategies. This review presents comprehensive visualizations demonstrating LVLMs' effectiveness in diverse scenarios including localization and segmentation, and then compares their real-time performance, adaptability, and complexity to traditional deep learning systems. Based on the review, its is expected that LVLMs will soon meet or surpass the performance of conventional methods in object detection. The review also identifies a few major limitations of the current LVLM modes, proposes solutions to address those challenges, and presents a clear roadmap for the future advancement in this field. We conclude, based on this study, that the recent advancement in LVLMs have made and will continue to make a transformative impact on object detection and robotic applications in the future.
+
+Links:
+  - https://arxiv.org/abs/2508.19294v2
+  - https://arxiv.org/pdf/2508.19294v2
+  - https://doi.org/10.1016/j.inffus.2025.103575

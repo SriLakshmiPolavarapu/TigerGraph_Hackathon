@@ -1,0 +1,21 @@
+Title: Large Language Models in Ambulatory Devices for Home Health Diagnostics: A case study of Sickle Cell Anemia Management
+
+Authors: Oluwatosin Ogundare, Subuola Sofolahan
+
+Published: 2023-05-05
+
+Categories: cs.CL
+
+Abstract:
+This study investigates the potential of an ambulatory device that incorporates Large Language Models (LLMs) in cadence with other specialized ML models to assess anemia severity in sickle cell patients in real time. The device would rely on sensor data that measures angiogenic material levels to assess anemia severity, providing real-time information to patients and clinicians to reduce the frequency of vaso-occlusive crises because of the early detection of anemia severity, allowing for timely interventions and potentially reducing the likelihood of serious complications. The main challenges in developing such a device are the creation of a reliable non-invasive tool for angiogenic level assessment, a biophysics model and the practical consideration of an LLM communicating with emergency personnel on behalf of an incapacitated patient. A possible system is proposed, and the limitations of this approach are discussed.
+
+Paper ID: 2305.03715v1
+
+Summary:
+This paper titled "Large Language Models in Ambulatory Devices for Home Health Diagnostics: A case study of Sickle Cell Anemia Management" was authored by Oluwatosin Ogundare, Subuola Sofolahan and published on 2023-05-05.
+It falls under the categories: cs.CL.
+The research explores the following topic: This study investigates the potential of an ambulatory device that incorporates Large Language Models (LLMs) in cadence with other specialized ML models to assess anemia severity in sickle cell patients in real time. The device would rely on sensor data that measures angiogenic material levels to assess anemia severity, providing real-time information to patients and clinicians to reduce the frequency of vaso-occlusive crises because of the early detection of anemia severity, allowing for timely interventions and potentially reducing the likelihood of serious complications. The main challenges in developing such a device are the creation of a reliable non-invasive tool for angiogenic level assessment, a biophysics model and the practical consideration of an LLM communicating with emergency personnel on behalf of an incapacitated patient. A possible system is proposed, and the limitations of this approach are discussed.
+
+Links:
+  - https://arxiv.org/abs/2305.03715v1
+  - https://arxiv.org/pdf/2305.03715v1

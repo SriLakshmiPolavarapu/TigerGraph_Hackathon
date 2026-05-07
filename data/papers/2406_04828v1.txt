@@ -1,0 +1,21 @@
+Title: QAGCF: Graph Collaborative Filtering for Q&A Recommendation
+
+Authors: Changshuo Zhang, Teng Shi, Xiao Zhang, Yanping Zheng, Ruobing Xie, Qi Liu, Jun Xu, Ji-Rong Wen
+
+Published: 2024-06-07
+
+Categories: cs.IR
+
+Abstract:
+Question and answer (Q&A) platforms usually recommend question-answer pairs to meet users' knowledge acquisition needs, unlike traditional recommendations that recommend only one item. This makes user behaviors more complex, and presents two challenges for Q&A recommendation, including: the collaborative information entanglement, which means user feedback is influenced by either the question or the answer; and the semantic information entanglement, where questions are correlated with their corresponding answers, and correlations also exist among different question-answer pairs. Traditional recommendation methods treat the question-answer pair as a whole or only consider the answer as a single item, which overlooks the two challenges and cannot effectively model user interests. To address these challenges, we introduce Question & Answer Graph Collaborative Filtering (QAGCF), a graph neural network model that creates separate graphs for collaborative and semantic views to disentangle the information in question-answer pairs. The collaborative view disentangles questions and answers to individually model collaborative information, while the semantic view captures the semantic information both within and between question-answer pairs. These views are further merged into a global graph to integrate the collaborative and semantic information. Polynomial-based graph filters are used to address the high heterophily issues of the global graph. Additionally, contrastive learning is utilized to obtain robust embeddings during training. Extensive experiments on industrial and public datasets demonstrate that QAGCF consistently outperforms baselines and achieves state-of-the-art results.
+
+Paper ID: 2406.04828v1
+
+Summary:
+This paper titled "QAGCF: Graph Collaborative Filtering for Q&A Recommendation" was authored by Changshuo Zhang, Teng Shi, Xiao Zhang, Yanping Zheng, Ruobing Xie, Qi Liu, Jun Xu, Ji-Rong Wen and published on 2024-06-07.
+It falls under the categories: cs.IR.
+The research explores the following topic: Question and answer (Q&A) platforms usually recommend question-answer pairs to meet users' knowledge acquisition needs, unlike traditional recommendations that recommend only one item. This makes user behaviors more complex, and presents two challenges for Q&A recommendation, including: the collaborative information entanglement, which means user feedback is influenced by either the question or the answer; and the semantic information entanglement, where questions are correlated with their corresponding answers, and correlations also exist among different question-answer pairs. Traditional recommendation methods treat the question-answer pair as a whole or only consider the answer as a single item, which overlooks the two challenges and cannot effectively model user interests. To address these challenges, we introduce Question & Answer Graph Collaborative Filtering (QAGCF), a graph neural network model that creates separate graphs for collaborative and semantic views to disentangle the information in question-answer pairs. The collaborative view disentangles questions and answers to individually model collaborative information, while the semantic view captures the semantic information both within and between question-answer pairs. These views are further merged into a global graph to integrate the collaborative and semantic information. Polynomial-based graph filters are used to address the high heterophily issues of the global graph. Additionally, contrastive learning is utilized to obtain robust embeddings during training. Extensive experiments on industrial and public datasets demonstrate that QAGCF consistently outperforms baselines and achieves state-of-the-art results.
+
+Links:
+  - https://arxiv.org/abs/2406.04828v1
+  - https://arxiv.org/pdf/2406.04828v1

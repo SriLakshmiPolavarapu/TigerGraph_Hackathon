@@ -1,0 +1,21 @@
+Title: Federated Learning with Differential Privacy
+
+Authors: Adrien Banse, Jan Kreischer, Xavier Oliva i Jürgens
+
+Published: 2024-02-03
+
+Categories: cs.LG, cs.AI, cs.DC
+
+Abstract:
+Federated learning (FL), as a type of distributed machine learning, is capable of significantly preserving client's private data from being shared among different parties. Nevertheless, private information can still be divulged by analyzing uploaded parameter weights from clients. In this report, we showcase our empirical benchmark of the effect of the number of clients and the addition of differential privacy (DP) mechanisms on the performance of the model on different types of data. Our results show that non-i.i.d and small datasets have the highest decrease in performance in a distributed and differentially private setting.
+
+Paper ID: 2402.02230v1
+
+Summary:
+This paper titled "Federated Learning with Differential Privacy" was authored by Adrien Banse, Jan Kreischer, Xavier Oliva i Jürgens and published on 2024-02-03.
+It falls under the categories: cs.LG, cs.AI, cs.DC.
+The research explores the following topic: Federated learning (FL), as a type of distributed machine learning, is capable of significantly preserving client's private data from being shared among different parties. Nevertheless, private information can still be divulged by analyzing uploaded parameter weights from clients. In this report, we showcase our empirical benchmark of the effect of the number of clients and the addition of differential privacy (DP) mechanisms on the performance of the model on different types of data. Our results show that non-i.i.d and small datasets have the highest decrease in performance in a distributed and differentially private setting.
+
+Links:
+  - https://arxiv.org/abs/2402.02230v1
+  - https://arxiv.org/pdf/2402.02230v1

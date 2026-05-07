@@ -1,0 +1,21 @@
+Title: Exploring Diversity-based Active Learning for 3D Object Detection in Autonomous Driving
+
+Authors: Jinpeng Lin, Zhihao Liang, Shengheng Deng, Lile Cai, Tao Jiang, Tianrui Li, Kui Jia, Xun Xu
+
+Published: 2022-05-16
+
+Categories: cs.CV
+
+Abstract:
+3D object detection has recently received much attention due to its great potential in autonomous vehicle (AV). The success of deep learning based object detectors relies on the availability of large-scale annotated datasets, which is time-consuming and expensive to compile, especially for 3D bounding box annotation. In this work, we investigate diversity-based active learning (AL) as a potential solution to alleviate the annotation burden. Given limited annotation budget, only the most informative frames and objects are automatically selected for human to annotate. Technically, we take the advantage of the multimodal information provided in an AV dataset, and propose a novel acquisition function that enforces spatial and temporal diversity in the selected samples. We benchmark the proposed method against other AL strategies under realistic annotation cost measurement, where the realistic costs for annotating a frame and a 3D bounding box are both taken into consideration. We demonstrate the effectiveness of the proposed method on the nuScenes dataset and show that it outperforms existing AL strategies significantly. Code is available at https://github.com/Linkon87/Exploring-Diversity-based-Active-Learning-for-3D-Object-Detection-in-Autonomous-Driving
+
+Paper ID: 2205.07708v3
+
+Summary:
+This paper titled "Exploring Diversity-based Active Learning for 3D Object Detection in Autonomous Driving" was authored by Jinpeng Lin, Zhihao Liang, Shengheng Deng, Lile Cai, Tao Jiang, Tianrui Li, Kui Jia, Xun Xu and published on 2022-05-16.
+It falls under the categories: cs.CV.
+The research explores the following topic: 3D object detection has recently received much attention due to its great potential in autonomous vehicle (AV). The success of deep learning based object detectors relies on the availability of large-scale annotated datasets, which is time-consuming and expensive to compile, especially for 3D bounding box annotation. In this work, we investigate diversity-based active learning (AL) as a potential solution to alleviate the annotation burden. Given limited annotation budget, only the most informative frames and objects are automatically selected for human to annotate. Technically, we take the advantage of the multimodal information provided in an AV dataset, and propose a novel acquisition function that enforces spatial and temporal diversity in the selected samples. We benchmark the proposed method against other AL strategies under realistic annotation cost measurement, where the realistic costs for annotating a frame and a 3D bounding box are both taken into consideration. We demonstrate the effectiveness of the proposed method on the nuScenes dataset and show that it outperforms existing AL strategies significantly. Code is available at https://github.com/Linkon87/Exploring-Diversity-based-Active-Learning-for-3D-Object-Detection-in-Autonomous-Driving
+
+Links:
+  - https://arxiv.org/abs/2205.07708v3
+  - https://arxiv.org/pdf/2205.07708v3

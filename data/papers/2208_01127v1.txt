@@ -1,0 +1,21 @@
+Title: Disparate Censorship & Undertesting: A Source of Label Bias in Clinical Machine Learning
+
+Authors: Trenton Chang, Michael W. Sjoding, Jenna Wiens
+
+Published: 2022-08-01
+
+Categories: cs.LG, cs.CY
+
+Abstract:
+As machine learning (ML) models gain traction in clinical applications, understanding the impact of clinician and societal biases on ML models is increasingly important. While biases can arise in the labels used for model training, the many sources from which these biases arise are not yet well-studied. In this paper, we highlight disparate censorship (i.e., differences in testing rates across patient groups) as a source of label bias that clinical ML models may amplify, potentially causing harm. Many patient risk-stratification models are trained using the results of clinician-ordered diagnostic and laboratory tests of labels. Patients without test results are often assigned a negative label, which assumes that untested patients do not experience the outcome. Since orders are affected by clinical and resource considerations, testing may not be uniform in patient populations, giving rise to disparate censorship. Disparate censorship in patients of equivalent risk leads to undertesting in certain groups, and in turn, more biased labels for such groups. Using such biased labels in standard ML pipelines could contribute to gaps in model performance across patient groups. Here, we theoretically and empirically characterize conditions in which disparate censorship or undertesting affect model performance across subgroups. Our findings call attention to disparate censorship as a source of label bias in clinical ML models.
+
+Paper ID: 2208.01127v1
+
+Summary:
+This paper titled "Disparate Censorship & Undertesting: A Source of Label Bias in Clinical Machine Learning" was authored by Trenton Chang, Michael W. Sjoding, Jenna Wiens and published on 2022-08-01.
+It falls under the categories: cs.LG, cs.CY.
+The research explores the following topic: As machine learning (ML) models gain traction in clinical applications, understanding the impact of clinician and societal biases on ML models is increasingly important. While biases can arise in the labels used for model training, the many sources from which these biases arise are not yet well-studied. In this paper, we highlight disparate censorship (i.e., differences in testing rates across patient groups) as a source of label bias that clinical ML models may amplify, potentially causing harm. Many patient risk-stratification models are trained using the results of clinician-ordered diagnostic and laboratory tests of labels. Patients without test results are often assigned a negative label, which assumes that untested patients do not experience the outcome. Since orders are affected by clinical and resource considerations, testing may not be uniform in patient populations, giving rise to disparate censorship. Disparate censorship in patients of equivalent risk leads to undertesting in certain groups, and in turn, more biased labels for such groups. Using such biased labels in standard ML pipelines could contribute to gaps in model performance across patient groups. Here, we theoretically and empirically characterize conditions in which disparate censorship or undertesting affect model performance across subgroups. Our findings call attention to disparate censorship as a source of label bias in clinical ML models.
+
+Links:
+  - https://arxiv.org/abs/2208.01127v1
+  - https://arxiv.org/pdf/2208.01127v1

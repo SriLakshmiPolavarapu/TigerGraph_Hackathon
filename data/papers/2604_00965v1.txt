@@ -1,0 +1,21 @@
+Title: Understanding Transformers and Attention Mechanisms: An Introduction for Applied Mathematicians
+
+Authors: Michel Fabrice Serret
+
+Published: 2026-04-01
+
+Categories: math.NA
+
+Abstract:
+This document provides a brief introduction to the attention mechanism used in modern language models based on the Transformer architecture. We first illustrate how text is encoded as vectors and how the attention mechanism processes these vectors to encode semantic information. We then describe Multi-Headed Attention, examine how the Transformer architecture is built and look at some of its variants. Finally, we provide a glimpse at modern methods to reduce the computational and memory cost of attention, namely KV caching, Grouped Query attention and Latent Attention. This material is aimed at the applied mathematics community and was written as introductory presentation in the context of the IPAM Research Collaboration Workshop entitled "Randomized Numerical Linear Algebra" (RNLA), for the project: "Randomization in Transformer models".
+
+Paper ID: 2604.00965v1
+
+Summary:
+This paper titled "Understanding Transformers and Attention Mechanisms: An Introduction for Applied Mathematicians" was authored by Michel Fabrice Serret and published on 2026-04-01.
+It falls under the categories: math.NA.
+The research explores the following topic: This document provides a brief introduction to the attention mechanism used in modern language models based on the Transformer architecture. We first illustrate how text is encoded as vectors and how the attention mechanism processes these vectors to encode semantic information. We then describe Multi-Headed Attention, examine how the Transformer architecture is built and look at some of its variants. Finally, we provide a glimpse at modern methods to reduce the computational and memory cost of attention, namely KV caching, Grouped Query attention and Latent Attention. This material is aimed at the applied mathematics community and was written as introductory presentation in the context of the IPAM Research Collaboration Workshop entitled "Randomized Numerical Linear Algebra" (RNLA), for the project: "Randomization in Transformer models".
+
+Links:
+  - https://arxiv.org/abs/2604.00965v1
+  - https://arxiv.org/pdf/2604.00965v1

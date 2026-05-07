@@ -1,0 +1,21 @@
+Title: Real-time Traffic Object Detection for Autonomous Driving
+
+Authors: Abdul Hannan Khan, Syed Tahseen Raza Rizvi, Andreas Dengel
+
+Published: 2024-01-31
+
+Categories: cs.CV
+
+Abstract:
+With recent advances in computer vision, it appears that autonomous driving will be part of modern society sooner rather than later. However, there are still a significant number of concerns to address. Although modern computer vision techniques demonstrate superior performance, they tend to prioritize accuracy over efficiency, which is a crucial aspect of real-time applications. Large object detection models typically require higher computational power, which is achieved by using more sophisticated onboard hardware. For autonomous driving, these requirements translate to increased fuel costs and, ultimately, a reduction in mileage. Further, despite their computational demands, the existing object detectors are far from being real-time. In this research, we assess the robustness of our previously proposed, highly efficient pedestrian detector LSFM on well-established autonomous driving benchmarks, including diverse weather conditions and nighttime scenes. Moreover, we extend our LSFM model for general object detection to achieve real-time object detection in traffic scenes. We evaluate its performance, low latency, and generalizability on traffic object detection datasets. Furthermore, we discuss the inadequacy of the current key performance indicator employed by object detection systems in the context of autonomous driving and propose a more suitable alternative that incorporates real-time requirements.
+
+Paper ID: 2402.00128v2
+
+Summary:
+This paper titled "Real-time Traffic Object Detection for Autonomous Driving" was authored by Abdul Hannan Khan, Syed Tahseen Raza Rizvi, Andreas Dengel and published on 2024-01-31.
+It falls under the categories: cs.CV.
+The research explores the following topic: With recent advances in computer vision, it appears that autonomous driving will be part of modern society sooner rather than later. However, there are still a significant number of concerns to address. Although modern computer vision techniques demonstrate superior performance, they tend to prioritize accuracy over efficiency, which is a crucial aspect of real-time applications. Large object detection models typically require higher computational power, which is achieved by using more sophisticated onboard hardware. For autonomous driving, these requirements translate to increased fuel costs and, ultimately, a reduction in mileage. Further, despite their computational demands, the existing object detectors are far from being real-time. In this research, we assess the robustness of our previously proposed, highly efficient pedestrian detector LSFM on well-established autonomous driving benchmarks, including diverse weather conditions and nighttime scenes. Moreover, we extend our LSFM model for general object detection to achieve real-time object detection in traffic scenes. We evaluate its performance, low latency, and generalizability on traffic object detection datasets. Furthermore, we discuss the inadequacy of the current key performance indicator employed by object detection systems in the context of autonomous driving and propose a more suitable alternative that incorporates real-time requirements.
+
+Links:
+  - https://arxiv.org/abs/2402.00128v2
+  - https://arxiv.org/pdf/2402.00128v2

@@ -1,0 +1,22 @@
+Title: NACHOS: Neural Architecture Search for Hardware Constrained Early Exit Neural Networks
+
+Authors: Matteo Gambella, Jary Pomponi, Simone Scardapane, Manuel Roveri
+
+Published: 2024-01-24
+
+Categories: cs.LG, cs.CV, cs.NE
+
+Abstract:
+Early Exit Neural Networks (EENNs) endow astandard Deep Neural Network (DNN) with Early Exit Classifiers (EECs), to provide predictions at intermediate points of the processing when enough confidence in classification is achieved. This leads to many benefits in terms of effectiveness and efficiency. Currently, the design of EENNs is carried out manually by experts, a complex and time-consuming task that requires accounting for many aspects, including the correct placement, the thresholding, and the computational overhead of the EECs. For this reason, the research is exploring the use of Neural Architecture Search (NAS) to automatize the design of EENNs. Currently, few comprehensive NAS solutions for EENNs have been proposed in the literature, and a fully automated, joint design strategy taking into consideration both the backbone and the EECs remains an open problem. To this end, this work presents Neural Architecture Search for Hardware Constrained Early Exit Neural Networks (NACHOS), the first NAS framework for the design of optimal EENNs satisfying constraints on the accuracy and the number of Multiply and Accumulate (MAC) operations performed by the EENNs at inference time. In particular, this provides the joint design of backbone and EECs to select a set of admissible (i.e., respecting the constraints) Pareto Optimal Solutions in terms of best tradeoff between the accuracy and number of MACs. The results show that the models designed by NACHOS are competitive with the state-of-the-art EENNs. Additionally, this work investigates the effectiveness of two novel regularization terms designed for the optimization of the auxiliary classifiers of the EENN
+
+Paper ID: 2401.13330v3
+
+Summary:
+This paper titled "NACHOS: Neural Architecture Search for Hardware Constrained Early Exit Neural Networks" was authored by Matteo Gambella, Jary Pomponi, Simone Scardapane, Manuel Roveri and published on 2024-01-24.
+It falls under the categories: cs.LG, cs.CV, cs.NE.
+The research explores the following topic: Early Exit Neural Networks (EENNs) endow astandard Deep Neural Network (DNN) with Early Exit Classifiers (EECs), to provide predictions at intermediate points of the processing when enough confidence in classification is achieved. This leads to many benefits in terms of effectiveness and efficiency. Currently, the design of EENNs is carried out manually by experts, a complex and time-consuming task that requires accounting for many aspects, including the correct placement, the thresholding, and the computational overhead of the EECs. For this reason, the research is exploring the use of Neural Architecture Search (NAS) to automatize the design of EENNs. Currently, few comprehensive NAS solutions for EENNs have been proposed in the literature, and a fully automated, joint design strategy taking into consideration both the backbone and the EECs remains an open problem. To this end, this work presents Neural Architecture Search for Hardware Constrained Early Exit Neural Networks (NACHOS), the first NAS framework for the design of optimal EENNs satisfying constraints on the accuracy and the number of Multiply and Accumulate (MAC) operations performed by the EENNs at inference time. In particular, this provides the joint design of backbone and EECs to select a set of admissible (i.e., respecting the constraints) Pareto Optimal Solutions in terms of best tradeoff between the accuracy and number of MACs. The results show that the models designed by NACHOS are competitive with the state-of-the-art EENNs. Additionally, this work investigates the effectiveness of two novel regularization terms designed for the optimization of the auxiliary classifiers of the EENN
+
+Links:
+  - https://arxiv.org/abs/2401.13330v3
+  - https://arxiv.org/pdf/2401.13330v3
+  - https://doi.org/10.1109/TNNLS.2025.3588558

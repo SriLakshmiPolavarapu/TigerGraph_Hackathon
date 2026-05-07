@@ -1,0 +1,21 @@
+Title: A Review of Privacy-preserving Federated Learning for the Internet-of-Things
+
+Authors: Christopher Briggs, Zhong Fan, Peter Andras
+
+Published: 2020-04-24
+
+Categories: cs.LG, cs.CR, stat.ML
+
+Abstract:
+The Internet-of-Things (IoT) generates vast quantities of data, much of it attributable to individuals' activity and behaviour. Gathering personal data and performing machine learning tasks on this data in a central location presents a significant privacy risk to individuals as well as challenges with communicating this data to the cloud. However, analytics based on machine learning and in particular deep learning benefit greatly from large amounts of data to develop high-performance predictive models. This work reviews federated learning as an approach for performing machine learning on distributed data with the goal of protecting the privacy of user-generated data as well as reducing communication costs associated with data transfer. We survey a wide variety of papers covering communication-efficiency, client heterogeneity and privacy preserving methods that are crucial for federated learning in the context of the IoT. Throughout this review, we identify the strengths and weaknesses of different methods applied to federated learning and finally, we outline future directions for privacy preserving federated learning research, particularly focusing on IoT applications.
+
+Paper ID: 2004.11794v2
+
+Summary:
+This paper titled "A Review of Privacy-preserving Federated Learning for the Internet-of-Things" was authored by Christopher Briggs, Zhong Fan, Peter Andras and published on 2020-04-24.
+It falls under the categories: cs.LG, cs.CR, stat.ML.
+The research explores the following topic: The Internet-of-Things (IoT) generates vast quantities of data, much of it attributable to individuals' activity and behaviour. Gathering personal data and performing machine learning tasks on this data in a central location presents a significant privacy risk to individuals as well as challenges with communicating this data to the cloud. However, analytics based on machine learning and in particular deep learning benefit greatly from large amounts of data to develop high-performance predictive models. This work reviews federated learning as an approach for performing machine learning on distributed data with the goal of protecting the privacy of user-generated data as well as reducing communication costs associated with data transfer. We survey a wide variety of papers covering communication-efficiency, client heterogeneity and privacy preserving methods that are crucial for federated learning in the context of the IoT. Throughout this review, we identify the strengths and weaknesses of different methods applied to federated learning and finally, we outline future directions for privacy preserving federated learning research, particularly focusing on IoT applications.
+
+Links:
+  - https://arxiv.org/abs/2004.11794v2
+  - https://arxiv.org/pdf/2004.11794v2

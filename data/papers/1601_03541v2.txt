@@ -1,0 +1,21 @@
+Title: Question Answering on Linked Data: Challenges and Future Directions
+
+Authors: Saeedeh Shekarpour, Denis Lukovnikov, Ashwini Jaya Kumar, Kemele Endris, Kuldeep Singh, Harsh Thakkar, Christoph Lange
+
+Published: 2016-01-14
+
+Categories: cs.IR
+
+Abstract:
+Question Answering (QA) systems are becoming the inspiring model for the future of search engines. While recently, underlying datasets for QA systems have been promoted from unstructured datasets to structured datasets with highly semantic-enriched metadata, but still question answering systems involve serious challenges which cause to be far beyond desired expectations. In this paper, we raise the challenges for building a Question Answering (QA) system especially with the focus of employing structured data (i.e. knowledge graph). This paper provide an exhaustive insight of the known challenges, so far. Thus, it helps researchers to easily spot open rooms for the future research agenda.
+
+Paper ID: 1601.03541v2
+
+Summary:
+This paper titled "Question Answering on Linked Data: Challenges and Future Directions" was authored by Saeedeh Shekarpour, Denis Lukovnikov, Ashwini Jaya Kumar, Kemele Endris, Kuldeep Singh, Harsh Thakkar, Christoph Lange and published on 2016-01-14.
+It falls under the categories: cs.IR.
+The research explores the following topic: Question Answering (QA) systems are becoming the inspiring model for the future of search engines. While recently, underlying datasets for QA systems have been promoted from unstructured datasets to structured datasets with highly semantic-enriched metadata, but still question answering systems involve serious challenges which cause to be far beyond desired expectations. In this paper, we raise the challenges for building a Question Answering (QA) system especially with the focus of employing structured data (i.e. knowledge graph). This paper provide an exhaustive insight of the known challenges, so far. Thus, it helps researchers to easily spot open rooms for the future research agenda.
+
+Links:
+  - https://arxiv.org/abs/1601.03541v2
+  - https://arxiv.org/pdf/1601.03541v2

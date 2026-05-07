@@ -1,0 +1,22 @@
+Title: KenSwQuAD -- A Question Answering Dataset for Swahili Low Resource Language
+
+Authors: Barack W. Wanjawa, Lilian D. A. Wanzare, Florence Indede, Owen McOnyango, Lawrence Muchemi, Edward Ombui
+
+Published: 2022-05-04
+
+Categories: cs.CL, cs.LG
+
+Abstract:
+The need for Question Answering datasets in low resource languages is the motivation of this research, leading to the development of Kencorpus Swahili Question Answering Dataset, KenSwQuAD. This dataset is annotated from raw story texts of Swahili low resource language, which is a predominantly spoken in Eastern African and in other parts of the world. Question Answering (QA) datasets are important for machine comprehension of natural language for tasks such as internet search and dialog systems. Machine learning systems need training data such as the gold standard Question Answering set developed in this research. The research engaged annotators to formulate QA pairs from Swahili texts collected by the Kencorpus project, a Kenyan languages corpus. The project annotated 1,445 texts from the total 2,585 texts with at least 5 QA pairs each, resulting into a final dataset of 7,526 QA pairs. A quality assurance set of 12.5% of the annotated texts confirmed that the QA pairs were all correctly annotated. A proof of concept on applying the set to the QA task confirmed that the dataset can be usable for such tasks. KenSwQuAD has also contributed to resourcing of the Swahili language.
+
+Paper ID: 2205.02364v3
+
+Summary:
+This paper titled "KenSwQuAD -- A Question Answering Dataset for Swahili Low Resource Language" was authored by Barack W. Wanjawa, Lilian D. A. Wanzare, Florence Indede, Owen McOnyango, Lawrence Muchemi, Edward Ombui and published on 2022-05-04.
+It falls under the categories: cs.CL, cs.LG.
+The research explores the following topic: The need for Question Answering datasets in low resource languages is the motivation of this research, leading to the development of Kencorpus Swahili Question Answering Dataset, KenSwQuAD. This dataset is annotated from raw story texts of Swahili low resource language, which is a predominantly spoken in Eastern African and in other parts of the world. Question Answering (QA) datasets are important for machine comprehension of natural language for tasks such as internet search and dialog systems. Machine learning systems need training data such as the gold standard Question Answering set developed in this research. The research engaged annotators to formulate QA pairs from Swahili texts collected by the Kencorpus project, a Kenyan languages corpus. The project annotated 1,445 texts from the total 2,585 texts with at least 5 QA pairs each, resulting into a final dataset of 7,526 QA pairs. A quality assurance set of 12.5% of the annotated texts confirmed that the QA pairs were all correctly annotated. A proof of concept on applying the set to the QA task confirmed that the dataset can be usable for such tasks. KenSwQuAD has also contributed to resourcing of the Swahili language.
+
+Links:
+  - https://arxiv.org/abs/2205.02364v3
+  - https://arxiv.org/pdf/2205.02364v3
+  - https://doi.org/10.1145/3578553

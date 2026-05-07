@@ -1,0 +1,22 @@
+Title: Transfer Learning from Visual Speech Recognition to Mouthing Recognition in German Sign Language
+
+Authors: Dinh Nam Pham, Eleftherios Avramidis
+
+Published: 2025-05-20
+
+Categories: cs.CV
+
+Abstract:
+Sign Language Recognition (SLR) systems primarily focus on manual gestures, but non-manual features such as mouth movements, specifically mouthing, provide valuable linguistic information. This work directly classifies mouthing instances to their corresponding words in the spoken language while exploring the potential of transfer learning from Visual Speech Recognition (VSR) to mouthing recognition in German Sign Language. We leverage three VSR datasets: one in English, one in German with unrelated words and one in German containing the same target words as the mouthing dataset, to investigate the impact of task similarity in this setting. Our results demonstrate that multi-task learning improves both mouthing recognition and VSR accuracy as well as model robustness, suggesting that mouthing recognition should be treated as a distinct but related task to VSR. This research contributes to the field of SLR by proposing knowledge transfer from VSR to SLR datasets with limited mouthing annotations.
+
+Paper ID: 2505.13784v2
+
+Summary:
+This paper titled "Transfer Learning from Visual Speech Recognition to Mouthing Recognition in German Sign Language" was authored by Dinh Nam Pham, Eleftherios Avramidis and published on 2025-05-20.
+It falls under the categories: cs.CV.
+The research explores the following topic: Sign Language Recognition (SLR) systems primarily focus on manual gestures, but non-manual features such as mouth movements, specifically mouthing, provide valuable linguistic information. This work directly classifies mouthing instances to their corresponding words in the spoken language while exploring the potential of transfer learning from Visual Speech Recognition (VSR) to mouthing recognition in German Sign Language. We leverage three VSR datasets: one in English, one in German with unrelated words and one in German containing the same target words as the mouthing dataset, to investigate the impact of task similarity in this setting. Our results demonstrate that multi-task learning improves both mouthing recognition and VSR accuracy as well as model robustness, suggesting that mouthing recognition should be treated as a distinct but related task to VSR. This research contributes to the field of SLR by proposing knowledge transfer from VSR to SLR datasets with limited mouthing annotations.
+
+Links:
+  - https://arxiv.org/abs/2505.13784v2
+  - https://arxiv.org/pdf/2505.13784v2
+  - https://doi.org/10.1109/FG61629.2025.11099322

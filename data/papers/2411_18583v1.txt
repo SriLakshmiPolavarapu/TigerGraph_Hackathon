@@ -1,0 +1,21 @@
+Title: Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation
+
+Authors: Nurshat Fateh Ali, Md. Mahdi Mohtasim, Shakil Mosharrof, T. Gopi Krishna
+
+Published: 2024-11-27
+
+Categories: cs.CL, cs.AI, cs.IR, cs.LG
+
+Abstract:
+This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM). The ever-increasing number of research articles provides a huge challenge for manual literature review. It has resulted in an increased demand for automation. Developing a system capable of automatically generating the literature reviews from only the PDF files as input is the primary objective of this research work. The effectiveness of several Natural Language Processing (NLP) strategies, such as the frequency-based method (spaCy), the transformer model (Simple T5), and retrieval-augmented generation (RAG) with Large Language Model (GPT-3.5-turbo), is evaluated to meet the primary objective. The SciTLDR dataset is chosen for this research experiment and three distinct techniques are utilized to implement three different systems for auto-generating the literature reviews. The ROUGE scores are used for the evaluation of all three systems. Based on the evaluation, the Large Language Model GPT-3.5-turbo achieved the highest ROUGE-1 score, 0.364. The transformer model comes in second place and spaCy is at the last position. Finally, a graphical user interface is created for the best system based on the large language model.
+
+Paper ID: 2411.18583v1
+
+Summary:
+This paper titled "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation" was authored by Nurshat Fateh Ali, Md. Mahdi Mohtasim, Shakil Mosharrof, T. Gopi Krishna and published on 2024-11-27.
+It falls under the categories: cs.CL, cs.AI, cs.IR, cs.LG.
+The research explores the following topic: This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM). The ever-increasing number of research articles provides a huge challenge for manual literature review. It has resulted in an increased demand for automation. Developing a system capable of automatically generating the literature reviews from only the PDF files as input is the primary objective of this research work. The effectiveness of several Natural Language Processing (NLP) strategies, such as the frequency-based method (spaCy), the transformer model (Simple T5), and retrieval-augmented generation (RAG) with Large Language Model (GPT-3.5-turbo), is evaluated to meet the primary objective. The SciTLDR dataset is chosen for this research experiment and three distinct techniques are utilized to implement three different systems for auto-generating the literature reviews. The ROUGE scores are used for the evaluation of all three systems. Based on the evaluation, the Large Language Model GPT-3.5-turbo achieved the highest ROUGE-1 score, 0.364. The transformer model comes in second place and spaCy is at the last position. Finally, a graphical user interface is created for the best system based on the large language model.
+
+Links:
+  - https://arxiv.org/abs/2411.18583v1
+  - https://arxiv.org/pdf/2411.18583v1

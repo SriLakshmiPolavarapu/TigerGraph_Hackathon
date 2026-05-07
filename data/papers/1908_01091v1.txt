@@ -1,0 +1,21 @@
+Title: Toward Understanding Catastrophic Forgetting in Continual Learning
+
+Authors: Cuong V. Nguyen, Alessandro Achille, Michael Lam, Tal Hassner, Vijay Mahadevan, Stefano Soatto
+
+Published: 2019-08-02
+
+Categories: cs.LG, cs.CV, stat.ML
+
+Abstract:
+We study the relationship between catastrophic forgetting and properties of task sequences. In particular, given a sequence of tasks, we would like to understand which properties of this sequence influence the error rates of continual learning algorithms trained on the sequence. To this end, we propose a new procedure that makes use of recent developments in task space modeling as well as correlation analysis to specify and analyze the properties we are interested in. As an application, we apply our procedure to study two properties of a task sequence: (1) total complexity and (2) sequential heterogeneity. We show that error rates are strongly and positively correlated to a task sequence's total complexity for some state-of-the-art algorithms. We also show that, surprisingly, the error rates have no or even negative correlations in some cases to sequential heterogeneity. Our findings suggest directions for improving continual learning benchmarks and methods.
+
+Paper ID: 1908.01091v1
+
+Summary:
+This paper titled "Toward Understanding Catastrophic Forgetting in Continual Learning" was authored by Cuong V. Nguyen, Alessandro Achille, Michael Lam, Tal Hassner, Vijay Mahadevan, Stefano Soatto and published on 2019-08-02.
+It falls under the categories: cs.LG, cs.CV, stat.ML.
+The research explores the following topic: We study the relationship between catastrophic forgetting and properties of task sequences. In particular, given a sequence of tasks, we would like to understand which properties of this sequence influence the error rates of continual learning algorithms trained on the sequence. To this end, we propose a new procedure that makes use of recent developments in task space modeling as well as correlation analysis to specify and analyze the properties we are interested in. As an application, we apply our procedure to study two properties of a task sequence: (1) total complexity and (2) sequential heterogeneity. We show that error rates are strongly and positively correlated to a task sequence's total complexity for some state-of-the-art algorithms. We also show that, surprisingly, the error rates have no or even negative correlations in some cases to sequential heterogeneity. Our findings suggest directions for improving continual learning benchmarks and methods.
+
+Links:
+  - https://arxiv.org/abs/1908.01091v1
+  - https://arxiv.org/pdf/1908.01091v1

@@ -1,0 +1,21 @@
+Title: Dilated Neighborhood Attention Transformer
+
+Authors: Ali Hassani, Humphrey Shi
+
+Published: 2022-09-29
+
+Categories: cs.CV, cs.AI, cs.LG
+
+Abstract:
+Transformers are quickly becoming one of the most heavily applied deep learning architectures across modalities, domains, and tasks. In vision, on top of ongoing efforts into plain transformers, hierarchical transformers have also gained significant attention, thanks to their performance and easy integration into existing frameworks. These models typically employ localized attention mechanisms, such as the sliding-window Neighborhood Attention (NA) or Swin Transformer's Shifted Window Self Attention. While effective at reducing self attention's quadratic complexity, local attention weakens two of the most desirable properties of self attention: long range inter-dependency modeling, and global receptive field. In this paper, we introduce Dilated Neighborhood Attention (DiNA), a natural, flexible and efficient extension to NA that can capture more global context and expand receptive fields exponentially at no additional cost. NA's local attention and DiNA's sparse global attention complement each other, and therefore we introduce Dilated Neighborhood Attention Transformer (DiNAT), a new hierarchical vision transformer built upon both. DiNAT variants enjoy significant improvements over strong baselines such as NAT, Swin, and ConvNeXt. Our large model is faster and ahead of its Swin counterpart by 1.6% box AP in COCO object detection, 1.4% mask AP in COCO instance segmentation, and 1.4% mIoU in ADE20K semantic segmentation. Paired with new frameworks, our large variant is the new state of the art panoptic segmentation model on COCO (58.5 PQ) and ADE20K (49.4 PQ), and instance segmentation model on Cityscapes (45.1 AP) and ADE20K (35.4 AP) (no extra data). It also matches the state of the art specialized semantic segmentation models on ADE20K (58.1 mIoU), and ranks second on Cityscapes (84.5 mIoU) (no extra data).
+
+Paper ID: 2209.15001v3
+
+Summary:
+This paper titled "Dilated Neighborhood Attention Transformer" was authored by Ali Hassani, Humphrey Shi and published on 2022-09-29.
+It falls under the categories: cs.CV, cs.AI, cs.LG.
+The research explores the following topic: Transformers are quickly becoming one of the most heavily applied deep learning architectures across modalities, domains, and tasks. In vision, on top of ongoing efforts into plain transformers, hierarchical transformers have also gained significant attention, thanks to their performance and easy integration into existing frameworks. These models typically employ localized attention mechanisms, such as the sliding-window Neighborhood Attention (NA) or Swin Transformer's Shifted Window Self Attention. While effective at reducing self attention's quadratic complexity, local attention weakens two of the most desirable properties of self attention: long range inter-dependency modeling, and global receptive field. In this paper, we introduce Dilated Neighborhood Attention (DiNA), a natural, flexible and efficient extension to NA that can capture more global context and expand receptive fields exponentially at no additional cost. NA's local attention and DiNA's sparse global attention complement each other, and therefore we introduce Dilated Neighborhood Attention Transformer (DiNAT), a new hierarchical vision transformer built upon both. DiNAT variants enjoy significant improvements over strong baselines such as NAT, Swin, and ConvNeXt. Our large model is faster and ahead of its Swin counterpart by 1.6% box AP in COCO object detection, 1.4% mask AP in COCO instance segmentation, and 1.4% mIoU in ADE20K semantic segmentation. Paired with new frameworks, our large variant is the new state of the art panoptic segmentation model on COCO (58.5 PQ) and ADE20K (49.4 PQ), and instance segmentation model on Cityscapes (45.1 AP) and ADE20K (35.4 AP) (no extra data). It also matches the state of the art specialized semantic segmentation models on ADE20K (58.1 mIoU), and ranks second on Cityscapes (84.5 mIoU) (no extra data).
+
+Links:
+  - https://arxiv.org/abs/2209.15001v3
+  - https://arxiv.org/pdf/2209.15001v3

@@ -1,0 +1,23 @@
+Title: Deep Cox Mixtures for Survival Regression
+
+Authors: Chirag Nagpal, Steve Yadlowsky, Negar Rostamzadeh, Katherine Heller
+
+Published: 2021-01-16
+
+Categories: cs.LG, stat.ME, stat.ML
+
+Abstract:
+Survival analysis is a challenging variation of regression modeling because of the presence of censoring, where the outcome measurement is only partially known, due to, for example, loss to follow up. Such problems come up frequently in medical applications, making survival analysis a key endeavor in biostatistics and machine learning for healthcare, with Cox regression models being amongst the most commonly employed models. We describe a new approach for survival analysis regression models, based on learning mixtures of Cox regressions to model individual survival distributions. We propose an approximation to the Expectation Maximization algorithm for this model that does hard assignments to mixture groups to make optimization efficient. In each group assignment, we fit the hazard ratios within each group using deep neural networks, and the baseline hazard for each mixture component non-parametrically.
+  We perform experiments on multiple real world datasets, and look at the mortality rates of patients across ethnicity and gender. We emphasize the importance of calibration in healthcare settings and demonstrate that our approach outperforms classical and modern survival analysis baselines, both in terms of discriminative performance and calibration, with large gains in performance on the minority demographics.
+
+Paper ID: 2101.06536v6
+
+Summary:
+This paper titled "Deep Cox Mixtures for Survival Regression" was authored by Chirag Nagpal, Steve Yadlowsky, Negar Rostamzadeh, Katherine Heller and published on 2021-01-16.
+It falls under the categories: cs.LG, stat.ME, stat.ML.
+The research explores the following topic: Survival analysis is a challenging variation of regression modeling because of the presence of censoring, where the outcome measurement is only partially known, due to, for example, loss to follow up. Such problems come up frequently in medical applications, making survival analysis a key endeavor in biostatistics and machine learning for healthcare, with Cox regression models being amongst the most commonly employed models. We describe a new approach for survival analysis regression models, based on learning mixtures of Cox regressions to model individual survival distributions. We propose an approximation to the Expectation Maximization algorithm for this model that does hard assignments to mixture groups to make optimization efficient. In each group assignment, we fit the hazard ratios within each group using deep neural networks, and the baseline hazard for each mixture component non-parametrically.
+  We perform experiments on multiple real world datasets, and look at the mortality rates of patients across ethnicity and gender. We emphasize the importance of calibration in healthcare settings and demonstrate that our approach outperforms classical and modern survival analysis baselines, both in terms of discriminative performance and calibration, with large gains in performance on the minority demographics.
+
+Links:
+  - https://arxiv.org/abs/2101.06536v6
+  - https://arxiv.org/pdf/2101.06536v6

@@ -1,0 +1,21 @@
+Title: Exploring Text Specific and Blackbox Fairness Algorithms in Multimodal Clinical NLP
+
+Authors: John Chen, Ian Berlot-Attwell, Safwan Hossain, Xindi Wang, Frank Rudzicz
+
+Published: 2020-11-19
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Clinical machine learning is increasingly multimodal, collected in both structured tabular formats and unstructured forms such as freetext. We propose a novel task of exploring fairness on a multimodal clinical dataset, adopting equalized odds for the downstream medical prediction tasks. To this end, we investigate a modality-agnostic fairness algorithm - equalized odds post processing - and compare it to a text-specific fairness algorithm: debiased clinical word embeddings. Despite the fact that debiased word embeddings do not explicitly address equalized odds of protected groups, we show that a text-specific approach to fairness may simultaneously achieve a good balance of performance and classical notions of fairness. We hope that our paper inspires future contributions at the critical intersection of clinical NLP and fairness. The full source code is available here: https://github.com/johntiger1/multimodal_fairness
+
+Paper ID: 2011.09625v2
+
+Summary:
+This paper titled "Exploring Text Specific and Blackbox Fairness Algorithms in Multimodal Clinical NLP" was authored by John Chen, Ian Berlot-Attwell, Safwan Hossain, Xindi Wang, Frank Rudzicz and published on 2020-11-19.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Clinical machine learning is increasingly multimodal, collected in both structured tabular formats and unstructured forms such as freetext. We propose a novel task of exploring fairness on a multimodal clinical dataset, adopting equalized odds for the downstream medical prediction tasks. To this end, we investigate a modality-agnostic fairness algorithm - equalized odds post processing - and compare it to a text-specific fairness algorithm: debiased clinical word embeddings. Despite the fact that debiased word embeddings do not explicitly address equalized odds of protected groups, we show that a text-specific approach to fairness may simultaneously achieve a good balance of performance and classical notions of fairness. We hope that our paper inspires future contributions at the critical intersection of clinical NLP and fairness. The full source code is available here: https://github.com/johntiger1/multimodal_fairness
+
+Links:
+  - https://arxiv.org/abs/2011.09625v2
+  - https://arxiv.org/pdf/2011.09625v2

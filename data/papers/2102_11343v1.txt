@@ -1,0 +1,21 @@
+Title: Understanding Catastrophic Forgetting and Remembering in Continual Learning with Optimal Relevance Mapping
+
+Authors: Prakhar Kaushik, Alex Gain, Adam Kortylewski, Alan Yuille
+
+Published: 2021-02-22
+
+Categories: cs.LG, cs.CV
+
+Abstract:
+Catastrophic forgetting in neural networks is a significant problem for continual learning. A majority of the current methods replay previous data during training, which violates the constraints of an ideal continual learning system. Additionally, current approaches that deal with forgetting ignore the problem of catastrophic remembering, i.e. the worsening ability to discriminate between data from different tasks. In our work, we introduce Relevance Mapping Networks (RMNs) which are inspired by the Optimal Overlap Hypothesis. The mappings reflects the relevance of the weights for the task at hand by assigning large weights to essential parameters. We show that RMNs learn an optimized representational overlap that overcomes the twin problem of catastrophic forgetting and remembering. Our approach achieves state-of-the-art performance across all common continual learning datasets, even significantly outperforming data replay methods while not violating the constraints for an ideal continual learning system. Moreover, RMNs retain the ability to detect data from new tasks in an unsupervised manner, thus proving their resilience against catastrophic remembering.
+
+Paper ID: 2102.11343v1
+
+Summary:
+This paper titled "Understanding Catastrophic Forgetting and Remembering in Continual Learning with Optimal Relevance Mapping" was authored by Prakhar Kaushik, Alex Gain, Adam Kortylewski, Alan Yuille and published on 2021-02-22.
+It falls under the categories: cs.LG, cs.CV.
+The research explores the following topic: Catastrophic forgetting in neural networks is a significant problem for continual learning. A majority of the current methods replay previous data during training, which violates the constraints of an ideal continual learning system. Additionally, current approaches that deal with forgetting ignore the problem of catastrophic remembering, i.e. the worsening ability to discriminate between data from different tasks. In our work, we introduce Relevance Mapping Networks (RMNs) which are inspired by the Optimal Overlap Hypothesis. The mappings reflects the relevance of the weights for the task at hand by assigning large weights to essential parameters. We show that RMNs learn an optimized representational overlap that overcomes the twin problem of catastrophic forgetting and remembering. Our approach achieves state-of-the-art performance across all common continual learning datasets, even significantly outperforming data replay methods while not violating the constraints for an ideal continual learning system. Moreover, RMNs retain the ability to detect data from new tasks in an unsupervised manner, thus proving their resilience against catastrophic remembering.
+
+Links:
+  - https://arxiv.org/abs/2102.11343v1
+  - https://arxiv.org/pdf/2102.11343v1

@@ -1,0 +1,21 @@
+Title: Hotel Recommendation System Based on User Profiles and Collaborative Filtering
+
+Authors: Bekir Berker Türker, Resul Tugay, Şule Öğüdücü, İpek Kızıl
+
+Published: 2020-09-21
+
+Categories: cs.LG, cs.IR
+
+Abstract:
+Nowadays, people start to use online reservation systems to plan their vacations since they have vast amount of choices available. Selecting when and where to go from this large-scale options is getting harder. In addition, sometimes consumers can miss the better options due to the wealth of information to be found on the online reservation systems. In this sense, personalized services such as recommender systems play a crucial role in decision making. Two traditional recommendation techniques are content-based and collaborative filtering. While both methods have their advantages, they also have certain disadvantages, some of which can be solved by combining both techniques to improve the quality of the recommendation. The resulting system is known as a hybrid recommender system. This paper presents a new hybrid hotel recommendation system that has been developed by combining content-based and collaborative filtering approaches that recommends customer the hotel they need and save them from time loss.
+
+Paper ID: 2009.14045v1
+
+Summary:
+This paper titled "Hotel Recommendation System Based on User Profiles and Collaborative Filtering" was authored by Bekir Berker Türker, Resul Tugay, Şule Öğüdücü, İpek Kızıl and published on 2020-09-21.
+It falls under the categories: cs.LG, cs.IR.
+The research explores the following topic: Nowadays, people start to use online reservation systems to plan their vacations since they have vast amount of choices available. Selecting when and where to go from this large-scale options is getting harder. In addition, sometimes consumers can miss the better options due to the wealth of information to be found on the online reservation systems. In this sense, personalized services such as recommender systems play a crucial role in decision making. Two traditional recommendation techniques are content-based and collaborative filtering. While both methods have their advantages, they also have certain disadvantages, some of which can be solved by combining both techniques to improve the quality of the recommendation. The resulting system is known as a hybrid recommender system. This paper presents a new hybrid hotel recommendation system that has been developed by combining content-based and collaborative filtering approaches that recommends customer the hotel they need and save them from time loss.
+
+Links:
+  - https://arxiv.org/abs/2009.14045v1
+  - https://arxiv.org/pdf/2009.14045v1

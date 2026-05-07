@@ -1,0 +1,21 @@
+Title: Efficient Search of Multiple Neural Architectures with Different Complexities via Importance Sampling
+
+Authors: Yuhei Noda, Shota Saito, Shinichi Shirakawa
+
+Published: 2022-07-21
+
+Categories: cs.NE, cs.LG, stat.ML
+
+Abstract:
+Neural architecture search (NAS) aims to automate architecture design processes and improve the performance of deep neural networks. Platform-aware NAS methods consider both performance and complexity and can find well-performing architectures with low computational resources. Although ordinary NAS methods result in tremendous computational costs owing to the repetition of model training, one-shot NAS, which trains the weights of a supernetwork containing all candidate architectures only once during the search process, has been reported to result in a lower search cost. This study focuses on the architecture complexity-aware one-shot NAS that optimizes the objective function composed of the weighted sum of two metrics, such as the predictive performance and number of parameters. In existing methods, the architecture search process must be run multiple times with different coefficients of the weighted sum to obtain multiple architectures with different complexities. This study aims at reducing the search cost associated with finding multiple architectures. The proposed method uses multiple distributions to generate architectures with different complexities and updates each distribution using the samples obtained from multiple distributions based on importance sampling. The proposed method allows us to obtain multiple architectures with different complexities in a single architecture search, resulting in reducing the search cost. The proposed method is applied to the architecture search of convolutional neural networks on the CIAFR-10 and ImageNet datasets. Consequently, compared with baseline methods, the proposed method finds multiple architectures with varying complexities while requiring less computational effort.
+
+Paper ID: 2207.10334v1
+
+Summary:
+This paper titled "Efficient Search of Multiple Neural Architectures with Different Complexities via Importance Sampling" was authored by Yuhei Noda, Shota Saito, Shinichi Shirakawa and published on 2022-07-21.
+It falls under the categories: cs.NE, cs.LG, stat.ML.
+The research explores the following topic: Neural architecture search (NAS) aims to automate architecture design processes and improve the performance of deep neural networks. Platform-aware NAS methods consider both performance and complexity and can find well-performing architectures with low computational resources. Although ordinary NAS methods result in tremendous computational costs owing to the repetition of model training, one-shot NAS, which trains the weights of a supernetwork containing all candidate architectures only once during the search process, has been reported to result in a lower search cost. This study focuses on the architecture complexity-aware one-shot NAS that optimizes the objective function composed of the weighted sum of two metrics, such as the predictive performance and number of parameters. In existing methods, the architecture search process must be run multiple times with different coefficients of the weighted sum to obtain multiple architectures with different complexities. This study aims at reducing the search cost associated with finding multiple architectures. The proposed method uses multiple distributions to generate architectures with different complexities and updates each distribution using the samples obtained from multiple distributions based on importance sampling. The proposed method allows us to obtain multiple architectures with different complexities in a single architecture search, resulting in reducing the search cost. The proposed method is applied to the architecture search of convolutional neural networks on the CIAFR-10 and ImageNet datasets. Consequently, compared with baseline methods, the proposed method finds multiple architectures with varying complexities while requiring less computational effort.
+
+Links:
+  - https://arxiv.org/abs/2207.10334v1
+  - https://arxiv.org/pdf/2207.10334v1

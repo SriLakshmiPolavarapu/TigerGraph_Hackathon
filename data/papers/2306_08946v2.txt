@@ -1,0 +1,21 @@
+Title: Bootstrap aggregation and confidence measures to improve time series causal discovery
+
+Authors: Kevin Debeire, Jakob Runge, Andreas Gerhardus, Veronika Eyring
+
+Published: 2023-06-15
+
+Categories: stat.ME, stat.ML
+
+Abstract:
+Learning causal graphs from multivariate time series is a ubiquitous challenge in all application domains dealing with time-dependent systems, such as in Earth sciences, biology, or engineering, to name a few. Recent developments for this causal discovery learning task have shown considerable skill, notably the specific time-series adaptations of the popular conditional independence-based learning framework. However, uncertainty estimation is challenging for conditional independence-based methods. Here, we introduce a novel bootstrap approach designed for time series causal discovery that preserves the temporal dependencies and lag structure. It can be combined with a range of time series causal discovery methods and provides a measure of confidence for the links of the time series graphs. Furthermore, next to confidence estimation, an aggregation, also called bagging, of the bootstrapped graphs by majority voting results in bagged causal discovery methods. In this work, we combine this approach with the state-of-the-art conditional-independence-based algorithm PCMCI+. With extensive numerical experiments we empirically demonstrate that, in addition to providing confidence measures for links, Bagged-PCMCI+ improves in precision and recall as compared to its base algorithm PCMCI+, at the cost of higher computational demands. These statistical performance improvements are especially pronounced in the more challenging settings (short time sample size, large number of variables, high autocorrelation). Our bootstrap approach can also be combined with other time series causal discovery algorithms and can be of considerable use in many real-world applications.
+
+Paper ID: 2306.08946v2
+
+Summary:
+This paper titled "Bootstrap aggregation and confidence measures to improve time series causal discovery" was authored by Kevin Debeire, Jakob Runge, Andreas Gerhardus, Veronika Eyring and published on 2023-06-15.
+It falls under the categories: stat.ME, stat.ML.
+The research explores the following topic: Learning causal graphs from multivariate time series is a ubiquitous challenge in all application domains dealing with time-dependent systems, such as in Earth sciences, biology, or engineering, to name a few. Recent developments for this causal discovery learning task have shown considerable skill, notably the specific time-series adaptations of the popular conditional independence-based learning framework. However, uncertainty estimation is challenging for conditional independence-based methods. Here, we introduce a novel bootstrap approach designed for time series causal discovery that preserves the temporal dependencies and lag structure. It can be combined with a range of time series causal discovery methods and provides a measure of confidence for the links of the time series graphs. Furthermore, next to confidence estimation, an aggregation, also called bagging, of the bootstrapped graphs by majority voting results in bagged causal discovery methods. In this work, we combine this approach with the state-of-the-art conditional-independence-based algorithm PCMCI+. With extensive numerical experiments we empirically demonstrate that, in addition to providing confidence measures for links, Bagged-PCMCI+ improves in precision and recall as compared to its base algorithm PCMCI+, at the cost of higher computational demands. These statistical performance improvements are especially pronounced in the more challenging settings (short time sample size, large number of variables, high autocorrelation). Our bootstrap approach can also be combined with other time series causal discovery algorithms and can be of considerable use in many real-world applications.
+
+Links:
+  - https://arxiv.org/abs/2306.08946v2
+  - https://arxiv.org/pdf/2306.08946v2

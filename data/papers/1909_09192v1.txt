@@ -1,0 +1,21 @@
+Title: Learning Sparse Mixture of Experts for Visual Question Answering
+
+Authors: Vardaan Pahuja, Jie Fu, Christopher J. Pal
+
+Published: 2019-09-19
+
+Categories: cs.LG, cs.CL, cs.CV, stat.ML
+
+Abstract:
+There has been a rapid progress in the task of Visual Question Answering with improved model architectures. Unfortunately, these models are usually computationally intensive due to their sheer size which poses a serious challenge for deployment. We aim to tackle this issue for the specific task of Visual Question Answering (VQA). A Convolutional Neural Network (CNN) is an integral part of the visual processing pipeline of a VQA model (assuming the CNN is trained along with entire VQA model). In this project, we propose an efficient and modular neural architecture for the VQA task with focus on the CNN module. Our experiments demonstrate that a sparsely activated CNN based VQA model achieves comparable performance to a standard CNN based VQA model architecture.
+
+Paper ID: 1909.09192v1
+
+Summary:
+This paper titled "Learning Sparse Mixture of Experts for Visual Question Answering" was authored by Vardaan Pahuja, Jie Fu, Christopher J. Pal and published on 2019-09-19.
+It falls under the categories: cs.LG, cs.CL, cs.CV, stat.ML.
+The research explores the following topic: There has been a rapid progress in the task of Visual Question Answering with improved model architectures. Unfortunately, these models are usually computationally intensive due to their sheer size which poses a serious challenge for deployment. We aim to tackle this issue for the specific task of Visual Question Answering (VQA). A Convolutional Neural Network (CNN) is an integral part of the visual processing pipeline of a VQA model (assuming the CNN is trained along with entire VQA model). In this project, we propose an efficient and modular neural architecture for the VQA task with focus on the CNN module. Our experiments demonstrate that a sparsely activated CNN based VQA model achieves comparable performance to a standard CNN based VQA model architecture.
+
+Links:
+  - https://arxiv.org/abs/1909.09192v1
+  - https://arxiv.org/pdf/1909.09192v1

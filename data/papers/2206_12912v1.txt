@@ -1,0 +1,21 @@
+Title: Woodscape Fisheye Object Detection for Autonomous Driving -- CVPR 2022 OmniCV Workshop Challenge
+
+Authors: Saravanabalagi Ramachandran, Ganesh Sistu, Varun Ravi Kumar, John McDonald, Senthil Yogamani
+
+Published: 2022-06-26
+
+Categories: cs.CV
+
+Abstract:
+Object detection is a comprehensively studied problem in autonomous driving. However, it has been relatively less explored in the case of fisheye cameras. The strong radial distortion breaks the translation invariance inductive bias of Convolutional Neural Networks. Thus, we present the WoodScape fisheye object detection challenge for autonomous driving which was held as part of the CVPR 2022 Workshop on Omnidirectional Computer Vision (OmniCV). This is one of the first competitions focused on fisheye camera object detection. We encouraged the participants to design models which work natively on fisheye images without rectification. We used CodaLab to host the competition based on the publicly available WoodScape fisheye dataset. In this paper, we provide a detailed analysis on the competition which attracted the participation of 120 global teams and a total of 1492 submissions. We briefly discuss the details of the winning methods and analyze their qualitative and quantitative results.
+
+Paper ID: 2206.12912v1
+
+Summary:
+This paper titled "Woodscape Fisheye Object Detection for Autonomous Driving -- CVPR 2022 OmniCV Workshop Challenge" was authored by Saravanabalagi Ramachandran, Ganesh Sistu, Varun Ravi Kumar, John McDonald, Senthil Yogamani and published on 2022-06-26.
+It falls under the categories: cs.CV.
+The research explores the following topic: Object detection is a comprehensively studied problem in autonomous driving. However, it has been relatively less explored in the case of fisheye cameras. The strong radial distortion breaks the translation invariance inductive bias of Convolutional Neural Networks. Thus, we present the WoodScape fisheye object detection challenge for autonomous driving which was held as part of the CVPR 2022 Workshop on Omnidirectional Computer Vision (OmniCV). This is one of the first competitions focused on fisheye camera object detection. We encouraged the participants to design models which work natively on fisheye images without rectification. We used CodaLab to host the competition based on the publicly available WoodScape fisheye dataset. In this paper, we provide a detailed analysis on the competition which attracted the participation of 120 global teams and a total of 1492 submissions. We briefly discuss the details of the winning methods and analyze their qualitative and quantitative results.
+
+Links:
+  - https://arxiv.org/abs/2206.12912v1
+  - https://arxiv.org/pdf/2206.12912v1

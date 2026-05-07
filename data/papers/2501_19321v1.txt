@@ -1,0 +1,21 @@
+Title: Language Bias in Self-Supervised Learning For Automatic Speech Recognition
+
+Authors: Edward Storey, Naomi Harte, Peter Bell
+
+Published: 2025-01-31
+
+Categories: eess.AS, cs.AI, cs.CL, cs.LG, eess.SP
+
+Abstract:
+Self-supervised learning (SSL) is used in deep learning to train on large datasets without the need for expensive labelling of the data. Recently, large Automatic Speech Recognition (ASR) models such as XLS-R have utilised SSL to train on over one hundred different languages simultaneously. However, deeper investigation shows that the bulk of the training data for XLS-R comes from a small number of languages. Biases learned through SSL have been shown to exist in multiple domains, but language bias in multilingual SSL ASR has not been thoroughly examined. In this paper, we utilise the Lottery Ticket Hypothesis (LTH) to identify language-specific subnetworks within XLS-R and test the performance of these subnetworks on a variety of different languages. We are able to show that when fine-tuning, XLS-R bypasses traditional linguistic knowledge and builds only on weights learned from the languages with the largest data contribution to the pretraining data.
+
+Paper ID: 2501.19321v1
+
+Summary:
+This paper titled "Language Bias in Self-Supervised Learning For Automatic Speech Recognition" was authored by Edward Storey, Naomi Harte, Peter Bell and published on 2025-01-31.
+It falls under the categories: eess.AS, cs.AI, cs.CL, cs.LG, eess.SP.
+The research explores the following topic: Self-supervised learning (SSL) is used in deep learning to train on large datasets without the need for expensive labelling of the data. Recently, large Automatic Speech Recognition (ASR) models such as XLS-R have utilised SSL to train on over one hundred different languages simultaneously. However, deeper investigation shows that the bulk of the training data for XLS-R comes from a small number of languages. Biases learned through SSL have been shown to exist in multiple domains, but language bias in multilingual SSL ASR has not been thoroughly examined. In this paper, we utilise the Lottery Ticket Hypothesis (LTH) to identify language-specific subnetworks within XLS-R and test the performance of these subnetworks on a variety of different languages. We are able to show that when fine-tuning, XLS-R bypasses traditional linguistic knowledge and builds only on weights learned from the languages with the largest data contribution to the pretraining data.
+
+Links:
+  - https://arxiv.org/abs/2501.19321v1
+  - https://arxiv.org/pdf/2501.19321v1

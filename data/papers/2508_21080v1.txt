@@ -1,0 +1,21 @@
+Title: 2COOOL: 2nd Workshop on the Challenge Of Out-Of-Label Hazards in Autonomous Driving
+
+Authors: Ali K. AlShami, Ryan Rabinowitz, Maged Shoman, Jianwu Fang, Lukas Picek, Shao-Yuan Lo, Steve Cruz, Khang Nhut Lam, Nachiket Kamod, Lei-Lei Li, Jugal Kalita, Terrance E. Boult
+
+Published: 2025-08-18
+
+Categories: cs.CV, cs.RO
+
+Abstract:
+As the computer vision community advances autonomous driving algorithms, integrating vision-based insights with sensor data remains essential for improving perception, decision making, planning, prediction, simulation, and control. Yet we must ask: Why don't we have entirely safe self-driving cars yet? A key part of the answer lies in addressing novel scenarios, one of the most critical barriers to real-world deployment. Our 2COOOL workshop provides a dedicated forum for researchers and industry experts to push the state of the art in novelty handling, including out-of-distribution hazard detection, vision-language models for hazard understanding, new benchmarking and methodologies, and safe autonomous driving practices. The 2nd Workshop on the Challenge of Out-of-Label Hazards in Autonomous Driving (2COOOL) will be held at the International Conference on Computer Vision (ICCV) 2025 in Honolulu, Hawaii, on October 19, 2025. We aim to inspire the development of new algorithms and systems for hazard avoidance, drawing on ideas from anomaly detection, open-set recognition, open-vocabulary modeling, domain adaptation, and related fields. Building on the success of its inaugural edition at the Winter Conference on Applications of Computer Vision (WACV) 2025, the workshop will feature a mix of academic and industry participation.
+
+Paper ID: 2508.21080v1
+
+Summary:
+This paper titled "2COOOL: 2nd Workshop on the Challenge Of Out-Of-Label Hazards in Autonomous Driving" was authored by Ali K. AlShami, Ryan Rabinowitz, Maged Shoman, Jianwu Fang, Lukas Picek, Shao-Yuan Lo, Steve Cruz, Khang Nhut Lam, Nachiket Kamod, Lei-Lei Li, Jugal Kalita, Terrance E. Boult and published on 2025-08-18.
+It falls under the categories: cs.CV, cs.RO.
+The research explores the following topic: As the computer vision community advances autonomous driving algorithms, integrating vision-based insights with sensor data remains essential for improving perception, decision making, planning, prediction, simulation, and control. Yet we must ask: Why don't we have entirely safe self-driving cars yet? A key part of the answer lies in addressing novel scenarios, one of the most critical barriers to real-world deployment. Our 2COOOL workshop provides a dedicated forum for researchers and industry experts to push the state of the art in novelty handling, including out-of-distribution hazard detection, vision-language models for hazard understanding, new benchmarking and methodologies, and safe autonomous driving practices. The 2nd Workshop on the Challenge of Out-of-Label Hazards in Autonomous Driving (2COOOL) will be held at the International Conference on Computer Vision (ICCV) 2025 in Honolulu, Hawaii, on October 19, 2025. We aim to inspire the development of new algorithms and systems for hazard avoidance, drawing on ideas from anomaly detection, open-set recognition, open-vocabulary modeling, domain adaptation, and related fields. Building on the success of its inaugural edition at the Winter Conference on Applications of Computer Vision (WACV) 2025, the workshop will feature a mix of academic and industry participation.
+
+Links:
+  - https://arxiv.org/abs/2508.21080v1
+  - https://arxiv.org/pdf/2508.21080v1

@@ -1,0 +1,21 @@
+Title: Tips and Tricks for Visual Question Answering: Learnings from the 2017 Challenge
+
+Authors: Damien Teney, Peter Anderson, Xiaodong He, Anton van den Hengel
+
+Published: 2017-08-09
+
+Categories: cs.CV, cs.CL
+
+Abstract:
+This paper presents a state-of-the-art model for visual question answering (VQA), which won the first place in the 2017 VQA Challenge. VQA is a task of significant importance for research in artificial intelligence, given its multimodal nature, clear evaluation protocol, and potential real-world applications. The performance of deep neural networks for VQA is very dependent on choices of architectures and hyperparameters. To help further research in the area, we describe in detail our high-performing, though relatively simple model. Through a massive exploration of architectures and hyperparameters representing more than 3,000 GPU-hours, we identified tips and tricks that lead to its success, namely: sigmoid outputs, soft training targets, image features from bottom-up attention, gated tanh activations, output embeddings initialized using GloVe and Google Images, large mini-batches, and smart shuffling of training data. We provide a detailed analysis of their impact on performance to assist others in making an appropriate selection.
+
+Paper ID: 1708.02711v1
+
+Summary:
+This paper titled "Tips and Tricks for Visual Question Answering: Learnings from the 2017 Challenge" was authored by Damien Teney, Peter Anderson, Xiaodong He, Anton van den Hengel and published on 2017-08-09.
+It falls under the categories: cs.CV, cs.CL.
+The research explores the following topic: This paper presents a state-of-the-art model for visual question answering (VQA), which won the first place in the 2017 VQA Challenge. VQA is a task of significant importance for research in artificial intelligence, given its multimodal nature, clear evaluation protocol, and potential real-world applications. The performance of deep neural networks for VQA is very dependent on choices of architectures and hyperparameters. To help further research in the area, we describe in detail our high-performing, though relatively simple model. Through a massive exploration of architectures and hyperparameters representing more than 3,000 GPU-hours, we identified tips and tricks that lead to its success, namely: sigmoid outputs, soft training targets, image features from bottom-up attention, gated tanh activations, output embeddings initialized using GloVe and Google Images, large mini-batches, and smart shuffling of training data. We provide a detailed analysis of their impact on performance to assist others in making an appropriate selection.
+
+Links:
+  - https://arxiv.org/abs/1708.02711v1
+  - https://arxiv.org/pdf/1708.02711v1

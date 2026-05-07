@@ -1,0 +1,21 @@
+Title: Amortized learning of neural causal representations
+
+Authors: Nan Rosemary Ke, Jane. X. Wang, Jovana Mitrovic, Martin Szummer, Danilo J. Rezende
+
+Published: 2020-08-21
+
+Categories: stat.ML, cs.LG
+
+Abstract:
+Causal models can compactly and efficiently encode the data-generating process under all interventions and hence may generalize better under changes in distribution. These models are often represented as Bayesian networks and learning them scales poorly with the number of variables. Moreover, these approaches cannot leverage previously learned knowledge to help with learning new causal models. In order to tackle these challenges, we represent a novel algorithm called \textit{causal relational networks} (CRN) for learning causal models using neural networks. The CRN represent causal models using continuous representations and hence could scale much better with the number of variables. These models also take in previously learned information to facilitate learning of new causal models. Finally, we propose a decoding-based metric to evaluate causal models with continuous representations. We test our method on synthetic data achieving high accuracy and quick adaptation to previously unseen causal models.
+
+Paper ID: 2008.09301v1
+
+Summary:
+This paper titled "Amortized learning of neural causal representations" was authored by Nan Rosemary Ke, Jane. X. Wang, Jovana Mitrovic, Martin Szummer, Danilo J. Rezende and published on 2020-08-21.
+It falls under the categories: stat.ML, cs.LG.
+The research explores the following topic: Causal models can compactly and efficiently encode the data-generating process under all interventions and hence may generalize better under changes in distribution. These models are often represented as Bayesian networks and learning them scales poorly with the number of variables. Moreover, these approaches cannot leverage previously learned knowledge to help with learning new causal models. In order to tackle these challenges, we represent a novel algorithm called \textit{causal relational networks} (CRN) for learning causal models using neural networks. The CRN represent causal models using continuous representations and hence could scale much better with the number of variables. These models also take in previously learned information to facilitate learning of new causal models. Finally, we propose a decoding-based metric to evaluate causal models with continuous representations. We test our method on synthetic data achieving high accuracy and quick adaptation to previously unseen causal models.
+
+Links:
+  - https://arxiv.org/abs/2008.09301v1
+  - https://arxiv.org/pdf/2008.09301v1

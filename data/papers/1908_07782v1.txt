@@ -1,0 +1,21 @@
+Title: Decentralized Federated Learning: A Segmented Gossip Approach
+
+Authors: Chenghao Hu, Jingyan Jiang, Zhi Wang
+
+Published: 2019-08-21
+
+Categories: cs.LG, cs.DC, cs.NI, stat.ML
+
+Abstract:
+The emerging concern about data privacy and security has motivated the proposal of federated learning, which allows nodes to only synchronize the locally-trained models instead their own original data. Conventional federated learning architecture, inherited from the parameter server design, relies on highly centralized topologies and the assumption of large nodes-to-server bandwidths. However, in real-world federated learning scenarios the network capacities between nodes are highly uniformly distributed and smaller than that in a datacenter. It is of great challenges for conventional federated learning approaches to efficiently utilize network capacities between nodes. In this paper, we propose a model segment level decentralized federated learning to tackle this problem. In particular, we propose a segmented gossip approach, which not only makes full utilization of node-to-node bandwidth, but also has good training convergence. The experimental results show that even the training time can be highly reduced as compared to centralized federated learning.
+
+Paper ID: 1908.07782v1
+
+Summary:
+This paper titled "Decentralized Federated Learning: A Segmented Gossip Approach" was authored by Chenghao Hu, Jingyan Jiang, Zhi Wang and published on 2019-08-21.
+It falls under the categories: cs.LG, cs.DC, cs.NI, stat.ML.
+The research explores the following topic: The emerging concern about data privacy and security has motivated the proposal of federated learning, which allows nodes to only synchronize the locally-trained models instead their own original data. Conventional federated learning architecture, inherited from the parameter server design, relies on highly centralized topologies and the assumption of large nodes-to-server bandwidths. However, in real-world federated learning scenarios the network capacities between nodes are highly uniformly distributed and smaller than that in a datacenter. It is of great challenges for conventional federated learning approaches to efficiently utilize network capacities between nodes. In this paper, we propose a model segment level decentralized federated learning to tackle this problem. In particular, we propose a segmented gossip approach, which not only makes full utilization of node-to-node bandwidth, but also has good training convergence. The experimental results show that even the training time can be highly reduced as compared to centralized federated learning.
+
+Links:
+  - https://arxiv.org/abs/1908.07782v1
+  - https://arxiv.org/pdf/1908.07782v1

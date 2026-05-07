@@ -1,0 +1,25 @@
+Title: MerLin: A Discovery Engine for Photonic and Hybrid Quantum Machine Learning
+
+Authors: Cassandre Notton, Benjamin Stott, Philippe Schoeb, Anthony Walsh, Grégoire Leboucher, Vincent Espitalier, Vassilis Apostolou, Louis-Félix Vigneux, Alexia Salavrakos, Jean Senellart
+
+Published: 2026-02-11
+
+Categories: cs.LG, cs.PL, quant-ph
+
+Abstract:
+Identifying where quantum models may offer practical benefits in near term quantum machine learning (QML) requires moving beyond isolated algorithmic proposals toward systematic and empirical exploration across models, datasets, and hardware constraints. We introduce MerLin, an open-source framework designed as a discovery engine for photonic and hybrid quantum machine learning. MerLin integrates optimized strong simulation of linear optical circuits into standard PyTorch and scikit learn workflows, enabling end-to-end differentiable training of quantum layers.
+  MerLin is designed around systematic benchmarking and reproducibility. As an initial contribution, we reproduce eighteen state-of-the-art photonic and hybrid QML works spanning kernel methods, reservoir computing, convolutional and recurrent architectures, generative models, and modern training paradigms. These reproductions are released as reusable, modular experiments that can be directly extended and adapted, establishing a shared experimental baseline consistent with empirical benchmarking methodologies widely adopted in modern artificial intelligence.
+  By embedding photonic quantum models within established machine learning ecosystems, MerLin allows practitioners to leverage existing tooling for ablation studies, cross-modality comparisons, and hybrid classical-quantum workflows. The framework already implements hardware-aware features, allowing tests on available quantum hardware while enabling exploration beyond its current capabilities, positioning MerLin as a forward-looking co-design tool linking algorithms, benchmarks, and hardware.
+
+Paper ID: 2602.11092v2
+
+Summary:
+This paper titled "MerLin: A Discovery Engine for Photonic and Hybrid Quantum Machine Learning" was authored by Cassandre Notton, Benjamin Stott, Philippe Schoeb, Anthony Walsh, Grégoire Leboucher, Vincent Espitalier, Vassilis Apostolou, Louis-Félix Vigneux, Alexia Salavrakos, Jean Senellart and published on 2026-02-11.
+It falls under the categories: cs.LG, cs.PL, quant-ph.
+The research explores the following topic: Identifying where quantum models may offer practical benefits in near term quantum machine learning (QML) requires moving beyond isolated algorithmic proposals toward systematic and empirical exploration across models, datasets, and hardware constraints. We introduce MerLin, an open-source framework designed as a discovery engine for photonic and hybrid quantum machine learning. MerLin integrates optimized strong simulation of linear optical circuits into standard PyTorch and scikit learn workflows, enabling end-to-end differentiable training of quantum layers.
+  MerLin is designed around systematic benchmarking and reproducibility. As an initial contribution, we reproduce eighteen state-of-the-art photonic and hybrid QML works spanning kernel methods, reservoir computing, convolutional and recurrent architectures, generative models, and modern training paradigms. These reproductions are released as reusable, modular experiments that can be directly extended and adapted, establishing a shared experimental baseline consistent with empirical benchmarking methodologies widely adopted in modern artificial intelligence.
+  By embedding photonic quantum models within established machine learning ecosystems, MerLin allows practitioners to leverage existing tooling for ablation studies, cross-modality comparisons, and hybrid classical-quantum workflows. The framework already implements hardware-aware features, allowing tests on available quantum hardware while enabling exploration beyond its current capabilities, positioning MerLin as a forward-looking co-design tool linking algorithms, benchmarks, and hardware.
+
+Links:
+  - https://arxiv.org/abs/2602.11092v2
+  - https://arxiv.org/pdf/2602.11092v2

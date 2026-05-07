@@ -1,0 +1,22 @@
+Title: A Unifying Causal Framework for Analyzing Dataset Shift-stable Learning Algorithms
+
+Authors: Adarsh Subbaswamy, Bryant Chen, Suchi Saria
+
+Published: 2019-05-27
+
+Categories: stat.ML, cs.AI, cs.LG
+
+Abstract:
+Recent interest in the external validity of prediction models (i.e., the problem of different train and test distributions, known as dataset shift) has produced many methods for finding predictive distributions that are invariant to dataset shifts and can be used for prediction in new, unseen environments. However, these methods consider different types of shifts and have been developed under disparate frameworks, making it difficult to theoretically analyze how solutions differ with respect to stability and accuracy. Taking a causal graphical view, we use a flexible graphical representation to express various types of dataset shifts. Given a known graph of the data generating process, we show that all invariant distributions correspond to a causal hierarchy of graphical operators which disable the edges in the graph that are responsible for the shifts. The hierarchy provides a common theoretical underpinning for understanding when and how stability to shifts can be achieved, and in what ways stable distributions can differ. We use it to establish conditions for minimax optimal performance across environments, and derive new algorithms that find optimal stable distributions. Using this new perspective, we empirically demonstrate that that there is a tradeoff between minimax and average performance.
+
+Paper ID: 1905.11374v5
+
+Summary:
+This paper titled "A Unifying Causal Framework for Analyzing Dataset Shift-stable Learning Algorithms" was authored by Adarsh Subbaswamy, Bryant Chen, Suchi Saria and published on 2019-05-27.
+It falls under the categories: stat.ML, cs.AI, cs.LG.
+The research explores the following topic: Recent interest in the external validity of prediction models (i.e., the problem of different train and test distributions, known as dataset shift) has produced many methods for finding predictive distributions that are invariant to dataset shifts and can be used for prediction in new, unseen environments. However, these methods consider different types of shifts and have been developed under disparate frameworks, making it difficult to theoretically analyze how solutions differ with respect to stability and accuracy. Taking a causal graphical view, we use a flexible graphical representation to express various types of dataset shifts. Given a known graph of the data generating process, we show that all invariant distributions correspond to a causal hierarchy of graphical operators which disable the edges in the graph that are responsible for the shifts. The hierarchy provides a common theoretical underpinning for understanding when and how stability to shifts can be achieved, and in what ways stable distributions can differ. We use it to establish conditions for minimax optimal performance across environments, and derive new algorithms that find optimal stable distributions. Using this new perspective, we empirically demonstrate that that there is a tradeoff between minimax and average performance.
+
+Links:
+  - https://arxiv.org/abs/1905.11374v5
+  - https://arxiv.org/pdf/1905.11374v5
+  - https://doi.org/10.1515/jci-2021-0042

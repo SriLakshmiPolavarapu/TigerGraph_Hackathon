@@ -1,0 +1,21 @@
+Title: AI Safety is Stuck in Technical Terms -- A System Safety Response to the International AI Safety Report
+
+Authors: Roel Dobbe
+
+Published: 2025-02-05
+
+Categories: cs.CY, cs.AI
+
+Abstract:
+Safety has become the central value around which dominant AI governance efforts are being shaped. Recently, this culminated in the publication of the International AI Safety Report, written by 96 experts of which 30 nominated by the Organisation for Economic Co-operation and Development (OECD), the European Union (EU), and the United Nations (UN). The report focuses on the safety risks of general-purpose AI and available technical mitigation approaches. In this response, informed by a system safety perspective, I refl ect on the key conclusions of the report, identifying fundamental issues in the currently dominant technical framing of AI safety and how this frustrates meaningful discourse and policy efforts to address safety comprehensively. The system safety discipline has dealt with the safety risks of software-based systems for many decades, and understands safety risks in AI systems as sociotechnical and requiring consideration of technical and non-technical factors and their interactions. The International AI Safety report does identify the need for system safety approaches. Lessons, concepts and methods from system safety indeed provide an important blueprint for overcoming current shortcomings in technical approaches by integrating rather than adding on non-technical factors and interventions. I conclude with why building a system safety discipline can help us overcome limitations in the European AI Act, as well as how the discipline can help shape sustainable investments into Public Interest AI.
+
+Paper ID: 2503.04743v1
+
+Summary:
+This paper titled "AI Safety is Stuck in Technical Terms -- A System Safety Response to the International AI Safety Report" was authored by Roel Dobbe and published on 2025-02-05.
+It falls under the categories: cs.CY, cs.AI.
+The research explores the following topic: Safety has become the central value around which dominant AI governance efforts are being shaped. Recently, this culminated in the publication of the International AI Safety Report, written by 96 experts of which 30 nominated by the Organisation for Economic Co-operation and Development (OECD), the European Union (EU), and the United Nations (UN). The report focuses on the safety risks of general-purpose AI and available technical mitigation approaches. In this response, informed by a system safety perspective, I refl ect on the key conclusions of the report, identifying fundamental issues in the currently dominant technical framing of AI safety and how this frustrates meaningful discourse and policy efforts to address safety comprehensively. The system safety discipline has dealt with the safety risks of software-based systems for many decades, and understands safety risks in AI systems as sociotechnical and requiring consideration of technical and non-technical factors and their interactions. The International AI Safety report does identify the need for system safety approaches. Lessons, concepts and methods from system safety indeed provide an important blueprint for overcoming current shortcomings in technical approaches by integrating rather than adding on non-technical factors and interventions. I conclude with why building a system safety discipline can help us overcome limitations in the European AI Act, as well as how the discipline can help shape sustainable investments into Public Interest AI.
+
+Links:
+  - https://arxiv.org/abs/2503.04743v1
+  - https://arxiv.org/pdf/2503.04743v1

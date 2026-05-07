@@ -1,0 +1,22 @@
+Title: Hierarchical Attentional Hybrid Neural Networks for Document Classification
+
+Authors: Jader Abreu, Luis Fred, David Macêdo, Cleber Zanchettin
+
+Published: 2019-01-20
+
+Categories: cs.CL, cs.AI, cs.LG, cs.NE
+
+Abstract:
+Document classification is a challenging task with important applications. The deep learning approaches to the problem have gained much attention recently. Despite the progress, the proposed models do not incorporate the knowledge of the document structure in the architecture efficiently and not take into account the contexting importance of words and sentences. In this paper, we propose a new approach based on a combination of convolutional neural networks, gated recurrent units, and attention mechanisms for document classification tasks. The main contribution of this work is the use of convolution layers to extract more meaningful, generalizable and abstract features by the hierarchical representation. The proposed method in this paper improves the results of the current attention-based approaches for document classification.
+
+Paper ID: 1901.06610v2
+
+Summary:
+This paper titled "Hierarchical Attentional Hybrid Neural Networks for Document Classification" was authored by Jader Abreu, Luis Fred, David Macêdo, Cleber Zanchettin and published on 2019-01-20.
+It falls under the categories: cs.CL, cs.AI, cs.LG, cs.NE.
+The research explores the following topic: Document classification is a challenging task with important applications. The deep learning approaches to the problem have gained much attention recently. Despite the progress, the proposed models do not incorporate the knowledge of the document structure in the architecture efficiently and not take into account the contexting importance of words and sentences. In this paper, we propose a new approach based on a combination of convolutional neural networks, gated recurrent units, and attention mechanisms for document classification tasks. The main contribution of this work is the use of convolution layers to extract more meaningful, generalizable and abstract features by the hierarchical representation. The proposed method in this paper improves the results of the current attention-based approaches for document classification.
+
+Links:
+  - https://arxiv.org/abs/1901.06610v2
+  - https://arxiv.org/pdf/1901.06610v2
+  - https://doi.org/10.1007/978-3-030-30493-5_39

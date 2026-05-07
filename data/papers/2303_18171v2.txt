@@ -1,0 +1,21 @@
+Title: How Efficient Are Today's Continual Learning Algorithms?
+
+Authors: Md Yousuf Harun, Jhair Gallardo, Tyler L. Hayes, Christopher Kanan
+
+Published: 2023-03-29
+
+Categories: cs.CV, cs.AI, cs.LG
+
+Abstract:
+Supervised Continual learning involves updating a deep neural network (DNN) from an ever-growing stream of labeled data. While most work has focused on overcoming catastrophic forgetting, one of the major motivations behind continual learning is being able to efficiently update a network with new information, rather than retraining from scratch on the training dataset as it grows over time. Despite recent continual learning methods largely solving the catastrophic forgetting problem, there has been little attention paid to the efficiency of these algorithms. Here, we study recent methods for incremental class learning and illustrate that many are highly inefficient in terms of compute, memory, and storage. Some methods even require more compute than training from scratch! We argue that for continual learning to have real-world applicability, the research community cannot ignore the resources used by these algorithms. There is more to continual learning than mitigating catastrophic forgetting.
+
+Paper ID: 2303.18171v2
+
+Summary:
+This paper titled "How Efficient Are Today's Continual Learning Algorithms?" was authored by Md Yousuf Harun, Jhair Gallardo, Tyler L. Hayes, Christopher Kanan and published on 2023-03-29.
+It falls under the categories: cs.CV, cs.AI, cs.LG.
+The research explores the following topic: Supervised Continual learning involves updating a deep neural network (DNN) from an ever-growing stream of labeled data. While most work has focused on overcoming catastrophic forgetting, one of the major motivations behind continual learning is being able to efficiently update a network with new information, rather than retraining from scratch on the training dataset as it grows over time. Despite recent continual learning methods largely solving the catastrophic forgetting problem, there has been little attention paid to the efficiency of these algorithms. Here, we study recent methods for incremental class learning and illustrate that many are highly inefficient in terms of compute, memory, and storage. Some methods even require more compute than training from scratch! We argue that for continual learning to have real-world applicability, the research community cannot ignore the resources used by these algorithms. There is more to continual learning than mitigating catastrophic forgetting.
+
+Links:
+  - https://arxiv.org/abs/2303.18171v2
+  - https://arxiv.org/pdf/2303.18171v2

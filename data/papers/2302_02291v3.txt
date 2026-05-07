@@ -1,0 +1,22 @@
+Title: A Semantic Approach to Negation Detection and Word Disambiguation with Natural Language Processing
+
+Authors: Izunna Okpala, Guillermo Romera Rodriguez, Andrea Tapia, Shane Halse, Jess Kropczynski
+
+Published: 2023-02-05
+
+Categories: cs.CL, cs.AI, cs.IR
+
+Abstract:
+This study aims to demonstrate the methods for detecting negations in a sentence by uniquely evaluating the lexical structure of the text via word-sense disambiguation. The proposed framework examines all the unique features in the various expressions within a text to resolve the contextual usage of all tokens and decipher the effect of negation on sentiment analysis. The application of popular expression detectors skips this important step, thereby neglecting the root words caught in the web of negation and making text classification difficult for machine learning and sentiment analysis. This study adopts the Natural Language Processing (NLP) approach to discover and antonimize words that were negated for better accuracy in text classification using a knowledge base provided by an NLP library called WordHoard. Early results show that our initial analysis improved on traditional sentiment analysis, which sometimes neglects negations or assigns an inverse polarity score. The SentiWordNet analyzer was improved by 35%, the Vader analyzer by 20% and the TextBlob by 6%.
+
+Paper ID: 2302.02291v3
+
+Summary:
+This paper titled "A Semantic Approach to Negation Detection and Word Disambiguation with Natural Language Processing" was authored by Izunna Okpala, Guillermo Romera Rodriguez, Andrea Tapia, Shane Halse, Jess Kropczynski and published on 2023-02-05.
+It falls under the categories: cs.CL, cs.AI, cs.IR.
+The research explores the following topic: This study aims to demonstrate the methods for detecting negations in a sentence by uniquely evaluating the lexical structure of the text via word-sense disambiguation. The proposed framework examines all the unique features in the various expressions within a text to resolve the contextual usage of all tokens and decipher the effect of negation on sentiment analysis. The application of popular expression detectors skips this important step, thereby neglecting the root words caught in the web of negation and making text classification difficult for machine learning and sentiment analysis. This study adopts the Natural Language Processing (NLP) approach to discover and antonimize words that were negated for better accuracy in text classification using a knowledge base provided by an NLP library called WordHoard. Early results show that our initial analysis improved on traditional sentiment analysis, which sometimes neglects negations or assigns an inverse polarity score. The SentiWordNet analyzer was improved by 35%, the Vader analyzer by 20% and the TextBlob by 6%.
+
+Links:
+  - https://arxiv.org/abs/2302.02291v3
+  - https://arxiv.org/pdf/2302.02291v3
+  - https://doi.org/10.1145/3582768.3582789

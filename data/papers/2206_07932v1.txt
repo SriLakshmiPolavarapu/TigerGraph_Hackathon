@@ -1,0 +1,21 @@
+Title: Lifelong Wandering: A realistic few-shot online continual learning setting
+
+Authors: Mayank Lunayach, James Smith, Zsolt Kira
+
+Published: 2022-06-16
+
+Categories: cs.CV, cs.LG
+
+Abstract:
+Online few-shot learning describes a setting where models are trained and evaluated on a stream of data while learning emerging classes. While prior work in this setting has achieved very promising performance on instance classification when learning from data-streams composed of a single indoor environment, we propose to extend this setting to consider object classification on a series of several indoor environments, which is likely to occur in applications such as robotics. Importantly, our setting, which we refer to as online few-shot continual learning, injects the well-studied issue of catastrophic forgetting into the few-shot online learning paradigm. In this work, we benchmark several existing methods and adapted baselines within our setting, and show there exists a trade-off between catastrophic forgetting and online performance. Our findings motivate the need for future work in this setting, which can achieve better online performance without catastrophic forgetting.
+
+Paper ID: 2206.07932v1
+
+Summary:
+This paper titled "Lifelong Wandering: A realistic few-shot online continual learning setting" was authored by Mayank Lunayach, James Smith, Zsolt Kira and published on 2022-06-16.
+It falls under the categories: cs.CV, cs.LG.
+The research explores the following topic: Online few-shot learning describes a setting where models are trained and evaluated on a stream of data while learning emerging classes. While prior work in this setting has achieved very promising performance on instance classification when learning from data-streams composed of a single indoor environment, we propose to extend this setting to consider object classification on a series of several indoor environments, which is likely to occur in applications such as robotics. Importantly, our setting, which we refer to as online few-shot continual learning, injects the well-studied issue of catastrophic forgetting into the few-shot online learning paradigm. In this work, we benchmark several existing methods and adapted baselines within our setting, and show there exists a trade-off between catastrophic forgetting and online performance. Our findings motivate the need for future work in this setting, which can achieve better online performance without catastrophic forgetting.
+
+Links:
+  - https://arxiv.org/abs/2206.07932v1
+  - https://arxiv.org/pdf/2206.07932v1

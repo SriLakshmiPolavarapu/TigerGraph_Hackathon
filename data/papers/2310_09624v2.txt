@@ -1,0 +1,21 @@
+Title: ASSERT: Automated Safety Scenario Red Teaming for Evaluating the Robustness of Large Language Models
+
+Authors: Alex Mei, Sharon Levy, William Yang Wang
+
+Published: 2023-10-14
+
+Categories: cs.CL, cs.AI, cs.LG
+
+Abstract:
+As large language models are integrated into society, robustness toward a suite of prompts is increasingly important to maintain reliability in a high-variance environment.Robustness evaluations must comprehensively encapsulate the various settings in which a user may invoke an intelligent system. This paper proposes ASSERT, Automated Safety Scenario Red Teaming, consisting of three methods -- semantically aligned augmentation, target bootstrapping, and adversarial knowledge injection. For robust safety evaluation, we apply these methods in the critical domain of AI safety to algorithmically generate a test suite of prompts covering diverse robustness settings -- semantic equivalence, related scenarios, and adversarial. We partition our prompts into four safety domains for a fine-grained analysis of how the domain affects model performance. Despite dedicated safeguards in existing state-of-the-art models, we find statistically significant performance differences of up to 11% in absolute classification accuracy among semantically related scenarios and error rates of up to 19% absolute error in zero-shot adversarial settings, raising concerns for users' physical safety.
+
+Paper ID: 2310.09624v2
+
+Summary:
+This paper titled "ASSERT: Automated Safety Scenario Red Teaming for Evaluating the Robustness of Large Language Models" was authored by Alex Mei, Sharon Levy, William Yang Wang and published on 2023-10-14.
+It falls under the categories: cs.CL, cs.AI, cs.LG.
+The research explores the following topic: As large language models are integrated into society, robustness toward a suite of prompts is increasingly important to maintain reliability in a high-variance environment.Robustness evaluations must comprehensively encapsulate the various settings in which a user may invoke an intelligent system. This paper proposes ASSERT, Automated Safety Scenario Red Teaming, consisting of three methods -- semantically aligned augmentation, target bootstrapping, and adversarial knowledge injection. For robust safety evaluation, we apply these methods in the critical domain of AI safety to algorithmically generate a test suite of prompts covering diverse robustness settings -- semantic equivalence, related scenarios, and adversarial. We partition our prompts into four safety domains for a fine-grained analysis of how the domain affects model performance. Despite dedicated safeguards in existing state-of-the-art models, we find statistically significant performance differences of up to 11% in absolute classification accuracy among semantically related scenarios and error rates of up to 19% absolute error in zero-shot adversarial settings, raising concerns for users' physical safety.
+
+Links:
+  - https://arxiv.org/abs/2310.09624v2
+  - https://arxiv.org/pdf/2310.09624v2

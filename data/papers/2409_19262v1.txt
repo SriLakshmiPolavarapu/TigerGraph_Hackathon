@@ -1,0 +1,21 @@
+Title: An Efficient Multi-threaded Collaborative Filtering Approach in Recommendation System
+
+Authors: Mahamudul Hasan
+
+Published: 2024-09-28
+
+Categories: cs.IR
+
+Abstract:
+Recommender systems are a subset of information filtering systems designed to predict and suggest items that users may find interesting or relevant based on their preferences, behaviors, or interactions. By analyzing user data such as past activities, ratings, and preferences, these systems generate personalized recommendations for products, services, or content, with common applications including online retail, media streaming platforms, and social media. Recommender systems are typically categorized into three types: content-based filtering, which recommends items similar to those the user has shown interest in; collaborative filtering, which analyzes the preferences of similar users; and hybrid methods, which combine both approaches to improve accuracy. These systems enhance user experience by reducing information overload and providing personalized suggestions, thus increasing engagement and satisfaction. However, building a scalable recommendation system capable of handling numerous users efficiently is a significant challenge, particularly when considering both performance consistency and user data security, which are emerging research topics. The primary objective of this research is to address these challenges by reducing the processing time in recommendation systems. A multithreaded similarity approach is employed to achieve this, where users are divided into independent threads that run in parallel. This parallelization significantly reduces computation time compared to traditional methods, resulting in a faster, more efficient, and scalable recommendation system that ensures improved performance without compromising user data security.
+
+Paper ID: 2409.19262v1
+
+Summary:
+This paper titled "An Efficient Multi-threaded Collaborative Filtering Approach in Recommendation System" was authored by Mahamudul Hasan and published on 2024-09-28.
+It falls under the categories: cs.IR.
+The research explores the following topic: Recommender systems are a subset of information filtering systems designed to predict and suggest items that users may find interesting or relevant based on their preferences, behaviors, or interactions. By analyzing user data such as past activities, ratings, and preferences, these systems generate personalized recommendations for products, services, or content, with common applications including online retail, media streaming platforms, and social media. Recommender systems are typically categorized into three types: content-based filtering, which recommends items similar to those the user has shown interest in; collaborative filtering, which analyzes the preferences of similar users; and hybrid methods, which combine both approaches to improve accuracy. These systems enhance user experience by reducing information overload and providing personalized suggestions, thus increasing engagement and satisfaction. However, building a scalable recommendation system capable of handling numerous users efficiently is a significant challenge, particularly when considering both performance consistency and user data security, which are emerging research topics. The primary objective of this research is to address these challenges by reducing the processing time in recommendation systems. A multithreaded similarity approach is employed to achieve this, where users are divided into independent threads that run in parallel. This parallelization significantly reduces computation time compared to traditional methods, resulting in a faster, more efficient, and scalable recommendation system that ensures improved performance without compromising user data security.
+
+Links:
+  - https://arxiv.org/abs/2409.19262v1
+  - https://arxiv.org/pdf/2409.19262v1

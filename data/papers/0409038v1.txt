@@ -1,0 +1,21 @@
+Title: Checking modes of HAL programs
+
+Authors: Maria Garcia de la Banda, Warwick Harvey, Kim Marriott, Peter J. Stuckey, Bart Demoen
+
+Published: 2004-09-21
+
+Categories: cs.PL
+
+Abstract:
+Recent constraint logic programming (CLP) languages, such as HAL and Mercury, require type, mode and determinism declarations for predicates. This information allows the generation of efficient target code and the detection of many errors at compile-time. Unfortunately, mode checking in such languages is difficult. One of the main reasons is that, for each predicate mode declaration, the compiler is required to appropriately re-order literals in the predicate's definition. The task is further complicated by the need to handle complex instantiations (which interact with type declarations and higher-order predicates) and automatic initialization of solver variables. Here we define mode checking for strongly typed CLP languages which require reordering of clause body literals. In addition, we show how to handle a simple case of polymorphic modes by using the corresponding polymorphic types.
+
+Paper ID: 0409038v1
+
+Summary:
+This paper titled "Checking modes of HAL programs" was authored by Maria Garcia de la Banda, Warwick Harvey, Kim Marriott, Peter J. Stuckey, Bart Demoen and published on 2004-09-21.
+It falls under the categories: cs.PL.
+The research explores the following topic: Recent constraint logic programming (CLP) languages, such as HAL and Mercury, require type, mode and determinism declarations for predicates. This information allows the generation of efficient target code and the detection of many errors at compile-time. Unfortunately, mode checking in such languages is difficult. One of the main reasons is that, for each predicate mode declaration, the compiler is required to appropriately re-order literals in the predicate's definition. The task is further complicated by the need to handle complex instantiations (which interact with type declarations and higher-order predicates) and automatic initialization of solver variables. Here we define mode checking for strongly typed CLP languages which require reordering of clause body literals. In addition, we show how to handle a simple case of polymorphic modes by using the corresponding polymorphic types.
+
+Links:
+  - https://arxiv.org/abs/cs/0409038v1
+  - https://arxiv.org/pdf/cs/0409038v1

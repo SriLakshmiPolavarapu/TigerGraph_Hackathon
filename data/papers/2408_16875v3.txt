@@ -1,0 +1,21 @@
+Title: Learning Multi-agent Multi-machine Tending by Mobile Robots
+
+Authors: Abdalwhab Abdalwhab, Giovanni Beltrame, Samira Ebrahimi Kahou, David St-Onge
+
+Published: 2024-08-29
+
+Categories: cs.RO, cs.LG
+
+Abstract:
+Robotics can help address the growing worker shortage challenge of the manufacturing industry. As such, machine tending is a task collaborative robots can tackle that can also highly boost productivity. Nevertheless, existing robotics systems deployed in that sector rely on a fixed single-arm setup, whereas mobile robots can provide more flexibility and scalability. In this work, we introduce a multi-agent multi-machine tending learning framework by mobile robots based on Multi-agent Reinforcement Learning (MARL) techniques with the design of a suitable observation and reward. Moreover, an attention-based encoding mechanism is developed and integrated into Multi-agent Proximal Policy Optimization (MAPPO) algorithm to boost its performance for machine tending scenarios. Our model (AB-MAPPO) outperformed MAPPO in this new challenging scenario in terms of task success, safety, and resources utilization. Furthermore, we provided an extensive ablation study to support our various design decisions.
+
+Paper ID: 2408.16875v3
+
+Summary:
+This paper titled "Learning Multi-agent Multi-machine Tending by Mobile Robots" was authored by Abdalwhab Abdalwhab, Giovanni Beltrame, Samira Ebrahimi Kahou, David St-Onge and published on 2024-08-29.
+It falls under the categories: cs.RO, cs.LG.
+The research explores the following topic: Robotics can help address the growing worker shortage challenge of the manufacturing industry. As such, machine tending is a task collaborative robots can tackle that can also highly boost productivity. Nevertheless, existing robotics systems deployed in that sector rely on a fixed single-arm setup, whereas mobile robots can provide more flexibility and scalability. In this work, we introduce a multi-agent multi-machine tending learning framework by mobile robots based on Multi-agent Reinforcement Learning (MARL) techniques with the design of a suitable observation and reward. Moreover, an attention-based encoding mechanism is developed and integrated into Multi-agent Proximal Policy Optimization (MAPPO) algorithm to boost its performance for machine tending scenarios. Our model (AB-MAPPO) outperformed MAPPO in this new challenging scenario in terms of task success, safety, and resources utilization. Furthermore, we provided an extensive ablation study to support our various design decisions.
+
+Links:
+  - https://arxiv.org/abs/2408.16875v3
+  - https://arxiv.org/pdf/2408.16875v3

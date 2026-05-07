@@ -1,0 +1,22 @@
+Title: Acute Lymphoblastic Leukemia Detection Using Hypercomplex-Valued Convolutional Neural Networks
+
+Authors: Guilherme Vieira, Marcos Eduardo Valle
+
+Published: 2022-05-26
+
+Categories: cs.CV, cs.LG, cs.NE, eess.IV
+
+Abstract:
+This paper features convolutional neural networks defined on hypercomplex algebras applied to classify lymphocytes in blood smear digital microscopic images. Such classification is helpful for the diagnosis of acute lymphoblast leukemia (ALL), a type of blood cancer. We perform the classification task using eight hypercomplex-valued convolutional neural networks (HvCNNs) along with real-valued convolutional networks. Our results show that HvCNNs perform better than the real-valued model, showcasing higher accuracy with a much smaller number of parameters. Moreover, we found that HvCNNs based on Clifford algebras processing HSV-encoded images attained the highest observed accuracies. Precisely, our HvCNN yielded an average accuracy rate of 96.6% using the ALL-IDB2 dataset with a 50% train-test split, a value extremely close to the state-of-the-art models but using a much simpler architecture with significantly fewer parameters.
+
+Paper ID: 2205.13273v1
+
+Summary:
+This paper titled "Acute Lymphoblastic Leukemia Detection Using Hypercomplex-Valued Convolutional Neural Networks" was authored by Guilherme Vieira, Marcos Eduardo Valle and published on 2022-05-26.
+It falls under the categories: cs.CV, cs.LG, cs.NE, eess.IV.
+The research explores the following topic: This paper features convolutional neural networks defined on hypercomplex algebras applied to classify lymphocytes in blood smear digital microscopic images. Such classification is helpful for the diagnosis of acute lymphoblast leukemia (ALL), a type of blood cancer. We perform the classification task using eight hypercomplex-valued convolutional neural networks (HvCNNs) along with real-valued convolutional networks. Our results show that HvCNNs perform better than the real-valued model, showcasing higher accuracy with a much smaller number of parameters. Moreover, we found that HvCNNs based on Clifford algebras processing HSV-encoded images attained the highest observed accuracies. Precisely, our HvCNN yielded an average accuracy rate of 96.6% using the ALL-IDB2 dataset with a 50% train-test split, a value extremely close to the state-of-the-art models but using a much simpler architecture with significantly fewer parameters.
+
+Links:
+  - https://arxiv.org/abs/2205.13273v1
+  - https://arxiv.org/pdf/2205.13273v1
+  - https://doi.org/10.1109/IJCNN55064.2022.9892036

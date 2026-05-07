@@ -1,0 +1,21 @@
+Title: Geometry Image Diffusion: Fast and Data-Efficient Text-to-3D with Image-Based Surface Representation
+
+Authors: Slava Elizarov, Ciara Rowles, Simon Donné
+
+Published: 2024-09-05
+
+Categories: cs.CV, cs.GR
+
+Abstract:
+Generating high-quality 3D objects from textual descriptions remains a challenging problem due to computational cost, the scarcity of 3D data, and complex 3D representations. We introduce Geometry Image Diffusion (GIMDiffusion), a novel Text-to-3D model that utilizes geometry images to efficiently represent 3D shapes using 2D images, thereby avoiding the need for complex 3D-aware architectures. By integrating a Collaborative Control mechanism, we exploit the rich 2D priors of existing Text-to-Image models such as Stable Diffusion. This enables strong generalization even with limited 3D training data (allowing us to use only high-quality training data) as well as retaining compatibility with guidance techniques such as IPAdapter. In short, GIMDiffusion enables the generation of 3D assets at speeds comparable to current Text-to-Image models. The generated objects consist of semantically meaningful, separate parts and include internal structures, enhancing both usability and versatility.
+
+Paper ID: 2409.03718v1
+
+Summary:
+This paper titled "Geometry Image Diffusion: Fast and Data-Efficient Text-to-3D with Image-Based Surface Representation" was authored by Slava Elizarov, Ciara Rowles, Simon Donné and published on 2024-09-05.
+It falls under the categories: cs.CV, cs.GR.
+The research explores the following topic: Generating high-quality 3D objects from textual descriptions remains a challenging problem due to computational cost, the scarcity of 3D data, and complex 3D representations. We introduce Geometry Image Diffusion (GIMDiffusion), a novel Text-to-3D model that utilizes geometry images to efficiently represent 3D shapes using 2D images, thereby avoiding the need for complex 3D-aware architectures. By integrating a Collaborative Control mechanism, we exploit the rich 2D priors of existing Text-to-Image models such as Stable Diffusion. This enables strong generalization even with limited 3D training data (allowing us to use only high-quality training data) as well as retaining compatibility with guidance techniques such as IPAdapter. In short, GIMDiffusion enables the generation of 3D assets at speeds comparable to current Text-to-Image models. The generated objects consist of semantically meaningful, separate parts and include internal structures, enhancing both usability and versatility.
+
+Links:
+  - https://arxiv.org/abs/2409.03718v1
+  - https://arxiv.org/pdf/2409.03718v1

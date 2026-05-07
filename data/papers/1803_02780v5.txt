@@ -1,0 +1,21 @@
+Title: Transfer Learning with Neural AutoML
+
+Authors: Catherine Wong, Neil Houlsby, Yifeng Lu, Andrea Gesmundo
+
+Published: 2018-03-07
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+We reduce the computational cost of Neural AutoML with transfer learning. AutoML relieves human effort by automating the design of ML algorithms. Neural AutoML has become popular for the design of deep learning architectures, however, this method has a high computation cost. To address this we propose Transfer Neural AutoML that uses knowledge from prior tasks to speed up network design. We extend RL-based architecture search methods to support parallel training on multiple tasks and then transfer the search strategy to new tasks. On language and image classification tasks, Transfer Neural AutoML reduces convergence time over single-task training by over an order of magnitude on many tasks.
+
+Paper ID: 1803.02780v5
+
+Summary:
+This paper titled "Transfer Learning with Neural AutoML" was authored by Catherine Wong, Neil Houlsby, Yifeng Lu, Andrea Gesmundo and published on 2018-03-07.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: We reduce the computational cost of Neural AutoML with transfer learning. AutoML relieves human effort by automating the design of ML algorithms. Neural AutoML has become popular for the design of deep learning architectures, however, this method has a high computation cost. To address this we propose Transfer Neural AutoML that uses knowledge from prior tasks to speed up network design. We extend RL-based architecture search methods to support parallel training on multiple tasks and then transfer the search strategy to new tasks. On language and image classification tasks, Transfer Neural AutoML reduces convergence time over single-task training by over an order of magnitude on many tasks.
+
+Links:
+  - https://arxiv.org/abs/1803.02780v5
+  - https://arxiv.org/pdf/1803.02780v5

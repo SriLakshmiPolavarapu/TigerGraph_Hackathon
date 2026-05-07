@@ -1,0 +1,22 @@
+Title: Comparison of Self-Supervised Speech Pre-Training Methods on Flemish Dutch
+
+Authors: Jakob Poncelet, Hugo Van hamme
+
+Published: 2021-09-29
+
+Categories: eess.AS, cs.SD
+
+Abstract:
+Recent research in speech processing exhibits a growing interest in unsupervised and self-supervised representation learning from unlabelled data to alleviate the need for large amounts of annotated data. We investigate several popular pre-training methods and apply them to Flemish Dutch. We compare off-the-shelf English pre-trained models to models trained on an increasing amount of Flemish data. We find that the most important factors for positive transfer to downstream speech recognition tasks include a substantial amount of data and a matching pre-training domain. Ideally, we also finetune on an annotated subset in the target language. All pre-trained models improve linear phone separability in Flemish, but not all methods improve Automatic Speech Recognition. We experience superior performance with wav2vec 2.0 and we obtain a 30% WER improvement by finetuning the multilingually pre-trained XLSR-53 model on Flemish Dutch, after integration into an HMM-DNN acoustic model.
+
+Paper ID: 2109.14357v1
+
+Summary:
+This paper titled "Comparison of Self-Supervised Speech Pre-Training Methods on Flemish Dutch" was authored by Jakob Poncelet, Hugo Van hamme and published on 2021-09-29.
+It falls under the categories: eess.AS, cs.SD.
+The research explores the following topic: Recent research in speech processing exhibits a growing interest in unsupervised and self-supervised representation learning from unlabelled data to alleviate the need for large amounts of annotated data. We investigate several popular pre-training methods and apply them to Flemish Dutch. We compare off-the-shelf English pre-trained models to models trained on an increasing amount of Flemish data. We find that the most important factors for positive transfer to downstream speech recognition tasks include a substantial amount of data and a matching pre-training domain. Ideally, we also finetune on an annotated subset in the target language. All pre-trained models improve linear phone separability in Flemish, but not all methods improve Automatic Speech Recognition. We experience superior performance with wav2vec 2.0 and we obtain a 30% WER improvement by finetuning the multilingually pre-trained XLSR-53 model on Flemish Dutch, after integration into an HMM-DNN acoustic model.
+
+Links:
+  - https://arxiv.org/abs/2109.14357v1
+  - https://arxiv.org/pdf/2109.14357v1
+  - https://doi.org/10.1109/ASRU51503.2021.9688061

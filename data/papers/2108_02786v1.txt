@@ -1,0 +1,22 @@
+Title: Quantum Continual Learning Overcoming Catastrophic Forgetting
+
+Authors: Wenjie Jiang, Zhide Lu, Dong-Ling Deng
+
+Published: 2021-08-05
+
+Categories: cs.LG, cond-mat.mes-hall, quant-ph
+
+Abstract:
+Catastrophic forgetting describes the fact that machine learning models will likely forget the knowledge of previously learned tasks after the learning process of a new one. It is a vital problem in the continual learning scenario and recently has attracted tremendous concern across different communities. In this paper, we explore the catastrophic forgetting phenomena in the context of quantum machine learning. We find that, similar to those classical learning models based on neural networks, quantum learning systems likewise suffer from such forgetting problem in classification tasks emerging from various application scenes. We show that based on the local geometrical information in the loss function landscape of the trained model, a uniform strategy can be adapted to overcome the forgetting problem in the incremental learning setting. Our results uncover the catastrophic forgetting phenomena in quantum machine learning and offer a practical method to overcome this problem, which opens a new avenue for exploring potential quantum advantages towards continual learning.
+
+Paper ID: 2108.02786v1
+
+Summary:
+This paper titled "Quantum Continual Learning Overcoming Catastrophic Forgetting" was authored by Wenjie Jiang, Zhide Lu, Dong-Ling Deng and published on 2021-08-05.
+It falls under the categories: cs.LG, cond-mat.mes-hall, quant-ph.
+The research explores the following topic: Catastrophic forgetting describes the fact that machine learning models will likely forget the knowledge of previously learned tasks after the learning process of a new one. It is a vital problem in the continual learning scenario and recently has attracted tremendous concern across different communities. In this paper, we explore the catastrophic forgetting phenomena in the context of quantum machine learning. We find that, similar to those classical learning models based on neural networks, quantum learning systems likewise suffer from such forgetting problem in classification tasks emerging from various application scenes. We show that based on the local geometrical information in the loss function landscape of the trained model, a uniform strategy can be adapted to overcome the forgetting problem in the incremental learning setting. Our results uncover the catastrophic forgetting phenomena in quantum machine learning and offer a practical method to overcome this problem, which opens a new avenue for exploring potential quantum advantages towards continual learning.
+
+Links:
+  - https://arxiv.org/abs/2108.02786v1
+  - https://arxiv.org/pdf/2108.02786v1
+  - https://doi.org/10.1088/0256-307X/39/5/050303

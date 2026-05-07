@@ -1,0 +1,21 @@
+Title: Semantic-Aware Resource Management for C-V2X Platooning via Multi-Agent Reinforcement Learning
+
+Authors: Wenjun Zhang, Qiong Wu, Pingyi Fan, Kezhi Wang, Nan Cheng, Wen Chen, Khaled B. Letaief
+
+Published: 2024-11-07
+
+Categories: cs.LG, cs.MA, cs.NI, eess.SP
+
+Abstract:
+Semantic communication transmits the extracted features of information rather than raw data, significantly reducing redundancy, which is crucial for addressing spectrum and energy challenges in 6G networks. In this paper, we introduce semantic communication into a cellular vehicle-to-everything (C-V2X)- based autonomous vehicle platoon system for the first time, aiming to achieve efficient management of communication resources in a dynamic environment. Firstly, we construct a mathematical model for semantic communication in platoon systems, in which the DeepSC model and MU-DeepSC model are used to semantically encode and decode unimodal and multi-modal data, respectively. Then, we propose the quality of experience (QoE) metric based on semantic similarity and semantic rate. Meanwhile, we consider the success rate of semantic information transmission (SRS) metric to ensure the fairness of channel resource allocation. Next, the optimization problem is posed with the aim of maximizing the QoE in vehicle-to-vehicle (V2V) links while improving SRS. To solve this mixed integer nonlinear programming problem (MINLP) and adapt to time-varying channel conditions, the paper proposes a distributed semantic-aware multi-modal resource allocation (SAMRA) algorithm based on multi-agent reinforcement learning (MARL), referred to as SAMRAMARL. The algorithm can dynamically allocate channels and power and determine semantic symbol length based on the contextual importance of the transmitted information, ensuring efficient resource utilization. Finally, extensive simulations have demonstrated that SAMRAMARL outperforms existing methods, achieving significant gains in QoE, SRS, and communication delay in C-V2X platooning scenarios.
+
+Paper ID: 2411.04672v2
+
+Summary:
+This paper titled "Semantic-Aware Resource Management for C-V2X Platooning via Multi-Agent Reinforcement Learning" was authored by Wenjun Zhang, Qiong Wu, Pingyi Fan, Kezhi Wang, Nan Cheng, Wen Chen, Khaled B. Letaief and published on 2024-11-07.
+It falls under the categories: cs.LG, cs.MA, cs.NI, eess.SP.
+The research explores the following topic: Semantic communication transmits the extracted features of information rather than raw data, significantly reducing redundancy, which is crucial for addressing spectrum and energy challenges in 6G networks. In this paper, we introduce semantic communication into a cellular vehicle-to-everything (C-V2X)- based autonomous vehicle platoon system for the first time, aiming to achieve efficient management of communication resources in a dynamic environment. Firstly, we construct a mathematical model for semantic communication in platoon systems, in which the DeepSC model and MU-DeepSC model are used to semantically encode and decode unimodal and multi-modal data, respectively. Then, we propose the quality of experience (QoE) metric based on semantic similarity and semantic rate. Meanwhile, we consider the success rate of semantic information transmission (SRS) metric to ensure the fairness of channel resource allocation. Next, the optimization problem is posed with the aim of maximizing the QoE in vehicle-to-vehicle (V2V) links while improving SRS. To solve this mixed integer nonlinear programming problem (MINLP) and adapt to time-varying channel conditions, the paper proposes a distributed semantic-aware multi-modal resource allocation (SAMRA) algorithm based on multi-agent reinforcement learning (MARL), referred to as SAMRAMARL. The algorithm can dynamically allocate channels and power and determine semantic symbol length based on the contextual importance of the transmitted information, ensuring efficient resource utilization. Finally, extensive simulations have demonstrated that SAMRAMARL outperforms existing methods, achieving significant gains in QoE, SRS, and communication delay in C-V2X platooning scenarios.
+
+Links:
+  - https://arxiv.org/abs/2411.04672v2
+  - https://arxiv.org/pdf/2411.04672v2

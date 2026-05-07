@@ -1,0 +1,21 @@
+Title: OpportunityFinder: A Framework for Automated Causal Inference
+
+Authors: Huy Nguyen, Prince Grover, Devashish Khatwani
+
+Published: 2023-09-22
+
+Categories: cs.LG, cs.AI, stat.ME
+
+Abstract:
+We introduce OpportunityFinder, a code-less framework for performing a variety of causal inference studies with panel data for non-expert users. In its current state, OpportunityFinder only requires users to provide raw observational data and a configuration file. A pipeline is then triggered that inspects/processes data, chooses the suitable algorithm(s) to execute the causal study. It returns the causal impact of the treatment on the configured outcome, together with sensitivity and robustness results. Causal inference is widely studied and used to estimate the downstream impact of individual's interactions with products and features. It is common that these causal studies are performed by scientists and/or economists periodically. Business stakeholders are often bottle-necked on scientist or economist bandwidth to conduct causal studies. We offer OpportunityFinder as a solution for commonly performed causal studies with four key features: (1) easy to use for both Business Analysts and Scientists, (2) abstraction of multiple algorithms under a single I/O interface, (3) support for causal impact analysis under binary treatment with panel data and (4) dynamic selection of algorithm based on scale of data.
+
+Paper ID: 2309.13103v1
+
+Summary:
+This paper titled "OpportunityFinder: A Framework for Automated Causal Inference" was authored by Huy Nguyen, Prince Grover, Devashish Khatwani and published on 2023-09-22.
+It falls under the categories: cs.LG, cs.AI, stat.ME.
+The research explores the following topic: We introduce OpportunityFinder, a code-less framework for performing a variety of causal inference studies with panel data for non-expert users. In its current state, OpportunityFinder only requires users to provide raw observational data and a configuration file. A pipeline is then triggered that inspects/processes data, chooses the suitable algorithm(s) to execute the causal study. It returns the causal impact of the treatment on the configured outcome, together with sensitivity and robustness results. Causal inference is widely studied and used to estimate the downstream impact of individual's interactions with products and features. It is common that these causal studies are performed by scientists and/or economists periodically. Business stakeholders are often bottle-necked on scientist or economist bandwidth to conduct causal studies. We offer OpportunityFinder as a solution for commonly performed causal studies with four key features: (1) easy to use for both Business Analysts and Scientists, (2) abstraction of multiple algorithms under a single I/O interface, (3) support for causal impact analysis under binary treatment with panel data and (4) dynamic selection of algorithm based on scale of data.
+
+Links:
+  - https://arxiv.org/abs/2309.13103v1
+  - https://arxiv.org/pdf/2309.13103v1

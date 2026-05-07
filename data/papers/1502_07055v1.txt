@@ -1,0 +1,21 @@
+Title: A Novel Architecture of Area Efficient FFT Algorithm for FPGA Implementation
+
+Authors: Atin Mukherjee, Amitabha Sinha, Debesh Choudhury
+
+Published: 2015-02-25
+
+Categories: cs.AR
+
+Abstract:
+Fast Fourier transform (FFT) of large number of samples requires huge hardware resources of field programmable gate arrays (FPGA), which needs more area and power. In this paper, we present an area efficient architecture of FFT processor that reuses the butterfly elements several times. The FFT processor is simulated using VHDL and the results are validated on a Virtex-6 FPGA. The proposed architecture outperforms the conventional architecture of a $N$-point FFT processor in terms of area which is reduced by a factor of $log_N 2$ with negligible increase in processing time.
+
+Paper ID: 1502.07055v1
+
+Summary:
+This paper titled "A Novel Architecture of Area Efficient FFT Algorithm for FPGA Implementation" was authored by Atin Mukherjee, Amitabha Sinha, Debesh Choudhury and published on 2015-02-25.
+It falls under the categories: cs.AR.
+The research explores the following topic: Fast Fourier transform (FFT) of large number of samples requires huge hardware resources of field programmable gate arrays (FPGA), which needs more area and power. In this paper, we present an area efficient architecture of FFT processor that reuses the butterfly elements several times. The FFT processor is simulated using VHDL and the results are validated on a Virtex-6 FPGA. The proposed architecture outperforms the conventional architecture of a $N$-point FFT processor in terms of area which is reduced by a factor of $log_N 2$ with negligible increase in processing time.
+
+Links:
+  - https://arxiv.org/abs/1502.07055v1
+  - https://arxiv.org/pdf/1502.07055v1

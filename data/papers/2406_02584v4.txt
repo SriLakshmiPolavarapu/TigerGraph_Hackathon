@@ -1,0 +1,21 @@
+Title: A Scoping Review of Earth Observation and Machine Learning for Causal Inference: Implications for the Geography of Poverty
+
+Authors: Kazuki Sakamoto, Connor T. Jerzak, Adel Daoud
+
+Published: 2024-05-30
+
+Categories: cs.LG, cs.CV, stat.ME, stat.ML
+
+Abstract:
+Earth observation (EO) data such as satellite imagery can have far-reaching impacts on our understanding of the geography of poverty, especially when coupled with machine learning (ML) and computer vision. Early research used computer vision to predict living conditions in areas with limited data, but recent studies increasingly focus on causal analysis. Despite this shift, the use of EO-ML methods for causal inference lacks thorough documentation, and best practices are still developing. Through a comprehensive scoping review, we catalog the current literature on EO-ML methods in causal analysis. We synthesize five principal approaches to incorporating EO data in causal workflows: (1) outcome imputation for downstream causal analysis, (2) EO image deconfounding, (3) EO-based treatment effect heterogeneity, (4) EO-based transportability analysis, and (5) image-informed causal discovery. Building on these findings, we provide a detailed protocol guiding researchers in integrating EO data into causal analysis -- covering data requirements, computer vision model selection, and evaluation metrics. While our focus centers on health and living conditions outcomes, our protocol is adaptable to other sustainable development domains utilizing EO data.
+
+Paper ID: 2406.02584v4
+
+Summary:
+This paper titled "A Scoping Review of Earth Observation and Machine Learning for Causal Inference: Implications for the Geography of Poverty" was authored by Kazuki Sakamoto, Connor T. Jerzak, Adel Daoud and published on 2024-05-30.
+It falls under the categories: cs.LG, cs.CV, stat.ME, stat.ML.
+The research explores the following topic: Earth observation (EO) data such as satellite imagery can have far-reaching impacts on our understanding of the geography of poverty, especially when coupled with machine learning (ML) and computer vision. Early research used computer vision to predict living conditions in areas with limited data, but recent studies increasingly focus on causal analysis. Despite this shift, the use of EO-ML methods for causal inference lacks thorough documentation, and best practices are still developing. Through a comprehensive scoping review, we catalog the current literature on EO-ML methods in causal analysis. We synthesize five principal approaches to incorporating EO data in causal workflows: (1) outcome imputation for downstream causal analysis, (2) EO image deconfounding, (3) EO-based treatment effect heterogeneity, (4) EO-based transportability analysis, and (5) image-informed causal discovery. Building on these findings, we provide a detailed protocol guiding researchers in integrating EO data into causal analysis -- covering data requirements, computer vision model selection, and evaluation metrics. While our focus centers on health and living conditions outcomes, our protocol is adaptable to other sustainable development domains utilizing EO data.
+
+Links:
+  - https://arxiv.org/abs/2406.02584v4
+  - https://arxiv.org/pdf/2406.02584v4

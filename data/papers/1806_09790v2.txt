@@ -1,0 +1,21 @@
+Title: CFENet: An Accurate and Efficient Single-Shot Object Detector for Autonomous Driving
+
+Authors: Qijie Zhao, Tao Sheng, Yongtao Wang, Feng Ni, Ling Cai
+
+Published: 2018-06-26
+
+Categories: cs.CV
+
+Abstract:
+The ability to detect small objects and the speed of the object detector are very important for the application of autonomous driving, and in this paper, we propose an effective yet efficient one-stage detector, which gained the second place in the Road Object Detection competition of CVPR2018 workshop - Workshop of Autonomous Driving(WAD). The proposed detector inherits the architecture of SSD and introduces a novel Comprehensive Feature Enhancement(CFE) module into it. Experimental results on this competition dataset as well as the MSCOCO dataset demonstrate that the proposed detector (named CFENet) performs much better than the original SSD and the state-of-the-art method RefineDet especially for small objects, while keeping high efficiency close to the original SSD. Specifically, the single scale version of the proposed detector can run at the speed of 21 fps, while the multi-scale version with larger input size achieves the mAP 29.69, ranking second on the leaderboard
+
+Paper ID: 1806.09790v2
+
+Summary:
+This paper titled "CFENet: An Accurate and Efficient Single-Shot Object Detector for Autonomous Driving" was authored by Qijie Zhao, Tao Sheng, Yongtao Wang, Feng Ni, Ling Cai and published on 2018-06-26.
+It falls under the categories: cs.CV.
+The research explores the following topic: The ability to detect small objects and the speed of the object detector are very important for the application of autonomous driving, and in this paper, we propose an effective yet efficient one-stage detector, which gained the second place in the Road Object Detection competition of CVPR2018 workshop - Workshop of Autonomous Driving(WAD). The proposed detector inherits the architecture of SSD and introduces a novel Comprehensive Feature Enhancement(CFE) module into it. Experimental results on this competition dataset as well as the MSCOCO dataset demonstrate that the proposed detector (named CFENet) performs much better than the original SSD and the state-of-the-art method RefineDet especially for small objects, while keeping high efficiency close to the original SSD. Specifically, the single scale version of the proposed detector can run at the speed of 21 fps, while the multi-scale version with larger input size achieves the mAP 29.69, ranking second on the leaderboard
+
+Links:
+  - https://arxiv.org/abs/1806.09790v2
+  - https://arxiv.org/pdf/1806.09790v2

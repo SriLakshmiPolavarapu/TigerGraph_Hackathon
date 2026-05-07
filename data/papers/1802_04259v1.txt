@@ -1,0 +1,21 @@
+Title: Sphinx: A Secure Architecture Based on Binary Code Diversification and Execution Obfuscation
+
+Authors: Michel A. Kinsy, Donato Kava, Alan Ehret, Miguel Mark
+
+Published: 2018-02-12
+
+Categories: cs.CR, cs.AR
+
+Abstract:
+Sphinx, a hardware-software co-design architecture for binary code and runtime obfuscation. The Sphinx architecture uses binary code diversification and self-reconfigurable processing elements to maintain application functionality while obfuscating the binary code and architecture states to attackers. This approach dramatically reduces an attacker's ability to exploit information gained from one deployment to attack another deployment. Our results show that the Sphinx is able to decouple the program's execution time, power and memory and I/O activities from its functionality. It is also practical in the sense that the system (both software and hardware) overheads are minimal.
+
+Paper ID: 1802.04259v1
+
+Summary:
+This paper titled "Sphinx: A Secure Architecture Based on Binary Code Diversification and Execution Obfuscation" was authored by Michel A. Kinsy, Donato Kava, Alan Ehret, Miguel Mark and published on 2018-02-12.
+It falls under the categories: cs.CR, cs.AR.
+The research explores the following topic: Sphinx, a hardware-software co-design architecture for binary code and runtime obfuscation. The Sphinx architecture uses binary code diversification and self-reconfigurable processing elements to maintain application functionality while obfuscating the binary code and architecture states to attackers. This approach dramatically reduces an attacker's ability to exploit information gained from one deployment to attack another deployment. Our results show that the Sphinx is able to decouple the program's execution time, power and memory and I/O activities from its functionality. It is also practical in the sense that the system (both software and hardware) overheads are minimal.
+
+Links:
+  - https://arxiv.org/abs/1802.04259v1
+  - https://arxiv.org/pdf/1802.04259v1

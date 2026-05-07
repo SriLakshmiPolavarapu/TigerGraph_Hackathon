@@ -1,0 +1,21 @@
+Title: On-Device Machine Learning: An Algorithms and Learning Theory Perspective
+
+Authors: Sauptik Dhar, Junyao Guo, Jiayi Liu, Samarth Tripathi, Unmesh Kurup, Mohak Shah
+
+Published: 2019-11-02
+
+Categories: cs.LG, cs.DC, stat.ML
+
+Abstract:
+The predominant paradigm for using machine learning models on a device is to train a model in the cloud and perform inference using the trained model on the device. However, with increasing number of smart devices and improved hardware, there is interest in performing model training on the device. Given this surge in interest, a comprehensive survey of the field from a device-agnostic perspective sets the stage for both understanding the state-of-the-art and for identifying open challenges and future avenues of research. However, on-device learning is an expansive field with connections to a large number of related topics in AI and machine learning (including online learning, model adaptation, one/few-shot learning, etc.). Hence, covering such a large number of topics in a single survey is impractical. This survey finds a middle ground by reformulating the problem of on-device learning as resource constrained learning where the resources are compute and memory. This reformulation allows tools, techniques, and algorithms from a wide variety of research areas to be compared equitably. In addition to summarizing the state-of-the-art, the survey also identifies a number of challenges and next steps for both the algorithmic and theoretical aspects of on-device learning.
+
+Paper ID: 1911.00623v2
+
+Summary:
+This paper titled "On-Device Machine Learning: An Algorithms and Learning Theory Perspective" was authored by Sauptik Dhar, Junyao Guo, Jiayi Liu, Samarth Tripathi, Unmesh Kurup, Mohak Shah and published on 2019-11-02.
+It falls under the categories: cs.LG, cs.DC, stat.ML.
+The research explores the following topic: The predominant paradigm for using machine learning models on a device is to train a model in the cloud and perform inference using the trained model on the device. However, with increasing number of smart devices and improved hardware, there is interest in performing model training on the device. Given this surge in interest, a comprehensive survey of the field from a device-agnostic perspective sets the stage for both understanding the state-of-the-art and for identifying open challenges and future avenues of research. However, on-device learning is an expansive field with connections to a large number of related topics in AI and machine learning (including online learning, model adaptation, one/few-shot learning, etc.). Hence, covering such a large number of topics in a single survey is impractical. This survey finds a middle ground by reformulating the problem of on-device learning as resource constrained learning where the resources are compute and memory. This reformulation allows tools, techniques, and algorithms from a wide variety of research areas to be compared equitably. In addition to summarizing the state-of-the-art, the survey also identifies a number of challenges and next steps for both the algorithmic and theoretical aspects of on-device learning.
+
+Links:
+  - https://arxiv.org/abs/1911.00623v2
+  - https://arxiv.org/pdf/1911.00623v2

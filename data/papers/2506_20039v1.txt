@@ -1,0 +1,21 @@
+Title: Learning Bilateral Team Formation in Cooperative Multi-Agent Reinforcement Learning
+
+Authors: Koorosh Moslemi, Chi-Guhn Lee
+
+Published: 2025-06-24
+
+Categories: cs.MA, cs.AI, cs.GT, cs.LG
+
+Abstract:
+Team formation and the dynamics of team-based learning have drawn significant interest in the context of Multi-Agent Reinforcement Learning (MARL). However, existing studies primarily focus on unilateral groupings, predefined teams, or fixed-population settings, leaving the effects of algorithmic bilateral grouping choices in dynamic populations underexplored. To address this gap, we introduce a framework for learning two-sided team formation in dynamic multi-agent systems. Through this study, we gain insight into what algorithmic properties in bilateral team formation influence policy performance and generalization. We validate our approach using widely adopted multi-agent scenarios, demonstrating competitive performance and improved generalization in most scenarios.
+
+Paper ID: 2506.20039v1
+
+Summary:
+This paper titled "Learning Bilateral Team Formation in Cooperative Multi-Agent Reinforcement Learning" was authored by Koorosh Moslemi, Chi-Guhn Lee and published on 2025-06-24.
+It falls under the categories: cs.MA, cs.AI, cs.GT, cs.LG.
+The research explores the following topic: Team formation and the dynamics of team-based learning have drawn significant interest in the context of Multi-Agent Reinforcement Learning (MARL). However, existing studies primarily focus on unilateral groupings, predefined teams, or fixed-population settings, leaving the effects of algorithmic bilateral grouping choices in dynamic populations underexplored. To address this gap, we introduce a framework for learning two-sided team formation in dynamic multi-agent systems. Through this study, we gain insight into what algorithmic properties in bilateral team formation influence policy performance and generalization. We validate our approach using widely adopted multi-agent scenarios, demonstrating competitive performance and improved generalization in most scenarios.
+
+Links:
+  - https://arxiv.org/abs/2506.20039v1
+  - https://arxiv.org/pdf/2506.20039v1

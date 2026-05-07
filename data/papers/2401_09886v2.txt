@@ -1,0 +1,21 @@
+Title: Cooperative Edge Caching Based on Elastic Federated and Multi-Agent Deep Reinforcement Learning in Next-Generation Network
+
+Authors: Qiong Wu, Wenhua Wang, Pingyi Fan, Qiang Fan, Huiling Zhu, Khaled B. Letaief
+
+Published: 2024-01-18
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+Edge caching is a promising solution for next-generation networks by empowering caching units in small-cell base stations (SBSs), which allows user equipments (UEs) to fetch users' requested contents that have been pre-cached in SBSs. It is crucial for SBSs to predict accurate popular contents through learning while protecting users' personal information. Traditional federated learning (FL) can protect users' privacy but the data discrepancies among UEs can lead to a degradation in model quality. Therefore, it is necessary to train personalized local models for each UE to predict popular contents accurately. In addition, the cached contents can be shared among adjacent SBSs in next-generation networks, thus caching predicted popular contents in different SBSs may affect the cost to fetch contents. Hence, it is critical to determine where the popular contents are cached cooperatively. To address these issues, we propose a cooperative edge caching scheme based on elastic federated and multi-agent deep reinforcement learning (CEFMR) to optimize the cost in the network. We first propose an elastic FL algorithm to train the personalized model for each UE, where adversarial autoencoder (AAE) model is adopted for training to improve the prediction accuracy, then {a popular} content prediction algorithm is proposed to predict the popular contents for each SBS based on the trained AAE model. Finally, we propose a multi-agent deep reinforcement learning (MADRL) based algorithm to decide where the predicted popular contents are collaboratively cached among SBSs. Our experimental results demonstrate the superiority of our proposed scheme to existing baseline caching schemes.
+
+Paper ID: 2401.09886v2
+
+Summary:
+This paper titled "Cooperative Edge Caching Based on Elastic Federated and Multi-Agent Deep Reinforcement Learning in Next-Generation Network" was authored by Qiong Wu, Wenhua Wang, Pingyi Fan, Qiang Fan, Huiling Zhu, Khaled B. Letaief and published on 2024-01-18.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: Edge caching is a promising solution for next-generation networks by empowering caching units in small-cell base stations (SBSs), which allows user equipments (UEs) to fetch users' requested contents that have been pre-cached in SBSs. It is crucial for SBSs to predict accurate popular contents through learning while protecting users' personal information. Traditional federated learning (FL) can protect users' privacy but the data discrepancies among UEs can lead to a degradation in model quality. Therefore, it is necessary to train personalized local models for each UE to predict popular contents accurately. In addition, the cached contents can be shared among adjacent SBSs in next-generation networks, thus caching predicted popular contents in different SBSs may affect the cost to fetch contents. Hence, it is critical to determine where the popular contents are cached cooperatively. To address these issues, we propose a cooperative edge caching scheme based on elastic federated and multi-agent deep reinforcement learning (CEFMR) to optimize the cost in the network. We first propose an elastic FL algorithm to train the personalized model for each UE, where adversarial autoencoder (AAE) model is adopted for training to improve the prediction accuracy, then {a popular} content prediction algorithm is proposed to predict the popular contents for each SBS based on the trained AAE model. Finally, we propose a multi-agent deep reinforcement learning (MADRL) based algorithm to decide where the predicted popular contents are collaboratively cached among SBSs. Our experimental results demonstrate the superiority of our proposed scheme to existing baseline caching schemes.
+
+Links:
+  - https://arxiv.org/abs/2401.09886v2
+  - https://arxiv.org/pdf/2401.09886v2

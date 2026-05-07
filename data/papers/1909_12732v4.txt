@@ -1,0 +1,21 @@
+Title: Alleviating Privacy Attacks via Causal Learning
+
+Authors: Shruti Tople, Amit Sharma, Aditya Nori
+
+Published: 2019-09-27
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Machine learning models, especially deep neural networks have been shown to be susceptible to privacy attacks such as membership inference where an adversary can detect whether a data point was used for training a black-box model. Such privacy risks are exacerbated when a model's predictions are used on an unseen data distribution. To alleviate privacy attacks, we demonstrate the benefit of predictive models that are based on the causal relationships between input features and the outcome. We first show that models learnt using causal structure generalize better to unseen data, especially on data from different distributions than the train distribution. Based on this generalization property, we establish a theoretical link between causality and privacy: compared to associational models, causal models provide stronger differential privacy guarantees and are more robust to membership inference attacks. Experiments on simulated Bayesian networks and the colored-MNIST dataset show that associational models exhibit upto 80% attack accuracy under different test distributions and sample sizes whereas causal models exhibit attack accuracy close to a random guess.
+
+Paper ID: 1909.12732v4
+
+Summary:
+This paper titled "Alleviating Privacy Attacks via Causal Learning" was authored by Shruti Tople, Amit Sharma, Aditya Nori and published on 2019-09-27.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Machine learning models, especially deep neural networks have been shown to be susceptible to privacy attacks such as membership inference where an adversary can detect whether a data point was used for training a black-box model. Such privacy risks are exacerbated when a model's predictions are used on an unseen data distribution. To alleviate privacy attacks, we demonstrate the benefit of predictive models that are based on the causal relationships between input features and the outcome. We first show that models learnt using causal structure generalize better to unseen data, especially on data from different distributions than the train distribution. Based on this generalization property, we establish a theoretical link between causality and privacy: compared to associational models, causal models provide stronger differential privacy guarantees and are more robust to membership inference attacks. Experiments on simulated Bayesian networks and the colored-MNIST dataset show that associational models exhibit upto 80% attack accuracy under different test distributions and sample sizes whereas causal models exhibit attack accuracy close to a random guess.
+
+Links:
+  - https://arxiv.org/abs/1909.12732v4
+  - https://arxiv.org/pdf/1909.12732v4

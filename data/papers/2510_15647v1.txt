@@ -1,0 +1,21 @@
+Title: Enhance Large Language Models as Recommendation Systems with Collaborative Filtering
+
+Authors: Zhisheng Yang, Xiaofei Xu, Ke Deng, Li Li
+
+Published: 2025-10-17
+
+Categories: cs.IR, cs.AI
+
+Abstract:
+As powerful tools in Natural Language Processing (NLP), Large Language Models (LLMs) have been leveraged for crafting recommendations to achieve precise alignment with user preferences and elevate the quality of the recommendations. The existing approaches implement both non-tuning and tuning strategies. Compared to following the tuning strategy, the approaches following the non-tuning strategy avoid the relatively costly, time-consuming, and expertise-requiring process of further training pre-trained LLMs on task-specific datasets, but they suffer the issue of not having the task-specific business or local enterprise knowledge. To the best of our knowledge, none of the existing approaches following the non-tuning strategy explicitly integrates collaborative filtering, one of the most successful recommendation techniques. This study aims to fill the gap by proposing critique-based LLMs as recommendation systems (Critic-LLM-RS). For our purpose, we train a separate machine-learning model called Critic that implements collaborative filtering for recommendations by learning from the interactions between many users and items. The Critic provides critiques to LLMs to significantly refine the recommendations. Extensive experiments have verified the effectiveness of Critic-LLM-RS on real datasets.
+
+Paper ID: 2510.15647v1
+
+Summary:
+This paper titled "Enhance Large Language Models as Recommendation Systems with Collaborative Filtering" was authored by Zhisheng Yang, Xiaofei Xu, Ke Deng, Li Li and published on 2025-10-17.
+It falls under the categories: cs.IR, cs.AI.
+The research explores the following topic: As powerful tools in Natural Language Processing (NLP), Large Language Models (LLMs) have been leveraged for crafting recommendations to achieve precise alignment with user preferences and elevate the quality of the recommendations. The existing approaches implement both non-tuning and tuning strategies. Compared to following the tuning strategy, the approaches following the non-tuning strategy avoid the relatively costly, time-consuming, and expertise-requiring process of further training pre-trained LLMs on task-specific datasets, but they suffer the issue of not having the task-specific business or local enterprise knowledge. To the best of our knowledge, none of the existing approaches following the non-tuning strategy explicitly integrates collaborative filtering, one of the most successful recommendation techniques. This study aims to fill the gap by proposing critique-based LLMs as recommendation systems (Critic-LLM-RS). For our purpose, we train a separate machine-learning model called Critic that implements collaborative filtering for recommendations by learning from the interactions between many users and items. The Critic provides critiques to LLMs to significantly refine the recommendations. Extensive experiments have verified the effectiveness of Critic-LLM-RS on real datasets.
+
+Links:
+  - https://arxiv.org/abs/2510.15647v1
+  - https://arxiv.org/pdf/2510.15647v1

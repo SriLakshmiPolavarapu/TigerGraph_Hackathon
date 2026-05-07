@@ -1,0 +1,21 @@
+Title: AutoGluon-Multimodal (AutoMM): Supercharging Multimodal AutoML with Foundation Models
+
+Authors: Zhiqiang Tang, Haoyang Fang, Su Zhou, Taojiannan Yang, Zihan Zhong, Tony Hu, Katrin Kirchhoff, George Karypis
+
+Published: 2024-04-24
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+AutoGluon-Multimodal (AutoMM) is introduced as an open-source AutoML library designed specifically for multimodal learning. Distinguished by its exceptional ease of use, AutoMM enables fine-tuning of foundation models with just three lines of code. Supporting various modalities including image, text, and tabular data, both independently and in combination, the library offers a comprehensive suite of functionalities spanning classification, regression, object detection, semantic matching, and image segmentation. Experiments across diverse datasets and tasks showcases AutoMM's superior performance in basic classification and regression tasks compared to existing AutoML tools, while also demonstrating competitive results in advanced tasks, aligning with specialized toolboxes designed for such purposes.
+
+Paper ID: 2404.16233v2
+
+Summary:
+This paper titled "AutoGluon-Multimodal (AutoMM): Supercharging Multimodal AutoML with Foundation Models" was authored by Zhiqiang Tang, Haoyang Fang, Su Zhou, Taojiannan Yang, Zihan Zhong, Tony Hu, Katrin Kirchhoff, George Karypis and published on 2024-04-24.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: AutoGluon-Multimodal (AutoMM) is introduced as an open-source AutoML library designed specifically for multimodal learning. Distinguished by its exceptional ease of use, AutoMM enables fine-tuning of foundation models with just three lines of code. Supporting various modalities including image, text, and tabular data, both independently and in combination, the library offers a comprehensive suite of functionalities spanning classification, regression, object detection, semantic matching, and image segmentation. Experiments across diverse datasets and tasks showcases AutoMM's superior performance in basic classification and regression tasks compared to existing AutoML tools, while also demonstrating competitive results in advanced tasks, aligning with specialized toolboxes designed for such purposes.
+
+Links:
+  - https://arxiv.org/abs/2404.16233v2
+  - https://arxiv.org/pdf/2404.16233v2

@@ -1,0 +1,21 @@
+Title: Exploration with Unreliable Intrinsic Reward in Multi-Agent Reinforcement Learning
+
+Authors: Wendelin Böhmer, Tabish Rashid, Shimon Whiteson
+
+Published: 2019-06-05
+
+Categories: cs.AI
+
+Abstract:
+This paper investigates the use of intrinsic reward to guide exploration in multi-agent reinforcement learning. We discuss the challenges in applying intrinsic reward to multiple collaborative agents and demonstrate how unreliable reward can prevent decentralized agents from learning the optimal policy. We address this problem with a novel framework, Independent Centrally-assisted Q-learning (ICQL), in which decentralized agents share control and an experience replay buffer with a centralized agent. Only the centralized agent is intrinsically rewarded, but the decentralized agents still benefit from improved exploration, without the distraction of unreliable incentives.
+
+Paper ID: 1906.02138v1
+
+Summary:
+This paper titled "Exploration with Unreliable Intrinsic Reward in Multi-Agent Reinforcement Learning" was authored by Wendelin Böhmer, Tabish Rashid, Shimon Whiteson and published on 2019-06-05.
+It falls under the categories: cs.AI.
+The research explores the following topic: This paper investigates the use of intrinsic reward to guide exploration in multi-agent reinforcement learning. We discuss the challenges in applying intrinsic reward to multiple collaborative agents and demonstrate how unreliable reward can prevent decentralized agents from learning the optimal policy. We address this problem with a novel framework, Independent Centrally-assisted Q-learning (ICQL), in which decentralized agents share control and an experience replay buffer with a centralized agent. Only the centralized agent is intrinsically rewarded, but the decentralized agents still benefit from improved exploration, without the distraction of unreliable incentives.
+
+Links:
+  - https://arxiv.org/abs/1906.02138v1
+  - https://arxiv.org/pdf/1906.02138v1

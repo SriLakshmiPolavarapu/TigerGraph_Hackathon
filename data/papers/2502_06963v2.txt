@@ -1,0 +1,21 @@
+Title: Intelligent Offloading in Vehicular Edge Computing: A Comprehensive Review of Deep Reinforcement Learning Approaches and Architectures
+
+Authors: Ashab Uddin, Ahmed Hamdi Sakr, Ning Zhang
+
+Published: 2025-02-10
+
+Categories: cs.LG, cs.AI, cs.DC, cs.MA
+
+Abstract:
+The increasing complexity of Intelligent Transportation Systems (ITS) has led to significant interest in computational offloading to external infrastructures such as edge servers, vehicular nodes, and UAVs. These dynamic and heterogeneous environments pose challenges for traditional offloading strategies, prompting the exploration of Reinforcement Learning (RL) and Deep Reinforcement Learning (DRL) as adaptive decision-making frameworks. This survey presents a comprehensive review of recent advances in DRL-based offloading for vehicular edge computing (VEC). We classify and compare existing works based on learning paradigms (e.g., single-agent, multi-agent), system architectures (e.g., centralized, distributed, hierarchical), and optimization objectives (e.g., latency, energy, fairness). Furthermore, we analyze how Markov Decision Process (MDP) formulations are applied and highlight emerging trends in reward design, coordination mechanisms, and scalability. Finally, we identify open challenges and outline future research directions to guide the development of robust and intelligent offloading strategies for next-generation ITS.
+
+Paper ID: 2502.06963v2
+
+Summary:
+This paper titled "Intelligent Offloading in Vehicular Edge Computing: A Comprehensive Review of Deep Reinforcement Learning Approaches and Architectures" was authored by Ashab Uddin, Ahmed Hamdi Sakr, Ning Zhang and published on 2025-02-10.
+It falls under the categories: cs.LG, cs.AI, cs.DC, cs.MA.
+The research explores the following topic: The increasing complexity of Intelligent Transportation Systems (ITS) has led to significant interest in computational offloading to external infrastructures such as edge servers, vehicular nodes, and UAVs. These dynamic and heterogeneous environments pose challenges for traditional offloading strategies, prompting the exploration of Reinforcement Learning (RL) and Deep Reinforcement Learning (DRL) as adaptive decision-making frameworks. This survey presents a comprehensive review of recent advances in DRL-based offloading for vehicular edge computing (VEC). We classify and compare existing works based on learning paradigms (e.g., single-agent, multi-agent), system architectures (e.g., centralized, distributed, hierarchical), and optimization objectives (e.g., latency, energy, fairness). Furthermore, we analyze how Markov Decision Process (MDP) formulations are applied and highlight emerging trends in reward design, coordination mechanisms, and scalability. Finally, we identify open challenges and outline future research directions to guide the development of robust and intelligent offloading strategies for next-generation ITS.
+
+Links:
+  - https://arxiv.org/abs/2502.06963v2
+  - https://arxiv.org/pdf/2502.06963v2

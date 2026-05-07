@@ -1,0 +1,21 @@
+Title: Multi-task Learning with Attention for End-to-end Autonomous Driving
+
+Authors: Keishi Ishihara, Anssi Kanervisto, Jun Miura, Ville Hautamäki
+
+Published: 2021-04-21
+
+Categories: cs.RO, cs.AI, cs.CV
+
+Abstract:
+Autonomous driving systems need to handle complex scenarios such as lane following, avoiding collisions, taking turns, and responding to traffic signals. In recent years, approaches based on end-to-end behavioral cloning have demonstrated remarkable performance in point-to-point navigational scenarios, using a realistic simulator and standard benchmarks. Offline imitation learning is readily available, as it does not require expensive hand annotation or interaction with the target environment, but it is difficult to obtain a reliable system. In addition, existing methods have not specifically addressed the learning of reaction for traffic lights, which are a rare occurrence in the training datasets. Inspired by the previous work on multi-task learning and attention modeling, we propose a novel multi-task attention-aware network in the conditional imitation learning (CIL) framework. This does not only improve the success rate of standard benchmarks, but also the ability to react to traffic lights, which we show with standard benchmarks.
+
+Paper ID: 2104.10753v1
+
+Summary:
+This paper titled "Multi-task Learning with Attention for End-to-end Autonomous Driving" was authored by Keishi Ishihara, Anssi Kanervisto, Jun Miura, Ville Hautamäki and published on 2021-04-21.
+It falls under the categories: cs.RO, cs.AI, cs.CV.
+The research explores the following topic: Autonomous driving systems need to handle complex scenarios such as lane following, avoiding collisions, taking turns, and responding to traffic signals. In recent years, approaches based on end-to-end behavioral cloning have demonstrated remarkable performance in point-to-point navigational scenarios, using a realistic simulator and standard benchmarks. Offline imitation learning is readily available, as it does not require expensive hand annotation or interaction with the target environment, but it is difficult to obtain a reliable system. In addition, existing methods have not specifically addressed the learning of reaction for traffic lights, which are a rare occurrence in the training datasets. Inspired by the previous work on multi-task learning and attention modeling, we propose a novel multi-task attention-aware network in the conditional imitation learning (CIL) framework. This does not only improve the success rate of standard benchmarks, but also the ability to react to traffic lights, which we show with standard benchmarks.
+
+Links:
+  - https://arxiv.org/abs/2104.10753v1
+  - https://arxiv.org/pdf/2104.10753v1

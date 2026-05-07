@@ -1,0 +1,21 @@
+Title: How Does Supernet Help in Neural Architecture Search?
+
+Authors: Yuge Zhang, Quanlu Zhang, Yaming Yang
+
+Published: 2020-10-16
+
+Categories: cs.LG, cs.CV, cs.NE
+
+Abstract:
+Weight sharing, as an approach to speed up architecture performance estimation has received wide attention. Instead of training each architecture separately, weight sharing builds a supernet that assembles all the architectures as its submodels. However, there has been debate over whether the NAS process actually benefits from weight sharing, due to the gap between supernet optimization and the objective of NAS. To further understand the effect of weight sharing on NAS, we conduct a comprehensive analysis on five search spaces, including NAS-Bench-101, NAS-Bench-201, DARTS-CIFAR10, DARTS-PTB, and ProxylessNAS. We find that weight sharing works well on some search spaces but fails on others. Taking a step forward, we further identified biases accounting for such phenomenon and the capacity of weight sharing. Our work is expected to inspire future NAS researchers to better leverage the power of weight sharing.
+
+Paper ID: 2010.08219v2
+
+Summary:
+This paper titled "How Does Supernet Help in Neural Architecture Search?" was authored by Yuge Zhang, Quanlu Zhang, Yaming Yang and published on 2020-10-16.
+It falls under the categories: cs.LG, cs.CV, cs.NE.
+The research explores the following topic: Weight sharing, as an approach to speed up architecture performance estimation has received wide attention. Instead of training each architecture separately, weight sharing builds a supernet that assembles all the architectures as its submodels. However, there has been debate over whether the NAS process actually benefits from weight sharing, due to the gap between supernet optimization and the objective of NAS. To further understand the effect of weight sharing on NAS, we conduct a comprehensive analysis on five search spaces, including NAS-Bench-101, NAS-Bench-201, DARTS-CIFAR10, DARTS-PTB, and ProxylessNAS. We find that weight sharing works well on some search spaces but fails on others. Taking a step forward, we further identified biases accounting for such phenomenon and the capacity of weight sharing. Our work is expected to inspire future NAS researchers to better leverage the power of weight sharing.
+
+Links:
+  - https://arxiv.org/abs/2010.08219v2
+  - https://arxiv.org/pdf/2010.08219v2

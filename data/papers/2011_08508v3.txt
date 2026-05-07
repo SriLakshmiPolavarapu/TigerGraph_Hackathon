@@ -1,0 +1,21 @@
+Title: Generalized Continual Zero-Shot Learning
+
+Authors: Chandan Gautam, Sethupathy Parameswaran, Ashish Mishra, Suresh Sundaram
+
+Published: 2020-11-17
+
+Categories: cs.CV
+
+Abstract:
+Recently, zero-shot learning (ZSL) emerged as an exciting topic and attracted a lot of attention. ZSL aims to classify unseen classes by transferring the knowledge from seen classes to unseen classes based on the class description. Despite showing promising performance, ZSL approaches assume that the training samples from all seen classes are available during the training, which is practically not feasible. To address this issue, we propose a more generalized and practical setup for ZSL, i.e., continual ZSL (CZSL), where classes arrive sequentially in the form of a task and it actively learns from the changing environment by leveraging the past experience. Further, to enhance the reliability, we develop CZSL for a single head continual learning setting where task identity is revealed during the training process but not during the testing. To avoid catastrophic forgetting and intransigence, we use knowledge distillation and storing and replay the few samples from previous tasks using a small episodic memory. We develop baselines and evaluate generalized CZSL on five ZSL benchmark datasets for two different settings of continual learning: with and without class incremental. Moreover, CZSL is developed for two types of variational autoencoders, which generates two types of features for classification: (i) generated features at output space and (ii) generated discriminative features at the latent space. The experimental results clearly indicate the single head CZSL is more generalizable and suitable for practical applications.
+
+Paper ID: 2011.08508v3
+
+Summary:
+This paper titled "Generalized Continual Zero-Shot Learning" was authored by Chandan Gautam, Sethupathy Parameswaran, Ashish Mishra, Suresh Sundaram and published on 2020-11-17.
+It falls under the categories: cs.CV.
+The research explores the following topic: Recently, zero-shot learning (ZSL) emerged as an exciting topic and attracted a lot of attention. ZSL aims to classify unseen classes by transferring the knowledge from seen classes to unseen classes based on the class description. Despite showing promising performance, ZSL approaches assume that the training samples from all seen classes are available during the training, which is practically not feasible. To address this issue, we propose a more generalized and practical setup for ZSL, i.e., continual ZSL (CZSL), where classes arrive sequentially in the form of a task and it actively learns from the changing environment by leveraging the past experience. Further, to enhance the reliability, we develop CZSL for a single head continual learning setting where task identity is revealed during the training process but not during the testing. To avoid catastrophic forgetting and intransigence, we use knowledge distillation and storing and replay the few samples from previous tasks using a small episodic memory. We develop baselines and evaluate generalized CZSL on five ZSL benchmark datasets for two different settings of continual learning: with and without class incremental. Moreover, CZSL is developed for two types of variational autoencoders, which generates two types of features for classification: (i) generated features at output space and (ii) generated discriminative features at the latent space. The experimental results clearly indicate the single head CZSL is more generalizable and suitable for practical applications.
+
+Links:
+  - https://arxiv.org/abs/2011.08508v3
+  - https://arxiv.org/pdf/2011.08508v3

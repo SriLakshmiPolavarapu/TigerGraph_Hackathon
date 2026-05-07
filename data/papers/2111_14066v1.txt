@@ -1,0 +1,21 @@
+Title: Natural Language and Spatial Rules
+
+Authors: Alexandros Haridis, Stella Rossikopoulou Pappa
+
+Published: 2021-11-28
+
+Categories: cs.CL
+
+Abstract:
+We develop a system that formally represents spatial semantics concepts within natural language descriptions of spatial arrangements. The system builds on a model of spatial semantics representation according to which words in a sentence are assigned spatial roles and the relations among these roles are represented with spatial relations. We combine our system with the shape grammar formalism that uses shape rules to generate languages (sets) of two-dimensional shapes. Our proposed system consists of pairs of shape rules and verbal rules where the verbal rules describe in English the action of the associated shape rule. We present various types of natural language descriptions of shapes that are successfully parsed by our system and we discuss open questions and challenges we see at the interface of language and perception.
+
+Paper ID: 2111.14066v1
+
+Summary:
+This paper titled "Natural Language and Spatial Rules" was authored by Alexandros Haridis, Stella Rossikopoulou Pappa and published on 2021-11-28.
+It falls under the categories: cs.CL.
+The research explores the following topic: We develop a system that formally represents spatial semantics concepts within natural language descriptions of spatial arrangements. The system builds on a model of spatial semantics representation according to which words in a sentence are assigned spatial roles and the relations among these roles are represented with spatial relations. We combine our system with the shape grammar formalism that uses shape rules to generate languages (sets) of two-dimensional shapes. Our proposed system consists of pairs of shape rules and verbal rules where the verbal rules describe in English the action of the associated shape rule. We present various types of natural language descriptions of shapes that are successfully parsed by our system and we discuss open questions and challenges we see at the interface of language and perception.
+
+Links:
+  - https://arxiv.org/abs/2111.14066v1
+  - https://arxiv.org/pdf/2111.14066v1

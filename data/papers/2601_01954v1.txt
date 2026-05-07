@@ -1,0 +1,21 @@
+Title: Reporting LLM Prompting in Automated Software Engineering: A Guideline Based on Current Practices and Expectations
+
+Authors: Alexander Korn, Lea Zaruchas, Chetan Arora, Andreas Metzger, Sven Smolka, Fanyu Wang, Andreas Vogelsang
+
+Published: 2026-01-05
+
+Categories: cs.SE
+
+Abstract:
+Large Language Models, particularly decoder-only generative models such as GPT, are increasingly used to automate Software Engineering tasks. These models are primarily guided through natural language prompts, making prompt engineering a critical factor in system performance and behavior. Despite their growing role in SE research, prompt-related decisions are rarely documented in a systematic or transparent manner, hindering reproducibility and comparability across studies. To address this gap, we conducted a two-phase empirical study. First, we analyzed nearly 300 papers published at the top-3 SE conferences since 2022 to assess how prompt design, testing, and optimization are currently reported. Second, we surveyed 105 program committee members from these conferences to capture their expectations for prompt reporting in LLM-driven research. Based on the findings, we derived a structured guideline that distinguishes essential, desirable, and exceptional reporting elements. Our results reveal significant misalignment between current practices and reviewer expectations, particularly regarding version disclosure, prompt justification, and threats to validity. We present our guideline as a step toward improving transparency, reproducibility, and methodological rigor in LLM-based SE research.
+
+Paper ID: 2601.01954v1
+
+Summary:
+This paper titled "Reporting LLM Prompting in Automated Software Engineering: A Guideline Based on Current Practices and Expectations" was authored by Alexander Korn, Lea Zaruchas, Chetan Arora, Andreas Metzger, Sven Smolka, Fanyu Wang, Andreas Vogelsang and published on 2026-01-05.
+It falls under the categories: cs.SE.
+The research explores the following topic: Large Language Models, particularly decoder-only generative models such as GPT, are increasingly used to automate Software Engineering tasks. These models are primarily guided through natural language prompts, making prompt engineering a critical factor in system performance and behavior. Despite their growing role in SE research, prompt-related decisions are rarely documented in a systematic or transparent manner, hindering reproducibility and comparability across studies. To address this gap, we conducted a two-phase empirical study. First, we analyzed nearly 300 papers published at the top-3 SE conferences since 2022 to assess how prompt design, testing, and optimization are currently reported. Second, we surveyed 105 program committee members from these conferences to capture their expectations for prompt reporting in LLM-driven research. Based on the findings, we derived a structured guideline that distinguishes essential, desirable, and exceptional reporting elements. Our results reveal significant misalignment between current practices and reviewer expectations, particularly regarding version disclosure, prompt justification, and threats to validity. We present our guideline as a step toward improving transparency, reproducibility, and methodological rigor in LLM-based SE research.
+
+Links:
+  - https://arxiv.org/abs/2601.01954v1
+  - https://arxiv.org/pdf/2601.01954v1

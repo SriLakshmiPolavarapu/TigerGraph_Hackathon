@@ -1,0 +1,21 @@
+Title: Investigation of Independent Reinforcement Learning Algorithms in Multi-Agent Environments
+
+Authors: Ken Ming Lee, Sriram Ganapathi Subramanian, Mark Crowley
+
+Published: 2021-11-01
+
+Categories: cs.MA, cs.AI, cs.LG
+
+Abstract:
+Independent reinforcement learning algorithms have no theoretical guarantees for finding the best policy in multi-agent settings. However, in practice, prior works have reported good performance with independent algorithms in some domains and bad performance in others. Moreover, a comprehensive study of the strengths and weaknesses of independent algorithms is lacking in the literature. In this paper, we carry out an empirical comparison of the performance of independent algorithms on four PettingZoo environments that span the three main categories of multi-agent environments, i.e., cooperative, competitive, and mixed. We show that in fully-observable environments, independent algorithms can perform on par with multi-agent algorithms in cooperative and competitive settings. For the mixed environments, we show that agents trained via independent algorithms learn to perform well individually, but fail to learn to cooperate with allies and compete with enemies. We also show that adding recurrence improves the learning of independent algorithms in cooperative partially observable environments.
+
+Paper ID: 2111.01100v1
+
+Summary:
+This paper titled "Investigation of Independent Reinforcement Learning Algorithms in Multi-Agent Environments" was authored by Ken Ming Lee, Sriram Ganapathi Subramanian, Mark Crowley and published on 2021-11-01.
+It falls under the categories: cs.MA, cs.AI, cs.LG.
+The research explores the following topic: Independent reinforcement learning algorithms have no theoretical guarantees for finding the best policy in multi-agent settings. However, in practice, prior works have reported good performance with independent algorithms in some domains and bad performance in others. Moreover, a comprehensive study of the strengths and weaknesses of independent algorithms is lacking in the literature. In this paper, we carry out an empirical comparison of the performance of independent algorithms on four PettingZoo environments that span the three main categories of multi-agent environments, i.e., cooperative, competitive, and mixed. We show that in fully-observable environments, independent algorithms can perform on par with multi-agent algorithms in cooperative and competitive settings. For the mixed environments, we show that agents trained via independent algorithms learn to perform well individually, but fail to learn to cooperate with allies and compete with enemies. We also show that adding recurrence improves the learning of independent algorithms in cooperative partially observable environments.
+
+Links:
+  - https://arxiv.org/abs/2111.01100v1
+  - https://arxiv.org/pdf/2111.01100v1

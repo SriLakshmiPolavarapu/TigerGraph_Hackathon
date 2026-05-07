@@ -1,0 +1,21 @@
+Title: Self-Attention as Distributional Projection: A Unified Interpretation of Transformer Architecture
+
+Authors: Nihal Mehta
+
+Published: 2025-11-16
+
+Categories: cs.LG
+
+Abstract:
+This paper presents a mathematical interpretation of self-attention by connecting it to distributional semantics principles. We show that self-attention emerges from projecting corpus-level co-occurrence statistics into sequence context. Starting from the co-occurrence matrix underlying GloVe embeddings, we demonstrate how the projection naturally captures contextual influence, with the query-key-value mechanism arising as the natural asymmetric extension for modeling directional relationships. Positional encodings and multi-head attention then follow as structured refinements of this same projection principle. Our analysis demonstrates that the Transformer architecture's particular algebraic form follows from these projection principles rather than being an arbitrary design choice.
+
+Paper ID: 2511.13780v1
+
+Summary:
+This paper titled "Self-Attention as Distributional Projection: A Unified Interpretation of Transformer Architecture" was authored by Nihal Mehta and published on 2025-11-16.
+It falls under the categories: cs.LG.
+The research explores the following topic: This paper presents a mathematical interpretation of self-attention by connecting it to distributional semantics principles. We show that self-attention emerges from projecting corpus-level co-occurrence statistics into sequence context. Starting from the co-occurrence matrix underlying GloVe embeddings, we demonstrate how the projection naturally captures contextual influence, with the query-key-value mechanism arising as the natural asymmetric extension for modeling directional relationships. Positional encodings and multi-head attention then follow as structured refinements of this same projection principle. Our analysis demonstrates that the Transformer architecture's particular algebraic form follows from these projection principles rather than being an arbitrary design choice.
+
+Links:
+  - https://arxiv.org/abs/2511.13780v1
+  - https://arxiv.org/pdf/2511.13780v1

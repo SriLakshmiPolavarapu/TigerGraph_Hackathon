@@ -1,0 +1,22 @@
+Title: On the Implementation of the Probabilistic Logic Programming Language ProbLog
+
+Authors: Angelika Kimmig, Bart Demoen, Luc De Raedt, Vítor Santos Costa, Ricardo Rocha
+
+Published: 2010-06-23
+
+Categories: cs.PL, cs.LG, cs.LO
+
+Abstract:
+The past few years have seen a surge of interest in the field of probabilistic logic learning and statistical relational learning. In this endeavor, many probabilistic logics have been developed. ProbLog is a recent probabilistic extension of Prolog motivated by the mining of large biological networks. In ProbLog, facts can be labeled with probabilities. These facts are treated as mutually independent random variables that indicate whether these facts belong to a randomly sampled program. Different kinds of queries can be posed to ProbLog programs. We introduce algorithms that allow the efficient execution of these queries, discuss their implementation on top of the YAP-Prolog system, and evaluate their performance in the context of large networks of biological entities.
+
+Paper ID: 1006.4442v1
+
+Summary:
+This paper titled "On the Implementation of the Probabilistic Logic Programming Language ProbLog" was authored by Angelika Kimmig, Bart Demoen, Luc De Raedt, Vítor Santos Costa, Ricardo Rocha and published on 2010-06-23.
+It falls under the categories: cs.PL, cs.LG, cs.LO.
+The research explores the following topic: The past few years have seen a surge of interest in the field of probabilistic logic learning and statistical relational learning. In this endeavor, many probabilistic logics have been developed. ProbLog is a recent probabilistic extension of Prolog motivated by the mining of large biological networks. In ProbLog, facts can be labeled with probabilities. These facts are treated as mutually independent random variables that indicate whether these facts belong to a randomly sampled program. Different kinds of queries can be posed to ProbLog programs. We introduce algorithms that allow the efficient execution of these queries, discuss their implementation on top of the YAP-Prolog system, and evaluate their performance in the context of large networks of biological entities.
+
+Links:
+  - https://arxiv.org/abs/1006.4442v1
+  - https://arxiv.org/pdf/1006.4442v1
+  - https://doi.org/10.1017/S1471068410000566

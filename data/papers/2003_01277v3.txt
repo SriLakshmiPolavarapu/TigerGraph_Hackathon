@@ -1,0 +1,22 @@
+Title: The Effect of Silence Feature in Dimensional Speech Emotion Recognition
+
+Authors: Bagus Tris Atmaja, Masato Akagi
+
+Published: 2020-03-03
+
+Categories: eess.AS, cs.SD
+
+Abstract:
+Silence is a part of human-to-human communication, which can be a clue for human emotion perception. For automatic emotion recognition by a computer, it is not clear whether silence is useful to determine human emotion within a speech. This paper presents an investigation of the effect of using silence feature in dimensional emotion recognition. Since the silence feature is extracted per utterance, we grouped the silence feature with high statistical functions from a set of acoustic features. The result reveals that the silence features affect the arousal dimension more than other emotion dimensions. The proper choice of a threshold factor in the calculation of silence feature improved the performance of dimensional speech emotion recognition performance, in terms of a concordance correlation coefficient. On the other side, improper choice of that factor leads to a decrease in performance by using the same architecture.
+
+Paper ID: 2003.01277v3
+
+Summary:
+This paper titled "The Effect of Silence Feature in Dimensional Speech Emotion Recognition" was authored by Bagus Tris Atmaja, Masato Akagi and published on 2020-03-03.
+It falls under the categories: eess.AS, cs.SD.
+The research explores the following topic: Silence is a part of human-to-human communication, which can be a clue for human emotion perception. For automatic emotion recognition by a computer, it is not clear whether silence is useful to determine human emotion within a speech. This paper presents an investigation of the effect of using silence feature in dimensional emotion recognition. Since the silence feature is extracted per utterance, we grouped the silence feature with high statistical functions from a set of acoustic features. The result reveals that the silence features affect the arousal dimension more than other emotion dimensions. The proper choice of a threshold factor in the calculation of silence feature improved the performance of dimensional speech emotion recognition performance, in terms of a concordance correlation coefficient. On the other side, improper choice of that factor leads to a decrease in performance by using the same architecture.
+
+Links:
+  - https://arxiv.org/abs/2003.01277v3
+  - https://arxiv.org/pdf/2003.01277v3
+  - https://doi.org/10.21437/SpeechProsody.2020-6

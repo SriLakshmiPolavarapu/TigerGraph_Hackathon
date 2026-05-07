@@ -1,0 +1,22 @@
+Title: Deep Reinforcement Learning for Multi-Agent Coordination
+
+Authors: Kehinde O. Aina, Sehoon Ha
+
+Published: 2025-10-04
+
+Categories: cs.LG, cs.AI, cs.MA, cs.RO
+
+Abstract:
+We address the challenge of coordinating multiple robots in narrow and confined environments, where congestion and interference often hinder collective task performance. Drawing inspiration from insect colonies, which achieve robust coordination through stigmergy -- modifying and interpreting environmental traces -- we propose a Stigmergic Multi-Agent Deep Reinforcement Learning (S-MADRL) framework that leverages virtual pheromones to model local and social interactions, enabling decentralized emergent coordination without explicit communication. To overcome the convergence and scalability limitations of existing algorithms such as MADQN, MADDPG, and MAPPO, we leverage curriculum learning, which decomposes complex tasks into progressively harder sub-problems. Simulation results show that our framework achieves the most effective coordination of up to eight agents, where robots self-organize into asymmetric workload distributions that reduce congestion and modulate group performance. This emergent behavior, analogous to strategies observed in nature, demonstrates a scalable solution for decentralized multi-agent coordination in crowded environments with communication constraints.
+
+Paper ID: 2510.03592v1
+
+Summary:
+This paper titled "Deep Reinforcement Learning for Multi-Agent Coordination" was authored by Kehinde O. Aina, Sehoon Ha and published on 2025-10-04.
+It falls under the categories: cs.LG, cs.AI, cs.MA, cs.RO.
+The research explores the following topic: We address the challenge of coordinating multiple robots in narrow and confined environments, where congestion and interference often hinder collective task performance. Drawing inspiration from insect colonies, which achieve robust coordination through stigmergy -- modifying and interpreting environmental traces -- we propose a Stigmergic Multi-Agent Deep Reinforcement Learning (S-MADRL) framework that leverages virtual pheromones to model local and social interactions, enabling decentralized emergent coordination without explicit communication. To overcome the convergence and scalability limitations of existing algorithms such as MADQN, MADDPG, and MAPPO, we leverage curriculum learning, which decomposes complex tasks into progressively harder sub-problems. Simulation results show that our framework achieves the most effective coordination of up to eight agents, where robots self-organize into asymmetric workload distributions that reduce congestion and modulate group performance. This emergent behavior, analogous to strategies observed in nature, demonstrates a scalable solution for decentralized multi-agent coordination in crowded environments with communication constraints.
+
+Links:
+  - https://arxiv.org/abs/2510.03592v1
+  - https://arxiv.org/pdf/2510.03592v1
+  - https://doi.org/10.1007/s10015-025-01089-z

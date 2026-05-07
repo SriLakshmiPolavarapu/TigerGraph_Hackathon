@@ -1,0 +1,21 @@
+Title: Transformers are Graph Neural Networks
+
+Authors: Chaitanya K. Joshi
+
+Published: 2025-06-27
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+We establish connections between the Transformer architecture, originally introduced for natural language processing, and Graph Neural Networks (GNNs) for representation learning on graphs. We show how Transformers can be viewed as message passing GNNs operating on fully connected graphs of tokens, where the self-attention mechanism capture the relative importance of all tokens w.r.t. each-other, and positional encodings provide hints about sequential ordering or structure. Thus, Transformers are expressive set processing networks that learn relationships among input elements without being constrained by apriori graphs. Despite this mathematical connection to GNNs, Transformers are implemented via dense matrix operations that are significantly more efficient on modern hardware than sparse message passing. This leads to the perspective that Transformers are GNNs currently winning the hardware lottery.
+
+Paper ID: 2506.22084v1
+
+Summary:
+This paper titled "Transformers are Graph Neural Networks" was authored by Chaitanya K. Joshi and published on 2025-06-27.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: We establish connections between the Transformer architecture, originally introduced for natural language processing, and Graph Neural Networks (GNNs) for representation learning on graphs. We show how Transformers can be viewed as message passing GNNs operating on fully connected graphs of tokens, where the self-attention mechanism capture the relative importance of all tokens w.r.t. each-other, and positional encodings provide hints about sequential ordering or structure. Thus, Transformers are expressive set processing networks that learn relationships among input elements without being constrained by apriori graphs. Despite this mathematical connection to GNNs, Transformers are implemented via dense matrix operations that are significantly more efficient on modern hardware than sparse message passing. This leads to the perspective that Transformers are GNNs currently winning the hardware lottery.
+
+Links:
+  - https://arxiv.org/abs/2506.22084v1
+  - https://arxiv.org/pdf/2506.22084v1

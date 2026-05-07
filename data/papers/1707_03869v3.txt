@@ -1,0 +1,22 @@
+Title: Cognitive Biases in Software Engineering: A Systematic Mapping Study
+
+Authors: Rahul Mohanani, Iflaah Salman, Burak Turhan, Pilar Rodriguez, Paul Ralph
+
+Published: 2017-07-12
+
+Categories: cs.SE
+
+Abstract:
+One source of software project challenges and failures is the systematic errors introduced by human cognitive biases. Although extensively explored in cognitive psychology, investigations concerning cognitive biases have only recently gained popularity in software engineering (SE) research. This paper therefore systematically maps, aggregates and synthesizes the literature on cognitive biases in software engineering to generate a comprehensive body of knowledge, understand state of the art research and provide guidelines for future research and practise. Focusing on bias antecedents, effects and mitigation techniques, we identified 65 articles, which investigate 37 cognitive biases, published between 1990 and 2016. Despite strong and increasing interest, the results reveal a scarcity of research on mitigation techniques and poor theoretical foundations in understanding and interpreting cognitive biases. Although bias-related research has generated many new insights in the software engineering community, specific bias mitigation techniques are still needed for software professionals to overcome the deleterious effects of cognitive biases on their work.
+
+Paper ID: 1707.03869v3
+
+Summary:
+This paper titled "Cognitive Biases in Software Engineering: A Systematic Mapping Study" was authored by Rahul Mohanani, Iflaah Salman, Burak Turhan, Pilar Rodriguez, Paul Ralph and published on 2017-07-12.
+It falls under the categories: cs.SE.
+The research explores the following topic: One source of software project challenges and failures is the systematic errors introduced by human cognitive biases. Although extensively explored in cognitive psychology, investigations concerning cognitive biases have only recently gained popularity in software engineering (SE) research. This paper therefore systematically maps, aggregates and synthesizes the literature on cognitive biases in software engineering to generate a comprehensive body of knowledge, understand state of the art research and provide guidelines for future research and practise. Focusing on bias antecedents, effects and mitigation techniques, we identified 65 articles, which investigate 37 cognitive biases, published between 1990 and 2016. Despite strong and increasing interest, the results reveal a scarcity of research on mitigation techniques and poor theoretical foundations in understanding and interpreting cognitive biases. Although bias-related research has generated many new insights in the software engineering community, specific bias mitigation techniques are still needed for software professionals to overcome the deleterious effects of cognitive biases on their work.
+
+Links:
+  - https://arxiv.org/abs/1707.03869v3
+  - https://arxiv.org/pdf/1707.03869v3
+  - https://doi.org/10.1109/TSE.2018.2877759

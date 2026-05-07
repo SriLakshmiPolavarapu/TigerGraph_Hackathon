@@ -1,0 +1,22 @@
+Title: Leveraging Deep Learning Techniques on Collaborative Filtering Recommender Systems
+
+Authors: Ali Fallahi RahmatAbadi, Javad Mohammadzadeh
+
+Published: 2023-04-18
+
+Categories: cs.IR
+
+Abstract:
+With the exponentially increasing volume of online data, searching and finding required information have become an extensive and time-consuming task. Recommender Systems as a subclass of information retrieval and decision support systems by providing personalized suggestions helping users access what they need more efficiently. Among the different techniques for building a recommender system, Collaborative Filtering (CF) is the most popular and widespread approach. However, cold start and data sparsity are the fundamental challenges ahead of implementing an effective CF-based recommender. Recent successful developments in enhancing and implementing deep learning architectures motivated many studies to propose deep learning-based solutions for solving the recommenders' weak points. In this research, unlike the past similar works about using deep learning architectures in recommender systems that covered different techniques generally, we specifically provide a comprehensive review of deep learning-based collaborative filtering recommender systems. This in-depth filtering gives a clear overview of the level of popularity, gaps, and ignored areas on leveraging deep learning techniques to build CF-based systems as the most influential recommenders.
+
+Paper ID: 2304.09282v1
+
+Summary:
+This paper titled "Leveraging Deep Learning Techniques on Collaborative Filtering Recommender Systems" was authored by Ali Fallahi RahmatAbadi, Javad Mohammadzadeh and published on 2023-04-18.
+It falls under the categories: cs.IR.
+The research explores the following topic: With the exponentially increasing volume of online data, searching and finding required information have become an extensive and time-consuming task. Recommender Systems as a subclass of information retrieval and decision support systems by providing personalized suggestions helping users access what they need more efficiently. Among the different techniques for building a recommender system, Collaborative Filtering (CF) is the most popular and widespread approach. However, cold start and data sparsity are the fundamental challenges ahead of implementing an effective CF-based recommender. Recent successful developments in enhancing and implementing deep learning architectures motivated many studies to propose deep learning-based solutions for solving the recommenders' weak points. In this research, unlike the past similar works about using deep learning architectures in recommender systems that covered different techniques generally, we specifically provide a comprehensive review of deep learning-based collaborative filtering recommender systems. This in-depth filtering gives a clear overview of the level of popularity, gaps, and ignored areas on leveraging deep learning techniques to build CF-based systems as the most influential recommenders.
+
+Links:
+  - https://arxiv.org/abs/2304.09282v1
+  - https://arxiv.org/pdf/2304.09282v1
+  - https://doi.org/10.22105/jarie.2021.275620.1264

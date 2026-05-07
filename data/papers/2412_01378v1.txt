@@ -1,0 +1,21 @@
+Title: A Survey on Deep Neural Networks in Collaborative Filtering Recommendation Systems
+
+Authors: Pang Li, Shahrul Azman Mohd Noah, Hafiz Mohd Sarim
+
+Published: 2024-12-02
+
+Categories: cs.AI, cs.LG
+
+Abstract:
+This survey provides an examination of the use of Deep Neural Networks (DNN) in Collaborative Filtering (CF) recommendation systems. As the digital world increasingly relies on data-driven approaches, traditional CF techniques face limitations in scalability and flexibility. DNNs can address these challenges by effectively modeling complex, non-linear relationships within the data. We begin by exploring the fundamental principles of both collaborative filtering and deep neural networks, laying the groundwork for understanding their integration. Subsequently, we review key advancements in the field, categorizing various deep learning models that enhance CF systems, including Multilayer Perceptrons (MLP), Convolutional Neural Networks (CNN), Recurrent Neural Networks (RNN), Graph Neural Networks (GNN), autoencoders, Generative Adversarial Networks (GAN), and Restricted Boltzmann Machines (RBM). The paper also discusses evaluation protocols, various publicly available auxiliary information, and data features. Furthermore, the survey concludes with a discussion of the challenges and future research opportunities in enhancing collaborative filtering systems with deep learning.
+
+Paper ID: 2412.01378v1
+
+Summary:
+This paper titled "A Survey on Deep Neural Networks in Collaborative Filtering Recommendation Systems" was authored by Pang Li, Shahrul Azman Mohd Noah, Hafiz Mohd Sarim and published on 2024-12-02.
+It falls under the categories: cs.AI, cs.LG.
+The research explores the following topic: This survey provides an examination of the use of Deep Neural Networks (DNN) in Collaborative Filtering (CF) recommendation systems. As the digital world increasingly relies on data-driven approaches, traditional CF techniques face limitations in scalability and flexibility. DNNs can address these challenges by effectively modeling complex, non-linear relationships within the data. We begin by exploring the fundamental principles of both collaborative filtering and deep neural networks, laying the groundwork for understanding their integration. Subsequently, we review key advancements in the field, categorizing various deep learning models that enhance CF systems, including Multilayer Perceptrons (MLP), Convolutional Neural Networks (CNN), Recurrent Neural Networks (RNN), Graph Neural Networks (GNN), autoencoders, Generative Adversarial Networks (GAN), and Restricted Boltzmann Machines (RBM). The paper also discusses evaluation protocols, various publicly available auxiliary information, and data features. Furthermore, the survey concludes with a discussion of the challenges and future research opportunities in enhancing collaborative filtering systems with deep learning.
+
+Links:
+  - https://arxiv.org/abs/2412.01378v1
+  - https://arxiv.org/pdf/2412.01378v1

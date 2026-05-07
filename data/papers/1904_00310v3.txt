@@ -1,0 +1,21 @@
+Title: Learn to Grow: A Continual Structure Learning Framework for Overcoming Catastrophic Forgetting
+
+Authors: Xilai Li, Yingbo Zhou, Tianfu Wu, Richard Socher, Caiming Xiong
+
+Published: 2019-03-31
+
+Categories: cs.LG, cs.CV
+
+Abstract:
+Addressing catastrophic forgetting is one of the key challenges in continual learning where machine learning systems are trained with sequential or streaming tasks. Despite recent remarkable progress in state-of-the-art deep learning, deep neural networks (DNNs) are still plagued with the catastrophic forgetting problem. This paper presents a conceptually simple yet general and effective framework for handling catastrophic forgetting in continual learning with DNNs. The proposed method consists of two components: a neural structure optimization component and a parameter learning and/or fine-tuning component. By separating the explicit neural structure learning and the parameter estimation, not only is the proposed method capable of evolving neural structures in an intuitively meaningful way, but also shows strong capabilities of alleviating catastrophic forgetting in experiments. Furthermore, the proposed method outperforms all other baselines on the permuted MNIST dataset, the split CIFAR100 dataset and the Visual Domain Decathlon dataset in continual learning setting.
+
+Paper ID: 1904.00310v3
+
+Summary:
+This paper titled "Learn to Grow: A Continual Structure Learning Framework for Overcoming Catastrophic Forgetting" was authored by Xilai Li, Yingbo Zhou, Tianfu Wu, Richard Socher, Caiming Xiong and published on 2019-03-31.
+It falls under the categories: cs.LG, cs.CV.
+The research explores the following topic: Addressing catastrophic forgetting is one of the key challenges in continual learning where machine learning systems are trained with sequential or streaming tasks. Despite recent remarkable progress in state-of-the-art deep learning, deep neural networks (DNNs) are still plagued with the catastrophic forgetting problem. This paper presents a conceptually simple yet general and effective framework for handling catastrophic forgetting in continual learning with DNNs. The proposed method consists of two components: a neural structure optimization component and a parameter learning and/or fine-tuning component. By separating the explicit neural structure learning and the parameter estimation, not only is the proposed method capable of evolving neural structures in an intuitively meaningful way, but also shows strong capabilities of alleviating catastrophic forgetting in experiments. Furthermore, the proposed method outperforms all other baselines on the permuted MNIST dataset, the split CIFAR100 dataset and the Visual Domain Decathlon dataset in continual learning setting.
+
+Links:
+  - https://arxiv.org/abs/1904.00310v3
+  - https://arxiv.org/pdf/1904.00310v3

@@ -1,0 +1,21 @@
+Title: Large Language Models Lack Understanding of Character Composition of Words
+
+Authors: Andrew Shin, Kunitake Kaneko
+
+Published: 2024-05-18
+
+Categories: cs.CL
+
+Abstract:
+Large language models (LLMs) have demonstrated remarkable performances on a wide range of natural language tasks. Yet, LLMs' successes have been largely restricted to tasks concerning words, sentences, or documents, and it remains questionable how much they understand the minimal units of text, namely characters. In this paper, we examine contemporary LLMs regarding their ability to understand character composition of words, and show that most of them fail to reliably carry out even the simple tasks that can be handled by humans with perfection. We analyze their behaviors with comparison to token level performances, and discuss the potential directions for future research.
+
+Paper ID: 2405.11357v3
+
+Summary:
+This paper titled "Large Language Models Lack Understanding of Character Composition of Words" was authored by Andrew Shin, Kunitake Kaneko and published on 2024-05-18.
+It falls under the categories: cs.CL.
+The research explores the following topic: Large language models (LLMs) have demonstrated remarkable performances on a wide range of natural language tasks. Yet, LLMs' successes have been largely restricted to tasks concerning words, sentences, or documents, and it remains questionable how much they understand the minimal units of text, namely characters. In this paper, we examine contemporary LLMs regarding their ability to understand character composition of words, and show that most of them fail to reliably carry out even the simple tasks that can be handled by humans with perfection. We analyze their behaviors with comparison to token level performances, and discuss the potential directions for future research.
+
+Links:
+  - https://arxiv.org/abs/2405.11357v3
+  - https://arxiv.org/pdf/2405.11357v3

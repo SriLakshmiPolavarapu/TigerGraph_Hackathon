@@ -1,0 +1,21 @@
+Title: A Proof Theoretic Approach to Failure in Functional Logic Programming
+
+Authors: Francisco Javier Lopez-Fraguas, Jaime Sanchez-Hernandez
+
+Published: 2004-05-27
+
+Categories: cs.PL
+
+Abstract:
+How to extract negative information from programs is an important issue in logic programming. Here we address the problem for functional logic programs, from a proof-theoretic perspective. The starting point of our work is CRWL (Constructor based ReWriting Logic), a well established theoretical framework for functional logic programming, whose fundamental notion is that of non-strict non-deterministic function. We present a proof calculus, CRWLF, which is able to deduce negative information from CRWL-programs. In particular, CRWLF is able to prove finite failure of reduction within CRWL.
+
+Paper ID: 0405102v1
+
+Summary:
+This paper titled "A Proof Theoretic Approach to Failure in Functional Logic Programming" was authored by Francisco Javier Lopez-Fraguas, Jaime Sanchez-Hernandez and published on 2004-05-27.
+It falls under the categories: cs.PL.
+The research explores the following topic: How to extract negative information from programs is an important issue in logic programming. Here we address the problem for functional logic programs, from a proof-theoretic perspective. The starting point of our work is CRWL (Constructor based ReWriting Logic), a well established theoretical framework for functional logic programming, whose fundamental notion is that of non-strict non-deterministic function. We present a proof calculus, CRWLF, which is able to deduce negative information from CRWL-programs. In particular, CRWLF is able to prove finite failure of reduction within CRWL.
+
+Links:
+  - https://arxiv.org/abs/cs/0405102v1
+  - https://arxiv.org/pdf/cs/0405102v1

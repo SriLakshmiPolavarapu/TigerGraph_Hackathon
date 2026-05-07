@@ -1,0 +1,21 @@
+Title: Benchmarking Vision Language Models on German Factual Data
+
+Authors: René Peinl, Vincent Tischler
+
+Published: 2025-04-15
+
+Categories: cs.CL
+
+Abstract:
+Similar to LLMs, the development of vision language models is mainly driven by English datasets and models trained in English and Chinese language, whereas support for other languages, even those considered high-resource languages such as German, remains significantly weaker. In this work we present an analysis of open-weight VLMs on factual knowledge in the German and English language. We disentangle the image-related aspects from the textual ones by analyzing accu-racy with jury-as-a-judge in both prompt languages and images from German and international contexts. We found that for celebrities and sights, VLMs struggle because they are lacking visual cognition of German image contents. For animals and plants, the tested models can often correctly identify the image contents ac-cording to the scientific name or English common name but fail in German lan-guage. Cars and supermarket products were identified equally well in English and German images across both prompt languages.
+
+Paper ID: 2504.11108v2
+
+Summary:
+This paper titled "Benchmarking Vision Language Models on German Factual Data" was authored by René Peinl, Vincent Tischler and published on 2025-04-15.
+It falls under the categories: cs.CL.
+The research explores the following topic: Similar to LLMs, the development of vision language models is mainly driven by English datasets and models trained in English and Chinese language, whereas support for other languages, even those considered high-resource languages such as German, remains significantly weaker. In this work we present an analysis of open-weight VLMs on factual knowledge in the German and English language. We disentangle the image-related aspects from the textual ones by analyzing accu-racy with jury-as-a-judge in both prompt languages and images from German and international contexts. We found that for celebrities and sights, VLMs struggle because they are lacking visual cognition of German image contents. For animals and plants, the tested models can often correctly identify the image contents ac-cording to the scientific name or English common name but fail in German lan-guage. Cars and supermarket products were identified equally well in English and German images across both prompt languages.
+
+Links:
+  - https://arxiv.org/abs/2504.11108v2
+  - https://arxiv.org/pdf/2504.11108v2

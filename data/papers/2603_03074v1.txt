@@ -1,0 +1,21 @@
+Title: Design Generative AI for Practitioners: Exploring Interaction Approaches Aligned with Creative Practice
+
+Authors: Xiaohan Peng, Wendy E. Mackay, Janin Koch
+
+Published: 2026-03-03
+
+Categories: cs.HC, cs.AI
+
+Abstract:
+Design is a non-linear, reflective process in which practitioners engage with visual, semantic, and other expressive materials to explore, iterate, and refine ideas. As Generative AI (GenAI) becomes integrated into professional design practice, traditional interaction approaches focusing on prompts or whole-image manipulation can misalign AI output with designers' intent, forcing visual thinkers into verbal reasoning or post-hoc adjustments. We present three interaction approaches from DesignPrompt, FusAIn, and DesignTrace that distribute control across intent, input, and process, enabling designers to guide AI alignment at different stages of interaction. We further argue that alignment is a dynamic negotiation, with AI adopting proactive or reactive roles according to designers' instrumental and inspirational needs and the creative stage.
+
+Paper ID: 2603.03074v1
+
+Summary:
+This paper titled "Design Generative AI for Practitioners: Exploring Interaction Approaches Aligned with Creative Practice" was authored by Xiaohan Peng, Wendy E. Mackay, Janin Koch and published on 2026-03-03.
+It falls under the categories: cs.HC, cs.AI.
+The research explores the following topic: Design is a non-linear, reflective process in which practitioners engage with visual, semantic, and other expressive materials to explore, iterate, and refine ideas. As Generative AI (GenAI) becomes integrated into professional design practice, traditional interaction approaches focusing on prompts or whole-image manipulation can misalign AI output with designers' intent, forcing visual thinkers into verbal reasoning or post-hoc adjustments. We present three interaction approaches from DesignPrompt, FusAIn, and DesignTrace that distribute control across intent, input, and process, enabling designers to guide AI alignment at different stages of interaction. We further argue that alignment is a dynamic negotiation, with AI adopting proactive or reactive roles according to designers' instrumental and inspirational needs and the creative stage.
+
+Links:
+  - https://arxiv.org/abs/2603.03074v1
+  - https://arxiv.org/pdf/2603.03074v1

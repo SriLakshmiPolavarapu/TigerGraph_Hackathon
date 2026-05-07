@@ -1,0 +1,21 @@
+Title: Unsupervised Face-Masked Speech Enhancement Using Generative Adversarial Networks With Human-in-the-Loop Assessment Metrics
+
+Authors: Syu-Siang Wang, Jia-Yang Chen, Bo-Ren Bai, Shih-Hau Fang, Yu Tsao
+
+Published: 2024-07-02
+
+Categories: eess.AS, eess.SP
+
+Abstract:
+The utilization of face masks is an essential healthcare measure, particularly during times of pandemics, yet it can present challenges in communication in our daily lives. To address this problem, we propose a novel approach known as the human-in-the-loop StarGAN (HL-StarGAN) face-masked speech enhancement method. HL-StarGAN comprises discriminator, classifier, metric assessment predictor, and generator that leverages an attention mechanism. The metric assessment predictor, referred to as MaskQSS, incorporates human participants in its development and serves as a "human-in-the-loop" module during the learning process of HL-StarGAN. The overall HL-StarGAN model was trained using an unsupervised learning strategy that simultaneously focuses on the reconstruction of the original clean speech and the optimization of human perception. To implement HL-StarGAN, we curated a face-masked speech database named "FMVD," which comprises recordings from 34 speakers in three distinct face-masked scenarios and a clean condition. We conducted subjective and objective tests on the proposed HL-StarGAN using this database. The outcomes of the test results are as follows: (1) MaskQSS successfully predicted the quality scores of face mask voices, outperforming several existing speech assessment methods. (2) The integration of the MaskQSS predictor enhanced the ability of HL-StarGAN to transform face mask voices into high-quality speech; this enhancement is evident in both objective and subjective tests, outperforming conventional StarGAN and CycleGAN-based systems.
+
+Paper ID: 2407.01939v2
+
+Summary:
+This paper titled "Unsupervised Face-Masked Speech Enhancement Using Generative Adversarial Networks With Human-in-the-Loop Assessment Metrics" was authored by Syu-Siang Wang, Jia-Yang Chen, Bo-Ren Bai, Shih-Hau Fang, Yu Tsao and published on 2024-07-02.
+It falls under the categories: eess.AS, eess.SP.
+The research explores the following topic: The utilization of face masks is an essential healthcare measure, particularly during times of pandemics, yet it can present challenges in communication in our daily lives. To address this problem, we propose a novel approach known as the human-in-the-loop StarGAN (HL-StarGAN) face-masked speech enhancement method. HL-StarGAN comprises discriminator, classifier, metric assessment predictor, and generator that leverages an attention mechanism. The metric assessment predictor, referred to as MaskQSS, incorporates human participants in its development and serves as a "human-in-the-loop" module during the learning process of HL-StarGAN. The overall HL-StarGAN model was trained using an unsupervised learning strategy that simultaneously focuses on the reconstruction of the original clean speech and the optimization of human perception. To implement HL-StarGAN, we curated a face-masked speech database named "FMVD," which comprises recordings from 34 speakers in three distinct face-masked scenarios and a clean condition. We conducted subjective and objective tests on the proposed HL-StarGAN using this database. The outcomes of the test results are as follows: (1) MaskQSS successfully predicted the quality scores of face mask voices, outperforming several existing speech assessment methods. (2) The integration of the MaskQSS predictor enhanced the ability of HL-StarGAN to transform face mask voices into high-quality speech; this enhancement is evident in both objective and subjective tests, outperforming conventional StarGAN and CycleGAN-based systems.
+
+Links:
+  - https://arxiv.org/abs/2407.01939v2
+  - https://arxiv.org/pdf/2407.01939v2

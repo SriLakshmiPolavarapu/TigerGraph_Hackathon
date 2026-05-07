@@ -1,0 +1,21 @@
+Title: MmWave Radar and Vision Fusion for Object Detection in Autonomous Driving: A Review
+
+Authors: Zhiqing Wei, Fengkai Zhang, Shuo Chang, Yangyang Liu, Huici Wu, Zhiyong Feng
+
+Published: 2021-08-06
+
+Categories: cs.CV
+
+Abstract:
+With autonomous driving developing in a booming stage, accurate object detection in complex scenarios attract wide attention to ensure the safety of autonomous driving. Millimeter wave (mmWave) radar and vision fusion is a mainstream solution for accurate obstacle detection. This article presents a detailed survey on mmWave radar and vision fusion based obstacle detection methods. First, we introduce the tasks, evaluation criteria, and datasets of object detection for autonomous driving. The process of mmWave radar and vision fusion is then divided into three parts: sensor deployment, sensor calibration, and sensor fusion, which are reviewed comprehensively. Specifically, we classify the fusion methods into data level, decision level, and feature level fusion methods. In addition, we introduce three-dimensional(3D) object detection, the fusion of lidar and vision in autonomous driving and multimodal information fusion, which are promising for the future. Finally, we summarize this article.
+
+Paper ID: 2108.03004v3
+
+Summary:
+This paper titled "MmWave Radar and Vision Fusion for Object Detection in Autonomous Driving: A Review" was authored by Zhiqing Wei, Fengkai Zhang, Shuo Chang, Yangyang Liu, Huici Wu, Zhiyong Feng and published on 2021-08-06.
+It falls under the categories: cs.CV.
+The research explores the following topic: With autonomous driving developing in a booming stage, accurate object detection in complex scenarios attract wide attention to ensure the safety of autonomous driving. Millimeter wave (mmWave) radar and vision fusion is a mainstream solution for accurate obstacle detection. This article presents a detailed survey on mmWave radar and vision fusion based obstacle detection methods. First, we introduce the tasks, evaluation criteria, and datasets of object detection for autonomous driving. The process of mmWave radar and vision fusion is then divided into three parts: sensor deployment, sensor calibration, and sensor fusion, which are reviewed comprehensively. Specifically, we classify the fusion methods into data level, decision level, and feature level fusion methods. In addition, we introduce three-dimensional(3D) object detection, the fusion of lidar and vision in autonomous driving and multimodal information fusion, which are promising for the future. Finally, we summarize this article.
+
+Links:
+  - https://arxiv.org/abs/2108.03004v3
+  - https://arxiv.org/pdf/2108.03004v3

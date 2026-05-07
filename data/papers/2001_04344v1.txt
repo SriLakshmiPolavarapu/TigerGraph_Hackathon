@@ -1,0 +1,21 @@
+Title: An Explainable Autoencoder For Collaborative Filtering Recommendation
+
+Authors: Pegah Sagheb Haghighi, Olurotimi Seton, Olfa Nasraoui
+
+Published: 2019-12-23
+
+Categories: cs.IR, cs.AI, cs.LG
+
+Abstract:
+Autoencoders are a common building block of Deep Learning architectures, where they are mainly used for representation learning. They have also been successfully used in Collaborative Filtering (CF) recommender systems to predict missing ratings. Unfortunately, like all black box machine learning models, they are unable to explain their outputs. Hence, while predictions from an Autoencoder-based recommender system might be accurate, it might not be clear to the user why a recommendation was generated. In this work, we design an explainable recommendation system using an Autoencoder model whose predictions can be explained using the neighborhood based explanation style. Our preliminary work can be considered to be the first step towards an explainable deep learning architecture based on Autoencoders.
+
+Paper ID: 2001.04344v1
+
+Summary:
+This paper titled "An Explainable Autoencoder For Collaborative Filtering Recommendation" was authored by Pegah Sagheb Haghighi, Olurotimi Seton, Olfa Nasraoui and published on 2019-12-23.
+It falls under the categories: cs.IR, cs.AI, cs.LG.
+The research explores the following topic: Autoencoders are a common building block of Deep Learning architectures, where they are mainly used for representation learning. They have also been successfully used in Collaborative Filtering (CF) recommender systems to predict missing ratings. Unfortunately, like all black box machine learning models, they are unable to explain their outputs. Hence, while predictions from an Autoencoder-based recommender system might be accurate, it might not be clear to the user why a recommendation was generated. In this work, we design an explainable recommendation system using an Autoencoder model whose predictions can be explained using the neighborhood based explanation style. Our preliminary work can be considered to be the first step towards an explainable deep learning architecture based on Autoencoders.
+
+Links:
+  - https://arxiv.org/abs/2001.04344v1
+  - https://arxiv.org/pdf/2001.04344v1

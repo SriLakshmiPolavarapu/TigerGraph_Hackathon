@@ -1,0 +1,21 @@
+Title: A Fast and Efficient Modern BERT based Text-Conditioned Diffusion Model for Medical Image Segmentation
+
+Authors: Venkata Siddharth Dhara, Pawan Kumar
+
+Published: 2025-11-26
+
+Categories: cs.CV, cs.LG
+
+Abstract:
+In recent times, denoising diffusion probabilistic models (DPMs) have proven effective for medical image generation and denoising, and as representation learners for downstream segmentation. However, segmentation performance is limited by the need for dense pixel-wise labels, which are expensive, time-consuming, and require expert knowledge. We propose FastTextDiff, a label-efficient diffusion-based segmentation model that integrates medical text annotations to enhance semantic representations. Our approach uses ModernBERT, a transformer capable of processing long clinical notes, to tightly link textual annotations with semantic content in medical images. Trained on MIMIC-III and MIMIC-IV, ModernBERT encodes clinical knowledge that guides cross-modal attention between visual and textual features. This study validates ModernBERT as a fast, scalable alternative to Clinical BioBERT in diffusion-based segmentation pipelines and highlights the promise of multi-modal techniques for medical image analysis. By replacing Clinical BioBERT with ModernBERT, FastTextDiff benefits from FlashAttention 2, an alternating attention mechanism, and a 2-trillion-token corpus, improving both segmentation accuracy and training efficiency over traditional diffusion-based models.
+
+Paper ID: 2512.00084v1
+
+Summary:
+This paper titled "A Fast and Efficient Modern BERT based Text-Conditioned Diffusion Model for Medical Image Segmentation" was authored by Venkata Siddharth Dhara, Pawan Kumar and published on 2025-11-26.
+It falls under the categories: cs.CV, cs.LG.
+The research explores the following topic: In recent times, denoising diffusion probabilistic models (DPMs) have proven effective for medical image generation and denoising, and as representation learners for downstream segmentation. However, segmentation performance is limited by the need for dense pixel-wise labels, which are expensive, time-consuming, and require expert knowledge. We propose FastTextDiff, a label-efficient diffusion-based segmentation model that integrates medical text annotations to enhance semantic representations. Our approach uses ModernBERT, a transformer capable of processing long clinical notes, to tightly link textual annotations with semantic content in medical images. Trained on MIMIC-III and MIMIC-IV, ModernBERT encodes clinical knowledge that guides cross-modal attention between visual and textual features. This study validates ModernBERT as a fast, scalable alternative to Clinical BioBERT in diffusion-based segmentation pipelines and highlights the promise of multi-modal techniques for medical image analysis. By replacing Clinical BioBERT with ModernBERT, FastTextDiff benefits from FlashAttention 2, an alternating attention mechanism, and a 2-trillion-token corpus, improving both segmentation accuracy and training efficiency over traditional diffusion-based models.
+
+Links:
+  - https://arxiv.org/abs/2512.00084v1
+  - https://arxiv.org/pdf/2512.00084v1

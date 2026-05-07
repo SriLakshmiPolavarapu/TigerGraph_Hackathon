@@ -1,0 +1,22 @@
+Title: Large Language Models and Multimodal Retrieval for Visual Word Sense Disambiguation
+
+Authors: Anastasia Kritharoula, Maria Lymperaiou, Giorgos Stamou
+
+Published: 2023-10-21
+
+Categories: cs.CL
+
+Abstract:
+Visual Word Sense Disambiguation (VWSD) is a novel challenging task with the goal of retrieving an image among a set of candidates, which better represents the meaning of an ambiguous word within a given context. In this paper, we make a substantial step towards unveiling this interesting task by applying a varying set of approaches. Since VWSD is primarily a text-image retrieval task, we explore the latest transformer-based methods for multimodal retrieval. Additionally, we utilize Large Language Models (LLMs) as knowledge bases to enhance the given phrases and resolve ambiguity related to the target word. We also study VWSD as a unimodal problem by converting to text-to-text and image-to-image retrieval, as well as question-answering (QA), to fully explore the capabilities of relevant models. To tap into the implicit knowledge of LLMs, we experiment with Chain-of-Thought (CoT) prompting to guide explainable answer generation. On top of all, we train a learn to rank (LTR) model in order to combine our different modules, achieving competitive ranking results. Extensive experiments on VWSD demonstrate valuable insights to effectively drive future directions.
+
+Paper ID: 2310.14025v1
+
+Summary:
+This paper titled "Large Language Models and Multimodal Retrieval for Visual Word Sense Disambiguation" was authored by Anastasia Kritharoula, Maria Lymperaiou, Giorgos Stamou and published on 2023-10-21.
+It falls under the categories: cs.CL.
+The research explores the following topic: Visual Word Sense Disambiguation (VWSD) is a novel challenging task with the goal of retrieving an image among a set of candidates, which better represents the meaning of an ambiguous word within a given context. In this paper, we make a substantial step towards unveiling this interesting task by applying a varying set of approaches. Since VWSD is primarily a text-image retrieval task, we explore the latest transformer-based methods for multimodal retrieval. Additionally, we utilize Large Language Models (LLMs) as knowledge bases to enhance the given phrases and resolve ambiguity related to the target word. We also study VWSD as a unimodal problem by converting to text-to-text and image-to-image retrieval, as well as question-answering (QA), to fully explore the capabilities of relevant models. To tap into the implicit knowledge of LLMs, we experiment with Chain-of-Thought (CoT) prompting to guide explainable answer generation. On top of all, we train a learn to rank (LTR) model in order to combine our different modules, achieving competitive ranking results. Extensive experiments on VWSD demonstrate valuable insights to effectively drive future directions.
+
+Links:
+  - https://arxiv.org/abs/2310.14025v1
+  - https://arxiv.org/pdf/2310.14025v1
+  - https://doi.org/10.18653/v1/2023.emnlp-main.807

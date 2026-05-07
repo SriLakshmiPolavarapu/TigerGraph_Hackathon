@@ -1,0 +1,21 @@
+Title: Overcoming Forgetting in Federated Learning on Non-IID Data
+
+Authors: Neta Shoham, Tomer Avidor, Aviv Keren, Nadav Israel, Daniel Benditkis, Liron Mor-Yosef, Itai Zeitak
+
+Published: 2019-10-17
+
+Categories: cs.LG, cs.CR, stat.ML
+
+Abstract:
+We tackle the problem of Federated Learning in the non i.i.d. case, in which local models drift apart, inhibiting learning. Building on an analogy with Lifelong Learning, we adapt a solution for catastrophic forgetting to Federated Learning. We add a penalty term to the loss function, compelling all local models to converge to a shared optimum. We show that this can be done efficiently for communication (adding no further privacy risks), scaling with the number of nodes in the distributed setting. Our experiments show that this method is superior to competing ones for image recognition on the MNIST dataset.
+
+Paper ID: 1910.07796v1
+
+Summary:
+This paper titled "Overcoming Forgetting in Federated Learning on Non-IID Data" was authored by Neta Shoham, Tomer Avidor, Aviv Keren, Nadav Israel, Daniel Benditkis, Liron Mor-Yosef, Itai Zeitak and published on 2019-10-17.
+It falls under the categories: cs.LG, cs.CR, stat.ML.
+The research explores the following topic: We tackle the problem of Federated Learning in the non i.i.d. case, in which local models drift apart, inhibiting learning. Building on an analogy with Lifelong Learning, we adapt a solution for catastrophic forgetting to Federated Learning. We add a penalty term to the loss function, compelling all local models to converge to a shared optimum. We show that this can be done efficiently for communication (adding no further privacy risks), scaling with the number of nodes in the distributed setting. Our experiments show that this method is superior to competing ones for image recognition on the MNIST dataset.
+
+Links:
+  - https://arxiv.org/abs/1910.07796v1
+  - https://arxiv.org/pdf/1910.07796v1

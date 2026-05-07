@@ -1,0 +1,21 @@
+Title: Transformer-based Personalized Attention Mechanism for Medical Images with Clinical Records
+
+Authors: Yusuke Takagi, Noriaki Hashimoto, Hiroki Masuda, Hiroaki Miyoshi, Koichi Ohshima, Hidekata Hontani, Ichiro Takeuchi
+
+Published: 2022-06-07
+
+Categories: eess.IV, cs.CV
+
+Abstract:
+In medical image diagnosis, identifying the attention region, i.e., the region of interest for which the diagnosis is made, is an important task. Various methods have been developed to automatically identify target regions from given medical images. However, in actual medical practice, the diagnosis is made based not only on the images but also on a variety of clinical records. This means that pathologists examine medical images with some prior knowledge of the patients and that the attention regions may change depending on the clinical records. In this study, we propose a method called the Personalized Attention Mechanism (PersAM), by which the attention regions in medical images are adaptively changed according to the clinical records. The primary idea of the PersAM method is to encode the relationships between the medical images and clinical records using a variant of Transformer architecture. To demonstrate the effectiveness of the PersAM method, we applied it to a large-scale digital pathology problem of identifying the subtypes of 842 malignant lymphoma patients based on their gigapixel whole slide images and clinical records.
+
+Paper ID: 2206.03003v2
+
+Summary:
+This paper titled "Transformer-based Personalized Attention Mechanism for Medical Images with Clinical Records" was authored by Yusuke Takagi, Noriaki Hashimoto, Hiroki Masuda, Hiroaki Miyoshi, Koichi Ohshima, Hidekata Hontani, Ichiro Takeuchi and published on 2022-06-07.
+It falls under the categories: eess.IV, cs.CV.
+The research explores the following topic: In medical image diagnosis, identifying the attention region, i.e., the region of interest for which the diagnosis is made, is an important task. Various methods have been developed to automatically identify target regions from given medical images. However, in actual medical practice, the diagnosis is made based not only on the images but also on a variety of clinical records. This means that pathologists examine medical images with some prior knowledge of the patients and that the attention regions may change depending on the clinical records. In this study, we propose a method called the Personalized Attention Mechanism (PersAM), by which the attention regions in medical images are adaptively changed according to the clinical records. The primary idea of the PersAM method is to encode the relationships between the medical images and clinical records using a variant of Transformer architecture. To demonstrate the effectiveness of the PersAM method, we applied it to a large-scale digital pathology problem of identifying the subtypes of 842 malignant lymphoma patients based on their gigapixel whole slide images and clinical records.
+
+Links:
+  - https://arxiv.org/abs/2206.03003v2
+  - https://arxiv.org/pdf/2206.03003v2

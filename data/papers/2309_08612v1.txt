@@ -1,0 +1,21 @@
+Title: Explaining Vision and Language through Graphs of Events in Space and Time
+
+Authors: Mihai Masala, Nicolae Cudlenco, Traian Rebedea, Marius Leordeanu
+
+Published: 2023-08-29
+
+Categories: cs.AI, cs.CL, cs.CV
+
+Abstract:
+Artificial Intelligence makes great advances today and starts to bridge the gap between vision and language. However, we are still far from understanding, explaining and controlling explicitly the visual content from a linguistic perspective, because we still lack a common explainable representation between the two domains. In this work we come to address this limitation and propose the Graph of Events in Space and Time (GEST), by which we can represent, create and explain, both visual and linguistic stories. We provide a theoretical justification of our model and an experimental validation, which proves that GEST can bring a solid complementary value along powerful deep learning models. In particular, GEST can help improve at the content-level the generation of videos from text, by being easily incorporated into our novel video generation engine. Additionally, by using efficient graph matching techniques, the GEST graphs can also improve the comparisons between texts at the semantic level.
+
+Paper ID: 2309.08612v1
+
+Summary:
+This paper titled "Explaining Vision and Language through Graphs of Events in Space and Time" was authored by Mihai Masala, Nicolae Cudlenco, Traian Rebedea, Marius Leordeanu and published on 2023-08-29.
+It falls under the categories: cs.AI, cs.CL, cs.CV.
+The research explores the following topic: Artificial Intelligence makes great advances today and starts to bridge the gap between vision and language. However, we are still far from understanding, explaining and controlling explicitly the visual content from a linguistic perspective, because we still lack a common explainable representation between the two domains. In this work we come to address this limitation and propose the Graph of Events in Space and Time (GEST), by which we can represent, create and explain, both visual and linguistic stories. We provide a theoretical justification of our model and an experimental validation, which proves that GEST can bring a solid complementary value along powerful deep learning models. In particular, GEST can help improve at the content-level the generation of videos from text, by being easily incorporated into our novel video generation engine. Additionally, by using efficient graph matching techniques, the GEST graphs can also improve the comparisons between texts at the semantic level.
+
+Links:
+  - https://arxiv.org/abs/2309.08612v1
+  - https://arxiv.org/pdf/2309.08612v1

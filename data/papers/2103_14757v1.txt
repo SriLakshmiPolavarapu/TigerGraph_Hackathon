@@ -1,0 +1,22 @@
+Title: An Automated Multiple-Choice Question Generation Using Natural Language Processing Techniques
+
+Authors: Chidinma A. Nwafor, Ikechukwu E. Onyenwe
+
+Published: 2021-03-26
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Automatic multiple-choice question generation (MCQG) is a useful yet challenging task in Natural Language Processing (NLP). It is the task of automatic generation of correct and relevant questions from textual data. Despite its usefulness, manually creating sizeable, meaningful and relevant questions is a time-consuming and challenging task for teachers. In this paper, we present an NLP-based system for automatic MCQG for Computer-Based Testing Examination (CBTE).We used NLP technique to extract keywords that are important words in a given lesson material. To validate that the system is not perverse, five lesson materials were used to check the effectiveness and efficiency of the system. The manually extracted keywords by the teacher were compared to the auto-generated keywords and the result shows that the system was capable of extracting keywords from lesson materials in setting examinable questions. This outcome is presented in a user-friendly interface for easy accessibility.
+
+Paper ID: 2103.14757v1
+
+Summary:
+This paper titled "An Automated Multiple-Choice Question Generation Using Natural Language Processing Techniques" was authored by Chidinma A. Nwafor, Ikechukwu E. Onyenwe and published on 2021-03-26.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Automatic multiple-choice question generation (MCQG) is a useful yet challenging task in Natural Language Processing (NLP). It is the task of automatic generation of correct and relevant questions from textual data. Despite its usefulness, manually creating sizeable, meaningful and relevant questions is a time-consuming and challenging task for teachers. In this paper, we present an NLP-based system for automatic MCQG for Computer-Based Testing Examination (CBTE).We used NLP technique to extract keywords that are important words in a given lesson material. To validate that the system is not perverse, five lesson materials were used to check the effectiveness and efficiency of the system. The manually extracted keywords by the teacher were compared to the auto-generated keywords and the result shows that the system was capable of extracting keywords from lesson materials in setting examinable questions. This outcome is presented in a user-friendly interface for easy accessibility.
+
+Links:
+  - https://arxiv.org/abs/2103.14757v1
+  - https://arxiv.org/pdf/2103.14757v1
+  - https://doi.org/10.5121/ijnlc.2021.10201

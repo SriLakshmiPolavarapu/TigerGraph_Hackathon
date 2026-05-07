@@ -1,0 +1,21 @@
+Title: Variational Policy Propagation for Multi-agent Reinforcement Learning
+
+Authors: Chao Qu, Hui Li, Chang Liu, Junwu Xiong, James Zhang, Wei Chu, Weiqiang Wang, Yuan Qi, Le Song
+
+Published: 2020-04-19
+
+Categories: cs.LG, cs.MA, stat.ML
+
+Abstract:
+We propose a \emph{collaborative} multi-agent reinforcement learning algorithm named variational policy propagation (VPP) to learn a \emph{joint} policy through the interactions over agents. We prove that the joint policy is a Markov Random Field under some mild conditions, which in turn reduces the policy space effectively. We integrate the variational inference as special differentiable layers in policy such that the actions can be efficiently sampled from the Markov Random Field and the overall policy is differentiable. We evaluate our algorithm on several large scale challenging tasks and demonstrate that it outperforms previous state-of-the-arts.
+
+Paper ID: 2004.08883v4
+
+Summary:
+This paper titled "Variational Policy Propagation for Multi-agent Reinforcement Learning" was authored by Chao Qu, Hui Li, Chang Liu, Junwu Xiong, James Zhang, Wei Chu, Weiqiang Wang, Yuan Qi, Le Song and published on 2020-04-19.
+It falls under the categories: cs.LG, cs.MA, stat.ML.
+The research explores the following topic: We propose a \emph{collaborative} multi-agent reinforcement learning algorithm named variational policy propagation (VPP) to learn a \emph{joint} policy through the interactions over agents. We prove that the joint policy is a Markov Random Field under some mild conditions, which in turn reduces the policy space effectively. We integrate the variational inference as special differentiable layers in policy such that the actions can be efficiently sampled from the Markov Random Field and the overall policy is differentiable. We evaluate our algorithm on several large scale challenging tasks and demonstrate that it outperforms previous state-of-the-arts.
+
+Links:
+  - https://arxiv.org/abs/2004.08883v4
+  - https://arxiv.org/pdf/2004.08883v4

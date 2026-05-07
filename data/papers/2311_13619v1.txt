@@ -1,0 +1,21 @@
+Title: Steal My Artworks for Fine-tuning? A Watermarking Framework for Detecting Art Theft Mimicry in Text-to-Image Models
+
+Authors: Ge Luo, Junqiang Huang, Manman Zhang, Zhenxing Qian, Sheng Li, Xinpeng Zhang
+
+Published: 2023-11-22
+
+Categories: cs.CV, cs.CR
+
+Abstract:
+The advancement in text-to-image models has led to astonishing artistic performances. However, several studios and websites illegally fine-tune these models using artists' artworks to mimic their styles for profit, which violates the copyrights of artists and diminishes their motivation to produce original works. Currently, there is a notable lack of research focusing on this issue. In this paper, we propose a novel watermarking framework that detects mimicry in text-to-image models through fine-tuning. This framework embeds subtle watermarks into digital artworks to protect their copyrights while still preserving the artist's visual expression. If someone takes watermarked artworks as training data to mimic an artist's style, these watermarks can serve as detectable indicators. By analyzing the distribution of these watermarks in a series of generated images, acts of fine-tuning mimicry using stolen victim data will be exposed. In various fine-tune scenarios and against watermark attack methods, our research confirms that analyzing the distribution of watermarks in artificially generated images reliably detects unauthorized mimicry.
+
+Paper ID: 2311.13619v1
+
+Summary:
+This paper titled "Steal My Artworks for Fine-tuning? A Watermarking Framework for Detecting Art Theft Mimicry in Text-to-Image Models" was authored by Ge Luo, Junqiang Huang, Manman Zhang, Zhenxing Qian, Sheng Li, Xinpeng Zhang and published on 2023-11-22.
+It falls under the categories: cs.CV, cs.CR.
+The research explores the following topic: The advancement in text-to-image models has led to astonishing artistic performances. However, several studios and websites illegally fine-tune these models using artists' artworks to mimic their styles for profit, which violates the copyrights of artists and diminishes their motivation to produce original works. Currently, there is a notable lack of research focusing on this issue. In this paper, we propose a novel watermarking framework that detects mimicry in text-to-image models through fine-tuning. This framework embeds subtle watermarks into digital artworks to protect their copyrights while still preserving the artist's visual expression. If someone takes watermarked artworks as training data to mimic an artist's style, these watermarks can serve as detectable indicators. By analyzing the distribution of these watermarks in a series of generated images, acts of fine-tuning mimicry using stolen victim data will be exposed. In various fine-tune scenarios and against watermark attack methods, our research confirms that analyzing the distribution of watermarks in artificially generated images reliably detects unauthorized mimicry.
+
+Links:
+  - https://arxiv.org/abs/2311.13619v1
+  - https://arxiv.org/pdf/2311.13619v1

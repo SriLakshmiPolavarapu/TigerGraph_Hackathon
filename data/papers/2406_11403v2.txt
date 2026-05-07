@@ -1,0 +1,21 @@
+Title: Multimodal Structured Generation: CVPR's 2nd MMFM Challenge Technical Report
+
+Authors: Franz Louis Cesista
+
+Published: 2024-06-17
+
+Categories: cs.CV, cs.CL
+
+Abstract:
+Multimodal Foundation Models (MMFMs) have demonstrated strong performance in both computer vision and natural language processing tasks. However, their performance diminishes in tasks that require a high degree of integration between these modalities, such as document understanding. Moreover, finetuning these models and deploying them requires significantly more compute and more engineering effort than unimodal models. In this work, we present Multimodal Structured Generation, a framework that forces (frozen) MMFMs to produce outputs in a strictly structured format by applying hard constraints directly to the output logits. This approach not only ensures that the model generates parseable outputs that downstream APIs can easily ingest but also allows us to force the model to reason before answering, which significantly boosts performance without the need for expensive fine-tuning. We demonstrate the effectiveness of our method through competitive results in the CVPR 2nd MMFM Challenge, highlighting that carefully designed lightweight engineering can outperform expensive and complicated modeling approaches. All of our scripts, deployment steps, and evaluation results can be accessed in https://github.com/leloykun/MMFM-Challenge
+
+Paper ID: 2406.11403v2
+
+Summary:
+This paper titled "Multimodal Structured Generation: CVPR's 2nd MMFM Challenge Technical Report" was authored by Franz Louis Cesista and published on 2024-06-17.
+It falls under the categories: cs.CV, cs.CL.
+The research explores the following topic: Multimodal Foundation Models (MMFMs) have demonstrated strong performance in both computer vision and natural language processing tasks. However, their performance diminishes in tasks that require a high degree of integration between these modalities, such as document understanding. Moreover, finetuning these models and deploying them requires significantly more compute and more engineering effort than unimodal models. In this work, we present Multimodal Structured Generation, a framework that forces (frozen) MMFMs to produce outputs in a strictly structured format by applying hard constraints directly to the output logits. This approach not only ensures that the model generates parseable outputs that downstream APIs can easily ingest but also allows us to force the model to reason before answering, which significantly boosts performance without the need for expensive fine-tuning. We demonstrate the effectiveness of our method through competitive results in the CVPR 2nd MMFM Challenge, highlighting that carefully designed lightweight engineering can outperform expensive and complicated modeling approaches. All of our scripts, deployment steps, and evaluation results can be accessed in https://github.com/leloykun/MMFM-Challenge
+
+Links:
+  - https://arxiv.org/abs/2406.11403v2
+  - https://arxiv.org/pdf/2406.11403v2

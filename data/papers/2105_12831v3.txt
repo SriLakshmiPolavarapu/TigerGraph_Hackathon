@@ -1,0 +1,22 @@
+Title: Self-attending RNN for Speech Enhancement to Improve Cross-corpus Generalization
+
+Authors: Ashutosh Pandey, DeLiang Wang
+
+Published: 2021-05-26
+
+Categories: cs.SD, eess.AS
+
+Abstract:
+Deep neural networks (DNNs) represent the mainstream methodology for supervised speech enhancement, primarily due to their capability to model complex functions using hierarchical representations. However, a recent study revealed that DNNs trained on a single corpus fail to generalize to untrained corpora, especially in low signal-to-noise ratio (SNR) conditions. Developing a noise, speaker, and corpus independent speech enhancement algorithm is essential for real-world applications. In this study, we propose a self-attending recurrent neural network, or attentive recurrent network (ARN), for time-domain speech enhancement to improve cross-corpus generalization. ARN comprises of recurrent neural networks (RNNs) augmented with self-attention blocks and feedforward blocks. We evaluate ARN on different corpora with nonstationary noises in low SNR conditions. Experimental results demonstrate that ARN substantially outperforms competitive approaches to time-domain speech enhancement, such as RNNs and dual-path ARNs. Additionally, we report an important finding that the two popular approaches to speech enhancement: complex spectral mapping and time-domain enhancement, obtain similar results for RNN and ARN with large-scale training. We also provide a challenging subset of the test set used in this study for evaluating future algorithms and facilitating direct comparisons.
+
+Paper ID: 2105.12831v3
+
+Summary:
+This paper titled "Self-attending RNN for Speech Enhancement to Improve Cross-corpus Generalization" was authored by Ashutosh Pandey, DeLiang Wang and published on 2021-05-26.
+It falls under the categories: cs.SD, eess.AS.
+The research explores the following topic: Deep neural networks (DNNs) represent the mainstream methodology for supervised speech enhancement, primarily due to their capability to model complex functions using hierarchical representations. However, a recent study revealed that DNNs trained on a single corpus fail to generalize to untrained corpora, especially in low signal-to-noise ratio (SNR) conditions. Developing a noise, speaker, and corpus independent speech enhancement algorithm is essential for real-world applications. In this study, we propose a self-attending recurrent neural network, or attentive recurrent network (ARN), for time-domain speech enhancement to improve cross-corpus generalization. ARN comprises of recurrent neural networks (RNNs) augmented with self-attention blocks and feedforward blocks. We evaluate ARN on different corpora with nonstationary noises in low SNR conditions. Experimental results demonstrate that ARN substantially outperforms competitive approaches to time-domain speech enhancement, such as RNNs and dual-path ARNs. Additionally, we report an important finding that the two popular approaches to speech enhancement: complex spectral mapping and time-domain enhancement, obtain similar results for RNN and ARN with large-scale training. We also provide a challenging subset of the test set used in this study for evaluating future algorithms and facilitating direct comparisons.
+
+Links:
+  - https://arxiv.org/abs/2105.12831v3
+  - https://arxiv.org/pdf/2105.12831v3
+  - https://doi.org/10.1109/TASLP.2022.3161143

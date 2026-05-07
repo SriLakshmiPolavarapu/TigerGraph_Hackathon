@@ -1,0 +1,22 @@
+Title: Nmag micromagnetic simulation tool - software engineering lessons learned
+
+Authors: Hans Fangohr, Maximilian Albert, Matteo Franchin
+
+Published: 2016-01-27
+
+Categories: cs.SE, physics.comp-ph
+
+Abstract:
+We review design and development decisions and their impact for the open source code Nmag from a software engineering in computational science point of view. We summarise lessons learned and recommendations for future computational science projects. Key lessons include that encapsulating the simulation functionality in a library of a general purpose language, here Python, provides great flexibility in using the software. The choice of Python for the top-level user interface was very well received by users from the science and engineering community. The from-source installation in which required external libraries and dependencies are compiled from a tarball was remarkably robust. In places, the code is a lot more ambitious than necessary, which introduces unnecessary complexity and reduces main- tainability. Tests distributed with the package are useful, although more unit tests and continuous integration would have been desirable. The detailed documentation, together with a tutorial for the usage of the system, was perceived as one of its main strengths by the community.
+
+Paper ID: 1601.07392v2
+
+Summary:
+This paper titled "Nmag micromagnetic simulation tool - software engineering lessons learned" was authored by Hans Fangohr, Maximilian Albert, Matteo Franchin and published on 2016-01-27.
+It falls under the categories: cs.SE, physics.comp-ph.
+The research explores the following topic: We review design and development decisions and their impact for the open source code Nmag from a software engineering in computational science point of view. We summarise lessons learned and recommendations for future computational science projects. Key lessons include that encapsulating the simulation functionality in a library of a general purpose language, here Python, provides great flexibility in using the software. The choice of Python for the top-level user interface was very well received by users from the science and engineering community. The from-source installation in which required external libraries and dependencies are compiled from a tarball was remarkably robust. In places, the code is a lot more ambitious than necessary, which introduces unnecessary complexity and reduces main- tainability. Tests distributed with the package are useful, although more unit tests and continuous integration would have been desirable. The detailed documentation, together with a tutorial for the usage of the system, was perceived as one of its main strengths by the community.
+
+Links:
+  - https://arxiv.org/abs/1601.07392v2
+  - https://arxiv.org/pdf/1601.07392v2
+  - https://doi.org/10.1145/2897676.2897677

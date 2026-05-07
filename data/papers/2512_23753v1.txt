@@ -1,0 +1,21 @@
+Title: Generalized Regularized Evidential Deep Learning Models: Theory and Comprehensive Evaluation
+
+Authors: Deep Shankar Pandey, Hyomin Choi, Qi Yu
+
+Published: 2025-12-27
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+Evidential deep learning (EDL) models, based on Subjective Logic, introduce a principled and computationally efficient way to make deterministic neural networks uncertainty-aware. The resulting evidential models can quantify fine-grained uncertainty using learned evidence. However, the Subjective-Logic framework constrains evidence to be non-negative, requiring specific activation functions whose geometric properties can induce activation-dependent learning-freeze behavior: a regime where gradients become extremely small for samples mapped into low-evidence regions. We theoretically characterize this behavior and analyze how different evidential activations influence learning dynamics. Building on this analysis, we design a general family of activation functions and corresponding evidential regularizers that provide an alternative pathway for consistent evidence updates across activation regimes. Extensive experiments on four benchmark classification problems (MNIST, CIFAR-10, CIFAR-100, and Tiny-ImageNet), two few-shot classification problems, and blind face restoration problem empirically validate the developed theory and demonstrate the effectiveness of the proposed generalized regularized evidential models.
+
+Paper ID: 2512.23753v1
+
+Summary:
+This paper titled "Generalized Regularized Evidential Deep Learning Models: Theory and Comprehensive Evaluation" was authored by Deep Shankar Pandey, Hyomin Choi, Qi Yu and published on 2025-12-27.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: Evidential deep learning (EDL) models, based on Subjective Logic, introduce a principled and computationally efficient way to make deterministic neural networks uncertainty-aware. The resulting evidential models can quantify fine-grained uncertainty using learned evidence. However, the Subjective-Logic framework constrains evidence to be non-negative, requiring specific activation functions whose geometric properties can induce activation-dependent learning-freeze behavior: a regime where gradients become extremely small for samples mapped into low-evidence regions. We theoretically characterize this behavior and analyze how different evidential activations influence learning dynamics. Building on this analysis, we design a general family of activation functions and corresponding evidential regularizers that provide an alternative pathway for consistent evidence updates across activation regimes. Extensive experiments on four benchmark classification problems (MNIST, CIFAR-10, CIFAR-100, and Tiny-ImageNet), two few-shot classification problems, and blind face restoration problem empirically validate the developed theory and demonstrate the effectiveness of the proposed generalized regularized evidential models.
+
+Links:
+  - https://arxiv.org/abs/2512.23753v1
+  - https://arxiv.org/pdf/2512.23753v1

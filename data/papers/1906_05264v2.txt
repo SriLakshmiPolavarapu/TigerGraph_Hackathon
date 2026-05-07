@@ -1,0 +1,21 @@
+Title: GluonTS: Probabilistic Time Series Models in Python
+
+Authors: Alexander Alexandrov, Konstantinos Benidis, Michael Bohlke-Schneider, Valentin Flunkert, Jan Gasthaus, Tim Januschowski, Danielle C. Maddix, Syama Rangapuram, David Salinas, Jasper Schulz, Lorenzo Stella, Ali Caner Türkmen, Yuyang Wang
+
+Published: 2019-06-12
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+We introduce Gluon Time Series (GluonTS, available at https://gluon-ts.mxnet.io), a library for deep-learning-based time series modeling. GluonTS simplifies the development of and experimentation with time series models for common tasks such as forecasting or anomaly detection. It provides all necessary components and tools that scientists need for quickly building new models, for efficiently running and analyzing experiments and for evaluating model accuracy.
+
+Paper ID: 1906.05264v2
+
+Summary:
+This paper titled "GluonTS: Probabilistic Time Series Models in Python" was authored by Alexander Alexandrov, Konstantinos Benidis, Michael Bohlke-Schneider, Valentin Flunkert, Jan Gasthaus, Tim Januschowski, Danielle C. Maddix, Syama Rangapuram, David Salinas, Jasper Schulz, Lorenzo Stella, Ali Caner Türkmen, Yuyang Wang and published on 2019-06-12.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: We introduce Gluon Time Series (GluonTS, available at https://gluon-ts.mxnet.io), a library for deep-learning-based time series modeling. GluonTS simplifies the development of and experimentation with time series models for common tasks such as forecasting or anomaly detection. It provides all necessary components and tools that scientists need for quickly building new models, for efficiently running and analyzing experiments and for evaluating model accuracy.
+
+Links:
+  - https://arxiv.org/abs/1906.05264v2
+  - https://arxiv.org/pdf/1906.05264v2

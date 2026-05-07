@@ -1,0 +1,22 @@
+Title: Adaptive Convolution for CNN-based Speech Enhancement Models
+
+Authors: Dahan Wang, Xiaobin Rong, Shiruo Sun, Yuxiang Hu, Changbao Zhu, Jing Lu
+
+Published: 2025-02-20
+
+Categories: eess.AS, cs.SD
+
+Abstract:
+Deep learning-based speech enhancement methods have significantly improved speech quality and intelligibility. Convolutional neural networks (CNNs) have been proven to be essential components of many high-performance models. In this paper, we introduce adaptive convolution, an efficient and versatile convolutional module that enhances the model's capability to adaptively represent speech signals. Adaptive convolution performs frame-wise causal dynamic convolution, generating time-varying kernels for each frame by assembling multiple parallel candidate kernels. A lightweight attention mechanism is proposed for adaptive convolution, leveraging both current and historical information to assign adaptive weights to each candidate kernel. This enables the convolution operation to adapt to frame-level speech spectral features, leading to more efficient extraction and reconstruction. We integrate adaptive convolution into various CNN-based models, highlighting its generalizability. Experimental results demonstrate that adaptive convolution significantly improves the performance with negligible increases in computational complexity, especially for lightweight models. Moreover, we present an intuitive analysis revealing a strong correlation between kernel selection and signal characteristics. Furthermore, we propose the adaptive convolutional recurrent network (AdaptCRN), an ultra-lightweight model that incorporates adaptive convolution and an efficient encoder-decoder design, achieving superior performance compared to models with similar or even higher computational costs.
+
+Paper ID: 2502.14224v2
+
+Summary:
+This paper titled "Adaptive Convolution for CNN-based Speech Enhancement Models" was authored by Dahan Wang, Xiaobin Rong, Shiruo Sun, Yuxiang Hu, Changbao Zhu, Jing Lu and published on 2025-02-20.
+It falls under the categories: eess.AS, cs.SD.
+The research explores the following topic: Deep learning-based speech enhancement methods have significantly improved speech quality and intelligibility. Convolutional neural networks (CNNs) have been proven to be essential components of many high-performance models. In this paper, we introduce adaptive convolution, an efficient and versatile convolutional module that enhances the model's capability to adaptively represent speech signals. Adaptive convolution performs frame-wise causal dynamic convolution, generating time-varying kernels for each frame by assembling multiple parallel candidate kernels. A lightweight attention mechanism is proposed for adaptive convolution, leveraging both current and historical information to assign adaptive weights to each candidate kernel. This enables the convolution operation to adapt to frame-level speech spectral features, leading to more efficient extraction and reconstruction. We integrate adaptive convolution into various CNN-based models, highlighting its generalizability. Experimental results demonstrate that adaptive convolution significantly improves the performance with negligible increases in computational complexity, especially for lightweight models. Moreover, we present an intuitive analysis revealing a strong correlation between kernel selection and signal characteristics. Furthermore, we propose the adaptive convolutional recurrent network (AdaptCRN), an ultra-lightweight model that incorporates adaptive convolution and an efficient encoder-decoder design, achieving superior performance compared to models with similar or even higher computational costs.
+
+Links:
+  - https://arxiv.org/abs/2502.14224v2
+  - https://arxiv.org/pdf/2502.14224v2
+  - https://doi.org/10.1109/TASLPRO.2025.3623897

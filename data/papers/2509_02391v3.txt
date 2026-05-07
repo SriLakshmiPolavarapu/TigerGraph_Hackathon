@@ -1,0 +1,21 @@
+Title: Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It
+
+Authors: Dongseok Kim, Hyoungsun Choi, Mohamed Jismy Aashik Rasool, Gisung Oh
+
+Published: 2025-09-02
+
+Categories: cs.LG, cs.GT, stat.ML
+
+Abstract:
+The success of federated learning (FL) ultimately depends on how strategic participants behave under partial observability, yet most formulations still treat FL as a static optimization problem. We instead view FL deployments as governed strategic systems and develop an analytical framework that separates welfare-improving behavior from metric gaming. Within this framework, we introduce indices that quantify manipulability, the price of gaming, and the price of cooperation, and we use them to study how rules, information disclosure, evaluation metrics, and aggregator-switching policies reshape incentives and cooperation patterns. We derive threshold conditions for deterring harmful gaming while preserving benign cooperation, and for triggering auto-switch rules when early-warning indicators become critical. Building on these results, we construct a design toolkit including a governance checklist and a simple audit-budget allocation algorithm with a provable performance guarantee. Simulations across diverse stylized environments and a federated learning case study consistently match the qualitative and quantitative patterns predicted by our framework. Taken together, our results provide design principles and operational guidelines for reducing metric gaming while sustaining stable, high-welfare cooperation in FL platforms.
+
+Paper ID: 2509.02391v3
+
+Summary:
+This paper titled "Gaming and Cooperation in Federated Learning: What Can Happen and How to Monitor It" was authored by Dongseok Kim, Hyoungsun Choi, Mohamed Jismy Aashik Rasool, Gisung Oh and published on 2025-09-02.
+It falls under the categories: cs.LG, cs.GT, stat.ML.
+The research explores the following topic: The success of federated learning (FL) ultimately depends on how strategic participants behave under partial observability, yet most formulations still treat FL as a static optimization problem. We instead view FL deployments as governed strategic systems and develop an analytical framework that separates welfare-improving behavior from metric gaming. Within this framework, we introduce indices that quantify manipulability, the price of gaming, and the price of cooperation, and we use them to study how rules, information disclosure, evaluation metrics, and aggregator-switching policies reshape incentives and cooperation patterns. We derive threshold conditions for deterring harmful gaming while preserving benign cooperation, and for triggering auto-switch rules when early-warning indicators become critical. Building on these results, we construct a design toolkit including a governance checklist and a simple audit-budget allocation algorithm with a provable performance guarantee. Simulations across diverse stylized environments and a federated learning case study consistently match the qualitative and quantitative patterns predicted by our framework. Taken together, our results provide design principles and operational guidelines for reducing metric gaming while sustaining stable, high-welfare cooperation in FL platforms.
+
+Links:
+  - https://arxiv.org/abs/2509.02391v3
+  - https://arxiv.org/pdf/2509.02391v3

@@ -1,0 +1,21 @@
+Title: Enhancing Human-Like Responses in Large Language Models
+
+Authors: Ethem Yağız Çalık, Talha Rüzgar Akkuş
+
+Published: 2025-01-09
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+This paper explores the advancements in making large language models (LLMs) more human-like. We focus on techniques that enhance natural language understanding, conversational coherence, and emotional intelligence in AI systems. The study evaluates various approaches, including fine-tuning with diverse datasets, incorporating psychological principles, and designing models that better mimic human reasoning patterns. Our findings demonstrate that these enhancements not only improve user interactions but also open new possibilities for AI applications across different domains. Future work will address the ethical implications and potential biases introduced by these human-like attributes.
+
+Paper ID: 2501.05032v2
+
+Summary:
+This paper titled "Enhancing Human-Like Responses in Large Language Models" was authored by Ethem Yağız Çalık, Talha Rüzgar Akkuş and published on 2025-01-09.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: This paper explores the advancements in making large language models (LLMs) more human-like. We focus on techniques that enhance natural language understanding, conversational coherence, and emotional intelligence in AI systems. The study evaluates various approaches, including fine-tuning with diverse datasets, incorporating psychological principles, and designing models that better mimic human reasoning patterns. Our findings demonstrate that these enhancements not only improve user interactions but also open new possibilities for AI applications across different domains. Future work will address the ethical implications and potential biases introduced by these human-like attributes.
+
+Links:
+  - https://arxiv.org/abs/2501.05032v2
+  - https://arxiv.org/pdf/2501.05032v2

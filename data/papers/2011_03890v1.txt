@@ -1,0 +1,21 @@
+Title: Echo Chambers in Collaborative Filtering Based Recommendation Systems
+
+Authors: Emil Noordeh, Roman Levin, Ruochen Jiang, Harris Shadmany
+
+Published: 2020-11-08
+
+Categories: cs.IR, cs.AI, cs.LG
+
+Abstract:
+Recommendation systems underpin the serving of nearly all online content in the modern age. From Youtube and Netflix recommendations, to Facebook feeds and Google searches, these systems are designed to filter content to the predicted preferences of users. Recently, these systems have faced growing criticism with respect to their impact on content diversity, social polarization, and the health of public discourse. In this work we simulate the recommendations given by collaborative filtering algorithms on users in the MovieLens data set. We find that prolonged exposure to system-generated recommendations substantially decreases content diversity, moving individual users into "echo-chambers" characterized by a narrow range of content. Furthermore, our work suggests that once these echo-chambers have been established, it is difficult for an individual user to break out by manipulating solely their own rating vector.
+
+Paper ID: 2011.03890v1
+
+Summary:
+This paper titled "Echo Chambers in Collaborative Filtering Based Recommendation Systems" was authored by Emil Noordeh, Roman Levin, Ruochen Jiang, Harris Shadmany and published on 2020-11-08.
+It falls under the categories: cs.IR, cs.AI, cs.LG.
+The research explores the following topic: Recommendation systems underpin the serving of nearly all online content in the modern age. From Youtube and Netflix recommendations, to Facebook feeds and Google searches, these systems are designed to filter content to the predicted preferences of users. Recently, these systems have faced growing criticism with respect to their impact on content diversity, social polarization, and the health of public discourse. In this work we simulate the recommendations given by collaborative filtering algorithms on users in the MovieLens data set. We find that prolonged exposure to system-generated recommendations substantially decreases content diversity, moving individual users into "echo-chambers" characterized by a narrow range of content. Furthermore, our work suggests that once these echo-chambers have been established, it is difficult for an individual user to break out by manipulating solely their own rating vector.
+
+Links:
+  - https://arxiv.org/abs/2011.03890v1
+  - https://arxiv.org/pdf/2011.03890v1

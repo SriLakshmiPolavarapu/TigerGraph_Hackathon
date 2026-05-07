@@ -1,0 +1,21 @@
+Title: Forecasting Smog Clouds With Deep Learning
+
+Authors: Valentijn Oldenburg, Juan Cardenas-Cartagena, Matias Valdenegro-Toro
+
+Published: 2024-10-03
+
+Categories: cs.LG
+
+Abstract:
+In this proof-of-concept study, we conduct multivariate timeseries forecasting for the concentrations of nitrogen dioxide (NO2), ozone (O3), and (fine) particulate matter (PM10 & PM2.5) with meteorological covariates between two locations using various deep learning models, with a focus on long short-term memory (LSTM) and gated recurrent unit (GRU) architectures. In particular, we propose an integrated, hierarchical model architecture inspired by air pollution dynamics and atmospheric science that employs multi-task learning and is benchmarked by unidirectional and fully-connected models. Results demonstrate that, above all, the hierarchical GRU proves itself as a competitive and efficient method for forecasting the concentration of smog-related pollutants.
+
+Paper ID: 2410.02759v1
+
+Summary:
+This paper titled "Forecasting Smog Clouds With Deep Learning" was authored by Valentijn Oldenburg, Juan Cardenas-Cartagena, Matias Valdenegro-Toro and published on 2024-10-03.
+It falls under the categories: cs.LG.
+The research explores the following topic: In this proof-of-concept study, we conduct multivariate timeseries forecasting for the concentrations of nitrogen dioxide (NO2), ozone (O3), and (fine) particulate matter (PM10 & PM2.5) with meteorological covariates between two locations using various deep learning models, with a focus on long short-term memory (LSTM) and gated recurrent unit (GRU) architectures. In particular, we propose an integrated, hierarchical model architecture inspired by air pollution dynamics and atmospheric science that employs multi-task learning and is benchmarked by unidirectional and fully-connected models. Results demonstrate that, above all, the hierarchical GRU proves itself as a competitive and efficient method for forecasting the concentration of smog-related pollutants.
+
+Links:
+  - https://arxiv.org/abs/2410.02759v1
+  - https://arxiv.org/pdf/2410.02759v1

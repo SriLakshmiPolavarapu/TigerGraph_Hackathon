@@ -1,0 +1,22 @@
+Title: Information Extraction from Scanned Invoice Images using Text Analysis and Layout Features
+
+Authors: Hien Thi Ha, Aleš Horák
+
+Published: 2022-08-08
+
+Categories: cs.CL
+
+Abstract:
+While storing invoice content as metadata to avoid paper document processing may be the future trend, almost all of daily issued invoices are still printed on paper or generated in digital formats such as PDFs. In this paper, we introduce the OCRMiner system for information extraction from scanned document images which is based on text analysis techniques in combination with layout features to extract indexing metadata of (semi-)structured documents. The system is designed to process the document in a similar way a human reader uses, i.e. to employ different layout and text attributes in a coordinated decision. The system consists of a set of interconnected modules that start with (possibly erroneous) character-based output from a standard OCR system and allow to apply different techniques and to expand the extracted knowledge at each step. Using an open source OCR, the system is able to recover the invoice data in 90% for English and in 88% for the Czech set.
+
+Paper ID: 2208.04011v1
+
+Summary:
+This paper titled "Information Extraction from Scanned Invoice Images using Text Analysis and Layout Features" was authored by Hien Thi Ha, Aleš Horák and published on 2022-08-08.
+It falls under the categories: cs.CL.
+The research explores the following topic: While storing invoice content as metadata to avoid paper document processing may be the future trend, almost all of daily issued invoices are still printed on paper or generated in digital formats such as PDFs. In this paper, we introduce the OCRMiner system for information extraction from scanned document images which is based on text analysis techniques in combination with layout features to extract indexing metadata of (semi-)structured documents. The system is designed to process the document in a similar way a human reader uses, i.e. to employ different layout and text attributes in a coordinated decision. The system consists of a set of interconnected modules that start with (possibly erroneous) character-based output from a standard OCR system and allow to apply different techniques and to expand the extracted knowledge at each step. Using an open source OCR, the system is able to recover the invoice data in 90% for English and in 88% for the Czech set.
+
+Links:
+  - https://arxiv.org/abs/2208.04011v1
+  - https://arxiv.org/pdf/2208.04011v1
+  - https://doi.org/10.1016/j.image.2021.116601

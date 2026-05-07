@@ -1,0 +1,21 @@
+Title: Continual Classification Learning Using Generative Models
+
+Authors: Frantzeska Lavda, Jason Ramapuram, Magda Gregorova, Alexandros Kalousis
+
+Published: 2018-10-24
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Continual learning is the ability to sequentially learn over time by accommodating knowledge while retaining previously learned experiences. Neural networks can learn multiple tasks when trained on them jointly, but cannot maintain performance on previously learned tasks when tasks are presented one at a time. This problem is called catastrophic forgetting. In this work, we propose a classification model that learns continuously from sequentially observed tasks, while preventing catastrophic forgetting. We build on the lifelong generative capabilities of [10] and extend it to the classification setting by deriving a new variational bound on the joint log likelihood, $\log p(x; y)$.
+
+Paper ID: 1810.10612v1
+
+Summary:
+This paper titled "Continual Classification Learning Using Generative Models" was authored by Frantzeska Lavda, Jason Ramapuram, Magda Gregorova, Alexandros Kalousis and published on 2018-10-24.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Continual learning is the ability to sequentially learn over time by accommodating knowledge while retaining previously learned experiences. Neural networks can learn multiple tasks when trained on them jointly, but cannot maintain performance on previously learned tasks when tasks are presented one at a time. This problem is called catastrophic forgetting. In this work, we propose a classification model that learns continuously from sequentially observed tasks, while preventing catastrophic forgetting. We build on the lifelong generative capabilities of [10] and extend it to the classification setting by deriving a new variational bound on the joint log likelihood, $\log p(x; y)$.
+
+Links:
+  - https://arxiv.org/abs/1810.10612v1
+  - https://arxiv.org/pdf/1810.10612v1

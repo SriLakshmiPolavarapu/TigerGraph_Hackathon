@@ -1,0 +1,21 @@
+Title: Optimization through In-Context Learning and Iterative LLM Prompting for Nuclear Engineering Design Problems
+
+Authors: M. Rizki Oktavian, Anirudh Tunga, Amandeep Bakshi, Michael J. Mueterthies, J. Thomas Gruenwald, Jonathan Nistor
+
+Published: 2025-03-25
+
+Categories: cs.LG, physics.comp-ph
+
+Abstract:
+The optimization of nuclear engineering designs, such as nuclear fuel assembly configurations, involves managing competing objectives like reactivity control and power distribution. This study explores the use of Optimization by Prompting, an iterative approach utilizing large language models (LLMs), to address these challenges. The method is straightforward to implement, requiring no hyperparameter tuning or complex mathematical formulations. Optimization problems can be described in plain English, with only an evaluator and a parsing script needed for execution. The in-context learning capabilities of LLMs enable them to understand problem nuances, therefore, they have the potential to surpass traditional metaheuristic optimization methods. This study demonstrates the application of LLMs as optimizers to Boiling Water Reactor (BWR) fuel lattice design, showing the capability of commercial LLMs to achieve superior optimization results compared to traditional methods.
+
+Paper ID: 2503.19620v1
+
+Summary:
+This paper titled "Optimization through In-Context Learning and Iterative LLM Prompting for Nuclear Engineering Design Problems" was authored by M. Rizki Oktavian, Anirudh Tunga, Amandeep Bakshi, Michael J. Mueterthies, J. Thomas Gruenwald, Jonathan Nistor and published on 2025-03-25.
+It falls under the categories: cs.LG, physics.comp-ph.
+The research explores the following topic: The optimization of nuclear engineering designs, such as nuclear fuel assembly configurations, involves managing competing objectives like reactivity control and power distribution. This study explores the use of Optimization by Prompting, an iterative approach utilizing large language models (LLMs), to address these challenges. The method is straightforward to implement, requiring no hyperparameter tuning or complex mathematical formulations. Optimization problems can be described in plain English, with only an evaluator and a parsing script needed for execution. The in-context learning capabilities of LLMs enable them to understand problem nuances, therefore, they have the potential to surpass traditional metaheuristic optimization methods. This study demonstrates the application of LLMs as optimizers to Boiling Water Reactor (BWR) fuel lattice design, showing the capability of commercial LLMs to achieve superior optimization results compared to traditional methods.
+
+Links:
+  - https://arxiv.org/abs/2503.19620v1
+  - https://arxiv.org/pdf/2503.19620v1

@@ -1,0 +1,22 @@
+Title: Probabilistic Forecasting in Day-Ahead Electricity Markets: Simulating Peak and Off-Peak Prices
+
+Authors: Peru Muniain, Florian Ziel
+
+Published: 2018-10-19
+
+Categories: econ.EM
+
+Abstract:
+In this paper we include dependency structures for electricity price forecasting and forecasting evaluation. We work with off-peak and peak time series from the German-Austrian day-ahead price, hence we analyze bivariate data. We first estimate the mean of the two time series, and then in a second step we estimate the residuals. The mean equation is estimated by OLS and elastic net and the residuals are estimated by maximum likelihood. Our contribution is to include a bivariate jump component on a mean reverting jump diffusion model in the residuals. The models' forecasts are evaluated using four different criteria, including the energy score to measure whether the correlation structure between the time series is properly included or not. In the results it is observed that the models with bivariate jumps provide better results with the energy score, which means that it is important to consider this structure in order to properly forecast correlated time series.
+
+Paper ID: 1810.08418v2
+
+Summary:
+This paper titled "Probabilistic Forecasting in Day-Ahead Electricity Markets: Simulating Peak and Off-Peak Prices" was authored by Peru Muniain, Florian Ziel and published on 2018-10-19.
+It falls under the categories: econ.EM.
+The research explores the following topic: In this paper we include dependency structures for electricity price forecasting and forecasting evaluation. We work with off-peak and peak time series from the German-Austrian day-ahead price, hence we analyze bivariate data. We first estimate the mean of the two time series, and then in a second step we estimate the residuals. The mean equation is estimated by OLS and elastic net and the residuals are estimated by maximum likelihood. Our contribution is to include a bivariate jump component on a mean reverting jump diffusion model in the residuals. The models' forecasts are evaluated using four different criteria, including the energy score to measure whether the correlation structure between the time series is properly included or not. In the results it is observed that the models with bivariate jumps provide better results with the energy score, which means that it is important to consider this structure in order to properly forecast correlated time series.
+
+Links:
+  - https://arxiv.org/abs/1810.08418v2
+  - https://arxiv.org/pdf/1810.08418v2
+  - https://doi.org/10.1016/j.ijforecast.2019.11.006

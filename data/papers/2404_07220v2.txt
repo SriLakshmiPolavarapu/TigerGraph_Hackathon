@@ -1,0 +1,22 @@
+Title: Blended RAG: Improving RAG (Retriever-Augmented Generation) Accuracy with Semantic Search and Hybrid Query-Based Retrievers
+
+Authors: Kunal Sawarkar, Abhilasha Mangal, Shivam Raj Solanki
+
+Published: 2024-03-22
+
+Categories: cs.IR, cs.AI, cs.CL
+
+Abstract:
+Retrieval-Augmented Generation (RAG) is a prevalent approach to infuse a private knowledge base of documents with Large Language Models (LLM) to build Generative Q\&A (Question-Answering) systems. However, RAG accuracy becomes increasingly challenging as the corpus of documents scales up, with Retrievers playing an outsized role in the overall RAG accuracy by extracting the most relevant document from the corpus to provide context to the LLM. In this paper, we propose the 'Blended RAG' method of leveraging semantic search techniques, such as Dense Vector indexes and Sparse Encoder indexes, blended with hybrid query strategies. Our study achieves better retrieval results and sets new benchmarks for IR (Information Retrieval) datasets like NQ and TREC-COVID datasets. We further extend such a 'Blended Retriever' to the RAG system to demonstrate far superior results on Generative Q\&A datasets like SQUAD, even surpassing fine-tuning performance.
+
+Paper ID: 2404.07220v2
+
+Summary:
+This paper titled "Blended RAG: Improving RAG (Retriever-Augmented Generation) Accuracy with Semantic Search and Hybrid Query-Based Retrievers" was authored by Kunal Sawarkar, Abhilasha Mangal, Shivam Raj Solanki and published on 2024-03-22.
+It falls under the categories: cs.IR, cs.AI, cs.CL.
+The research explores the following topic: Retrieval-Augmented Generation (RAG) is a prevalent approach to infuse a private knowledge base of documents with Large Language Models (LLM) to build Generative Q\&A (Question-Answering) systems. However, RAG accuracy becomes increasingly challenging as the corpus of documents scales up, with Retrievers playing an outsized role in the overall RAG accuracy by extracting the most relevant document from the corpus to provide context to the LLM. In this paper, we propose the 'Blended RAG' method of leveraging semantic search techniques, such as Dense Vector indexes and Sparse Encoder indexes, blended with hybrid query strategies. Our study achieves better retrieval results and sets new benchmarks for IR (Information Retrieval) datasets like NQ and TREC-COVID datasets. We further extend such a 'Blended Retriever' to the RAG system to demonstrate far superior results on Generative Q\&A datasets like SQUAD, even surpassing fine-tuning performance.
+
+Links:
+  - https://arxiv.org/abs/2404.07220v2
+  - https://arxiv.org/pdf/2404.07220v2
+  - https://doi.org/10.1109/MIPR62202.2024.00031

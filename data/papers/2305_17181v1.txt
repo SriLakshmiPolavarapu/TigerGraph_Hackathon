@@ -1,0 +1,21 @@
+Title: Selective Communication for Cooperative Perception in End-to-End Autonomous Driving
+
+Authors: Hsu-kuang Chiu, Stephen F. Smith
+
+Published: 2023-05-26
+
+Categories: cs.RO, cs.CV
+
+Abstract:
+The reliability of current autonomous driving systems is often jeopardized in situations when the vehicle's field-of-view is limited by nearby occluding objects. To mitigate this problem, vehicle-to-vehicle communication to share sensor information among multiple autonomous driving vehicles has been proposed. However, to enable timely processing and use of shared sensor data, it is necessary to constrain communication bandwidth, and prior work has done so by restricting the number of other cooperative vehicles and randomly selecting the subset of vehicles to exchange information with from all those that are within communication range. Although simple and cost effective from a communication perspective, this selection approach suffers from its susceptibility to missing those vehicles that possess the perception information most critical to navigation planning. Inspired by recent multi-agent path finding research, we propose a novel selective communication algorithm for cooperative perception to address this shortcoming. Implemented with a lightweight perception network and a previously developed control network, our algorithm is shown to produce higher success rates than a random selection approach on previously studied safety-critical driving scenario simulations, with minimal additional communication overhead.
+
+Paper ID: 2305.17181v1
+
+Summary:
+This paper titled "Selective Communication for Cooperative Perception in End-to-End Autonomous Driving" was authored by Hsu-kuang Chiu, Stephen F. Smith and published on 2023-05-26.
+It falls under the categories: cs.RO, cs.CV.
+The research explores the following topic: The reliability of current autonomous driving systems is often jeopardized in situations when the vehicle's field-of-view is limited by nearby occluding objects. To mitigate this problem, vehicle-to-vehicle communication to share sensor information among multiple autonomous driving vehicles has been proposed. However, to enable timely processing and use of shared sensor data, it is necessary to constrain communication bandwidth, and prior work has done so by restricting the number of other cooperative vehicles and randomly selecting the subset of vehicles to exchange information with from all those that are within communication range. Although simple and cost effective from a communication perspective, this selection approach suffers from its susceptibility to missing those vehicles that possess the perception information most critical to navigation planning. Inspired by recent multi-agent path finding research, we propose a novel selective communication algorithm for cooperative perception to address this shortcoming. Implemented with a lightweight perception network and a previously developed control network, our algorithm is shown to produce higher success rates than a random selection approach on previously studied safety-critical driving scenario simulations, with minimal additional communication overhead.
+
+Links:
+  - https://arxiv.org/abs/2305.17181v1
+  - https://arxiv.org/pdf/2305.17181v1

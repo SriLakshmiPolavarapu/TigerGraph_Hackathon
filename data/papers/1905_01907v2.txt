@@ -1,0 +1,22 @@
+Title: Missing Data Imputation with Adversarially-trained Graph Convolutional Networks
+
+Authors: Indro Spinelli, Simone Scardapane, Aurelio Uncini
+
+Published: 2019-05-06
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Missing data imputation (MDI) is a fundamental problem in many scientific disciplines. Popular methods for MDI use global statistics computed from the entire data set (e.g., the feature-wise medians), or build predictive models operating independently on every instance. In this paper we propose a more general framework for MDI, leveraging recent work in the field of graph neural networks (GNNs). We formulate the MDI task in terms of a graph denoising autoencoder, where each edge of the graph encodes the similarity between two patterns. A GNN encoder learns to build intermediate representations for each example by interleaving classical projection layers and locally combining information between neighbors, while another decoding GNN learns to reconstruct the full imputed data set from this intermediate embedding. In order to speed-up training and improve the performance, we use a combination of multiple losses, including an adversarial loss implemented with the Wasserstein metric and a gradient penalty. We also explore a few extensions to the basic architecture involving the use of residual connections between layers, and of global statistics computed from the data set to improve the accuracy. On a large experimental evaluation, we show that our method robustly outperforms state-of-the-art approaches for MDI, especially for large percentages of missing values.
+
+Paper ID: 1905.01907v2
+
+Summary:
+This paper titled "Missing Data Imputation with Adversarially-trained Graph Convolutional Networks" was authored by Indro Spinelli, Simone Scardapane, Aurelio Uncini and published on 2019-05-06.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Missing data imputation (MDI) is a fundamental problem in many scientific disciplines. Popular methods for MDI use global statistics computed from the entire data set (e.g., the feature-wise medians), or build predictive models operating independently on every instance. In this paper we propose a more general framework for MDI, leveraging recent work in the field of graph neural networks (GNNs). We formulate the MDI task in terms of a graph denoising autoencoder, where each edge of the graph encodes the similarity between two patterns. A GNN encoder learns to build intermediate representations for each example by interleaving classical projection layers and locally combining information between neighbors, while another decoding GNN learns to reconstruct the full imputed data set from this intermediate embedding. In order to speed-up training and improve the performance, we use a combination of multiple losses, including an adversarial loss implemented with the Wasserstein metric and a gradient penalty. We also explore a few extensions to the basic architecture involving the use of residual connections between layers, and of global statistics computed from the data set to improve the accuracy. On a large experimental evaluation, we show that our method robustly outperforms state-of-the-art approaches for MDI, especially for large percentages of missing values.
+
+Links:
+  - https://arxiv.org/abs/1905.01907v2
+  - https://arxiv.org/pdf/1905.01907v2
+  - https://doi.org/10.1016/j.neunet.2020.06.005

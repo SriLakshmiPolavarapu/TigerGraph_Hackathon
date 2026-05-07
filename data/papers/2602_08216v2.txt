@@ -1,0 +1,21 @@
+Title: Thermodynamic Isomorphism of Transformers: A Lagrangian Approach to Attention Dynamics
+
+Authors: Gunn Kim
+
+Published: 2026-02-09
+
+Categories: cs.LG, cond-mat.stat-mech, stat.ML
+
+Abstract:
+We propose an effective field-theoretic framework for analyzing Transformer attention through a thermodynamic lens. By constructing a Lagrangian on the information manifold equipped with the Fisher metric, we show that, within the Shannon--Boltzmann entropy framework, the Softmax function arises as a stationary solution minimizing a Helmholtz free energy functional. This establishes a formal correspondence between scaled dot-product attention and canonical ensemble statistics. Extending this mapping to macroscopic observables, we define an effective specific heat associated with fluctuations of the attention energy landscape. In controlled experiments on the modular addition task ($p = 19$--$113$), we observe a robust peak in this fluctuation measure that consistently precedes the onset of generalization. While no asymptotic power-law divergence is detected in this finite-depth regime, the reproducible enhancement of energy variance suggests a critical-like crossover accompanying representational reorganization. Our framework provides a unified statistical-mechanical perspective on attention scaling, training dynamics, and positional encoding, interpreting the phenomena as emergent properties of an effective thermodynamic system rather than isolated heuristics. Although the present results indicate finite-size crossover behavior rather than a strict phase transition, they motivate further investigation into scaling limits of deep architectures through fluctuation-based observables.
+
+Paper ID: 2602.08216v2
+
+Summary:
+This paper titled "Thermodynamic Isomorphism of Transformers: A Lagrangian Approach to Attention Dynamics" was authored by Gunn Kim and published on 2026-02-09.
+It falls under the categories: cs.LG, cond-mat.stat-mech, stat.ML.
+The research explores the following topic: We propose an effective field-theoretic framework for analyzing Transformer attention through a thermodynamic lens. By constructing a Lagrangian on the information manifold equipped with the Fisher metric, we show that, within the Shannon--Boltzmann entropy framework, the Softmax function arises as a stationary solution minimizing a Helmholtz free energy functional. This establishes a formal correspondence between scaled dot-product attention and canonical ensemble statistics. Extending this mapping to macroscopic observables, we define an effective specific heat associated with fluctuations of the attention energy landscape. In controlled experiments on the modular addition task ($p = 19$--$113$), we observe a robust peak in this fluctuation measure that consistently precedes the onset of generalization. While no asymptotic power-law divergence is detected in this finite-depth regime, the reproducible enhancement of energy variance suggests a critical-like crossover accompanying representational reorganization. Our framework provides a unified statistical-mechanical perspective on attention scaling, training dynamics, and positional encoding, interpreting the phenomena as emergent properties of an effective thermodynamic system rather than isolated heuristics. Although the present results indicate finite-size crossover behavior rather than a strict phase transition, they motivate further investigation into scaling limits of deep architectures through fluctuation-based observables.
+
+Links:
+  - https://arxiv.org/abs/2602.08216v2
+  - https://arxiv.org/pdf/2602.08216v2

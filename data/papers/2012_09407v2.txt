@@ -1,0 +1,21 @@
+Title: Joint Search of Data Augmentation Policies and Network Architectures
+
+Authors: Taiga Kashima, Yoshihiro Yamada, Shunta Saito
+
+Published: 2020-12-17
+
+Categories: cs.LG, cs.CV
+
+Abstract:
+The common pipeline of training deep neural networks consists of several building blocks such as data augmentation and network architecture selection. AutoML is a research field that aims at automatically designing those parts, but most methods explore each part independently because it is more challenging to simultaneously search all the parts. In this paper, we propose a joint optimization method for data augmentation policies and network architectures to bring more automation to the design of training pipeline. The core idea of our approach is to make the whole part differentiable. The proposed method combines differentiable methods for augmentation policy search and network architecture search to jointly optimize them in the end-to-end manner. The experimental results show our method achieves competitive or superior performance to the independently searched results.
+
+Paper ID: 2012.09407v2
+
+Summary:
+This paper titled "Joint Search of Data Augmentation Policies and Network Architectures" was authored by Taiga Kashima, Yoshihiro Yamada, Shunta Saito and published on 2020-12-17.
+It falls under the categories: cs.LG, cs.CV.
+The research explores the following topic: The common pipeline of training deep neural networks consists of several building blocks such as data augmentation and network architecture selection. AutoML is a research field that aims at automatically designing those parts, but most methods explore each part independently because it is more challenging to simultaneously search all the parts. In this paper, we propose a joint optimization method for data augmentation policies and network architectures to bring more automation to the design of training pipeline. The core idea of our approach is to make the whole part differentiable. The proposed method combines differentiable methods for augmentation policy search and network architecture search to jointly optimize them in the end-to-end manner. The experimental results show our method achieves competitive or superior performance to the independently searched results.
+
+Links:
+  - https://arxiv.org/abs/2012.09407v2
+  - https://arxiv.org/pdf/2012.09407v2

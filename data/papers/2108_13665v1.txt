@@ -1,0 +1,22 @@
+Title: Is First Person Vision Challenging for Object Tracking?
+
+Authors: Matteo Dunnhofer, Antonino Furnari, Giovanni Maria Farinella, Christian Micheloni
+
+Published: 2021-08-31
+
+Categories: cs.CV
+
+Abstract:
+Understanding human-object interactions is fundamental in First Person Vision (FPV). Tracking algorithms which follow the objects manipulated by the camera wearer can provide useful cues to effectively model such interactions. Visual tracking solutions available in the computer vision literature have significantly improved their performance in the last years for a large variety of target objects and tracking scenarios. However, despite a few previous attempts to exploit trackers in FPV applications, a methodical analysis of the performance of state-of-the-art trackers in this domain is still missing. In this paper, we fill the gap by presenting the first systematic study of object tracking in FPV. Our study extensively analyses the performance of recent visual trackers and baseline FPV trackers with respect to different aspects and considering a new performance measure. This is achieved through TREK-150, a novel benchmark dataset composed of 150 densely annotated video sequences. Our results show that object tracking in FPV is challenging, which suggests that more research efforts should be devoted to this problem so that tracking could benefit FPV tasks.
+
+Paper ID: 2108.13665v1
+
+Summary:
+This paper titled "Is First Person Vision Challenging for Object Tracking?" was authored by Matteo Dunnhofer, Antonino Furnari, Giovanni Maria Farinella, Christian Micheloni and published on 2021-08-31.
+It falls under the categories: cs.CV.
+The research explores the following topic: Understanding human-object interactions is fundamental in First Person Vision (FPV). Tracking algorithms which follow the objects manipulated by the camera wearer can provide useful cues to effectively model such interactions. Visual tracking solutions available in the computer vision literature have significantly improved their performance in the last years for a large variety of target objects and tracking scenarios. However, despite a few previous attempts to exploit trackers in FPV applications, a methodical analysis of the performance of state-of-the-art trackers in this domain is still missing. In this paper, we fill the gap by presenting the first systematic study of object tracking in FPV. Our study extensively analyses the performance of recent visual trackers and baseline FPV trackers with respect to different aspects and considering a new performance measure. This is achieved through TREK-150, a novel benchmark dataset composed of 150 densely annotated video sequences. Our results show that object tracking in FPV is challenging, which suggests that more research efforts should be devoted to this problem so that tracking could benefit FPV tasks.
+
+Links:
+  - https://arxiv.org/abs/2108.13665v1
+  - https://arxiv.org/pdf/2108.13665v1
+  - https://doi.org/10.1109/ICCVW54120.2021.00304

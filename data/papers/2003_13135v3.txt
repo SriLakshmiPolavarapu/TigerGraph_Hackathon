@@ -1,0 +1,21 @@
+Title: Learning Latent Causal Structures with a Redundant Input Neural Network
+
+Authors: Jonathan D. Young, Bryan Andrews, Gregory F. Cooper, Xinghua Lu
+
+Published: 2020-03-29
+
+Categories: cs.LG, cs.NE, q-bio.MN, stat.ML
+
+Abstract:
+Most causal discovery algorithms find causal structure among a set of observed variables. Learning the causal structure among latent variables remains an important open problem, particularly when using high-dimensional data. In this paper, we address a problem for which it is known that inputs cause outputs, and these causal relationships are encoded by a causal network among a set of an unknown number of latent variables. We developed a deep learning model, which we call a redundant input neural network (RINN), with a modified architecture and a regularized objective function to find causal relationships between input, hidden, and output variables. More specifically, our model allows input variables to directly interact with all latent variables in a neural network to influence what information the latent variables should encode in order to generate the output variables accurately. In this setting, the direct connections between input and latent variables makes the latent variables partially interpretable; furthermore, the connectivity among the latent variables in the neural network serves to model their potential causal relationships to each other and to the output variables. A series of simulation experiments provide support that the RINN method can successfully recover latent causal structure between input and output variables.
+
+Paper ID: 2003.13135v3
+
+Summary:
+This paper titled "Learning Latent Causal Structures with a Redundant Input Neural Network" was authored by Jonathan D. Young, Bryan Andrews, Gregory F. Cooper, Xinghua Lu and published on 2020-03-29.
+It falls under the categories: cs.LG, cs.NE, q-bio.MN, stat.ML.
+The research explores the following topic: Most causal discovery algorithms find causal structure among a set of observed variables. Learning the causal structure among latent variables remains an important open problem, particularly when using high-dimensional data. In this paper, we address a problem for which it is known that inputs cause outputs, and these causal relationships are encoded by a causal network among a set of an unknown number of latent variables. We developed a deep learning model, which we call a redundant input neural network (RINN), with a modified architecture and a regularized objective function to find causal relationships between input, hidden, and output variables. More specifically, our model allows input variables to directly interact with all latent variables in a neural network to influence what information the latent variables should encode in order to generate the output variables accurately. In this setting, the direct connections between input and latent variables makes the latent variables partially interpretable; furthermore, the connectivity among the latent variables in the neural network serves to model their potential causal relationships to each other and to the output variables. A series of simulation experiments provide support that the RINN method can successfully recover latent causal structure between input and output variables.
+
+Links:
+  - https://arxiv.org/abs/2003.13135v3
+  - https://arxiv.org/pdf/2003.13135v3

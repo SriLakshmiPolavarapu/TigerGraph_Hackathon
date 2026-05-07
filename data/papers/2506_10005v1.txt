@@ -1,0 +1,21 @@
+Title: Multimodal Cinematic Video Synthesis Using Text-to-Image and Audio Generation Models
+
+Authors: Sridhar S, Nithin A, Shakeel Rifath, Vasantha Raj
+
+Published: 2025-04-06
+
+Categories: cs.CV, cs.AI, cs.CL, cs.GR, cs.MM
+
+Abstract:
+Advances in generative artificial intelligence have altered multimedia creation, allowing for automatic cinematic video synthesis from text inputs. This work describes a method for creating 60-second cinematic movies incorporating Stable Diffusion for high-fidelity image synthesis, GPT-2 for narrative structuring, and a hybrid audio pipeline using gTTS and YouTube-sourced music. It uses a five-scene framework, which is augmented by linear frame interpolation, cinematic post-processing (e.g., sharpening), and audio-video synchronization to provide professional-quality results. It was created in a GPU-accelerated Google Colab environment using Python 3.11. It has a dual-mode Gradio interface (Simple and Advanced), which supports resolutions of up to 1024x768 and frame rates of 15-30 FPS. Optimizations such as CUDA memory management and error handling ensure reliability. The experiments demonstrate outstanding visual quality, narrative coherence, and efficiency, furthering text-to-video synthesis for creative, educational, and industrial applications.
+
+Paper ID: 2506.10005v1
+
+Summary:
+This paper titled "Multimodal Cinematic Video Synthesis Using Text-to-Image and Audio Generation Models" was authored by Sridhar S, Nithin A, Shakeel Rifath, Vasantha Raj and published on 2025-04-06.
+It falls under the categories: cs.CV, cs.AI, cs.CL, cs.GR, cs.MM.
+The research explores the following topic: Advances in generative artificial intelligence have altered multimedia creation, allowing for automatic cinematic video synthesis from text inputs. This work describes a method for creating 60-second cinematic movies incorporating Stable Diffusion for high-fidelity image synthesis, GPT-2 for narrative structuring, and a hybrid audio pipeline using gTTS and YouTube-sourced music. It uses a five-scene framework, which is augmented by linear frame interpolation, cinematic post-processing (e.g., sharpening), and audio-video synchronization to provide professional-quality results. It was created in a GPU-accelerated Google Colab environment using Python 3.11. It has a dual-mode Gradio interface (Simple and Advanced), which supports resolutions of up to 1024x768 and frame rates of 15-30 FPS. Optimizations such as CUDA memory management and error handling ensure reliability. The experiments demonstrate outstanding visual quality, narrative coherence, and efficiency, furthering text-to-video synthesis for creative, educational, and industrial applications.
+
+Links:
+  - https://arxiv.org/abs/2506.10005v1
+  - https://arxiv.org/pdf/2506.10005v1

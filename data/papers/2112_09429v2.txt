@@ -1,0 +1,22 @@
+Title: Federated Learning with Superquantile Aggregation for Heterogeneous Data
+
+Authors: Krishna Pillutla, Yassine Laguel, Jérôme Malick, Zaid Harchaoui
+
+Published: 2021-12-17
+
+Categories: cs.LG, math.OC, stat.ML
+
+Abstract:
+We present a federated learning framework that is designed to robustly deliver good predictive performance across individual clients with heterogeneous data. The proposed approach hinges upon a superquantile-based learning objective that captures the tail statistics of the error distribution over heterogeneous clients. We present a stochastic training algorithm that interleaves differentially private client filtering with federated averaging steps. We prove finite time convergence guarantees for the algorithm: $O(1/\sqrt{T})$ in the nonconvex case in $T$ communication rounds and $O(\exp(-T/κ^{3/2}) + κ/T)$ in the strongly convex case with local condition number $κ$. Experimental results on benchmark datasets for federated learning demonstrate that our approach is competitive with classical ones in terms of average error and outperforms them in terms of tail statistics of the error.
+
+Paper ID: 2112.09429v2
+
+Summary:
+This paper titled "Federated Learning with Superquantile Aggregation for Heterogeneous Data" was authored by Krishna Pillutla, Yassine Laguel, Jérôme Malick, Zaid Harchaoui and published on 2021-12-17.
+It falls under the categories: cs.LG, math.OC, stat.ML.
+The research explores the following topic: We present a federated learning framework that is designed to robustly deliver good predictive performance across individual clients with heterogeneous data. The proposed approach hinges upon a superquantile-based learning objective that captures the tail statistics of the error distribution over heterogeneous clients. We present a stochastic training algorithm that interleaves differentially private client filtering with federated averaging steps. We prove finite time convergence guarantees for the algorithm: $O(1/\sqrt{T})$ in the nonconvex case in $T$ communication rounds and $O(\exp(-T/κ^{3/2}) + κ/T)$ in the strongly convex case with local condition number $κ$. Experimental results on benchmark datasets for federated learning demonstrate that our approach is competitive with classical ones in terms of average error and outperforms them in terms of tail statistics of the error.
+
+Links:
+  - https://arxiv.org/abs/2112.09429v2
+  - https://arxiv.org/pdf/2112.09429v2
+  - https://doi.org/10.1007/s10994-023-06332-x

@@ -1,0 +1,22 @@
+Title: Word Error Rate Definitions and Algorithms for Long-Form Multi-talker Speech Recognition
+
+Authors: Thilo von Neumann, Christoph Boeddeker, Marc Delcroix, Reinhold Haeb-Umbach
+
+Published: 2025-08-04
+
+Categories: eess.AS
+
+Abstract:
+The predominant metric for evaluating speech recognizers, the Word Error Rate (WER) has been extended in different ways to handle transcripts produced by long-form multi-talker speech recognizers. These systems process long transcripts containing multiple speakers and complex speaking patterns so that the classical WER cannot be applied. There are speaker-attributed approaches that count speaker confusion errors, such as the concatenated minimum-permutation WER cpWER and the time-constrained cpWER (tcpWER), and speaker-agnostic approaches, which aim to ignore speaker confusion errors, such as the Optimal Reference Combination WER (ORC-WER) and the MIMO-WER. These WERs evaluate different aspects and error types (e.g., temporal misalignment). A detailed comparison has not been made. We therefore present a unified description of the existing WERs and highlight when to use which metric. To further analyze how many errors are caused by speaker confusion, we propose the Diarization-invariant cpWER (DI-cpWER). It ignores speaker attribution errors and its difference to cpWER reflects the impact of speaker confusions on the WER. Since error types cannot reliably be classified automatically, we discuss ways to visualize sequence alignments between the reference and hypothesis transcripts to facilitate the spotting of errors by a human judge. Since some WER definitions have high computational complexity, we introduce a greedy algorithm to approximate the ORC-WER and DI-cpWER with high precision ($<0.1\%$ deviation in our experiments) and polynomial complexity instead of exponential. To improve the plausibility of the metrics, we also incorporate the time constraint from the tcpWER into ORC-WER and MIMO-WER, also significantly reducing the computational complexity.
+
+Paper ID: 2508.02112v1
+
+Summary:
+This paper titled "Word Error Rate Definitions and Algorithms for Long-Form Multi-talker Speech Recognition" was authored by Thilo von Neumann, Christoph Boeddeker, Marc Delcroix, Reinhold Haeb-Umbach and published on 2025-08-04.
+It falls under the categories: eess.AS.
+The research explores the following topic: The predominant metric for evaluating speech recognizers, the Word Error Rate (WER) has been extended in different ways to handle transcripts produced by long-form multi-talker speech recognizers. These systems process long transcripts containing multiple speakers and complex speaking patterns so that the classical WER cannot be applied. There are speaker-attributed approaches that count speaker confusion errors, such as the concatenated minimum-permutation WER cpWER and the time-constrained cpWER (tcpWER), and speaker-agnostic approaches, which aim to ignore speaker confusion errors, such as the Optimal Reference Combination WER (ORC-WER) and the MIMO-WER. These WERs evaluate different aspects and error types (e.g., temporal misalignment). A detailed comparison has not been made. We therefore present a unified description of the existing WERs and highlight when to use which metric. To further analyze how many errors are caused by speaker confusion, we propose the Diarization-invariant cpWER (DI-cpWER). It ignores speaker attribution errors and its difference to cpWER reflects the impact of speaker confusions on the WER. Since error types cannot reliably be classified automatically, we discuss ways to visualize sequence alignments between the reference and hypothesis transcripts to facilitate the spotting of errors by a human judge. Since some WER definitions have high computational complexity, we introduce a greedy algorithm to approximate the ORC-WER and DI-cpWER with high precision ($<0.1\%$ deviation in our experiments) and polynomial complexity instead of exponential. To improve the plausibility of the metrics, we also incorporate the time constraint from the tcpWER into ORC-WER and MIMO-WER, also significantly reducing the computational complexity.
+
+Links:
+  - https://arxiv.org/abs/2508.02112v1
+  - https://arxiv.org/pdf/2508.02112v1
+  - https://doi.org/10.1109/TASLPRO.2025.3589862

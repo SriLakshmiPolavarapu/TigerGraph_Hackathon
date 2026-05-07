@@ -1,0 +1,21 @@
+Title: EasyARC: Evaluating Vision Language Models on True Visual Reasoning
+
+Authors: Mert Unsal, Aylin Akkus
+
+Published: 2025-06-13
+
+Categories: cs.CV, cs.LG
+
+Abstract:
+Building on recent advances in language-based reasoning models, we explore multimodal reasoning that integrates vision and text. Existing multimodal benchmarks primarily test visual extraction combined with text-based reasoning, lacking true visual reasoning with more complex interactions between vision and language. Inspired by the ARC challenge, we introduce EasyARC, a vision-language benchmark requiring multi-image, multi-step reasoning, and self-correction. EasyARC is procedurally generated, fully verifiable, and scalable, making it ideal for reinforcement learning (RL) pipelines. The generators incorporate progressive difficulty levels, enabling structured evaluation across task types and complexities. We benchmark state-of-the-art vision-language models and analyze their failure modes. We argue that EasyARC sets a new standard for evaluating true reasoning and test-time scaling capabilities in vision-language models. We open-source our benchmark dataset and evaluation code.
+
+Paper ID: 2506.11595v1
+
+Summary:
+This paper titled "EasyARC: Evaluating Vision Language Models on True Visual Reasoning" was authored by Mert Unsal, Aylin Akkus and published on 2025-06-13.
+It falls under the categories: cs.CV, cs.LG.
+The research explores the following topic: Building on recent advances in language-based reasoning models, we explore multimodal reasoning that integrates vision and text. Existing multimodal benchmarks primarily test visual extraction combined with text-based reasoning, lacking true visual reasoning with more complex interactions between vision and language. Inspired by the ARC challenge, we introduce EasyARC, a vision-language benchmark requiring multi-image, multi-step reasoning, and self-correction. EasyARC is procedurally generated, fully verifiable, and scalable, making it ideal for reinforcement learning (RL) pipelines. The generators incorporate progressive difficulty levels, enabling structured evaluation across task types and complexities. We benchmark state-of-the-art vision-language models and analyze their failure modes. We argue that EasyARC sets a new standard for evaluating true reasoning and test-time scaling capabilities in vision-language models. We open-source our benchmark dataset and evaluation code.
+
+Links:
+  - https://arxiv.org/abs/2506.11595v1
+  - https://arxiv.org/pdf/2506.11595v1

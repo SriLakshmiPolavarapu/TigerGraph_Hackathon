@@ -1,0 +1,22 @@
+Title: Design and Analysis of a Robotic Lizard using Five-Bar Mechanism
+
+Authors: Rajashekhar V S, Dinakar Raj C K, Vishwesh S, Selva Perumal E, Nirmal Kumar M
+
+Published: 2021-07-27
+
+Categories: cs.RO
+
+Abstract:
+Legged robots are being used to explore rough terrains as they are capable of traversing gaps and obstacles. In this paper, a new mechanism is designed to replicate a robotic lizard using integrated five-bar mechanisms. There are two five bar mechanisms from which two more are formed by connecting the links in a particular order. The legs are attached to the links of the five bar mechanism such that, when the mechanism is actuated, they move the robot forward. Position analysis using vector loop approach has been done for the mechanism. A prototype has been built and controlled using servo motors to verify the robotic lizard mechanism.
+
+Paper ID: 2107.12614v1
+
+Summary:
+This paper titled "Design and Analysis of a Robotic Lizard using Five-Bar Mechanism" was authored by Rajashekhar V S, Dinakar Raj C K, Vishwesh S, Selva Perumal E, Nirmal Kumar M and published on 2021-07-27.
+It falls under the categories: cs.RO.
+The research explores the following topic: Legged robots are being used to explore rough terrains as they are capable of traversing gaps and obstacles. In this paper, a new mechanism is designed to replicate a robotic lizard using integrated five-bar mechanisms. There are two five bar mechanisms from which two more are formed by connecting the links in a particular order. The legs are attached to the links of the five bar mechanism such that, when the mechanism is actuated, they move the robot forward. Position analysis using vector loop approach has been done for the mechanism. A prototype has been built and controlled using servo motors to verify the robotic lizard mechanism.
+
+Links:
+  - https://arxiv.org/abs/2107.12614v1
+  - https://arxiv.org/pdf/2107.12614v1
+  - https://doi.org/10.1007/978-981-16-0550-5_5

@@ -1,0 +1,21 @@
+Title: A Flexible Recommendation System for Cable TV
+
+Authors: Diogo Goncalves, Miguel Costa, Francisco M. Couto
+
+Published: 2016-09-08
+
+Categories: cs.IR
+
+Abstract:
+Recommendation systems are being explored by Cable TV operators to improve user satisfaction with services, such as Live TV and Video on Demand (VOD) services. More recently, Catch-up TV has been introduced, allowing users to watch recent broadcast content whenever they want to. These services give users a large set of options from which they can choose from, creating an information overflow problem. Thus, recommendation systems arise as essential tools to solve this problem by helping users in their selection, which increases not only user satisfaction but also user engagement and content consumption. In this paper we present a learning to rank approach that uses contextual information and implicit feedback to improve recommendation systems for a Cable TV operator that provides Live and Catch-up TV services. We compare our approach with existing state-of-the-art algorithms and show that our approach is superior in accuracy, while maintaining high scores of diversity and serendipity.
+
+Paper ID: 1609.02451v2
+
+Summary:
+This paper titled "A Flexible Recommendation System for Cable TV" was authored by Diogo Goncalves, Miguel Costa, Francisco M. Couto and published on 2016-09-08.
+It falls under the categories: cs.IR.
+The research explores the following topic: Recommendation systems are being explored by Cable TV operators to improve user satisfaction with services, such as Live TV and Video on Demand (VOD) services. More recently, Catch-up TV has been introduced, allowing users to watch recent broadcast content whenever they want to. These services give users a large set of options from which they can choose from, creating an information overflow problem. Thus, recommendation systems arise as essential tools to solve this problem by helping users in their selection, which increases not only user satisfaction but also user engagement and content consumption. In this paper we present a learning to rank approach that uses contextual information and implicit feedback to improve recommendation systems for a Cable TV operator that provides Live and Catch-up TV services. We compare our approach with existing state-of-the-art algorithms and show that our approach is superior in accuracy, while maintaining high scores of diversity and serendipity.
+
+Links:
+  - https://arxiv.org/abs/1609.02451v2
+  - https://arxiv.org/pdf/1609.02451v2

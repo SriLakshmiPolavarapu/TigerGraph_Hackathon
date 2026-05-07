@@ -1,0 +1,22 @@
+Title: In-Context Operator Learning with Data Prompts for Differential Equation Problems
+
+Authors: Liu Yang, Siting Liu, Tingwei Meng, Stanley J. Osher
+
+Published: 2023-04-17
+
+Categories: cs.LG, math.NA, stat.ML
+
+Abstract:
+This paper introduces a new neural-network-based approach, namely In-Context Operator Networks (ICON), to simultaneously learn operators from the prompted data and apply it to new questions during the inference stage, without any weight update. Existing methods are limited to using a neural network to approximate a specific equation solution or a specific operator, requiring retraining when switching to a new problem with different equations. By training a single neural network as an operator learner, we can not only get rid of retraining (even fine-tuning) the neural network for new problems, but also leverage the commonalities shared across operators so that only a few demos in the prompt are needed when learning a new operator. Our numerical results show the neural network's capability as a few-shot operator learner for a diversified type of differential equation problems, including forward and inverse problems of ordinary differential equations (ODEs), partial differential equations (PDEs), and mean-field control (MFC) problems, and also show that it can generalize its learning capability to operators beyond the training distribution.
+
+Paper ID: 2304.07993v3
+
+Summary:
+This paper titled "In-Context Operator Learning with Data Prompts for Differential Equation Problems" was authored by Liu Yang, Siting Liu, Tingwei Meng, Stanley J. Osher and published on 2023-04-17.
+It falls under the categories: cs.LG, math.NA, stat.ML.
+The research explores the following topic: This paper introduces a new neural-network-based approach, namely In-Context Operator Networks (ICON), to simultaneously learn operators from the prompted data and apply it to new questions during the inference stage, without any weight update. Existing methods are limited to using a neural network to approximate a specific equation solution or a specific operator, requiring retraining when switching to a new problem with different equations. By training a single neural network as an operator learner, we can not only get rid of retraining (even fine-tuning) the neural network for new problems, but also leverage the commonalities shared across operators so that only a few demos in the prompt are needed when learning a new operator. Our numerical results show the neural network's capability as a few-shot operator learner for a diversified type of differential equation problems, including forward and inverse problems of ordinary differential equations (ODEs), partial differential equations (PDEs), and mean-field control (MFC) problems, and also show that it can generalize its learning capability to operators beyond the training distribution.
+
+Links:
+  - https://arxiv.org/abs/2304.07993v3
+  - https://arxiv.org/pdf/2304.07993v3
+  - https://doi.org/10.1073/pnas.2310142120

@@ -1,0 +1,22 @@
+Title: An Empirical Analysis of Discrete Unit Representations in Speech Language Modeling Pre-training
+
+Authors: Yanis Labrak, Richard Dufour, Mickaël Rouvier
+
+Published: 2025-09-03
+
+Categories: cs.CL, cs.AI, eess.AS
+
+Abstract:
+This paper investigates discrete unit representations in Speech Language Models (SLMs), focusing on optimizing speech modeling during continual pre-training. In this paper, we systematically examine how model architecture, data representation, and training robustness influence the pre-training stage in which we adapt existing pre-trained language models to the speech modality. Our experiments highlight the role of speech encoders and clustering granularity across different model scales, showing how optimal discretization strategies vary with model capacity. By examining cluster distribution and phonemic alignments, we investigate the effective use of discrete vocabulary, uncovering both linguistic and paralinguistic patterns. Additionally, we explore the impact of clustering data selection on model robustness, highlighting the importance of domain matching between discretization training and target applications.
+
+Paper ID: 2509.05359v1
+
+Summary:
+This paper titled "An Empirical Analysis of Discrete Unit Representations in Speech Language Modeling Pre-training" was authored by Yanis Labrak, Richard Dufour, Mickaël Rouvier and published on 2025-09-03.
+It falls under the categories: cs.CL, cs.AI, eess.AS.
+The research explores the following topic: This paper investigates discrete unit representations in Speech Language Models (SLMs), focusing on optimizing speech modeling during continual pre-training. In this paper, we systematically examine how model architecture, data representation, and training robustness influence the pre-training stage in which we adapt existing pre-trained language models to the speech modality. Our experiments highlight the role of speech encoders and clustering granularity across different model scales, showing how optimal discretization strategies vary with model capacity. By examining cluster distribution and phonemic alignments, we investigate the effective use of discrete vocabulary, uncovering both linguistic and paralinguistic patterns. Additionally, we explore the impact of clustering data selection on model robustness, highlighting the importance of domain matching between discretization training and target applications.
+
+Links:
+  - https://arxiv.org/abs/2509.05359v1
+  - https://arxiv.org/pdf/2509.05359v1
+  - https://doi.org/10.1007/978-3-032-02548-7_2

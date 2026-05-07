@@ -1,0 +1,22 @@
+Title: From Specifications to Prompts: On the Future of Generative LLMs in Requirements Engineering
+
+Authors: Andreas Vogelsang
+
+Published: 2024-08-17
+
+Categories: cs.SE
+
+Abstract:
+Generative LLMs, such as GPT, have the potential to revolutionize Requirements Engineering (RE) by automating tasks in new ways. This column explores the novelties and introduces the importance of precise prompts for effective interactions. Human evaluation and prompt engineering are essential in leveraging LLM capabilities.
+
+Paper ID: 2408.09127v1
+
+Summary:
+This paper titled "From Specifications to Prompts: On the Future of Generative LLMs in Requirements Engineering" was authored by Andreas Vogelsang and published on 2024-08-17.
+It falls under the categories: cs.SE.
+The research explores the following topic: Generative LLMs, such as GPT, have the potential to revolutionize Requirements Engineering (RE) by automating tasks in new ways. This column explores the novelties and introduces the importance of precise prompts for effective interactions. Human evaluation and prompt engineering are essential in leveraging LLM capabilities.
+
+Links:
+  - https://arxiv.org/abs/2408.09127v1
+  - https://arxiv.org/pdf/2408.09127v1
+  - https://doi.org/10.1109/MS.2024.3410712

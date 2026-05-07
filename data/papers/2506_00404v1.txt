@@ -1,0 +1,22 @@
+Title: Using Code Snippets to Teach Programming Languages
+
+Authors: Joshua Akingbade, Jianhua Yang, Mir Seyedebrahimi
+
+Published: 2025-05-31
+
+Categories: cs.PL
+
+Abstract:
+Coding is a fundamental skill required in the engineering discipline, and much work exists exploring better ways of teaching coding in the higher education context. In particular, Code Snippets (CSs) are approved to be an effective way of introducing programming language units to students. CSs are portions of source code of varying size and content. They can be used in a myriad of ways, one of which is to teach the code they contain as well as its function. To further explore the use of CSs, a pedagogical summer internship project was set up at the Warwick Manufacturing Group (WMG). The scope of the considerations for the study derives from an educational standpoint. Within the evaluations made, the focus was primarily given to pieces of information which proved to provide evidence pertaining to the methodology involved in either teaching or developing teaching materials. By taking the results produced into account from a pedagogical perspective, it was found that several qualities of popular code snippet tutorials which benefit or hinder the learning process, including code length, interactivity, further support, and quality of explanation. These qualities are then combined and used to present a plan for the design of an effective learning resource which makes use of code snippets.
+
+Paper ID: 2506.00404v1
+
+Summary:
+This paper titled "Using Code Snippets to Teach Programming Languages" was authored by Joshua Akingbade, Jianhua Yang, Mir Seyedebrahimi and published on 2025-05-31.
+It falls under the categories: cs.PL.
+The research explores the following topic: Coding is a fundamental skill required in the engineering discipline, and much work exists exploring better ways of teaching coding in the higher education context. In particular, Code Snippets (CSs) are approved to be an effective way of introducing programming language units to students. CSs are portions of source code of varying size and content. They can be used in a myriad of ways, one of which is to teach the code they contain as well as its function. To further explore the use of CSs, a pedagogical summer internship project was set up at the Warwick Manufacturing Group (WMG). The scope of the considerations for the study derives from an educational standpoint. Within the evaluations made, the focus was primarily given to pieces of information which proved to provide evidence pertaining to the methodology involved in either teaching or developing teaching materials. By taking the results produced into account from a pedagogical perspective, it was found that several qualities of popular code snippet tutorials which benefit or hinder the learning process, including code length, interactivity, further support, and quality of explanation. These qualities are then combined and used to present a plan for the design of an effective learning resource which makes use of code snippets.
+
+Links:
+  - https://arxiv.org/abs/2506.00404v1
+  - https://arxiv.org/pdf/2506.00404v1
+  - https://doi.org/10.31273/10.31273/9781911675167/1626

@@ -1,0 +1,21 @@
+Title: QVMix and QVMix-Max: Extending the Deep Quality-Value Family of Algorithms to Cooperative Multi-Agent Reinforcement Learning
+
+Authors: Pascal Leroy, Damien Ernst, Pierre Geurts, Gilles Louppe, Jonathan Pisane, Matthia Sabatelli
+
+Published: 2020-12-22
+
+Categories: cs.LG, cs.AI, cs.MA
+
+Abstract:
+This paper introduces four new algorithms that can be used for tackling multi-agent reinforcement learning (MARL) problems occurring in cooperative settings. All algorithms are based on the Deep Quality-Value (DQV) family of algorithms, a set of techniques that have proven to be successful when dealing with single-agent reinforcement learning problems (SARL). The key idea of DQV algorithms is to jointly learn an approximation of the state-value function $V$, alongside an approximation of the state-action value function $Q$. We follow this principle and generalise these algorithms by introducing two fully decentralised MARL algorithms (IQV and IQV-Max) and two algorithms that are based on the centralised training with decentralised execution training paradigm (QVMix and QVMix-Max). We compare our algorithms with state-of-the-art MARL techniques on the popular StarCraft Multi-Agent Challenge (SMAC) environment. We show competitive results when QVMix and QVMix-Max are compared to well-known MARL techniques such as QMIX and MAVEN and show that QVMix can even outperform them on some of the tested environments, being the algorithm which performs best overall. We hypothesise that this is due to the fact that QVMix suffers less from the overestimation bias of the $Q$ function.
+
+Paper ID: 2012.12062v1
+
+Summary:
+This paper titled "QVMix and QVMix-Max: Extending the Deep Quality-Value Family of Algorithms to Cooperative Multi-Agent Reinforcement Learning" was authored by Pascal Leroy, Damien Ernst, Pierre Geurts, Gilles Louppe, Jonathan Pisane, Matthia Sabatelli and published on 2020-12-22.
+It falls under the categories: cs.LG, cs.AI, cs.MA.
+The research explores the following topic: This paper introduces four new algorithms that can be used for tackling multi-agent reinforcement learning (MARL) problems occurring in cooperative settings. All algorithms are based on the Deep Quality-Value (DQV) family of algorithms, a set of techniques that have proven to be successful when dealing with single-agent reinforcement learning problems (SARL). The key idea of DQV algorithms is to jointly learn an approximation of the state-value function $V$, alongside an approximation of the state-action value function $Q$. We follow this principle and generalise these algorithms by introducing two fully decentralised MARL algorithms (IQV and IQV-Max) and two algorithms that are based on the centralised training with decentralised execution training paradigm (QVMix and QVMix-Max). We compare our algorithms with state-of-the-art MARL techniques on the popular StarCraft Multi-Agent Challenge (SMAC) environment. We show competitive results when QVMix and QVMix-Max are compared to well-known MARL techniques such as QMIX and MAVEN and show that QVMix can even outperform them on some of the tested environments, being the algorithm which performs best overall. We hypothesise that this is due to the fact that QVMix suffers less from the overestimation bias of the $Q$ function.
+
+Links:
+  - https://arxiv.org/abs/2012.12062v1
+  - https://arxiv.org/pdf/2012.12062v1

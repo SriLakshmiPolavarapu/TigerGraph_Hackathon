@@ -1,0 +1,21 @@
+Title: Specifying Logic Programs in Controlled Natural Language
+
+Authors: Norbert E. Fuchs, Rolf Schwitter
+
+Published: 1995-07-21
+
+Categories: cs.CL
+
+Abstract:
+Writing specifications for computer programs is not easy since one has to take into account the disparate conceptual worlds of the application domain and of software development. To bridge this conceptual gap we propose controlled natural language as a declarative and application-specific specification language. Controlled natural language is a subset of natural language that can be accurately and efficiently processed by a computer, but is expressive enough to allow natural usage by non-specialists. Specifications in controlled natural language are automatically translated into Prolog clauses, hence become formal and executable. The translation uses a definite clause grammar (DCG) enhanced by feature structures. Inter-text references of the specification, e.g. anaphora, are resolved with the help of discourse representation theory (DRT). The generated Prolog clauses are added to a knowledge base. We have implemented a prototypical specification system that successfully processes the specification of a simple automated teller machine.
+
+Paper ID: 9507009v1
+
+Summary:
+This paper titled "Specifying Logic Programs in Controlled Natural Language" was authored by Norbert E. Fuchs, Rolf Schwitter and published on 1995-07-21.
+It falls under the categories: cs.CL.
+The research explores the following topic: Writing specifications for computer programs is not easy since one has to take into account the disparate conceptual worlds of the application domain and of software development. To bridge this conceptual gap we propose controlled natural language as a declarative and application-specific specification language. Controlled natural language is a subset of natural language that can be accurately and efficiently processed by a computer, but is expressive enough to allow natural usage by non-specialists. Specifications in controlled natural language are automatically translated into Prolog clauses, hence become formal and executable. The translation uses a definite clause grammar (DCG) enhanced by feature structures. Inter-text references of the specification, e.g. anaphora, are resolved with the help of discourse representation theory (DRT). The generated Prolog clauses are added to a knowledge base. We have implemented a prototypical specification system that successfully processes the specification of a simple automated teller machine.
+
+Links:
+  - https://arxiv.org/abs/cmp-lg/9507009v1
+  - https://arxiv.org/pdf/cmp-lg/9507009v1

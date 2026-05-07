@@ -1,0 +1,21 @@
+Title: AutoHAS: Efficient Hyperparameter and Architecture Search
+
+Authors: Xuanyi Dong, Mingxing Tan, Adams Wei Yu, Daiyi Peng, Bogdan Gabrys, Quoc V. Le
+
+Published: 2020-06-05
+
+Categories: cs.CV
+
+Abstract:
+Efficient hyperparameter or architecture search methods have shown remarkable results, but each of them is only applicable to searching for either hyperparameters (HPs) or architectures. In this work, we propose a unified pipeline, AutoHAS, to efficiently search for both architectures and hyperparameters. AutoHAS learns to alternately update the shared network weights and a reinforcement learning (RL) controller, which learns the probability distribution for the architecture candidates and HP candidates. A temporary weight is introduced to store the updated weight from the selected HPs (by the controller), and a validation accuracy based on this temporary weight serves as a reward to update the controller. In experiments, we show AutoHAS is efficient and generalizable to different search spaces, baselines and datasets. In particular, AutoHAS can improve the accuracy over popular network architectures, such as ResNet and EfficientNet, on CIFAR-10/100, ImageNet, and four more other datasets.
+
+Paper ID: 2006.03656v3
+
+Summary:
+This paper titled "AutoHAS: Efficient Hyperparameter and Architecture Search" was authored by Xuanyi Dong, Mingxing Tan, Adams Wei Yu, Daiyi Peng, Bogdan Gabrys, Quoc V. Le and published on 2020-06-05.
+It falls under the categories: cs.CV.
+The research explores the following topic: Efficient hyperparameter or architecture search methods have shown remarkable results, but each of them is only applicable to searching for either hyperparameters (HPs) or architectures. In this work, we propose a unified pipeline, AutoHAS, to efficiently search for both architectures and hyperparameters. AutoHAS learns to alternately update the shared network weights and a reinforcement learning (RL) controller, which learns the probability distribution for the architecture candidates and HP candidates. A temporary weight is introduced to store the updated weight from the selected HPs (by the controller), and a validation accuracy based on this temporary weight serves as a reward to update the controller. In experiments, we show AutoHAS is efficient and generalizable to different search spaces, baselines and datasets. In particular, AutoHAS can improve the accuracy over popular network architectures, such as ResNet and EfficientNet, on CIFAR-10/100, ImageNet, and four more other datasets.
+
+Links:
+  - https://arxiv.org/abs/2006.03656v3
+  - https://arxiv.org/pdf/2006.03656v3

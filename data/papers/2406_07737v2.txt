@@ -1,0 +1,22 @@
+Title: The Future of AI-Driven Software Engineering
+
+Authors: Valerio Terragni, Annie Vella, Partha Roop, Kelly Blincoe
+
+Published: 2024-06-11
+
+Categories: cs.SE, cs.AI, cs.LG, cs.PL
+
+Abstract:
+A paradigm shift is underway in Software Engineering, with AI systems such as LLMs playing an increasingly important role in boosting software development productivity. This trend is anticipated to persist. In the next years, we expect a growing symbiotic partnership between human software developers and AI. The Software Engineering research community cannot afford to overlook this trend; we must address the key research challenges posed by the integration of AI into the software development process. In this paper, we present our vision of the future of software development in an AI-driven world and explore the key challenges that our research community should address to realize this vision.
+
+Paper ID: 2406.07737v2
+
+Summary:
+This paper titled "The Future of AI-Driven Software Engineering" was authored by Valerio Terragni, Annie Vella, Partha Roop, Kelly Blincoe and published on 2024-06-11.
+It falls under the categories: cs.SE, cs.AI, cs.LG, cs.PL.
+The research explores the following topic: A paradigm shift is underway in Software Engineering, with AI systems such as LLMs playing an increasingly important role in boosting software development productivity. This trend is anticipated to persist. In the next years, we expect a growing symbiotic partnership between human software developers and AI. The Software Engineering research community cannot afford to overlook this trend; we must address the key research challenges posed by the integration of AI into the software development process. In this paper, we present our vision of the future of software development in an AI-driven world and explore the key challenges that our research community should address to realize this vision.
+
+Links:
+  - https://arxiv.org/abs/2406.07737v2
+  - https://arxiv.org/pdf/2406.07737v2
+  - https://doi.org/10.1145/3715003

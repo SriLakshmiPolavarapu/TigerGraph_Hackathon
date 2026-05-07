@@ -1,0 +1,22 @@
+Title: Collaborative Reflection-Augmented Autoencoder Network for Recommender Systems
+
+Authors: Lianghao Xia, Chao Huang, Yong Xu, Huance Xu, Xiang Li, Weiguo Zhang
+
+Published: 2022-01-10
+
+Categories: cs.IR, cs.AI, cs.LG
+
+Abstract:
+As the deep learning techniques have expanded to real-world recommendation tasks, many deep neural network based Collaborative Filtering (CF) models have been developed to project user-item interactions into latent feature space, based on various neural architectures, such as multi-layer perceptron, auto-encoder and graph neural networks. However, the majority of existing collaborative filtering systems are not well designed to handle missing data. Particularly, in order to inject the negative signals in the training phase, these solutions largely rely on negative sampling from unobserved user-item interactions and simply treating them as negative instances, which brings the recommendation performance degradation. To address the issues, we develop a Collaborative Reflection-Augmented Autoencoder Network (CRANet), that is capable of exploring transferable knowledge from observed and unobserved user-item interactions. The network architecture of CRANet is formed of an integrative structure with a reflective receptor network and an information fusion autoencoder module, which endows our recommendation framework with the ability of encoding implicit user's pairwise preference on both interacted and non-interacted items. Additionally, a parametric regularization-based tied-weight scheme is designed to perform robust joint training of the two-stage CRANet model. We finally experimentally validate CRANet on four diverse benchmark datasets corresponding to two recommendation tasks, to show that debiasing the negative signals of user-item interactions improves the performance as compared to various state-of-the-art recommendation techniques. Our source code is available at https://github.com/akaxlh/CRANet.
+
+Paper ID: 2201.03158v1
+
+Summary:
+This paper titled "Collaborative Reflection-Augmented Autoencoder Network for Recommender Systems" was authored by Lianghao Xia, Chao Huang, Yong Xu, Huance Xu, Xiang Li, Weiguo Zhang and published on 2022-01-10.
+It falls under the categories: cs.IR, cs.AI, cs.LG.
+The research explores the following topic: As the deep learning techniques have expanded to real-world recommendation tasks, many deep neural network based Collaborative Filtering (CF) models have been developed to project user-item interactions into latent feature space, based on various neural architectures, such as multi-layer perceptron, auto-encoder and graph neural networks. However, the majority of existing collaborative filtering systems are not well designed to handle missing data. Particularly, in order to inject the negative signals in the training phase, these solutions largely rely on negative sampling from unobserved user-item interactions and simply treating them as negative instances, which brings the recommendation performance degradation. To address the issues, we develop a Collaborative Reflection-Augmented Autoencoder Network (CRANet), that is capable of exploring transferable knowledge from observed and unobserved user-item interactions. The network architecture of CRANet is formed of an integrative structure with a reflective receptor network and an information fusion autoencoder module, which endows our recommendation framework with the ability of encoding implicit user's pairwise preference on both interacted and non-interacted items. Additionally, a parametric regularization-based tied-weight scheme is designed to perform robust joint training of the two-stage CRANet model. We finally experimentally validate CRANet on four diverse benchmark datasets corresponding to two recommendation tasks, to show that debiasing the negative signals of user-item interactions improves the performance as compared to various state-of-the-art recommendation techniques. Our source code is available at https://github.com/akaxlh/CRANet.
+
+Links:
+  - https://arxiv.org/abs/2201.03158v1
+  - https://arxiv.org/pdf/2201.03158v1
+  - https://doi.org/10.1145/3467023

@@ -1,0 +1,22 @@
+Title: Reinforcement Learning Controllers for Soft Robots using Learned Environments
+
+Authors: Uljad Berdica, Matthew Jackson, Niccolò Enrico Veronese, Jakob Foerster, Perla Maiolino
+
+Published: 2024-10-24
+
+Categories: cs.RO, eess.SY
+
+Abstract:
+Soft robotic manipulators offer operational advantage due to their compliant and deformable structures. However, their inherently nonlinear dynamics presents substantial challenges. Traditional analytical methods often depend on simplifying assumptions, while learning-based techniques can be computationally demanding and limit the control policies to existing data. This paper introduces a novel approach to soft robotic control, leveraging state-of-the-art policy gradient methods within parallelizable synthetic environments learned from data. We also propose a safety oriented actuation space exploration protocol via cascaded updates and weighted randomness. Specifically, our recurrent forward dynamics model is learned by generating a training dataset from a physically safe \textit{mean reverting} random walk in actuation space to explore the partially-observed state-space. We demonstrate a reinforcement learning approach towards closed-loop control through state-of-the-art actor-critic methods, which efficiently learn high-performance behaviour over long horizons. This approach removes the need for any knowledge regarding the robot's operation or capabilities and sets the stage for a comprehensive benchmarking tool in soft robotics control.
+
+Paper ID: 2410.18519v2
+
+Summary:
+This paper titled "Reinforcement Learning Controllers for Soft Robots using Learned Environments" was authored by Uljad Berdica, Matthew Jackson, Niccolò Enrico Veronese, Jakob Foerster, Perla Maiolino and published on 2024-10-24.
+It falls under the categories: cs.RO, eess.SY.
+The research explores the following topic: Soft robotic manipulators offer operational advantage due to their compliant and deformable structures. However, their inherently nonlinear dynamics presents substantial challenges. Traditional analytical methods often depend on simplifying assumptions, while learning-based techniques can be computationally demanding and limit the control policies to existing data. This paper introduces a novel approach to soft robotic control, leveraging state-of-the-art policy gradient methods within parallelizable synthetic environments learned from data. We also propose a safety oriented actuation space exploration protocol via cascaded updates and weighted randomness. Specifically, our recurrent forward dynamics model is learned by generating a training dataset from a physically safe \textit{mean reverting} random walk in actuation space to explore the partially-observed state-space. We demonstrate a reinforcement learning approach towards closed-loop control through state-of-the-art actor-critic methods, which efficiently learn high-performance behaviour over long horizons. This approach removes the need for any knowledge regarding the robot's operation or capabilities and sets the stage for a comprehensive benchmarking tool in soft robotics control.
+
+Links:
+  - https://arxiv.org/abs/2410.18519v2
+  - https://arxiv.org/pdf/2410.18519v2
+  - https://doi.org/10.1109/RoboSoft60065.2024.10522003

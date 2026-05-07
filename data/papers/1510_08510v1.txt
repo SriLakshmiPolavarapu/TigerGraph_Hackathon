@@ -1,0 +1,22 @@
+Title: Architectural Consistency Checking in Plugin-Based Software Systems
+
+Authors: Timo Greifenberg, Klaus Müller, Bernhard Rumpe
+
+Published: 2015-10-28
+
+Categories: cs.SE
+
+Abstract:
+Manually ensuring that the implementation of a software system is consistent with the software architecture is a laborious and error-prone task. Thus, a variety of approaches towards automated consistency checking have been developed to counteract architecture erosion. However, these approaches lack means to define and check architectural restrictions concerning plugin dependencies, which is required for plugin-based software systems. In this paper, we propose a domain-specific language called Dependency Constraint Language (DepCoL) to facilitate the definition of constraints concerning plugin dependencies. Using DepCoL, it is possible to define constraints affecting groups of plugins, reducing the required specification effort, to formulate constraints for specific plugins only and to refine constraints. Moreover, we provide an Eclipse plugin, which checks whether the software system under development is consistent with the modeled constraints. This enables a seamless integration into the development process to effortless check consistency during development of the software system. In this way, developers are informed about dependency violations immediately and this supports developers in counteracting architecture erosion.
+
+Paper ID: 1510.08510v1
+
+Summary:
+This paper titled "Architectural Consistency Checking in Plugin-Based Software Systems" was authored by Timo Greifenberg, Klaus Müller, Bernhard Rumpe and published on 2015-10-28.
+It falls under the categories: cs.SE.
+The research explores the following topic: Manually ensuring that the implementation of a software system is consistent with the software architecture is a laborious and error-prone task. Thus, a variety of approaches towards automated consistency checking have been developed to counteract architecture erosion. However, these approaches lack means to define and check architectural restrictions concerning plugin dependencies, which is required for plugin-based software systems. In this paper, we propose a domain-specific language called Dependency Constraint Language (DepCoL) to facilitate the definition of constraints concerning plugin dependencies. Using DepCoL, it is possible to define constraints affecting groups of plugins, reducing the required specification effort, to formulate constraints for specific plugins only and to refine constraints. Moreover, we provide an Eclipse plugin, which checks whether the software system under development is consistent with the modeled constraints. This enables a seamless integration into the development process to effortless check consistency during development of the software system. In this way, developers are informed about dependency violations immediately and this supports developers in counteracting architecture erosion.
+
+Links:
+  - https://arxiv.org/abs/1510.08510v1
+  - https://arxiv.org/pdf/1510.08510v1
+  - https://doi.org/10.1145/2797433.2797493

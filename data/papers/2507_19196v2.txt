@@ -1,0 +1,21 @@
+Title: Towards Multimodal Social Conversations with Robots: Using Vision-Language Models
+
+Authors: Ruben Janssens, Tony Belpaeme
+
+Published: 2025-07-25
+
+Categories: cs.RO, cs.CL, cs.HC
+
+Abstract:
+Large language models have given social robots the ability to autonomously engage in open-domain conversations. However, they are still missing a fundamental social skill: making use of the multiple modalities that carry social interactions. While previous work has focused on task-oriented interactions that require referencing the environment or specific phenomena in social interactions such as dialogue breakdowns, we outline the overall needs of a multimodal system for social conversations with robots. We then argue that vision-language models are able to process this wide range of visual information in a sufficiently general manner for autonomous social robots. We describe how to adapt them to this setting, which technical challenges remain, and briefly discuss evaluation practices.
+
+Paper ID: 2507.19196v2
+
+Summary:
+This paper titled "Towards Multimodal Social Conversations with Robots: Using Vision-Language Models" was authored by Ruben Janssens, Tony Belpaeme and published on 2025-07-25.
+It falls under the categories: cs.RO, cs.CL, cs.HC.
+The research explores the following topic: Large language models have given social robots the ability to autonomously engage in open-domain conversations. However, they are still missing a fundamental social skill: making use of the multiple modalities that carry social interactions. While previous work has focused on task-oriented interactions that require referencing the environment or specific phenomena in social interactions such as dialogue breakdowns, we outline the overall needs of a multimodal system for social conversations with robots. We then argue that vision-language models are able to process this wide range of visual information in a sufficiently general manner for autonomous social robots. We describe how to adapt them to this setting, which technical challenges remain, and briefly discuss evaluation practices.
+
+Links:
+  - https://arxiv.org/abs/2507.19196v2
+  - https://arxiv.org/pdf/2507.19196v2

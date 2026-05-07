@@ -1,0 +1,21 @@
+Title: SAPA: Self-Aware Polymorphic Architecture
+
+Authors: Michel A. Kinsy, Mihailo Isakov, Alan Ehret, Donato Kava
+
+Published: 2018-02-12
+
+Categories: cs.AR, cs.SE
+
+Abstract:
+In this work, we introduce a Self-Aware Polymorphic Architecture (SAPA) design approach to support emerging context-aware applications and mitigate the programming challenges caused by the ever-increasing complexity and heterogeneity of high performance computing systems. Through the SAPA design, we examined the salient software-hardware features of adaptive computing systems that allow for (1) the dynamic allocation of computing resources depending on program needs (e.g., the amount of parallelism in the program) and (2) automatic approximation to meet program and system goals (e.g., execution time budget, power constraints and computation resiliency) without the programming complexity of current multicore and many-core systems. The proposed adaptive computer architecture framework applies machine learning algorithms and control theory techniques to the application execution based on information collected about the system runtime performance trade-offs. It has heterogeneous reconfigurable cores with fast hardware-level migration capability, self-organizing memory structures and hierarchies, an adaptive application-aware network-on-chip, and a built-in hardware layer for dynamic, autonomous resource management. Our prototyped architecture performs extremely well on a large pool of applications.
+
+Paper ID: 1802.05100v1
+
+Summary:
+This paper titled "SAPA: Self-Aware Polymorphic Architecture" was authored by Michel A. Kinsy, Mihailo Isakov, Alan Ehret, Donato Kava and published on 2018-02-12.
+It falls under the categories: cs.AR, cs.SE.
+The research explores the following topic: In this work, we introduce a Self-Aware Polymorphic Architecture (SAPA) design approach to support emerging context-aware applications and mitigate the programming challenges caused by the ever-increasing complexity and heterogeneity of high performance computing systems. Through the SAPA design, we examined the salient software-hardware features of adaptive computing systems that allow for (1) the dynamic allocation of computing resources depending on program needs (e.g., the amount of parallelism in the program) and (2) automatic approximation to meet program and system goals (e.g., execution time budget, power constraints and computation resiliency) without the programming complexity of current multicore and many-core systems. The proposed adaptive computer architecture framework applies machine learning algorithms and control theory techniques to the application execution based on information collected about the system runtime performance trade-offs. It has heterogeneous reconfigurable cores with fast hardware-level migration capability, self-organizing memory structures and hierarchies, an adaptive application-aware network-on-chip, and a built-in hardware layer for dynamic, autonomous resource management. Our prototyped architecture performs extremely well on a large pool of applications.
+
+Links:
+  - https://arxiv.org/abs/1802.05100v1
+  - https://arxiv.org/pdf/1802.05100v1

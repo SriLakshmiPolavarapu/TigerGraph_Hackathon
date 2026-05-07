@@ -1,0 +1,22 @@
+Title: Semantically Invariant Text-to-Image Generation
+
+Authors: Shagan Sah, Dheeraj Peri, Ameya Shringi, Chi Zhang, Miguel Dominguez, Andreas Savakis, Ray Ptucha
+
+Published: 2018-09-27
+
+Categories: cs.LG, cs.CL, cs.CV, stat.ML
+
+Abstract:
+Image captioning has demonstrated models that are capable of generating plausible text given input images or videos. Further, recent work in image generation has shown significant improvements in image quality when text is used as a prior. Our work ties these concepts together by creating an architecture that can enable bidirectional generation of images and text. We call this network Multi-Modal Vector Representation (MMVR). Along with MMVR, we propose two improvements to the text conditioned image generation. Firstly, a n-gram metric based cost function is introduced that generalizes the caption with respect to the image. Secondly, multiple semantically similar sentences are shown to help in generating better images. Qualitative and quantitative evaluations demonstrate that MMVR improves upon existing text conditioned image generation results by over 20%, while integrating visual and text modalities.
+
+Paper ID: 1809.10274v1
+
+Summary:
+This paper titled "Semantically Invariant Text-to-Image Generation" was authored by Shagan Sah, Dheeraj Peri, Ameya Shringi, Chi Zhang, Miguel Dominguez, Andreas Savakis, Ray Ptucha and published on 2018-09-27.
+It falls under the categories: cs.LG, cs.CL, cs.CV, stat.ML.
+The research explores the following topic: Image captioning has demonstrated models that are capable of generating plausible text given input images or videos. Further, recent work in image generation has shown significant improvements in image quality when text is used as a prior. Our work ties these concepts together by creating an architecture that can enable bidirectional generation of images and text. We call this network Multi-Modal Vector Representation (MMVR). Along with MMVR, we propose two improvements to the text conditioned image generation. Firstly, a n-gram metric based cost function is introduced that generalizes the caption with respect to the image. Secondly, multiple semantically similar sentences are shown to help in generating better images. Qualitative and quantitative evaluations demonstrate that MMVR improves upon existing text conditioned image generation results by over 20%, while integrating visual and text modalities.
+
+Links:
+  - https://arxiv.org/abs/1809.10274v1
+  - https://arxiv.org/pdf/1809.10274v1
+  - https://doi.org/10.1109/ICIP.2018.8451656

@@ -1,0 +1,21 @@
+Title: Causal Inference Using Tractable Circuits
+
+Authors: Adnan Darwiche
+
+Published: 2022-02-07
+
+Categories: cs.AI, cs.CC, cs.LG, cs.LO, stat.ME
+
+Abstract:
+The aim of this paper is to discuss a recent result which shows that probabilistic inference in the presence of (unknown) causal mechanisms can be tractable for models that have traditionally been viewed as intractable. This result was reported recently to facilitate model-based supervised learning but it can be interpreted in a causality context as follows. One can compile a non-parametric causal graph into an arithmetic circuit that supports inference in time linear in the circuit size. The circuit is also non-parametric so it can be used to estimate parameters from data and to further reason (in linear time) about the causal graph parametrized by these estimates. Moreover, the circuit size can sometimes be bounded even when the treewidth of the causal graph is not, leading to tractable inference on models that have been deemed intractable previously. This has been enabled by a new technique that can exploit causal mechanisms computationally but without needing to know their identities (the classical setup in causal inference). Our goal is to provide a causality-oriented exposure to these new results and to speculate on how they may potentially contribute to more scalable and versatile causal inference.
+
+Paper ID: 2202.02891v1
+
+Summary:
+This paper titled "Causal Inference Using Tractable Circuits" was authored by Adnan Darwiche and published on 2022-02-07.
+It falls under the categories: cs.AI, cs.CC, cs.LG, cs.LO, stat.ME.
+The research explores the following topic: The aim of this paper is to discuss a recent result which shows that probabilistic inference in the presence of (unknown) causal mechanisms can be tractable for models that have traditionally been viewed as intractable. This result was reported recently to facilitate model-based supervised learning but it can be interpreted in a causality context as follows. One can compile a non-parametric causal graph into an arithmetic circuit that supports inference in time linear in the circuit size. The circuit is also non-parametric so it can be used to estimate parameters from data and to further reason (in linear time) about the causal graph parametrized by these estimates. Moreover, the circuit size can sometimes be bounded even when the treewidth of the causal graph is not, leading to tractable inference on models that have been deemed intractable previously. This has been enabled by a new technique that can exploit causal mechanisms computationally but without needing to know their identities (the classical setup in causal inference). Our goal is to provide a causality-oriented exposure to these new results and to speculate on how they may potentially contribute to more scalable and versatile causal inference.
+
+Links:
+  - https://arxiv.org/abs/2202.02891v1
+  - https://arxiv.org/pdf/2202.02891v1

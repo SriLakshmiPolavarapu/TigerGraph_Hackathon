@@ -1,0 +1,22 @@
+Title: Comprehensive Evaluation of Matrix Factorization Models for Collaborative Filtering Recommender Systems
+
+Authors: Jesús Bobadilla, Jorge Dueñas-Lerín, Fernando Ortega, Abraham Gutierrez
+
+Published: 2024-10-23
+
+Categories: cs.IR
+
+Abstract:
+Matrix factorization models are the core of current commercial collaborative filtering Recommender Systems. This paper tested six representative matrix factorization models, using four collaborative filtering datasets. Experiments have tested a variety of accuracy and beyond accuracy quality measures, including prediction, recommendation of ordered and unordered lists, novelty, and diversity. Results show each convenient matrix factorization model attending to their simplicity, the required prediction quality, the necessary recommendation quality, the desired recommendation novelty and diversity, the need to explain recommendations, the adequacy of assigning semantic interpretations to hidden factors, the advisability of recommending to groups of users, and the need to obtain reliability values. To ensure the reproducibility of the experiments, an open framework has been used, and the implementation code is provided.
+
+Paper ID: 2410.17644v2
+
+Summary:
+This paper titled "Comprehensive Evaluation of Matrix Factorization Models for Collaborative Filtering Recommender Systems" was authored by Jesús Bobadilla, Jorge Dueñas-Lerín, Fernando Ortega, Abraham Gutierrez and published on 2024-10-23.
+It falls under the categories: cs.IR.
+The research explores the following topic: Matrix factorization models are the core of current commercial collaborative filtering Recommender Systems. This paper tested six representative matrix factorization models, using four collaborative filtering datasets. Experiments have tested a variety of accuracy and beyond accuracy quality measures, including prediction, recommendation of ordered and unordered lists, novelty, and diversity. Results show each convenient matrix factorization model attending to their simplicity, the required prediction quality, the necessary recommendation quality, the desired recommendation novelty and diversity, the need to explain recommendations, the adequacy of assigning semantic interpretations to hidden factors, the advisability of recommending to groups of users, and the need to obtain reliability values. To ensure the reproducibility of the experiments, an open framework has been used, and the implementation code is provided.
+
+Links:
+  - https://arxiv.org/abs/2410.17644v2
+  - https://arxiv.org/pdf/2410.17644v2
+  - https://doi.org/10.9781/ijimai.2023.04.008

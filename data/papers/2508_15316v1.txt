@@ -1,0 +1,21 @@
+Title: CUPE: Contextless Universal Phoneme Encoder for Language-Agnostic Speech Processing
+
+Authors: Abdul Rehman, Jian-Jun Zhang, Xiaosong Yang
+
+Published: 2025-08-21
+
+Categories: cs.CL, cs.LG, eess.AS
+
+Abstract:
+Universal phoneme recognition typically requires analyzing long speech segments and language-specific patterns. Many speech processing tasks require pure phoneme representations free from contextual influence, which motivated our development of CUPE - a lightweight model that captures key phoneme features in just 120 milliseconds, about one phoneme's length. CUPE processes short, fixed-width windows independently and, despite fewer parameters than current approaches, achieves competitive cross-lingual performance by learning fundamental acoustic patterns common to all languages. Our extensive evaluation through supervised and self-supervised training on diverse languages, including zero-shot tests on the UCLA Phonetic Corpus, demonstrates strong cross-lingual generalization and reveals that effective universal speech processing is possible through modeling basic acoustic patterns within phoneme-length windows.
+
+Paper ID: 2508.15316v1
+
+Summary:
+This paper titled "CUPE: Contextless Universal Phoneme Encoder for Language-Agnostic Speech Processing" was authored by Abdul Rehman, Jian-Jun Zhang, Xiaosong Yang and published on 2025-08-21.
+It falls under the categories: cs.CL, cs.LG, eess.AS.
+The research explores the following topic: Universal phoneme recognition typically requires analyzing long speech segments and language-specific patterns. Many speech processing tasks require pure phoneme representations free from contextual influence, which motivated our development of CUPE - a lightweight model that captures key phoneme features in just 120 milliseconds, about one phoneme's length. CUPE processes short, fixed-width windows independently and, despite fewer parameters than current approaches, achieves competitive cross-lingual performance by learning fundamental acoustic patterns common to all languages. Our extensive evaluation through supervised and self-supervised training on diverse languages, including zero-shot tests on the UCLA Phonetic Corpus, demonstrates strong cross-lingual generalization and reveals that effective universal speech processing is possible through modeling basic acoustic patterns within phoneme-length windows.
+
+Links:
+  - https://arxiv.org/abs/2508.15316v1
+  - https://arxiv.org/pdf/2508.15316v1

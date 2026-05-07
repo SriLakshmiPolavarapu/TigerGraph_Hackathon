@@ -1,0 +1,21 @@
+Title: Predicting Market Troughs: A Machine Learning Approach with Causal Interpretation
+
+Authors: Peilin Rao, Randall R. Rojas
+
+Published: 2025-09-07
+
+Categories: q-fin.ST, econ.EM, stat.ML
+
+Abstract:
+This paper provides robust, new evidence on the causal drivers of market troughs. We demonstrate that conclusions about these triggers are critically sensitive to model specification, moving beyond restrictive linear models with a flexible DML average partial effect causal machine learning framework. Our robust estimates identify the volatility of options-implied risk appetite and market liquidity as key causal drivers, relationships misrepresented or obscured by simpler models. These findings provide high-frequency empirical support for intermediary asset pricing theories. This causal analysis is enabled by a high-performance nowcasting model that accurately identifies capitulation events in real-time.
+
+Paper ID: 2509.05922v1
+
+Summary:
+This paper titled "Predicting Market Troughs: A Machine Learning Approach with Causal Interpretation" was authored by Peilin Rao, Randall R. Rojas and published on 2025-09-07.
+It falls under the categories: q-fin.ST, econ.EM, stat.ML.
+The research explores the following topic: This paper provides robust, new evidence on the causal drivers of market troughs. We demonstrate that conclusions about these triggers are critically sensitive to model specification, moving beyond restrictive linear models with a flexible DML average partial effect causal machine learning framework. Our robust estimates identify the volatility of options-implied risk appetite and market liquidity as key causal drivers, relationships misrepresented or obscured by simpler models. These findings provide high-frequency empirical support for intermediary asset pricing theories. This causal analysis is enabled by a high-performance nowcasting model that accurately identifies capitulation events in real-time.
+
+Links:
+  - https://arxiv.org/abs/2509.05922v1
+  - https://arxiv.org/pdf/2509.05922v1

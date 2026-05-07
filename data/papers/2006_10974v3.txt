@@ -1,0 +1,21 @@
+Title: Optimization and Generalization of Regularization-Based Continual Learning: a Loss Approximation Viewpoint
+
+Authors: Dong Yin, Mehrdad Farajtabar, Ang Li, Nir Levine, Alex Mott
+
+Published: 2020-06-19
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Neural networks have achieved remarkable success in many cognitive tasks. However, when they are trained sequentially on multiple tasks without access to old data, their performance on early tasks tend to drop significantly. This problem is often referred to as catastrophic forgetting, a key challenge in continual learning of neural networks. The regularization-based approach is one of the primary classes of methods to alleviate catastrophic forgetting. In this paper, we provide a novel viewpoint of regularization-based continual learning by formulating it as a second-order Taylor approximation of the loss function of each task. This viewpoint leads to a unified framework that can be instantiated to derive many existing algorithms such as Elastic Weight Consolidation and Kronecker factored Laplace approximation. Based on this viewpoint, we study the optimization aspects (i.e., convergence) as well as generalization properties (i.e., finite-sample guarantees) of regularization-based continual learning. Our theoretical results indicate the importance of accurate approximation of the Hessian matrix. The experimental results on several benchmarks provide empirical validation of our theoretical findings.
+
+Paper ID: 2006.10974v3
+
+Summary:
+This paper titled "Optimization and Generalization of Regularization-Based Continual Learning: a Loss Approximation Viewpoint" was authored by Dong Yin, Mehrdad Farajtabar, Ang Li, Nir Levine, Alex Mott and published on 2020-06-19.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Neural networks have achieved remarkable success in many cognitive tasks. However, when they are trained sequentially on multiple tasks without access to old data, their performance on early tasks tend to drop significantly. This problem is often referred to as catastrophic forgetting, a key challenge in continual learning of neural networks. The regularization-based approach is one of the primary classes of methods to alleviate catastrophic forgetting. In this paper, we provide a novel viewpoint of regularization-based continual learning by formulating it as a second-order Taylor approximation of the loss function of each task. This viewpoint leads to a unified framework that can be instantiated to derive many existing algorithms such as Elastic Weight Consolidation and Kronecker factored Laplace approximation. Based on this viewpoint, we study the optimization aspects (i.e., convergence) as well as generalization properties (i.e., finite-sample guarantees) of regularization-based continual learning. Our theoretical results indicate the importance of accurate approximation of the Hessian matrix. The experimental results on several benchmarks provide empirical validation of our theoretical findings.
+
+Links:
+  - https://arxiv.org/abs/2006.10974v3
+  - https://arxiv.org/pdf/2006.10974v3

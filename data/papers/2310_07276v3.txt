@@ -1,0 +1,21 @@
+Title: BioT5: Enriching Cross-modal Integration in Biology with Chemical Knowledge and Natural Language Associations
+
+Authors: Qizhi Pei, Wei Zhang, Jinhua Zhu, Kehan Wu, Kaiyuan Gao, Lijun Wu, Yingce Xia, Rui Yan
+
+Published: 2023-10-11
+
+Categories: cs.CL, cs.AI, cs.LG, q-bio.BM
+
+Abstract:
+Recent advancements in biological research leverage the integration of molecules, proteins, and natural language to enhance drug discovery. However, current models exhibit several limitations, such as the generation of invalid molecular SMILES, underutilization of contextual information, and equal treatment of structured and unstructured knowledge. To address these issues, we propose $\mathbf{BioT5}$, a comprehensive pre-training framework that enriches cross-modal integration in biology with chemical knowledge and natural language associations. $\mathbf{BioT5}$ utilizes SELFIES for $100%$ robust molecular representations and extracts knowledge from the surrounding context of bio-entities in unstructured biological literature. Furthermore, $\mathbf{BioT5}$ distinguishes between structured and unstructured knowledge, leading to more effective utilization of information. After fine-tuning, BioT5 shows superior performance across a wide range of tasks, demonstrating its strong capability of capturing underlying relations and properties of bio-entities. Our code is available at $\href{https://github.com/QizhiPei/BioT5}{Github}$.
+
+Paper ID: 2310.07276v3
+
+Summary:
+This paper titled "BioT5: Enriching Cross-modal Integration in Biology with Chemical Knowledge and Natural Language Associations" was authored by Qizhi Pei, Wei Zhang, Jinhua Zhu, Kehan Wu, Kaiyuan Gao, Lijun Wu, Yingce Xia, Rui Yan and published on 2023-10-11.
+It falls under the categories: cs.CL, cs.AI, cs.LG, q-bio.BM.
+The research explores the following topic: Recent advancements in biological research leverage the integration of molecules, proteins, and natural language to enhance drug discovery. However, current models exhibit several limitations, such as the generation of invalid molecular SMILES, underutilization of contextual information, and equal treatment of structured and unstructured knowledge. To address these issues, we propose $\mathbf{BioT5}$, a comprehensive pre-training framework that enriches cross-modal integration in biology with chemical knowledge and natural language associations. $\mathbf{BioT5}$ utilizes SELFIES for $100%$ robust molecular representations and extracts knowledge from the surrounding context of bio-entities in unstructured biological literature. Furthermore, $\mathbf{BioT5}$ distinguishes between structured and unstructured knowledge, leading to more effective utilization of information. After fine-tuning, BioT5 shows superior performance across a wide range of tasks, demonstrating its strong capability of capturing underlying relations and properties of bio-entities. Our code is available at $\href{https://github.com/QizhiPei/BioT5}{Github}$.
+
+Links:
+  - https://arxiv.org/abs/2310.07276v3
+  - https://arxiv.org/pdf/2310.07276v3

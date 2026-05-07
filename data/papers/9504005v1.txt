@@ -1,0 +1,21 @@
+Title: Constraint Logic Programming for Natural Language Processing
+
+Authors: Philippe Blache, Nabil Hathout
+
+Published: 1995-04-05
+
+Categories: cs.CL
+
+Abstract:
+This paper proposes an evaluation of the adequacy of the constraint logic programming paradigm for natural language processing. Theoretical aspects of this question have been discussed in several works. We adopt here a pragmatic point of view and our argumentation relies on concrete solutions. Using actual contraints (in the CLP sense) is neither easy nor direct. However, CLP can improve parsing techniques in several aspects such as concision, control, efficiency or direct representation of linguistic formalism. This discussion is illustrated by several examples and the presentation of an HPSG parser.
+
+Paper ID: 9504005v1
+
+Summary:
+This paper titled "Constraint Logic Programming for Natural Language Processing" was authored by Philippe Blache, Nabil Hathout and published on 1995-04-05.
+It falls under the categories: cs.CL.
+The research explores the following topic: This paper proposes an evaluation of the adequacy of the constraint logic programming paradigm for natural language processing. Theoretical aspects of this question have been discussed in several works. We adopt here a pragmatic point of view and our argumentation relies on concrete solutions. Using actual contraints (in the CLP sense) is neither easy nor direct. However, CLP can improve parsing techniques in several aspects such as concision, control, efficiency or direct representation of linguistic formalism. This discussion is illustrated by several examples and the presentation of an HPSG parser.
+
+Links:
+  - https://arxiv.org/abs/cmp-lg/9504005v1
+  - https://arxiv.org/pdf/cmp-lg/9504005v1
