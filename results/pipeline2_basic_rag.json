@@ -1,0 +1,122 @@
+[
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "What is retrieval augmented generation and how does it improve LLM accuracy?",
+    "answer": "Retrieval Augmented Generation (RAG) merges retrieval methods with deep learning advancements and is composed of a retrieval and an LLM-based generation module. It provides LLMs with knowledge from a reference textual database and integrates knowledge from external data sources, including proprietary and up-to-date information, which is outside the LLM's training set (Source 1, Source 3, Source 4).\n\nRAG improves LLM accuracy by:\n*   Reducing the risk of hallucinations (Source 1, Source 4).\n*   Grounding generated outputs in factual data (Source 4).\n*   Addressing the static limitations of LLMs through the dynamic integration of up-to-date external information (Source 3).\n*   Enhancing the accuracy and reliability of LLM outputs by using real-world data (Source 3).",
+    "input_tokens": 2452,
+    "output_tokens": 174,
+    "total_tokens": 2626,
+    "latency_seconds": 6.7628,
+    "cost_usd": 0.0003148,
+    "context_chunks": 5,
+    "context_tokens": 2299
+  },
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "Explain the transformer architecture and the role of self-attention mechanisms.",
+    "answer": "The Transformer architecture is a widely adopted deep learning architecture, particularly in modern language models, and is applied across various modalities, domains, and tasks, including hierarchical and vision transformers. Its particular algebraic form follows from projection principles.\n\nThe self-attention mechanism is the core and key component of the Transformer architecture. It processes vectors to encode semantic information. Self-attention is mathematically interpreted as a distributional projection, emerging from projecting corpus-level co-occurrence statistics into sequence context. The query-key-value (QKV) mechanism arises as an asymmetric extension for modeling directional relationships, and positional encodings and multi-head attention are structured refinements of this projection principle.\n\nWhile crucial for enabling long-range inter-dependency modeling and global receptive fields, self-attention is criticized for its computational demands and is associated with issues like rank-collapse and gradient vanishing in its conventional form. Solutions like the Generalized Probabilistic Attention Mechanism (GPAM), which allows negative attention scores, are proposed to mitigate these issues. Modern methods such as KV caching, Grouped Query attention, Latent Attention, and the selective removal of non-essential attention layers are used to reduce its computational and memory costs.",
+    "input_tokens": 2599,
+    "output_tokens": 236,
+    "total_tokens": 2835,
+    "latency_seconds": 8.6024,
+    "cost_usd": 0.0003543,
+    "context_chunks": 5,
+    "context_tokens": 2422
+  },
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "How do graph neural networks differ from traditional neural networks?",
+    "answer": "Graph neural networks (GNNs) operate on \"graph structures\" or \"unstructured network data\" (Source 3, Source 4, Source 5). In contrast, traditional neural networks like multi-layer perceptrons and convolutional neural networks (mentioned as counterparts to GNNs) are used to address \"grid-like data such as texts and images\" (Source 3, Source 5).",
+    "input_tokens": 2335,
+    "output_tokens": 83,
+    "total_tokens": 2418,
+    "latency_seconds": 5.5707,
+    "cost_usd": 0.0002667,
+    "context_chunks": 5,
+    "context_tokens": 2184
+  },
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "What are the main challenges in federated learning for healthcare applications?",
+    "answer": "The provided context indicates that the paper \"Federated Learning for Healthcare Domain - Pipeline, Applications and Challenges\" (Source 1) examines challenges in federated learning within the healthcare sector. However, the abstract and summary for this source do not explicitly list what those main challenges are.\n\nOther sources mention:\n*   \"Intellectual property concerns and heterogeneous nature of tasks and data\" are widespread requirements in healthcare applications of federated learning (Source 4).\n*   Balancing \"performance, privacy-preservation and interpretability\" is important in mission-critical applications like healthcare (Source 5).",
+    "input_tokens": 2206,
+    "output_tokens": 122,
+    "total_tokens": 2328,
+    "latency_seconds": 6.4006,
+    "cost_usd": 0.0002694,
+    "context_chunks": 5,
+    "context_tokens": 2046
+  },
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "Compare collaborative filtering and content-based recommendation systems.",
+    "answer": "Content-based filtering recommends items similar to those a user has shown interest in, whereas collaborative filtering analyzes the preferences of similar users (Source 3). Collaborative filtering primarily relies on the similarities between users and items (Source 4). Both methods can be combined into hybrid recommendation systems to improve accuracy (Source 3).",
+    "input_tokens": 2748,
+    "output_tokens": 63,
+    "total_tokens": 2811,
+    "latency_seconds": 6.0146,
+    "cost_usd": 0.0003,
+    "context_chunks": 5,
+    "context_tokens": 2527
+  },
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "How does RLHF work in training large language models?",
+    "answer": "The provided context does not contain enough information to describe how RLHF (Reinforcement Learning from Human Feedback) works in training large language models.\n\nHowever, Source 4, \"Reinforcement Learning Meets Large Language Models: A Survey of Advancements and Applications Across the LLM Lifecycle,\" indicates that Reinforcement Learning (RL) methods, including Reinforcement Learning with Verifiable Rewards (RLVR), are applied across various phases of the LLM lifecycle, such as pre-training, alignment fine-tuning, and reinforced reasoning. It also mentions that \"human-annotated datasets\" and \"AI-assisted preference data\" are used for RL fine-tuning. RL methods are noted to enhance reasoning and alignment performance of LLMs, particularly in understanding human intents, following user instructions, and bolstering inferential strength.",
+    "input_tokens": 1469,
+    "output_tokens": 162,
+    "total_tokens": 1631,
+    "latency_seconds": 4.7815,
+    "cost_usd": 0.0002117,
+    "context_chunks": 5,
+    "context_tokens": 1285
+  },
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "What are the key differences between BERT and GPT architectures?",
+    "answer": "The provided context does not contain enough information to describe the key differences between BERT and GPT architectures. The context mentions \"CodeBERT\" as a type of pre-trained model used for fine-tuning and discusses the performance and methodologies related to GPT-4 (like prompt engineering and code generation), but it does not delve into their architectural distinctions.",
+    "input_tokens": 2470,
+    "output_tokens": 68,
+    "total_tokens": 2538,
+    "latency_seconds": 63.1071,
+    "cost_usd": 0.0002742,
+    "context_chunks": 5,
+    "context_tokens": 2514
+  },
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "Explain knowledge graph embedding methods and their applications.",
+    "answer": "Knowledge graph embedding methods involve mapping features from Knowledge Graphs (KGs) into vector spaces (Source 2). This allows for learning user and item representations while preserving the structure of their relationship with external knowledge (Source 1, 4). One approach proposes a knowledge-base representation learning framework to embed heterogeneous entities (Source 1, 4). Another method integrates a Knowledge Completion (KC) phase to uncover latent dataset semantics before embedding generation, focusing on transitive relations and modeling hidden connections with decay-based inference functions to reshape graph topology (Source 2).\n\nApplications of knowledge graph embeddings include:\n*   Node classification (Source 2)\n*   Link prediction (Source 2)\n*   Explainable recommendation (Source 1)\n*   Personalized recommendation (Source 4)\n*   Generating personalized explanations for recommended items (Source 1)\n*   Knowledge completion (Source 2, 5)",
+    "input_tokens": 2487,
+    "output_tokens": 189,
+    "total_tokens": 2676,
+    "latency_seconds": 7.7322,
+    "cost_usd": 0.0003243,
+    "context_chunks": 5,
+    "context_tokens": 2339
+  },
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "What are the privacy concerns with large language models and how can they be mitigated?",
+    "answer": "The provided context does not contain enough information to comprehensively answer what the privacy concerns with large language models are and how they can be mitigated.\n\nWhile Source 3, \"Safety at Scale: A Comprehensive Survey of Large Model and Agent Safety,\" identifies \"data and model extraction attacks\" as a type of safety threat (Source 3), it does not explicitly define these as \"privacy concerns\" or discuss their mitigation in the context of user privacy.",
+    "input_tokens": 2462,
+    "output_tokens": 89,
+    "total_tokens": 2551,
+    "latency_seconds": 4.8449,
+    "cost_usd": 0.0002818,
+    "context_chunks": 5,
+    "context_tokens": 2314
+  },
+  {
+    "pipeline_name": "Basic RAG",
+    "question": "How does multi-hop reasoning work in knowledge graphs for question answering?",
+    "answer": "The provided context does not contain enough information to explain how multi-hop reasoning works in knowledge graphs for question answering. While Source 4 discusses Knowledge Base Question Answering (KBQA) and generating knowledge base query code, it does not detail the mechanism of multi-hop reasoning within the knowledge graph itself. Source 1 and 3 discuss multi-hop question answering in the context of Large Language Models and retrieval, not knowledge graphs. Source 2 and 5 describe how Knowledge Graphs can enhance LLMs but do not elaborate on multi-hop reasoning processes within KGs.",
+    "input_tokens": 2607,
+    "output_tokens": 115,
+    "total_tokens": 2722,
+    "latency_seconds": 5.0463,
+    "cost_usd": 0.0003067,
+    "context_chunks": 5,
+    "context_tokens": 2459
+  }
+]
