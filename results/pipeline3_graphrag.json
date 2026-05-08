@@ -1,0 +1,122 @@
+[
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "What is retrieval augmented generation and how does it improve LLM accuracy?",
+    "answer": "Retrieval Augmented Generation (RAG) systems are composed of a retrieval module and a Large Language Model (LLM) based generation module. They provide LLMs with knowledge from a reference textual database.\n\nRAG aims to improve LLM accuracy by:\n*   Providing LLMs with knowledge from a reference textual database, which can help ground their responses.\n*   Mitigating factual inaccuracies in the output of large language models, as mentioned in the context of FS-RAG.",
+    "input_tokens": 354,
+    "output_tokens": 98,
+    "total_tokens": 452,
+    "latency_seconds": 17.7713,
+    "cost_usd": 7.46e-05,
+    "context_chunks": 3,
+    "context_tokens": 268
+  },
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "Explain the transformer architecture and the role of self-attention mechanisms.",
+    "answer": "The provided graph context indicates that \"transformer\" and \"attention mechanism\" are related concepts.\n\nIt also mentions that:\n*   \"Transformer Neural Processes\" are a class of models, but the abstract does not describe the transformer architecture itself.\n*   \"Vision Transformers\" are used for monocular depth estimation in the ARTPS system.\n*   \"Pretrained transformer-based models\" have shown high performance in natural language generation and automatic programming language generation tasks.\n\nHowever, the graph context does not contain enough information to explain the specific architecture of a transformer or the role of self-attention mechanisms within it.",
+    "input_tokens": 538,
+    "output_tokens": 125,
+    "total_tokens": 663,
+    "latency_seconds": 4.9945,
+    "cost_usd": 0.0001038,
+    "context_chunks": 5,
+    "context_tokens": 457
+  },
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "How do graph neural networks differ from traditional neural networks?",
+    "answer": "The provided graph context does not contain information about \"graph neural networks\" or their differences from traditional neural networks. The context mentions \"neural networks,\" \"recurrent neural networks,\" \"feedforward neural network training,\" \"deep neural networks (DNNs),\" and \"Adversarial Neural Networks,\" but does not introduce \"graph neural networks.\"",
+    "input_tokens": 550,
+    "output_tokens": 67,
+    "total_tokens": 617,
+    "latency_seconds": 3.1052,
+    "cost_usd": 8.18e-05,
+    "context_chunks": 5,
+    "context_tokens": 462
+  },
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "What are the main challenges in federated learning for healthcare applications?",
+    "answer": "The provided graph context does not contain enough information to identify the main challenges in federated learning specifically for healthcare applications. The papers discuss general challenges in federated learning such as heterogeneous data, heterogeneous models, intellectual property concerns, communication efficiency, privacy preservation, catastrophic forgetting, and the distinction between horizontal and vertical federated learning, but none of these are explicitly linked to healthcare.",
+    "input_tokens": 530,
+    "output_tokens": 74,
+    "total_tokens": 604,
+    "latency_seconds": 5.0441,
+    "cost_usd": 8.26e-05,
+    "context_chunks": 5,
+    "context_tokens": 448
+  },
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "Compare collaborative filtering and content-based recommendation systems.",
+    "answer": "The graph context provides a description of **collaborative filtering** systems:\n*   They are described as \"traditional methods\" that rely on \"similarities between users and items\" (\"A Location-Based Movie Recommender System Using Collaborative Filtering\").\n*   A collaborative filtering system \"recommends to users products that similar users like\" (\"Manipulation Robustness of Collaborative Filtering Systems\").\n*   The context also mentions variations such as \"implicit collaborative filtering\" and \"one-class collaborative filtering\" (\"One-class Collaborative Filtering with Random Graphs: Annotated Version\").\n*   One paper notes that collaborative filtering \"might lead to provide poor recommendation\" (\"A Location-Based Movie Recommender System Using Collaborative Filtering\").\n\nRegarding **content-based recommendation systems**, the graph context does not explicitly define or compare them directly to collaborative filtering under that specific terminology. However, the abstract for \"Online Interactive Collaborative Filtering Using Multi-Armed Bandit with Dependent Arms\" mentions that online interactive recommender systems consider \"both the consumer and item content information\" as part of the current context, but also states that \"such context information is often unavailable in practice.\"",
+    "input_tokens": 504,
+    "output_tokens": 230,
+    "total_tokens": 734,
+    "latency_seconds": 6.2738,
+    "cost_usd": 0.0001424,
+    "context_chunks": 5,
+    "context_tokens": 433
+  },
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "How does RLHF work in training large language models?",
+    "answer": "The provided graph context does not contain information on how RLHF (Reinforcement Learning from Human Feedback) works in training large language models.",
+    "input_tokens": 597,
+    "output_tokens": 27,
+    "total_tokens": 624,
+    "latency_seconds": 2.9229,
+    "cost_usd": 7.05e-05,
+    "context_chunks": 5,
+    "context_tokens": 504
+  },
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "What are the key differences between BERT and GPT architectures?",
+    "answer": "The provided graph context does not contain any information about BERT or GPT architectures, nor does it discuss their key differences. Therefore, I cannot answer this question based on the given context.",
+    "input_tokens": 326,
+    "output_tokens": 36,
+    "total_tokens": 362,
+    "latency_seconds": 66.2764,
+    "cost_usd": 4.7e-05,
+    "context_chunks": 3,
+    "context_tokens": 237
+  },
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "Explain knowledge graph embedding methods and their applications.",
+    "answer": "Based on the graph context:\n\nThe context does not explicitly define \"knowledge graph embedding methods\" in general. However, it mentions related techniques and their applications:\n\n1.  **Methods:**\n    *   \"Message Passing on Hierarchical Relational Graphs\" is presented as a method for generating \"Knowledge Enhanced Pre-Trained Language Representations.\"\n    *   \"Hyperbolic Graph Neural Networks\" are discussed as a method for \"Graph representation learning\" that is effective in capturing \"hierarchical and complex relational structures\" within real-world data.\n\n2.  **Applications:**\n    *   A primary application is **incorporating factual knowledge into pre-trained language models** (e.g., BERT) for NLP studies, as seen with methods like \"Message Passing on Hierarchical Relational Graphs.\"\n    *   Another application involves enhancing \"language model's understanding\" for **knowledge-enhanced disease diagnosis** by retrieving and encoding structured knowledge from external knowledge graphs and injecting it into prompt templates.\n    *   Generally, graph representation learning methods like Hyperbolic Graph Neural Networks are applied to **effectively capture inherent hierarchical and complex relational structures** prevalent in real-world data.",
+    "input_tokens": 544,
+    "output_tokens": 240,
+    "total_tokens": 784,
+    "latency_seconds": 9.0544,
+    "cost_usd": 0.0001504,
+    "context_chunks": 5,
+    "context_tokens": 463
+  },
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "What are the privacy concerns with large language models and how can they be mitigated?",
+    "answer": "The provided graph context does not contain information about the privacy concerns with large language models or how they can be mitigated.",
+    "input_tokens": 602,
+    "output_tokens": 23,
+    "total_tokens": 625,
+    "latency_seconds": 3.4215,
+    "cost_usd": 6.94e-05,
+    "context_chunks": 5,
+    "context_tokens": 504
+  },
+  {
+    "pipeline_name": "GraphRAG",
+    "question": "How does multi-hop reasoning work in knowledge graphs for question answering?",
+    "answer": "The provided graph context does not contain enough information to explain how multi-hop reasoning works in knowledge graphs for question answering. While it mentions \"question answering\" and \"knowledge graphs\" as related concepts, and touches upon using knowledge graphs for complex questions (e.g., \"searching for relevant information\" in \"Query-Specific Knowledge Graphs for Complex Finance Topics\"), it does not describe the specific mechanism or process of \"multi-hop reasoning\" in this context.",
+    "input_tokens": 575,
+    "output_tokens": 92,
+    "total_tokens": 667,
+    "latency_seconds": 6.3981,
+    "cost_usd": 9.43e-05,
+    "context_chunks": 5,
+    "context_tokens": 491
+  }
+]
