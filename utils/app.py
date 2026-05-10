@@ -1,11 +1,3 @@
-"""
-app.py - Streamlit Comparison Dashboard
-
-The heart of the hackathon submission. Enter one query,
-run it through all 3 pipelines, see responses + metrics side by side.
-Also loads saved benchmark results for overall comparison.
-"""
-
 import streamlit as st
 import json
 import os
@@ -13,14 +5,12 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 
-# Page config
+
 st.set_page_config(
     page_title="GraphRAG Benchmark Dashboard",
-    page_icon="🐯",
     layout="wide",
 )
 
-# ── Custom CSS ────────────────────────────────────────────────
 st.markdown("""
 <style>
     .main-header {
@@ -58,7 +48,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# ── Load Results ──────────────────────────────────────────────
 @st.cache_data
 def load_results(filepath):
     """Load pipeline results from JSON file."""
@@ -83,13 +72,13 @@ p2_results = load_results(os.path.join(results_dir, "pipeline2_basic_rag.json"))
 p3_results = load_results(os.path.join(results_dir, "pipeline3_graphrag.json"))
 
 
-# ── Header ────────────────────────────────────────────────────
+
 st.markdown('<div class="main-header">🐯 GraphRAG Inference Benchmark</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-header">Proving that GraphRAG cuts token costs without losing answer quality</div>', unsafe_allow_html=True)
 
 st.divider()
 
-# ── Overall Metrics ───────────────────────────────────────────
+# Overall Metrics
 if p1_results and p2_results and p3_results:
 
     # Calculate aggregate metrics
@@ -157,7 +146,7 @@ if p1_results and p2_results and p3_results:
 
     st.divider()
 
-    # ── Comparison Charts ─────────────────────────────────────
+    # Comparison Chart
     st.subheader("Pipeline Comparison")
 
     chart_col1, chart_col2 = st.columns(2)
@@ -325,7 +314,7 @@ if p1_results and p2_results and p3_results:
 
     st.divider()
 
-    # ── Summary Table ─────────────────────────────────────────
+    # Summary Table 
     st.subheader("Summary")
 
     summary_df = pd.DataFrame({
@@ -377,8 +366,6 @@ python -m pipelines.basic_rag
 python -m pipelines.graph_rag --query
     """)
 
-
-# ── Footer ────────────────────────────────────────────────────
 st.divider()
 st.caption("Built by Sri for the GraphRAG Inference Hackathon by TigerGraph | "
            "Dataset: 885 arXiv papers | LLM: Gemini 2.5 Flash")
