@@ -1,0 +1,1565 @@
+Title: arXiv paper 1028
+
+Categories: 8
+
+Abstract:
+Parameterized and approximation complexity of the
+detection pair problem in graphs
+Florent Foucaud∗
+
+Ralf Klasing†
+
+arXiv:1601.05003v2 [cs.DS] 30 Jan 2018
+
+January 31, 2018
+
+Abstract
+We study the complexity of the problem Detection Pair. A detection pair of a graph
+G is a pair (W, L) of sets of detectors with W ⊆ V (G), the watchers, and L ⊆ V (G), the
+listeners, such that for every pair u, v of vertices that are not dominated by a watcher of W ,
+there is a listener of L whose distances to u and to v are different. The goal is to minimize
+|W | + |L|. This problem generalizes the two classic problems Dominating Set and Metric
+Dimension, that correspond to the restrictions L = ∅ and W = ∅, respectively. Detection
+Pair was recently introduced by Finbow, Hartnell and Young [A. S. Finbow, B. L. Hartnell
+and J. R. Young. The complexity of monitoring a network with both watchers and listeners.
+Networks, accepted], who proved it to be NP-complete on trees, a surprising result given that
+both Dominating Set and Metric Dimension are known to be linear-time solvable on trees.
+It follows from an existing reduction by Hartung and Nichterlein for Metric Dimension that
+even on bipartite subcubic graphs of arbitrarily large girth, Detection Pair is NP-hard to
+approximate within a sub-logarithmic factor and W[2]-hard (when parameterized by solution
+size). We show, using a reduction to Set Cover, that Detection Pair is approximable
+within a factor logarithmic in the number of vertices of the input graph. Our two main results
+are a linear-time 2-approximation algorithm and an FPT algorithm for Detection Pair on
+trees.
+Keywords: Graph theory, Detection pair, Metric dimension, Dominating set, Approximation algorithm, Parameterized complexity
+
+1
+
+Introduction
+
+In order to monitor faults in a network, one can place detectors on its nodes. One possibility is to
+use “local” devices that are able to detect the location of a fault within distance one (we call them
+watchers). Another kind of detectors, that are more far-reaching, are able to determine the exact
+distance of a fault to the device, but not its precise location (we call such detectors listeners). If
+we wish to monitor a network by using only watchers, we have the classic problem Dominating
+Set [14, GT2] (see the books [19, 20] for a survey of results on this problem). If, on the other
+hand, we want to use only listeners, we have the problem Metric Dimension [14, GT61] (see
+for example the papers [2, 4, 15, 17, 22, 24] and references therein). However, it can be useful to
+use both kinds of detectors: for example, one watcher is enough to monitor a complete graph of
+order n, while we would need n − 1 listeners to do so. On the other hand, one listener would suffice
+to monitor a path of order n, but for the same task we would need ⌈n/3⌉ watchers. Therefore,
+Finbow, Hartnell and Young [12] recently proposed the concept of a detection pair in a graph G,
+that is, a pair (W, L) where W ⊆ V (G) is a set of watchers and L ⊆ V (G) is a set of listeners that,
+together, monitor the graph G.
+More formally, we say that a vertex w dominates all the vertices in the closed neighbourhood
+N [w] of w (that is, N [w] is the set of neighbours of w together with w itself). Moreover, a vertex
+∗ LIMOS - CNRS UMR 6158 - Université Blaise Pascal, Clermont-Ferrand (France).
+E-mail: florent.foucaud@gmail.com
+† LaBRI - CNRS UMR 5800 - Université de Bordeaux, F-33400 Talence (France). E-mail: ralf.klasing@labri.fr
+
+1
+
+l separates two vertices u and v if the distance d(u, l) is different from the distance d(v, l). Given
+a pair (W, L) of sets with W ⊆ V (G) (the watchers) and L ⊆ V (G) (the listeners), we say that
+a vertex u is distinguished by (W, L) either if u is dominated by a watcher of W , or if for every
+other vertex v, either v is dominated by a watcher of W , or u and v are separated by a listener of
+L. Then, (W, L) is a detection pair of G if every vertex of G is distinguished by (W, L). The size
+of (W, L) is the sum |W | + |L| and is denoted by ||(W, L)||. Note that we may have W ∩ L 6= ∅ if
+we choose to place both a listener and a watcher at the same position. We denote by DP (G) the
+minimum size of a detection pair of G. Any vertex of (W, L) is called a detector.
+If we have a detection pair (∅, L) in a graph G, then L is called a resolving set of G, and
+the smallest size of a resolving set of G is called its metric dimension, denoted M D(G). On
+the other hand, if we have a detection pair (W, ∅), then W is a dominating set of G, and the
+smallest size of a dominating set of G is its domination number, denoted γ(G). Clearly, we have
+DP (G) ≤ min{γ(G), M D(G)}, and the inequality can be strict [12]. It follows that for any graph
+G without isolated vertices, we have DP (G) ≤ γ(G) ≤ |V (G)|/2 [19].
+The goal of this paper is to study the decision and optimization problems that are naturally
+associated to the notion of a detection pair (other computational problems that are mentioned in
+this paper are defined formally in Section 2).
+Detection Pair
+Instance: A graph G, a positive integer k.
+Question: Is there a detection pair (W, L) of G with ||(W, L)|| ≤ k?
+Opt-Detection Pair
+Instance: A graph G.
+Task: Compute an optimal detection pair of G.
+A c-approximation algorithm for a given optimization problem ΠO is an algorithm that returns
+a solution whose size is always at most c times the optimum. We refer to the book [1] for more
+details. For a decision problem Π and for some parameter p of the instance, an algorithm for
+Π is said to be fixed parameter tractable (FPT for short) if it runs in time f (p)nc , where f is a
+computable function, n is the input size, and c is a constant. In this paper we will always consider
+the solution size k as the parameter. We refer to the books [8, 23] for more details.
+Finbow, Hartnell and Young proved that Detection Pair is NP-complete on trees [12], while
+Opt-Detection Pair is linear-time solvable on trees containing no pair of leaves with a common
+neighbour. This hardness result is quite surprising since the related problems Opt-Dominating
+Set and Opt-Metric Dimension, while being NP-hard in general [14, GT2,GT61], can be solved
+in linear time on trees (see respectively [5] and [15, 24]). We note that Dominating Set is among
+the most classic and well-studied graph problems (see the books [19, 20]), and that Metric
+Dimension has enjoyed a lot of interest in the recent years: see the papers [3, 6, 9, 10, 11, 13, 17, 18].
+In this paper, we continue the study of the complexity of Detection Pair and Opt-Detection
+Pair initiated in [12]. In Section 3, we describe a reduction to Opt-Set Cover that shows that
+Opt-Detection Pair can be solved within a factor logarithmic in the size of the input graph. On
+the other hand, we observe that a reduction of Hartung and Nichterlein [16, 17] for Opt-Metric
+Dimension can also be applied to Opt-Detection Pair. This implies that Opt-Detection
+Pair is NP-hard to approximate within a factor that is sublogarithmic in the input graph’s order,
+and that Detection Pair is W[2]-hard when parameterized by the solution size k. (These hardness results hold even for graphs that are bipartite, subcubic, and have arbitrarily large girth.) In
+Section 4, we prove that Opt-Detection Pair is 2-approximable in linear time on trees. In Section 5, we show that there is an algorithm for Detection Pair running in FPT time 2O(k log k) n2
+on trees.1 We start the paper with some preliminary considerations in Section 2, and conclude in
+Section 6.
+1 In
+
+this paper, “log” denotes the natural logarithm function.
+
+2
+
+2
+
+Preliminaries
+
+We start with some preliminary considerations.
+
+2.1
+
+Definitions of used computational problems
+
+We now formally define a few auxiliary computational problems that are used or mentioned in this
+paper.
+Dominating Set [14, GT2]
+Instance: A graph G, a positive integer k.
+Question: Do we have γ(G) ≤ k, that is, is there a dominating set D of G with |D| ≤ k?
+Opt-Dominating Set
+Instance: A graph G.
+Task: Compute an optimal dominating set of G.
+Metric Dimension [14, GT61]
+Instance: A graph G, a positive integer k.
+Question: Do we have M D(G) ≤ k, that is, is there a resolving set R of G with |R| ≤ k?
+Opt-Metric Dimension
+Instance: A graph G.
+Task: Compute an optimal resolving set of G.
+Set Cover [14, SP5]
+Instance: A hypergraph H = (X, S), a positive integer k.
+Question: Is there a set cover C of H with |C| ≤ k (that is, C ⊆ S and each vertex of X belongs
+to some set of C)?
+Opt-Set Cover
+Instance: A hypergraph H.
+Task: Compute an optimal set cover of H.
+
+2.2
+
+Specific terminology
+
+In a graph G, a vertex of degree 1 is called a leaf. A vertex is called a branching point if its degree
+is at least 3. A branching point v is special if there is a path L starting at v and ending at a vertex
+of degree 1, and whose inner-vertices all have degree 2. Path L − v is called a leg of v, and we say
+that L is attached to v (note that vertex v does not belong to the leg). A special branching point
+with t leaves as neighbours is called a t-stem.2
+Given a special branching point x of a tree T , we define the subtree L(x) of T as the tree
+containing x and all legs of T attached to x.
+
+2.3
+
+The classic algorithm for Opt-Metric Dimension on trees
+
+We will use the following results of Slater [24] about Opt-Metric Dimension on trees, that are
+classic in the literature about metric dimension. See also [15, 22] for similar considerations.
+Proposition 1 (Slater [24]). Let T be a tree and R be the set of vertices containing, for each
+special branching point x of T that has ℓ legs attached, the leaves of the ℓ − 1 longest of these legs.
+Then, R is an optimal resolving set of T .
+We have the following consequence of Proposition 1.
+Theorem 2 (Slater [24]). Opt-Metric Dimension can be solved optimally in linear time on
+trees.
+2 The
+
+previous terminology is from [12] (branching points, stems) and [22] (legs).
+
+3
+
+2.4
+
+Observations and lemmas about detection pairs
+
+The following easy observations and lemmas will be useful.
+Observation 3. Let G be a graph and B2+ the set of its special branching points with at least two
+legs attached. Then, we have DP (G) ≥ |B2+ |.
+Proof. Let (W, L) be a detection pair of G. We show that for each special branching point x of
+B2+ , there is at least one detector of (W, L) among x and the vertices belonging to a leg attached
+to x. Indeed, if not, then any two neighbours of x belonging to this set would neither be dominated
+by a watcher, nor separated by a listener, a contradiction.
+Lemma 4. Let x be a special branching point of a graph G with a set Sx of t leaf neighbours and
+a set Lx of ℓ legs of length at least 2 attached to x. Let (W, L) be a detection pair of G. If there
+is a watcher at x, at least ℓ − 1 of the legs in Lx contain a detector of (W, L). Otherwise, at least
+t + ℓ − 1 legs attached to x contain a detector.
+Proof. If there is a watcher at x, assume for a contradiction that two legs L1 and L2 of Lx contain
+no detector. Then, neither the listeners of (W, L) nor the watcher at x can distinguish the two
+vertices of L1 and L2 that are at distance 2 from x, a contradiction. A similar argument holds for
+vertices at distance 1 of x when x has no watcher.
+Lemma 5. Let G be a graph with a special branching point x having a leg attached, whose leaf is
+y. If G has a detection pair (W, L) with x ∈ L, then (W, L \ {x} ∪ {y}) is also a detection pair of
+G.
+Proof. Let Vx be the set of vertices containing x and the vertices of the leg attached to x whose
+leaf is y. Clearly, a pair u, v of vertices in V (G) \ Vx are separated by x if and only if they are
+separated by y. Moreover, all the vertices in the leg containing y are clearly distinguished, because
+each such vertex is the unique one with its distance to y. This completes the proof.
+
+3
+
+General approximability and non-approximability
+
+In this section, we discuss the general approximation complexity of Opt-Detection Pair.
+Theorem 6. Opt-Detection Pair can be approximated within a factor 2 log n + 1 on graphs of
+order n.
+Proof. Given a graph G, we build an instance (X, S) of Opt-Set Cover as follows. We let X be
+the set of vertex pairs of G. For each vertex v of G, we have a set Wv of S that contains an element
+{x, y} of X if v dominates at least one of x and y. We also have a set Lv that contains an element
+
+{x, y} of X if we have d(v, x) 6= d(v, y). Therefore we have |X| = |V (G)|
+and |S| = 2|V (G)|. Now,
+2
+we claim that we have a one-to-one correspondance between the detection pairs of G and the set
+covers of (X, S). Indeed, for every vertex v of G, the set Wv of S corresponds to a watcher placed
+at vertex v, and the set Lv corresponds to a listener placed at vertex v. Moreover set Uv of S (with
+U ∈ {W, L}) covers exactly the elements of X that correspond to a pair that is separated by the
+according detector placed on v in G. Since Opt-Set Cover is approximable within a factor of
+log(|X|) + 1 in polynomial time [21], the result follows.
+Hartung and Nichterlein [17] provided a reduction from Dominating Set to Metric Dimension. This reduction was improved by Hartung in his PhD thesis [16] to get a reduction mapping
+any instance (G, k) to an instance (G′ , k + 4), where G′ is a bipartite graph of maximum degree 3
+and has girth 4|V (G)| + 6. In fact, it is not difficult to see that for any detection pair P of G′ of
+size k ′ , there is a detection pair P ′ of G′ of size at most k ′ containing no watchers. In other words,
+we have DP (G′ ) = M D(G′ ), and therefore the aforementioned reduction is also a reduction to
+Detection Pair. Hence we have the following.3
+3 Hartung and Nichterlein only state the hardness of approxmation for factors in o(log n), but a recent result
+on the inapproximability of Opt-Set Cover [7], that transfers to Opt-Dominating Set via standard reductions,
+implies our stronger statement.
+
+4
+
+Theorem 7 (Hartung and Nichterlein [16, 17]). Opt-Detection Pair is NP-hard to approximate
+within a factor of (1 − ǫ) log n (for any ǫ > 0) for instances of order n, and Detection Pair is
+W[2]-hard (parameterized by the solution size k). Let g ≥ 4 be an arbitrary integer. These results
+hold even for instances that are bipartite, have maximum degree 3, and girth at least g.
+
+4
+
+A 2-approximation algorithm on trees
+
+In this section, we prove the following approximability result.
+Theorem 8. There is a linear-time 2-approximation algorithm for Opt-Detection Pair on
+trees.
+Proof. Given an input tree T , we denote by S3+ , the set of vertices of T that are t-stems for some
+t ≥ 3. Moreover, we define T ′ as the tree obtained from T as follows. For each vertex v of S3+
+(that is, v is a t-stem for some t ≥ 3), assuming that there are ℓ legs of length at least 2 attached
+to v in T , we remove from T : (i) t − 2 leaf neighbours of v if ℓ = 0, (ii) t − 1 leaf neighbours of
+v if ℓ = 1, and (iii) all t leaf neighbours of v if ℓ ≥ 2. Therefore, in T ′ , there are at least two legs
+attached to each vertex of S3+ .
+Let us describe our algorithm A.
+1. Compute the set S3+ and build T ′ from T .
+2. Compute an optimal resolving set R′ of T ′ .
+3. Output A(T ) = (S3+ , R′ ).
+We first prove that A(T ) is a detection pair of T . Notice that the distances from listeners in
+R′ and vertices of V (T ′ ) are the same in T and T ′ . Therefore, all pairs of vertices of V (T ′ ) are
+distinguished in T by the listeners of A(T ). On the other hand, all vertices of V (T ) − V (T ′ ) are
+dominated by the watchers of S3+ . Therefore, A(T ) is a detection pair of T .
+Moreover, it is clear that S3+ and T ′ can be computed in linear time, and R′ can be computed
+in linear time using Slater’s algorithm (Theorem 2). Therefore A is a linear-time algorithm.
+It remains to prove that ||A(T )|| = |S3+ | + M D(T ′ ) ≤ 2 · DP (T ) for any tree T . Notice that
+A(T ) contains only vertices that are part of some subtree L(x), where x is a special branching
+point of T ; indeed, any vertex of S3+ is a special branching point of T , and any special branching
+point of T ′ is also a special branching point of T (by Proposition 1, any optimal resolving set of T ′
+only contains vertices that belong to some subtree L(x) of T ′ ). Therefore, it suffices to prove that
+for any detection pair D = (W, L) of T , for any optimal resolving set R′ of T ′ and for every special
+branching point x of T , we have |S3+ ∩V (L(x))|+|R′ ∩V (L(x))| ≤ 2|W ∩V (L(x))|+2|L∩V (L(x))|.
+To this end, let us assume that x is a t-stem for some t ≥ 0, and that there are ℓ legs of length at
+least 2 attached to x. We distinguish the following cases.
+Case 1: ℓ ≤ 1. Then, L(x) contains at most two detectors of A(T ). Indeed, if t ≤ 2, it contains
+one or two listeners; if t ≥ 3, it contains one watcher and one listener. By Lemma 4, there is at
+least one detector in L(x), which completes the proof of this case.
+Case 2: ℓ ≥ 2. Then, by Lemma 4, any detection pair (W, L) of T has a detector in at
+least ℓ − 1 legs of length at least 2 of L(x). If t ≥ 3 (that is, x ∈ S3+ ), A(T ) has exactly
+ℓ − 1 listeners and one watcher in L(x). Therefore, for any detection pair (W, L) of T , we have
+2|W ∩ V (L(x))| + 2|L ∩ V (L(x))| ≥ 2ℓ − 2 ≥ ℓ = |S3+ ∩ V (L(x))| + |R′ ∩ V (L(x))| (because ℓ ≥ 2),
+and we are done.
+Hence, assume that t ≤ 2. Then, L(x) contains only listeners of A(T ), that is, precisely t + ℓ − 1
+leaves of L(x) that belong to R′ . If t ≤ 1, we have ℓ−1 ≥ t and then, for any detection pair (W, L) of
+T , we have 2|W ∩V (L(x))|+2|L∩V (L(x))| ≥ 2ℓ−2 ≥ t+ℓ−1 = |S3+ ∩V (L(x))|+|R′ ∩V (L(x))|, and
+we are done. If however, t = 2, by Lemma 4, there are at least ℓ detectors of (W, L) in L(x). Hence,
+we have 2|W ∩V (L(x))|+ 2|L ∩V (L(x))| ≥ 2ℓ ≥ t+ ℓ > t+ ℓ − 1 = |S3+ ∩V (L(x))|+ |R′ ∩V (L(x))|.
+This completes the proof.
+
+5
+
+There are two infinite families of trees that show that our algorithm has no better approximation
+ratio than 2.
+The first family consists of trees Tℓ1 (ℓ ≥ 1) that are built from ℓ disjoint stars with at least three
+leaves each, all whose centers are adjacent to an additional single vertex. We have ||A(Tℓ1 )|| = 2ℓ
+(this solution set contains one watcher and one listener for every star), while DP (Tℓ1 ) ≤ ℓ (simply
+let every center of a star be a watcher, and select no listener). Hence the approximation ratio of
+A on Tℓ1 is 2.
+A second family consists of trees Tℓ2 (ℓ ≥ 1) built from a path P of ℓ+2 vertices. For each of the
+two end-vertices of P , add two leaves that are adjacent to this end-vertex. For each degree 2-vertex
+v of P , build a star Sv with three leaves and subdivide one of its edges once. Moreover, the center
+of Sv is made adjacent to v. We have ||A(Tℓ2 )|| = 2ℓ + 2 (each star contains two listeners, and
+two additional listeners are selected among the four degree 1-vertices adjacent to end-vertices of
+P ), while DP (Tℓ2 ) ≤ ℓ + 2 (put a watcher on each center of a star, and add one neighbour of each
+2
+.
+endpoint of P as a listener). The approximation ratio of A on Tℓ2 is 2 − ℓ+2
+
+5
+
+A fixed parameter tractable algorithm on trees
+
+In this section, we provide an exact algorithm for Detection Pair that is FPT for the natural
+parameter k, the solution size.
+The idea of the algorithm is as follows. We first search for a solution with |L| ≤ 1. After
+this step, we may assume that |L| ≥ 2, which is a technical condition required for the subsequent
+steps of the algorithm. Then we proceed in three phases. In the first phase, we handle the
+solution around the special branching points of the tree. As we will see, there is only a fixed set of
+possibilities to try for each such branching point. Then, in the second phase, we determine the set
+of remaining listeners. Here, we are able to compute a set (whose size is bounded in terms of k)
+of possible vertices that may contain a listener in an optimal solution. Finally, in the third phase,
+we determine the set of remaining watchers, and again we are able to compute a set of vertices
+(whose size is bounded in terms of k) that may be used as a watcher. The algorithm then checks
+the validity of each possible choice of these placements.
+Theorem 9. Detection Pair can be solved in time 2O(k log k) n2 on trees of order n.
+
+5.1
+
+Preliminary lemmas
+
+Before describing the algorithm, we prove a series of lemmas that will be essential.
+The first lemma is useful to handle special branching points of the tree, by reducing the problem
+around these vertices to a fixed number of cases.
+Lemma 10. Let G be a graph with a special branching point x with at least two legs and (W, L)
+an optimal detection pair of G. Let Sx be the set of leaves adjacent to x, and let Lx be the set of
+legs of length at least 2 attached to x. Denote by V (Lx ) the vertices belonging to a leg in Lx , and
+let ℓ = |Lx | and t = |Sx | (so, x is a t-stem). Then, we can obtain from (W, L) another optimal
+detection pair of G by replacing all the detectors in Vx = {x} ∪ Sx ∪ V (Lx ) by one of the following
+sets of detectors:
+1. If ℓ ≤ 1, we may use:
+(a) a single watcher at x;
+(b) a watcher at x, and a listener at the leaf of a longest leg attached to x;
+(c) if t + ℓ = 2, a single listener at the leaf of a longest leg attached to x.
+2. If ℓ ≥ 2, we may use:
+(a) a watcher at x and ℓ listeners at all leaves of the legs of Lx ;
+(b) a watcher at x and ℓ − 1 listeners at all leaves of the legs of Lx but the shortest one;
+(c) if t ≤ 1, ℓ + t listeners at all leaves of the legs attached to x;
+
+6
+
+(d) if t ≤ 1, ℓ + t − 1 listeners at all leaves of the legs attached to x, except for a shortest
+such leg.
+Proof. Clearly, if there are any watchers among {x} ∪ Sx, we may replace them by a single watcher
+at x and obtain a valid detection pair. We now distinguish two cases.
+Case 1: ℓ ≤ 1. Then, we have t ≥ 1. If Vx contained a unique detector of (W, L) that is a
+watcher, then it must have dominated a leaf neighbour of x (since t ≥ 1, such a neighbour exists).
+Then as observed at the beginning of the proof, we may replace this detector by a watcher at x,
+and we are in Case 1(a). If Vx had a unique detector of (W, L) that is a listener, then by Lemma 4
+we must have had t + ℓ = 1. Note that any listener in Vx seperates the same set of pairs of vertices
+from V (G) \ Vx . Hence we may replace the existing listener by a listener at the leaf of a longest
+leg attached to x, which separates at least as many vertices as any other listener in Vx . Then we
+are in Case 1(c) and we are done. Hence, we assume that Vx contained at least two detectors of
+(W, L). Then, using similar arguments one can check that the solution of Case 1(b) yields a valid
+detection pair of G that is not larger than (W, L).
+Case 2: ℓ ≥ 2. As observed before, we can replace all watchers in {x} ∪ Sx by a single watcher
++
+at x. If x has a watcher, we let L+
+x = Lx ; otherwise, we let Lx be the set of all legs attached to x.
++
++
+Let ℓ = |Lx |.
+By Lemma 4, at least ℓ+ − 1 ≥ 1 of the legs in L+
+x contain a detector of (W, L). Assume
+first that (W, L) contained at least ℓ+ detectors of (W, L) on the legs of L+
+x . Then, we replace
+all such detectors by a listener at the leaf of each leg of L+
+.
+Then,
+any
+vertex
+of a leg Li of L+
+x
+x
+is distinguished by its distance to the listener placed at the leaf of Li . Since any listener in Vx
+separates the same set of pairs in V (G) \ Vx , we have obtained a valid detection pair that is not
+larger than (W, L) and we are in Case 2(a) or 2(c).
+Suppose now that there are exactly ℓ+ − 1 detectors of (W, L) on the legs of L+
+x . We replace
+these detectors by a listener at the leaf of each of the ℓ+ −1 longest legs of L+
+.
+By
+similar
+arguments
+x
+as above, all vertices in Vx that do not belong to the unique leg L1 of L+
+without
+a
+detector
+are
+x
+distinguished. Again, any listener in Vx separates the same set of pairs of V (G) \ Vx . Hence, if
+some vertex is not distinguished by the new detection pair, it must be a vertex u of L1 that is not
+separated from a vertex v of V (G) \ Vx . This implies that d(u, x) = d(v, x) (otherwise u and v
+would be separated by any of the listeners placed in Vx ). We know that u and v were separated
+by some detector of (W, L), which must have been a detector in the leg L1 (no detector in another
+leg of L+
+x could possibly separate u and v since d(u, x) = d(v, x)). But we know that there was
++
+one leg L2 of L+
+x that contained no detector of (W, L). Since L1 is a shortest leg of Lx , there is
+′
+′
+′
+a vertex u in L2 with d(x, u) = d(x, u ). But then, u and v were not distinguished by (W, L), a
+contradiction. Hence we have a valid detection pair whose size is not greater than ||(W, L)|| and
+we are in Case 2(b) or 2(d), and we are done.
+The next two lemmas are used in our algorithm to choose the placement of the listeners.
+Lemma 11. Let G be a graph with two vertices u and v connected by a unique path P . Let V (P + )
+be the set of vertices of P together with the vertices of each leg attached to an inner-vertex of
+degree 3 of P . Then, by placing listeners on u and on v, all vertices of V (P + ) are distinguished
+(by u and v).
+Proof. For every vertex x of G, we let δu,v (x) = d(u, x) − d(v, x). Note that if for two vertices x
+and y, δu,v (x) 6= δu,v (y), then x and y are separated by u and v.
+Clearly, u and v are distinguished. Let w be a vertex of V (P + ) \ {u, v}, and assume for
+a contradiction that there is some vertex z with d(u, w) = d(u, z) and d(v, w) = d(v, z). In
+particular, δu,v (w) = δu,v (z).
+Note that for every two vertices p, q of P , we have δu,v (p) 6= δu,v (q), therefore at most one of
+the vertices w and z can belong to P . We assume w.l.o.g. that z does not belong to P .
+The shortest paths from z to both u and v must go through an inner-vertex of P , say s. Then,
+we have δu,v (z) = δu,v (s) = δu,v (w), which implies that all shortest paths from w to u and v also
+go through s. But then, we have d(w, s) = d(z, s), a contradiction because by the structure of
+V (P + ) this implies that w = z.
+
+7
+
+Lemma 12. Let G be a graph with two vertices u and v connected by a unique path P , such that
+each inner-vertex of P has either degree 2 or a single leg attached. Moreover let V (P + ) be the set
+of inner-vertices of P together with the vertices of each leg attached to an inner-vertex of degree 3
+of P . Then, for every detection pair (W, L) of G, one can obtain a valid detection pair of G by
+replacing all detectors of (W ∪ L) ∩ V (P + ) by two listeners at u and v.
+Proof. By Lemma 11, all vertices in V (P + ) are distinguished by u and v. Note that no watcher
+of V (P + ) could possibly distinguish any vertex outside of V (P + ) ∪ {u, v} (and u, v are clearly
+distinguished). Furthermore, since P is the unique path connecting u and v, for any listener l ∈ L
+in V (P + ), the set of pairs in V (G) \ V (P + ) separated by l is the same as the set of pairs separated
+by u (and by v). This completes the proof.
+The next lemma will be used in the algorithm to determine the placement of watchers in parts
+of the tree where there is no listener.
+Lemma 13. Let T be a tree with a vertex x and an optimal detection pair (W, L) of T with |L| ≥ 1.
+Let Tx be a subtree of T containing x and assume that (i) Tx contains no t-stems for any t ≥ 2,
+(ii) for each listener l of L and each vertex v of Tx , the shortest path from l to v goes through x (in
+particular Tx − x contains no listener) and (iii) Tx is maximal with respect to (i) and (ii). Then,
+there is a set X of size at most 63|W |2 with W ∩ V (Tx ) ⊆ X. Moreover, X can be determined in
+time linear in |V (Tx )|.
+Proof. We may view Tx as a rooted tree whose root is x. Consider the partition P of V (Tx )
+into parts P0 , P1 , . . . , Pd where Pi contains the vertices of V (Tx ) that have distance i to x. Since
+|L| ≥ 1 and by (ii) all shortest paths from any listener of L to a vertex of Tx go through x, the
+set L of listeners separates a pair u, v of V (Tx ) if and only if u and v belong to different parts of
+P. Therefore, since (W, L) is a detection pair of G, for any two distinct vertices u and v from the
+same part Pi , at least one of u, v is dominated by a watcher of W .
+Let S2+ be the set of parts of P of size at least 2 (that is, those parts where at least one vertex
+fx be the forest induced by the set of vertices of Tx that
+must be dominated by a watcher). Let F
+fx ), and we shall
+belong to some part of S2+ , together with their neighbours in Tx . We let X = V (F
+prove that X satisfies the claim. First, we show that (W ∩ V (Tx )) ⊆ X. Assume by contradiction
+that this is not the case, and let w be a watcher of W that belongs to V (Tx ) \ X. By the optimality
+of (W, L), (W \ {w}, L) is not a detection pair of T . Therefore, there must be some vertex u
+dominated by w that is not separated by L from some other vertex v (and v is not dominated by
+a watcher of W \ {w}). In other words, for every listener l ∈ L, we have dT (u, l) = dT (v, l). Thus,
+since T is a tree, all shortest paths from l to both u and v have a common part (say from l until
+some vertex y) and then are disjoint. By (iii), Tx is maximal with respect to (i) and (ii), which
+implies that y = x and both u and v belong to Tx . However, observe that u belongs to a part
+of S2+ (otherwise w would belong to X). Therefore, u is uniquely determined (within Tx ) by its
+distance to x. Since |L| ≥ 1 and by (ii), this implies that u and v are in fact distinguished by L, a
+contradiction.
+Thus, we have shown that W ∩ V (Tx ) ⊆ X. It is moreover clear that X can be computed in
+time linear in |V (Tx )| by using the distances of the vertices of Tx to x. Therefore, it remains only
+to bound the size of X.
+fx contains vertices of at most 9|W | distinct parts of P. To each part Pi
+First, we show that F
+fx but that may
+of S2+ , we can associate the two parts Pi−1 and Pi+1 , that may have vertices in F
+f
+not be in S2+ . Hence, the total number of parts with a vertex in Fx is at most 3|S2+ |. Since a
+watcher may dominate vertices from at most three parts of S2+ and each part in S2+ has at least
+fx contains vertices of at most
+one vertex dominated by a watcher, we have |S2+ | ≤ 3|W |, hence F
+9|W | distinct parts of P.
+fx has at most |W | + 2|S2+ | ≤ 7|W | leaves. Note that a leaf of F
+fx is
+Second, we prove that F
+either an actual leaf in T , or it is a vertex of a part Pi with |Pi | = 1 (or both). We claim that
+fx can contain at most |W | leaves of T belonging to a part of S2+ . Indeed, each such leaf must
+F
+be dominated by a watcher, but it can be dominated only by itself or by its parent in Tx . But
+since by (i) there are no t-stems for t ≥ 2 in Tx , no parent can dominate more than one leaf, which
+fx contains vertices from at most 2|S2+ | parts of P of size 1,
+proves the bound. Furthermore, F
+8
+
+fx that are not in a part of |S2+ | is at most 2|S2+ | ≤ 6|W | since
+hence the number of leaves of F
+fx .
+|S2+ | ≤ 3|W |. Hence in total, we have at most 7|W | leaves in F
+But any rooted forest with at most 9|W | levels and with at most 7|W | leaves may have at most
+fx ) has size at most 63|W |2 . This completes the proof.
+63|W |2 vertices, hence X = V (F
+
+5.2
+
+The algorithm (proof of Theorem 9)
+
+We now describe the claimed FPT algorithm for Detection Pair on trees and prove its correctness
+and running time.
+Proof of Theorem 9. Let us describe the algorithm, that seeks to build a detection pair (W, L)
+with at most k detectors of an input tree T of order n.
+Preliminary phase: Searching for a solution with |L| ≤ 1. A first step of the algorithm is to
+check whether there is a solution with |L| ≤ 1. If we set L = ∅, the problem is equivalent to finding
+a dominating set of T of size at most k. This can be done in linear time [5]. If we set |L| = 1, one
+may try the n possibilities for the placement of the unique listener. For each possibility (say we
+have placed the listener at vertex v), we create a subtree Tv of T rooted at v as follows. First of all,
+let Tv = T . Then, for each t-stem x of T with t ≥ 2 (except if v is a leaf attached to x and x is a
+2-stem), we may assume that x belongs to W (by a similar argument as in the proof of Lemma 10,
+Cases 1a and 2a.). Thus, we add x to W and we we remove from Tv all leaves but one that are
+attached to x (if v is one such leaf, we keep v in Tv ). Now Tv has no t-stems for t ≥ 2 and we can
+apply Lemma 13. Thus, there is a set X of at most 63k 2 vertices that may contain a watcher (X
+is computable in linear time). Then, it suffices to try all the possibilities of selecting k − |W | − 1
+
+2
+additional watchers from this set. There are at most 63k
+∈ O 2O(k log k) such possibilities. For
+k
+each of them, we check in linear time whether we have a valid detection pair. In total this phase
+takes 2O(k log k) n2 time. If we find a valid solution in this phase, we return YES.
+Next, we assume that |L| ≥ 2 and proceed in three phases.
+Phase 1: Handling the special branching points. We now do a preprocessing step using
+Lemma 10. First compute (in linear time) the set of special branching points of T , and let B2+
+be the set of those special branching points that have at least two legs attached. Note that by
+Observation 3, if |B2+ | > k we can return NO. Hence, assume that |B2+ | ≤ k. Now, for each special
+branching point x of B2+ , by Lemma 10 we can assume that there are at most four different choices
+for the set of detectors on x and the vertices belonging to a leg attached to x. Therefore, we may
+go through each of the possible combinations of these choices; there are at most 4k of them. Of
+course we discard the choices for which there are more than k detectors. For a combination Ci ,
+Let (Wi , Li ) be the partial detection pair corresponding to Ci . In the remainder, we show how to
+decide whether there is a detection pair (W, L) of T with Wi ⊆ W , Li ⊆ L and ||(W, L)|| ≤ k.
+Phase 2: determining the set of listeners. Let Vi∗ be the set of vertices of T containing, for
+each pair u, v of listeners of Li , all the vertices of the path Puv connecting u and v, as well as all
+the vertices of each leg of T attached to a degree 3 inner-vertex of Puv . By Lemma 11, all the
+vertices in Vi∗ are distinguished by (Wi , Li ). Clearly, the subgraph Ti∗ = T [Vi∗ ] of T is a connected
+subtree. Let X = {x1 , . . . , xp } be the set of vertices in Vi∗ that have a neighbour in T − Ti∗ . For
+each vertex xj of X, we let Txj be the subtree of T formed by xj together with all trees of T − Ti∗
+containing a neighbour of xj . Let F be the forest consisting of all trees Txj (1 ≤ j ≤ p) such that
+at least one vertex of Txj is not distinguished by (Wi , Li ). Next, we upper-bound the size of F .
+Claim 9.A. If there is a detection pair (W, L) of T with Wi ⊆ W , Li ⊆ L and ||(W, L)|| ≤ k,
+then |F | ≤ k.
+Proof of claim. We prove that each tree of F must contain a detector of (W, L). Assume for
+contradiction that there is a tree Txa of F such that no detector of (W, L) belongs to Txa . By
+definition, Txa contains a vertex w not distinguished by (Wi , Li ), hence there is a vertex w′ of
+T − Ti∗ (say, w′ ∈ Txb ) not separated by any listener of Li and none of w, w′ is dominated by a
+watcher of Wi . Then, w′ must belong to Txa (hence a = b), indeed by definition of Ti∗ there are
+two listeners u and v of Li whose path contains xa and xb . But then, if a 6= b, clearly u and v
+9
+
+would separate w and w′ , a contradiction. But since w and w′ both belong to Txa , no listener
+outside of Txa can separate them, and clearly no watcher outside of Txa can dominate them, which
+
+proves the claim.
+
+By Claim 9.A, if we have |F | > k, we can discard the combination Ci ; hence, we assume that
+|F | ≤ k.
+d
+Now, from each tree Txj of F , we build the subtree T
+xj of Txj as follows: (i) remove all legs in
+Txj whose closest special branching point has only one leg attached; (ii) remove each leaf of Txj
+d
+that is adjacent to a watcher of Wi . We also denote by Fb the forest containing each tree T
+xa with
+Txa ∈ F . We next claim the following.
+Claim 9.B. If there is a detection pair (W, L) of T with Wi ⊆ W , Li ⊆ L and ka detectors on
+d
+Txa , then T
+xa has at most 2ka leaves.
+d
+Proof of claim. Let us consider the legs of T
+xa containing no detector of (Wi , Li ). By (i) of the
+d
+construction of Txa , such a leg must be attached to a special branching point having at least two
+legs attached. (Note that operation (i) did not create any new special branching point.) Moreover,
+d
+by (ii), if this leg has length 1 in T
+xa , its unique vertex will not be dominated by a watcher, since
+the set of detectors on this leg and its special branching point are determined by the combination
+Ci . Note that in (ii), if we create a new leg, this leg contains a detector (a watcher).
+d
+d
+Let v be a special branching point of T
+xa and let Lv be the set of legs in Txa attached to v that
+do not contain any detector of (Wi , Li ). By the previous discussion, we have |Lv | ≥ 2. If some leg
+of Lv has length 1, as we observed there will be no watcher on v. Hence, in order to separate all
+the neighbours of v on the legs of Lv , we need a detector in at least |Lv | − 1 ≥ |Lv |/2 of these legs.
+Otherwise, we still need that many detectors in order to separate all the vertices at distance 2 of v
+d
+on the legs of Lv . Hence, at most half of the leaves of T
+xa belong to a leg with no detector, which
+
+proves the claim.
+
+By Claim 9.B, d
+Txj has at most 2kj leaves (where kj is the set of detectors placed on Txj ).
+Therefore, if the total number of leaves in the forest Fb is more than 2k, we can discard the current
+combination Ci . Hence, we can assume that the total number of leaves in Fb is at most 2k.
+Therefore, the total number of vertices of degree at least 3 in Fb is at most 2k. Let us consider
+the sets of maximal threads in Fb (that is, paths with inner-vertices of degree 2). The endpoints of
+such threads are vertices of degree 1 or at least 3 in Fb, and therefore the number of such threads
+is at most the number of these vertices, which is upper-bounded by 4k.
+b
+d
+Each such thread Puv between two vertices u and v of a tree T
+xj of F, corresponds (in Txj )
+to a path whose inner-vertices either have a single leg attached, or contain a watcher of Wi with
+a set of leaves attached. Hence, we may assume that Puv contains at most two listeners: if it
+contained more than two, by Lemma 12, we could replace them with the two endpoints u and v
+of Puv . Moreover, if Puv contained exactly one listener, similarly we may assume it is placed on
+one of the endpoints of Puv . Indeed, since |L| ≥ 2, there will be another listener in the solution
+set. If this listener is closer to u, similarly as in Lemma 11, a listener on v would distinguish all
++
++
+) contains all vertices of Puv and the vertices of legs attached to
+vertices on V (Puv
+) (where V (Puv
++
+) separated by u and
+inner-vertices of Puv ). Moreover, the set of pairs of vertices outside of V (Puv
+by v are the same. Note that by Lemma 5, if we choose to place a listener on an endpoint u of
+d
+a path Puv that is a thread in T
+xj and this endpoint has a leg attached, instead of placing the
+listener on u we can instead place the listener on the leaf of this leg.
+d
+Therefore, for each thread Puv of T
+xa , there are four possibilities for the placement of the
+listeners: a listener on both u and v (or the leaf of a corresponding leg attached to u or v); a single
+listener at u; a single listener at v; no listener. There are therefore at most 44k possibilities to guess
+the placement of listeners on tree Txa . For each such placement Pj , we obtain a set Lj of listeners
+(of course, if ||(W, Li ∪ Lj )|| > k we do not consider this placement). Now, we can assume that
+L = Li ∪ Lj , that is, that there will be no more listeners in the sought solution (W, L). Hence, it
+remains to check whether we can obtain a valid solution of size k by only adding watchers.
+∗
+Phase 3: Determining the set of watchers. We compute a tree Ti,j
+similarly as Ti∗ but using
+′
+∗
+the new set Li ∪ Lj of listeners. Similarly as before, we define the set X of vertices of Ti,j
+having
+
+10
+
+∗
+a neighbour in T − Ti,j
+, and the set of trees Tx′ j . We also let F ′ be the forest containing those
+′
+trees Txj that have at least one vertex not distinguished by (Wi , Li ∪ Lj ). We know that for each
+tree Tx′ j of F ′ , we will use only watchers to distinguish the vertices not yet distinguished. For each
+′
+′
+g
+tree Tx′ j in F ′ , let T
+xj be the tree obtained from Txj by removing all leaves already dominated by
+a watcher of Wi . If this process has created a t-stem with t ≥ 2, then at least t − 1 leaf neighbours
+′
+g
+of this t-stem have a watcher of Wi ; simply remove them. Then, the obtained tree T
+xj has no
+′ to satisfy
+g
+t-stems with t ≥ 2. Hence, we can apply Lemma 13 to g
+T ′ (if necessary, we augment T
+xj
+
+xj
+
+the maximality condition (iii) in Lemma 13). Thus, there is a set Xj of at most 63k 2 vertices of
+′
+g
+g
+Tx′ j that may possibly contain a watcher, and Xj can be computed in time linear in |V (T
+xj )|. As
+′
+before, there are at most k trees in F and hence in total the set X = ∪j Xj of possible placements
+for the remaining watchers has size at most 63k 3 (and is computable in linear time). Therefore, we
+
+3
+can check all the 63k
+∈ O 2O(k log k) possibilities of placing the remaining watchers. If we find
+k
+a valid detection pair (W, L) with Wi ⊆ W , we return YES; otherwise, we discard the placement
+Pj and move on to the next possibility.
+
+It is clear, by the lemmas used in the description in the algorithm, that this algorithm is correct.
+The running time of the preliminary phase is 2O(k log k) n2 . The running time of Phases 1 to 3 is at
+most 4k 44k 2O(k log k) n which is 2O(k log k) n. This completes the proof.
+
+6
+
+Conclusion
+
+We have obtained a linear-time 2-approximation algorithm for Opt-Detection Pair on trees, but
+perhaps this algorithmic upper bound could be improved to a PTAS? It seems that the reduction
+of [12] does not show the inapproximability of Opt-Detection Pair for any constant greater
+than one. Therefore, it remains to settle the exact approximation complexity of Opt-Detection
+Pair on trees.
+As a second question, can the factor 2O(k log k) in our FPT algorithm for Detection Pair be
+improved to single-exponential FPT time 2O(k) (or even sub-exponential time 2o(k) )? For this,
+the bottleneck is our use of Lemma 13 in the preliminary phase and in Phase 3 of the algorithm,
+during which we search through all possible subsets of size k of some sets of size O(k 2 ) and O(k 3 ),
+respectively. Moreover, it is perhaps possible to obtain a linear running-time (in terms of n) by
+reducing the running-time of the preliminary phase.
+As an extension of our results, it would be of interest to determine whether, on further graph
+classes, Opt-Detection Pair is constant-factor approximable and whether Detection Pair is
+FPT. One natural research direction is to consider the class of planar graphs or its subclasses,
+the outerplanar graphs and the series-parallel graphs (that is, graphs of treewidth 2). These
+three classes contain all trees. Although both questions are settled in the affirmative for OptDominating Set and Dominating Set (see [20] and [8, 23]), as far as we know they also remain
+open for Opt-Metric Dimension and Metric Dimension (though, a polynomial-time algorithm
+exists for Opt-Metric Dimension on outerplanar graphs [6]).
+Acknowledgements. We thank the anonymous referees for their careful reading and valuable
+comments. We wish to thank Bert L. Hartnell for sharing the manuscript [12] with us. Moreover
+we acknowledge the financial support of the programme ”IdEx Bordeaux – CPU (ANR-10-IDEX03-02)”.
+
+References
+[1] G. Ausiello, P. Crescenzi, G. Gambosi, V. Kann, A. Marchetti-Spaccamela and M. Protasi.
+Complexity and approximation. Springer, 1999.
+[2] R. F. Bailey and P. J. Cameron. Base size, metric dimension and other invariants of groups
+and graphs. Bulletin of the London Mathematical Society 43:209–242, 2011.
+
+11
+
+[3] R. Belmonte, F. V. Fomin, P. A. Golovach and M. S. Ramanujan. Metric dimension of bounded
+width graphs. Proceedings of the 40th International Symposium on Mathematical Foundations
+of Computer Science, MFCS 2015, LNCS 9235:115–126, 2015.
+[4] G. Chartrand, L. Eroh, M. Johnson and O. Oellermann. Resolvability in graphs and the metric
+dimension of a graph. Discrete Applied Mathematics 105(1-3):99–113, 2000.
+[5] E. J. Cockayne, S. Goodman and S. T. Hedetniemi. A linear algorithm for the domination
+number of a tree. Information Processing Letters 4:41–44, 1975.
+[6] J. Diaz, O. Pottonen, M. Serna and E. J. van Leeuwen. On the complexity of metric dimension.
+Proceedings of the 20th European Symposium on Algorithms, ESA 2012, LNCS 7501:419–430,
+2012.
+[7] I. Dinur and D. Steurer. Analytical approach to parallel repetition. Proceedings of the fortysixth annual ACM symposium on Theory of computing, STOC 2014 :624–633, 2014.
+[8] R. G. Downey and M. R. Fellows. Fundamentals of Parameterized Complexity. Springer, 2013.
+[9] D. Eppstein. Metric dimension parameterized by max leaf number. Journal of Graph Algorithms and Applications 19(1):313–323, 2015.
+[10] L. Epstein, A. Levin and G. J. Woeginger. The (weighted) metric dimension of graphs: hard
+and easy cases. Algorithmica 72(4):1130–1171, 2015.
+[11] H. Fernau, P. Heggernes, P. van’t Hof, D. Meister and R. Saei. Computing the metric dimension for chain graphs. Information Processing Letters 115:671–676, 2015.
+[12] A. S. Finbow, B. L. Hartnell and J. R. Young. The complexity of monitoring a network with
+both watchers and listeners. Networks, accepted.
+[13] F. Foucaud, G. B. Mertzios, R. Naserasr, A. Parreau and P. Valicov. Identification, locationdomination and metric dimension on interval and permutation graphs. II. Algorithms and
+complexity. Algorithmica, to appear.
+[14] M. R. Garey and D. S. Johnson. Computers and intractability: a guide to the theory of NPcompleteness, W. H. Freeman, 1979.
+[15] F. Harary and R. A. Melter. On the metric dimension of a graph. Ars Combinatoria 2:191–195,
+1976.
+[16] S. Hartung. Exploring parameter spaces in coping with computational intractability.
+PhD
+Thesis,
+Technische
+Universität
+Berlin,
+Germany,
+2014.
+https://opus4.kobv.de/opus4-tuberlin/frontdoor/index/index/docId/4644
+[17] S. Hartung and A. Nichterlein. On the parameterized and approximation hardness of metric dimension. Proceedings of the IEEE Conference on Computational Complexity, CCC 2013 :266–
+276, 2013.
+[18] M. Hauptmann, R. Schmied and C. Viehmann. Approximation complexity of metric dimension
+problem. Journal of Discrete Algorithms 14:214–222, 2012.
+[19] T. W. Haynes, S. T. Hedetniemi and P. J. Slater. Fundamentals of domination in graphs.
+Marcel Dekker, 1998.
+[20] T. W. Haynes, S. T. Hedetniemi and P. J. Slater, editors. Domination in graphs: advanced
+topics. Marcel Dekker, 1998.
+[21] D. S. Johnson, Approximation algorithms for combinatorial problems. Journal of Computer
+and System Sciences 9:256–278, 1974.
+[22] S. Khuller, B. Raghavachari and A. Rosenfeld. Landmarks in graphs. Discrete Applied Mathematics 70:217–229, 1996.
+12
+
+[23] R. Niedermeier. Invitation to fixed-parameter algorithms. Oxford University Press, 2006.
+[24] P. J. Slater. Leaves of trees. Congressus Numerantium 14:549–559, 1975.
+
+13
+
+
+
+Summary:
+This research paper covers the following topic: Parameterized and approximation complexity of the
+detection pair problem in graphs
+Florent Foucaud∗
+
+Ralf Klasing†
+
+arXiv:1601.05003v2 [cs.DS] 30 Jan 2018
+
+January 31, 2018
+
+Abstract
+We study the complexity of the problem Detection Pair. A detection pair of a graph
+G is a pair (W, L) of sets of detectors with W ⊆ V (G), the watchers, and L ⊆ V (G), the
+listeners, such that for every pair u, v of vertices that are not dominated by a watcher of W ,
+there is a listener of L whose distances to u and to v are different. The goal is to minimize
+|W | + |L|. This problem generalizes the two classic problems Dominating Set and Metric
+Dimension, that correspond to the restrictions L = ∅ and W = ∅, respectively. Detection
+Pair was recently introduced by Finbow, Hartnell and Young [A. S. Finbow, B. L. Hartnell
+and J. R. Young. The complexity of monitoring a network with both watchers and listeners.
+Networks, accepted], who proved it to be NP-complete on trees, a surprising result given that
+both Dominating Set and Metric Dimension are known to be linear-time solvable on trees.
+It follows from an existing reduction by Hartung and Nichterlein for Metric Dimension that
+even on bipartite subcubic graphs of arbitrarily large girth, Detection Pair is NP-hard to
+approximate within a sub-logarithmic factor and W[2]-hard (when parameterized by solution
+size). We show, using a reduction to Set Cover, that Detection Pair is approximable
+within a factor logarithmic in the number of vertices of the input graph. Our two main results
+are a linear-time 2-approximation algorithm and an FPT algorithm for Detection Pair on
+trees.
+Keywords: Graph theory, Detection pair, Metric dimension, Dominating set, Approximation algorithm, Parameterized complexity
+
+1
+
+Introduction
+
+In order to monitor faults in a network, one can place detectors on its nodes. One possibility is to
+use “local” devices that are able to detect the location of a fault within distance one (we call them
+watchers). Another kind of detectors, that are more far-reaching, are able to determine the exact
+distance of a fault to the device, but not its precise location (we call such detectors listeners). If
+we wish to monitor a network by using only watchers, we have the classic problem Dominating
+Set [14, GT2] (see the books [19, 20] for a survey of results on this problem). If, on the other
+hand, we want to use only listeners, we have the problem Metric Dimension [14, GT61] (see
+for example the papers [2, 4, 15, 17, 22, 24] and references therein). However, it can be useful to
+use both kinds of detectors: for example, one watcher is enough to monitor a complete graph of
+order n, while we would need n − 1 listeners to do so. On the other hand, one listener would suffice
+to monitor a path of order n, but for the same task we would need ⌈n/3⌉ watchers. Therefore,
+Finbow, Hartnell and Young [12] recently proposed the concept of a detection pair in a graph G,
+that is, a pair (W, L) where W ⊆ V (G) is a set of watchers and L ⊆ V (G) is a set of listeners that,
+together, monitor the graph G.
+More formally, we say that a vertex w dominates all the vertices in the closed neighbourhood
+N [w] of w (that is, N [w] is the set of neighbours of w together with w itself). Moreover, a vertex
+∗ LIMOS - CNRS UMR 6158 - Université Blaise Pascal, Clermont-Ferrand (France).
+E-mail: florent.foucaud@gmail.com
+† LaBRI - CNRS UMR 5800 - Université de Bordeaux, F-33400 Talence (France). E-mail: ralf.klasing@labri.fr
+
+1
+
+l separates two vertices u and v if the distance d(u, l) is different from the distance d(v, l). Given
+a pair (W, L) of sets with W ⊆ V (G) (the watchers) and L ⊆ V (G) (the listeners), we say that
+a vertex u is distinguished by (W, L) either if u is dominated by a watcher of W , or if for every
+other vertex v, either v is dominated by a watcher of W , or u and v are separated by a listener of
+L. Then, (W, L) is a detection pair of G if every vertex of G is distinguished by (W, L). The size
+of (W, L) is the sum |W | + |L| and is denoted by ||(W, L)||. Note that we may have W ∩ L 6= ∅ if
+we choose to place both a listener and a watcher at the same position. We denote by DP (G) the
+minimum size of a detection pair of G. Any vertex of (W, L) is called a detector.
+If we have a detection pair (∅, L) in a graph G, then L is called a resolving set of G, and
+the smallest size of a resolving set of G is called its metric dimension, denoted M D(G). On
+the other hand, if we have a detection pair (W, ∅), then W is a dominating set of G, and the
+smallest size of a dominating set of G is its domination number, denoted γ(G). Clearly, we have
+DP (G) ≤ min{γ(G), M D(G)}, and the inequality can be strict [12]. It follows that for any graph
+G without isolated vertices, we have DP (G) ≤ γ(G) ≤ |V (G)|/2 [19].
+The goal of this paper is to study the decision and optimization problems that are naturally
+associated to the notion of a detection pair (other computational problems that are mentioned in
+this paper are defined formally in Section 2).
+Detection Pair
+Instance: A graph G, a positive integer k.
+Question: Is there a detection pair (W, L) of G with ||(W, L)|| ≤ k?
+Opt-Detection Pair
+Instance: A graph G.
+Task: Compute an optimal detection pair of G.
+A c-approximation algorithm for a given optimization problem ΠO is an algorithm that returns
+a solution whose size is always at most c times the optimum. We refer to the book [1] for more
+details. For a decision problem Π and for some parameter p of the instance, an algorithm for
+Π is said to be fixed parameter tractable (FPT for short) if it runs in time f (p)nc , where f is a
+computable function, n is the input size, and c is a constant. In this paper we will always consider
+the solution size k as the parameter. We refer to the books [8, 23] for more details.
+Finbow, Hartnell and Young proved that Detection Pair is NP-complete on trees [12], while
+Opt-Detection Pair is linear-time solvable on trees containing no pair of leaves with a common
+neighbour. This hardness result is quite surprising since the related problems Opt-Dominating
+Set and Opt-Metric Dimension, while being NP-hard in general [14, GT2,GT61], can be solved
+in linear time on trees (see respectively [5] and [15, 24]). We note that Dominating Set is among
+the most classic and well-studied graph problems (see the books [19, 20]), and that Metric
+Dimension has enjoyed a lot of interest in the recent years: see the papers [3, 6, 9, 10, 11, 13, 17, 18].
+In this paper, we continue the study of the complexity of Detection Pair and Opt-Detection
+Pair initiated in [12]. In Section 3, we describe a reduction to Opt-Set Cover that shows that
+Opt-Detection Pair can be solved within a factor logarithmic in the size of the input graph. On
+the other hand, we observe that a reduction of Hartung and Nichterlein [16, 17] for Opt-Metric
+Dimension can also be applied to Opt-Detection Pair. This implies that Opt-Detection
+Pair is NP-hard to approximate within a factor that is sublogarithmic in the input graph’s order,
+and that Detection Pair is W[2]-hard when parameterized by the solution size k. (These hardness results hold even for graphs that are bipartite, subcubic, and have arbitrarily large girth.) In
+Section 4, we prove that Opt-Detection Pair is 2-approximable in linear time on trees. In Section 5, we show that there is an algorithm for Detection Pair running in FPT time 2O(k log k) n2
+on trees.1 We start the paper with some preliminary considerations in Section 2, and conclude in
+Section 6.
+1 In
+
+this paper, “log” denotes the natural logarithm function.
+
+2
+
+2
+
+Preliminaries
+
+We start with some preliminary considerations.
+
+2.1
+
+Definitions of used computational problems
+
+We now formally define a few auxiliary computational problems that are used or mentioned in this
+paper.
+Dominating Set [14, GT2]
+Instance: A graph G, a positive integer k.
+Question: Do we have γ(G) ≤ k, that is, is there a dominating set D of G with |D| ≤ k?
+Opt-Dominating Set
+Instance: A graph G.
+Task: Compute an optimal dominating set of G.
+Metric Dimension [14, GT61]
+Instance: A graph G, a positive integer k.
+Question: Do we have M D(G) ≤ k, that is, is there a resolving set R of G with |R| ≤ k?
+Opt-Metric Dimension
+Instance: A graph G.
+Task: Compute an optimal resolving set of G.
+Set Cover [14, SP5]
+Instance: A hypergraph H = (X, S), a positive integer k.
+Question: Is there a set cover C of H with |C| ≤ k (that is, C ⊆ S and each vertex of X belongs
+to some set of C)?
+Opt-Set Cover
+Instance: A hypergraph H.
+Task: Compute an optimal set cover of H.
+
+2.2
+
+Specific terminology
+
+In a graph G, a vertex of degree 1 is called a leaf. A vertex is called a branching point if its degree
+is at least 3. A branching point v is special if there is a path L starting at v and ending at a vertex
+of degree 1, and whose inner-vertices all have degree 2. Path L − v is called a leg of v, and we say
+that L is attached to v (note that vertex v does not belong to the leg). A special branching point
+with t leaves as neighbours is called a t-stem.2
+Given a special branching point x of a tree T , we define the subtree L(x) of T as the tree
+containing x and all legs of T attached to x.
+
+2.3
+
+The classic algorithm for Opt-Metric Dimension on trees
+
+We will use the following results of Slater [24] about Opt-Metric Dimension on trees, that are
+classic in the literature about metric dimension. See also [15, 22] for similar considerations.
+Proposition 1 (Slater [24]). Let T be a tree and R be the set of vertices containing, for each
+special branching point x of T that has ℓ legs attached, the leaves of the ℓ − 1 longest of these legs.
+Then, R is an optimal resolving set of T .
+We have the following consequence of Proposition 1.
+Theorem 2 (Slater [24]). Opt-Metric Dimension can be solved optimally in linear time on
+trees.
+2 The
+
+previous terminology is from [12] (branching points, stems) and [22] (legs).
+
+3
+
+2.4
+
+Observations and lemmas about detection pairs
+
+The following easy observations and lemmas will be useful.
+Observation 3. Let G be a graph and B2+ the set of its special branching points with at least two
+legs attached. Then, we have DP (G) ≥ |B2+ |.
+Proof. Let (W, L) be a detection pair of G. We show that for each special branching point x of
+B2+ , there is at least one detector of (W, L) among x and the vertices belonging to a leg attached
+to x. Indeed, if not, then any two neighbours of x belonging to this set would neither be dominated
+by a watcher, nor separated by a listener, a contradiction.
+Lemma 4. Let x be a special branching point of a graph G with a set Sx of t leaf neighbours and
+a set Lx of ℓ legs of length at least 2 attached to x. Let (W, L) be a detection pair of G. If there
+is a watcher at x, at least ℓ − 1 of the legs in Lx contain a detector of (W, L). Otherwise, at least
+t + ℓ − 1 legs attached to x contain a detector.
+Proof. If there is a watcher at x, assume for a contradiction that two legs L1 and L2 of Lx contain
+no detector. Then, neither the listeners of (W, L) nor the watcher at x can distinguish the two
+vertices of L1 and L2 that are at distance 2 from x, a contradiction. A similar argument holds for
+vertices at distance 1 of x when x has no watcher.
+Lemma 5. Let G be a graph with a special branching point x having a leg attached, whose leaf is
+y. If G has a detection pair (W, L) with x ∈ L, then (W, L \ {x} ∪ {y}) is also a detection pair of
+G.
+Proof. Let Vx be the set of vertices containing x and the vertices of the leg attached to x whose
+leaf is y. Clearly, a pair u, v of vertices in V (G) \ Vx are separated by x if and only if they are
+separated by y. Moreover, all the vertices in the leg containing y are clearly distinguished, because
+each such vertex is the unique one with its distance to y. This completes the proof.
+
+3
+
+General approximability and non-approximability
+
+In this section, we discuss the general approximation complexity of Opt-Detection Pair.
+Theorem 6. Opt-Detection Pair can be approximated within a factor 2 log n + 1 on graphs of
+order n.
+Proof. Given a graph G, we build an instance (X, S) of Opt-Set Cover as follows. We let X be
+the set of vertex pairs of G. For each vertex v of G, we have a set Wv of S that contains an element
+{x, y} of X if v dominates at least one of x and y. We also have a set Lv that contains an element
+
+{x, y} of X if we have d(v, x) 6= d(v, y). Therefore we have |X| = |V (G)|
+and |S| = 2|V (G)|. Now,
+2
+we claim that we have a one-to-one correspondance between the detection pairs of G and the set
+covers of (X, S). Indeed, for every vertex v of G, the set Wv of S corresponds to a watcher placed
+at vertex v, and the set Lv corresponds to a listener placed at vertex v. Moreover set Uv of S (with
+U ∈ {W, L}) covers exactly the elements of X that correspond to a pair that is separated by the
+according detector placed on v in G. Since Opt-Set Cover is approximable within a factor of
+log(|X|) + 1 in polynomial time [21], the result follows.
+Hartung and Nichterlein [17] provided a reduction from Dominating Set to Metric Dimension. This reduction was improved by Hartung in his PhD thesis [16] to get a reduction mapping
+any instance (G, k) to an instance (G′ , k + 4), where G′ is a bipartite graph of maximum degree 3
+and has girth 4|V (G)| + 6. In fact, it is not difficult to see that for any detection pair P of G′ of
+size k ′ , there is a detection pair P ′ of G′ of size at most k ′ containing no watchers. In other words,
+we have DP (G′ ) = M D(G′ ), and therefore the aforementioned reduction is also a reduction to
+Detection Pair. Hence we have the following.3
+3 Hartung and Nichterlein only state the hardness of approxmation for factors in o(log n), but a recent result
+on the inapproximability of Opt-Set Cover [7], that transfers to Opt-Dominating Set via standard reductions,
+implies our stronger statement.
+
+4
+
+Theorem 7 (Hartung and Nichterlein [16, 17]). Opt-Detection Pair is NP-hard to approximate
+within a factor of (1 − ǫ) log n (for any ǫ > 0) for instances of order n, and Detection Pair is
+W[2]-hard (parameterized by the solution size k). Let g ≥ 4 be an arbitrary integer. These results
+hold even for instances that are bipartite, have maximum degree 3, and girth at least g.
+
+4
+
+A 2-approximation algorithm on trees
+
+In this section, we prove the following approximability result.
+Theorem 8. There is a linear-time 2-approximation algorithm for Opt-Detection Pair on
+trees.
+Proof. Given an input tree T , we denote by S3+ , the set of vertices of T that are t-stems for some
+t ≥ 3. Moreover, we define T ′ as the tree obtained from T as follows. For each vertex v of S3+
+(that is, v is a t-stem for some t ≥ 3), assuming that there are ℓ legs of length at least 2 attached
+to v in T , we remove from T : (i) t − 2 leaf neighbours of v if ℓ = 0, (ii) t − 1 leaf neighbours of
+v if ℓ = 1, and (iii) all t leaf neighbours of v if ℓ ≥ 2. Therefore, in T ′ , there are at least two legs
+attached to each vertex of S3+ .
+Let us describe our algorithm A.
+1. Compute the set S3+ and build T ′ from T .
+2. Compute an optimal resolving set R′ of T ′ .
+3. Output A(T ) = (S3+ , R′ ).
+We first prove that A(T ) is a detection pair of T . Notice that the distances from listeners in
+R′ and vertices of V (T ′ ) are the same in T and T ′ . Therefore, all pairs of vertices of V (T ′ ) are
+distinguished in T by the listeners of A(T ). On the other hand, all vertices of V (T ) − V (T ′ ) are
+dominated by the watchers of S3+ . Therefore, A(T ) is a detection pair of T .
+Moreover, it is clear that S3+ and T ′ can be computed in linear time, and R′ can be computed
+in linear time using Slater’s algorithm (Theorem 2). Therefore A is a linear-time algorithm.
+It remains to prove that ||A(T )|| = |S3+ | + M D(T ′ ) ≤ 2 · DP (T ) for any tree T . Notice that
+A(T ) contains only vertices that are part of some subtree L(x), where x is a special branching
+point of T ; indeed, any vertex of S3+ is a special branching point of T , and any special branching
+point of T ′ is also a special branching point of T (by Proposition 1, any optimal resolving set of T ′
+only contains vertices that belong to some subtree L(x) of T ′ ). Therefore, it suffices to prove that
+for any detection pair D = (W, L) of T , for any optimal resolving set R′ of T ′ and for every special
+branching point x of T , we have |S3+ ∩V (L(x))|+|R′ ∩V (L(x))| ≤ 2|W ∩V (L(x))|+2|L∩V (L(x))|.
+To this end, let us assume that x is a t-stem for some t ≥ 0, and that there are ℓ legs of length at
+least 2 attached to x. We distinguish the following cases.
+Case 1: ℓ ≤ 1. Then, L(x) contains at most two detectors of A(T ). Indeed, if t ≤ 2, it contains
+one or two listeners; if t ≥ 3, it contains one watcher and one listener. By Lemma 4, there is at
+least one detector in L(x), which completes the proof of this case.
+Case 2: ℓ ≥ 2. Then, by Lemma 4, any detection pair (W, L) of T has a detector in at
+least ℓ − 1 legs of length at least 2 of L(x). If t ≥ 3 (that is, x ∈ S3+ ), A(T ) has exactly
+ℓ − 1 listeners and one watcher in L(x). Therefore, for any detection pair (W, L) of T , we have
+2|W ∩ V (L(x))| + 2|L ∩ V (L(x))| ≥ 2ℓ − 2 ≥ ℓ = |S3+ ∩ V (L(x))| + |R′ ∩ V (L(x))| (because ℓ ≥ 2),
+and we are done.
+Hence, assume that t ≤ 2. Then, L(x) contains only listeners of A(T ), that is, precisely t + ℓ − 1
+leaves of L(x) that belong to R′ . If t ≤ 1, we have ℓ−1 ≥ t and then, for any detection pair (W, L) of
+T , we have 2|W ∩V (L(x))|+2|L∩V (L(x))| ≥ 2ℓ−2 ≥ t+ℓ−1 = |S3+ ∩V (L(x))|+|R′ ∩V (L(x))|, and
+we are done. If however, t = 2, by Lemma 4, there are at least ℓ detectors of (W, L) in L(x). Hence,
+we have 2|W ∩V (L(x))|+ 2|L ∩V (L(x))| ≥ 2ℓ ≥ t+ ℓ > t+ ℓ − 1 = |S3+ ∩V (L(x))|+ |R′ ∩V (L(x))|.
+This completes the proof.
+
+5
+
+There are two infinite families of trees that show that our algorithm has no better approximation
+ratio than 2.
+The first family consists of trees Tℓ1 (ℓ ≥ 1) that are built from ℓ disjoint stars with at least three
+leaves each, all whose centers are adjacent to an additional single vertex. We have ||A(Tℓ1 )|| = 2ℓ
+(this solution set contains one watcher and one listener for every star), while DP (Tℓ1 ) ≤ ℓ (simply
+let every center of a star be a watcher, and select no listener). Hence the approximation ratio of
+A on Tℓ1 is 2.
+A second family consists of trees Tℓ2 (ℓ ≥ 1) built from a path P of ℓ+2 vertices. For each of the
+two end-vertices of P , add two leaves that are adjacent to this end-vertex. For each degree 2-vertex
+v of P , build a star Sv with three leaves and subdivide one of its edges once. Moreover, the center
+of Sv is made adjacent to v. We have ||A(Tℓ2 )|| = 2ℓ + 2 (each star contains two listeners, and
+two additional listeners are selected among the four degree 1-vertices adjacent to end-vertices of
+P ), while DP (Tℓ2 ) ≤ ℓ + 2 (put a watcher on each center of a star, and add one neighbour of each
+2
+.
+endpoint of P as a listener). The approximation ratio of A on Tℓ2 is 2 − ℓ+2
+
+5
+
+A fixed parameter tractable algorithm on trees
+
+In this section, we provide an exact algorithm for Detection Pair that is FPT for the natural
+parameter k, the solution size.
+The idea of the algorithm is as follows. We first search for a solution with |L| ≤ 1. After
+this step, we may assume that |L| ≥ 2, which is a technical condition required for the subsequent
+steps of the algorithm. Then we proceed in three phases. In the first phase, we handle the
+solution around the special branching points of the tree. As we will see, there is only a fixed set of
+possibilities to try for each such branching point. Then, in the second phase, we determine the set
+of remaining listeners. Here, we are able to compute a set (whose size is bounded in terms of k)
+of possible vertices that may contain a listener in an optimal solution. Finally, in the third phase,
+we determine the set of remaining watchers, and again we are able to compute a set of vertices
+(whose size is bounded in terms of k) that may be used as a watcher. The algorithm then checks
+the validity of each possible choice of these placements.
+Theorem 9. Detection Pair can be solved in time 2O(k log k) n2 on trees of order n.
+
+5.1
+
+Preliminary lemmas
+
+Before describing the algorithm, we prove a series of lemmas that will be essential.
+The first lemma is useful to handle special branching points of the tree, by reducing the problem
+around these vertices to a fixed number of cases.
+Lemma 10. Let G be a graph with a special branching point x with at least two legs and (W, L)
+an optimal detection pair of G. Let Sx be the set of leaves adjacent to x, and let Lx be the set of
+legs of length at least 2 attached to x. Denote by V (Lx ) the vertices belonging to a leg in Lx , and
+let ℓ = |Lx | and t = |Sx | (so, x is a t-stem). Then, we can obtain from (W, L) another optimal
+detection pair of G by replacing all the detectors in Vx = {x} ∪ Sx ∪ V (Lx ) by one of the following
+sets of detectors:
+1. If ℓ ≤ 1, we may use:
+(a) a single watcher at x;
+(b) a watcher at x, and a listener at the leaf of a longest leg attached to x;
+(c) if t + ℓ = 2, a single listener at the leaf of a longest leg attached to x.
+2. If ℓ ≥ 2, we may use:
+(a) a watcher at x and ℓ listeners at all leaves of the legs of Lx ;
+(b) a watcher at x and ℓ − 1 listeners at all leaves of the legs of Lx but the shortest one;
+(c) if t ≤ 1, ℓ + t listeners at all leaves of the legs attached to x;
+
+6
+
+(d) if t ≤ 1, ℓ + t − 1 listeners at all leaves of the legs attached to x, except for a shortest
+such leg.
+Proof. Clearly, if there are any watchers among {x} ∪ Sx, we may replace them by a single watcher
+at x and obtain a valid detection pair. We now distinguish two cases.
+Case 1: ℓ ≤ 1. Then, we have t ≥ 1. If Vx contained a unique detector of (W, L) that is a
+watcher, then it must have dominated a leaf neighbour of x (since t ≥ 1, such a neighbour exists).
+Then as observed at the beginning of the proof, we may replace this detector by a watcher at x,
+and we are in Case 1(a). If Vx had a unique detector of (W, L) that is a listener, then by Lemma 4
+we must have had t + ℓ = 1. Note that any listener in Vx seperates the same set of pairs of vertices
+from V (G) \ Vx . Hence we may replace the existing listener by a listener at the leaf of a longest
+leg attached to x, which separates at least as many vertices as any other listener in Vx . Then we
+are in Case 1(c) and we are done. Hence, we assume that Vx contained at least two detectors of
+(W, L). Then, using similar arguments one can check that the solution of Case 1(b) yields a valid
+detection pair of G that is not larger than (W, L).
+Case 2: ℓ ≥ 2. As observed before, we can replace all watchers in {x} ∪ Sx by a single watcher
++
+at x. If x has a watcher, we let L+
+x = Lx ; otherwise, we let Lx be the set of all legs attached to x.
++
++
+Let ℓ = |Lx |.
+By Lemma 4, at least ℓ+ − 1 ≥ 1 of the legs in L+
+x contain a detector of (W, L). Assume
+first that (W, L) contained at least ℓ+ detectors of (W, L) on the legs of L+
+x . Then, we replace
+all such detectors by a listener at the leaf of each leg of L+
+.
+Then,
+any
+vertex
+of a leg Li of L+
+x
+x
+is distinguished by its distance to the listener placed at the leaf of Li . Since any listener in Vx
+separates the same set of pairs in V (G) \ Vx , we have obtained a valid detection pair that is not
+larger than (W, L) and we are in Case 2(a) or 2(c).
+Suppose now that there are exactly ℓ+ − 1 detectors of (W, L) on the legs of L+
+x . We replace
+these detectors by a listener at the leaf of each of the ℓ+ −1 longest legs of L+
+.
+By
+similar
+arguments
+x
+as above, all vertices in Vx that do not belong to the unique leg L1 of L+
+without
+a
+detector
+are
+x
+distinguished. Again, any listener in Vx separates the same set of pairs of V (G) \ Vx . Hence, if
+some vertex is not distinguished by the new detection pair, it must be a vertex u of L1 that is not
+separated from a vertex v of V (G) \ Vx . This implies that d(u, x) = d(v, x) (otherwise u and v
+would be separated by any of the listeners placed in Vx ). We know that u and v were separated
+by some detector of (W, L), which must have been a detector in the leg L1 (no detector in another
+leg of L+
+x could possibly separate u and v since d(u, x) = d(v, x)). But we know that there was
++
+one leg L2 of L+
+x that contained no detector of (W, L). Since L1 is a shortest leg of Lx , there is
+′
+′
+′
+a vertex u in L2 with d(x, u) = d(x, u ). But then, u and v were not distinguished by (W, L), a
+contradiction. Hence we have a valid detection pair whose size is not greater than ||(W, L)|| and
+we are in Case 2(b) or 2(d), and we are done.
+The next two lemmas are used in our algorithm to choose the placement of the listeners.
+Lemma 11. Let G be a graph with two vertices u and v connected by a unique path P . Let V (P + )
+be the set of vertices of P together with the vertices of each leg attached to an inner-vertex of
+degree 3 of P . Then, by placing listeners on u and on v, all vertices of V (P + ) are distinguished
+(by u and v).
+Proof. For every vertex x of G, we let δu,v (x) = d(u, x) − d(v, x). Note that if for two vertices x
+and y, δu,v (x) 6= δu,v (y), then x and y are separated by u and v.
+Clearly, u and v are distinguished. Let w be a vertex of V (P + ) \ {u, v}, and assume for
+a contradiction that there is some vertex z with d(u, w) = d(u, z) and d(v, w) = d(v, z). In
+particular, δu,v (w) = δu,v (z).
+Note that for every two vertices p, q of P , we have δu,v (p) 6= δu,v (q), therefore at most one of
+the vertices w and z can belong to P . We assume w.l.o.g. that z does not belong to P .
+The shortest paths from z to both u and v must go through an inner-vertex of P , say s. Then,
+we have δu,v (z) = δu,v (s) = δu,v (w), which implies that all shortest paths from w to u and v also
+go through s. But then, we have d(w, s) = d(z, s), a contradiction because by the structure of
+V (P + ) this implies that w = z.
+
+7
+
+Lemma 12. Let G be a graph with two vertices u and v connected by a unique path P , such that
+each inner-vertex of P has either degree 2 or a single leg attached. Moreover let V (P + ) be the set
+of inner-vertices of P together with the vertices of each leg attached to an inner-vertex of degree 3
+of P . Then, for every detection pair (W, L) of G, one can obtain a valid detection pair of G by
+replacing all detectors of (W ∪ L) ∩ V (P + ) by two listeners at u and v.
+Proof. By Lemma 11, all vertices in V (P + ) are distinguished by u and v. Note that no watcher
+of V (P + ) could possibly distinguish any vertex outside of V (P + ) ∪ {u, v} (and u, v are clearly
+distinguished). Furthermore, since P is the unique path connecting u and v, for any listener l ∈ L
+in V (P + ), the set of pairs in V (G) \ V (P + ) separated by l is the same as the set of pairs separated
+by u (and by v). This completes the proof.
+The next lemma will be used in the algorithm to determine the placement of watchers in parts
+of the tree where there is no listener.
+Lemma 13. Let T be a tree with a vertex x and an optimal detection pair (W, L) of T with |L| ≥ 1.
+Let Tx be a subtree of T containing x and assume that (i) Tx contains no t-stems for any t ≥ 2,
+(ii) for each listener l of L and each vertex v of Tx , the shortest path from l to v goes through x (in
+particular Tx − x contains no listener) and (iii) Tx is maximal with respect to (i) and (ii). Then,
+there is a set X of size at most 63|W |2 with W ∩ V (Tx ) ⊆ X. Moreover, X can be determined in
+time linear in |V (Tx )|.
+Proof. We may view Tx as a rooted tree whose root is x. Consider the partition P of V (Tx )
+into parts P0 , P1 , . . . , Pd where Pi contains the vertices of V (Tx ) that have distance i to x. Since
+|L| ≥ 1 and by (ii) all shortest paths from any listener of L to a vertex of Tx go through x, the
+set L of listeners separates a pair u, v of V (Tx ) if and only if u and v belong to different parts of
+P. Therefore, since (W, L) is a detection pair of G, for any two distinct vertices u and v from the
+same part Pi , at least one of u, v is dominated by a watcher of W .
+Let S2+ be the set of parts of P of size at least 2 (that is, those parts where at least one vertex
+fx be the forest induced by the set of vertices of Tx that
+must be dominated by a watcher). Let F
+fx ), and we shall
+belong to some part of S2+ , together with their neighbours in Tx . We let X = V (F
+prove that X satisfies the claim. First, we show that (W ∩ V (Tx )) ⊆ X. Assume by contradiction
+that this is not the case, and let w be a watcher of W that belongs to V (Tx ) \ X. By the optimality
+of (W, L), (W \ {w}, L) is not a detection pair of T . Therefore, there must be some vertex u
+dominated by w that is not separated by L from some other vertex v (and v is not dominated by
+a watcher of W \ {w}). In other words, for every listener l ∈ L, we have dT (u, l) = dT (v, l). Thus,
+since T is a tree, all shortest paths from l to both u and v have a common part (say from l until
+some vertex y) and then are disjoint. By (iii), Tx is maximal with respect to (i) and (ii), which
+implies that y = x and both u and v belong to Tx . However, observe that u belongs to a part
+of S2+ (otherwise w would belong to X). Therefore, u is uniquely determined (within Tx ) by its
+distance to x. Since |L| ≥ 1 and by (ii), this implies that u and v are in fact distinguished by L, a
+contradiction.
+Thus, we have shown that W ∩ V (Tx ) ⊆ X. It is moreover clear that X can be computed in
+time linear in |V (Tx )| by using the distances of the vertices of Tx to x. Therefore, it remains only
+to bound the size of X.
+fx contains vertices of at most 9|W | distinct parts of P. To each part Pi
+First, we show that F
+fx but that may
+of S2+ , we can associate the two parts Pi−1 and Pi+1 , that may have vertices in F
+f
+not be in S2+ . Hence, the total number of parts with a vertex in Fx is at most 3|S2+ |. Since a
+watcher may dominate vertices from at most three parts of S2+ and each part in S2+ has at least
+fx contains vertices of at most
+one vertex dominated by a watcher, we have |S2+ | ≤ 3|W |, hence F
+9|W | distinct parts of P.
+fx has at most |W | + 2|S2+ | ≤ 7|W | leaves. Note that a leaf of F
+fx is
+Second, we prove that F
+either an actual leaf in T , or it is a vertex of a part Pi with |Pi | = 1 (or both). We claim that
+fx can contain at most |W | leaves of T belonging to a part of S2+ . Indeed, each such leaf must
+F
+be dominated by a watcher, but it can be dominated only by itself or by its parent in Tx . But
+since by (i) there are no t-stems for t ≥ 2 in Tx , no parent can dominate more than one leaf, which
+fx contains vertices from at most 2|S2+ | parts of P of size 1,
+proves the bound. Furthermore, F
+8
+
+fx that are not in a part of |S2+ | is at most 2|S2+ | ≤ 6|W | since
+hence the number of leaves of F
+fx .
+|S2+ | ≤ 3|W |. Hence in total, we have at most 7|W | leaves in F
+But any rooted forest with at most 9|W | levels and with at most 7|W | leaves may have at most
+fx ) has size at most 63|W |2 . This completes the proof.
+63|W |2 vertices, hence X = V (F
+
+5.2
+
+The algorithm (proof of Theorem 9)
+
+We now describe the claimed FPT algorithm for Detection Pair on trees and prove its correctness
+and running time.
+Proof of Theorem 9. Let us describe the algorithm, that seeks to build a detection pair (W, L)
+with at most k detectors of an input tree T of order n.
+Preliminary phase: Searching for a solution with |L| ≤ 1. A first step of the algorithm is to
+check whether there is a solution with |L| ≤ 1. If we set L = ∅, the problem is equivalent to finding
+a dominating set of T of size at most k. This can be done in linear time [5]. If we set |L| = 1, one
+may try the n possibilities for the placement of the unique listener. For each possibility (say we
+have placed the listener at vertex v), we create a subtree Tv of T rooted at v as follows. First of all,
+let Tv = T . Then, for each t-stem x of T with t ≥ 2 (except if v is a leaf attached to x and x is a
+2-stem), we may assume that x belongs to W (by a similar argument as in the proof of Lemma 10,
+Cases 1a and 2a.). Thus, we add x to W and we we remove from Tv all leaves but one that are
+attached to x (if v is one such leaf, we keep v in Tv ). Now Tv has no t-stems for t ≥ 2 and we can
+apply Lemma 13. Thus, there is a set X of at most 63k 2 vertices that may contain a watcher (X
+is computable in linear time). Then, it suffices to try all the possibilities of selecting k − |W | − 1
+
+2
+additional watchers from this set. There are at most 63k
+∈ O 2O(k log k) such possibilities. For
+k
+each of them, we check in linear time whether we have a valid detection pair. In total this phase
+takes 2O(k log k) n2 time. If we find a valid solution in this phase, we return YES.
+Next, we assume that |L| ≥ 2 and proceed in three phases.
+Phase 1: Handling the special branching points. We now do a preprocessing step using
+Lemma 10. First compute (in linear time) the set of special branching points of T , and let B2+
+be the set of those special branching points that have at least two legs attached. Note that by
+Observation 3, if |B2+ | > k we can return NO. Hence, assume that |B2+ | ≤ k. Now, for each special
+branching point x of B2+ , by Lemma 10 we can assume that there are at most four different choices
+for the set of detectors on x and the vertices belonging to a leg attached to x. Therefore, we may
+go through each of the possible combinations of these choices; there are at most 4k of them. Of
+course we discard the choices for which there are more than k detectors. For a combination Ci ,
+Let (Wi , Li ) be the partial detection pair corresponding to Ci . In the remainder, we show how to
+decide whether there is a detection pair (W, L) of T with Wi ⊆ W , Li ⊆ L and ||(W, L)|| ≤ k.
+Phase 2: determining the set of listeners. Let Vi∗ be the set of vertices of T containing, for
+each pair u, v of listeners of Li , all the vertices of the path Puv connecting u and v, as well as all
+the vertices of each leg of T attached to a degree 3 inner-vertex of Puv . By Lemma 11, all the
+vertices in Vi∗ are distinguished by (Wi , Li ). Clearly, the subgraph Ti∗ = T [Vi∗ ] of T is a connected
+subtree. Let X = {x1 , . . . , xp } be the set of vertices in Vi∗ that have a neighbour in T − Ti∗ . For
+each vertex xj of X, we let Txj be the subtree of T formed by xj together with all trees of T − Ti∗
+containing a neighbour of xj . Let F be the forest consisting of all trees Txj (1 ≤ j ≤ p) such that
+at least one vertex of Txj is not distinguished by (Wi , Li ). Next, we upper-bound the size of F .
+Claim 9.A. If there is a detection pair (W, L) of T with Wi ⊆ W , Li ⊆ L and ||(W, L)|| ≤ k,
+then |F | ≤ k.
+Proof of claim. We prove that each tree of F must contain a detector of (W, L). Assume for
+contradiction that there is a tree Txa of F such that no detector of (W, L) belongs to Txa . By
+definition, Txa contains a vertex w not distinguished by (Wi , Li ), hence there is a vertex w′ of
+T − Ti∗ (say, w′ ∈ Txb ) not separated by any listener of Li and none of w, w′ is dominated by a
+watcher of Wi . Then, w′ must belong to Txa (hence a = b), indeed by definition of Ti∗ there are
+two listeners u and v of Li whose path contains xa and xb . But then, if a 6= b, clearly u and v
+9
+
+would separate w and w′ , a contradiction. But since w and w′ both belong to Txa , no listener
+outside of Txa can separate them, and clearly no watcher outside of Txa can dominate them, which
+
+proves the claim.
+
+By Claim 9.A, if we have |F | > k, we can discard the combination Ci ; hence, we assume that
+|F | ≤ k.
+d
+Now, from each tree Txj of F , we build the subtree T
+xj of Txj as follows: (i) remove all legs in
+Txj whose closest special branching point has only one leg attached; (ii) remove each leaf of Txj
+d
+that is adjacent to a watcher of Wi . We also denote by Fb the forest containing each tree T
+xa with
+Txa ∈ F . We next claim the following.
+Claim 9.B. If there is a detection pair (W, L) of T with Wi ⊆ W , Li ⊆ L and ka detectors on
+d
+Txa , then T
+xa has at most 2ka leaves.
+d
+Proof of claim. Let us consider the legs of T
+xa containing no detector of (Wi , Li ). By (i) of the
+d
+construction of Txa , such a leg must be attached to a special branching point having at least two
+legs attached. (Note that operation (i) did not create any new special branching point.) Moreover,
+d
+by (ii), if this leg has length 1 in T
+xa , its unique vertex will not be dominated by a watcher, since
+the set of detectors on this leg and its special branching point are determined by the combination
+Ci . Note that in (ii), if we create a new leg, this leg contains a detector (a watcher).
+d
+d
+Let v be a special branching point of T
+xa and let Lv be the set of legs in Txa attached to v that
+do not contain any detector of (Wi , Li ). By the previous discussion, we have |Lv | ≥ 2. If some leg
+of Lv has length 1, as we observed there will be no watcher on v. Hence, in order to separate all
+the neighbours of v on the legs of Lv , we need a detector in at least |Lv | − 1 ≥ |Lv |/2 of these legs.
+Otherwise, we still need that many detectors in order to separate all the vertices at distance 2 of v
+d
+on the legs of Lv . Hence, at most half of the leaves of T
+xa belong to a leg with no detector, which
+
+proves the claim.
+
+By Claim 9.B, d
+Txj has at most 2kj leaves (where kj is the set of detectors placed on Txj ).
+Therefore, if the total number of leaves in the forest Fb is more than 2k, we can discard the current
+combination Ci . Hence, we can assume that the total number of leaves in Fb is at most 2k.
+Therefore, the total number of vertices of degree at least 3 in Fb is at most 2k. Let us consider
+the sets of maximal threads in Fb (that is, paths with inner-vertices of degree 2). The endpoints of
+such threads are vertices of degree 1 or at least 3 in Fb, and therefore the number of such threads
+is at most the number of these vertices, which is upper-bounded by 4k.
+b
+d
+Each such thread Puv between two vertices u and v of a tree T
+xj of F, corresponds (in Txj )
+to a path whose inner-vertices either have a single leg attached, or contain a watcher of Wi with
+a set of leaves attached. Hence, we may assume that Puv contains at most two listeners: if it
+contained more than two, by Lemma 12, we could replace them with the two endpoints u and v
+of Puv . Moreover, if Puv contained exactly one listener, similarly we may assume it is placed on
+one of the endpoints of Puv . Indeed, since |L| ≥ 2, there will be another listener in the solution
+set. If this listener is closer to u, similarly as in Lemma 11, a listener on v would distinguish all
++
++
+) contains all vertices of Puv and the vertices of legs attached to
+vertices on V (Puv
+) (where V (Puv
++
+) separated by u and
+inner-vertices of Puv ). Moreover, the set of pairs of vertices outside of V (Puv
+by v are the same. Note that by Lemma 5, if we choose to place a listener on an endpoint u of
+d
+a path Puv that is a thread in T
+xj and this endpoint has a leg attached, instead of placing the
+listener on u we can instead place the listener on the leaf of this leg.
+d
+Therefore, for each thread Puv of T
+xa , there are four possibilities for the placement of the
+listeners: a listener on both u and v (or the leaf of a corresponding leg attached to u or v); a single
+listener at u; a single listener at v; no listener. There are therefore at most 44k possibilities to guess
+the placement of listeners on tree Txa . For each such placement Pj , we obtain a set Lj of listeners
+(of course, if ||(W, Li ∪ Lj )|| > k we do not consider this placement). Now, we can assume that
+L = Li ∪ Lj , that is, that there will be no more listeners in the sought solution (W, L). Hence, it
+remains to check whether we can obtain a valid solution of size k by only adding watchers.
+∗
+Phase 3: Determining the set of watchers. We compute a tree Ti,j
+similarly as Ti∗ but using
+′
+∗
+the new set Li ∪ Lj of listeners. Similarly as before, we define the set X of vertices of Ti,j
+having
+
+10
+
+∗
+a neighbour in T − Ti,j
+, and the set of trees Tx′ j . We also let F ′ be the forest containing those
+′
+trees Txj that have at least one vertex not distinguished by (Wi , Li ∪ Lj ). We know that for each
+tree Tx′ j of F ′ , we will use only watchers to distinguish the vertices not yet distinguished. For each
+′
+′
+g
+tree Tx′ j in F ′ , let T
+xj be the tree obtained from Txj by removing all leaves already dominated by
+a watcher of Wi . If this process has created a t-stem with t ≥ 2, then at least t − 1 leaf neighbours
+′
+g
+of this t-stem have a watcher of Wi ; simply remove them. Then, the obtained tree T
+xj has no
+′ to satisfy
+g
+t-stems with t ≥ 2. Hence, we can apply Lemma 13 to g
+T ′ (if necessary, we augment T
+xj
+
+xj
+
+the maximality condition (iii) in Lemma 13). Thus, there is a set Xj of at most 63k 2 vertices of
+′
+g
+g
+Tx′ j that may possibly contain a watcher, and Xj can be computed in time linear in |V (T
+xj )|. As
+′
+before, there are at most k trees in F and hence in total the set X = ∪j Xj of possible placements
+for the remaining watchers has size at most 63k 3 (and is computable in linear time). Therefore, we
+
+3
+can check all the 63k
+∈ O 2O(k log k) possibilities of placing the remaining watchers. If we find
+k
+a valid detection pair (W, L) with Wi ⊆ W , we return YES; otherwise, we discard the placement
+Pj and move on to the next possibility.
+
+It is clear, by the lemmas used in the description in the algorithm, that this algorithm is correct.
+The running time of the preliminary phase is 2O(k log k) n2 . The running time of Phases 1 to 3 is at
+most 4k 44k 2O(k log k) n which is 2O(k log k) n. This completes the proof.
+
+6
+
+Conclusion
+
+We have obtained a linear-time 2-approximation algorithm for Opt-Detection Pair on trees, but
+perhaps this algorithmic upper bound could be improved to a PTAS? It seems that the reduction
+of [12] does not show the inapproximability of Opt-Detection Pair for any constant greater
+than one. Therefore, it remains to settle the exact approximation complexity of Opt-Detection
+Pair on trees.
+As a second question, can the factor 2O(k log k) in our FPT algorithm for Detection Pair be
+improved to single-exponential FPT time 2O(k) (or even sub-exponential time 2o(k) )? For this,
+the bottleneck is our use of Lemma 13 in the preliminary phase and in Phase 3 of the algorithm,
+during which we search through all possible subsets of size k of some sets of size O(k 2 ) and O(k 3 ),
+respectively. Moreover, it is perhaps possible to obtain a linear running-time (in terms of n) by
+reducing the running-time of the preliminary phase.
+As an extension of our results, it would be of interest to determine whether, on further graph
+classes, Opt-Detection Pair is constant-factor approximable and whether Detection Pair is
+FPT. One natural research direction is to consider the class of planar graphs or its subclasses,
+the outerplanar graphs and the series-parallel graphs (that is, graphs of treewidth 2). These
+three classes contain all trees. Although both questions are settled in the affirmative for OptDominating Set and Dominating Set (see [20] and [8, 23]), as far as we know they also remain
+open for Opt-Metric Dimension and Metric Dimension (though, a polynomial-time algorithm
+exists for Opt-Metric Dimension on outerplanar graphs [6]).
+Acknowledgements. We thank the anonymous referees for their careful reading and valuable
+comments. We wish to thank Bert L. Hartnell for sharing the manuscript [12] with us. Moreover
+we acknowledge the financial support of the programme ”IdEx Bordeaux – CPU (ANR-10-IDEX03-02)”.
+
+References
+[1] G. Ausiello, P. Crescenzi, G. Gambosi, V. Kann, A. Marchetti-Spaccamela and M. Protasi.
+Complexity and approximation. Springer, 1999.
+[2] R. F. Bailey and P. J. Cameron. Base size, metric dimension and other invariants of groups
+and graphs. Bulletin of the London Mathematical Society 43:209–242, 2011.
+
+11
+
+[3] R. Belmonte, F. V. Fomin, P. A. Golovach and M. S. Ramanujan. Metric dimension of bounded
+width graphs. Proceedings of the 40th International Symposium on Mathematical Foundations
+of Computer Science, MFCS 2015, LNCS 9235:115–126, 2015.
+[4] G. Chartrand, L. Eroh, M. Johnson and O. Oellermann. Resolvability in graphs and the metric
+dimension of a graph. Discrete Applied Mathematics 105(1-3):99–113, 2000.
+[5] E. J. Cockayne, S. Goodman and S. T. Hedetniemi. A linear algorithm for the domination
+number of a tree. Information Processing Letters 4:41–44, 1975.
+[6] J. Diaz, O. Pottonen, M. Serna and E. J. van Leeuwen. On the complexity of metric dimension.
+Proceedings of the 20th European Symposium on Algorithms, ESA 2012, LNCS 7501:419–430,
+2012.
+[7] I. Dinur and D. Steurer. Analytical approach to parallel repetition. Proceedings of the fortysixth annual ACM symposium on Theory of computing, STOC 2014 :624–633, 2014.
+[8] R. G. Downey and M. R. Fellows. Fundamentals of Parameterized Complexity. Springer, 2013.
+[9] D. Eppstein. Metric dimension parameterized by max leaf number. Journal of Graph Algorithms and Applications 19(1):313–323, 2015.
+[10] L. Epstein, A. Levin and G. J. Woeginger. The (weighted) metric dimension of graphs: hard
+and easy cases. Algorithmica 72(4):1130–1171, 2015.
+[11] H. Fernau, P. Heggernes, P. van’t Hof, D. Meister and R. Saei. Computing the metric dimension for chain graphs. Information Processing Letters 115:671–676, 2015.
+[12] A. S. Finbow, B. L. Hartnell and J. R. Young. The complexity of monitoring a network with
+both watchers and listeners. Networks, accepted.
+[13] F. Foucaud, G. B. Mertzios, R. Naserasr, A. Parreau and P. Valicov. Identification, locationdomination and metric dimension on interval and permutation graphs. II. Algorithms and
+complexity. Algorithmica, to appear.
+[14] M. R. Garey and D. S. Johnson. Computers and intractability: a guide to the theory of NPcompleteness, W. H. Freeman, 1979.
+[15] F. Harary and R. A. Melter. On the metric dimension of a graph. Ars Combinatoria 2:191–195,
+1976.
+[16] S. Hartung. Exploring parameter spaces in coping with computational intractability.
+PhD
+Thesis,
+Technische
+Universität
+Berlin,
+Germany,
+2014.
+https://opus4.kobv.de/opus4-tuberlin/frontdoor/index/index/docId/4644
+[17] S. Hartung and A. Nichterlein. On the parameterized and approximation hardness of metric dimension. Proceedings of the IEEE Conference on Computational Complexity, CCC 2013 :266–
+276, 2013.
+[18] M. Hauptmann, R. Schmied and C. Viehmann. Approximation complexity of metric dimension
+problem. Journal of Discrete Algorithms 14:214–222, 2012.
+[19] T. W. Haynes, S. T. Hedetniemi and P. J. Slater. Fundamentals of domination in graphs.
+Marcel Dekker, 1998.
+[20] T. W. Haynes, S. T. Hedetniemi and P. J. Slater, editors. Domination in graphs: advanced
+topics. Marcel Dekker, 1998.
+[21] D. S. Johnson, Approximation algorithms for combinatorial problems. Journal of Computer
+and System Sciences 9:256–278, 1974.
+[22] S. Khuller, B. Raghavachari and A. Rosenfeld. Landmarks in graphs. Discrete Applied Mathematics 70:217–229, 1996.
+12
+
+[23] R. Niedermeier. Invitation to fixed-parameter algorithms. Oxford University Press, 2006.
+[24] P. J. Slater. Leaves of trees. Congressus Numerantium 14:549–559, 1975.
+
+13
+
+

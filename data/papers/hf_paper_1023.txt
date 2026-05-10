@@ -1,0 +1,2063 @@
+Title: arXiv paper 1023
+
+Categories: 3
+
+Abstract:
+Distributed Event-Triggered Control for Asymptotic
+Synchronization of Dynamical Networks ⋆
+Tao Liu aMing Cao bClaudio De Persis bJulien M. Hendrickx c
+
+arXiv:1508.04606v3 [cs.SY] 6 Jan 2018
+
+a
+
+Department of Electrical and Electronic Engineering
+The University of Hong Kong, Hong Kong S.A.R., China
+b
+
+Faculty of Science and Engineering
+University of Groningen, 9747 AG, Groningen, The Netherlands
+c
+
+ICTEAM Institute, Université catholique de Louvain, Louvain-la-Neuve, Belgium
+
+Abstract
+This paper studies synchronization of dynamical networks with event-based communication. Firstly, two estimators are
+introduced into each node, one to estimate its own state, and the other to estimate the average state of its neighbours. Then,
+with these two estimators, a distributed event-triggering rule (ETR) with a dwell time is designed such that the network
+achieves synchronization asymptotically with no Zeno behaviours. The designed ETR only depends on the information that
+each node can obtain, and thus can be implemented in a decentralized way.
+Key words: distributed event-triggered control, asymptotic synchronization, dynamical networks.
+
+1
+
+Introduction
+
+Synchronization of dynamical networks, and its related problem—consensus of multi-agent systems, have
+attracted a lot of attention due to their extensive applications in various fields (see Arenas et al. (2008);
+Olfati-Saber et al. (2007); Ren et al. (2007); Wu (2007)
+for details). Motivated by the fact that connected nodes
+in some real-world networks share information over
+a digital platform, these problems have recently been
+investigated under the circumstance that nodes communicate to their neighbours only at certain discrete-time
+instants. To use the limited communication network
+resources effectively, event-triggered control (ETC) (see
+Heemels et al. (2012) and reference therein) introduced
+in networked control systems has been extensively used
+to synchronize networks. Under such a circumstance,
+each node can only get limited information, and the
+main issue becomes how to use these limited information to design an ETR for each node such that the
+network achieves synchronization asymptotically and
+⋆ The material in this paper was not presented at any conference.
+Email addresses: taoliu@eee.hku.hk (Tao Liu),
+m.cao@rug.nl (Ming Cao), c.de.persis@rug.nl (Claudio
+De Persis), ulien.hendrickx@uclouvain.be (Julien M.
+Hendrickx).
+
+Preprint submitted to Automatica
+
+meanwhile to prevent Zeno behaviours that are caused
+by the continuous/discrete-time hybrid nature of ETC,
+and undesirable in practice (Tabuada (2007)).
+Early works in ETC focused on dynamical networks
+with simple node dynamics such as single-integrators
+and double-integrators. In Dimarogonas and Johansson
+(2009), distributed ETC was used to achieve consensus.
+To prevent Zeno behaviour, a decentralized ETR with
+a time-varying threshold was introduced to achieve consensus in Seyboth et al. (2013). Self-triggered strategies
+were proposed in De Persis and Frasca (2013) and shown
+to be robust to skews of the local clocks, delays, and limited precision in the communication.
+Most recently, attention has been increasingly paid to
+networks with generalized linear node dynamics. Different types of ETC have been developed to achieve either
+bounded or asymptotic synchronization for such networks (e.g., Demir and Lunze (2012); Zhu et al. (2014);
+Liu et al. (2013); Meng and Chen (2013); Xiao et al.
+(2015); Garcia et al. (2015); Yang et al. (2016); Hu et al.
+(2016)). In order to achieve asymptotic synchronization
+as well as to prevent Zeno behaviours, two main methods are developed in the literature. One uses bidirectional communication, i.e., at each event time, a node
+sends its sampled state to its neighbours and meanwhile
+asks for its neighbours’ current states to update the
+
+9 January 2018
+
+We consider a dynamical network described by
+
+control signal (e.g., Meng and Chen (2013); Xiao et al.
+(2015); Hu et al. (2016)). The other uses unidirectional
+communication, i.e., a node only sends its sampled
+information to its neighbours but does not require information from its neighbours (e.g., Liu et al. (2013);
+Garcia et al. (2015); Yang et al. (2016)). However, the
+latter needs di + 1 ≥ 2 estimators in each node and uses
+an exponential term in the ERT in oder to prevent Zeno
+behaviours.
+
+ẋi (t) = Hxi (t) + Bui (t), ∀i ∈ V
+
+where xi = (xi1 , xi2 , . . . , xin )⊤ ∈ Rn is the state of
+node i. H ∈ Rn×n , B ∈ Rn , and ui ∈ R are the
+node dynamics matrix, input matrix, and control
+input, respectively. Generally, continuous communication between neighbouring nodes is assumed, i.e.,
+P
+ui (t) = K N
+j=1 aij (xj (t) − xi (t)). This yields the following network
+
+In this paper, we study asymptotic synchronization
+of networks with generalized linear node dynamics by
+using the unidirectional communication method. The
+main differences from the existing results are as follows.
+Firstly, a new sampling mechanism is used with which
+two estimators are introduced into each node, whereas
+most existing results need every node to estimate the
+states of all its neighbours. Secondly, inspired by the
+method proposed in Tallapragada and Chopra (2014),
+we replace the exponential term extensively used in the
+literature by a dwell time that was originally introduced
+in switched systems (Cao and Morse (2010)), which
+can simplify the implementation of the designed ETR.
+Thirdly, a distributed ETR for each node is designed
+based on the two estimators and dwell time, whereas
+most of the existing results use decentralized ETRs
+that only consist of local information of the node itself,
+i.e., the state error between the node and its own estimator and the time-dependent exponential term (e.g.,
+Garcia et al. (2015); Yang et al. (2016)). By introducing an estimation of the synchronization errors between
+neighbours using the neighbours’ sampled information,
+the proposed ETR method can reduce the number of
+sampling times for each node significantly.
+
+2
+
+(1)
+
+ẋi (t) = Hxi + BK
+
+XN
+
+j=1
+
+aij (xj (t) − xi (t)).
+
+(2)
+
+In this paper, we assume that connections in (1) are realized via discrete communication, i.e., each node only obtains information from its neighbours at certain discretetime instants. We will present an event-triggered version of network (2), and study how to design an ETR
+for each node to achieve asymptotic synchronization. We
+suppose that the topological structure of the network is
+fixed, undirected and connected.
+We introduce two estimators Oi and OVi into each node
+i, where Oi is used to estimate its own state, and OVi is
+used to estimate the average state of its neighbours. We
+adopt the following control input
+ui (t) = K (x̂Vi (t) − lii x̂i (t))
+
+(3)
+
+where K ∈ R1×n is the control gain to be designed, x̂i ∈
+Rn and x̂Vi ∈ Rn are states of Oi and OVi , respectively.
+The state equations of Oi and OVi are given by
+Oi :
+
+Network Model and Preliminaries
+
+Notation: Denote the set of real numbers, non-negative
+real numbers, and non-negative integers by R, R+ , and
+Z+ ; the set of n-dimensional real vectors and n × m
+real matrices by Rn and Rn×m . In , 1n and 1n×m are
+the n-dimensional identity matrix, n-dimensional vector and n × m matrix with all entries being 1, respectively. k · k represents the Euclidean norm for vectors
+and also the induced norm for matrices. The superscript
+(·)⊤ is the transpose of vectors or matrices. ⊗ is the Kronecker product of matrices. For a single ω : R+ → Rn ,
+ω(t− ) = lims↑t ω(s). Let G be an undirected graph consisting of a node set V = {1, 2, . . . , N } and a link set
+E = {ē1 , ē2 , . . . , ēM }. If there is a link ēk between nodes
+i and j, then we say node j is a neighbour of node i and
+vice versa. Let A = (aij ) ∈ RN ×N be the adjacency matrix of G, where aii = 0 and aij = aji > 0, i 6= j, if node
+i and node j are neighbours, otherwise aij = aji = 0.
+The Laplacian matrix L = (lij ) ∈ RN ×N is defined by
+PN
+lij = −aij , if j 6= i and lii = j=1 aij .
+
+OVi :
+
+x̂˙ i (t) = H x̂i (t), t ∈ [tki , tki +1 )
+x̂i (t) = xi (t),
+
+t = tki
+
+x̂˙ Vi (t) = H x̂Vi (t),
+−
+
+x̂Vi (t) = x̂Vi (t ) −
+
+P
+
+j∈Ji
+
+t ∈ [tk̄i , tk̄i +1 )
+
+ej (t− ),
+
+t = tk̄i .
+
+(4)
+
+(5)
+
+The increasing time sequences {tki } and {tk̄i }, ki , k̄i ∈
+Z+ represent time instants that node i sends updates
+to its neighbours and that it receives updates from
+one or more of its neighbours, respectively. We assume that: there is no time delay for computation and
+execution, i.e., tki represents both the ki th sampling
+time and the ki th time when node i broadcasts updates; and the communication network is under an
+ideal circumstance, i.e., there are no time delays or
+data dropouts in communication. Therefore, the set
+Ji = Ji (tk̄i ) = j | tkj = tk̄i , j ∈ Vi is a subset of
+Vi , from which node i receives updated information at
+t = tk̄i , and Vi = {j | aij > 0, j ∈ V} is the index set of
+the neighbours for node i. The vector ei (t) = x̂i (t)−xi (t)
+represents the deviation between the state of estimator
+Oi and its own, and which node i can easily compute.
+2
+
+In network (7), ẑi in ETR (10) contains information of
+x̂j , j ∈ Vi which are not available for node i as node
+i only has estimator (7b). Therefore, one estimator for
+each node is insufficient to implement ETR (10) in practice. To overcome this difficulty, we introduce another
+estimator (5) into each node. It is shown that network
+(7) is theoretically equivalent to network (1) with the
+two estimators Oi , OVi , and ETR (10) is equivalent to
+ETR (6) which can be implemented in practice.
+
+The time sequence {tki } is decided by the ETR
+tki +1 = inf {t > tki | ri (t, xi , x̂i , x̂Vi ) > 0}
+
+(6)
+
+where ri (·, ·, ·, ·) : R+ × Rn × Rn × Rn → R is the eventtriggering function to be designed. For t > tki , if ri > 0
+−
+−
+at t = t−
+ki +1 , then node i samples xi (tki +1 ), x̂i (tki +1 ),
+−
+−
+calculates ei (tki +1 ), sends ei (tki +1 ) to its neighbours,
+and reinitialize the estimator Oi at t = tki +1 by
+xi (tki +1 ). In addition, node i will reinitialize
+P the estima−
+)
+−
+tor OVi by x̂Vi (tk̄i +1 ) = x̂Vi (t−
+j∈Ji ej (tk̄i +1 )
+k̄i +1
+each time when it receives updates from its neighbours. We further assume the network is well initialized at t = t0 , i.e., x̂i (t0 ) = 0 and each node samples
+and sends ei (t0 ) to its neighbours.
+Therefore, we have
+P
+x̂i (t0 ) = xi (t0 ), x̂Vi (t0 ) = j∈Vi xj (t0 ) and Ji (t0 ) = Vi
+for all i ∈ V. Then, the problem is with the given network topology, to design a proper ETR (6) such that
+network (1) achieves synchronization asymptotically
+without Zeno behaviours.
+
+Remark 1 It is shown in Liu et al. (2013) that under
+the same assumptions, a network with di + 1 estimators
+for each node (di is the number of neighbours of node i)
+is also theoretically equivalent to network (7), and thus
+equivalent to network (1) with two estimators Oi and
+OVi . On the other hand, the error ei (t) = x̂i (t) − xi (t) is
+extensively used in the literature to design ETR, where
+each node sends its sampled state to its neighbours. By
+having each node sending ei (tki ) instead of xi (tki ), it
+turns out that we can reduce the number of estimators.
+The implementation of this new sampling mechanism
+needs no more information than that used in the literature. Further, instead of calculating di +1 ≥ 2 estimators
+x̂j , our method only calculates x̂i and x̂Vi for each node i,
+and hence, our method has implementation advantages,
+in particular for networks with large di and limited embedded computing resources in each node. Like most of the
+existing results in the literature of ETC, in our method
+each node needs to send ei (t) (or xi (t)) to its neighbours
+rather than the relative state information (xj (t) − xi (t))
+that is extensively used in network (2) with continuously
+interconnected nodes. Of course, it is important to study
+network (7) by only using the relative state information
+for the design purposes which should be studied in the
+future.
+
+To simplify the analysis, we will show that network (1)
+with controller (3) and estimators (4), (5) is equivalent
+to the following system where each node maintains an
+estimator of the state of each of its neighbours.
+ẋi (t) = Hxi (t) − BK
+Oi :
+
+XN
+
+j=1
+
+lij x̂j (t), ∀i ∈ V (7a)
+
+x̂˙ i (t) = H x̂i (t), t ∈ [tki , tki +1 )
+
+x̂i (t) = xi (t),
+
+(7b)
+
+t = tki .
+
+P
+P
+˙
+˙
+Defining z̄i =
+j∈Vi x̂j gives z̄i (t) =
+j∈Vi x̂j (t) =
+H z̄i (t), t ∈ [tk̄i , tk̄i +1 ), which has the same dynamics as
+x̂Vi defined in (5). Moreover, at t = tk̄i , we have
+z̄i (t) =
+
+X
+
+x̂j (t− ) +
+
+X
+
+j∈Vi /Ji (t)
+
+= x̂Vi (t).
+
+xj (t)
+
+j∈Ji (t)
+
+j∈Vi /Ji (t)
+
+=
+
+X
+
+This paper will use model (7) and ETR (10) for the
+analysis. But the obtained results can be implemented by
+using controller (3) with the two estimators Oi , OVi and
+ETR (6). Based on network (7), we give the definition
+of asymptotic synchronisation.
+
+x̂j (t− ) +
+
+X
+
+j∈Ji (t)
+
+
+x̂j (t− ) − ej (t− )
+
+⊤
+⊤
+⊤
+∈
+Definition 1 Let x(t) = x⊤
+1 (t), x2 (t), . . . , xN (t)
+
+⊤
+⊤
+⊤
+nN
+(t),
+.
+.
+.
+,
+x̂
+(t)
+∈
+R
+be
+(t),
+x̂
+RnN and x̂(t) = x̂⊤
+2
+1
+N
+a solution of network (7) with initial condition x0 =
+⊤
+⊤ ⊤
+(x⊤
+10 , x20 , . . . , xN 0 ) and xi0 = xi (t0 ). Then, the network
+is said to achieve synchronization asymptotically, if for
+every x0 ∈ RnN the following condition is satisfied
+
+(8)
+
+Thus, we have z̄i (t) = x̂Vi (t) for all t ≥ t0 . Then, controller (3) becomes
+ui = K (z̄i − lii x̂i ) = K (x̂Vi − lii x̂i ) .
+
+(9)
+
+lim kxi (t) − xj (t)k = 0, ∀ i, j ∈ V.
+
+t→∞
+
+Substituting (9) into (1) gives that network (1) with (3),
+(4), and (5) is equivalent to (7).
+
+Remark 2 When the communication network is not
+ideal, model (1) with (3) and Oi , OVi cannot be simplified
+to (7). A more complicated model is needed to describe
+the network dynamics. Time delays and packet loss will
+influence the synchronization performance. However,
+due to the robust property of asymptotic synchronization, bounded synchronization can be guaranteed where
+
+P
+Moreover, let ẑi = j∈Vi (x̂j − x̂i ). We have x̂Vi = z̄i =
+ẑi + lii x̂i . Then, ETR (6) can be reformulated as
+tki +1 = inf {t > tki | ri (t, xi , x̂i , ẑi ) > 0} .
+
+(11)
+
+(10)
+
+3
+
+It is shown in Trentelman et al. (2013) that a necessary
+and sufficient condition for asymptotic synchronization
+of network (2) with continuous interconnections is the
+existence of positive definite matrices Pi such that
+
+the final synchronization error may depend on the time
+delay magnitude and probability of packet loss. Another
+important problem for this case is under what conditions
+the network can still achieve synchronization asymptotically. These issues should be studied in the future.
+
+Hi⊤ Pi + Pi Hi = −2In , i = 2, 3, . . . , N.
+3
+
+Event-Triggered Control
+
+This condition requires all the linear systems with system matrices Hi = H − λi BK, i = 2, . . . , N are asymptotically stable simultaneously, which is stronger than
+that (H, B) is stabilizable. Another alternative is to find
+a common P > 0 for all Hi , i = 2, . . . , N (e.g., Wu et al.
+(2017)). From (14), network (7) with ETC can be regarded as network (2) with an external input (or a disturbance) Λ̄Φ̄⊤ e. According to input-to-state stability theory, a necessary condition for system (14) to be asymptotically stable is that the the corresponding system
+(also described by (14) but without the term Λ̄Φ̄⊤ e) is
+asymptotically stable. Hence, the existence of matrix solutions Pi to Lyapunov equations (16) is also a fundamental requirement for network (7) with ETC to achieve
+asymptotic synchronization. In this paper, we assume
+that such matrices Pi exist.
+
+⊤
+⊤
+⊤
+Denote e(t) = e⊤
+with ei (t) =
+1 (t), e2 (t), . . . , eN (t)
+x̂i (t) − xi (t). Network (7a) can be rewritten by
+ẋ = (IN ⊗ H − L ⊗ BK)x − (L ⊗ BK)e.
+
+(12)
+
+Since the topology of the network is undirected and connected, the Laplacian matrix L is irreducible, symmetric,
+and has only one zero eigenvalue. Further, there exists
+an orthogonal matrix Ψ = (ψ1 , ψ2 , . . . , ψN ) ∈ RN ×N
+with ψi = (ψi1 , ψi2 , . . . , ψiN )⊤ and Ψ⊤ Ψ = IN such
+that Ψ⊤ LΨ = Λ = diag(λ1 , λ2 , . . . , λN ) where
+√0 =
+λ1 < λ2 ≤ λ3 ≤ · · · ≤ λN . Choose ψ1 = 1/ N 1⊤
+N
+for λ1 . Due to the zero row sum property of L, we
+PN
+have
+j=1 ψij = 0 for all i = 2, 3, . . . , N . Defining
+Φ = (ψ2 , ψ3 , . . . , ψN ) ∈ RN ×(N −1) gives
+Φ⊤ Φ = IN −1 ,
+
+ΦΦ⊤ = IN −
+
+1
+1N ×N .
+N
+
+P
+P
+Let zi =
+j∈Vi (x̂j − x̂i ),
+j∈Vi (xj − xi ), ẑi =
+⊤ ⊤
+z = (z1⊤ , z2⊤ , . . . , zN
+)
+= (−L ⊗ In )x, and ẑ =
+⊤ ⊤
+(ẑ1⊤ , ẑ2⊤ , . . . , ẑN
+) = (−L ⊗ In )x̂. Next, we give a useful
+lemma which will be used to prove the main result.
+
+(13)
+
+Let Λ1 = Φ⊤ LΦ = diag{λ2 , λ3 , . . . , λN }, Φ̄ = Φ ⊗ In
+and Λ̄ = Λ1 ⊗ BK = diag {λ2 BK, λ3 BK, . . . , λN BK}.
+Defining y = Φ̄⊤ x gives
+ẏ(t) =Φ̄⊤ (IN ⊗ H)x − (L ⊗ BK)(IN n − Φ̄Φ̄⊤
+
++Φ̄Φ̄⊤ )(x + e)
+=(IN −1 ⊗ H − Λ1 ⊗ BK)y − Λ̄Φ̄⊤ e
+⊤
+
+Lemma 2 Consider network (7). The following two inequalities hold for any t ≥ t0
+kẑk ≤ λN (kek + kyk)
+λ2 kyk ≤ λN kek + kẑk.
+
+(14)
+
+(17)
+(18)
+
+PROOF. Due to k(L ⊗ In )k = λN , we have
+
+⊤
+
+where we use properties Φ̄ (IN ⊗ H) = (IN −1 ⊗ H)Φ̄
+and (L ⊗ BK)(IN n − Φ̄Φ̄⊤ ) = 0 for any BK, which
+are supported by facts L1N = 0 and (13). Denoting
+H̄ = (IN −1 ⊗ H) − (Λ1 ⊗ BK) = diag {H2 , H3 , . . . , HN }
+with Hi = H − λi BK, system (14) can be simplified to
+ẏ = H̄y − Λ̄Φ̄⊤ e.
+
+(16)
+
+kẑk = k(L ⊗ In )(x + e)k ≤ kzk + λN kek
+
+(19)
+
+kzk = k(L ⊗ In )(x̂ − e)k ≤ kẑk + λN kek.
+(20)
+⊤
+Let U = ΦΦ , then for any L, we have LU =
+U L, i.e., L and U are diagonalizable simultaneously. Further, we have Ψ⊤ LΨ = Λ and Ψ⊤ U Ψ =
+diag{λu1 , λu2 , . . . , λuN }, where λu1 = 0 and λui = 1, i =
+2, 3, . . . , N are eigenvalues of U . Let λ̄i , i = 1, 2, . . . , N
+be eigenvalues of the matrix (λ2N U 2 − L2 ). Then with
+U 2 = U , we have λ̄1 = 0 and λ̄i = λ2N − λ2i ≥ 0,
+i = 2, 3, . . . , N , which gives L2 ≤ λ2N U 2 . Thus, we have
+
+(15)
+
+PN
+By defining x̄ = N1 i=1 xi , we have kyk2 = x⊤ Φ̄Φ̄⊤ x =
+PN
+2
+i=1 kxi − x̄k where the last equality follows from
+⊤
+Φ Φ = IN −1 and (Φ̄Φ̄⊤ )2 = Φ̄Φ̄⊤ . Therefore, if
+limt→∞ ky(t)k = 0, then xi (t), xj (t), and x̄(t) are
+asymptotically equal when t → ∞, i.e., network (7)
+achieves synchronization asymptotically. This result is
+summarized in the following lemma.
+
+kzk2 =x⊤ (L2 ⊗ In )x ≤ λ2N x⊤ (U 2 ⊗ In )x
+=λ2N kΦ̄⊤ xk2 = λ2N kyk2 .
+
+(21)
+
+Combining (19) with (21) gives inequality (17). Similar
+to (21), we have kyk2 = x⊤ (U 2 ⊗ In )x ≤ 1/λ22 x⊤ (L2 ⊗
+In )x which with (20) gives (18).
+✷
+
+Lemma 1 If system (15) is asymptotically stable, i.e.,
+limt→∞ ky(t)k = 0, then network (7) achieves synchronization asymptotically.
+
+4
+
+Let ρ =
+
+λN
+
+δ
+,
+2N (α2 +δ 2 )
+
+√
+
+ρ1 =
+
+1 √
+δ
+λ2 ( 2(α2 +δ 2 )
+
+Based on the comparison theory (Khalil (2002)), we
+have kel (t)k/ky(t)k ≤ φ(t − tkl ), whenever kel (tkl )k
+/ky(tkl )k ≤ φ(tkl ) where φ(t − tkl ) is the solution of the
+ordinary differential equation
+
++ 1),
+
+δ ∈ (0, 1), α = maxi=2,3,...,N {λi kPi BKk}, a =
+δ
+δ
+kHk + kH̄k
+ + λN α kBKk, b = λN kBKk(1 + α ), and
+τ∗ =
+
+1
+a
+
+ln
+
+aρ
+bρ1
+
++ 1 > 0. We have the following result.
+
+φ̇ = aφ + b
+
+Theorem 1 Network (7) achieves synchronization
+asymptotically under the distributed ETR
+tki +1 = inf {t ≥ tki + τ ∗ | kei k > ρkẑi k} .
+
+with the initial condition φ(tkl ). At t = tkl , we have
+kel (tkl )k/ky(tkl )k = 0. Setting φ(tkl ) = 0 gives
+
+(22)
+
+kel (t)k
+≤ φ(t − tkl ), ∀t ∈ [tkl , t∗ ).
+ky(t)k
+
+Moreover, no Zeno behaviour occurs in the network.
+
+kel (t)k
+kel (t)k
+≤ ρ1
+≤ ρ1 φ(t − tkl ), ∀t ∈ [tkl , t∗ ).
+kẑ(t)k
+ky(t)k
+
+(23)
+
+Solving (29) with φ(tkl ) = 0 shows that it will take φ(t−
+tkl ) a positive time constant τ ∗ to change its values from
+0 to ρ/ρ1 , so does kel (t)k/ky(t)k. Therefore, it requires
+at least τ ∗ to make kel (t)k move from 0 to ρkẑ(t)k.
+
+This is true at t = t0 , as we have kei (t0 )k = 0 and
+hence kei (t0 )k ≤ ρkẑ(t0 )k, ∀i ∈ V. Suppose to obtain a
+contradiction that (23) does not always hold, and let t∗
+be the infimum of times at which it does not hold. Due to
+the finite number of nodes, there exists a node l such that
+kel k > ρkẑk for times arbitrarily close t∗ from above,
+i.e., ∀ǫ > 0, ∃t ∈ [t∗ , t∗ + ǫ] such that kel (t)k > ρkẑ(t)k.
+It follows from ETR (22) that t∗ must be in (tkl , tkl + τ ∗ ]
+for some kl ∈ Z+ . We now show that there cannot exist
+a t∗ in (tkl , tkl + τ ∗ ], which will establish (23). Since
+kei (t)k ≤ ρkẑ(t)k, ∀i ∈ V, ∀t < t∗ , which gives
+kek2 =
+
+N
+X
+i=1
+
+kei k2 ≤
+
+δ2
+kẑk2 .
+2
+2λN (α2 + δ 2 )
+
+Suppose, to obtain a contradiction, that t∗ < tkl + τ ∗ . In
+that case, kel (t)k/ky(t)k ≤ φ(t − tkl ) < φ(τ ∗ ) ≤ ρ/ρ1 ,
+for all t ≤ t∗ . By continuity of kel k/kyk, this implies the
+existence of an ε > 0 such that kel (t)k/ky(t)k < φ(τ ∗ )
+for all t ≤ t∗ + ε. Therefore, there holds then kel (t)k <
+ρkẑ(t)k for all t < t∗ + ε, in contradiction with t∗ being
+the infimum of times at which kel (t)k > ρkẑ(t)k.
+Now, select the Lyapunov function candidate V = y ⊤ P y
+with P = diag{P2 , P3 , . . . , PN }. Then, the derivative of
+V along system (15) satisfies
+
+(24)
+
+On the other hand, inequality (17) gives
+2
+
+kẑk ≤
+
+2λ2N (kek2
+
+2
+
++ kyk ).
+
+V̇ ≤ −2kyk2 + 2αkykkΦ̄⊤ek.
+(25)
+
+Calculating
+
+d kel k
+dt kyk
+
+δ
+ky(t)k, ∀t ∈ [t0 , t∗ ).
+α
+
+δ
+kyk.
+α
+
+(32)
+
+V̇ ≤ −2(1 − δ)kyk2 < 0, ∀kyk =
+6 0.
+
+(33)
+
+kΦ̄⊤ ek ≤ kΦ̄⊤ kkek = kek ≤
+
+(26)
+
+Substituting (32) into (31) gives
+
+for t ∈ [tkl , t∗ ) directly gives
+
+ kel k kΛ̄kkel kkek
+d kel k
+≤ kHk + kH̄k
++
+dt kyk
+kyk
+kyk2
+kek
++ λN kBKk
++ λN k BKk
+(27)
+kyk
+
+Therefore, the equilibrium point y = 0 of system (15) is
+asymptotically stable. Based on Lemma 1, the network
+achieves synchronization asymptotically.
+✷
+
+where we use (17) in Lemma 2 to get (27). Substituting
+(26) into (27) gives
+kel k
+d kel k
+≤a
++ b.
+dt kyk
+kyk
+
+(31)
+
+The inequality (23) holds, so does (26). Combining (26)
+with kΦ̄k = 1 yields
+
+Substituting (25) into (24) yields
+ke(t)k ≤
+
+(30)
+
+Further, combining (18) with (24) gives kẑk ≥ kyk/ρ1
+which with (30) leads to
+
+PROOF. Under ETR (22), the existence of τki =
+tki +1 − tki > 0 is guaranteed by the dwell time τ ∗ . To
+show asymptotic synchronization, we claim that the
+network with (22) satisfies
+kei k ≤ ρkẑk, ∀i ∈ V, ∀t ≥ t0 .
+
+(29)
+
+Remark 3 Like most results in synchronization of dynamical network with/without ETC (e.g., Trentelman et al.
+(2013); Guinaldo et al. (2013)), one usually needs some
+global parameters to guarantee asymptotic synchronization and exclude Zeno behaviours. These parameters can
+
+(28)
+
+5
+
+be estimated by using methods proposed in the related
+literature (e.g., Franceschelli et al. (2013)), and can be
+initialized to each node at the beginning. However, how
+to use local parameters rather than global ones (e.g., how
+to replace N by using local parameter such as the degree
+of the node di ) remains open, and deserves attention.
+
+4
+
+An Example
+
+To show the effectiveness of our method, consider a network with 10 nodes that have parameters as follows
+
+H=
+
+0 −0.5
+
+!
+
+, B=
+
+0
+
+!
+
+, K=
+
+
+
+
+−0.5 1 .
+
+1
+0.5 0
+Remark 4 Most of the existing results (e.g., Demir and Lunze
+(2012); Guinaldo et al. (2013); Seyboth et al. (2013);
+Zhu et al. (2014); Garcia et al. (2015); Yang et al.
+We adopt the two-nearest-neighbour graph to describe
+(2016) ) use decentralized ETRs which can be summathe topology, i.e., Vi = {j | j = i ± 1, i ± 2}, i =
+rized in the following compact from
+1, 2, . . . , 10. If j ∈ Vi and j < 0 (j > 10), then j = j + 11
+(j = j − 10). Since the matrix H has two eigenvalues
+on the imaginary axis of the complex plane, the network
+
+will synchronize to a stable time-varying solution deter(34)
+tki +1 = inf t | kei k > c0 + c1 e−γt
+mined by the initial condition. By calculating, we get
+α = 2.9061. We select δ = 0.9. Figure 1 gives the simulation results of the network with the distributed ETR
+(22) (DDT), which shows the effectiveness of the prowhere c0 ≥ 0, c1 ≥ 0, γ > 0 are three design parameters.
+posed method. In the figure, we only give the sampling
+Obviously, ETR (34) only depends on local information
+time instants in the first 2 seconds for clarity. The thefrom node i itself, and asymptotic synchronization can
+oretical value of τ ∗ is 0.0013 s. The minimum and maxbe achieved only when c0 = 0. In our paper, we introduce
+imum sample periods (τmin /τmax ) for each node during
+kẑi k into the proposed ETR (22). The term kẑi k updated
+the simulation time are given in Table 1 which shows
+by xj (tkj ) estimates the synchronization errors between
+that the actual sample periods are much larger than τ ∗ .
+neighbours continuously, and thus provides each node
+useful information for determining its sampling times.
+Therefore, the proposed ETR can reduce the sampling
+We also compared our method with the decentralized
+times significantly, in particular for cases where kẑi k is
+ETR (34) (DET) proposed in Guinaldo et al. (2013).
+large (see the example in Section 4 for details). Further,
+According to Remark 4, only bounded synchronization
+it is shown in Liu et al. (2013) that a similar distributed
+can be guaranteed with c0 6= 0 in (34) (Seyboth et al.
+−γt
+ETR as (22) but with an exponential term c1 e
+can also
+(2013)). For this case, the advantage of our method is
+guarantee asymptotic synchronization. However, this paclear. So here, we only compare our method with the case
+per replaces the exponential term by a dwell time which
+c0 = 0 where asymptotic synchronization under (34) can
+can be implemented easily in practice. Such a τ ∗ gives an
+also be achieved. We select c1 = ρ and γ = 0.30579. Durupper bound for the designed ETR (22), and therefore, a
+ing the simulation period (0 – 18 s), the network with
+modified ETR with 0 < τi∗ ≤ τ ∗ can also synchronize the
+DDT samples 3432 times in total, whereas the network
+network without Zeno behaviours.
+with DET samples 212 times more (3644 times in total).
+
+Remark 5 To simplify notations, this paper only considers the case where ui is a scalar. However, the obtained
+results can extend to multiple-input case directly. It is
+pointed out in Heemels et al. (2013) that the joint design
+of the controller and event-triggering rule is a hard problem. However, we can select any control gain K to synchronizes the continuous-time network (2), i.e., to stabilize (H, λi B), i = 2, . . . , N simultaneously. It can be
+selected by solving a group of linear matrix inequalities.
+Moreover, a periodic ETC method was proposed to stabilize linear systems in Heemels et al. (2013) where the
+triggering condition was verified periodically. In the paper, we do not check the event-triggering condition in the
+time interval [tki , tki + τ ∗ ), but check the condition continuously during the period [tki + τ ∗ , tki +1 ). It is of great
+interest to study asymptotic synchronization by using periodic ETC and one-directional communications.
+
+Fig. 1. Simulation for the network with DDT.
+
+6
+
+Table 1. The minimum/maximum sample period
+
+5
+
+Node 1
+
+Node 2
+
+Node 3
+
+Node 4
+
+τmin
+
+0.0153
+
+0.0114
+
+0.016
+
+0.0214
+
+0.0188
+
+τmax
+
+0.2651
+
+0.5292
+
+0.6336
+
+0.0817
+
+0.1851
+
+Node 6
+
+Node 7
+
+Node 8
+
+Node 9
+
+Node 10
+
+τmin
+
+0.0046
+
+0.0688
+
+0.0116
+
+0.0117
+
+0.0117
+
+τmax
+
+0.3584
+
+0.2841
+
+1.4677
+
+0.5347
+
+0.5238
+
+Demir, O., Lunze, J., 2012. Event-based synchronziation of multi-agent systems. In: IFAC Conf. on Analysis and Design of Hybrid Systems. Eindhoven, The
+Netherlands, pp. 1–6.
+Dimarogonas, D. V., Johansson, K. H., 2009. Eventbased control for multi-agent systems. In: IEEE Conference on Decison and Control. Shanghai, China, pp.
+7131–7136.
+Franceschelli, M., Gasparri, A., Giua, A., Seatzu, C.,
+2013. Decentralized estimation of Laplacian eigenvalues in multi-agent systems. Automatica 49, 1031–
+1036.
+Garcia, E., Cao, Y., Wang, X., Casbeer, D., 2015. Decentralized event-triggered consensus of linear multiagent systems under directed graphs. In: American
+Control Conference. Chicago, USA, pp. 5764–5769.
+Guinaldo, M., Dimarogonas, D., Johansson, K., Sanchez,
+J., Dormido, S., 2013. Distributed event-based control strategies for interconnected linear systems. IET
+Control Theory and Applications 7 (6), 877886.
+Heemels, W. P. M. H., Donkers, M. C. F., Teel, A. R.,
+2013. Periodic event-triggered control for linear systems. IEEE Trans. on Automatic Control 58 (4), 847–
+861.
+Heemels, W. P. M. H., Johansson, K. H., Tabuada,
+P., 2012. An introduction to event-triggered and selftriggered control. In: IEEE Conference on Decison and
+Control. Maui, USA, pp. 3270–3285.
+Hu, W., Liu, L., Feng, G., 2016. Consensus of linear
+multi-agent systems by distributed event-triggered
+strategy. IEEE Trans. on Cybernetics 46 (1), 148–157.
+Khalil, H. K., 2002. Nonlinear Systems, 3rd Edition.
+Prentice Hall, New Jersey.
+Liu, T., Cao, M., De Persis, C., Hendrickx, J. M., 2013.
+Distributed event-triggered control for synchronization of dynamical networks with estimators. In: IFAC
+Workshop on Distributed Estimation and Control in
+Networked Systems. Koblenz, Germany, pp. 116–121.
+Meng, X., Chen, T., 2013. Event based agreement protocols for multi-agent networks. Automatica 49, 2125–
+2132.
+Olfati-Saber, R., Fax, J. A., Murray, R. M., 2007. Consensus and cooperation in networked multi-agent systems. Proceedigs of the IEEE 95 (1), 215–233.
+Ren, W., Beard, R. W., Atkins, E., 2007. Informaiton
+consensus in multivechicle cooperative control: collective behavior through local interation. IEEE Control
+System Magazine 27 (2), 71–82.
+Seyboth, G. S., Dimarogonas, D. V., Johansson, K. H.,
+2013. Event-based broadcasting for multi-agent average consensus. Automatica 49, 245–252.
+Tabuada, P., 2007. Event-triggered real-time scheduling
+of stabilizing control tasks. IEEE Trans. on Automatic
+Control 52 (9), 1680–1685.
+Tallapragada, P., Chopra, N., 2014. Decentralized eventtriggering for control of nonlinear systems. IEEE
+Trans. on Automatic Control 59 (12), 3312–3324.
+Trentelman, H. L., Takaba, K., Monshizadeh, N., 2013.
+Robust synchronization of uncertain linear multi-
+
+Node 5
+
+Conclusion
+
+This paper has studied asymptotic synchronization of
+networks by using distributed ETC. By using the introduced estimators, a distributed ETR for each node has
+been explored, which only relies on the state of the node
+and states of the estimators. It has been shown that the
+proposed ETC synchronizes the network asymptotically
+with no Zeno behaviours. It is worth pointing out that
+time-delay and data packet dropout are common phenomena which definitely affects the synchronization of
+networks with event-based communication. It appears
+that synchronization of such networks with imperfect
+communication is an important issue to pursue further
+for both theoretical interest and practical consideration.
+Acknowledgements
+Liu’s work was supported by The University of Hong
+Kong Research Committee Research Assistant Professor Scheme and a grant from the RGC of the Hong Kong
+S. A. R. under GRF through Project No. 17256516.
+Cao’s work was supported in part by the European Research Council (ERC-StG-307207) and the Netherlands
+Organization for Scientific Research (NWO-vidi-14134).
+De Persis’s work was partially supported by the Dutch
+Organization for Scientific Research (NWO) under the
+auspices of the project Quantized Information Control
+for formation Keeping (QUICK) and by the STW Perspectief program “Robust Design of Cyber-physical Systems” under the auspices of the project “Cooperative
+Networked Systems”. Hendrickx’s work was supported
+by the Belgian Network DYSCO (Dynamical Systems,
+Control, and Optimization), funded by the Interuniversity Attraction Poles Program, initiated by the Belgian
+Science Policy Office.
+References
+Arenas, A., Dı́az-Guilera, A., Kurths, J., Moreno, Y.,
+Zhou, C., 2008. Synchronization in complex networks.
+Physics Reports 469, 93–153.
+Cao, M., Morse, A. S., 2010. Dwell-time switching.
+Sysstems & Control Letters 59 (1), 57–65.
+De Persis, C., Frasca, P., 2013. Robust self-triggered coordination with ternary controllers. IEEE Trans. on
+Automatic Control 58 (12), 3024–3038.
+
+7
+
+agent systems. IEEE Trans. on Automatic Control
+58 (6), 1511–1523.
+Wu, C. W., 2007. Synchronization in complex networks
+of nonlinear dynamical systems. World Scientific, Singapore.
+Wu, Y., Meng, X., Xie, L., Lu, R., Su, H., Wu, Z.,
+2017. An input-based triggering approach to leaderfollowing problems. Automatica 75, 221–228.
+Xiao, F., Meng, X., Chen, T., 2015. Sampled-data consensus in switching networks of integrators based on
+edge events. International Journal of Control 88 (2),
+391–402.
+Yang, D., Ren, W., Liu, X., Chen, W., 2016. Decentralized event-triggered consensus for linear multi-agent
+systems under general directed graphs. Automatica
+69, 242–249.
+Zhu, W., Jiang, Z.-P., Feng, G., 2014. Event-based consensus of multi-agent systems with general linear models. Automatica 50, 552–558.
+
+8
+
+
+
+Summary:
+This research paper covers the following topic: Distributed Event-Triggered Control for Asymptotic
+Synchronization of Dynamical Networks ⋆
+Tao Liu aMing Cao bClaudio De Persis bJulien M. Hendrickx c
+
+arXiv:1508.04606v3 [cs.SY] 6 Jan 2018
+
+a
+
+Department of Electrical and Electronic Engineering
+The University of Hong Kong, Hong Kong S.A.R., China
+b
+
+Faculty of Science and Engineering
+University of Groningen, 9747 AG, Groningen, The Netherlands
+c
+
+ICTEAM Institute, Université catholique de Louvain, Louvain-la-Neuve, Belgium
+
+Abstract
+This paper studies synchronization of dynamical networks with event-based communication. Firstly, two estimators are
+introduced into each node, one to estimate its own state, and the other to estimate the average state of its neighbours. Then,
+with these two estimators, a distributed event-triggering rule (ETR) with a dwell time is designed such that the network
+achieves synchronization asymptotically with no Zeno behaviours. The designed ETR only depends on the information that
+each node can obtain, and thus can be implemented in a decentralized way.
+Key words: distributed event-triggered control, asymptotic synchronization, dynamical networks.
+
+1
+
+Introduction
+
+Synchronization of dynamical networks, and its related problem—consensus of multi-agent systems, have
+attracted a lot of attention due to their extensive applications in various fields (see Arenas et al. (2008);
+Olfati-Saber et al. (2007); Ren et al. (2007); Wu (2007)
+for details). Motivated by the fact that connected nodes
+in some real-world networks share information over
+a digital platform, these problems have recently been
+investigated under the circumstance that nodes communicate to their neighbours only at certain discrete-time
+instants. To use the limited communication network
+resources effectively, event-triggered control (ETC) (see
+Heemels et al. (2012) and reference therein) introduced
+in networked control systems has been extensively used
+to synchronize networks. Under such a circumstance,
+each node can only get limited information, and the
+main issue becomes how to use these limited information to design an ETR for each node such that the
+network achieves synchronization asymptotically and
+⋆ The material in this paper was not presented at any conference.
+Email addresses: taoliu@eee.hku.hk (Tao Liu),
+m.cao@rug.nl (Ming Cao), c.de.persis@rug.nl (Claudio
+De Persis), ulien.hendrickx@uclouvain.be (Julien M.
+Hendrickx).
+
+Preprint submitted to Automatica
+
+meanwhile to prevent Zeno behaviours that are caused
+by the continuous/discrete-time hybrid nature of ETC,
+and undesirable in practice (Tabuada (2007)).
+Early works in ETC focused on dynamical networks
+with simple node dynamics such as single-integrators
+and double-integrators. In Dimarogonas and Johansson
+(2009), distributed ETC was used to achieve consensus.
+To prevent Zeno behaviour, a decentralized ETR with
+a time-varying threshold was introduced to achieve consensus in Seyboth et al. (2013). Self-triggered strategies
+were proposed in De Persis and Frasca (2013) and shown
+to be robust to skews of the local clocks, delays, and limited precision in the communication.
+Most recently, attention has been increasingly paid to
+networks with generalized linear node dynamics. Different types of ETC have been developed to achieve either
+bounded or asymptotic synchronization for such networks (e.g., Demir and Lunze (2012); Zhu et al. (2014);
+Liu et al. (2013); Meng and Chen (2013); Xiao et al.
+(2015); Garcia et al. (2015); Yang et al. (2016); Hu et al.
+(2016)). In order to achieve asymptotic synchronization
+as well as to prevent Zeno behaviours, two main methods are developed in the literature. One uses bidirectional communication, i.e., at each event time, a node
+sends its sampled state to its neighbours and meanwhile
+asks for its neighbours’ current states to update the
+
+9 January 2018
+
+We consider a dynamical network described by
+
+control signal (e.g., Meng and Chen (2013); Xiao et al.
+(2015); Hu et al. (2016)). The other uses unidirectional
+communication, i.e., a node only sends its sampled
+information to its neighbours but does not require information from its neighbours (e.g., Liu et al. (2013);
+Garcia et al. (2015); Yang et al. (2016)). However, the
+latter needs di + 1 ≥ 2 estimators in each node and uses
+an exponential term in the ERT in oder to prevent Zeno
+behaviours.
+
+ẋi (t) = Hxi (t) + Bui (t), ∀i ∈ V
+
+where xi = (xi1 , xi2 , . . . , xin )⊤ ∈ Rn is the state of
+node i. H ∈ Rn×n , B ∈ Rn , and ui ∈ R are the
+node dynamics matrix, input matrix, and control
+input, respectively. Generally, continuous communication between neighbouring nodes is assumed, i.e.,
+P
+ui (t) = K N
+j=1 aij (xj (t) − xi (t)). This yields the following network
+
+In this paper, we study asymptotic synchronization
+of networks with generalized linear node dynamics by
+using the unidirectional communication method. The
+main differences from the existing results are as follows.
+Firstly, a new sampling mechanism is used with which
+two estimators are introduced into each node, whereas
+most existing results need every node to estimate the
+states of all its neighbours. Secondly, inspired by the
+method proposed in Tallapragada and Chopra (2014),
+we replace the exponential term extensively used in the
+literature by a dwell time that was originally introduced
+in switched systems (Cao and Morse (2010)), which
+can simplify the implementation of the designed ETR.
+Thirdly, a distributed ETR for each node is designed
+based on the two estimators and dwell time, whereas
+most of the existing results use decentralized ETRs
+that only consist of local information of the node itself,
+i.e., the state error between the node and its own estimator and the time-dependent exponential term (e.g.,
+Garcia et al. (2015); Yang et al. (2016)). By introducing an estimation of the synchronization errors between
+neighbours using the neighbours’ sampled information,
+the proposed ETR method can reduce the number of
+sampling times for each node significantly.
+
+2
+
+(1)
+
+ẋi (t) = Hxi + BK
+
+XN
+
+j=1
+
+aij (xj (t) − xi (t)).
+
+(2)
+
+In this paper, we assume that connections in (1) are realized via discrete communication, i.e., each node only obtains information from its neighbours at certain discretetime instants. We will present an event-triggered version of network (2), and study how to design an ETR
+for each node to achieve asymptotic synchronization. We
+suppose that the topological structure of the network is
+fixed, undirected and connected.
+We introduce two estimators Oi and OVi into each node
+i, where Oi is used to estimate its own state, and OVi is
+used to estimate the average state of its neighbours. We
+adopt the following control input
+ui (t) = K (x̂Vi (t) − lii x̂i (t))
+
+(3)
+
+where K ∈ R1×n is the control gain to be designed, x̂i ∈
+Rn and x̂Vi ∈ Rn are states of Oi and OVi , respectively.
+The state equations of Oi and OVi are given by
+Oi :
+
+Network Model and Preliminaries
+
+Notation: Denote the set of real numbers, non-negative
+real numbers, and non-negative integers by R, R+ , and
+Z+ ; the set of n-dimensional real vectors and n × m
+real matrices by Rn and Rn×m . In , 1n and 1n×m are
+the n-dimensional identity matrix, n-dimensional vector and n × m matrix with all entries being 1, respectively. k · k represents the Euclidean norm for vectors
+and also the induced norm for matrices. The superscript
+(·)⊤ is the transpose of vectors or matrices. ⊗ is the Kronecker product of matrices. For a single ω : R+ → Rn ,
+ω(t− ) = lims↑t ω(s). Let G be an undirected graph consisting of a node set V = {1, 2, . . . , N } and a link set
+E = {ē1 , ē2 , . . . , ēM }. If there is a link ēk between nodes
+i and j, then we say node j is a neighbour of node i and
+vice versa. Let A = (aij ) ∈ RN ×N be the adjacency matrix of G, where aii = 0 and aij = aji > 0, i 6= j, if node
+i and node j are neighbours, otherwise aij = aji = 0.
+The Laplacian matrix L = (lij ) ∈ RN ×N is defined by
+PN
+lij = −aij , if j 6= i and lii = j=1 aij .
+
+OVi :
+
+x̂˙ i (t) = H x̂i (t), t ∈ [tki , tki +1 )
+x̂i (t) = xi (t),
+
+t = tki
+
+x̂˙ Vi (t) = H x̂Vi (t),
+−
+
+x̂Vi (t) = x̂Vi (t ) −
+
+P
+
+j∈Ji
+
+t ∈ [tk̄i , tk̄i +1 )
+
+ej (t− ),
+
+t = tk̄i .
+
+(4)
+
+(5)
+
+The increasing time sequences {tki } and {tk̄i }, ki , k̄i ∈
+Z+ represent time instants that node i sends updates
+to its neighbours and that it receives updates from
+one or more of its neighbours, respectively. We assume that: there is no time delay for computation and
+execution, i.e., tki represents both the ki th sampling
+time and the ki th time when node i broadcasts updates; and the communication network is under an
+ideal circumstance, i.e., there are no time delays or
+data dropouts in communication. Therefore, the set
+Ji = Ji (tk̄i ) = j | tkj = tk̄i , j ∈ Vi is a subset of
+Vi , from which node i receives updated information at
+t = tk̄i , and Vi = {j | aij > 0, j ∈ V} is the index set of
+the neighbours for node i. The vector ei (t) = x̂i (t)−xi (t)
+represents the deviation between the state of estimator
+Oi and its own, and which node i can easily compute.
+2
+
+In network (7), ẑi in ETR (10) contains information of
+x̂j , j ∈ Vi which are not available for node i as node
+i only has estimator (7b). Therefore, one estimator for
+each node is insufficient to implement ETR (10) in practice. To overcome this difficulty, we introduce another
+estimator (5) into each node. It is shown that network
+(7) is theoretically equivalent to network (1) with the
+two estimators Oi , OVi , and ETR (10) is equivalent to
+ETR (6) which can be implemented in practice.
+
+The time sequence {tki } is decided by the ETR
+tki +1 = inf {t > tki | ri (t, xi , x̂i , x̂Vi ) > 0}
+
+(6)
+
+where ri (·, ·, ·, ·) : R+ × Rn × Rn × Rn → R is the eventtriggering function to be designed. For t > tki , if ri > 0
+−
+−
+at t = t−
+ki +1 , then node i samples xi (tki +1 ), x̂i (tki +1 ),
+−
+−
+calculates ei (tki +1 ), sends ei (tki +1 ) to its neighbours,
+and reinitialize the estimator Oi at t = tki +1 by
+xi (tki +1 ). In addition, node i will reinitialize
+P the estima−
+)
+−
+tor OVi by x̂Vi (tk̄i +1 ) = x̂Vi (t−
+j∈Ji ej (tk̄i +1 )
+k̄i +1
+each time when it receives updates from its neighbours. We further assume the network is well initialized at t = t0 , i.e., x̂i (t0 ) = 0 and each node samples
+and sends ei (t0 ) to its neighbours.
+Therefore, we have
+P
+x̂i (t0 ) = xi (t0 ), x̂Vi (t0 ) = j∈Vi xj (t0 ) and Ji (t0 ) = Vi
+for all i ∈ V. Then, the problem is with the given network topology, to design a proper ETR (6) such that
+network (1) achieves synchronization asymptotically
+without Zeno behaviours.
+
+Remark 1 It is shown in Liu et al. (2013) that under
+the same assumptions, a network with di + 1 estimators
+for each node (di is the number of neighbours of node i)
+is also theoretically equivalent to network (7), and thus
+equivalent to network (1) with two estimators Oi and
+OVi . On the other hand, the error ei (t) = x̂i (t) − xi (t) is
+extensively used in the literature to design ETR, where
+each node sends its sampled state to its neighbours. By
+having each node sending ei (tki ) instead of xi (tki ), it
+turns out that we can reduce the number of estimators.
+The implementation of this new sampling mechanism
+needs no more information than that used in the literature. Further, instead of calculating di +1 ≥ 2 estimators
+x̂j , our method only calculates x̂i and x̂Vi for each node i,
+and hence, our method has implementation advantages,
+in particular for networks with large di and limited embedded computing resources in each node. Like most of the
+existing results in the literature of ETC, in our method
+each node needs to send ei (t) (or xi (t)) to its neighbours
+rather than the relative state information (xj (t) − xi (t))
+that is extensively used in network (2) with continuously
+interconnected nodes. Of course, it is important to study
+network (7) by only using the relative state information
+for the design purposes which should be studied in the
+future.
+
+To simplify the analysis, we will show that network (1)
+with controller (3) and estimators (4), (5) is equivalent
+to the following system where each node maintains an
+estimator of the state of each of its neighbours.
+ẋi (t) = Hxi (t) − BK
+Oi :
+
+XN
+
+j=1
+
+lij x̂j (t), ∀i ∈ V (7a)
+
+x̂˙ i (t) = H x̂i (t), t ∈ [tki , tki +1 )
+
+x̂i (t) = xi (t),
+
+(7b)
+
+t = tki .
+
+P
+P
+˙
+˙
+Defining z̄i =
+j∈Vi x̂j gives z̄i (t) =
+j∈Vi x̂j (t) =
+H z̄i (t), t ∈ [tk̄i , tk̄i +1 ), which has the same dynamics as
+x̂Vi defined in (5). Moreover, at t = tk̄i , we have
+z̄i (t) =
+
+X
+
+x̂j (t− ) +
+
+X
+
+j∈Vi /Ji (t)
+
+= x̂Vi (t).
+
+xj (t)
+
+j∈Ji (t)
+
+j∈Vi /Ji (t)
+
+=
+
+X
+
+This paper will use model (7) and ETR (10) for the
+analysis. But the obtained results can be implemented by
+using controller (3) with the two estimators Oi , OVi and
+ETR (6). Based on network (7), we give the definition
+of asymptotic synchronisation.
+
+x̂j (t− ) +
+
+X
+
+j∈Ji (t)
+
+
+x̂j (t− ) − ej (t− )
+
+⊤
+⊤
+⊤
+∈
+Definition 1 Let x(t) = x⊤
+1 (t), x2 (t), . . . , xN (t)
+
+⊤
+⊤
+⊤
+nN
+(t),
+.
+.
+.
+,
+x̂
+(t)
+∈
+R
+be
+(t),
+x̂
+RnN and x̂(t) = x̂⊤
+2
+1
+N
+a solution of network (7) with initial condition x0 =
+⊤
+⊤ ⊤
+(x⊤
+10 , x20 , . . . , xN 0 ) and xi0 = xi (t0 ). Then, the network
+is said to achieve synchronization asymptotically, if for
+every x0 ∈ RnN the following condition is satisfied
+
+(8)
+
+Thus, we have z̄i (t) = x̂Vi (t) for all t ≥ t0 . Then, controller (3) becomes
+ui = K (z̄i − lii x̂i ) = K (x̂Vi − lii x̂i ) .
+
+(9)
+
+lim kxi (t) − xj (t)k = 0, ∀ i, j ∈ V.
+
+t→∞
+
+Substituting (9) into (1) gives that network (1) with (3),
+(4), and (5) is equivalent to (7).
+
+Remark 2 When the communication network is not
+ideal, model (1) with (3) and Oi , OVi cannot be simplified
+to (7). A more complicated model is needed to describe
+the network dynamics. Time delays and packet loss will
+influence the synchronization performance. However,
+due to the robust property of asymptotic synchronization, bounded synchronization can be guaranteed where
+
+P
+Moreover, let ẑi = j∈Vi (x̂j − x̂i ). We have x̂Vi = z̄i =
+ẑi + lii x̂i . Then, ETR (6) can be reformulated as
+tki +1 = inf {t > tki | ri (t, xi , x̂i , ẑi ) > 0} .
+
+(11)
+
+(10)
+
+3
+
+It is shown in Trentelman et al. (2013) that a necessary
+and sufficient condition for asymptotic synchronization
+of network (2) with continuous interconnections is the
+existence of positive definite matrices Pi such that
+
+the final synchronization error may depend on the time
+delay magnitude and probability of packet loss. Another
+important problem for this case is under what conditions
+the network can still achieve synchronization asymptotically. These issues should be studied in the future.
+
+Hi⊤ Pi + Pi Hi = −2In , i = 2, 3, . . . , N.
+3
+
+Event-Triggered Control
+
+This condition requires all the linear systems with system matrices Hi = H − λi BK, i = 2, . . . , N are asymptotically stable simultaneously, which is stronger than
+that (H, B) is stabilizable. Another alternative is to find
+a common P > 0 for all Hi , i = 2, . . . , N (e.g., Wu et al.
+(2017)). From (14), network (7) with ETC can be regarded as network (2) with an external input (or a disturbance) Λ̄Φ̄⊤ e. According to input-to-state stability theory, a necessary condition for system (14) to be asymptotically stable is that the the corresponding system
+(also described by (14) but without the term Λ̄Φ̄⊤ e) is
+asymptotically stable. Hence, the existence of matrix solutions Pi to Lyapunov equations (16) is also a fundamental requirement for network (7) with ETC to achieve
+asymptotic synchronization. In this paper, we assume
+that such matrices Pi exist.
+
+⊤
+⊤
+⊤
+Denote e(t) = e⊤
+with ei (t) =
+1 (t), e2 (t), . . . , eN (t)
+x̂i (t) − xi (t). Network (7a) can be rewritten by
+ẋ = (IN ⊗ H − L ⊗ BK)x − (L ⊗ BK)e.
+
+(12)
+
+Since the topology of the network is undirected and connected, the Laplacian matrix L is irreducible, symmetric,
+and has only one zero eigenvalue. Further, there exists
+an orthogonal matrix Ψ = (ψ1 , ψ2 , . . . , ψN ) ∈ RN ×N
+with ψi = (ψi1 , ψi2 , . . . , ψiN )⊤ and Ψ⊤ Ψ = IN such
+that Ψ⊤ LΨ = Λ = diag(λ1 , λ2 , . . . , λN ) where
+√0 =
+λ1 < λ2 ≤ λ3 ≤ · · · ≤ λN . Choose ψ1 = 1/ N 1⊤
+N
+for λ1 . Due to the zero row sum property of L, we
+PN
+have
+j=1 ψij = 0 for all i = 2, 3, . . . , N . Defining
+Φ = (ψ2 , ψ3 , . . . , ψN ) ∈ RN ×(N −1) gives
+Φ⊤ Φ = IN −1 ,
+
+ΦΦ⊤ = IN −
+
+1
+1N ×N .
+N
+
+P
+P
+Let zi =
+j∈Vi (x̂j − x̂i ),
+j∈Vi (xj − xi ), ẑi =
+⊤ ⊤
+z = (z1⊤ , z2⊤ , . . . , zN
+)
+= (−L ⊗ In )x, and ẑ =
+⊤ ⊤
+(ẑ1⊤ , ẑ2⊤ , . . . , ẑN
+) = (−L ⊗ In )x̂. Next, we give a useful
+lemma which will be used to prove the main result.
+
+(13)
+
+Let Λ1 = Φ⊤ LΦ = diag{λ2 , λ3 , . . . , λN }, Φ̄ = Φ ⊗ In
+and Λ̄ = Λ1 ⊗ BK = diag {λ2 BK, λ3 BK, . . . , λN BK}.
+Defining y = Φ̄⊤ x gives
+ẏ(t) =Φ̄⊤ (IN ⊗ H)x − (L ⊗ BK)(IN n − Φ̄Φ̄⊤
+
++Φ̄Φ̄⊤ )(x + e)
+=(IN −1 ⊗ H − Λ1 ⊗ BK)y − Λ̄Φ̄⊤ e
+⊤
+
+Lemma 2 Consider network (7). The following two inequalities hold for any t ≥ t0
+kẑk ≤ λN (kek + kyk)
+λ2 kyk ≤ λN kek + kẑk.
+
+(14)
+
+(17)
+(18)
+
+PROOF. Due to k(L ⊗ In )k = λN , we have
+
+⊤
+
+where we use properties Φ̄ (IN ⊗ H) = (IN −1 ⊗ H)Φ̄
+and (L ⊗ BK)(IN n − Φ̄Φ̄⊤ ) = 0 for any BK, which
+are supported by facts L1N = 0 and (13). Denoting
+H̄ = (IN −1 ⊗ H) − (Λ1 ⊗ BK) = diag {H2 , H3 , . . . , HN }
+with Hi = H − λi BK, system (14) can be simplified to
+ẏ = H̄y − Λ̄Φ̄⊤ e.
+
+(16)
+
+kẑk = k(L ⊗ In )(x + e)k ≤ kzk + λN kek
+
+(19)
+
+kzk = k(L ⊗ In )(x̂ − e)k ≤ kẑk + λN kek.
+(20)
+⊤
+Let U = ΦΦ , then for any L, we have LU =
+U L, i.e., L and U are diagonalizable simultaneously. Further, we have Ψ⊤ LΨ = Λ and Ψ⊤ U Ψ =
+diag{λu1 , λu2 , . . . , λuN }, where λu1 = 0 and λui = 1, i =
+2, 3, . . . , N are eigenvalues of U . Let λ̄i , i = 1, 2, . . . , N
+be eigenvalues of the matrix (λ2N U 2 − L2 ). Then with
+U 2 = U , we have λ̄1 = 0 and λ̄i = λ2N − λ2i ≥ 0,
+i = 2, 3, . . . , N , which gives L2 ≤ λ2N U 2 . Thus, we have
+
+(15)
+
+PN
+By defining x̄ = N1 i=1 xi , we have kyk2 = x⊤ Φ̄Φ̄⊤ x =
+PN
+2
+i=1 kxi − x̄k where the last equality follows from
+⊤
+Φ Φ = IN −1 and (Φ̄Φ̄⊤ )2 = Φ̄Φ̄⊤ . Therefore, if
+limt→∞ ky(t)k = 0, then xi (t), xj (t), and x̄(t) are
+asymptotically equal when t → ∞, i.e., network (7)
+achieves synchronization asymptotically. This result is
+summarized in the following lemma.
+
+kzk2 =x⊤ (L2 ⊗ In )x ≤ λ2N x⊤ (U 2 ⊗ In )x
+=λ2N kΦ̄⊤ xk2 = λ2N kyk2 .
+
+(21)
+
+Combining (19) with (21) gives inequality (17). Similar
+to (21), we have kyk2 = x⊤ (U 2 ⊗ In )x ≤ 1/λ22 x⊤ (L2 ⊗
+In )x which with (20) gives (18).
+✷
+
+Lemma 1 If system (15) is asymptotically stable, i.e.,
+limt→∞ ky(t)k = 0, then network (7) achieves synchronization asymptotically.
+
+4
+
+Let ρ =
+
+λN
+
+δ
+,
+2N (α2 +δ 2 )
+
+√
+
+ρ1 =
+
+1 √
+δ
+λ2 ( 2(α2 +δ 2 )
+
+Based on the comparison theory (Khalil (2002)), we
+have kel (t)k/ky(t)k ≤ φ(t − tkl ), whenever kel (tkl )k
+/ky(tkl )k ≤ φ(tkl ) where φ(t − tkl ) is the solution of the
+ordinary differential equation
+
++ 1),
+
+δ ∈ (0, 1), α = maxi=2,3,...,N {λi kPi BKk}, a =
+δ
+δ
+kHk + kH̄k
+ + λN α kBKk, b = λN kBKk(1 + α ), and
+τ∗ =
+
+1
+a
+
+ln
+
+aρ
+bρ1
+
++ 1 > 0. We have the following result.
+
+φ̇ = aφ + b
+
+Theorem 1 Network (7) achieves synchronization
+asymptotically under the distributed ETR
+tki +1 = inf {t ≥ tki + τ ∗ | kei k > ρkẑi k} .
+
+with the initial condition φ(tkl ). At t = tkl , we have
+kel (tkl )k/ky(tkl )k = 0. Setting φ(tkl ) = 0 gives
+
+(22)
+
+kel (t)k
+≤ φ(t − tkl ), ∀t ∈ [tkl , t∗ ).
+ky(t)k
+
+Moreover, no Zeno behaviour occurs in the network.
+
+kel (t)k
+kel (t)k
+≤ ρ1
+≤ ρ1 φ(t − tkl ), ∀t ∈ [tkl , t∗ ).
+kẑ(t)k
+ky(t)k
+
+(23)
+
+Solving (29) with φ(tkl ) = 0 shows that it will take φ(t−
+tkl ) a positive time constant τ ∗ to change its values from
+0 to ρ/ρ1 , so does kel (t)k/ky(t)k. Therefore, it requires
+at least τ ∗ to make kel (t)k move from 0 to ρkẑ(t)k.
+
+This is true at t = t0 , as we have kei (t0 )k = 0 and
+hence kei (t0 )k ≤ ρkẑ(t0 )k, ∀i ∈ V. Suppose to obtain a
+contradiction that (23) does not always hold, and let t∗
+be the infimum of times at which it does not hold. Due to
+the finite number of nodes, there exists a node l such that
+kel k > ρkẑk for times arbitrarily close t∗ from above,
+i.e., ∀ǫ > 0, ∃t ∈ [t∗ , t∗ + ǫ] such that kel (t)k > ρkẑ(t)k.
+It follows from ETR (22) that t∗ must be in (tkl , tkl + τ ∗ ]
+for some kl ∈ Z+ . We now show that there cannot exist
+a t∗ in (tkl , tkl + τ ∗ ], which will establish (23). Since
+kei (t)k ≤ ρkẑ(t)k, ∀i ∈ V, ∀t < t∗ , which gives
+kek2 =
+
+N
+X
+i=1
+
+kei k2 ≤
+
+δ2
+kẑk2 .
+2
+2λN (α2 + δ 2 )
+
+Suppose, to obtain a contradiction, that t∗ < tkl + τ ∗ . In
+that case, kel (t)k/ky(t)k ≤ φ(t − tkl ) < φ(τ ∗ ) ≤ ρ/ρ1 ,
+for all t ≤ t∗ . By continuity of kel k/kyk, this implies the
+existence of an ε > 0 such that kel (t)k/ky(t)k < φ(τ ∗ )
+for all t ≤ t∗ + ε. Therefore, there holds then kel (t)k <
+ρkẑ(t)k for all t < t∗ + ε, in contradiction with t∗ being
+the infimum of times at which kel (t)k > ρkẑ(t)k.
+Now, select the Lyapunov function candidate V = y ⊤ P y
+with P = diag{P2 , P3 , . . . , PN }. Then, the derivative of
+V along system (15) satisfies
+
+(24)
+
+On the other hand, inequality (17) gives
+2
+
+kẑk ≤
+
+2λ2N (kek2
+
+2
+
++ kyk ).
+
+V̇ ≤ −2kyk2 + 2αkykkΦ̄⊤ek.
+(25)
+
+Calculating
+
+d kel k
+dt kyk
+
+δ
+ky(t)k, ∀t ∈ [t0 , t∗ ).
+α
+
+δ
+kyk.
+α
+
+(32)
+
+V̇ ≤ −2(1 − δ)kyk2 < 0, ∀kyk =
+6 0.
+
+(33)
+
+kΦ̄⊤ ek ≤ kΦ̄⊤ kkek = kek ≤
+
+(26)
+
+Substituting (32) into (31) gives
+
+for t ∈ [tkl , t∗ ) directly gives
+
+ kel k kΛ̄kkel kkek
+d kel k
+≤ kHk + kH̄k
++
+dt kyk
+kyk
+kyk2
+kek
++ λN kBKk
++ λN k BKk
+(27)
+kyk
+
+Therefore, the equilibrium point y = 0 of system (15) is
+asymptotically stable. Based on Lemma 1, the network
+achieves synchronization asymptotically.
+✷
+
+where we use (17) in Lemma 2 to get (27). Substituting
+(26) into (27) gives
+kel k
+d kel k
+≤a
++ b.
+dt kyk
+kyk
+
+(31)
+
+The inequality (23) holds, so does (26). Combining (26)
+with kΦ̄k = 1 yields
+
+Substituting (25) into (24) yields
+ke(t)k ≤
+
+(30)
+
+Further, combining (18) with (24) gives kẑk ≥ kyk/ρ1
+which with (30) leads to
+
+PROOF. Under ETR (22), the existence of τki =
+tki +1 − tki > 0 is guaranteed by the dwell time τ ∗ . To
+show asymptotic synchronization, we claim that the
+network with (22) satisfies
+kei k ≤ ρkẑk, ∀i ∈ V, ∀t ≥ t0 .
+
+(29)
+
+Remark 3 Like most results in synchronization of dynamical network with/without ETC (e.g., Trentelman et al.
+(2013); Guinaldo et al. (2013)), one usually needs some
+global parameters to guarantee asymptotic synchronization and exclude Zeno behaviours. These parameters can
+
+(28)
+
+5
+
+be estimated by using methods proposed in the related
+literature (e.g., Franceschelli et al. (2013)), and can be
+initialized to each node at the beginning. However, how
+to use local parameters rather than global ones (e.g., how
+to replace N by using local parameter such as the degree
+of the node di ) remains open, and deserves attention.
+
+4
+
+An Example
+
+To show the effectiveness of our method, consider a network with 10 nodes that have parameters as follows
+
+H=
+
+0 −0.5
+
+!
+
+, B=
+
+0
+
+!
+
+, K=
+
+
+
+
+−0.5 1 .
+
+1
+0.5 0
+Remark 4 Most of the existing results (e.g., Demir and Lunze
+(2012); Guinaldo et al. (2013); Seyboth et al. (2013);
+Zhu et al. (2014); Garcia et al. (2015); Yang et al.
+We adopt the two-nearest-neighbour graph to describe
+(2016) ) use decentralized ETRs which can be summathe topology, i.e., Vi = {j | j = i ± 1, i ± 2}, i =
+rized in the following compact from
+1, 2, . . . , 10. If j ∈ Vi and j < 0 (j > 10), then j = j + 11
+(j = j − 10). Since the matrix H has two eigenvalues
+on the imaginary axis of the complex plane, the network
+
+will synchronize to a stable time-varying solution deter(34)
+tki +1 = inf t | kei k > c0 + c1 e−γt
+mined by the initial condition. By calculating, we get
+α = 2.9061. We select δ = 0.9. Figure 1 gives the simulation results of the network with the distributed ETR
+(22) (DDT), which shows the effectiveness of the prowhere c0 ≥ 0, c1 ≥ 0, γ > 0 are three design parameters.
+posed method. In the figure, we only give the sampling
+Obviously, ETR (34) only depends on local information
+time instants in the first 2 seconds for clarity. The thefrom node i itself, and asymptotic synchronization can
+oretical value of τ ∗ is 0.0013 s. The minimum and maxbe achieved only when c0 = 0. In our paper, we introduce
+imum sample periods (τmin /τmax ) for each node during
+kẑi k into the proposed ETR (22). The term kẑi k updated
+the simulation time are given in Table 1 which shows
+by xj (tkj ) estimates the synchronization errors between
+that the actual sample periods are much larger than τ ∗ .
+neighbours continuously, and thus provides each node
+useful information for determining its sampling times.
+Therefore, the proposed ETR can reduce the sampling
+We also compared our method with the decentralized
+times significantly, in particular for cases where kẑi k is
+ETR (34) (DET) proposed in Guinaldo et al. (2013).
+large (see the example in Section 4 for details). Further,
+According to Remark 4, only bounded synchronization
+it is shown in Liu et al. (2013) that a similar distributed
+can be guaranteed with c0 6= 0 in (34) (Seyboth et al.
+−γt
+ETR as (22) but with an exponential term c1 e
+can also
+(2013)). For this case, the advantage of our method is
+guarantee asymptotic synchronization. However, this paclear. So here, we only compare our method with the case
+per replaces the exponential term by a dwell time which
+c0 = 0 where asymptotic synchronization under (34) can
+can be implemented easily in practice. Such a τ ∗ gives an
+also be achieved. We select c1 = ρ and γ = 0.30579. Durupper bound for the designed ETR (22), and therefore, a
+ing the simulation period (0 – 18 s), the network with
+modified ETR with 0 < τi∗ ≤ τ ∗ can also synchronize the
+DDT samples 3432 times in total, whereas the network
+network without Zeno behaviours.
+with DET samples 212 times more (3644 times in total).
+
+Remark 5 To simplify notations, this paper only considers the case where ui is a scalar. However, the obtained
+results can extend to multiple-input case directly. It is
+pointed out in Heemels et al. (2013) that the joint design
+of the controller and event-triggering rule is a hard problem. However, we can select any control gain K to synchronizes the continuous-time network (2), i.e., to stabilize (H, λi B), i = 2, . . . , N simultaneously. It can be
+selected by solving a group of linear matrix inequalities.
+Moreover, a periodic ETC method was proposed to stabilize linear systems in Heemels et al. (2013) where the
+triggering condition was verified periodically. In the paper, we do not check the event-triggering condition in the
+time interval [tki , tki + τ ∗ ), but check the condition continuously during the period [tki + τ ∗ , tki +1 ). It is of great
+interest to study asymptotic synchronization by using periodic ETC and one-directional communications.
+
+Fig. 1. Simulation for the network with DDT.
+
+6
+
+Table 1. The minimum/maximum sample period
+
+5
+
+Node 1
+
+Node 2
+
+Node 3
+
+Node 4
+
+τmin
+
+0.0153
+
+0.0114
+
+0.016
+
+0.0214
+
+0.0188
+
+τmax
+
+0.2651
+
+0.5292
+
+0.6336
+
+0.0817
+
+0.1851
+
+Node 6
+
+Node 7
+
+Node 8
+
+Node 9
+
+Node 10
+
+τmin
+
+0.0046
+
+0.0688
+
+0.0116
+
+0.0117
+
+0.0117
+
+τmax
+
+0.3584
+
+0.2841
+
+1.4677
+
+0.5347
+
+0.5238
+
+Demir, O., Lunze, J., 2012. Event-based synchronziation of multi-agent systems. In: IFAC Conf. on Analysis and Design of Hybrid Systems. Eindhoven, The
+Netherlands, pp. 1–6.
+Dimarogonas, D. V., Johansson, K. H., 2009. Eventbased control for multi-agent systems. In: IEEE Conference on Decison and Control. Shanghai, China, pp.
+7131–7136.
+Franceschelli, M., Gasparri, A., Giua, A., Seatzu, C.,
+2013. Decentralized estimation of Laplacian eigenvalues in multi-agent systems. Automatica 49, 1031–
+1036.
+Garcia, E., Cao, Y., Wang, X., Casbeer, D., 2015. Decentralized event-triggered consensus of linear multiagent systems under directed graphs. In: American
+Control Conference. Chicago, USA, pp. 5764–5769.
+Guinaldo, M., Dimarogonas, D., Johansson, K., Sanchez,
+J., Dormido, S., 2013. Distributed event-based control strategies for interconnected linear systems. IET
+Control Theory and Applications 7 (6), 877886.
+Heemels, W. P. M. H., Donkers, M. C. F., Teel, A. R.,
+2013. Periodic event-triggered control for linear systems. IEEE Trans. on Automatic Control 58 (4), 847–
+861.
+Heemels, W. P. M. H., Johansson, K. H., Tabuada,
+P., 2012. An introduction to event-triggered and selftriggered control. In: IEEE Conference on Decison and
+Control. Maui, USA, pp. 3270–3285.
+Hu, W., Liu, L., Feng, G., 2016. Consensus of linear
+multi-agent systems by distributed event-triggered
+strategy. IEEE Trans. on Cybernetics 46 (1), 148–157.
+Khalil, H. K., 2002. Nonlinear Systems, 3rd Edition.
+Prentice Hall, New Jersey.
+Liu, T., Cao, M., De Persis, C., Hendrickx, J. M., 2013.
+Distributed event-triggered control for synchronization of dynamical networks with estimators. In: IFAC
+Workshop on Distributed Estimation and Control in
+Networked Systems. Koblenz, Germany, pp. 116–121.
+Meng, X., Chen, T., 2013. Event based agreement protocols for multi-agent networks. Automatica 49, 2125–
+2132.
+Olfati-Saber, R., Fax, J. A., Murray, R. M., 2007. Consensus and cooperation in networked multi-agent systems. Proceedigs of the IEEE 95 (1), 215–233.
+Ren, W., Beard, R. W., Atkins, E., 2007. Informaiton
+consensus in multivechicle cooperative control: collective behavior through local interation. IEEE Control
+System Magazine 27 (2), 71–82.
+Seyboth, G. S., Dimarogonas, D. V., Johansson, K. H.,
+2013. Event-based broadcasting for multi-agent average consensus. Automatica 49, 245–252.
+Tabuada, P., 2007. Event-triggered real-time scheduling
+of stabilizing control tasks. IEEE Trans. on Automatic
+Control 52 (9), 1680–1685.
+Tallapragada, P., Chopra, N., 2014. Decentralized eventtriggering for control of nonlinear systems. IEEE
+Trans. on Automatic Control 59 (12), 3312–3324.
+Trentelman, H. L., Takaba, K., Monshizadeh, N., 2013.
+Robust synchronization of uncertain linear multi-
+
+Node 5
+
+Conclusion
+
+This paper has studied asymptotic synchronization of
+networks by using distributed ETC. By using the introduced estimators, a distributed ETR for each node has
+been explored, which only relies on the state of the node
+and states of the estimators. It has been shown that the
+proposed ETC synchronizes the network asymptotically
+with no Zeno behaviours. It is worth pointing out that
+time-delay and data packet dropout are common phenomena which definitely affects the synchronization of
+networks with event-based communication. It appears
+that synchronization of such networks with imperfect
+communication is an important issue to pursue further
+for both theoretical interest and practical consideration.
+Acknowledgements
+Liu’s work was supported by The University of Hong
+Kong Research Committee Research Assistant Professor Scheme and a grant from the RGC of the Hong Kong
+S. A. R. under GRF through Project No. 17256516.
+Cao’s work was supported in part by the European Research Council (ERC-StG-307207) and the Netherlands
+Organization for Scientific Research (NWO-vidi-14134).
+De Persis’s work was partially supported by the Dutch
+Organization for Scientific Research (NWO) under the
+auspices of the project Quantized Information Control
+for formation Keeping (QUICK) and by the STW Perspectief program “Robust Design of Cyber-physical Systems” under the auspices of the project “Cooperative
+Networked Systems”. Hendrickx’s work was supported
+by the Belgian Network DYSCO (Dynamical Systems,
+Control, and Optimization), funded by the Interuniversity Attraction Poles Program, initiated by the Belgian
+Science Policy Office.
+References
+Arenas, A., Dı́az-Guilera, A., Kurths, J., Moreno, Y.,
+Zhou, C., 2008. Synchronization in complex networks.
+Physics Reports 469, 93–153.
+Cao, M., Morse, A. S., 2010. Dwell-time switching.
+Sysstems & Control Letters 59 (1), 57–65.
+De Persis, C., Frasca, P., 2013. Robust self-triggered coordination with ternary controllers. IEEE Trans. on
+Automatic Control 58 (12), 3024–3038.
+
+7
+
+agent systems. IEEE Trans. on Automatic Control
+58 (6), 1511–1523.
+Wu, C. W., 2007. Synchronization in complex networks
+of nonlinear dynamical systems. World Scientific, Singapore.
+Wu, Y., Meng, X., Xie, L., Lu, R., Su, H., Wu, Z.,
+2017. An input-based triggering approach to leaderfollowing problems. Automatica 75, 221–228.
+Xiao, F., Meng, X., Chen, T., 2015. Sampled-data consensus in switching networks of integrators based on
+edge events. International Journal of Control 88 (2),
+391–402.
+Yang, D., Ren, W., Liu, X., Chen, W., 2016. Decentralized event-triggered consensus for linear multi-agent
+systems under general directed graphs. Automatica
+69, 242–249.
+Zhu, W., Jiang, Z.-P., Feng, G., 2014. Event-based consensus of multi-agent systems with general linear models. Automatica 50, 552–558.
+
+8
+
+

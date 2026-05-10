@@ -1,0 +1,1983 @@
+Title: arXiv paper 102
+
+Categories: 7
+
+Abstract:
+Massive MIMO Performance Comparison of
+Beamforming and Multiplexing in the Terahertz
+Band
+Sayed Amir Hoseini∗† , Ming Ding† and Mahbub Hassan∗†
+
+arXiv:1710.09031v2 [cs.IT] 26 Oct 2017
+
+∗ School
+
+of Computer Science and Engineering, University of New South Wales, Sydney, Australia
+† Data61, CSIRO, Sydney, Australia
+Email: s.a.hoseini@unsw.edu.au, Ming.Ding@data61.csiro.au, mahbub.hassan@unsw.edu.au
+
+Abstract—In this paper, we compare the performance of two
+main MIMO techniques, beamforming and multiplexing, in the
+Terahertz (THz) band. The main problem with the THz band is
+its huge propagation loss, which is caused by the tremendous
+signal attenuation due to molecule absorption of the electromagnetic wave. To overcome the path loss issue, massive MIMO
+has been suggested to be employed in the network and is expected
+to provide Tbps for a distance within a few meters. In this
+context, beamforming is studied recently as the main technique
+to take advantage of MIMO in THz and overcome the very
+high path loss with the assumption that the THz communication
+channel is Line-of-Sight (LoS) and there are not significant
+multipath rays. On the other hand, recent studies also showed
+that the well-known absorbed energy by molecules can be reradiated immediately in the same frequency. Such re-radiated
+signal is correlated with the main signal and can provide rich
+scattering paths for the communication channel. This means that
+a significant MIMO multiplexing gain can be achieved even in a
+LoS scenario for the THz band. Our simulation results reveal a
+surprising observation that the MIMO multiplexing could be
+a better choice than the MIMO beamforming under certain
+conditions in THz communications.
+
+I. I NTRODUCTION
+To respond to the huge increasing demand for the wireless
+data traffic, recently the terahertz (THz) band (0.1-10 THz) is
+envisioned to make Tbps wireless link feasible [1]. In spite
+of the wide unused bandwidth in this spectrum, the high
+propagation loss is the main issue of using such spectrum.
+Thus, the potential applications of the THz link are limited to
+short range communications such as nanosensors [2], wireless
+on-chip communications and wireless personal area networks
+[3]. Moreover, part of the radio signal attenuation at the THz
+frequencies is due to molecular absorption which is frequency
+selective and increases the total loss to more than 200 dB for
+some frequencies at 10-meters distance.
+Basically, to overcome the very high path loss the transmit
+power could be largely increased. Unfortunately, this is not
+feasible with the current technology and it is limited to a few
+of mW [3]. Alternately, channel gain can be significantly improved by means of the multi-antenna beamforming technique.
+Indeed, Due to the very small footprint of a large number
+of antennas at the THz band, beamforming using very large
+
+scale Multiple Input Multiple Output (MIMO) systems has
+been considered in the field as a practical solution which can
+provide up to 55 dB channel gain at 1 THz [1].
+However, beamforming comes at the cost of system complexity and signaling overhead where the transmitter should
+receive the channel state information continuously and align
+the beam to the receiver. On the other hand, to achieve
+a significant MIMO beamforming gain in high frequency
+spectrum the beam would become very narrow which is sometimes described as a pencil beam. This makes beamforming
+vulnerable to any transmitter/receiver mobility because it is
+difficult to perform beam re-alignment in a very short time
+interval.
+Another approach to take advantage of MIMO is the MIMO
+multiplexing technique. While the beamforming technique
+strives to focus the transmission energy and achieve a large
+channel gain in a specific direction, the multiplexing technique
+builds it strength on creating parallel information channels.
+However, the multiplexing gain is significant only when there
+are enough non-negligible multipath signal components in a
+rich scattering environment. Because of the huge path loss,
+THz communication is usually assumed to be applied in as a
+Line-of-Sight (LoS) dominant channel and thus, the research
+focus has been on beamforming rather than multiplexing.
+However, recent studies show that in the channel medium,
+molecules absorb and re-radiate the electromagnetic energy
+in THz band [3–6], which transforms the LoS channel
+into a rich-scattering environment. The re-radiation is usually
+considered as noise but the theorical model shows it is highly
+correlated to main signal [6]. In this paper, we will theoretically investigate the THz channel capacity for both cases of
+beamforming and multiplexing in a MIMO set-up. We find that
+the multiplexing technique can provide a considerable capacity
+gain in comparison with the beamforming technique on certain
+conditions. Also, in some other conditions where the beamforming yields a higher capacity, the multiplexing technique is
+still preferable choice due to its easier implementation. Note
+that in this work we assume a multiplexing technique using
+a blind precoding scheme without channel state information
+(CSI). In contrast, the beamforming technique always requires
+
+accurate CSI to smartly direct its energy in the spatial domain.
+The rest of the paper is structured as follows. In Section II,
+we present the molecular absorption model for the calculation of channel transfer function, Section III analyzes the
+MIMO channel model considering the molecular re-radiation,
+followed by simulation results in Section IV. Finally, we
+conclude the paper in Section V.
+II. C HANNEL
+
+MODEL AND
+
+MIMO CAPACITY
+
+The molecular absorption model defines how different
+species of molecules in a communication channel absorb energy from the electromagnetic signals and how they re-radiate
+them back to the environment. This section first explains
+the concept of absorption coefficient used to characterize the
+absorption capacity of a given molecule species, followed by
+the attenuation and re-radiation models that are built upon this
+coefficient.
+A. Molecular absorption coefficient
+The medium absorption coefficient, k(f ), at frequency f is
+a weighted sum of the molecular absorption coefficients in the
+medium [5], which can be formulated as
+k(f ) =
+
+N
+X
+
+mi ki (f ),
+
+(1)
+
+i=1
+
+where ki (f ) is the molecular absorption coefficient of species
+Si on condition of temperature T and and pressure P. ki (f )
+can be obtained from HITRAN [7]. In this work, to get the
+values of k(f ), we will use some predefined standard atmosphere conditions and their corresponding ratio of molecules
+in the air, which are tabulated in [7].
+B. Attenuation of radio signal
+The attenuation of the radio signal at the THz frequencies
+is due to spreading and molecular absorption. In more detail,
+the spreading attenuation is given by
+
+C. Molecular re-radiation
+The existing molecules in communication medium will be
+excited by electromagnetic waves at specific frequencies. The
+excitement is temporary and the vibrational-rotational energy
+level of molecules will come back to a steady state and the
+absorbed energy will be re-radiated in the same frequency.
+These re-radiated waves are usually considered as noise in
+the literature [3]. Molecular absorption is not white and its
+power spectral density (PSD) is not flat because of the different
+resonant frequencies of various species of molecules. The PSD
+of the molecular absorption noise that affects the transmission
+B
+of a signal, SNabs , is contributed by the atmospheric noise SN
+X
+and the self-induced noise SN as addressed in [5]:
+B
+X
+SNabs (f, d) = SN
+(f, d) + SN
+(f, d),
+
+ c 2
+B
+,
+SN
+(f, d) = limd→∞ (kB T0 (1 − e−k(f )d )) √
+4πf
+ c 2
+X
+,
+SN
+(f, d) = Pt (f )(1 − e−k(f )d )
+4πf d
+
+(4)
+(5)
+(6)
+
+where k(f ) is the absorption coefficient of the medium at
+frequency f , T0 is the reference temperature (296K), kB is
+the Boltzmann constant, Pt (f ) is the power spectral density
+of the transmitted signal and c is the speed of light. The first
+term in (4), which is called sky noise and defined in (5) is
+independent of the signal wave. However, the self-induced
+noise in (6) is highly correlated with the signal wave [6], and
+can be considered as a distorted copy of the signal wave. Thus,
+equation (6) can be revised as the received power of the reradiated signal by molecules at the receiver by
+ c 2
+Pr,a (f, d) = Pt (f )(1 − e−k(f )d )
+.
+(7)
+4πf d
+Since the phase of the re-radiated wave depends on the
+phase of molecular vibration, which varies from molecules
+to molecules [8], the received power in this case is affected
+by a large number of phase-independent re-radiated photons.
+Thus, we assume a uniformly distributed random phase for
+the received signal, with its power given by (7).
+D. Channel Transfer Function
+
+(3)
+
+The channel transfer function for a single LoS channel is
+given by
+s
+2
+d
+c
+e−k(f )×d × ej2π λ
+h̃LoS (f, d) =
+4πf d
+(8)
+
+
+d
+c
+j2π
+−k(f )× d
+2 × e
+λ.
+=
+e
+4πf d
+
+where k(f ) is the absorption coefficient of the medium at
+frequency f .
+Thus, the line-of-sight (LoS) received power at the receiver
+becomes
+
+2
+c
+Pr,LoS (f, d) = Pt (f ) ×
+× e−k(f )×d .
+4πf d
+
+Then, the partial channel transfer function resulted from the
+molecular absorption and excluding the LoS component can
+be represented by
+s
+ c 2
+× ej2πβrandom
+h̃a (f, d) = (1 − e−k(f )d )
+4πf d
+(9)
+ c 
+j2πβrandom
+−k(f )d 21
+×e
+.
+= (1 − e
+)
+4πf d
+
+Aspread (f, d) =
+
+
+
+4πf d
+c
+
+2
+
+,
+
+(2)
+
+where c is the speed of light. The attenuation due to molecular
+absorption is characterized as
+Aabs (f, d) = ek(f )×d ,
+
+Hence, the total channel transfer function is the superposition
+of the partial channel transfer functions, which is written as
+h̃(f, d) = h̃LoS (f, d) + h̃a (f, d),
+
+h̃(f, d) =
+
+
+
+c
+4πf d
+
+
+
+(10)
+
+d
+
+d
+
+e−k(f )× 2 × ej2π λ
+ c 
+1
+× ej2πβrandom . (11)
++(1 − e−k(f )d ) 2
+4πf d
+
+E. MIMO channel model and capacity
+
+In this paper, we consider a MIMO system that is consisted of nt transmitting antennas and nr receiving ones.
+The received signal vector y at nr receiving antennas can be
+formulated as
+y = H̃x + n,
+(12)
+where x is the transmitted signal vector form nt transmitting
+antennas, and n is an nr ×1 vector with zero-mean independent
+noises with variance σ 2 . H̃ is the channel matrix
+where each of its elements, h̃ij , is a complex value denoting
+the transfer coefficient associated with the jth transmitter
+antenna and the ith receiver antenna. Note that h̃ij can be
+obtained from (11) for frequency f and distance dij .
+The capacity of MIMO channel can be written as
+C = log2 det(Inr +
+
+P
+H̃H̃† ),
+nt σ 2
+
+(13)
+
+where P is total transmitting power, and I is the identity
+matrix Since the determinant of (Inr + ntPσ2 H̃H̃† ) can be
+computed by the product of the eigenvalues of the matrix
+H̃H̃† , the MIMO capacity can thus be written in the form
+of a product of non-zero eigenvalues as [9]
+C=
+
+κ
+X
+i=1
+
+log2 (1 +
+
+P λ2i
+),
+κσ 2
+
+(14)
+
+where λi denotes singular values of the matrix H̃, and hence
+the squared singular values λ2i denotes the eigenvalues of
+the matrix H̃H̃† . Each of the λ2i characterize an equivalent
+P λ2
+information channel where kσ2i is the corresponding signalto-noise ratio (SNR) of the channel at the receiver. Note that
+κ denotes the number of non-zero λ2i , which for beamforming
+technique it is equal to one and in multiplexing technique it
+could be the rank of H̃ with κ ≤ min(nr , nt ) [9]. However,
+because we use blind precoding and uniform power allocation for multiplexing technique κ = nt . Therefore, equation
+(14) is valid for uniform power allocation at the transmitter.
+P λ2
+Furthermore, the equivalent channel SNR, κσ2i , should meet
+a minimum receiver threshold to be reliably detectable by the
+receiver. In this paper, we assumed 0 dB as the SNR threshold
+and uniform power allocation at the transmitter.
+The main difference between beamforming and multiplexing techniques is how to tune or exploit the eigenvalue
+distribution. In more details, beamforming technique aims
+to maximize λ1 to improve the channel SNR for a single
+
+data stream while in the multiplexing technique, a uniform
+eigenvalue distribution is preferable. In this way, multiplexing
+technique can utilize parallel data streams through MIMO
+and maximize the data rate. The complexity of beamforming
+comes from eigenvalues tuning because it means the channel
+state information (CSI) should be measured and sent back
+to the transmitter periodically for optimum precoding. This
+also results in a protocol overhead in the channel. On the
+other hand, multiplexing gain can take advantage of eigenvalue
+value distribution even with a blind precoding. This is more
+beneficial when there is a rich scattering environment in the
+channel. In next section, we will discuss how the re-radiation
+can provide a rich scattering environment.
+III. A NALYSIS
+
+ON THE CHANNEL WITH MOLECULAR
+ABSORPTION
+
+To analyze the MIMO channel capacity and characterize the
+scattering richness of channel quantitatively, lets decompose
+and normalize channel transfer function H̃ as
+
+H(f, d) =
+
+r
+
+K
+HLoS (f, d) +
+K +1
+
+r
+
+1
+Ha (f, d), (15)
+K +1
+
+where H, HLoS and Ha are normalized with corresponding
+channel gain. Because of uniformly distributed random phase
+of received re-radiated signal, elements of Ha are independent
+and identically distributed (i.i.d) complex Gaussian random
+variables with zero mean and unit magnitude variance. K
+is the ratio of powers of the LoS signal and the re-radiated
+components and if we assume the channel distance is much
+longer than antenna space, it can be obtained by
+K=
+
+e−k(f )d
+Pr,LoS (f, d)
+.
+=
+Pr,a (f, d)
+1 − e−k(f )d
+
+(16)
+
+This is same as the well-known Rician channel model where
+the K is called Rician K-factor. Equivalently, K-factor shows
+how much channel is rich in term of scattering and multipath rays. Equation (16) shows K is a function of absorption
+coefficient of channel medium k(f ) and the distance between
+transmitter and receiver d so that a longer distance and a
+higher absorption result smaller K, as shown in Figure 1a.
+The capacity of MIMO channel considering Rician K-factor
+is studied in several works [10, 11]. Authors in [11] showed
+the lower bound of Rician channel expected capacity for
+large number of antennas is the expected capacity of channel
+considering only NLoS component,
+r
+1
+(17)
+E(C(H)) ≥ E(C(
+Ha )),
+K +1
+p
+=⇒ E(C(H)) ≥ E(C( 1 − e−k(f )d Ha )),
+
+(18)
+
+where E(.) denotes the expectation. It is clear that the
+lower band is a increasing function of absorption coefficient, ∀f1 , f2 such that k(f2 ) ≥ k(f1 ), Emin (C(f2 )) ≥
+Emin (C(f1 )).
+
+(a) K-factor
+
+(b) MIMO capacity using beamforming
+
+(c) MIMO capacity using multiplexing
+
+Fig. 1: K-factor is an increasing function of distance and absorption coefficient. For both multiplexing and beamforming
+techniques, the performance gain is affected by K-factor. The capacity is calculated for 225x225 MIMO system.
+IV. S IMULATION
+
+AND DISCUSSION
+
+A. Simulation set-up
+In this section, to evaluate the molecular absorption impact
+on THz MIMO capacity, we consider a simple n × n MIMO
+system with a square uniform Arrays, where at both transmitter
+and receiver, the inter-element spacing s is equal to half
+of the wavelength and the channel distance is d. Moreover,
+we consider uniform power allocation to transmitter arrays
+operating in an open-space LoS scenario. The default values
+of the parameters are listed in Table I, and different values will
+be explained when necessary. Since we apply random phases
+on NLoS components created by molecular re-radiation, we
+conduct the evaluation of the MIMO capacity with molecular
+re-radiation for 1000 times and show the average result.
+We use the online browsing and plotting tools1 , which is
+based on HITRAN databases [7] to generate absorption coefficients for different single gas or some predefined standard
+gas mixture of the atmosphere at sea level, as shown in Table
+II. Since the water molecules play main roles in a normal air
+environment at THz bands we use the highest and lowest water
+ratio in Table II, i.e., the ”USA model, high latitude, winter”
+and ”USA model, tropics”. The corresponding absorption
+coefficients in THz bands have been shown in Figure 2a for
+an ambient temperature of 273 K and a sea level pressure of
+1 atm. For a tropic atmosphere, the water ratio is higher than
+that of the winter atmosphere, and thus we can see a significant
+increase in the absorption coefficient among these two gas
+mixtures.
+In our simulation, we assume a constant transmit power over
+the entire frequency spectrum and display the MIMO capacity
+in bps/Hz for THz bands. We consider a MIMO set-up with
+225 antennas at each side in a uniform square planar array.
+Our aim is to compare the beamforming and multiplexing
+1 http://hitran.iao.ru/gasmixture/simlaunch
+
+TABLE I: Simulation parameters
+Transmitter and receiver distance (d)
+Inter-element spacing (s)
+Transmitter arrays angle (φ)
+Receiver arrays angle (θ)
+Number of arrays on each side (n)
+Transmit power
+Noise power
+
+0.1, 1, 10 m
+0.5λ (wave length)
+90◦
+90◦
+225
+0, 10 dBm
+−80 dBm
+
+techniques in different channel conditions. First, we calculate
+the channel capacity for beamforming while the re-radiation is
+totally ignored in the channel. Next, the beamforming capacity
+is re-calculated when the re-radiation is taken into account.
+Finally, the multiplexing gain is calculated with and without
+the consideration of re-radiation. In all scenarios, capacity is
+obtained by 14.
+In the first step, the simulation is run at 500 GHz with the
+practical range of absorption coefficient (10−5 ∼ 10+3 ) over
+the THz spectrum, as shown in Figure 1. It should be noted that
+the actual value of absorption coefficient at 500 GHz is shown
+in Figure 2a. The beamforming and multiplexing techniques
+capacity is calculated for a range of 0.1∼10 m distance and a
+1 mW transmit power.
+Secondly, the channel is simulated for two different transmit
+power and three distances with realistic absorption coefficients.
+Our assumption on the transmit power is based on current
+technology [3] and a previous work on THz massive MIMO
+[1]. Furthermore, distances have been chosen to cover various application scenarios. For example, THz nanosensors are
+considered to communicate in a very short distance in the
+order of 0.1-10 cm or less, while THz communications are also
+nominated to provide terabit per second ultra high video communication link at around 1 m distance for home entrainment
+devices like TV or virtual reality (VR). In addition, longer
+distances to a few meters characterize wireless personal or
+local networks. Simulation results are presented in Figure 2.
+B. The MIMO Capacity vs. the K-factor
+Figure 1 illustrates how the channel is transformed from
+a LoS dominant channel to a Rayleigh channel and how it
+effects on the MIMO beamforming and multiplexing capacity
+gain. As can be seen in Figure 1b, the beamforming gain is
+decreasing when the absorption coefficient increases which
+is because in the very high absorption, the channel is not
+LoS dominant anymore and there is significant NLoS signal
+component generated by molecule re-radiation or equivalently
+lower K-factor. In contrast, Figure 1c shows the multiplexing
+technique takes advantage of higher absorption to reach a huge
+data rate. However, the low SNR limit the multiplexing gain in
+longer distances so that it drops sharply to zero beyond 2 m.
+In Figure 2, more results for the THz spectrum with realistic
+absorption coefficients will be presented.
+
+TABLE II: Atmosphere standard gas mixture ratio in percentage for different climates [7]
+USA
+USA
+USA
+USA
+USA
+
+model,
+model,
+model,
+model,
+model,
+
+mean latitude, summer, H=0
+mean latitude, winter, H=0
+high latitude, summer, H=0
+high latitude, winter, H=0
+tropics, H=0
+
+H2O:
+H2O:
+H2O:
+H2O:
+H2O:
+
+1.860000
+0.432000
+1.190000
+0.141000
+2.590000
+
+CO2:
+CO2:
+CO2:
+CO2:
+CO2:
+
+0.033000
+0.033000
+0.033000
+0.033000
+0.033000
+
+O3:
+O3:
+O3:
+O3:
+O3:
+
+0.000003
+0.000003
+0.000002
+0.000002
+0.000003
+
+C. The MIMO Capacity vs. the Transmit Power and Distance
+The channel attenuation including molecular attenuation in
+(3) and spreading attenuation in (2) is illustrated in Figure
+2b. While the spreading attenuation is increasing linearly in
+dB with distance and frequency, the molecular attenuation is
+also increasing with distance but is frequency selective. For
+example, while the total loss at 10m is 107 dB for 500 GHz,
+the total attenuation at 550 GHz is 86 dB at 1 m and it grows
+to 220 dB at 10 m which is mostly because of very high
+absorption of water molecules in the channel medium at this
+frequency. Note that the channel atmosphere for this case is
+from tropic data where the ratio of water molecules in the air
+is more than 0.02, as shown in Table II.
+Figure 2c and 2d illustrate the capacity of the investigated
+transmission techniques for a 10 cm distance. The transmit
+power is increased from 1 mW in Figure 2c to 10 mW in
+Figure 2d. It can be seen that a huge performance difference
+exists between multiplexing and beamforming, thanks to the
+tremendous multiplexing gain provided by the rich scattering environment due to molecule re-radiation. Furthermore,
+in very high absorption frequencies which existing studies
+consider as infeasible windows for THz communications, a
+significant capacity improvement can be observed. This is
+because more absorption leads to more re-radiation, which
+transforms a LoS dominant channel to Rayleigh channel. The
+details can be found in Section III, where we have discussed
+about how the re-radiation decreases the K-factor and creates
+a rich scattering environment. To sum up, the re-radiation improves the multiplexing gain which is fundamentally supported
+by a better eigenvalue distribution and channel matrix rank in
+mathematical analysis.
+In Figure 2e and 2f, the distance is increased to 1 m.
+With a relatively large distance for THz communications, it
+can be seen the beamforming gain is comparable with the
+multiplexing gain. However, we can see the multiplexing
+gain in high absorption windows, such as 540-580 GHz,
+is significantly higher than the rest of spectrum for a 10
+mW transmit power. It is a different story for a 1 mW
+transmit power where the capacity drops to zero in high
+P λ2i
+kσ2
+
+absorption windows because the equivalent SNR, (
+), of
+most parallel channels created by the multiplexing technique
+is less than 0 dB and practically such parallel channels are
+useless because the receiver can not reliably detect the received
+signals. Such results are not surprising since it has been shown
+in several works on conventional communication band [12]
+that the multiplexing performance drops dramatically in low
+SNR. However, considering the implementation challenges
+of beamforming, the multiplexing technique might still be a
+preferable choice for frequency up to 1 THz. For example, it
+can be observed in Figure 2e at 0.9 THz, the capacity is 4 and
+
+N2O:
+N2O:
+N2O:
+N2O:
+N2O:
+
+0.000032
+0.000032
+0.000031
+0.000032
+0.000032
+
+CO:
+CO:
+CO:
+CO:
+CO:
+
+0.000015
+0.000015
+0.000015
+0.000015
+0.000015
+
+CH4:
+CH4:
+CH4:
+CH4:
+CH4:
+
+0.000170
+0.000170
+0.000170
+0.000170
+0.000170
+
+O2:
+O2:
+O2:
+O2:
+O2:
+
+20.900001
+20.900001
+20.900001
+20.900001
+20.900001
+
+N2:
+N2:
+N2:
+N2:
+N2:
+
+77.206000
+78.634779
+77.876781
+78.925780
+76.476779
+
+11.7 bps/Hz for the multiplexing and beamforming techniques,
+respectively.
+Finally, Figures 2g and 2h present the results for a 10 m
+distance. For such a distance, path loss leads to a very low
+reception SNR and thus the beamforming performance is significantly better than the multiplexing performance. It is wellknown that beamforming technique is not very effective where
+there are strong multipath rays [12]. Thus, it is observed that
+in very high absorption frequency windows, the beamforming
+performance drops sharply. It is not only because of receiving
+strong NLoS rays caused by molecule re-radiation but also due
+to LoS signal attenuation. Note that the multiplexing technique
+can take advantage of same windows in high SNR as we
+discussed above for Figure 2f.
+V. C ONCLUSION
+In this paper, we compared the beam forming and multiplexing techniques of MIMO in the terahertz band. We showed
+in high SNR, high transmit power or lower distance, the
+multiplexing technique can provide a considerable capacity
+gain compared with beamforming. However, for beyond a few
+meters such as 10 meters, there should be enough transmitting
+power possibility to use multiplexing technique, otherwise
+the capacity drops to zero where the beamforming technique
+can still provide effective spectrum efficiency at the cost of
+complexity and protocol overhead. Our theoretical model also
+showed re-radiation of molecules in the THz band can be
+helpful for massive MIMO system to improve the channel performance using multiplexing technique. The re-radiation can
+provide significantly strong multipath components to achieve
+a full spatial multiplexing gain where the receiver is in an
+enough SNR coverage. It means some very high absorption
+frequency windows which have been formerly pointed as not
+feasible for communication might be more preferable choices
+for MIMO in some certain applications.
+R EFERENCES
+[1] I. F. Akyildiz and J. M. Jornet, “Realizing ultra-massive mimo
+(10241024) communication in the (0.0610) terahertz band,” Nano Communication Networks, vol. 8, pp. 46 – 54, 2016.
+[2] E. Zarepour, M. Hassan, C. T. Chou, and A. A. Adesina, “Semon: Sensorless event monitoring in self-powered wireless nanosensor networks,”
+ACM Transactions on Sensor Networks (TOSN), vol. 13, no. 2, p. 15,
+2017.
+[3] I. F. Akyildiz, J. M. Jornet, and C. Han, “Terahertz band: Next frontier
+for wireless communications,” Physical Communication, vol. 12, pp. 16
+– 32, 2014.
+[4] J. Kokkoniemi, J. Lehtomäki, and M. Juntti, “A discussion on molecular
+absorption noise in the terahertz band,” Nano Communication Networks,
+2015.
+[5] J. M. Jornet and I. F. Akyildiz, “Femtosecond-Long Pulse-Based Modulation for Terahertz Band Communication in Nanonetworks,” IEEE
+Transactions on Communications, vol. 62, no. 5, pp. 1742–1754, May
+2014.
+
+10 4
+
+US Model tropic - High H 2 O
+
+Absorption Coefficient (m -1 )
+
+US Model High latitude winter - low H 2 O
+
+10
+
+2
+
+10
+
+0
+
+10
+
+-2
+
+10
+
+-4
+
+10
+
+-6
+
+10
+
+2
+
+10
+
+3
+
+10
+
+4
+
+Frequency (GHz)
+
+(a) absorption coefficient, T= 273 K, P= 1 atm
+
+(b) Signal Attenuation
+1200
+
+600
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+1000
+
+400
+
+800
+
+Capacity (bps/Hz)
+
+Capacity (bps/Hz)
+
+500
+
+300
+
+200
+
+600
+
+400
+
+100
+
+200
+
+0
+10 2
+
+10 3
+
+0
+10 2
+
+10 4
+
+Frequency (GHz)
+
+10 3
+
+10 4
+
+Frequency (GHz)
+
+(c) distance=0.1m, transmit power=1mW
+
+(d) distance=0.1m, transmit power=10mW
+
+20
+
+250
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+18
+16
+
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+200
+
+Capacity (bps/Hz)
+
+Capacity (bps/Hz)
+
+14
+12
+10
+8
+
+150
+
+100
+
+6
+4
+
+50
+
+2
+0
+10 2
+
+10 3
+
+0
+10 2
+
+10 4
+
+Frequency (GHz)
+
+(e) distance=1m, transmit power=1mW
+
+10 4
+
+(f) distance=1m, transmit power=10mW
+
+12
+
+15
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+10
+
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+8
+
+Capacity (bps/Hz)
+
+Capacity (bps/Hz)
+
+10 3
+
+Frequency (GHz)
+
+6
+
+4
+
+10
+
+5
+
+2
+
+0
+10 2
+
+10 3
+
+10 4
+
+Frequency (GHz)
+
+(g) distance=10m, transmit power=1mW
+
+0
+10 2
+
+10 3
+
+10 4
+
+Frequency (GHz)
+
+(h) distance=10m, transmit power=10mW
+
+Fig. 2: 225x225 MIMO channel performance in tropic atmosphere.
+[6] J. M. Jornet Montana, “Fundamentals of electromagnetic nanonetworks
+in the terahertz band,” Ph.D. dissertation, Georgia Institute of Technology, 2013.
+[7] L. Rothman, I. Gordon, Y. Babikov, A. Barbe et al., “The hitran2012
+molecular spectroscopic database,” Journal of Quantitative Spectroscopy
+and Radiative Transfer, vol. 130, pp. 4 – 50, 2013.
+[8] L. D. Barron, Molecular light scattering and optical activity. Cambridge University Press, 2004.
+[9] D. Tse and P. Viswanath, “Chapter 07: MIMO I : spatial multiplexing
+and channel modeling,” Fundamentals of Wireless Communication, pp.
+290–331, 2005.
+
+[10] F. R. Farrokhi, G. J. Foschini, A. Lozano, and R. A. Valenzuela,
+“Link-optimal space-time processing with multiple transmit and receive
+antennas,” IEEE Communications Letters, vol. 5, no. 3, pp. 85–87, 2001.
+[11] G. Lebrun, M. Faulkner, M. Shafi, and P. J. Smith, “Mimo ricean channel capacity: an asymptotic analysis,” IEEE Transactions on Wireless
+Communications, vol. 5, no. 6, pp. 1343–1350, 2006.
+[12] D. Gesbert, M. Shafi, D.-s. Shiu, P. J. Smith et al., “From theory to
+practice: An overview of mimo space-time coded wireless systems,”
+IEEE Journal on selected areas in Communications, vol. 21, no. 3, pp.
+281–302, 2003.
+
+
+
+Summary:
+This research paper covers the following topic: Massive MIMO Performance Comparison of
+Beamforming and Multiplexing in the Terahertz
+Band
+Sayed Amir Hoseini∗† , Ming Ding† and Mahbub Hassan∗†
+
+arXiv:1710.09031v2 [cs.IT] 26 Oct 2017
+
+∗ School
+
+of Computer Science and Engineering, University of New South Wales, Sydney, Australia
+† Data61, CSIRO, Sydney, Australia
+Email: s.a.hoseini@unsw.edu.au, Ming.Ding@data61.csiro.au, mahbub.hassan@unsw.edu.au
+
+Abstract—In this paper, we compare the performance of two
+main MIMO techniques, beamforming and multiplexing, in the
+Terahertz (THz) band. The main problem with the THz band is
+its huge propagation loss, which is caused by the tremendous
+signal attenuation due to molecule absorption of the electromagnetic wave. To overcome the path loss issue, massive MIMO
+has been suggested to be employed in the network and is expected
+to provide Tbps for a distance within a few meters. In this
+context, beamforming is studied recently as the main technique
+to take advantage of MIMO in THz and overcome the very
+high path loss with the assumption that the THz communication
+channel is Line-of-Sight (LoS) and there are not significant
+multipath rays. On the other hand, recent studies also showed
+that the well-known absorbed energy by molecules can be reradiated immediately in the same frequency. Such re-radiated
+signal is correlated with the main signal and can provide rich
+scattering paths for the communication channel. This means that
+a significant MIMO multiplexing gain can be achieved even in a
+LoS scenario for the THz band. Our simulation results reveal a
+surprising observation that the MIMO multiplexing could be
+a better choice than the MIMO beamforming under certain
+conditions in THz communications.
+
+I. I NTRODUCTION
+To respond to the huge increasing demand for the wireless
+data traffic, recently the terahertz (THz) band (0.1-10 THz) is
+envisioned to make Tbps wireless link feasible [1]. In spite
+of the wide unused bandwidth in this spectrum, the high
+propagation loss is the main issue of using such spectrum.
+Thus, the potential applications of the THz link are limited to
+short range communications such as nanosensors [2], wireless
+on-chip communications and wireless personal area networks
+[3]. Moreover, part of the radio signal attenuation at the THz
+frequencies is due to molecular absorption which is frequency
+selective and increases the total loss to more than 200 dB for
+some frequencies at 10-meters distance.
+Basically, to overcome the very high path loss the transmit
+power could be largely increased. Unfortunately, this is not
+feasible with the current technology and it is limited to a few
+of mW [3]. Alternately, channel gain can be significantly improved by means of the multi-antenna beamforming technique.
+Indeed, Due to the very small footprint of a large number
+of antennas at the THz band, beamforming using very large
+
+scale Multiple Input Multiple Output (MIMO) systems has
+been considered in the field as a practical solution which can
+provide up to 55 dB channel gain at 1 THz [1].
+However, beamforming comes at the cost of system complexity and signaling overhead where the transmitter should
+receive the channel state information continuously and align
+the beam to the receiver. On the other hand, to achieve
+a significant MIMO beamforming gain in high frequency
+spectrum the beam would become very narrow which is sometimes described as a pencil beam. This makes beamforming
+vulnerable to any transmitter/receiver mobility because it is
+difficult to perform beam re-alignment in a very short time
+interval.
+Another approach to take advantage of MIMO is the MIMO
+multiplexing technique. While the beamforming technique
+strives to focus the transmission energy and achieve a large
+channel gain in a specific direction, the multiplexing technique
+builds it strength on creating parallel information channels.
+However, the multiplexing gain is significant only when there
+are enough non-negligible multipath signal components in a
+rich scattering environment. Because of the huge path loss,
+THz communication is usually assumed to be applied in as a
+Line-of-Sight (LoS) dominant channel and thus, the research
+focus has been on beamforming rather than multiplexing.
+However, recent studies show that in the channel medium,
+molecules absorb and re-radiate the electromagnetic energy
+in THz band [3–6], which transforms the LoS channel
+into a rich-scattering environment. The re-radiation is usually
+considered as noise but the theorical model shows it is highly
+correlated to main signal [6]. In this paper, we will theoretically investigate the THz channel capacity for both cases of
+beamforming and multiplexing in a MIMO set-up. We find that
+the multiplexing technique can provide a considerable capacity
+gain in comparison with the beamforming technique on certain
+conditions. Also, in some other conditions where the beamforming yields a higher capacity, the multiplexing technique is
+still preferable choice due to its easier implementation. Note
+that in this work we assume a multiplexing technique using
+a blind precoding scheme without channel state information
+(CSI). In contrast, the beamforming technique always requires
+
+accurate CSI to smartly direct its energy in the spatial domain.
+The rest of the paper is structured as follows. In Section II,
+we present the molecular absorption model for the calculation of channel transfer function, Section III analyzes the
+MIMO channel model considering the molecular re-radiation,
+followed by simulation results in Section IV. Finally, we
+conclude the paper in Section V.
+II. C HANNEL
+
+MODEL AND
+
+MIMO CAPACITY
+
+The molecular absorption model defines how different
+species of molecules in a communication channel absorb energy from the electromagnetic signals and how they re-radiate
+them back to the environment. This section first explains
+the concept of absorption coefficient used to characterize the
+absorption capacity of a given molecule species, followed by
+the attenuation and re-radiation models that are built upon this
+coefficient.
+A. Molecular absorption coefficient
+The medium absorption coefficient, k(f ), at frequency f is
+a weighted sum of the molecular absorption coefficients in the
+medium [5], which can be formulated as
+k(f ) =
+
+N
+X
+
+mi ki (f ),
+
+(1)
+
+i=1
+
+where ki (f ) is the molecular absorption coefficient of species
+Si on condition of temperature T and and pressure P. ki (f )
+can be obtained from HITRAN [7]. In this work, to get the
+values of k(f ), we will use some predefined standard atmosphere conditions and their corresponding ratio of molecules
+in the air, which are tabulated in [7].
+B. Attenuation of radio signal
+The attenuation of the radio signal at the THz frequencies
+is due to spreading and molecular absorption. In more detail,
+the spreading attenuation is given by
+
+C. Molecular re-radiation
+The existing molecules in communication medium will be
+excited by electromagnetic waves at specific frequencies. The
+excitement is temporary and the vibrational-rotational energy
+level of molecules will come back to a steady state and the
+absorbed energy will be re-radiated in the same frequency.
+These re-radiated waves are usually considered as noise in
+the literature [3]. Molecular absorption is not white and its
+power spectral density (PSD) is not flat because of the different
+resonant frequencies of various species of molecules. The PSD
+of the molecular absorption noise that affects the transmission
+B
+of a signal, SNabs , is contributed by the atmospheric noise SN
+X
+and the self-induced noise SN as addressed in [5]:
+B
+X
+SNabs (f, d) = SN
+(f, d) + SN
+(f, d),
+
+ c 2
+B
+,
+SN
+(f, d) = limd→∞ (kB T0 (1 − e−k(f )d )) √
+4πf
+ c 2
+X
+,
+SN
+(f, d) = Pt (f )(1 − e−k(f )d )
+4πf d
+
+(4)
+(5)
+(6)
+
+where k(f ) is the absorption coefficient of the medium at
+frequency f , T0 is the reference temperature (296K), kB is
+the Boltzmann constant, Pt (f ) is the power spectral density
+of the transmitted signal and c is the speed of light. The first
+term in (4), which is called sky noise and defined in (5) is
+independent of the signal wave. However, the self-induced
+noise in (6) is highly correlated with the signal wave [6], and
+can be considered as a distorted copy of the signal wave. Thus,
+equation (6) can be revised as the received power of the reradiated signal by molecules at the receiver by
+ c 2
+Pr,a (f, d) = Pt (f )(1 − e−k(f )d )
+.
+(7)
+4πf d
+Since the phase of the re-radiated wave depends on the
+phase of molecular vibration, which varies from molecules
+to molecules [8], the received power in this case is affected
+by a large number of phase-independent re-radiated photons.
+Thus, we assume a uniformly distributed random phase for
+the received signal, with its power given by (7).
+D. Channel Transfer Function
+
+(3)
+
+The channel transfer function for a single LoS channel is
+given by
+s
+2
+d
+c
+e−k(f )×d × ej2π λ
+h̃LoS (f, d) =
+4πf d
+(8)
+
+
+d
+c
+j2π
+−k(f )× d
+2 × e
+λ.
+=
+e
+4πf d
+
+where k(f ) is the absorption coefficient of the medium at
+frequency f .
+Thus, the line-of-sight (LoS) received power at the receiver
+becomes
+
+2
+c
+Pr,LoS (f, d) = Pt (f ) ×
+× e−k(f )×d .
+4πf d
+
+Then, the partial channel transfer function resulted from the
+molecular absorption and excluding the LoS component can
+be represented by
+s
+ c 2
+× ej2πβrandom
+h̃a (f, d) = (1 − e−k(f )d )
+4πf d
+(9)
+ c 
+j2πβrandom
+−k(f )d 21
+×e
+.
+= (1 − e
+)
+4πf d
+
+Aspread (f, d) =
+
+
+
+4πf d
+c
+
+2
+
+,
+
+(2)
+
+where c is the speed of light. The attenuation due to molecular
+absorption is characterized as
+Aabs (f, d) = ek(f )×d ,
+
+Hence, the total channel transfer function is the superposition
+of the partial channel transfer functions, which is written as
+h̃(f, d) = h̃LoS (f, d) + h̃a (f, d),
+
+h̃(f, d) =
+
+
+
+c
+4πf d
+
+
+
+(10)
+
+d
+
+d
+
+e−k(f )× 2 × ej2π λ
+ c 
+1
+× ej2πβrandom . (11)
++(1 − e−k(f )d ) 2
+4πf d
+
+E. MIMO channel model and capacity
+
+In this paper, we consider a MIMO system that is consisted of nt transmitting antennas and nr receiving ones.
+The received signal vector y at nr receiving antennas can be
+formulated as
+y = H̃x + n,
+(12)
+where x is the transmitted signal vector form nt transmitting
+antennas, and n is an nr ×1 vector with zero-mean independent
+noises with variance σ 2 . H̃ is the channel matrix
+where each of its elements, h̃ij , is a complex value denoting
+the transfer coefficient associated with the jth transmitter
+antenna and the ith receiver antenna. Note that h̃ij can be
+obtained from (11) for frequency f and distance dij .
+The capacity of MIMO channel can be written as
+C = log2 det(Inr +
+
+P
+H̃H̃† ),
+nt σ 2
+
+(13)
+
+where P is total transmitting power, and I is the identity
+matrix Since the determinant of (Inr + ntPσ2 H̃H̃† ) can be
+computed by the product of the eigenvalues of the matrix
+H̃H̃† , the MIMO capacity can thus be written in the form
+of a product of non-zero eigenvalues as [9]
+C=
+
+κ
+X
+i=1
+
+log2 (1 +
+
+P λ2i
+),
+κσ 2
+
+(14)
+
+where λi denotes singular values of the matrix H̃, and hence
+the squared singular values λ2i denotes the eigenvalues of
+the matrix H̃H̃† . Each of the λ2i characterize an equivalent
+P λ2
+information channel where kσ2i is the corresponding signalto-noise ratio (SNR) of the channel at the receiver. Note that
+κ denotes the number of non-zero λ2i , which for beamforming
+technique it is equal to one and in multiplexing technique it
+could be the rank of H̃ with κ ≤ min(nr , nt ) [9]. However,
+because we use blind precoding and uniform power allocation for multiplexing technique κ = nt . Therefore, equation
+(14) is valid for uniform power allocation at the transmitter.
+P λ2
+Furthermore, the equivalent channel SNR, κσ2i , should meet
+a minimum receiver threshold to be reliably detectable by the
+receiver. In this paper, we assumed 0 dB as the SNR threshold
+and uniform power allocation at the transmitter.
+The main difference between beamforming and multiplexing techniques is how to tune or exploit the eigenvalue
+distribution. In more details, beamforming technique aims
+to maximize λ1 to improve the channel SNR for a single
+
+data stream while in the multiplexing technique, a uniform
+eigenvalue distribution is preferable. In this way, multiplexing
+technique can utilize parallel data streams through MIMO
+and maximize the data rate. The complexity of beamforming
+comes from eigenvalues tuning because it means the channel
+state information (CSI) should be measured and sent back
+to the transmitter periodically for optimum precoding. This
+also results in a protocol overhead in the channel. On the
+other hand, multiplexing gain can take advantage of eigenvalue
+value distribution even with a blind precoding. This is more
+beneficial when there is a rich scattering environment in the
+channel. In next section, we will discuss how the re-radiation
+can provide a rich scattering environment.
+III. A NALYSIS
+
+ON THE CHANNEL WITH MOLECULAR
+ABSORPTION
+
+To analyze the MIMO channel capacity and characterize the
+scattering richness of channel quantitatively, lets decompose
+and normalize channel transfer function H̃ as
+
+H(f, d) =
+
+r
+
+K
+HLoS (f, d) +
+K +1
+
+r
+
+1
+Ha (f, d), (15)
+K +1
+
+where H, HLoS and Ha are normalized with corresponding
+channel gain. Because of uniformly distributed random phase
+of received re-radiated signal, elements of Ha are independent
+and identically distributed (i.i.d) complex Gaussian random
+variables with zero mean and unit magnitude variance. K
+is the ratio of powers of the LoS signal and the re-radiated
+components and if we assume the channel distance is much
+longer than antenna space, it can be obtained by
+K=
+
+e−k(f )d
+Pr,LoS (f, d)
+.
+=
+Pr,a (f, d)
+1 − e−k(f )d
+
+(16)
+
+This is same as the well-known Rician channel model where
+the K is called Rician K-factor. Equivalently, K-factor shows
+how much channel is rich in term of scattering and multipath rays. Equation (16) shows K is a function of absorption
+coefficient of channel medium k(f ) and the distance between
+transmitter and receiver d so that a longer distance and a
+higher absorption result smaller K, as shown in Figure 1a.
+The capacity of MIMO channel considering Rician K-factor
+is studied in several works [10, 11]. Authors in [11] showed
+the lower bound of Rician channel expected capacity for
+large number of antennas is the expected capacity of channel
+considering only NLoS component,
+r
+1
+(17)
+E(C(H)) ≥ E(C(
+Ha )),
+K +1
+p
+=⇒ E(C(H)) ≥ E(C( 1 − e−k(f )d Ha )),
+
+(18)
+
+where E(.) denotes the expectation. It is clear that the
+lower band is a increasing function of absorption coefficient, ∀f1 , f2 such that k(f2 ) ≥ k(f1 ), Emin (C(f2 )) ≥
+Emin (C(f1 )).
+
+(a) K-factor
+
+(b) MIMO capacity using beamforming
+
+(c) MIMO capacity using multiplexing
+
+Fig. 1: K-factor is an increasing function of distance and absorption coefficient. For both multiplexing and beamforming
+techniques, the performance gain is affected by K-factor. The capacity is calculated for 225x225 MIMO system.
+IV. S IMULATION
+
+AND DISCUSSION
+
+A. Simulation set-up
+In this section, to evaluate the molecular absorption impact
+on THz MIMO capacity, we consider a simple n × n MIMO
+system with a square uniform Arrays, where at both transmitter
+and receiver, the inter-element spacing s is equal to half
+of the wavelength and the channel distance is d. Moreover,
+we consider uniform power allocation to transmitter arrays
+operating in an open-space LoS scenario. The default values
+of the parameters are listed in Table I, and different values will
+be explained when necessary. Since we apply random phases
+on NLoS components created by molecular re-radiation, we
+conduct the evaluation of the MIMO capacity with molecular
+re-radiation for 1000 times and show the average result.
+We use the online browsing and plotting tools1 , which is
+based on HITRAN databases [7] to generate absorption coefficients for different single gas or some predefined standard
+gas mixture of the atmosphere at sea level, as shown in Table
+II. Since the water molecules play main roles in a normal air
+environment at THz bands we use the highest and lowest water
+ratio in Table II, i.e., the ”USA model, high latitude, winter”
+and ”USA model, tropics”. The corresponding absorption
+coefficients in THz bands have been shown in Figure 2a for
+an ambient temperature of 273 K and a sea level pressure of
+1 atm. For a tropic atmosphere, the water ratio is higher than
+that of the winter atmosphere, and thus we can see a significant
+increase in the absorption coefficient among these two gas
+mixtures.
+In our simulation, we assume a constant transmit power over
+the entire frequency spectrum and display the MIMO capacity
+in bps/Hz for THz bands. We consider a MIMO set-up with
+225 antennas at each side in a uniform square planar array.
+Our aim is to compare the beamforming and multiplexing
+1 http://hitran.iao.ru/gasmixture/simlaunch
+
+TABLE I: Simulation parameters
+Transmitter and receiver distance (d)
+Inter-element spacing (s)
+Transmitter arrays angle (φ)
+Receiver arrays angle (θ)
+Number of arrays on each side (n)
+Transmit power
+Noise power
+
+0.1, 1, 10 m
+0.5λ (wave length)
+90◦
+90◦
+225
+0, 10 dBm
+−80 dBm
+
+techniques in different channel conditions. First, we calculate
+the channel capacity for beamforming while the re-radiation is
+totally ignored in the channel. Next, the beamforming capacity
+is re-calculated when the re-radiation is taken into account.
+Finally, the multiplexing gain is calculated with and without
+the consideration of re-radiation. In all scenarios, capacity is
+obtained by 14.
+In the first step, the simulation is run at 500 GHz with the
+practical range of absorption coefficient (10−5 ∼ 10+3 ) over
+the THz spectrum, as shown in Figure 1. It should be noted that
+the actual value of absorption coefficient at 500 GHz is shown
+in Figure 2a. The beamforming and multiplexing techniques
+capacity is calculated for a range of 0.1∼10 m distance and a
+1 mW transmit power.
+Secondly, the channel is simulated for two different transmit
+power and three distances with realistic absorption coefficients.
+Our assumption on the transmit power is based on current
+technology [3] and a previous work on THz massive MIMO
+[1]. Furthermore, distances have been chosen to cover various application scenarios. For example, THz nanosensors are
+considered to communicate in a very short distance in the
+order of 0.1-10 cm or less, while THz communications are also
+nominated to provide terabit per second ultra high video communication link at around 1 m distance for home entrainment
+devices like TV or virtual reality (VR). In addition, longer
+distances to a few meters characterize wireless personal or
+local networks. Simulation results are presented in Figure 2.
+B. The MIMO Capacity vs. the K-factor
+Figure 1 illustrates how the channel is transformed from
+a LoS dominant channel to a Rayleigh channel and how it
+effects on the MIMO beamforming and multiplexing capacity
+gain. As can be seen in Figure 1b, the beamforming gain is
+decreasing when the absorption coefficient increases which
+is because in the very high absorption, the channel is not
+LoS dominant anymore and there is significant NLoS signal
+component generated by molecule re-radiation or equivalently
+lower K-factor. In contrast, Figure 1c shows the multiplexing
+technique takes advantage of higher absorption to reach a huge
+data rate. However, the low SNR limit the multiplexing gain in
+longer distances so that it drops sharply to zero beyond 2 m.
+In Figure 2, more results for the THz spectrum with realistic
+absorption coefficients will be presented.
+
+TABLE II: Atmosphere standard gas mixture ratio in percentage for different climates [7]
+USA
+USA
+USA
+USA
+USA
+
+model,
+model,
+model,
+model,
+model,
+
+mean latitude, summer, H=0
+mean latitude, winter, H=0
+high latitude, summer, H=0
+high latitude, winter, H=0
+tropics, H=0
+
+H2O:
+H2O:
+H2O:
+H2O:
+H2O:
+
+1.860000
+0.432000
+1.190000
+0.141000
+2.590000
+
+CO2:
+CO2:
+CO2:
+CO2:
+CO2:
+
+0.033000
+0.033000
+0.033000
+0.033000
+0.033000
+
+O3:
+O3:
+O3:
+O3:
+O3:
+
+0.000003
+0.000003
+0.000002
+0.000002
+0.000003
+
+C. The MIMO Capacity vs. the Transmit Power and Distance
+The channel attenuation including molecular attenuation in
+(3) and spreading attenuation in (2) is illustrated in Figure
+2b. While the spreading attenuation is increasing linearly in
+dB with distance and frequency, the molecular attenuation is
+also increasing with distance but is frequency selective. For
+example, while the total loss at 10m is 107 dB for 500 GHz,
+the total attenuation at 550 GHz is 86 dB at 1 m and it grows
+to 220 dB at 10 m which is mostly because of very high
+absorption of water molecules in the channel medium at this
+frequency. Note that the channel atmosphere for this case is
+from tropic data where the ratio of water molecules in the air
+is more than 0.02, as shown in Table II.
+Figure 2c and 2d illustrate the capacity of the investigated
+transmission techniques for a 10 cm distance. The transmit
+power is increased from 1 mW in Figure 2c to 10 mW in
+Figure 2d. It can be seen that a huge performance difference
+exists between multiplexing and beamforming, thanks to the
+tremendous multiplexing gain provided by the rich scattering environment due to molecule re-radiation. Furthermore,
+in very high absorption frequencies which existing studies
+consider as infeasible windows for THz communications, a
+significant capacity improvement can be observed. This is
+because more absorption leads to more re-radiation, which
+transforms a LoS dominant channel to Rayleigh channel. The
+details can be found in Section III, where we have discussed
+about how the re-radiation decreases the K-factor and creates
+a rich scattering environment. To sum up, the re-radiation improves the multiplexing gain which is fundamentally supported
+by a better eigenvalue distribution and channel matrix rank in
+mathematical analysis.
+In Figure 2e and 2f, the distance is increased to 1 m.
+With a relatively large distance for THz communications, it
+can be seen the beamforming gain is comparable with the
+multiplexing gain. However, we can see the multiplexing
+gain in high absorption windows, such as 540-580 GHz,
+is significantly higher than the rest of spectrum for a 10
+mW transmit power. It is a different story for a 1 mW
+transmit power where the capacity drops to zero in high
+P λ2i
+kσ2
+
+absorption windows because the equivalent SNR, (
+), of
+most parallel channels created by the multiplexing technique
+is less than 0 dB and practically such parallel channels are
+useless because the receiver can not reliably detect the received
+signals. Such results are not surprising since it has been shown
+in several works on conventional communication band [12]
+that the multiplexing performance drops dramatically in low
+SNR. However, considering the implementation challenges
+of beamforming, the multiplexing technique might still be a
+preferable choice for frequency up to 1 THz. For example, it
+can be observed in Figure 2e at 0.9 THz, the capacity is 4 and
+
+N2O:
+N2O:
+N2O:
+N2O:
+N2O:
+
+0.000032
+0.000032
+0.000031
+0.000032
+0.000032
+
+CO:
+CO:
+CO:
+CO:
+CO:
+
+0.000015
+0.000015
+0.000015
+0.000015
+0.000015
+
+CH4:
+CH4:
+CH4:
+CH4:
+CH4:
+
+0.000170
+0.000170
+0.000170
+0.000170
+0.000170
+
+O2:
+O2:
+O2:
+O2:
+O2:
+
+20.900001
+20.900001
+20.900001
+20.900001
+20.900001
+
+N2:
+N2:
+N2:
+N2:
+N2:
+
+77.206000
+78.634779
+77.876781
+78.925780
+76.476779
+
+11.7 bps/Hz for the multiplexing and beamforming techniques,
+respectively.
+Finally, Figures 2g and 2h present the results for a 10 m
+distance. For such a distance, path loss leads to a very low
+reception SNR and thus the beamforming performance is significantly better than the multiplexing performance. It is wellknown that beamforming technique is not very effective where
+there are strong multipath rays [12]. Thus, it is observed that
+in very high absorption frequency windows, the beamforming
+performance drops sharply. It is not only because of receiving
+strong NLoS rays caused by molecule re-radiation but also due
+to LoS signal attenuation. Note that the multiplexing technique
+can take advantage of same windows in high SNR as we
+discussed above for Figure 2f.
+V. C ONCLUSION
+In this paper, we compared the beam forming and multiplexing techniques of MIMO in the terahertz band. We showed
+in high SNR, high transmit power or lower distance, the
+multiplexing technique can provide a considerable capacity
+gain compared with beamforming. However, for beyond a few
+meters such as 10 meters, there should be enough transmitting
+power possibility to use multiplexing technique, otherwise
+the capacity drops to zero where the beamforming technique
+can still provide effective spectrum efficiency at the cost of
+complexity and protocol overhead. Our theoretical model also
+showed re-radiation of molecules in the THz band can be
+helpful for massive MIMO system to improve the channel performance using multiplexing technique. The re-radiation can
+provide significantly strong multipath components to achieve
+a full spatial multiplexing gain where the receiver is in an
+enough SNR coverage. It means some very high absorption
+frequency windows which have been formerly pointed as not
+feasible for communication might be more preferable choices
+for MIMO in some certain applications.
+R EFERENCES
+[1] I. F. Akyildiz and J. M. Jornet, “Realizing ultra-massive mimo
+(10241024) communication in the (0.0610) terahertz band,” Nano Communication Networks, vol. 8, pp. 46 – 54, 2016.
+[2] E. Zarepour, M. Hassan, C. T. Chou, and A. A. Adesina, “Semon: Sensorless event monitoring in self-powered wireless nanosensor networks,”
+ACM Transactions on Sensor Networks (TOSN), vol. 13, no. 2, p. 15,
+2017.
+[3] I. F. Akyildiz, J. M. Jornet, and C. Han, “Terahertz band: Next frontier
+for wireless communications,” Physical Communication, vol. 12, pp. 16
+– 32, 2014.
+[4] J. Kokkoniemi, J. Lehtomäki, and M. Juntti, “A discussion on molecular
+absorption noise in the terahertz band,” Nano Communication Networks,
+2015.
+[5] J. M. Jornet and I. F. Akyildiz, “Femtosecond-Long Pulse-Based Modulation for Terahertz Band Communication in Nanonetworks,” IEEE
+Transactions on Communications, vol. 62, no. 5, pp. 1742–1754, May
+2014.
+
+10 4
+
+US Model tropic - High H 2 O
+
+Absorption Coefficient (m -1 )
+
+US Model High latitude winter - low H 2 O
+
+10
+
+2
+
+10
+
+0
+
+10
+
+-2
+
+10
+
+-4
+
+10
+
+-6
+
+10
+
+2
+
+10
+
+3
+
+10
+
+4
+
+Frequency (GHz)
+
+(a) absorption coefficient, T= 273 K, P= 1 atm
+
+(b) Signal Attenuation
+1200
+
+600
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+1000
+
+400
+
+800
+
+Capacity (bps/Hz)
+
+Capacity (bps/Hz)
+
+500
+
+300
+
+200
+
+600
+
+400
+
+100
+
+200
+
+0
+10 2
+
+10 3
+
+0
+10 2
+
+10 4
+
+Frequency (GHz)
+
+10 3
+
+10 4
+
+Frequency (GHz)
+
+(c) distance=0.1m, transmit power=1mW
+
+(d) distance=0.1m, transmit power=10mW
+
+20
+
+250
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+18
+16
+
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+200
+
+Capacity (bps/Hz)
+
+Capacity (bps/Hz)
+
+14
+12
+10
+8
+
+150
+
+100
+
+6
+4
+
+50
+
+2
+0
+10 2
+
+10 3
+
+0
+10 2
+
+10 4
+
+Frequency (GHz)
+
+(e) distance=1m, transmit power=1mW
+
+10 4
+
+(f) distance=1m, transmit power=10mW
+
+12
+
+15
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+10
+
+Beamforming w re-radiation
+Beamforming w/o re-radiation
+Multiplexing - w re-radiation
+Multiplexing - w/o re-radiation
+
+8
+
+Capacity (bps/Hz)
+
+Capacity (bps/Hz)
+
+10 3
+
+Frequency (GHz)
+
+6
+
+4
+
+10
+
+5
+
+2
+
+0
+10 2
+
+10 3
+
+10 4
+
+Frequency (GHz)
+
+(g) distance=10m, transmit power=1mW
+
+0
+10 2
+
+10 3
+
+10 4
+
+Frequency (GHz)
+
+(h) distance=10m, transmit power=10mW
+
+Fig. 2: 225x225 MIMO channel performance in tropic atmosphere.
+[6] J. M. Jornet Montana, “Fundamentals of electromagnetic nanonetworks
+in the terahertz band,” Ph.D. dissertation, Georgia Institute of Technology, 2013.
+[7] L. Rothman, I. Gordon, Y. Babikov, A. Barbe et al., “The hitran2012
+molecular spectroscopic database,” Journal of Quantitative Spectroscopy
+and Radiative Transfer, vol. 130, pp. 4 – 50, 2013.
+[8] L. D. Barron, Molecular light scattering and optical activity. Cambridge University Press, 2004.
+[9] D. Tse and P. Viswanath, “Chapter 07: MIMO I : spatial multiplexing
+and channel modeling,” Fundamentals of Wireless Communication, pp.
+290–331, 2005.
+
+[10] F. R. Farrokhi, G. J. Foschini, A. Lozano, and R. A. Valenzuela,
+“Link-optimal space-time processing with multiple transmit and receive
+antennas,” IEEE Communications Letters, vol. 5, no. 3, pp. 85–87, 2001.
+[11] G. Lebrun, M. Faulkner, M. Shafi, and P. J. Smith, “Mimo ricean channel capacity: an asymptotic analysis,” IEEE Transactions on Wireless
+Communications, vol. 5, no. 6, pp. 1343–1350, 2006.
+[12] D. Gesbert, M. Shafi, D.-s. Shiu, P. J. Smith et al., “From theory to
+practice: An overview of mimo space-time coded wireless systems,”
+IEEE Journal on selected areas in Communications, vol. 21, no. 3, pp.
+281–302, 2003.
+
+

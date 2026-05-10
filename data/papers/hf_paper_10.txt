@@ -1,0 +1,1453 @@
+Title: arXiv paper 10
+
+Categories: 9
+
+Abstract:
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+Han Xiao 1
+
+arXiv:1712.05934v1 [cs.NE] 16 Dec 2017
+
+Abstract
+Though traditional algorithms could be embedded
+into neural architectures with the proposed principle of (Xiao, 2017), the variables that only occur
+in the condition of branch could not be updated
+as a special case. To tackle this issue, we multiply
+the conditioned branches with Dirac symbol (i.e.
+1x>0 ), then approximate Dirac symbol with the
+continuous functions (e.g. 1 − e−α|x| ). In this
+way, the gradients of condition-specific variables
+could be worked out in the back-propagation process, approximately, making a fully functioned
+neural graph. Within our novel principle, we propose the neural decision tree (NDT), which takes
+simplified neural networks as decision function
+in each branch and employs complex neural networks to generate the output in each leaf. Extensive experiments verify our theoretical analysis
+and demonstrate the effectiveness of our model.
+
+1. Introduction
+Inspired by brain science, neural architectures have been
+proposed in 1943, (Mcculloch & Pitts, 1943). This branch
+of artificial intelligence develops from single perception
+(Casper et al., 1969) to deep complex network (Lecun et al.,
+2015), achieving several critical successes such as AlphaGo
+(Silver et al., 2016). Notably, all the operators (i.e. matrix
+multiply, non-linear function, convolution, etc.) in traditional neural networks are numerical and continuous, which
+could benefit from back-propagation algorithm, (Rumelhart
+et al., 1988).
+Recently, logics-based methods (e.g. Hungarian algorithm,
+max-flow algorithm, A∗ searching) are embedded into neural architectures in a dynamically graph-constructing manner, opening a new chapter for intelligence system, (Xiao,
+1
+
+State Key Laboratory of Intelligent Technology and Systems,
+National Laboratory for Information Science and Technology, Department of Computer Science and Technology, Tsinghua University, Beijing 100084, PR China. Correspondence to: Han Xiao
+<Almighty.Xiao.Han@iCloud.com>.
+Proceedings of the 35 th International Conference on Machine
+Learning, Stockholm, Sweden, PMLR 80, 2018. Copyright 2018
+by the author(s).
+
+2017). Generally, neural graph is defined as the intelligence architecture, which is characterized by both logics
+and neurons.
+With this proposed principle from the seminal work, we attempt to tackle image classification. Specifically, regarding
+this task, the overfull categories make too much burden for
+classifiers, which is a normal issue for large-scale datasets
+such as ImageNet (Deng et al., 2009). We conjecture that it
+would make effects to roughly classify the samples with
+decision tree, then category the corresponding samples
+with strong neural network in each leaf, because in each
+leaf, there are much fewer categories to predict. The attribute split in traditional decision trees (e.g. ID3, Random
+Forest, etc.) is oversimplified for precise pre-classification,
+(Zhou & Feng, 2017). Thus, we propose the method of
+neural decision tree (NDT), which applies neural network
+as decision function to strengthen the performance.
+Regarding the calculus procedure of NDT, the basic principle is to treat the logic flow (i.e. “if, for, while” in the sense
+of programming language) as a dynamic graph-constructing
+process, which is illustrated in Figure 1.
+This figure demonstrates the classification of four categories
+(i.e. sun, moon, car and pen), where an if structure is employed to split the samples into two branches (i.e. sun-moon,
+car-pen), where the fully connected networks generate the
+results respectively. In the forward propagation, our methodology activates some branch according to the condition of
+if, then dynamically constructs the graph according to the
+instructions in the activated branch. In this way, the calculus graph is constructed as a non-branching and continuous
+structure, where backward propagation could be performed
+conventionally, demonstrated in Figure 1 (b). Generally, we
+should note that the repeat (i.e. for, while) could be treated
+as performing if in multiple times, which could also be
+tackled by the proposed principle. Thus, all the traditional
+algorithms could be embedded into neural architectures. For
+more details, please refer to (Xiao, 2017).
+However, as a special challenge of this paper, the variables
+that are only introduced in the condition of branch could not
+be updated in the backward propagation, because they are
+outside the dynamically constructed graph, for the example
+of W in Figure 1. Thus, to make a completely functioned
+neural graph, this paper attempts to tackle this issue in an ap-
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+cantly, which illustrates the effectiveness of our methodology. The most important conclusion is that “our model is
+differentiable”, which verifies our theory and provides the
+novel methodology of fully functioned neural graph.
+Contributions (1.) We complete the principle of neural
+graph, which characterizes the intelligence systems with
+both logics and neurons. Also, we provide the proof that
+neural graph is Turing complete, which makes a learnable
+Turing machine for the theory of computation. (2.) To tackle
+the issue of overfull categories, we propose the method of
+neural decision tree (NDT), which takes simplified neural
+networks as decision function in each branch and employs
+complex neural networks to generate the output in each leaf.
+(3.) Our model outperforms other baselines extensively,
+verifying the effectiveness of our theory and method.
+Organization. In the Section 2, our methodology and neural architecture are discussed. In the Section 3, we specific
+the implementation of fully functioned neural graph in detail. In the Section 4, we provide the proof that neural graph
+is Turing complete. In the Section 5, we conduct the experiments for performance and verification. In the Section
+6, we briefly introduce the related work. In Section 7, we
+list the potential future work from a developing perspective.
+Finally in the Section 8, we conclude our paper and publish
+our codes.
+Figure 1. Illustration of how logic flow is processed in our methodology. Referring to (b), we process the if-else structure of (a) in
+a dynamically graph-constructing manner. Theoretically, we construct the graph according to the active branch, in the forward propagation. When the forward propagation has constructed the graph
+according to logic instructions, the backward propagation would
+be performed as usual in a continuous and non-branching graph.
+Practically, the dynamically constructed process corresponds to
+batch operations. The samples with id 1,3,4 are activated in if
+branch, while those with id 2,5 are tackled in else branch. After
+the end of if-else instruction, the sub-batch hidden representations
+are joined as the classified results.
+
+proximated manner. Simply, we multiply the symbols inside
+the branch with Dirac function (i.e. 1x>0 or 1x≤0 ). Specifically, regarding Figure 1, we reform F CN etwork(img) as
+F CN etwork(img ⊗1tanh>0 ) in the if branch and perform
+the corresponding transformation in the else branch, where
+⊗ is element-wise multiplication. The forward propagation
+would not be modified by the reformulation, while as to the
+backward process, we approximate the Dirac symbol with a
+continuous function to work out the gradients of condition,
+which solves this issue. It is noted that in this paper, the
+continuous function is 1 − e−α|x| ≈ 1x>0 .
+We conduct our experiments on public benchmark datasets:
+MNIST and CIFAR. Experimental results illustrate that our
+model outperforms other baselines extensively and signifi-
+
+2. Methodology
+First, we introduce the overview of our model. Then, we
+discuss each component, specifically. Last, we discuss our
+model from the ensemble perspective.
+2.1. Architecture
+Our architecture is illustrated in Figure 2, which is composed by three customized components namely feature, condition and target network. Firstly, The input is transformed
+by feature network and then the hidden features are classified by decision tree component composed by hierarchal
+condition networks. Secondly, the target networks predict
+the categories for each sample in each leaf. Finally, the
+targets are joined to work out the cross entropy objective.
+The process is exemplified in Algorithm 1.
+Feature Network. To extract the abstract features with
+deep neural structures, we introduce the feature network,
+which is often a stacked CNN and LSTM.
+Condition Network. To exactly pre-classify each sample,
+we employ a simplified neural network as condition network,
+which is usually a one- or two-layer multi-perceptions with
+the non-linear function of tanh. This layer is only applied in
+the inner nodes of decision tree. Actually, the effectiveness
+of traditional decision tree stems from the information gain
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+t
+=
+plef
+j
+
+pright
+=
+j
+
+PNtotal
+
+1cn>0,j Li,j
+i=0
+PNtotal
+1cn>0
+i=0
+PNtotal
+1cn≤0,j Li,j
+i=0
+PNtotal
+1cn≤0
+i=0
+
+(4)
+(5)
+
+where cn is short for condition network and Li,j is the adhoc label vector of i-th sample, where the true label position
+is 1 and otherwise 0. By simple computations, we have:
+PNtotal
+t
+Li,j ln(plef
+)
+∂IG
+j
+i=0
+=
+(6)
+∂1cn>0
+Ntotal
+PNtotal
+Li,j ln(pright
+)
+∂IG
+j
+i=0
+=
+(7)
+∂1cn≤0
+Ntotal
+where IG is short for Inf oGain. As discussed in Introduction, we approximate the Dirac symbol as a continuous
+function, specifically as 1 − e−α|x| ≈ 1x>0 . Thus, the
+gradient of condition network could be deducted as:
+∂IG
+∂IG ∂(1 − e−α|cn|)
+∂IG
+≈
+=
+(αe−α|x| s(cn)) (8)
+∂cn
+∂1cn>0
+∂cn
+∂1cn>0
+∂IG ∂(1 − e−α|cn|)
+∂IG
+∂IG
+≈
+=
+(αe−α|x| s(cn)) (9)
+∂cn
+∂1cn≤0
+∂cn
+∂1cn≤0
+Figure 2. The neural architecture of NDT (depth = 2). The input is
+classified by decision tree component with the condition networks,
+then the target networks predict the categories for each sample in
+each leaf. Notably, the tree component takes advantages of subbatch technique, while the targets are joined in batch to compute
+the cross entropy objective.
+
+splitting rules, which could not be learned by condition
+networks, directly. Thus, we involve an objective item for
+each decision node to maximize the information gain as:
+
+max Inf oGain
+
+=
+
+|F |
+Nright X right
+p
+ln(pright
+) (1)
+j
+Ntotal j=0 j
+
+where N is the corresponding count, |F | is the feature number and p is the corresponding probabilistic distribution of
+features. Regarding the derivatives relative to Dirac symbol,
+we firstly reformulate the information gain in the form of
+Dirac symbol as:
+
+Nlef t =
+
+1cn>0
+
+(2)
+
+1cn≤0
+
+(3)
+
+i=1
+
+Nright =
+
+NX
+total
+i=1
+
+Actually, all the reduction could be performed automatically
+within the proposed principle, that to multiply the symbols
+inside the branch with Dirac function.
+PNtotal Specifically, as an
+example of the count, Nlef t = i=1
+1 × 1cn>0 .
+Target Network. To finally predict the category of each
+sample, we apply a complex network as the target network,
+which often is a stacked convolution one for image or an
+LSTM for sentence.
+2.2. Analysis From Ensemble Perspective
+
+|F |
+Nlef t X lef t
+t
+p ln(plef
+)+
+j
+Ntotal j=0 j
+
+NX
+total
+
+where s is the sign function.
+
+NDT could be treated as an ensemble model, which ensembles many target networks with the hard branching condition
+networks. Currently, there exist two branches of ensemble
+methods, namely split by features, or split by samples, both
+of which increases the difficulty of single classifier. However, NDT splits the data by categories, which means single
+classifier deals with a simpler task.
+The key point is the split purity of condition networks, because the branching reduces the sample numbers for each
+leaf. Relatively to single classifier, if our model keeps the
+sample number per category, NDT could make more effects.
+For an example of one leaf, the sample number reduces
+to 30%, while the category number reduces from 10 to 3.
+With similarly sufficient samples, our model deals with 3classification, which is much easier than 10-classification.
+Thus, our model benefits from the strengthen of single classifier.
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+Algorithm 1 Neural Decision Tree (NDT)
+
+To implement symbol-specific logic component, we propose
+two batch operations, namely sub- and join-batch operation.
+Take the example of Figure 1 (c). To begin, there are five
+samples in the batch. In the forward pass, once processing
+in the branch, according to the condition, the batch is split
+into two sub-batches, each of which is respectively tackled
+by the instructions in the corresponding branch, simultaneously. After processed by two branches, the sub-batches are
+joined into one batch, according to the original order. In
+the backward propagation, the gradients of joined batch are
+split into two parts, which correspond to two sub-batches.
+When the process has propagated through two branches, the
+gradients of two sub-batches are joined again to form the
+gradients of stacked CNN.
+Theoretically, a sample in some sub-batch means the corresponding branch is activated for this sample and the other
+branch is deactivated. On the other word, the hidden representations of this sample connect to the activated branch
+rather than the deactivated one. Thus, the symbol-specific
+logic components perform our proposed principle, in the
+manner of sub- and join-batch operation. Notably, if there
+is no variable that is only introduced in the condition, it is
+unnecessary to update the condition, which makes corresponding neural graph an exact method.
+
+3. Dynamical Graph Construction
+Previously introduced, neural graph is the intelligence architecture, which is characterized by both logics and neurons.
+Mathematically, the component of neurons are continuous
+functions, such as matrix multiply, hyperbolic tangent (tanh),
+convolution layer, etc, which could be implemented as mathematical operations.
+Obviously, simple principal implementation for non-batch
+mode is easy and direct. But practically, all the latest training methods take the advantages of batched mode. Hence,
+we focus on the batched implementation of neural graph in
+this section.
+Conventionally, neural graph is composed by two styles
+of variable, namely symbols such as W in Figure 1, and
+atomic types such as the integer d in Algorithm 1 Line 2.
+In essence, symbolic variables originate from the weights
+between neurons, while the atomic types are introduced by
+the embedded traditional algorithms.
+Therefore, regarding the component of logics, there exist
+two styles: symbol- and atomic-type-specific logic components, which are differentiated in implementation. Symbolspecific logics indicates the condition involves the symbols,
+such as Line 5 ∼ 9 in Algorithm 1, while atomic-typespecific logics means there are only atomic types in the
+condition such as Line 2 in Algorithm 1. However, our proposed principle, that dynamically constructing neural graph,
+could process both the situations.
+
+To implement atomic-type-specific logic component, we
+propose a more flexible batch operation namely allocatebatch. Take the example of Hungarian Layer (Xiao, 2017).
+The Hungarian algorithm deals with the similarity matrix to
+provide the alignment information, according to which, the
+dynamic links between symbols are dynamically allocated,
+shown in Figure 4 of (Xiao, 2017). Thus, the forward and
+backward propagation could be performed in a continuous
+calculus graph. Simply, in the forward pass, we record the
+allocated dynamic links of each sample in the batch, while in
+the backward pass, we propagate the gradients along these
+dynamic links. Obviously, the atomic-type-specific logic
+components perform our proposed principle, in the manner
+of allocate-batch operation.
+The traditional algorithms are a combination of branch (i.e.
+if ) and repeat (i.e. for, while). Repeat could be treated as
+performing branch in multiple times. Thus, the three batch
+operations, namely sub-, join- and allocate-batch operation,
+could process all the traditional algorithms, such as resolution method, A∗ searching, Q-learning, label propagation,
+PCA, K-Means, Multi-Armed Bandit (MAB), AdaBoost.
+
+4. Neural Graph is Turing Complete
+Actually, if neural graph could simulate the Turing machine,
+it is Turing complete. Turing machine is composed by
+four parts: a cell-divided tape, reading/writing head, state
+register and a finite table of instructions. Correspondingly,
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+symbols are based on tensor arrays, which simulate the celldivided tape. Forward/Backward process indicate where
+to read/write. Atomic-type-specific variables record the
+state. Last, the logic flow (i.e. if, while, for) constructs
+the finite instruction table. In summary, neural graph is
+Turing complete.
+Specifically, neural graph is a learnable Turing machine
+rather than a static one. Learnable Turing machine could
+adjust the behaviors/performance, according to data and environment. Traditional computation models focus on static
+algorithms, while neural graph takes advantages of data and
+perception to strengthen the rationality of behaviors.
+
+5. Experiment
+In the section, we verify our model on two datasets: MNIST
+(Lecun et al., 1998) and CIFAR (Krizhevsky, 2009). We first
+introduce the experimental settings in Section 4.1. Then,
+in Section 4.2, we conduct performance experiments to
+testify our model. Last, in Section 4.3, to further verify our
+theoretical analysis, that NDT could reduce the category
+number of leaf nodes, we perform a case study to justify our
+assumption.
+5.1. Experimental Setting
+There exist three customized networks in our model, that
+the feature, condition and target network. We simply apply
+identify mapping as feature network. Regarding the condition network, we apply a two-layer fully connected perceptions, with the hyper-parameter input-300-1 for MNIST and
+input-3000-1 for CIFAR. Regarding the target network, we
+also employ a three-layer fully connected perceptions, with
+the hyper-parameter input-300-100-10 for MNIST, input3000-1000-10 for CIFAR-10 and input-3000-1000-100 for
+CIFAR-100. 1 To train the model, we leverage AdaDelta
+(Zeiler, 2012) as our optimizer, with hyper-parameter as moment factor η = 0.6 and  = 1 × 10−6 . We train the model
+until convergence, but at most 1,000 rounds. Regarding the
+batch size, we always choose the largest one to fully utilize
+the computing devices. Notably, the hyper-parameters of
+approximated continuous function is α = 1000.
+5.2. Performance Verification
+MNIST. The MNIST dataset (Lecun et al., 1998) is a classic benchmark dataset, which consists of handwritten digit
+images, 28 x 28 pixels in size, organized into 10 classes (0
+to 9) with 60,000 training and 10,000 test samples. We select some representative and competitive baselines: modern
+1
+We know the feature and target network are too oversimplified
+for this task. But this version targets at an exemplified model,
+which still could verify our conclusions. We will perform a complex feature and target network in the next/final version.
+
+Table 1. Performance Evaluation on MNIST Dataset.
+
+Methods
+Single Target Network
+LeNet-5
+Multi-Perspective CNN
+Deep Belief Net
+SVM (RBF kernel)
+Random Forest
+
+Accuracy (%)
+96.95
+99.50
+81.38
+98.75
+98.60
+96.80
+
+NDT (depth = 2)
+
+97.90
+
+CNN-based architecture LeNet-5 with dropout and ReLUs,
+classic linear classifier SVM with RBF kernel, Deep Belief
+Nets and a standard Random Forest with 2,000 trees. We
+could observe that:
+1. NDT will beat all the baselines, verifying our theory
+and justifying the effectiveness of our model.
+2. Compared to single target network, NDT promotes
+0.65 point, which illustrates the ensemble of target
+network is effective.
+3. Compared to Random Forest that is also a tree-based
+method, NDT promotes 0.75 point, which demonstrates the neurons indeed strengthen the decision trees.
+CIFAR. The CIFAR-10/100 dataset (Krizhevsky, 2009), is
+also a classic benchmark for overfull category classification,
+which consists of color natural images, 32 x 32 pixels in
+size, from 10/100 classes with 50,000 training and 10,000
+test images. Several representative baselines are selected
+as Network in Network (NIN) (Lin et al., 2013), FitNets
+(Rao et al., 2016), Deep Supervised Network (DSN) (Lee
+et al., 2014), High-Way (Srivastava et al., 2015), All-CNN
+(Springenberg et al., 2014), Exponential Linear Units (ELU)
+(Clevert et al., 2015), FitResNets (Mishkin & Matas, 2015),
+gcForest (Zhou & Feng, 2017) and Deep ResNet (He et al.,
+2016). We could conclude that:
+1. NDT will beat all the strong baselines, which verifies
+the effectiveness of neural decision trees and justifies
+the theoretical analysis.
+2. Compared to single target network, NDT promotes
+4.85 point, which illustrates the ensemble of target
+network is effective.
+3. Compared with gcForest, the performance improves
+- points, which illustrates that neurons empower the
+decision trees more effectively than direct ensembles.
+4. Compared with ResNet that is the strongest baseline,
+we promote the results over - points, which justifies
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+Figure 3. Case Study for NDT in MNIST with depth = 2 (a) and depth = 3 (b). The left tables are the test sample numbers that correspond
+to row-th leaf node and col-th category. For example, the sliced “1105” means there are 1105 test samples of category “1” in leaf node
+“A”. We slice the main component of a leaf and draw the corresponding decision trees in the right panel. Notably, “X” indicates the empty
+class.
+
+Table 2. Performance Evaluation (Error (%)) on CIFAR.
+
+Methods
+NIN
+DSN
+FitNets
+High-Way
+All-CNN
+ELU
+FitResNets
+ResNet
+gcForest
+Random Forest
+Single Target Network
+
+CIFAR-10
+8.81
+8.22
+8.39
+7.72
+7.25
+6.55
+5.84
+6.61
+31.00
+50.17
+-
+
+CIFAR-100
+35.68
+34.57
+35.04
+32.39
+33.71
+24.28
+27.66
+25.16
+89.37
+
+NDT (depth = 4)
+
+-
+
+84.52
+
+our assumption, that NDT could reduce the category
+number of leaf nodes to enhance the intelligence systems.
+5.3. Case Study
+To further testify our assumption that NDT could reduce
+the category number of leaf nodes, we perform a case study
+in MNIST. We make a statistics of test samples for each
+
+leaf node, illustrated in Figure 3. The item of table means
+row-th leaf node has how many samples in col-th category.
+For example, the “1105” in the first row and second column,
+means that there are 1,105 test samples of category “1” are
+pre-classified into leaf node “A”. Correspondingly, we draw
+the decision trees in the right panel with labeled categories,
+which specifically illustrates the decision process of NDT.
+For a complete verification, we vary the depth of NDT with
+2 and 3.
+Firstly, we could clearly draw the conclusion from Figure 3,
+that each leaf node needs to predict less categories, which
+justifies our assumption. For example, in the bottom figure,
+the node “A” only needs to predict the category “1”, which
+is a single classification, and the node “H” only needs to
+predict the categories “0,3,5,8” which is a four classification.
+Because small classification is less difficult than large one,
+our target network in the leaf could perform better, which
+leads to performance promotion in a tree-ensemble manner.
+Secondly, from Figure 3, split purity could be worked out.
+Generally, the two-layer tanh multi-perception achieves a
+decent split purity. Indeed, the most difficult leaf nodes
+(e.g. “D” in the top and “H” in the bottom) are not perfect,
+but others gain a competitive split purity. Statistically, the
+main component or the sliced grid takes 92.4% share of total
+samples, which in a large probability, NDT would perform
+better than 92.4% accuracy in this case.
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+Finally, we discuss the hyper-parameter depth. From the
+top to the bottom of Figure 3, the categories are further
+split. For example, the node “B” in the top is split into
+“C” and “D” in the bottom, which means that the category
+“2” and “6” are further pre-classified. In this way, deep
+neural decision tree is advantageous. But much deeper
+NDT makes less sense, because the categories have been
+already split well. There would be mostly no difference for
+1- or 2-classification. However, considering the efficiency
+and consuming resources, we suggest to apply a suitable
+depth, or theoretically about log2 (|C|), where |C| is the
+total category number.
+
+6. Related Work
+In this section, we briefly introduce three lines of related
+work: image recognition, decision tree and neural graph.
+Convolution layer is necessary in current neural architectures for image recognition. Almost every model is a convolutional model with different configurations and layers,
+such as All-CNN (Springenberg et al., 2014) and DSN (Lee
+et al., 2014). Empirically, deeper network produces better
+accuracy. But it is difficult to train much deeper network for
+the issue of vanishing/exploding gradients, (Glorot & Bengio, 2010). Recently, there emerge two ways to tackle this
+problem: High-Way (Srivastava et al., 2015) and Residual
+Network (He et al., 2015). Inspired by LSTM, high-way
+network applies transform- and carry-gates for each layer,
+which allow information to flow across layers along the computation path without attenuation. For a more direct manner,
+residual network simply employs identity mappings to connect relatively top and bottom layers, which propagates the
+gradients more effectively to the whole network. Notably,
+achieving the state-of-the-art performance, residual network
+(ResNet) is the strongest model for image recognition, temporarily.
+Decision tree is a classic paradigm of artificial intelligence,
+while random forest is the representative methodology of
+this branch. During recent years, completely random tree
+forest has been proposed, such as iForest (Liu et al., 2008)
+for anomaly detection. However, with the popularity of deep
+neural network, lots of researches focus on the fusion between neurons and random forest. For example, (Richmond
+et al., 2015) converts cascaded random forests to convolutional neural network, (Welbl, 2014) leverages random
+forests to initialize neural network. Specially, as the stateof-the-art model, gcForest (Zhou & Feng, 2017) allocates a
+very deep architecture for forests, which is experimentally
+verified on several tasks. Notably, all of this branch could
+not jointly train the neurons and decision trees, which is the
+main disadvantage.
+To jointly fuse neurons and logics, (Xiao, 2017) proposes
+
+the basic principle of neural graph, which could embed traditional logics-based algorithms into neural architectures. The
+seminal paper merges the Hungarian algorithm with neurons as Hungarian layer, which could effectively recognize
+matched/unmatched sentence pairs. However, as a special
+case, the variables only introduced in the condition could
+not be updated, which is a disadvantage for characterizing
+complex systems. Thus, this paper focuses on this issue to
+make a fully functioned neural graph.
+
+7. Future Work
+We list three lines of future work: design new components of
+neural graph, implement a script language for neural graph
+and analyze the theoretical properties of learnable Turing
+machine.
+This paper exemplifies an approach to embed decision tree
+into neural architectures. Actually, many traditional algorithms could promote intelligence system with neurons. For
+example, neural A∗ searching could learn the heuristic rules
+from data, which could be more effective and less resource
+consuming. For a further example, we could represent the
+data with deep neural networks, and conduct label propagation upon the hidden representations, where the propagation
+graph is constructed by K-NN method. Because the label
+propagation, K-NN and deep neural networks are trained
+jointly, the performance promotion could be expected.
+In fact, a fully functioned neural graph may be extremely
+hard and complex to implement. Thus, we expect to publish
+a script language for modeling neural graph and also a
+library that includes all the mainstream intelligence methods.
+Based on these instruments, neural graph could be more
+convenient for practical usage.
+Finally, as we discussed, neural graph is Turing complete,
+making a learnable Turing machine. We believe theoretical
+analysis is necessary for compilation and ability of neural
+graph. Take an example. Do the learnable and static Turing
+machine have the same ability? Take a further example.
+Could our brain excel Turing machine? If not, some excellent neural graphs may gain advantages over biological
+brain, because both of them are learnable Turing machines.
+If it could, the theoretical foundations of intelligence should
+be reformed. Take the final example. What is the best
+computation model for intelligence?
+
+8. Conclusion
+This paper proposes the principle of fully functioned neural
+graph. Based on this principle, we design the neural decision
+tree (NDT) for image recognition. Experimental results on
+benchmark datasets demonstrate the effectiveness of our
+proposed method.
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+References
+Casper, M, Mengel, M, Fuhrmann, C, Herrmann, E, Appenrodt, B, Schiedermaier, P, Reichert, M, Bruns, T, Engelmann, C, and Grnhage, F. Perceptrons: An introduction
+to computational geometry. 75(3):3356–62, 1969.
+Clevert, DjorkArn, Unterthiner, Thomas, and Hochreiter,
+Sepp. Fast and accurate deep network learning by exponential linear units (elus). Computer Science, 2015.
+Deng, Jia, Dong, Wei, Socher, Richard, Li, Li-Jia, Li, Kai,
+and Fei-Fei, Li. Imagenet: A large-scale hierarchical
+image database. In Computer Vision and Pattern Recognition, 2009. CVPR 2009. IEEE Conference on, pp. 248–
+255. IEEE, 2009.
+Glorot, Xavier and Bengio, Yoshua. Understanding the
+difficulty of training deep feedforward neural networks.
+In Proceedings of the Thirteenth International Conference on Artificial Intelligence and Statistics, pp. 249–256,
+2010.
+He, Kaiming, Zhang, Xiangyu, Ren, Shaoqing, and Sun,
+Jian. Deep residual learning for image recognition. pp.
+770–778, 2015.
+He, Kaiming, Zhang, Xiangyu, Ren, Shaoqing, and Sun,
+Jian. Deep residual learning for image recognition. In
+Computer Vision and Pattern Recognition, pp. 770–778,
+2016.
+Krizhevsky, Alex. Learning multiple layers of features from
+tiny images. 2009.
+Lecun, Y., Bottou, L., Bengio, Y., and Haffner, P. Gradientbased learning applied to document recognition. Proceedings of the IEEE, 86(11):2278–2324, 1998.
+Lecun, Yann, Bengio, Yoshua, and Hinton, Geoffrey. Deep
+learning. Nature, 521(7553):436–444, 2015.
+Lee, Chen Yu, Xie, Saining, Gallagher, Patrick, Zhang,
+Zhengyou, and Tu, Zhuowen. Deeply-supervised nets.
+Eprint Arxiv, pp. 562–570, 2014.
+Lin, Min, Chen, Qiang, and Yan, Shuicheng. Network in
+network. Computer Science, 2013.
+Liu, Fei Tony, Kai, Ming Ting, and Zhou, Zhi Hua. Isolation
+forest. In Eighth IEEE International Conference on Data
+Mining, pp. 413–422, 2008.
+Mcculloch, Warren S and Pitts, Walter H. A logical calculus
+of ideas imminent in nervous activity. 1943.
+Mishkin, Dmytro and Matas, Jiri. All you need is a good
+init. 69(14):3013–3018, 2015.
+
+Rao, Jinfeng, He, Hua, and Lin, Jimmy. Noise-contrastive
+estimation for answer selection with deep neural networks. In ACM International on Conference on Information and Knowledge Management, pp. 1913–1916, 2016.
+Richmond, David L., Kainmueller, Dagmar, Yang,
+Michael Y., Myers, Eugene W., and Rother, Carsten. Relating cascaded random forests to deep convolutional
+neural networks for semantic segmentation. Computer
+Science, 2015.
+Rumelhart, D. E., Hinton, G. E., and Williams, R. J. Learning internal representations by error propagation. MIT
+Press, 1988.
+Silver, David, Huang, Aja, Maddison, Chris J., Guez, Arthur,
+Sifre, Laurent, Driessche, George Van Den, Schrittwieser,
+Julian, Antonoglou, Ioannis, Panneershelvam, Veda, and
+Lanctot, Marc. Mastering the game of go with deep
+neural networks and tree search. Nature, 529(7587):484,
+2016.
+Springenberg, Jost Tobias, Dosovitskiy, Alexey, Brox,
+Thomas, and Riedmiller, Martin. Striving for simplicity: The all convolutional net. Eprint Arxiv, 2014.
+Srivastava, Rupesh Kumar, Greff, Klaus, and Schmidhuber,
+Jrgen. Training very deep networks. Computer Science,
+2015.
+Welbl, Johannes. Casting random forests as artificial neural
+networks (and profiting from it). In German Conference
+on Pattern Recognition, pp. 765–771. Springer, 2014.
+Xiao, Han. Hungarian layer: Logics empowered neural
+architecture. arXiv preprint arXiv:1712.02555, 2017.
+Zeiler, Matthew D. Adadelta: An adaptive learning rate
+method. Computer Science, 2012.
+Zhou, Zhi Hua and Feng, Ji. Deep forest: Towards an
+alternative to deep neural networks. 2017.
+
+
+
+Summary:
+This research paper covers the following topic: NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+Han Xiao 1
+
+arXiv:1712.05934v1 [cs.NE] 16 Dec 2017
+
+Abstract
+Though traditional algorithms could be embedded
+into neural architectures with the proposed principle of (Xiao, 2017), the variables that only occur
+in the condition of branch could not be updated
+as a special case. To tackle this issue, we multiply
+the conditioned branches with Dirac symbol (i.e.
+1x>0 ), then approximate Dirac symbol with the
+continuous functions (e.g. 1 − e−α|x| ). In this
+way, the gradients of condition-specific variables
+could be worked out in the back-propagation process, approximately, making a fully functioned
+neural graph. Within our novel principle, we propose the neural decision tree (NDT), which takes
+simplified neural networks as decision function
+in each branch and employs complex neural networks to generate the output in each leaf. Extensive experiments verify our theoretical analysis
+and demonstrate the effectiveness of our model.
+
+1. Introduction
+Inspired by brain science, neural architectures have been
+proposed in 1943, (Mcculloch & Pitts, 1943). This branch
+of artificial intelligence develops from single perception
+(Casper et al., 1969) to deep complex network (Lecun et al.,
+2015), achieving several critical successes such as AlphaGo
+(Silver et al., 2016). Notably, all the operators (i.e. matrix
+multiply, non-linear function, convolution, etc.) in traditional neural networks are numerical and continuous, which
+could benefit from back-propagation algorithm, (Rumelhart
+et al., 1988).
+Recently, logics-based methods (e.g. Hungarian algorithm,
+max-flow algorithm, A∗ searching) are embedded into neural architectures in a dynamically graph-constructing manner, opening a new chapter for intelligence system, (Xiao,
+1
+
+State Key Laboratory of Intelligent Technology and Systems,
+National Laboratory for Information Science and Technology, Department of Computer Science and Technology, Tsinghua University, Beijing 100084, PR China. Correspondence to: Han Xiao
+<Almighty.Xiao.Han@iCloud.com>.
+Proceedings of the 35 th International Conference on Machine
+Learning, Stockholm, Sweden, PMLR 80, 2018. Copyright 2018
+by the author(s).
+
+2017). Generally, neural graph is defined as the intelligence architecture, which is characterized by both logics
+and neurons.
+With this proposed principle from the seminal work, we attempt to tackle image classification. Specifically, regarding
+this task, the overfull categories make too much burden for
+classifiers, which is a normal issue for large-scale datasets
+such as ImageNet (Deng et al., 2009). We conjecture that it
+would make effects to roughly classify the samples with
+decision tree, then category the corresponding samples
+with strong neural network in each leaf, because in each
+leaf, there are much fewer categories to predict. The attribute split in traditional decision trees (e.g. ID3, Random
+Forest, etc.) is oversimplified for precise pre-classification,
+(Zhou & Feng, 2017). Thus, we propose the method of
+neural decision tree (NDT), which applies neural network
+as decision function to strengthen the performance.
+Regarding the calculus procedure of NDT, the basic principle is to treat the logic flow (i.e. “if, for, while” in the sense
+of programming language) as a dynamic graph-constructing
+process, which is illustrated in Figure 1.
+This figure demonstrates the classification of four categories
+(i.e. sun, moon, car and pen), where an if structure is employed to split the samples into two branches (i.e. sun-moon,
+car-pen), where the fully connected networks generate the
+results respectively. In the forward propagation, our methodology activates some branch according to the condition of
+if, then dynamically constructs the graph according to the
+instructions in the activated branch. In this way, the calculus graph is constructed as a non-branching and continuous
+structure, where backward propagation could be performed
+conventionally, demonstrated in Figure 1 (b). Generally, we
+should note that the repeat (i.e. for, while) could be treated
+as performing if in multiple times, which could also be
+tackled by the proposed principle. Thus, all the traditional
+algorithms could be embedded into neural architectures. For
+more details, please refer to (Xiao, 2017).
+However, as a special challenge of this paper, the variables
+that are only introduced in the condition of branch could not
+be updated in the backward propagation, because they are
+outside the dynamically constructed graph, for the example
+of W in Figure 1. Thus, to make a completely functioned
+neural graph, this paper attempts to tackle this issue in an ap-
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+cantly, which illustrates the effectiveness of our methodology. The most important conclusion is that “our model is
+differentiable”, which verifies our theory and provides the
+novel methodology of fully functioned neural graph.
+Contributions (1.) We complete the principle of neural
+graph, which characterizes the intelligence systems with
+both logics and neurons. Also, we provide the proof that
+neural graph is Turing complete, which makes a learnable
+Turing machine for the theory of computation. (2.) To tackle
+the issue of overfull categories, we propose the method of
+neural decision tree (NDT), which takes simplified neural
+networks as decision function in each branch and employs
+complex neural networks to generate the output in each leaf.
+(3.) Our model outperforms other baselines extensively,
+verifying the effectiveness of our theory and method.
+Organization. In the Section 2, our methodology and neural architecture are discussed. In the Section 3, we specific
+the implementation of fully functioned neural graph in detail. In the Section 4, we provide the proof that neural graph
+is Turing complete. In the Section 5, we conduct the experiments for performance and verification. In the Section
+6, we briefly introduce the related work. In Section 7, we
+list the potential future work from a developing perspective.
+Finally in the Section 8, we conclude our paper and publish
+our codes.
+Figure 1. Illustration of how logic flow is processed in our methodology. Referring to (b), we process the if-else structure of (a) in
+a dynamically graph-constructing manner. Theoretically, we construct the graph according to the active branch, in the forward propagation. When the forward propagation has constructed the graph
+according to logic instructions, the backward propagation would
+be performed as usual in a continuous and non-branching graph.
+Practically, the dynamically constructed process corresponds to
+batch operations. The samples with id 1,3,4 are activated in if
+branch, while those with id 2,5 are tackled in else branch. After
+the end of if-else instruction, the sub-batch hidden representations
+are joined as the classified results.
+
+proximated manner. Simply, we multiply the symbols inside
+the branch with Dirac function (i.e. 1x>0 or 1x≤0 ). Specifically, regarding Figure 1, we reform F CN etwork(img) as
+F CN etwork(img ⊗1tanh>0 ) in the if branch and perform
+the corresponding transformation in the else branch, where
+⊗ is element-wise multiplication. The forward propagation
+would not be modified by the reformulation, while as to the
+backward process, we approximate the Dirac symbol with a
+continuous function to work out the gradients of condition,
+which solves this issue. It is noted that in this paper, the
+continuous function is 1 − e−α|x| ≈ 1x>0 .
+We conduct our experiments on public benchmark datasets:
+MNIST and CIFAR. Experimental results illustrate that our
+model outperforms other baselines extensively and signifi-
+
+2. Methodology
+First, we introduce the overview of our model. Then, we
+discuss each component, specifically. Last, we discuss our
+model from the ensemble perspective.
+2.1. Architecture
+Our architecture is illustrated in Figure 2, which is composed by three customized components namely feature, condition and target network. Firstly, The input is transformed
+by feature network and then the hidden features are classified by decision tree component composed by hierarchal
+condition networks. Secondly, the target networks predict
+the categories for each sample in each leaf. Finally, the
+targets are joined to work out the cross entropy objective.
+The process is exemplified in Algorithm 1.
+Feature Network. To extract the abstract features with
+deep neural structures, we introduce the feature network,
+which is often a stacked CNN and LSTM.
+Condition Network. To exactly pre-classify each sample,
+we employ a simplified neural network as condition network,
+which is usually a one- or two-layer multi-perceptions with
+the non-linear function of tanh. This layer is only applied in
+the inner nodes of decision tree. Actually, the effectiveness
+of traditional decision tree stems from the information gain
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+t
+=
+plef
+j
+
+pright
+=
+j
+
+PNtotal
+
+1cn>0,j Li,j
+i=0
+PNtotal
+1cn>0
+i=0
+PNtotal
+1cn≤0,j Li,j
+i=0
+PNtotal
+1cn≤0
+i=0
+
+(4)
+(5)
+
+where cn is short for condition network and Li,j is the adhoc label vector of i-th sample, where the true label position
+is 1 and otherwise 0. By simple computations, we have:
+PNtotal
+t
+Li,j ln(plef
+)
+∂IG
+j
+i=0
+=
+(6)
+∂1cn>0
+Ntotal
+PNtotal
+Li,j ln(pright
+)
+∂IG
+j
+i=0
+=
+(7)
+∂1cn≤0
+Ntotal
+where IG is short for Inf oGain. As discussed in Introduction, we approximate the Dirac symbol as a continuous
+function, specifically as 1 − e−α|x| ≈ 1x>0 . Thus, the
+gradient of condition network could be deducted as:
+∂IG
+∂IG ∂(1 − e−α|cn|)
+∂IG
+≈
+=
+(αe−α|x| s(cn)) (8)
+∂cn
+∂1cn>0
+∂cn
+∂1cn>0
+∂IG ∂(1 − e−α|cn|)
+∂IG
+∂IG
+≈
+=
+(αe−α|x| s(cn)) (9)
+∂cn
+∂1cn≤0
+∂cn
+∂1cn≤0
+Figure 2. The neural architecture of NDT (depth = 2). The input is
+classified by decision tree component with the condition networks,
+then the target networks predict the categories for each sample in
+each leaf. Notably, the tree component takes advantages of subbatch technique, while the targets are joined in batch to compute
+the cross entropy objective.
+
+splitting rules, which could not be learned by condition
+networks, directly. Thus, we involve an objective item for
+each decision node to maximize the information gain as:
+
+max Inf oGain
+
+=
+
+|F |
+Nright X right
+p
+ln(pright
+) (1)
+j
+Ntotal j=0 j
+
+where N is the corresponding count, |F | is the feature number and p is the corresponding probabilistic distribution of
+features. Regarding the derivatives relative to Dirac symbol,
+we firstly reformulate the information gain in the form of
+Dirac symbol as:
+
+Nlef t =
+
+1cn>0
+
+(2)
+
+1cn≤0
+
+(3)
+
+i=1
+
+Nright =
+
+NX
+total
+i=1
+
+Actually, all the reduction could be performed automatically
+within the proposed principle, that to multiply the symbols
+inside the branch with Dirac function.
+PNtotal Specifically, as an
+example of the count, Nlef t = i=1
+1 × 1cn>0 .
+Target Network. To finally predict the category of each
+sample, we apply a complex network as the target network,
+which often is a stacked convolution one for image or an
+LSTM for sentence.
+2.2. Analysis From Ensemble Perspective
+
+|F |
+Nlef t X lef t
+t
+p ln(plef
+)+
+j
+Ntotal j=0 j
+
+NX
+total
+
+where s is the sign function.
+
+NDT could be treated as an ensemble model, which ensembles many target networks with the hard branching condition
+networks. Currently, there exist two branches of ensemble
+methods, namely split by features, or split by samples, both
+of which increases the difficulty of single classifier. However, NDT splits the data by categories, which means single
+classifier deals with a simpler task.
+The key point is the split purity of condition networks, because the branching reduces the sample numbers for each
+leaf. Relatively to single classifier, if our model keeps the
+sample number per category, NDT could make more effects.
+For an example of one leaf, the sample number reduces
+to 30%, while the category number reduces from 10 to 3.
+With similarly sufficient samples, our model deals with 3classification, which is much easier than 10-classification.
+Thus, our model benefits from the strengthen of single classifier.
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+Algorithm 1 Neural Decision Tree (NDT)
+
+To implement symbol-specific logic component, we propose
+two batch operations, namely sub- and join-batch operation.
+Take the example of Figure 1 (c). To begin, there are five
+samples in the batch. In the forward pass, once processing
+in the branch, according to the condition, the batch is split
+into two sub-batches, each of which is respectively tackled
+by the instructions in the corresponding branch, simultaneously. After processed by two branches, the sub-batches are
+joined into one batch, according to the original order. In
+the backward propagation, the gradients of joined batch are
+split into two parts, which correspond to two sub-batches.
+When the process has propagated through two branches, the
+gradients of two sub-batches are joined again to form the
+gradients of stacked CNN.
+Theoretically, a sample in some sub-batch means the corresponding branch is activated for this sample and the other
+branch is deactivated. On the other word, the hidden representations of this sample connect to the activated branch
+rather than the deactivated one. Thus, the symbol-specific
+logic components perform our proposed principle, in the
+manner of sub- and join-batch operation. Notably, if there
+is no variable that is only introduced in the condition, it is
+unnecessary to update the condition, which makes corresponding neural graph an exact method.
+
+3. Dynamical Graph Construction
+Previously introduced, neural graph is the intelligence architecture, which is characterized by both logics and neurons.
+Mathematically, the component of neurons are continuous
+functions, such as matrix multiply, hyperbolic tangent (tanh),
+convolution layer, etc, which could be implemented as mathematical operations.
+Obviously, simple principal implementation for non-batch
+mode is easy and direct. But practically, all the latest training methods take the advantages of batched mode. Hence,
+we focus on the batched implementation of neural graph in
+this section.
+Conventionally, neural graph is composed by two styles
+of variable, namely symbols such as W in Figure 1, and
+atomic types such as the integer d in Algorithm 1 Line 2.
+In essence, symbolic variables originate from the weights
+between neurons, while the atomic types are introduced by
+the embedded traditional algorithms.
+Therefore, regarding the component of logics, there exist
+two styles: symbol- and atomic-type-specific logic components, which are differentiated in implementation. Symbolspecific logics indicates the condition involves the symbols,
+such as Line 5 ∼ 9 in Algorithm 1, while atomic-typespecific logics means there are only atomic types in the
+condition such as Line 2 in Algorithm 1. However, our proposed principle, that dynamically constructing neural graph,
+could process both the situations.
+
+To implement atomic-type-specific logic component, we
+propose a more flexible batch operation namely allocatebatch. Take the example of Hungarian Layer (Xiao, 2017).
+The Hungarian algorithm deals with the similarity matrix to
+provide the alignment information, according to which, the
+dynamic links between symbols are dynamically allocated,
+shown in Figure 4 of (Xiao, 2017). Thus, the forward and
+backward propagation could be performed in a continuous
+calculus graph. Simply, in the forward pass, we record the
+allocated dynamic links of each sample in the batch, while in
+the backward pass, we propagate the gradients along these
+dynamic links. Obviously, the atomic-type-specific logic
+components perform our proposed principle, in the manner
+of allocate-batch operation.
+The traditional algorithms are a combination of branch (i.e.
+if ) and repeat (i.e. for, while). Repeat could be treated as
+performing branch in multiple times. Thus, the three batch
+operations, namely sub-, join- and allocate-batch operation,
+could process all the traditional algorithms, such as resolution method, A∗ searching, Q-learning, label propagation,
+PCA, K-Means, Multi-Armed Bandit (MAB), AdaBoost.
+
+4. Neural Graph is Turing Complete
+Actually, if neural graph could simulate the Turing machine,
+it is Turing complete. Turing machine is composed by
+four parts: a cell-divided tape, reading/writing head, state
+register and a finite table of instructions. Correspondingly,
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+symbols are based on tensor arrays, which simulate the celldivided tape. Forward/Backward process indicate where
+to read/write. Atomic-type-specific variables record the
+state. Last, the logic flow (i.e. if, while, for) constructs
+the finite instruction table. In summary, neural graph is
+Turing complete.
+Specifically, neural graph is a learnable Turing machine
+rather than a static one. Learnable Turing machine could
+adjust the behaviors/performance, according to data and environment. Traditional computation models focus on static
+algorithms, while neural graph takes advantages of data and
+perception to strengthen the rationality of behaviors.
+
+5. Experiment
+In the section, we verify our model on two datasets: MNIST
+(Lecun et al., 1998) and CIFAR (Krizhevsky, 2009). We first
+introduce the experimental settings in Section 4.1. Then,
+in Section 4.2, we conduct performance experiments to
+testify our model. Last, in Section 4.3, to further verify our
+theoretical analysis, that NDT could reduce the category
+number of leaf nodes, we perform a case study to justify our
+assumption.
+5.1. Experimental Setting
+There exist three customized networks in our model, that
+the feature, condition and target network. We simply apply
+identify mapping as feature network. Regarding the condition network, we apply a two-layer fully connected perceptions, with the hyper-parameter input-300-1 for MNIST and
+input-3000-1 for CIFAR. Regarding the target network, we
+also employ a three-layer fully connected perceptions, with
+the hyper-parameter input-300-100-10 for MNIST, input3000-1000-10 for CIFAR-10 and input-3000-1000-100 for
+CIFAR-100. 1 To train the model, we leverage AdaDelta
+(Zeiler, 2012) as our optimizer, with hyper-parameter as moment factor η = 0.6 and  = 1 × 10−6 . We train the model
+until convergence, but at most 1,000 rounds. Regarding the
+batch size, we always choose the largest one to fully utilize
+the computing devices. Notably, the hyper-parameters of
+approximated continuous function is α = 1000.
+5.2. Performance Verification
+MNIST. The MNIST dataset (Lecun et al., 1998) is a classic benchmark dataset, which consists of handwritten digit
+images, 28 x 28 pixels in size, organized into 10 classes (0
+to 9) with 60,000 training and 10,000 test samples. We select some representative and competitive baselines: modern
+1
+We know the feature and target network are too oversimplified
+for this task. But this version targets at an exemplified model,
+which still could verify our conclusions. We will perform a complex feature and target network in the next/final version.
+
+Table 1. Performance Evaluation on MNIST Dataset.
+
+Methods
+Single Target Network
+LeNet-5
+Multi-Perspective CNN
+Deep Belief Net
+SVM (RBF kernel)
+Random Forest
+
+Accuracy (%)
+96.95
+99.50
+81.38
+98.75
+98.60
+96.80
+
+NDT (depth = 2)
+
+97.90
+
+CNN-based architecture LeNet-5 with dropout and ReLUs,
+classic linear classifier SVM with RBF kernel, Deep Belief
+Nets and a standard Random Forest with 2,000 trees. We
+could observe that:
+1. NDT will beat all the baselines, verifying our theory
+and justifying the effectiveness of our model.
+2. Compared to single target network, NDT promotes
+0.65 point, which illustrates the ensemble of target
+network is effective.
+3. Compared to Random Forest that is also a tree-based
+method, NDT promotes 0.75 point, which demonstrates the neurons indeed strengthen the decision trees.
+CIFAR. The CIFAR-10/100 dataset (Krizhevsky, 2009), is
+also a classic benchmark for overfull category classification,
+which consists of color natural images, 32 x 32 pixels in
+size, from 10/100 classes with 50,000 training and 10,000
+test images. Several representative baselines are selected
+as Network in Network (NIN) (Lin et al., 2013), FitNets
+(Rao et al., 2016), Deep Supervised Network (DSN) (Lee
+et al., 2014), High-Way (Srivastava et al., 2015), All-CNN
+(Springenberg et al., 2014), Exponential Linear Units (ELU)
+(Clevert et al., 2015), FitResNets (Mishkin & Matas, 2015),
+gcForest (Zhou & Feng, 2017) and Deep ResNet (He et al.,
+2016). We could conclude that:
+1. NDT will beat all the strong baselines, which verifies
+the effectiveness of neural decision trees and justifies
+the theoretical analysis.
+2. Compared to single target network, NDT promotes
+4.85 point, which illustrates the ensemble of target
+network is effective.
+3. Compared with gcForest, the performance improves
+- points, which illustrates that neurons empower the
+decision trees more effectively than direct ensembles.
+4. Compared with ResNet that is the strongest baseline,
+we promote the results over - points, which justifies
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+Figure 3. Case Study for NDT in MNIST with depth = 2 (a) and depth = 3 (b). The left tables are the test sample numbers that correspond
+to row-th leaf node and col-th category. For example, the sliced “1105” means there are 1105 test samples of category “1” in leaf node
+“A”. We slice the main component of a leaf and draw the corresponding decision trees in the right panel. Notably, “X” indicates the empty
+class.
+
+Table 2. Performance Evaluation (Error (%)) on CIFAR.
+
+Methods
+NIN
+DSN
+FitNets
+High-Way
+All-CNN
+ELU
+FitResNets
+ResNet
+gcForest
+Random Forest
+Single Target Network
+
+CIFAR-10
+8.81
+8.22
+8.39
+7.72
+7.25
+6.55
+5.84
+6.61
+31.00
+50.17
+-
+
+CIFAR-100
+35.68
+34.57
+35.04
+32.39
+33.71
+24.28
+27.66
+25.16
+89.37
+
+NDT (depth = 4)
+
+-
+
+84.52
+
+our assumption, that NDT could reduce the category
+number of leaf nodes to enhance the intelligence systems.
+5.3. Case Study
+To further testify our assumption that NDT could reduce
+the category number of leaf nodes, we perform a case study
+in MNIST. We make a statistics of test samples for each
+
+leaf node, illustrated in Figure 3. The item of table means
+row-th leaf node has how many samples in col-th category.
+For example, the “1105” in the first row and second column,
+means that there are 1,105 test samples of category “1” are
+pre-classified into leaf node “A”. Correspondingly, we draw
+the decision trees in the right panel with labeled categories,
+which specifically illustrates the decision process of NDT.
+For a complete verification, we vary the depth of NDT with
+2 and 3.
+Firstly, we could clearly draw the conclusion from Figure 3,
+that each leaf node needs to predict less categories, which
+justifies our assumption. For example, in the bottom figure,
+the node “A” only needs to predict the category “1”, which
+is a single classification, and the node “H” only needs to
+predict the categories “0,3,5,8” which is a four classification.
+Because small classification is less difficult than large one,
+our target network in the leaf could perform better, which
+leads to performance promotion in a tree-ensemble manner.
+Secondly, from Figure 3, split purity could be worked out.
+Generally, the two-layer tanh multi-perception achieves a
+decent split purity. Indeed, the most difficult leaf nodes
+(e.g. “D” in the top and “H” in the bottom) are not perfect,
+but others gain a competitive split purity. Statistically, the
+main component or the sliced grid takes 92.4% share of total
+samples, which in a large probability, NDT would perform
+better than 92.4% accuracy in this case.
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+Finally, we discuss the hyper-parameter depth. From the
+top to the bottom of Figure 3, the categories are further
+split. For example, the node “B” in the top is split into
+“C” and “D” in the bottom, which means that the category
+“2” and “6” are further pre-classified. In this way, deep
+neural decision tree is advantageous. But much deeper
+NDT makes less sense, because the categories have been
+already split well. There would be mostly no difference for
+1- or 2-classification. However, considering the efficiency
+and consuming resources, we suggest to apply a suitable
+depth, or theoretically about log2 (|C|), where |C| is the
+total category number.
+
+6. Related Work
+In this section, we briefly introduce three lines of related
+work: image recognition, decision tree and neural graph.
+Convolution layer is necessary in current neural architectures for image recognition. Almost every model is a convolutional model with different configurations and layers,
+such as All-CNN (Springenberg et al., 2014) and DSN (Lee
+et al., 2014). Empirically, deeper network produces better
+accuracy. But it is difficult to train much deeper network for
+the issue of vanishing/exploding gradients, (Glorot & Bengio, 2010). Recently, there emerge two ways to tackle this
+problem: High-Way (Srivastava et al., 2015) and Residual
+Network (He et al., 2015). Inspired by LSTM, high-way
+network applies transform- and carry-gates for each layer,
+which allow information to flow across layers along the computation path without attenuation. For a more direct manner,
+residual network simply employs identity mappings to connect relatively top and bottom layers, which propagates the
+gradients more effectively to the whole network. Notably,
+achieving the state-of-the-art performance, residual network
+(ResNet) is the strongest model for image recognition, temporarily.
+Decision tree is a classic paradigm of artificial intelligence,
+while random forest is the representative methodology of
+this branch. During recent years, completely random tree
+forest has been proposed, such as iForest (Liu et al., 2008)
+for anomaly detection. However, with the popularity of deep
+neural network, lots of researches focus on the fusion between neurons and random forest. For example, (Richmond
+et al., 2015) converts cascaded random forests to convolutional neural network, (Welbl, 2014) leverages random
+forests to initialize neural network. Specially, as the stateof-the-art model, gcForest (Zhou & Feng, 2017) allocates a
+very deep architecture for forests, which is experimentally
+verified on several tasks. Notably, all of this branch could
+not jointly train the neurons and decision trees, which is the
+main disadvantage.
+To jointly fuse neurons and logics, (Xiao, 2017) proposes
+
+the basic principle of neural graph, which could embed traditional logics-based algorithms into neural architectures. The
+seminal paper merges the Hungarian algorithm with neurons as Hungarian layer, which could effectively recognize
+matched/unmatched sentence pairs. However, as a special
+case, the variables only introduced in the condition could
+not be updated, which is a disadvantage for characterizing
+complex systems. Thus, this paper focuses on this issue to
+make a fully functioned neural graph.
+
+7. Future Work
+We list three lines of future work: design new components of
+neural graph, implement a script language for neural graph
+and analyze the theoretical properties of learnable Turing
+machine.
+This paper exemplifies an approach to embed decision tree
+into neural architectures. Actually, many traditional algorithms could promote intelligence system with neurons. For
+example, neural A∗ searching could learn the heuristic rules
+from data, which could be more effective and less resource
+consuming. For a further example, we could represent the
+data with deep neural networks, and conduct label propagation upon the hidden representations, where the propagation
+graph is constructed by K-NN method. Because the label
+propagation, K-NN and deep neural networks are trained
+jointly, the performance promotion could be expected.
+In fact, a fully functioned neural graph may be extremely
+hard and complex to implement. Thus, we expect to publish
+a script language for modeling neural graph and also a
+library that includes all the mainstream intelligence methods.
+Based on these instruments, neural graph could be more
+convenient for practical usage.
+Finally, as we discussed, neural graph is Turing complete,
+making a learnable Turing machine. We believe theoretical
+analysis is necessary for compilation and ability of neural
+graph. Take an example. Do the learnable and static Turing
+machine have the same ability? Take a further example.
+Could our brain excel Turing machine? If not, some excellent neural graphs may gain advantages over biological
+brain, because both of them are learnable Turing machines.
+If it could, the theoretical foundations of intelligence should
+be reformed. Take the final example. What is the best
+computation model for intelligence?
+
+8. Conclusion
+This paper proposes the principle of fully functioned neural
+graph. Based on this principle, we design the neural decision
+tree (NDT) for image recognition. Experimental results on
+benchmark datasets demonstrate the effectiveness of our
+proposed method.
+
+NDT: Neual Decision Tree Towards Fully Functioned Neural Graph
+
+References
+Casper, M, Mengel, M, Fuhrmann, C, Herrmann, E, Appenrodt, B, Schiedermaier, P, Reichert, M, Bruns, T, Engelmann, C, and Grnhage, F. Perceptrons: An introduction
+to computational geometry. 75(3):3356–62, 1969.
+Clevert, DjorkArn, Unterthiner, Thomas, and Hochreiter,
+Sepp. Fast and accurate deep network learning by exponential linear units (elus). Computer Science, 2015.
+Deng, Jia, Dong, Wei, Socher, Richard, Li, Li-Jia, Li, Kai,
+and Fei-Fei, Li. Imagenet: A large-scale hierarchical
+image database. In Computer Vision and Pattern Recognition, 2009. CVPR 2009. IEEE Conference on, pp. 248–
+255. IEEE, 2009.
+Glorot, Xavier and Bengio, Yoshua. Understanding the
+difficulty of training deep feedforward neural networks.
+In Proceedings of the Thirteenth International Conference on Artificial Intelligence and Statistics, pp. 249–256,
+2010.
+He, Kaiming, Zhang, Xiangyu, Ren, Shaoqing, and Sun,
+Jian. Deep residual learning for image recognition. pp.
+770–778, 2015.
+He, Kaiming, Zhang, Xiangyu, Ren, Shaoqing, and Sun,
+Jian. Deep residual learning for image recognition. In
+Computer Vision and Pattern Recognition, pp. 770–778,
+2016.
+Krizhevsky, Alex. Learning multiple layers of features from
+tiny images. 2009.
+Lecun, Y., Bottou, L., Bengio, Y., and Haffner, P. Gradientbased learning applied to document recognition. Proceedings of the IEEE, 86(11):2278–2324, 1998.
+Lecun, Yann, Bengio, Yoshua, and Hinton, Geoffrey. Deep
+learning. Nature, 521(7553):436–444, 2015.
+Lee, Chen Yu, Xie, Saining, Gallagher, Patrick, Zhang,
+Zhengyou, and Tu, Zhuowen. Deeply-supervised nets.
+Eprint Arxiv, pp. 562–570, 2014.
+Lin, Min, Chen, Qiang, and Yan, Shuicheng. Network in
+network. Computer Science, 2013.
+Liu, Fei Tony, Kai, Ming Ting, and Zhou, Zhi Hua. Isolation
+forest. In Eighth IEEE International Conference on Data
+Mining, pp. 413–422, 2008.
+Mcculloch, Warren S and Pitts, Walter H. A logical calculus
+of ideas imminent in nervous activity. 1943.
+Mishkin, Dmytro and Matas, Jiri. All you need is a good
+init. 69(14):3013–3018, 2015.
+
+Rao, Jinfeng, He, Hua, and Lin, Jimmy. Noise-contrastive
+estimation for answer selection with deep neural networks. In ACM International on Conference on Information and Knowledge Management, pp. 1913–1916, 2016.
+Richmond, David L., Kainmueller, Dagmar, Yang,
+Michael Y., Myers, Eugene W., and Rother, Carsten. Relating cascaded random forests to deep convolutional
+neural networks for semantic segmentation. Computer
+Science, 2015.
+Rumelhart, D. E., Hinton, G. E., and Williams, R. J. Learning internal representations by error propagation. MIT
+Press, 1988.
+Silver, David, Huang, Aja, Maddison, Chris J., Guez, Arthur,
+Sifre, Laurent, Driessche, George Van Den, Schrittwieser,
+Julian, Antonoglou, Ioannis, Panneershelvam, Veda, and
+Lanctot, Marc. Mastering the game of go with deep
+neural networks and tree search. Nature, 529(7587):484,
+2016.
+Springenberg, Jost Tobias, Dosovitskiy, Alexey, Brox,
+Thomas, and Riedmiller, Martin. Striving for simplicity: The all convolutional net. Eprint Arxiv, 2014.
+Srivastava, Rupesh Kumar, Greff, Klaus, and Schmidhuber,
+Jrgen. Training very deep networks. Computer Science,
+2015.
+Welbl, Johannes. Casting random forests as artificial neural
+networks (and profiting from it). In German Conference
+on Pattern Recognition, pp. 765–771. Springer, 2014.
+Xiao, Han. Hungarian layer: Logics empowered neural
+architecture. arXiv preprint arXiv:1712.02555, 2017.
+Zeiler, Matthew D. Adadelta: An adaptive learning rate
+method. Computer Science, 2012.
+Zhou, Zhi Hua and Feng, Ji. Deep forest: Towards an
+alternative to deep neural networks. 2017.
+
+

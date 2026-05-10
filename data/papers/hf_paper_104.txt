@@ -1,0 +1,2253 @@
+Title: arXiv paper 104
+
+Categories: 10
+
+Abstract:
+1
+
+A Study of the Allan Variance for Constant-Mean
+Non-Stationary Processes
+
+arXiv:1702.07795v3 [math.ST] 22 Jun 2017
+
+Haotian Xu, Stéphane Guerrier, Roberto Molinari & Yuming Zhang
+
+Abstract—The Allan Variance (AV) is a widely used quantity
+in areas focusing on error measurement as well as in the general
+analysis of variance for autocorrelated processes in domains
+such as engineering and, more specifically, metrology. The form
+of this quantity is widely used to detect noise patterns and
+indications of stability within signals. However, the properties of
+this quantity are not known for commonly occurring processes
+whose covariance structure is non-stationary and, in these cases,
+an erroneous interpretation of the AV could lead to misleading
+conclusions. This paper generalizes the theoretical form of the
+AV to some non-stationary processes while at the same time
+being valid also for weakly stationary processes. Some simulation
+examples show how this new form can help to understand the
+processes for which the AV is able to distinguish these from the
+stationary cases and hence allow for a better interpretation of
+this quantity in applied cases.
+Index Terms—Metrology, Sensor Calibration, Bias-Instability,
+Longitudinal Studies, Haar Wavelet Variance, Heteroscedasticity.
+
+I. I NTRODUCTION
+The Allan Variance (AV) is a widely used quantity in
+areas going from engineering to physics where there is an
+interest in studying the stochastic stability of error measurements from various instruments such as, among others,
+clocks and oscillators. Its usefulness resides in the fact that it
+provides an extremely informative summary on the variance
+of time series or, more generally, of autocorrelated processes,
+especially when these are non-stationary and with infinite
+variance. Indeed, [8] underlined how the AV is a better
+measure of uncertainty compared to standard methods (e.g.
+moving average variance) for processes such as random walks
+and non-stationary Fractional Autoregressive-Moving Average
+(ARFIMA) models, while being considerably useful also for
+stationary processes. For these processes the AV has a well
+known form which can help detect the kind of process, for
+example, from the log-log plot of the AV of an observed signal.
+The behaviour and forms of the AV for stationary and some
+non-stationary processes was studied in [8] where the AV is
+used to detect and understand the process underlying a signal
+issued from different voltage measurements. However, there
+are many other applications for which the AV is of interest
+H. Xu is a PhD student, Geneva School of Economics and Management,
+University of Geneva, 1211, Switzerland (E-mail: haotian.xu@unige.ch).
+S. Guerrier is Assistant Professor, Department of Statistics, Pennsylvania
+State University, PA, 16801, USA.
+R. Molinari is Visiting Assistant Professor, Department of Statistics &
+Applied Probability, University of California, Santa Barbara, CA, 93117,
+USA.
+Y. Zhang is a graduate student, Department of Statistics, Pennsylvania State
+University, PA, 16801, USA.
+
+such as the detection of noise terms characterising inertial
+sensors [see 2] and many others [see 5, for an overview].
+However, although the AV is extremely useful in the above
+settings, it is not known how it behaves when in the presence
+of other types of processes and whether it is able to distinguish
+between them. In this paper we intend to investigate the
+form of the AV for a particular class of processes which
+includes all those processes that have a constant mean but
+have a time-varying variance-covariance structure such as, for
+example, the Generalized AutoRegressive Conditional Heteroscedasticity (GARCH) models [see 1], while processes with
+specific forms of mean or higher-order non-stationarity are
+not considered since they can either be dealt with through
+statistical regression techniques or simply cannot be detected
+by the AV. In particular, we focus on those processes which
+are characterized by a dependence structure by blocks since
+they are common in settings such as longitudinal studies or
+sensor calibration for navigation engineering. In the latter
+cases, the AV is often approximated by that of other known
+stationary processes such as, for example, the bias-instability
+process whose AV is often approximated by that of a firstorder autoregressive process [see, for example, 7]. Moreover,
+it is not clear whether the AV can actually help to distinguish
+between these processes and those processes for which its
+form is currently known. The latter aspect is of particular
+relevance since it could lead to an erroneous interpretation of
+the observed process, for example assuming stationarity when
+this is not the case and reaching false conclusions.
+In order to deal with the above mentioned non-stationary
+processes, this paper intends to study the theoretical form of
+the AV when the covariance structure is non-stationary. The
+consequent advantage of this study is that, by considering the
+varying covariance structure in the AV definition, it extends
+the applicability of those approaches that make use of the
+AV and raises awareness on its limitations, and inappropriate
+interpretation, in distinguishing and identifying these processes
+from stationary ones. With this in mind, Section II briefly
+defines the AV and describes its theoretical form for those
+processes which have been considered up to now. Section III
+introduces the new theoretical form of both the overlapping
+and non-overlapping AV for processes whose covariance structure is non-stationary and shows how the form of the AV for
+stationary processes is a special case of this new form. In the
+same section, three case studies are presented which highlight
+the importance of these findings in order to better interpret
+processes through the AV. Finally Section IV concludes.
+
+2
+
+II. OVERVIEW OF THE A LLAN VARIANCE
+
+γ(h) = cov(Xt+h , Xt ),
+
+mean to estimate different kind of processes [see for example
+4]. However, there are many commonly encountered processes
+whose AV is not known and it is unclear to what point
+these can actually be distinguished from stationary processes.
+The next section delivers a more general form of the AV
+which includes these processes and studies if this quantity can
+actually be helpful in detecting them.
+
+which depends solely on h, the distance between observations,
+2
+with σX
+= γ(0) being the process variance. We can consequently define the autocorrelation function as
+
+III. A LLAN VARIANCE FOR C ONSTANT-M EAN
+N ON -S TATIONARY P ROCESSES
+
+To introduce the AV, let us first define (Xt )t=1,...,T as a
+weakly stationary, discrete time and regularly spaced stochastic process with a constant mean µ (i.e. E[Xt ] = µ) and an
+autocovariance function defined as follows
+
+ρ(h) =
+
+γ(h)
+.
+γ(0)
+
+We consider the AV computed at dyadic scales (τ ) starting
+from local averages of the process which can be denoted as
+n
+
+(n)
+
+X̄t
+
+≡
+
+1X
+Xt−n+i ,
+n i=1
+
+(1)
+
+where n ∈ {x ∈ N : 1 ≤ x < log2 (T ) − 1} therefore determines the number of consecutive observations considered for
+the average. If the process has constant mean µ, this implies
+(n)
+that X̄t also has the same mean and, based on these averages
+and following [6], the maximum-overlapping AV (MOAV)
+
+T
+2 
+1 X
+(n)
+(n)
+E X̄k − X̄k−n
+.
+(2)
+AVarn (Xt ) ≡
+2m?
+
+As underlined in the previous sections, the AV is particularly
+useful for measuring uncertainty in non-stationary processes,
+especially when these have infinite variance. Nevertheless,
+there are other forms of non-stationarity for which the properties of the AV are unknown and these consist in those
+processes (Xt ) with a constant mean µ (independent of time)
+but a non-stationary covariance structure. This implies that the
+covariance function between observations at distance h is also
+a function of time t and can therefore be denoted as γ(h, t).
+This type of process is very common in different areas going
+from engineering [see 2] to economics [see 3].
+To study the theoretical form of the AV for this class of
+(n)
+processes, let us first define Xt as being the following vector
+of n consecutive observations starting at t − n + 1
+(n)
+
+Xt
+
+T
+
+≡ [Xt−n+1 · · · Xt ] .
+
+k=2n
+
+?
+
+where m = T − 2n + 1 and whose corresponding estimator
+is given by
+[ n (Xt ) =
+AVar
+
+T
+2
+1 X  (n)
+(n)
+x̄k − x̄k−n .
+?
+2m
+
+(3)
+
+k=2n
+
+(n)
+
+(n)
+
+where x̄t denotes the sample equivalent of X̄t based on a
+realization of the process (Xt ). Another version of the AV is
+the non-overlapping AV (NOAV) whose estimator however is
+not statistically as efficient as that of the MOAV (see App. B
+for more details).
+Keeping in mind the above definitions of the MOAV, [8]
+delivered a general theoretical form of this quantity when
+applied to weakly stationary processes which is given by
+
+2
+σX
+AVarn (Xt ) =
+n [1 − ρ(n)]
+(4)
+n2
+
+n−1
+X
++
+i [2ρ(n − i) − ρ(i) − ρ(2n − i)] .
+i=1
+
+Based on the above equation, the exact form of the AV for
+different stationary processes, such as the general class of
+AutoRegressive Moving Average (ARMA) models, can be
+derived. Moreover, [8] provided the theoretical AV for nonstationary processes such as the random walk and ARFIMA
+models for which the AV, as mentioned earlier, represents a
+better measure of uncertainty compared to other methods.
+Using the known theoretical forms of the AV, it is therefore
+possible to detect and distinguish different processes based on
+the pattern of their AV. Due to this, this quantity (or similar
+quantities such as the Haar wavelet variance) can be used as a
+
+which contains the observations used to build the average in
+(1). Using the above vector, for t = n, ..., T , we can then
+define the matrix
+
+
+(n)
+(n)
+Σt ≡ var Xt
+,
+(5)
+and, for t = 2n, ..., T , we define the matrix
+
+
+(n)
+(n)
+(n)
+,
+Γt ≡ cov Xt−n , Xt
+
+(6)
+
+These matrices represent the covariance matrices of the obser(n)
+vations contained in each consecutive average. Indeed, Σt
+represents the covariance matrix of the observations within the
+(n)
+average X̄t which is used in definitions (D-1) and (2) while
+(n)
+Γt represents the cross-covariance between these two sets
+of observations. A visual representation of these quantities is
+given in App. A.
+In this section we will only consider the non-stationary
+MOAV while the form of the non-stationary NOAV is given
+in App. B. Based on the above matrices, we can also define
+different quantities according to the matrix of reference and
+the lags between observations. More specifically, let us first
+consider the case in which we are interested in lags h such
+that 0 ≤ h < n. Because of the overlapping nature of the
+AV, the observations at these lags can belong to the sets of
+(n)
+(n)
+observations within both the matrix Σt and the matrix Γt
+(n)
+and, for these sets of observations within the matrix Σt , we
+can define the following quantity
+γ
+e(h) ≡
+
+T n−h−1
+X
+X
+1
+cov(Xt−n−s−h , Xt−n−s )
+?
+2m (n − h) t=2n s=0
+
++ cov(Xt−s−h , Xt−s ).
+
+3
+
+If, however, the observations at the considered lags are among
+(n)
+the set of observations only within the matrix Γt , we define
+the quantity below
+T
+h
+1 XX
+γ
+e (h) ≡ ?
+cov (Xt−n+s−h , Xt−n+s ) .
+m h t=2n s=1
+∗
+
+Finally, when considering lags h such that n ≤ h ≤ 2n − 1,
+the set of observations at these lags can only be considered
+(n)
+within the matrix Γt and, for this final case, we define the
+quantity
+γ
+e(h) ≡
+
+T 2n−h−1
+X
+X
+1
+cov (Xt−s−h , Xt−s ) .
+?
+m (2n − h) t=2n s=0
+
+The above definitions can be seen as generalized definitions of
+the autocovariance which consists in the average autocovariance for a given lag h. Because of this, it must be underlined
+that these definitions are not at all equivalent to the covariance
+function γ(h, t) but correspond to an average of this function
+over all times t. Having specified this, we can now provide
+the following lemma.
+L EMMA 1: The non-stationary MOAV is given by
+(
+"
+Pn−1
+1
+?
+?
+e(0) + 2
+e(h)
+AVarn = 2m? n2 2nm γ
+h=1 2m (n − h) γ
+#)
+−m? h γ
+e∗ (h) −
+
+P2n−1
+h=n
+
+m? (2n − h) γ
+e(h)
+
+.
+
+The proof of this lemma is given in App. C. Considering
+this expression, an aspect that must be underlined is that
+the definitions of the functions γ
+e(h) and γ
+e∗ (h) given earlier
+simplify to the autocovariance function γ(h) when dealing
+with a weakly stationary process. In the latter case, the form of
+the non-stationary AV consequently reduces to the expression
+in (4) for which a more detailed discussion is given in App. ??.
+As a final note to this result it should also be highlighted that,
+in some of the considered non-stationary cases, the estimators
+of the MOAV defined in (3) and of the NOAV (see App. B)
+do not necessarily have the same expectation.
+Having underlined these points and with the general definition of the AV given in Lemma 1, we can now investigate its
+properties when assuming the process of interest is within the
+class of processes treated in this paper. The next sections report
+some simulation studies regarding some of these processes in
+attempt to understand also whether the AV is a useful quantity
+to detect them and distinguish them from weakly stationary
+processes. In all cases, the simulated process is of length
+T = 1, 000 (except for the bias-instability process where
+T = 2, 500) and is simulated 50 times. The estimated AV
+is represented in plots along with the theoretical stationary
+and non-stationary forms of the AV in order to understand its
+behaviour under these different assumptions.
+1) Non-Stationary White Noise: The first process we study
+is the non-stationary white noise by which we intend, without loss of generality, all those zero-mean processes whose
+variance changes with time. The evolution of the variance in
+time can either be completely random or can follow a specific
+
+Fig. 1. Logarithm of the MOAV of the non-stationary white noise process for
+scales τ = 2n . Estimated MOAV (light-blue lines); theoretical non-stationary
+MOAV (black line with dots) and theoretical stationary AV based on the
+average variance (red line with triangles).
+
+parametric model such as, for example, a GARCH process.
+The goal of studying the AV for these types of processes is
+to understand whether it is able to detect such a structure in
+a time series and if it can be distinguished from a stationary
+white noise process. For this purpose, the true non-stationary
+process considered in the simulation study is generated from
+the following model
+Xt ∼ N (0, σt2 ),
+where σt2 = t, with t = 1, . . . , T . The theoretical stationary
+form is based on the average of the variances used to simulate
+the processes (i.e. σ̄ 2 = (1+T )/2 in this example). Fig. 1
+represents the estimated AVs along with the theoretical forms
+(stationary and non-stationary). In this case, it can be seen
+how both theoretical forms correspond and the estimated AVs
+closely follow these quantities. This example confirms that
+the AV is therefore unable to distinguish between a stationary
+white noise process and a white noise process whose secondorder behaviour is non-stationary.
+2) Bias-Instability: The bias-instability process is a commonly known process in the engineering domain, specifically
+for inertial sensor calibration for navigation. The characteristic
+of this process is that it consists in different concatenated
+sequences (blocks) where, within each block, the realization
+of a random variable is repeated (i.e. constant). More formally,
+let bi , i = 1, . . . , B, represent the set of time indices belong
+iid
+to the ith block within the time series, and let Ci ∼ N (0, σ 2 ).
+We can then define this process as
+Xt = ci
+
+if t ∈ bi .
+
+One realization of the bias-instability process is illustrated
+in the top panel Fig. 2 where the length of block bi is 10
+for all i = 1, . . . , B, and B = 250. Since the theoretical
+form of the AV for this process is not known exactly, it is
+often approximated by the AV of a First-Order AutoRegressive
+(AR1) process. Although this approximation can be useful, it
+is nevertheless still an approximation and, using the form given
+in Lemma 1, we can now obtain a theoretical form for the AV
+of this process which is represented in the bottom panel of Fig.
+
+4
+
+Fig. 2. Top: Realization of the bias-instability process with σ 2 = 1 and the
+length of block bi = 10, ∀i = 1, . . . , B, and B = 250. Bottom: Logarithm
+of the MOAV of the bias-instability process for scales τ = 2n . Estimated
+MOAV (light-blue lines); theoretical non-stationary MOAV (black line with
+dots) and theoretical stationary MOAV of an AR1 approximating the biasinstability MOAV (red line with triangles).
+
+Fig. 3. Top: Realization of the block-structure autoregressive process with
+φ = 0.9, σ 2 = 1 and the length of block bi = 10, ∀i = 1, . . . , B, and
+B = 100. Bottom: Logarithm of the MOAV of the block-structure firstorder autoregressive process for scales τ = 2n . Estimated MOAV (light-blue
+lines); theoretical non-stationary MOAV (black line with dots) and theoretical
+stationary MOAV assuming no block structure (red line with triangles).
+
+process
+2. Indeed the latter plot shows that the estimated AVs closely
+follow the theoretical non-stationary form given earlier. The
+red line represents the AV of a stationary AR1 process which
+is supposed to approximate the true AV of bias-instability. The
+latter is the result of the averaging of the theoretical AV for
+a stationary AR1 process estimated via maximum-likelihood
+on each of the simulated processes. It is clear how, although
+close over some scales, this approximation is not good enough
+when considering the logarithmic representation of the AV.
+Therefore, knowing the exact form of the AV for this process
+would allow to better interpret the signals characterised by
+bias-instability.
+3) Block-Structure Autoregressive Processes: As a final
+example we consider a block-structure AR1 process. Similarly
+to the bias-instability process, within this paper, we define
+a block-structure process as a process whose parameters are
+fixed but is made by concatenated time periods (blocks) where
+observations within each block are generated independently
+from those in the other blocks. An example is given by the
+settings of longitudinal studies in which each subject can be
+measured over time and, although the subjects are independent
+from each other, these measurements can be explained by
+an autocorrelated process within each subject. To define this
+(i)
+process formally, let Xt ∼ Fθ denote the following AR1
+
+(i)
+
+Xt
+
+(i)
+
+= φXt−1 + t
+
+with parameter vector θ = [φ σ 2 ]T where φ ∈ (−1, 1) and
+iid
+t ∼ N (0, σ 2 ). If again we let bi denote the ith block, then
+the block-structure AR1 process can be defined as
+(i)
+
+Xt = Xt
+(i)
+
+if t ∈ bi .
+(j)
+
+where Xt is independent of Xt , ∀ i 6= j. By defining
+φ = 0.9 and σ 2 = 1 for the simulation study, the top
+panel of Fig. 3 shows a realization of this process while the
+bottom panel of Fig. 3 illustrates the results of the simulations
+for this particular process. As for bias-instability, it can be
+observed how the stationary form of the AV (that does not
+consider the block structure) is not close to the estimated
+AVs while the non-stationary form provided in this paper
+adequately represents this process and can therefore allow to
+distinguish between a stationary autoregressive process and a
+block-structure one.
+IV. C ONCLUSIONS
+Within this paper we wanted to underline an issue concerning the AV which had not yet been studied. Indeed, the
+behaviour of the AV in commonly occurring settings where
+the covariance structure of the processes is non-stationary was
+
+5
+
+unknown and, in many cases, was either ignored or dealt
+with through approximations. The consequence of the latter
+approaches would probably consist in erroneous interpretations
+and conclusions drawn from an AV analysis. For this reason,
+this paper studied the form of the AV for this class of processes thereby generalizing its form also for weakly stationary
+processes. Based on this, several examples were provided in
+which the properties of the AV were studied, highlighting its
+ability to detect these processes and to eventually distinguish
+them from stationary ones, making researchers and practitioners more aware of issues related to the interpretation and use
+of this quantity in more general and common settings.
+
+Γi
+
+Γ 2n
+Σn
+
+Σ 2n
+
+Σ i−
+
+ΓT
+
+n
+
+ΣT
+
+Σi
+
+−n
+
+Γi
+
+Γ 2n
+
+ΣT
+ΓT
+
+trix
+
+ce
+
+Ma
+
+an
+
+i
+var
+Co
+
+R EFERENCES
+[1] Bollerslev, T.: Generalized autoregressive conditional heteroskedasticity. Journal of econometrics 31(3), 307–327
+(1986)
+[2] El-Sheimy, N., Hou, H., Niu, X.: Analysis and modeling of
+inertial sensors using allan variance. IEEE Transactions on
+instrumentation and measurement 57(1), 140–149 (2008)
+[3] Gallegati, M., Semmler, W.: Wavelet applications in economics and finance, vol. 20. Springer (2014)
+[4] Guerrier, S., Skaloud, J., Stebler, Y., Victoria-Feser, M.P.:
+Wavelet-variance-based estimation for composite stochastic processes. Journal of the American Statistical Association 108(503), 1021–1030 (2013)
+[5] Percival, D.B.: A wavelet perspective on the allan variance. IEEE transactions on ultrasonics, ferroelectrics, and
+frequency control 63(4), 538–554 (2016)
+[6] Percival, D.B., Guttorp, P.: Long-memory processes, the
+allan variance and wavelets. Wavelets in geophysics 4,
+325–344 (1994)
+[7] Unsal, D., Demirbas, K.: Estimation of deterministic and
+stochastic imu error parameters. In: Position Location
+and Navigation Symposium (PLANS), 2012 IEEE/ION,
+pp. 862–868. IEEE (2012)
+[8] Zhang, N.F.: Allan variance of time series models for
+measurement data. Metrologia 45(5), 549 (2008)
+
+A PPENDIX A
+G RAPHICAL ILLUSTRATION OF MOAV
+To graphically illustrate the quantities defined in Section
+III, Fig. 4 represents the true covariance matrix for a given
+process and highlights how the AV is related to this matrix by
+overlapping square matrices along the diagonal, each of which
+is composed of the quantities defined in Eq. (5) and Eq. (6).
+
+(n)
+
+Fig. 4. Graphical illustration of matrices Σt
+
+k=1
+
+This estimator is less efficient than the MOAV, mainly because
+it is based on fewer averages and therefore on a smaller sample
+size. To define the theoretical form of the NOAV for the non(n)
+stationary processes of interest, we first define the vector Xj
+of n consecutive observations starting at (j − 1)n + 1, i.e.
+
+T
+(n)
+Xj ≡ X(j−1)n+1 · · · Xjn .
+Using the above, for k = 1, ..., m, we define the matrices
+(n)
+(n)
+(n)
+Σ2k , Σ2k−1 and Γk as follows:
+
+
+
+
+(n)
+(n)
+(n)
+(n)
+Σ2k ≡ var X2k , Σ2k−1 ≡ var X2k−1
+
+
+(n)
+(n)
+(n)
+and Γk ≡ cov X2k−1 , X2k .
+As in Appendix A, the above matrices are graphically represented in Fig. 5 where, as opposed to the MOAV, these
+matrices do not overlap along the diagonal of the covariance
+(n)
+(n)
+(n)
+matrix of the process. We then let σ̄2k , σ̄2k−1 and γ̄k
+(n)
+(n)
+(n)
+denote the averages of the matrices Σ2k , Σ2k−1 and Γk ,
+respectively, i.e.
+n
+n
+1 X X  (n) 
+(n)
+σ̄2k ≡ 2
+Σ2k
+,
+n i=1 j=1
+i,j
+(n)
+
+A PPENDIX B
+T HEORETICAL FORM OF THE NOAV FOR
+N ON -S TATIONARY P ROCESSES
+
+k=1
+
+(n)
+γ̄k
+
+(D-1)
+
+for the MOAV.
+
+T
+where m = b 2n
+c. The corresponding estimator for this
+quantity is given by
+m 
+2
+X
+(n)
+(n)
+] n (Xt ) = 1
+AVar
+x̄2k − x̄2k−1 .
+2m
+
+σ̄2k−1 ≡
+
+The non-overlapping AV (NOAV) is defined as:
+
+m
+2 
+1 X
+(n)
+(n)
+E X̄2k − X̄2k−1
+,
+AVarn (Xt ) ≡
+2m
+
+(n)
+
+and Γt
+
+n
+n
+1 X X  (n) 
+Σ2k−1
+,
+n2 i=1 j=1
+i,j
+n
+n
+1 X X  (n) 
+≡ 2
+Γk
+.
+n i=1 j=1
+i,j
+
+We further define σ̄ (n) and γ̄ (n) as follows:
+m
+m
+i
+1 X h (n)
+1 X (n)
+(n)
+σ̄ (n) ≡
+σ̄2k + σ̄2k−1
+and γ̄ (n) ≡
+γ̄k .
+2m
+m
+k=1
+
+k=1
+
+6
+
+L EMMA 2: We define the Non-stationary NOAV as
+(
+"
+Pn−1
+1
+AVarn = 2mn2 2mn γ
+e(h)
+e(0) + 2
+h=1 2m(n − h) γ
+Γ1
+Σ1
+Σ2
+Γ1
+
+Σ 2i−
+
+Γi
+
+1
+
+Σ 2i
+
+Γi
+
+Σ 2m
+
+#)
+
+Γm
+
+−1
+
+∗
+
+Σ 2m
+
+−mh γ
+e (h) −
+
+Γm
+
+ce
+
+h=n
+
+m(2n − h) γ
+e(h)
+
+.
+
+Proof of Lemma 2:
+The proof of Lemma 2 is direct from the above definitions.
+Indeed, we have
+
+2 
+
+
+
+
+(n)
+(n)
+(n)
+(n)
+E X̄2k − X̄2k−1
+= var X̄2k + var X̄2k−1
+
+
+(n)
+(n)
+−2 cov X̄2k−1 , X̄2k
+
+trix
+
+an
+
+i
+var
+Co
+
+P2n−1
+
+Ma
+
+(n)
+
+(n)
+
+(n)
+
+= σ̄2k + σ̄2k−1 − 2γ̄k .
+(n)
+
+(n)
+
+(n)
+
+Fig. 5. Graphical illustration of matrices Σ2k , Σ2k−1 and Γk
+NOAV.
+
+for the
+
+Then, using Eq. (D-1), we obtain
+
+2 
+Pm
+(n)
+(n)
+1
+E
+X̄
+−
+X̄
+AVarn
+= 2m
+k=1
+2k
+2k−1
+1
+2m
+
+Pm
+
+(n)
+
+(n)
+
+(n)
+
+σ̄ + σ̄
+− 2γ̄
+ 2k(n) 2k−1 (n)  k
+1
+2m σ̄ − 2m γ̄
+=
+( 2m
+"
+Pn−1
+1
+2mn γ
+e(0) + 2
+= 2mn
+e(h)
+2
+h=1 2m(n − h) γ
+=
+
+k=1
+
+#)
+Based on the earlier defined matrices, as for the MOAV, we
+can also define different quantities according to the matrix of
+reference and the lags between observations. More specifically,
+let us first consider the case in which we are interested in
+lags h such that 0 ≤ h < n. The observations at these
+lags can belong to the sets of observations within the matrix
+(n)
+(n)
+(n)
+Σ2k , Σ2k−1 and Γk and, for these sets of observations
+(n)
+(n)
+within matrices Σ2k and Σ2k−1 , we can define the following
+quantity
+2m n−h
+
+XX
+
+1
+γ
+e(h) ≡
+cov X(k−1)n+s , X(k−1)n+s+h .
+2m(n − h)
+s=1
+k=1
+
+If, however, the observations at the considered lags are among
+(n)
+the set of observations only within the matrix Γk , we define
+the quantity below
+m
+
+γ
+e∗ (h) ≡
+
+h
+
+
+1 XX
+cov X(2k−1)n+s−h , X(2k−1)n+s .
+mh
+s=1
+k=1
+
+Finally, when considering lags h such that n ≤ h ≤ 2n − 1,
+the set of observations at these lags can only be considered
+(n)
+within the matrix Γt and, for this final case, we define the
+quantity
+
+∗
+
+−mh γ
+e (h) −
+
+P2n−1
+h=n
+
+m(2n − h) γ
+e(h)
+
+,
+
+which concludes the proof.
+
+A PPENDIX C
+(n)
+
+Proof of Lemma 1: In order to prove Lemma 1 let σ̄t
+(n)
+(n)
+(n)
+and γ̄t denote the averages of the matrices Σt and Γt ,
+respectively, i.e.
+n
+n
+1 X X  (n) 
+(n)
+Σt
+,
+σ̄t ≡ 2
+n i=1 j=1
+i,j
+(n)
+γ̄t
+
+n
+n
+1 X X  (n) 
+≡ 2
+Γt
+.
+n i=1 j=1
+i,j
+
+Further, we define σ̄ (n) and γ̄ (n) as follows:
+σ̄ (n) ≡
+
+T
+X
+1
+(n)
+(n)
+σ̄ + σ̄t−n
+2(T − 2n + 1) t=2n t
+
+γ̄ (n) ≡
+
+T
+X
+1
+(n)
+γ̄ .
+T − 2n + 1 t=2n t
+
+m 2n−h
+X
+X
+
+1
+cov X(k−1)n+s , X(k−1)n+s+h .
+m(2n − h)
+Based on these definitions we have
+k=1 s=1
+
+2 
+
+
+
+
+(n)
+(n)
+(n)
+(n)
+As for the MOAV case, the above definitions can be seen as
+E X̄k − X̄k−n
+= var X̄k
++ var X̄k−n
+generalized definitions of the autocovariance which consists in
+
+
+(n)
+(n)
+the average autocovariance for a given lag h. Using the above
+−2 cov X̄k , X̄k−n
+notations and definitions, we can provide the following result.
+(n)
+(n)
+(n)
+= σ̄k + σ̄k−n − 2γ̄k .
+
+γ
+e(h) ≡
+
+7
+
+Then, using Eq. (2), we obtain
+AVarn
+
+1
+2m?
+
+=
+=
+
+1
+2m?
+
+=
+(
+=
+
+1
+2m? n2
+
+
+
+PT
+
+k=2n E
+
+(n)
+
+X̄k
+
+(n)
+k=2n σ̄k +
+ ? (n)
+
+PT
+
+1
+2m∗
+
+(n)
+
+− X̄k−n
+(n)
+
+2 
+(n)
+
+σ̄k−n − 2γ̄k
+
+− 2m? γ̄ (n)
+
+2m σ̄
+
+"
+?
+
+2nm γ
+e(0) + 2
+
+Pn−1
+h=1
+
+2m? (n − h) γ
+e(h)
+#)
+
+?
+
+?
+
+−m h γ
+e (h) −
+which concludes the proof.
+
+P2n−1
+h=n
+
+?
+
+m (2n − h) γ
+e(h)
+
+,
+
+
+
+Summary:
+This research paper covers the following topic: 1
+
+A Study of the Allan Variance for Constant-Mean
+Non-Stationary Processes
+
+arXiv:1702.07795v3 [math.ST] 22 Jun 2017
+
+Haotian Xu, Stéphane Guerrier, Roberto Molinari & Yuming Zhang
+
+Abstract—The Allan Variance (AV) is a widely used quantity
+in areas focusing on error measurement as well as in the general
+analysis of variance for autocorrelated processes in domains
+such as engineering and, more specifically, metrology. The form
+of this quantity is widely used to detect noise patterns and
+indications of stability within signals. However, the properties of
+this quantity are not known for commonly occurring processes
+whose covariance structure is non-stationary and, in these cases,
+an erroneous interpretation of the AV could lead to misleading
+conclusions. This paper generalizes the theoretical form of the
+AV to some non-stationary processes while at the same time
+being valid also for weakly stationary processes. Some simulation
+examples show how this new form can help to understand the
+processes for which the AV is able to distinguish these from the
+stationary cases and hence allow for a better interpretation of
+this quantity in applied cases.
+Index Terms—Metrology, Sensor Calibration, Bias-Instability,
+Longitudinal Studies, Haar Wavelet Variance, Heteroscedasticity.
+
+I. I NTRODUCTION
+The Allan Variance (AV) is a widely used quantity in
+areas going from engineering to physics where there is an
+interest in studying the stochastic stability of error measurements from various instruments such as, among others,
+clocks and oscillators. Its usefulness resides in the fact that it
+provides an extremely informative summary on the variance
+of time series or, more generally, of autocorrelated processes,
+especially when these are non-stationary and with infinite
+variance. Indeed, [8] underlined how the AV is a better
+measure of uncertainty compared to standard methods (e.g.
+moving average variance) for processes such as random walks
+and non-stationary Fractional Autoregressive-Moving Average
+(ARFIMA) models, while being considerably useful also for
+stationary processes. For these processes the AV has a well
+known form which can help detect the kind of process, for
+example, from the log-log plot of the AV of an observed signal.
+The behaviour and forms of the AV for stationary and some
+non-stationary processes was studied in [8] where the AV is
+used to detect and understand the process underlying a signal
+issued from different voltage measurements. However, there
+are many other applications for which the AV is of interest
+H. Xu is a PhD student, Geneva School of Economics and Management,
+University of Geneva, 1211, Switzerland (E-mail: haotian.xu@unige.ch).
+S. Guerrier is Assistant Professor, Department of Statistics, Pennsylvania
+State University, PA, 16801, USA.
+R. Molinari is Visiting Assistant Professor, Department of Statistics &
+Applied Probability, University of California, Santa Barbara, CA, 93117,
+USA.
+Y. Zhang is a graduate student, Department of Statistics, Pennsylvania State
+University, PA, 16801, USA.
+
+such as the detection of noise terms characterising inertial
+sensors [see 2] and many others [see 5, for an overview].
+However, although the AV is extremely useful in the above
+settings, it is not known how it behaves when in the presence
+of other types of processes and whether it is able to distinguish
+between them. In this paper we intend to investigate the
+form of the AV for a particular class of processes which
+includes all those processes that have a constant mean but
+have a time-varying variance-covariance structure such as, for
+example, the Generalized AutoRegressive Conditional Heteroscedasticity (GARCH) models [see 1], while processes with
+specific forms of mean or higher-order non-stationarity are
+not considered since they can either be dealt with through
+statistical regression techniques or simply cannot be detected
+by the AV. In particular, we focus on those processes which
+are characterized by a dependence structure by blocks since
+they are common in settings such as longitudinal studies or
+sensor calibration for navigation engineering. In the latter
+cases, the AV is often approximated by that of other known
+stationary processes such as, for example, the bias-instability
+process whose AV is often approximated by that of a firstorder autoregressive process [see, for example, 7]. Moreover,
+it is not clear whether the AV can actually help to distinguish
+between these processes and those processes for which its
+form is currently known. The latter aspect is of particular
+relevance since it could lead to an erroneous interpretation of
+the observed process, for example assuming stationarity when
+this is not the case and reaching false conclusions.
+In order to deal with the above mentioned non-stationary
+processes, this paper intends to study the theoretical form of
+the AV when the covariance structure is non-stationary. The
+consequent advantage of this study is that, by considering the
+varying covariance structure in the AV definition, it extends
+the applicability of those approaches that make use of the
+AV and raises awareness on its limitations, and inappropriate
+interpretation, in distinguishing and identifying these processes
+from stationary ones. With this in mind, Section II briefly
+defines the AV and describes its theoretical form for those
+processes which have been considered up to now. Section III
+introduces the new theoretical form of both the overlapping
+and non-overlapping AV for processes whose covariance structure is non-stationary and shows how the form of the AV for
+stationary processes is a special case of this new form. In the
+same section, three case studies are presented which highlight
+the importance of these findings in order to better interpret
+processes through the AV. Finally Section IV concludes.
+
+2
+
+II. OVERVIEW OF THE A LLAN VARIANCE
+
+γ(h) = cov(Xt+h , Xt ),
+
+mean to estimate different kind of processes [see for example
+4]. However, there are many commonly encountered processes
+whose AV is not known and it is unclear to what point
+these can actually be distinguished from stationary processes.
+The next section delivers a more general form of the AV
+which includes these processes and studies if this quantity can
+actually be helpful in detecting them.
+
+which depends solely on h, the distance between observations,
+2
+with σX
+= γ(0) being the process variance. We can consequently define the autocorrelation function as
+
+III. A LLAN VARIANCE FOR C ONSTANT-M EAN
+N ON -S TATIONARY P ROCESSES
+
+To introduce the AV, let us first define (Xt )t=1,...,T as a
+weakly stationary, discrete time and regularly spaced stochastic process with a constant mean µ (i.e. E[Xt ] = µ) and an
+autocovariance function defined as follows
+
+ρ(h) =
+
+γ(h)
+.
+γ(0)
+
+We consider the AV computed at dyadic scales (τ ) starting
+from local averages of the process which can be denoted as
+n
+
+(n)
+
+X̄t
+
+≡
+
+1X
+Xt−n+i ,
+n i=1
+
+(1)
+
+where n ∈ {x ∈ N : 1 ≤ x < log2 (T ) − 1} therefore determines the number of consecutive observations considered for
+the average. If the process has constant mean µ, this implies
+(n)
+that X̄t also has the same mean and, based on these averages
+and following [6], the maximum-overlapping AV (MOAV)
+
+T
+2 
+1 X
+(n)
+(n)
+E X̄k − X̄k−n
+.
+(2)
+AVarn (Xt ) ≡
+2m?
+
+As underlined in the previous sections, the AV is particularly
+useful for measuring uncertainty in non-stationary processes,
+especially when these have infinite variance. Nevertheless,
+there are other forms of non-stationarity for which the properties of the AV are unknown and these consist in those
+processes (Xt ) with a constant mean µ (independent of time)
+but a non-stationary covariance structure. This implies that the
+covariance function between observations at distance h is also
+a function of time t and can therefore be denoted as γ(h, t).
+This type of process is very common in different areas going
+from engineering [see 2] to economics [see 3].
+To study the theoretical form of the AV for this class of
+(n)
+processes, let us first define Xt as being the following vector
+of n consecutive observations starting at t − n + 1
+(n)
+
+Xt
+
+T
+
+≡ [Xt−n+1 · · · Xt ] .
+
+k=2n
+
+?
+
+where m = T − 2n + 1 and whose corresponding estimator
+is given by
+[ n (Xt ) =
+AVar
+
+T
+2
+1 X  (n)
+(n)
+x̄k − x̄k−n .
+?
+2m
+
+(3)
+
+k=2n
+
+(n)
+
+(n)
+
+where x̄t denotes the sample equivalent of X̄t based on a
+realization of the process (Xt ). Another version of the AV is
+the non-overlapping AV (NOAV) whose estimator however is
+not statistically as efficient as that of the MOAV (see App. B
+for more details).
+Keeping in mind the above definitions of the MOAV, [8]
+delivered a general theoretical form of this quantity when
+applied to weakly stationary processes which is given by
+
+2
+σX
+AVarn (Xt ) =
+n [1 − ρ(n)]
+(4)
+n2
+
+n−1
+X
++
+i [2ρ(n − i) − ρ(i) − ρ(2n − i)] .
+i=1
+
+Based on the above equation, the exact form of the AV for
+different stationary processes, such as the general class of
+AutoRegressive Moving Average (ARMA) models, can be
+derived. Moreover, [8] provided the theoretical AV for nonstationary processes such as the random walk and ARFIMA
+models for which the AV, as mentioned earlier, represents a
+better measure of uncertainty compared to other methods.
+Using the known theoretical forms of the AV, it is therefore
+possible to detect and distinguish different processes based on
+the pattern of their AV. Due to this, this quantity (or similar
+quantities such as the Haar wavelet variance) can be used as a
+
+which contains the observations used to build the average in
+(1). Using the above vector, for t = n, ..., T , we can then
+define the matrix
+
+
+(n)
+(n)
+Σt ≡ var Xt
+,
+(5)
+and, for t = 2n, ..., T , we define the matrix
+
+
+(n)
+(n)
+(n)
+,
+Γt ≡ cov Xt−n , Xt
+
+(6)
+
+These matrices represent the covariance matrices of the obser(n)
+vations contained in each consecutive average. Indeed, Σt
+represents the covariance matrix of the observations within the
+(n)
+average X̄t which is used in definitions (D-1) and (2) while
+(n)
+Γt represents the cross-covariance between these two sets
+of observations. A visual representation of these quantities is
+given in App. A.
+In this section we will only consider the non-stationary
+MOAV while the form of the non-stationary NOAV is given
+in App. B. Based on the above matrices, we can also define
+different quantities according to the matrix of reference and
+the lags between observations. More specifically, let us first
+consider the case in which we are interested in lags h such
+that 0 ≤ h < n. Because of the overlapping nature of the
+AV, the observations at these lags can belong to the sets of
+(n)
+(n)
+observations within both the matrix Σt and the matrix Γt
+(n)
+and, for these sets of observations within the matrix Σt , we
+can define the following quantity
+γ
+e(h) ≡
+
+T n−h−1
+X
+X
+1
+cov(Xt−n−s−h , Xt−n−s )
+?
+2m (n − h) t=2n s=0
+
++ cov(Xt−s−h , Xt−s ).
+
+3
+
+If, however, the observations at the considered lags are among
+(n)
+the set of observations only within the matrix Γt , we define
+the quantity below
+T
+h
+1 XX
+γ
+e (h) ≡ ?
+cov (Xt−n+s−h , Xt−n+s ) .
+m h t=2n s=1
+∗
+
+Finally, when considering lags h such that n ≤ h ≤ 2n − 1,
+the set of observations at these lags can only be considered
+(n)
+within the matrix Γt and, for this final case, we define the
+quantity
+γ
+e(h) ≡
+
+T 2n−h−1
+X
+X
+1
+cov (Xt−s−h , Xt−s ) .
+?
+m (2n − h) t=2n s=0
+
+The above definitions can be seen as generalized definitions of
+the autocovariance which consists in the average autocovariance for a given lag h. Because of this, it must be underlined
+that these definitions are not at all equivalent to the covariance
+function γ(h, t) but correspond to an average of this function
+over all times t. Having specified this, we can now provide
+the following lemma.
+L EMMA 1: The non-stationary MOAV is given by
+(
+"
+Pn−1
+1
+?
+?
+e(0) + 2
+e(h)
+AVarn = 2m? n2 2nm γ
+h=1 2m (n − h) γ
+#)
+−m? h γ
+e∗ (h) −
+
+P2n−1
+h=n
+
+m? (2n − h) γ
+e(h)
+
+.
+
+The proof of this lemma is given in App. C. Considering
+this expression, an aspect that must be underlined is that
+the definitions of the functions γ
+e(h) and γ
+e∗ (h) given earlier
+simplify to the autocovariance function γ(h) when dealing
+with a weakly stationary process. In the latter case, the form of
+the non-stationary AV consequently reduces to the expression
+in (4) for which a more detailed discussion is given in App. ??.
+As a final note to this result it should also be highlighted that,
+in some of the considered non-stationary cases, the estimators
+of the MOAV defined in (3) and of the NOAV (see App. B)
+do not necessarily have the same expectation.
+Having underlined these points and with the general definition of the AV given in Lemma 1, we can now investigate its
+properties when assuming the process of interest is within the
+class of processes treated in this paper. The next sections report
+some simulation studies regarding some of these processes in
+attempt to understand also whether the AV is a useful quantity
+to detect them and distinguish them from weakly stationary
+processes. In all cases, the simulated process is of length
+T = 1, 000 (except for the bias-instability process where
+T = 2, 500) and is simulated 50 times. The estimated AV
+is represented in plots along with the theoretical stationary
+and non-stationary forms of the AV in order to understand its
+behaviour under these different assumptions.
+1) Non-Stationary White Noise: The first process we study
+is the non-stationary white noise by which we intend, without loss of generality, all those zero-mean processes whose
+variance changes with time. The evolution of the variance in
+time can either be completely random or can follow a specific
+
+Fig. 1. Logarithm of the MOAV of the non-stationary white noise process for
+scales τ = 2n . Estimated MOAV (light-blue lines); theoretical non-stationary
+MOAV (black line with dots) and theoretical stationary AV based on the
+average variance (red line with triangles).
+
+parametric model such as, for example, a GARCH process.
+The goal of studying the AV for these types of processes is
+to understand whether it is able to detect such a structure in
+a time series and if it can be distinguished from a stationary
+white noise process. For this purpose, the true non-stationary
+process considered in the simulation study is generated from
+the following model
+Xt ∼ N (0, σt2 ),
+where σt2 = t, with t = 1, . . . , T . The theoretical stationary
+form is based on the average of the variances used to simulate
+the processes (i.e. σ̄ 2 = (1+T )/2 in this example). Fig. 1
+represents the estimated AVs along with the theoretical forms
+(stationary and non-stationary). In this case, it can be seen
+how both theoretical forms correspond and the estimated AVs
+closely follow these quantities. This example confirms that
+the AV is therefore unable to distinguish between a stationary
+white noise process and a white noise process whose secondorder behaviour is non-stationary.
+2) Bias-Instability: The bias-instability process is a commonly known process in the engineering domain, specifically
+for inertial sensor calibration for navigation. The characteristic
+of this process is that it consists in different concatenated
+sequences (blocks) where, within each block, the realization
+of a random variable is repeated (i.e. constant). More formally,
+let bi , i = 1, . . . , B, represent the set of time indices belong
+iid
+to the ith block within the time series, and let Ci ∼ N (0, σ 2 ).
+We can then define this process as
+Xt = ci
+
+if t ∈ bi .
+
+One realization of the bias-instability process is illustrated
+in the top panel Fig. 2 where the length of block bi is 10
+for all i = 1, . . . , B, and B = 250. Since the theoretical
+form of the AV for this process is not known exactly, it is
+often approximated by the AV of a First-Order AutoRegressive
+(AR1) process. Although this approximation can be useful, it
+is nevertheless still an approximation and, using the form given
+in Lemma 1, we can now obtain a theoretical form for the AV
+of this process which is represented in the bottom panel of Fig.
+
+4
+
+Fig. 2. Top: Realization of the bias-instability process with σ 2 = 1 and the
+length of block bi = 10, ∀i = 1, . . . , B, and B = 250. Bottom: Logarithm
+of the MOAV of the bias-instability process for scales τ = 2n . Estimated
+MOAV (light-blue lines); theoretical non-stationary MOAV (black line with
+dots) and theoretical stationary MOAV of an AR1 approximating the biasinstability MOAV (red line with triangles).
+
+Fig. 3. Top: Realization of the block-structure autoregressive process with
+φ = 0.9, σ 2 = 1 and the length of block bi = 10, ∀i = 1, . . . , B, and
+B = 100. Bottom: Logarithm of the MOAV of the block-structure firstorder autoregressive process for scales τ = 2n . Estimated MOAV (light-blue
+lines); theoretical non-stationary MOAV (black line with dots) and theoretical
+stationary MOAV assuming no block structure (red line with triangles).
+
+process
+2. Indeed the latter plot shows that the estimated AVs closely
+follow the theoretical non-stationary form given earlier. The
+red line represents the AV of a stationary AR1 process which
+is supposed to approximate the true AV of bias-instability. The
+latter is the result of the averaging of the theoretical AV for
+a stationary AR1 process estimated via maximum-likelihood
+on each of the simulated processes. It is clear how, although
+close over some scales, this approximation is not good enough
+when considering the logarithmic representation of the AV.
+Therefore, knowing the exact form of the AV for this process
+would allow to better interpret the signals characterised by
+bias-instability.
+3) Block-Structure Autoregressive Processes: As a final
+example we consider a block-structure AR1 process. Similarly
+to the bias-instability process, within this paper, we define
+a block-structure process as a process whose parameters are
+fixed but is made by concatenated time periods (blocks) where
+observations within each block are generated independently
+from those in the other blocks. An example is given by the
+settings of longitudinal studies in which each subject can be
+measured over time and, although the subjects are independent
+from each other, these measurements can be explained by
+an autocorrelated process within each subject. To define this
+(i)
+process formally, let Xt ∼ Fθ denote the following AR1
+
+(i)
+
+Xt
+
+(i)
+
+= φXt−1 + t
+
+with parameter vector θ = [φ σ 2 ]T where φ ∈ (−1, 1) and
+iid
+t ∼ N (0, σ 2 ). If again we let bi denote the ith block, then
+the block-structure AR1 process can be defined as
+(i)
+
+Xt = Xt
+(i)
+
+if t ∈ bi .
+(j)
+
+where Xt is independent of Xt , ∀ i 6= j. By defining
+φ = 0.9 and σ 2 = 1 for the simulation study, the top
+panel of Fig. 3 shows a realization of this process while the
+bottom panel of Fig. 3 illustrates the results of the simulations
+for this particular process. As for bias-instability, it can be
+observed how the stationary form of the AV (that does not
+consider the block structure) is not close to the estimated
+AVs while the non-stationary form provided in this paper
+adequately represents this process and can therefore allow to
+distinguish between a stationary autoregressive process and a
+block-structure one.
+IV. C ONCLUSIONS
+Within this paper we wanted to underline an issue concerning the AV which had not yet been studied. Indeed, the
+behaviour of the AV in commonly occurring settings where
+the covariance structure of the processes is non-stationary was
+
+5
+
+unknown and, in many cases, was either ignored or dealt
+with through approximations. The consequence of the latter
+approaches would probably consist in erroneous interpretations
+and conclusions drawn from an AV analysis. For this reason,
+this paper studied the form of the AV for this class of processes thereby generalizing its form also for weakly stationary
+processes. Based on this, several examples were provided in
+which the properties of the AV were studied, highlighting its
+ability to detect these processes and to eventually distinguish
+them from stationary ones, making researchers and practitioners more aware of issues related to the interpretation and use
+of this quantity in more general and common settings.
+
+Γi
+
+Γ 2n
+Σn
+
+Σ 2n
+
+Σ i−
+
+ΓT
+
+n
+
+ΣT
+
+Σi
+
+−n
+
+Γi
+
+Γ 2n
+
+ΣT
+ΓT
+
+trix
+
+ce
+
+Ma
+
+an
+
+i
+var
+Co
+
+R EFERENCES
+[1] Bollerslev, T.: Generalized autoregressive conditional heteroskedasticity. Journal of econometrics 31(3), 307–327
+(1986)
+[2] El-Sheimy, N., Hou, H., Niu, X.: Analysis and modeling of
+inertial sensors using allan variance. IEEE Transactions on
+instrumentation and measurement 57(1), 140–149 (2008)
+[3] Gallegati, M., Semmler, W.: Wavelet applications in economics and finance, vol. 20. Springer (2014)
+[4] Guerrier, S., Skaloud, J., Stebler, Y., Victoria-Feser, M.P.:
+Wavelet-variance-based estimation for composite stochastic processes. Journal of the American Statistical Association 108(503), 1021–1030 (2013)
+[5] Percival, D.B.: A wavelet perspective on the allan variance. IEEE transactions on ultrasonics, ferroelectrics, and
+frequency control 63(4), 538–554 (2016)
+[6] Percival, D.B., Guttorp, P.: Long-memory processes, the
+allan variance and wavelets. Wavelets in geophysics 4,
+325–344 (1994)
+[7] Unsal, D., Demirbas, K.: Estimation of deterministic and
+stochastic imu error parameters. In: Position Location
+and Navigation Symposium (PLANS), 2012 IEEE/ION,
+pp. 862–868. IEEE (2012)
+[8] Zhang, N.F.: Allan variance of time series models for
+measurement data. Metrologia 45(5), 549 (2008)
+
+A PPENDIX A
+G RAPHICAL ILLUSTRATION OF MOAV
+To graphically illustrate the quantities defined in Section
+III, Fig. 4 represents the true covariance matrix for a given
+process and highlights how the AV is related to this matrix by
+overlapping square matrices along the diagonal, each of which
+is composed of the quantities defined in Eq. (5) and Eq. (6).
+
+(n)
+
+Fig. 4. Graphical illustration of matrices Σt
+
+k=1
+
+This estimator is less efficient than the MOAV, mainly because
+it is based on fewer averages and therefore on a smaller sample
+size. To define the theoretical form of the NOAV for the non(n)
+stationary processes of interest, we first define the vector Xj
+of n consecutive observations starting at (j − 1)n + 1, i.e.
+
+T
+(n)
+Xj ≡ X(j−1)n+1 · · · Xjn .
+Using the above, for k = 1, ..., m, we define the matrices
+(n)
+(n)
+(n)
+Σ2k , Σ2k−1 and Γk as follows:
+
+
+
+
+(n)
+(n)
+(n)
+(n)
+Σ2k ≡ var X2k , Σ2k−1 ≡ var X2k−1
+
+
+(n)
+(n)
+(n)
+and Γk ≡ cov X2k−1 , X2k .
+As in Appendix A, the above matrices are graphically represented in Fig. 5 where, as opposed to the MOAV, these
+matrices do not overlap along the diagonal of the covariance
+(n)
+(n)
+(n)
+matrix of the process. We then let σ̄2k , σ̄2k−1 and γ̄k
+(n)
+(n)
+(n)
+denote the averages of the matrices Σ2k , Σ2k−1 and Γk ,
+respectively, i.e.
+n
+n
+1 X X  (n) 
+(n)
+σ̄2k ≡ 2
+Σ2k
+,
+n i=1 j=1
+i,j
+(n)
+
+A PPENDIX B
+T HEORETICAL FORM OF THE NOAV FOR
+N ON -S TATIONARY P ROCESSES
+
+k=1
+
+(n)
+γ̄k
+
+(D-1)
+
+for the MOAV.
+
+T
+where m = b 2n
+c. The corresponding estimator for this
+quantity is given by
+m 
+2
+X
+(n)
+(n)
+] n (Xt ) = 1
+AVar
+x̄2k − x̄2k−1 .
+2m
+
+σ̄2k−1 ≡
+
+The non-overlapping AV (NOAV) is defined as:
+
+m
+2 
+1 X
+(n)
+(n)
+E X̄2k − X̄2k−1
+,
+AVarn (Xt ) ≡
+2m
+
+(n)
+
+and Γt
+
+n
+n
+1 X X  (n) 
+Σ2k−1
+,
+n2 i=1 j=1
+i,j
+n
+n
+1 X X  (n) 
+≡ 2
+Γk
+.
+n i=1 j=1
+i,j
+
+We further define σ̄ (n) and γ̄ (n) as follows:
+m
+m
+i
+1 X h (n)
+1 X (n)
+(n)
+σ̄ (n) ≡
+σ̄2k + σ̄2k−1
+and γ̄ (n) ≡
+γ̄k .
+2m
+m
+k=1
+
+k=1
+
+6
+
+L EMMA 2: We define the Non-stationary NOAV as
+(
+"
+Pn−1
+1
+AVarn = 2mn2 2mn γ
+e(h)
+e(0) + 2
+h=1 2m(n − h) γ
+Γ1
+Σ1
+Σ2
+Γ1
+
+Σ 2i−
+
+Γi
+
+1
+
+Σ 2i
+
+Γi
+
+Σ 2m
+
+#)
+
+Γm
+
+−1
+
+∗
+
+Σ 2m
+
+−mh γ
+e (h) −
+
+Γm
+
+ce
+
+h=n
+
+m(2n − h) γ
+e(h)
+
+.
+
+Proof of Lemma 2:
+The proof of Lemma 2 is direct from the above definitions.
+Indeed, we have
+
+2 
+
+
+
+
+(n)
+(n)
+(n)
+(n)
+E X̄2k − X̄2k−1
+= var X̄2k + var X̄2k−1
+
+
+(n)
+(n)
+−2 cov X̄2k−1 , X̄2k
+
+trix
+
+an
+
+i
+var
+Co
+
+P2n−1
+
+Ma
+
+(n)
+
+(n)
+
+(n)
+
+= σ̄2k + σ̄2k−1 − 2γ̄k .
+(n)
+
+(n)
+
+(n)
+
+Fig. 5. Graphical illustration of matrices Σ2k , Σ2k−1 and Γk
+NOAV.
+
+for the
+
+Then, using Eq. (D-1), we obtain
+
+2 
+Pm
+(n)
+(n)
+1
+E
+X̄
+−
+X̄
+AVarn
+= 2m
+k=1
+2k
+2k−1
+1
+2m
+
+Pm
+
+(n)
+
+(n)
+
+(n)
+
+σ̄ + σ̄
+− 2γ̄
+ 2k(n) 2k−1 (n)  k
+1
+2m σ̄ − 2m γ̄
+=
+( 2m
+"
+Pn−1
+1
+2mn γ
+e(0) + 2
+= 2mn
+e(h)
+2
+h=1 2m(n − h) γ
+=
+
+k=1
+
+#)
+Based on the earlier defined matrices, as for the MOAV, we
+can also define different quantities according to the matrix of
+reference and the lags between observations. More specifically,
+let us first consider the case in which we are interested in
+lags h such that 0 ≤ h < n. The observations at these
+lags can belong to the sets of observations within the matrix
+(n)
+(n)
+(n)
+Σ2k , Σ2k−1 and Γk and, for these sets of observations
+(n)
+(n)
+within matrices Σ2k and Σ2k−1 , we can define the following
+quantity
+2m n−h
+
+XX
+
+1
+γ
+e(h) ≡
+cov X(k−1)n+s , X(k−1)n+s+h .
+2m(n − h)
+s=1
+k=1
+
+If, however, the observations at the considered lags are among
+(n)
+the set of observations only within the matrix Γk , we define
+the quantity below
+m
+
+γ
+e∗ (h) ≡
+
+h
+
+
+1 XX
+cov X(2k−1)n+s−h , X(2k−1)n+s .
+mh
+s=1
+k=1
+
+Finally, when considering lags h such that n ≤ h ≤ 2n − 1,
+the set of observations at these lags can only be considered
+(n)
+within the matrix Γt and, for this final case, we define the
+quantity
+
+∗
+
+−mh γ
+e (h) −
+
+P2n−1
+h=n
+
+m(2n − h) γ
+e(h)
+
+,
+
+which concludes the proof.
+
+A PPENDIX C
+(n)
+
+Proof of Lemma 1: In order to prove Lemma 1 let σ̄t
+(n)
+(n)
+(n)
+and γ̄t denote the averages of the matrices Σt and Γt ,
+respectively, i.e.
+n
+n
+1 X X  (n) 
+(n)
+Σt
+,
+σ̄t ≡ 2
+n i=1 j=1
+i,j
+(n)
+γ̄t
+
+n
+n
+1 X X  (n) 
+≡ 2
+Γt
+.
+n i=1 j=1
+i,j
+
+Further, we define σ̄ (n) and γ̄ (n) as follows:
+σ̄ (n) ≡
+
+T
+X
+1
+(n)
+(n)
+σ̄ + σ̄t−n
+2(T − 2n + 1) t=2n t
+
+γ̄ (n) ≡
+
+T
+X
+1
+(n)
+γ̄ .
+T − 2n + 1 t=2n t
+
+m 2n−h
+X
+X
+
+1
+cov X(k−1)n+s , X(k−1)n+s+h .
+m(2n − h)
+Based on these definitions we have
+k=1 s=1
+
+2 
+
+
+
+
+(n)
+(n)
+(n)
+(n)
+As for the MOAV case, the above definitions can be seen as
+E X̄k − X̄k−n
+= var X̄k
++ var X̄k−n
+generalized definitions of the autocovariance which consists in
+
+
+(n)
+(n)
+the average autocovariance for a given lag h. Using the above
+−2 cov X̄k , X̄k−n
+notations and definitions, we can provide the following result.
+(n)
+(n)
+(n)
+= σ̄k + σ̄k−n − 2γ̄k .
+
+γ
+e(h) ≡
+
+7
+
+Then, using Eq. (2), we obtain
+AVarn
+
+1
+2m?
+
+=
+=
+
+1
+2m?
+
+=
+(
+=
+
+1
+2m? n2
+
+
+
+PT
+
+k=2n E
+
+(n)
+
+X̄k
+
+(n)
+k=2n σ̄k +
+ ? (n)
+
+PT
+
+1
+2m∗
+
+(n)
+
+− X̄k−n
+(n)
+
+2 
+(n)
+
+σ̄k−n − 2γ̄k
+
+− 2m? γ̄ (n)
+
+2m σ̄
+
+"
+?
+
+2nm γ
+e(0) + 2
+
+Pn−1
+h=1
+
+2m? (n − h) γ
+e(h)
+#)
+
+?
+
+?
+
+−m h γ
+e (h) −
+which concludes the proof.
+
+P2n−1
+h=n
+
+?
+
+m (2n − h) γ
+e(h)
+
+,
+
+

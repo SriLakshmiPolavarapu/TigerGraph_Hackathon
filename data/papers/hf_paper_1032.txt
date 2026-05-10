@@ -1,0 +1,2641 @@
+Title: arXiv paper 1032
+
+Categories: 6
+
+Abstract:
+A Partial-Order Approach
+to Array Content Analysis
+
+arXiv:1408.1754v1 [cs.PL] 8 Aug 2014
+
+Graeme Gange1 , Jorge A. Navas2 , Peter Schachte1 , Harald Søndergaard1, and
+Peter J. Stuckey1
+1
+
+2
+
+Department of Computing and Information Systems,
+The University of Melbourne, Victoria 3010, Australia
+{gkgange,schachte,harald,pstuckey}@unimelb.edu.au
+NASA Ames Research Center, Moffett Field, CA 94035, USA
+jorge.a.navaslaserna@nasa.gov
+
+Abstract. We present a parametric abstract domain for array content
+analysis. The method maintains invariants for contiguous regions of the
+array, similar to the methods of Gopan, Reps and Sagiv, and of Halbwachs and Péron. However, it introduces a novel concept of an array
+content graph, avoiding the need for an up-front factorial partitioning
+step. The resulting analysis can be used with arbitrary numeric relational abstract domains; we evaluate the domain on a range of array
+manipulating program fragments.
+
+1
+
+Introduction
+
+Most imperative programming languages offer mutable arrays. However, owing
+to the indirect relation between storage and retrieval, arrays are not particularly
+amenable to static analysis. While analysis of array bounds (e.g, [15,16,2]) is well
+studied, only recently has there been real progress in analyzing array content.
+Early approaches involved array smashing [1], where an entire array was treated
+as a single symbolic variable. This used the concept of weak updates: transfer
+functions for array assignment that can only weaken the previous abstract state.
+Weak updates generally lead to a rapid loss of precision when different segments
+of an array have different properties.
+A significant improvement was Gopan, Reps and Sagiv’s use of array partitioning [7] to split arrays into symbolic intervals, or segments. Partitioning
+is facilitated by an initial analysis of the array index expressions to determine
+the relative order of the indices they denote. A key idea is to distinguish segments that represent single array cells from those that represent multiple cells.
+This permits strong updates on the singleton segments. The array partitioning method selects a small set of partition variables, maintaining disjunctive
+information about properties which hold over all feasible total orderings of the
+partition variables.
+
+Halbwachs and Péron [9] extended the
+i1 := 0 ; . . . ; im := 0
+approach to support relational content dox := ‹
+mains and a limited form of quantified inwhile(i1 ă n ^ . . . ^ im ă n)
+variants. The resulting method is precise,
+p := ‹
+but has its own drawbacks. First, it reif (p ă 0)
+quires an initial segmentation phase, where
+Ari1 s := x ` 1
+the set of partition variables is identified;
+i1 := i1 ` 1
+and as this phase is purely syntactic, it is
+else if (p ă 1)
+possible for variables to be omitted which
+Ari2 s := x ` 2
+are critical to the invariant. Second, there
+i2 := i2 ` 1
+are exponentially many possible total or...
+derings of the partition variables; if many
+else
+partition variables are identified, the analyArim s := x ` m
+sis may become prohibitively expensive. For
+im := im ` 1
+example, on the init randm family of programs shown in Figure 1, the number of partitions at the loop head follows the progres- Fig. 1: The init randm family of
+sion r6, 30, 222, 2190, 27006s as m increases program fragments.
+from 1 to 5 (this is discussed in more detail
+in Appendix C). Finally, the analysis does
+not support arbitrary manipulation of index variables; indices may only be incremented and decremented.
+Cousot et al. [3] instead maintain a single partitioning of the array, selecting
+a consistent totally ordered subset from a scalar variable analysis. This does not
+require a separate segmentation phase, saving considerable overhead; however, as
+it considers only a single consistent ordering (and supports only value domains)
+the invariants it derives are quite weak. Consider init rand2 , with x fixed to
+0—so each element in r0, nq will be assigned either 1 or 2. In this case, the
+relationship between i1 and i2 is not known, so we must select either 0 ď i1 ă n
+or 0 ď i2 ă n. In either case, the desired invariant at the loop exit is lost.
+An alternative approach to expressing array properties is to lift an abstract
+domain to quantified invariants [8]. This technique is quite general but there
+are two major limitations. First, it requires from the user the specification of
+templates to describe when quantifiers are introduced. Second, it is expensive,
+owing to the computation of under-approximations. For example, to join the formulas @U pG ñ eq and @U pG1 ñ e1 q, we must compute an under-approximation
+of G \ G1 , since G and G1 are in negative positions, and this is prohibitively
+expensive for many domains.
+Dillig et al. [6] replace strong and weak updates with fluid updates. Their
+method is a points-to and value analysis, so not relational in our sense. It builds
+a points-to graph where nodes represent abstract locations that include arrays
+qualified by index variables. Edges represent constraints on index variables that
+identify which concrete elements in the source location point to which concrete
+location in the target. A fluid update removes the dichotomy between strong and
+weak updates by computing first a constraint ϕ representing the elements that
+2
+
+are modified by the update. Then it adds a new points-to edge with ϕ (strong
+update) while adding the negation of ϕ to existing edges from the source (weak
+update). As ϕ is an over-approximation, its negation is an under-approximation
+and thus it would be unsound to add it directly to other edges. Instead the
+analysis produces bracketing constraints which are pairs of over- and underapproximations so that negation can be done in a sound manner. This analysis
+is very expressive, avoiding the large number of explicit partitions fixed a priori
+in [7,9]. However, the method can still be very expensive since whenever an array
+is accessed, the points-to edges must be modified by adding possibly disjunctive
+formulas.
+We propose a new approach to array content analysis. We extend any existing scalar domain by introducing a pseudo-variable to refer to segments of
+each array, selecting index expressions as nodes in a graph, and annotating the
+graph edges with the properties that hold in the segments of the arrays between
+those index expressions. These array content graphs offer greater flexibility than
+other approaches, as they allow us to reason about properties that hold over contiguous array segments without committing to a single total ordering on index
+expressions, while still taking advantage of available partial ordering information. The result is an array content analysis which is fully automatic, can be
+used with arbitrary domains, and does not incur the up-front factorial cost of
+previous methods [7,9]. In particular, it can be used for relational analyses, and
+accounts for the possibility of array elements being related to array indices.
+We base our presentation on a small control flow graph language.
+
+Instructions
+Array assignments
+Jumps
+Blocks
+Programs
+
+I
+A
+J
+B
+P
+
+Ñ
+Ñ
+Ñ
+Ñ
+Ñ
+
+v1 “ constant | v1 “ ˝ v2 | v1 “ v2 ˛ v3 | A
+v1 “ arrrv2 s | arrrv1 s “ v2
+if pv1 ’ v2 q label 1 label 2 | br label | error | end
+label : I* J
+B`
+
+Each basic block is a (possibly empty) sequence of instructions, ending in a
+(possibly conditional) jump. Arithmetic unary and binary operators are denoted
+by ˝ and ˛ respectively, and comparison operators by ’. We assume that there is
+a fixed set of arrays tA1 , . . . , Ak u, which have global scope (and do not overlap in
+memory). The semantics is conventional and not discussed here. Figure 2 shows
+an example program in diagrammatic form.
+Our analysis assumes an abstract domain L “ xL, Ď, K, J, \, [y for analysis
+over the array-free fragment of the language (obtained by leaving out A) (scalar
+analysis). We use this parametric domain to construct the array content analysis.
+The remainder of this paper is structured as follows. Section 2 introduces
+the method and its underlying ideas. Section 3 discusses computational details
+and efficiency. The method has been evaluated experimentally; Section 4 gives
+a report and Section 5 concludes, suggesting further work.
+3
+
+2
+
+A Graph-Based Array Content Domain
+
+We let V and A be sets of scalar and array variables, respectively. A state in
+the concrete domain is a pair xσ, ρy, where σ : V ÞÑ Z maps scalar variables to
+integer values, and ρ : A Ñ Z Ñ Z maps array cells to values.3
+Let VA denote the set of variables, and CA
+the set of constants, which may act as segment
+bounds. We use an extended set of variables
+head :
+V 1 “ VA Y CA Y tv ` | v P VA Y CA u. The
+i“0
+pseudo-variable v ` represents the value v ` 1.
+br guard
+This allows us to talk about properties that
+apply to single array cells. The constant vertices are often needed; because array properguard :
+ties often hold over ranges bounded by a conif pi ă N q body tail
+stant on one side, and array processing code
+often initializes a fixed set of indices before
+body :
+processing the rest of the array, it is not suffitail :
+v “ Aris
+cient to consider only those variables and conend
+Bris “ v
+stants used directly as indices. Consider the
+i“i`1
+copy program shown in Figure 2. In this case
+br guard
+neither 0 nor N is ever used directly as an index, but both define boundary conditions of
+i, and are needed for the invariant of interest. Fig. 2: Copying array A to B
+In practice, however, VA is often considerably
+smaller than V .
+We wish to relate the value of elements in an array segment to variables in
+the scalar domain. A state in the abstract domain has the form xϕ, Ψ y, where
+ϕ expresses scalar properties and Ψ expresses array content properties. For each
+array A P A, we allocate a corresponding variable a, a segment variable, which
+occurs only in Ψ , never in ϕ. Relations between scalar and segment variables
+are captured in Ψ . We use U “ ta, b, . . .u to denote the set of segment variables.
+Sometimes, we may wish to relate the values in an array segment to the corresponding index, for example, to prove that Aris “ x ` i across a segment. To
+support this, we introduce a variable idx to represent the index of a given read.
+We use UI “ tidxu Y U to denote the augmented set of segment variables.
+The analyses of the scalar domain and array contents are based on the same
+lattice L. We represent the program state as a pair of the scalar properties ϕ and
+the |V 1 | ˆ |V 1 | matrix Ψ of array properties such that ψij denotes the properties
+which hold for all indices in the interval ri, jq. In a slight abuse of notation, we
+use ψpℓq to denote the formula ψ with each symbolic array variable a replaced
+with the corresponding array element Arℓs. That is:
+ψpℓq ” ψta ÞÑ Arℓs | A P Au
+3
+
+For simplicity we assume arrays elements are integers. The extension to arbitrary
+types (that may include integers) is not difficult, as the complexity of array elements
+acting as indices is present in what we consider.
+
+4
+
+J
+J
+
+ϕ“0ďiăN
+
+Ψ“
+
+0
+i
+i`
+N
+
+0 i
+i`
+Ka“b J
+K K a“v
+K K
+K
+K K
+K
+
+N
+J
+J
+J
+K
+
+a“b
+0
+
+a“v
+i
+
+J
+`
+
+i
+
+N
+
+i`
+
+N
+
+J
+a“b
+0
+
+a“v
+i
+
+Fig. 3: Array content graph after assignment v “ Aris in Figure 2. Vertices and
+matrix entries corresponding to 0` and N ` are omitted.
+
+Then the reading of an edge pi, ψij , jq is: @ i ď ℓ ă j . ψij pℓq. Given some numeric
+abstract domain L, a set of arrays A and scalar variables V , the array content
+domain CL pA, V 1 q is a pair xϕ, Ψ y, where ϕ is a value in L, and Ψ is a |V 1 | ˆ |V 1 |
+matrix of L-values. Assume we have a function evalA which constructs a new
+state which treats the ℓth element of each array as a scalar variable:
+evalA pσ, ρ, ℓq “ σ Y ta ÞÑ ρpAqpℓq | A P Au
+The concretization function γ is then defined on the components in terms of the
+concretization function γL of the scalar domain L:
+γpxϕ, Ψ yq “ txσ, ρy | σ P γL pϕqu X γA pΨ q
+č
+γA pΨ q “
+txσ, ρy | @σpiqďℓăσpjq evalA pσ, ρ, ℓq P γL pψij qu
+i,jPV 1
+
+Notice that there are no constraints on ρ in the first equation; ρ can be any array
+variable assignment of type A Ñ Z Ñ Z. As any value in the content domain
+CL pA, V 1 q is the Cartesian product of a fixed set of elements of L, CL pA, V 1 q also
+forms a lattice, and possesses all the corresponding fixed point properties.
+For each edge ψij , we can assume the corresponding interval is non-empty;
+that is, rri ă jss P ψij . Note that the edge from i to i` has no such constraint,
+since i ă i`1 is always true. Since the interval ri`1, iq is clearly empty, ψi` i “ K.
+Given the state representation, we can take the join of two abstract states
+by a piecewise application of the join from L:
+ﬁ
+» 1
+2
+1
+2
++
+*
+. . . ψ1n
+\ ψ1n
+ψ11 \ ψ11
+ﬃ
+.
+.
+1
+1
+2
+2
+1
+2 —
+.
+..
+..
+..
+xϕ , Ψ y \xϕ , Ψ y “ ϕ \ ϕ , –
+ﬂ
+1
+2
+1
+2
+ψn1 \ ψn1 . . . ψnn \ ψnn
+We can compute the meet [ analogously. To see how the analysis works, consider
+again the program in Figure 2. Figure 3 shows the abstract state immediately
+after executing v “ Aris. The array content information is given by the matrix
+5
+
+Ψ of array properties. The array content graph shown upper right is really just
+a way of visualizing the matrix. Note that infeasible edges, those labelled K,
+are omitted. In fact, we shall usually show only the “transitive reduction” of
+the array content graph, so that an edge ik whose value is given by ψik “
+Ű
+j pψij \ ψjk q is omitted. We depict edges representing J without a label. This
+leads to the shorthand graph in Figure 3’s lower right.
+2.1
+
+Normalization of Abstract States
+
+Given a set C of constraints of the form e P ri, jq ñ ψij , we wish to normalize
+the state by computing the strongest consequences of C, still in that form.
+The critical observation is this: @x, y . x ă y |ù @z.px ă zq _ pz ă yq. That
+is, any property that holds over both rx, zq and rz, yq must also hold over the
+range rx, yq. To compute the strongest consequences, then, we must compute
+the greatest fixed point of a rewrite system derived from the set of inequalities:
+@i, j, k . ψij Ď ψik \ ψkj .
+It is tempting to try to compute the fixed point using the obhead :
+vious rewrite system:
+x “ Ar0s
+i“1
+br guard
+
+@i, j, k . ψij “ ψij [pψik \ ψkj q
+But, as we shall see, this formulation does not guarantee termination for all useful domains.
+Mohri [12] describes the algebraic shortest path problem, where
+the operations p[, \q form a
+semiring in the domain of edge
+weights. This is very close to what
+we need, as every distributive lattice forms a bounded semiring. But
+“numeric” domains used in static
+analysis generally fail to be distributive, so we cannot use Mohri’s
+framework directly.
+
+guard :
+if pi ă N q body tail
+body :
+v “ Aris
+if pv ą xq update step
+step :
+i“i`1
+br guard
+
+update :
+x“v
+br step
+
+tail :
+end
+
+Fig. 4: Find maximum value in array A
+
+Example 1. Consider the array-maximum program from Figure 4. Figure 5(1)
+shows the program state just after v “ Aris is executed (scalar constraints on
+the left and array constraints on the right). On the branch with v ď x, we simply
+add the constraint to the scalar domain, resulting in (2a). If v ą x, we add the
+constraint to the scalar domain (2b), then update x with v, resulting in (2b1 ).
+Observe that, in both cases, we can only discover the relationship between a and
+x indirectly via v. If we do not push scalar relations into the edge properties,
+the underlined invariants are lost. The final result is shown at (3).
+If the statement x = v in update was instead replaced by x = Aris, we would
+first have to lift the invariant x “ v from the singleton property ψii` to the
+6
+
+(1)
+
+aďx
+
+0ďiďN
+
+a“v
+
+0
+0ďiďN
+(2a)
+vďx
+(2b)
+
+(2b1 )
+
+0ďiďN
+xăv
+0ďiďN
+x“v
+
+0
+
+i
+a ď x, a ă v
+
+0
+
+i`
+
+N
+
+i`
+
+N
+
+a“v
+i
+
+a ă v, a ă x a “ v, a “ x
+0
+
+i
+aďx
+
+i`
+
+N
+
+a “ v, a ď x
+
+0
+0ďiďN
+x“v
+
+N
+
+a “ v, a ď x
+
+aďx
+
+(3) 0 ď i ď N
+
+(2b: )
+
+i`
+
+i
+
+i
+
+i`
+
+N
+
+a ă x, a ă v a “ v, a “ x
+0
+
+i
+
+i`
+
+N
+
+Fig. 5: Array maximum example
+
+scalar domain. We then push this property into the segment ψ0i , allowing us to
+derive a ă x. The state in Figure 5(2b: ) shows the program state if x “ v were
+to be replaced with x “ Aris.
+This illustrates that it is not sufficient to simply compute the transitive closure
+of Ψ ; we must also lift properties from Ψ out to the scalar domain. For a fully
+reduced state xϕ, Ψ y, the following properties must be satisfied for all i, j, k:
+1. The graph of segments must be internally consistent: ψij Ď ψik \ ψkj
+2. Segment properties are consistent with the scalar domain: ψij Ď ϕ [rri ă jss
+3. For each non-empty segment, the scalar domain must be consistent with the
+scalar properties of that segment: ϕ |ù i ă j ñ ϕ Ď DUI . ψij
+Notice that we only propagate constraints to the scalar component from segments
+that are known to be non-empty. If we tried to propagate information from all
+segments, we would incorrectly derive K as soon as any segment was determined
+to be empty. One solution is to simply apply the three rules until a fixed point is
+reached. This is guaranteed to compute the fully reduced state. However, while
+this direct construction is conceptually clean, it suffers from some pragmatic
+issues relating to both termination and efficiency, as we shall see.
+2.2
+
+Termination
+
+The normalization process is not guaranteed to terminate for arbitrary lattices.
+Example 2. Assume the analysis uses convex polyhedra. Consider the state in
+Figure 6(a). Any fixed point will satisfy the properties A Ď B \ C and B Ď A \ C.
+7
+
+A
+0
+
+i
+
+A
+
+B
+
+C
+B
+
+j
+
+C
+
+(a)
+
+(b)
+
+Fig. 6: At a fixed point, we have A Ď B \ C and B Ď A \ C. The regions A and
+B will be progressively reduced, indefinitely.
+
+Let A, B and C be the gray regions shown in Figure 6(b)—the intention is
+that A shares a line segment with C, as does B. Assume we start by exploiting B Ď A \ C. We compute A \ C, yielding the polygon given by the topmost
+dashed line. This allows us to trim the top portion of B. We then compute
+B \ C, and trim the top-left region of A. However, now A has changed, so we
+re-compute A \ C and again reduce B. This process asymptotically approaches
+the greatest fixed point A “ A [ C, B “ B [ C.
+If we modify the equations in Example 2 slightly, to A ĎpA [ Bq \pA [ Cq (still
+a valid approximation of the concrete state), convergence is immediate.
+The fixed point process will clearly terminate for the interval domain, as the
+possible interval end-points are drawn from the initial set. We can also show that
+it is guaranteed to terminate for both octagons [11] and convex polyhedra [4];
+proofs are given in Appendix A. Unfortunately, we do not yet have a more general
+characterisation of the lattices for which termination is (or is not) guaranteed.
+2.3
+
+Abstract Transfer Functions
+
+In this section, we describe the abstract transfer functions necessary to perform
+array content analysis on the language described in Section 1.
+Variable assignment. The effect of a scalar assignment x “ f on an abstract
+state follows the behaviour of the underlying domain L. We first project out the
+previous value of x (assuming x does not occur in f ) then introduce the new
+constraint into the scalar domain. However, when we project x from our scalar
+domain, we must also update all incoming and outgoing edges of x (and x` ).
+This becomes: xϕ, Ψ yrrx “ fss “ xϕrrx “ fss, Ψ 1 y where Ψ 1 is given by, for all p, q:
+"
+J
+if p P tx, x` u _ q P tx, x` u
+1
+ψpq “
+Dx . ψpq otherwise
+The assumption that f is free of x is not always well founded; however, we can always transform the program so that it is the case: x “ f ñ xt “ x; x “ frx{xts.
+8
+
+0
+
+(b)
+
+a“b“v
+
+a“b
+
+(a)
+
+i
+
+b
+
+i
+
+0a “
+
+b
+
+i`
+
+it a “ b “ v it
+
+0a “
+
+`
+
+i`
+
+it a “ b “ v it
+
+N
+it a “ b “ v it `
+
+b
+
+i`
+N
+
+it a “ b “ v it
+
+`
+
+a“b
+
+(f)
+0
+
+N
+
+b
+
+b
+a“ i
+
+(e)
+N
+
+i
+
+(c)
+
+0a “
+
+N
+
+a“b“v
+
+b
+a“
+0a “
+
+i`
+
+i`
+
+i
+
+(d)
+
+i
+
+i`
+
+N
+
+`
+
+Fig. 7: Array content graph during analysis of the program given in Figure 2,
+while executing i “ i ` 1. The dashed edges indicate equality (in reality they
+represent two edges each labelled K).
+Example 3. Consider the array-copy program given in Figure 2, immediately
+before the assignment i “ i ` 1. The state is shown in Figure 7 (a).
+We must first introduce a new variable it to hold the prior value of i, transforming i “ i ` 1 to it “ i; i “ it ` 1. The normalized graph after the it “ i
+statement is shown in Figure 7 (b). To handle the i “ it ` 1 statement we
+must eliminate the annotations on edges corresponding to i and i` , resulting in
+state (c). Note that the edge ψ0it ` , omitted from the diagram, has annotation
+a “ b. State (d) completes the handling of the i “ it ` 1 statement, introducing
+the new value of i into the scalar domain. The scalar domain discovers that
+it ` “ i (the dashed edge). When normalizing state (d), ψit ` i “ K, so the rule
+ψ0i Ď ψ0it ` \ ψit ` i results in ψ0i becoming a “ b, the desired invariant (e), which
+after projecting out it and i`
+t gives (f).
+Array reads. An array read x “ Aris is relatively simple. As for standard
+variable assignment, we must existentially quantify the variable x. But instead
+of introducing a relation into the scalar domain, we add the constraint x “
+a to the singleton segment ψii` . This transfer function may be formulated as
+xϕ, Ψ yrrx “ Arisss “ xDx.ϕ, Ψ 1 y where Ψ 1 is given by, for all p, q:
+"
+ψpq rra “ xss if p “ i, q “ i`
+1
+ψpq “
+Dx . ψpq otherwise
+Normalization handles the consequences for the scalar part.
+Array writes. When we store a value into an array at index i, we update the
+corresponding edge property ψii` . However, this is not sufficient, as the singleton
+9
+
+a“
+
+S
+
+a“0
+
+0
+
+`
+
+a“
+
+i
+i
+a“0 a“0
+
+0
+
+0
+j
+
+N
+
+a“0
+
+0
+i
+i`
+j
+N
+0
+0 K
+
+a“
+
+SrrAris “ 1ss
+
+0
+
+a“1
+i
+...
+
+0
+
+i`
+...
+
+a“
+
+0
+j
+
+N
+
+i K
+i` K
+j K
+N K
+
+a “ 0\a “ 1
+
+0 i
+i`
+j N
+Ka“0a“0a“0 J
+K K a“0a“0 J
+K K
+K a“0 J
+K K
+K
+K J
+K K
+K
+K K
+
+`
+˛¨ j ˛N
+¨ i
+a“0
+a“0
+a “ 0 ˝ \ ‚˝ \ ‚ J
+a “ 1 ¨a “ 1˛
+a“0
+K
+a “ 1 ˝ \ ‚J
+a“1
+K
+K
+a“0 J
+K
+K
+K
+J
+K
+K
+K
+K
+
+i
+
+Fig. 8: In state S, we know that all elements between 0 and j have been initialized
+to 0. When we evaluate Aris “ 1, we update the edge ψii` . However, i may also
+be covered by the edge ψ0j . For these potentially overlapping edges, we must
+perform a weak update, taking the join of the previous value with the new.
+
+i may be covered by other edges. As with previous analyses, we distinguish
+between strong updates where all elements in a (generally, singleton) segment
+are updated with a given property, and weak updates [1] where some elements of
+a segment may be updated. An edge ψpq must be updated if p ď i ď q ^ p ă q
+is possible in the current state. This is possible if and only if the edges ψpi` and
+ψiq are both feasible.
+Consider the array state illustrated in Figure 8, where 0 ď i ď j ď N and the
+first j elements have been initialized to 0. When we store 1 at Aris, we update
+the singleton ψii` with the property a “ 1. However, there are other segments
+that may contain Aris. The segments ψ0i` , ψij and ψ0j are all consistent with
+index i. In this case, they must all be weakly updated (annotations on ψ0i` and
+ψij have been omitted; they are identical to the annotation on ψ0j ).
+We can formulate this as xϕ, Ψ yrrAris “ fss “ xϕ, Ψ 1 y, where Ψ 1 is given by,
+for all p, q:
+1
+ψpq
+
+$
+&
+
+ψpq rra “ fss
+if p “ i, q “ i`
+ψpq
+if ϕ |ù pp ą i _ q ă i` q
+“
+%
+ψpq \ ψpq rra “ fss otherwise
+
+Notice that if we have some other variable j such that ϕ |ù i “ j, we will initially
+perform only a weak update of the segment ψjj ` . However, the normalization
+procedure will then enforce consistency between ψii` and ψjj ` .
+10
+
+3
+
+Improving Efficiency through Relaxation
+
+When computing the strongest matrix entries, we perform a substantial amount
+of redundant work. We include all constraints ϕ from the scalar domain in each
+matrix entry ψij , and these constraints will be processed during each step in
+the shortest-path computation. This is not ideal, as many are irrelevant to the
+content properties, and abstract domain operations are often proportional to
+the number of constraints. Hence we want to construct some relaxation ψ:ij of
+ψij that discards irrelevant scalar properties. We shall use d to denote this
+relaxation operation (that is, ψ:ij “ ϕ d ψij ). At a minimum, it must satisfy:
+ψij Ď ϕ [ ψ:ij “ ϕ [pϕ d ψij q
+We want to make ϕ [ ψ:ij as close to ψij as possible, while keeping the representation of ψ:ij concise. This is very similar to the process of constraint abduction [10].
+However, even with a relaxation Ψ: such that ϕ [ ψ:ij ” ψij , we may still lose
+relevant information.
+Example 4. Consider a program state (using the domain of octagons) with
+scalar property ϕ “ rrx ă yss, and segment properties ψik “ ϕ [rri ă k ^ x ă ass,
+ψkj “ ϕ [rrk ă j ^ y “ ass. Computing the value of ψij gives the expected
+ψij “ ϕ [rri ă j ^ x ă ass. However, although the relaxations
+ψ:ik “ rri ă k ^ x ă ass and ψ:kj “ rrk ă j ^ y “ ass
+are exact, computing ψij as before yields:
+rri ă j ^ i ă k ^ x ă ass \rri ă j ^ k ă j ^ y “ ass “ rri ă jss
+We could avoid this loss of information by conjoining the scalar part during each
+step of the fixed point computation
+ψ:ij Ď ϕ d ppϕ [ ψ:ij [ ψ:ik q \pϕ [ ψ:ij [ ψ:kj qq
+but while this avoids the loss of information, it also defeats the original goal of
+reducing computation cost. Instead we define a more conservative d operation
+which maintains enough additional information to retain properties of interest.
+Example 5. Consider again the analysis that was performed in Example 4, but
+now with a modified d operation which gives us ψ:ik “ rri ă k ^ x ă ass and
+ψ:kj “ rrk ă j ^ y “ a ^ x ă ass. In this case, when we compute ψ:ij , we get:
+ψ:ij “ rri ă j ^i ă k ^x ă ass \rri ă j ^k ă j ^y “ a^x ă ass “ rri ă j ^x ă ass.
+This maintains the property of interest, without repeatedly conjoining with ϕ
+during the fixed point process.
+Another observation from Examples 4 and 5 is that while the boundary
+constraints for each edge (such as rri ă jss for ψij ) are not implied by ϕ, they
+are typically irrelevant to the segment properties, unless:
+11
+
+rri ă nss
+
+rri ă nss
+n
+
+i
+J
+
+i
+
+K
+i`
+
+rri
+ă
+
+n
+K
+
+nss
+i`
+
+Fig. 9: Solving this set of constraints, we strengthen ψii` and derive rri ă nss. If
+we use d, we have ψ:in “ J, so we fail to strengthen ψ:ii` .
+– ϕ [rri ă jss “ K, in which case the edge must be empty, or
+– the array content Arℓs is some function of the index ℓ
+– ψji` “ K (or j “ k ` for some k, and ψki “ K)
+This is particularly troublesome for domains that explicitly store the transitive
+closure of constraints, as we then expend substantial computation maintaining
+consequences of rri ă jss, which are largely irrelevant, and lost during the join.
+If we choose an operator d which discards the consequences of edge boundaries, we must take particular care not to lose information in the third case
+mentioned. Consider the state shown in Figure 9, where the edge from n to i` is
+infeasible. Computing the original fixed point, we obtain rri ă nss at ψii` , which
+is then lifted out to the scalar domain. However, rri ă nss is obviously implied
+by ϕ [rri ă nss, so will typically be discarded by d. The property rri ă nss is not
+obtained at ψii` , so is never lifted out to the scalar domain. We must, therefore,
+add the following case to the normalization rules given in Section 2.1:
+4. ϕ Ďrri ě jss if ψi,j “ K
+This ensures that any scalar properties resulting from infeasible segments are
+included in the scalar domain. Further, since many elements of Ψ: may be J, the
+relaxation operator allows us to take advantage of sparse matrix representations.
+Unfortunately we are not aware of any existing, general operations suitable
+for computing Ψ: ; as they must consider both underlying lattice and the characteristics of the implementation. We complete this section by outlining suitable
+relaxation operators for difference-bound matrices (DBMs) [5] (and octagons).
+Relaxations for polyhedra can be found in the appendix, and it should not be
+particularly difficult to define analogous operators for alternative domains.
+A value in the DBM (or octagon) domain consists of a set of constraints
+rrvi ´ vj ď kss (or rr˘vi ˘ vj ď kss for octagon). We can construct a relaxation
+‹
+of ψij by computing the transitive closure ψij
+, and discarding any constraints
+implied by ϕ [rri ă jss:
+‹
+ϕ d ψij “ tc | c P ψij
+, ϕ [rri ă jss & cu
+
+If the abstract states are stored in closed form, we can simply collect the constraints of ψij not appearing in ϕ [rri ă jss. Or we can avoid performing many
+implication tests by instead collecting the constraints involving variables in U .
+12
+
+4
+
+Experimental Evaluation
+
+We have implemented the analysis in sparcolyzer, a prototype array content
+analyser for the language described in Section 1. sparcolyzer is implemented
+in ocaml, using the Fixpoint library4 . For the underlying domain, we implemented the DBM domain in C++, customized for operating on sparse graphs.
+Experiments were performed on a 3.0GHz Core 2 Duo with 4Gb ram running
+Ubuntu Linux 12.04. The set VA of segment bounds were pre-computed using a
+simple data-flow analysis to collect all variables which may (possibly indirectly)
+be involved in the computation of an array index.
+We tested sparcolyzer on a number of array manipulation program fragments. Most of these were taken from Halbwachs and Péron [9]. We added several
+additional fragments that illustrate interesting properties of the analysis, including members of the init rand family discussed in Section 1 (Figure 1).
+Computation time for each instance is given in Table 1. For instances taken
+from [9], we include the original reported runtimes, although these are not directly comparable, as the experiments in [9] were performed on a slower machine
+(Core2 Duo 1.6 GHz, with 2MB of RAM) using the domain of difference bound
+matrices with disequalities (dDBM) [13].5 The implementation from [9] has not
+been available and we have not tried to reconstruct it.
+Table 1 compares the runtimes of two variants of our content domain to the
+approach of Halbwachs and Péron [9] (the hp08 column). The naive variant
+uses the direct implementation, where the matrix is represented as a |V 1 | ˆ |V 1 |
+array, and a copy of the scalar domain is stored in each matrix entry. The
+sparse variant stores, for each row and column, a set of non-J entries so that
+the normalization, \ and [ operations do not need to process entries that will
+definitely remain J, and computes the fixed point on the relaxed matrix Ψ: ,
+rather than directly on Ψ . sparse uses the simple relaxation step of discarding
+all constraints not involving some array variable A P U . Note that sparse still
+iterates over all |V 1 | ˆ |V 1 | elements when changes to the scalar domain occur,
+as a change to the scalar domain may affect any matrix element.
+In cases where there are very few partitions—either because there are very
+few index variables, or they are highly constrained—we expect the partitionbased methods to be faster (as they do not need to compute closure over transitive edges). The performance of naive is comparable to that of [9] on instances
+with few partitions, and it improves substantially on more complex instances.
+sparse is faster yet, sometimes by several orders of magnitude, and still finds
+the desired invariant in all but two cases.
+It is interesting to compare the behaviour of sentinel and first nonnull.
+These programs superficially appear quite similar; in both cases, we set up an
+‘end-of-array’ marker, then scan the array to find a particular element. However,
+the invariants necessary to prove the desired properties are quite different. In
+4
+5
+
+http://pop-art.inrialpes.fr/people/bjeannet/bjeannet-forge/fixpoint/
+Performance of the domains should be roughly equivalent, as in the absence of explicit disequalities, dDBM behaves identically to DBM.
+
+13
+
+program
+init
+init offset
+init rand2
+init rand3
+init rand4
+init rand5
+arraymax
+copy
+partition hoare
+partition hp08
+sentinel
+first nonnull
+
+naive
+0.11
+0.28
+2.48
+9.59
+31.14
+80.58
+0.13
+0.13
+1.51
+3.50
+0.14
+0.60:
+
+sparse
+0.02
+0.07
+0.14
+0.64
+1.98
+4.96
+ă0.01
+ă0.01
+0.06
+0.14:
+ă0.01
+0.01:
+
+hp08 [9]
+0.05
+
+0.10
+0.02
+22.87
+0.21
+2.25
+
+Table 1: Analysis times in seconds. Instances where we were unable to prove
+the desired invariant are marked with :.
+x := Ar0s
+i := 1
+j := n ´ 1
+while(i ď j)
+if (Aris ă x)
+Ari ´ 1s := Aris
+i := i ` 1
+else
+while(j ě i ^ Arjs ě x)
+j := j ´ 1
+(‹)
+if (j ą i)
+Ari ´ 1s := Arjs
+Arjs := Aris
+i := i ` 1
+j := j ´ 1
+Ari ´ 1s := x
+
+x := Ar0s
+i := 0
+j := n ´ 1
+while(i ď j)
+while(Aris ď x ^ i ď j)
+i := i ` 1
+while(Arjs ą x ^ i ď j)
+j := j ´ 1
+if (i ď j)
+t := Arjs
+Arjs := Aris
+Aris := t
+
+(a) partition hp08
+
+(b) partition hoare
+
+Fig. 10: Quicksort partitioning: (a) as done in [9]; and (b) a la Hoare
+the case of first nonnull, we require:
+ps “ n ^ @e P r0, nq . Ares ‰ 0q _ ps ă n ^ Arss “ 0 ^ @e P r0, sq . Ares ‰ 0q
+This can be expressed using the approaches of Gopan et al. and Halbwachs and
+Péron [7,9], as they store a separate invariant for each total ordering amongst
+the partition variables. Our approach, however, cannot handle such disjunctive
+reasoning, so the segment property quickly reaches J.
+Consider partition hp08 (the variant of the Quicksort partition step given
+in [9], shown in Figure 10(a)). As the imperative source language we use does
+14
+
+allow loads inside conditionals, such reads are hoisted outside the corresponding loops; for example, the loop marked p‹q is transformed as shown below.
+At the point marked p‹q, it is possible to determine
+that rrj ă iss ñ rrArjs ă xss. Thus it is easy to
+show that rrArjs ă xss holds at the loop exit. In
+ej := Arjs
+the hoisted version, naive method can prove the
+while(j ě i ^ ej ě x)
+invariant successfully, because the property rrj ă
+j := j ´ 1
+iss ñ rrej ă xss is derived for the edge ψji . When
+ej := Arjs
+we exit the loop with rrj ă iss, this property gets
+extracted to the scalar domain, and we get rrej ă
+xss ^ rrej “ ass at ψjj 1 . When using the sparse method, however, the property
+on ψji is discarded, as it involves only scalar variables, so the invariant is lost.
+If we were to use the original version without hoisting, we would be unable
+to prove the invariant using either method, as we cannot express rrj ă iss ñ
+rrArjs ă xss directly.
+However, our method easily proves the standard version (partition hoare;
+Figure 10(b)) correct, whether or not the reads are hoisted.
+
+5
+
+Conclusion and Future Work
+
+We have described a new approach to automatic discovery of array properties,
+inspired by algebraic shortest-path algorithms. This approach retains much of
+the expressiveness of the partitioning methods of [7] and [9], but avoids the
+need for syntax dependence and an up-front factorial partitioning step. The
+method can successfully derive invariants for a range of interesting array program
+fragments, and is substantially faster than partitioning-based approaches with
+even modest numbers of index variables.
+Several improvements could be made to the performance of the analysis.
+The current implementation does not take advantage of liveness information,
+and maintains entries in the content graph for all variables in VA at each step.
+Clearly, performance could be improved by eliminating non-live variables from
+the matrix.
+Algorithms which maintain shortest path information can often be improved
+by storing only the transitive reduction of the graph. As our domains are not
+distributive, it is non-trivial to determine whether a given edge must occur in
+the transitive reduction; however, it would be worth investigating whether maintaining the transitive reduction would prove beneficial.
+
+References
+1. B. Blanchet, P. Cousot, R. Cousot, J. Feret, L. Mauborgne, A. Miné, D. Monniaux,
+and X. Rival. Design and implementation of a special-purpose static program analyzer for safety-critical real-time embedded software. In T. Mogensen, D. Schmidt,
+and I. H. Sudborough, editors, The Essence of Computation: Complexity, Analysis,
+Transformation, volume 2566 of LNCS, pages 85–108. Springer, 2002.
+
+15
+
+2. R. Bodı́k, R. Gupta, and V. Sarkar. ABCD: Eliminating array bounds checks on
+demand. In ACM Symposium on Programming Language Design and Implementation (PLDI’00), pages 321–333. ACM Press, 2000.
+3. P. Cousot, R. Cousot, and F. Logozzo. A parametric segmentation functor for fully
+automatic and scalable array content analysis. In Proceedings of the 38th ACM
+Symposium on Principles of Programming Languages, pages 105–118. ACM Press,
+2011.
+4. P. Cousot and N. Halbwachs. Automatic discovery of linear constraints among
+variables of a program. In Proceedings of the Fifth ACM Symposium on Principles
+of Programming Languages, pages 84–97. ACM Press, 1978.
+5. D. L. Dill. Timing assumptions and verification of finite-state concurrent systems.
+In Automatic Verification Methods for Finite State Systems, volume 407 of LNCS,
+pages 179–212. Springer, 1989.
+6. I. Dillig, T. Dillig, and A. Aiken. Fluid updates: Beyond strong vs. weak updates. In A. D. Gordon, editor, Proceedings of the 19th European Symposium on
+Programming, volume 6012 of LNCS, pages 246–266. Springer, 2010.
+7. D. Gopan, T. Reps, and M. Sagiv. A framework for numeric analysis of array operations. In Proceedings of the 32nd ACM Symposium on Principles of Programming
+Languages, pages 338–350. ACM Press, 2005.
+8. S. Gulwani, B. McCloskey, and A. Tiwari. Lifting abstract interpreters to quantified
+logical domains. In Proceedings of the 35th ACM Symposium on Principles of
+Programming Languages, pages 235–246. ACM Press, 2008.
+9. N. Halbwachs and M. Péron. Discovering properties about arrays in simple programs. In ACM Symposium on Programming Language Design and Implementation
+(PLDI’08), pages 339–348. ACM Press, 2008.
+10. M. J. Maher. Herbrand constraint abduction. In Proceedings of the 20th IEEE
+Symposium on Logic in Computer Science, pages 397–406. IEEE Comp. Soc., 2005.
+11. A. Miné. The octagon abstract domain. Higher-Order and Symbolic Computation,
+19(1):31–100, 2006.
+12. M. Mohri. Semiring frameworks and algorithms for shortest-distance problems.
+Journal of Automata, Languages and Combinatorics, 7(3):321–350, 2002.
+13. M. Péron and N. Halbwachs. An abstract domain extending difference-bound
+matrices with disequality constraints. In B. Cook and A. Podelski, editors, Verification, Model Checking and Abstract Interpretation, volume 4349 of LNCS, pages
+268–282. Springer, 2007.
+14. A. Schrijver. Theory of Linear and Integer Programming. Wiley, 1986.
+15. N. Suzuki and K. Ishihata. Implementation of an array bound checker. In Proceedings of the Fourth ACM Symposium on Principles of Programming Languages,
+pages 132–143. ACM Press, 1977.
+16. H. Xi and F. Pfenning. Eliminating array bound checking through dependent
+types. In ACM Symposium on Programming Language Design and Implementation
+(PLDI’98), pages 249–257. ACM Press, 1998.
+
+16
+
+Appendix A: Termination Proofs
+Theorem 1. The shortest-path computation terminates for the octagon domain.
+Proof. Consider an initial set of abstract states X “ rx1 , . . . , xn s, and a system of
+inequalities of the form xi Ďpxi [ xj q \pxi [ xk q. Let BPpxq denote the bounding
+hyperplanes of x. We then have: BPppx [ yq \px [ zqq Ď BPpx [ yq Y BPpx [ zq.
+Each time one
+Ű 1 is evaluated, each bounding hyperplane is an
+Ť of the equations
+BPp
+X q As the initial set of bounding hyperplanes is
+element of:
+1
+X ĎX
+finite, and each iteration must tighten at least one bounding plane, the tightening
+process must eventually
+Ť terminate; in fact, the number of descending steps is
+\
+[
+bounded by: |X| ˆ | xPX BPpxq|
+
+In the case of octagons, projection cannot introduce new bounding hyperplanes,
+so the addition of the propagation rules (ϕ Ď D UI . ϕii` and ϕij Ď ψ) does not
+affect termination.
+Theorem 2. The shortest-path computation terminates for the convex polyhedron domain.
+Proof. We can prove termination for convex polyhedra in a similar fashion as
+for octagons. Consider an initial set of abstract states X “ rx1 , . . . , xn s, and a
+system of inequalities of the form xi Ďpxi [ xj q \pxi [ xk q. By the polyhedron
+decomposition theorem (see, e.g. [14]), any polyhedron may be generated by a
+finite set of points P , and a set of rays R. Let RV denote the set of rays of unit
+length in the direction of variable v (that is, a vector with v th component 1 or
+´1, and all other components 0), for each v P V . Given polyhedra x “ xPx , Rx y
+and y “ xPy , Ry y, the results of the operations of interest have the following
+properties:
+x [ y “ xP 1 , R1 y where R1 Ď Rx Y Ry
+x \ y “ xP 1 , R1 y where P 1 Ď Px Y Py , R1 Ď Rx Y Ry
+D V . x “ xP 1 , R1 y where P 1 Ď Px , R1 Ď Rx Y RV
+Ť
+None of these operations can introduce rays not in R “ RV Y xPX Rx . Additional extreme points can only be introduced during the application of [. During
+each fixed point iteration, exactly one of three cases must occur:
+1. All abstract values in X remain the same.
+2. The set of rays for some x P X changes.
+3. All the sets of rays remain the same, and the set of extreme points for some
+x P X changes.
+In case 1, we terminate. As the set of rays is restricted to R, and each iteration is
+strictly descending, case 2 can only occur finitely many times. Assuming the set
+of
+Ť rays remains fixed,Şevery introduced extreme point must be some element of
+xPX 1 xu. As this set is finite, and each step is descending,
+X 1 ĎX tP | xP, Ry “
+this can only occur finitely many times without case 2 occurring. As case 2 must
+always occur after a bounded number of steps, and can only occur finitely many
+times, the fixed point process must eventually terminate.
+\
+[
+17
+
+We conclude that this process will terminate on the most commonly used
+relational numeric domains. In the case of polyhedra, it is worth noting that
+Theorem 2 does not provide any bounds on the coefficients of hyperplanes in
+the resulting polyhedra. In some cases, the coefficients may grow quite large
+before converging, which can cause problems for domains implemented with
+fixed-precision machine arithmetic.
+
+Appendix B: Relaxation for polyhedra
+The relaxation algorithm for polyhedra follows the same intuition as that for
+octagons; we wish to collect the transitive closure of ψij , then discard anything
+implied separately by ϕ [rri ă jss.
+However, the polyhedra domain provides two difficulties: computing the
+transitive closure of a set of linear constraints is non-trivial (as the domain is
+typically stored as a minimal set of generators and hyperplanes [4]); and often is
+a bad idea in general: as the constraints do not have bounded arity, there may
+be exponentially more constraints in the transitive closure than in the original
+problem. Instead, we collect a set of constraints that is sufficient to reconstruct
+the constraints that, had we computed the transitive closure, would have been
+kept.
+Given constraints c1 “ rrk1⊺ x ě m1 ss and c2 “ rrk2⊺ x ě m2ss, we can construct
+a new constraint (that is not implied separately by either c1 or c2 ) by resolution if
+there is some matched pair of coefficients k1v , k2v , such that k1v ą 0 and k2v ă 0.
+1v
+k2 q⊺ x ě m1 ` kk1v
+m2 ss, which
+We then construct a new constraint c1 “ rrpk1 ` kk2v
+2v
+th
+has v coefficient 0.
+Example 6. Consider the constraints c1 “ rrx ` y ě 7ss, c2 “ rrz ´ 2y ě 2ss, and
+c3 “ rrw ` 2y ě 3ss. c1 and c2 may be resolved, as c1 contains the term y, and
+c2 contains ´2y. This yields c12 “ rrx ` z2 ě 8ss. We cannot, however, construct
+any new constraints by combining c1 with c3 .
+Rather than computing the transitive closure explicitly, given an initial set of
+interesting constraints C: and other constraints C, we find all those constraints
+that are resolvable with those in C: (taking into account the direction of previous
+: We then continue this process until no
+resolution steps), and add them to C.
+further resolvable constraints are found:
+$
+trans‹ pR Y tpsignpkv1 q, v 1 qu, C: Y tcu, Cq
+’
+’
+&
+if D ps, vq P R, c “ rrk ⊺ x ě mss P C, v 1 P x
+: Cq “
+trans‹ pR, C,
+s.t. v ‰ v 1 , kv s ă 0, ppsignpkv1 q, v 1 q R R _ c R C:
+’
+’
+%:
+C otherwise
+: Cq “ trans‹ ptsignpkv , vq | rrk ⊺ x ě mss P C,
+: v P xu, C,
+: Cq
+transpC,
+
+Given a set of linear constraints C defining a polyhedron, we can construct the
+initial set C: with the elements of C that are not implied by ϕ [rri ă jss, then
+18
+
+: C z Cq.
+: As with octagons, we can avoid
+compute the relaxation with transpC,
+performing implication tests by instead initializing C: with those constraints
+containing variables in VA .
+Example 7. Consider a constraint of interest c0 “ rra ´ y ě 0ss, with additional
+constraints C “ tc1 “ rry ´ z ě 0ss, c2 “ rrz ` w ě 0ss, c3 “ rrx´ y ě 0ssu. Initially,
+we have C: “ trra ´ y ě 0ssu, and R “ tp`, aq, p´, yqu. We can resolve with
+rry ´ z ě 0ss, since p´, yq P R, but p´, zq R R. During the second step, we include
+c2 , adding p´, wq to R. At this point, we have R “ tp`, aq, p´, yq, p´, zq, p`, wqu,
+: so we return
+and C: “ tc0 , c1 , c2 u, and we cannot add anything to either R or C;
+:
+the current value of C.
+
+Appendix C: Partitions for init randm
+The large number of partitions required for the init rand family is not necessarily obvious. Assuming n is non-negative, we must distinguish between the
+case where the array is empty (thus n “ 0) or non-empty (n ą 0). This gives
+us two base orderings: rt0, nus, and rt0u, tnus. In these descriptions, sets denote
+equivalence classes, and equivalence classes are listed in increasing order.
+If n “ 0, there is only one possible value for i1 : rt0, i, nu, ti`us. Otherwise,
+we must distinguish all the possible relations between 0, i and n. The resulting
+orderings are as follows:
+rt0u, ti1 , nuti`
+rt0, i1 , nu, ti`
+1 us
+1 us
+`
+rt0, i1 u, ti1 , nus rt0u, ti1u, ti`
+,
+1 nus
+`
+rt0, i1u, ti`
+u,
+tnus
+rt0u,
+ti
+u,
+ti
+1
+1
+1 u, tnus
+When we construct the partitions for m “ 2, we introduce i2 into all feasible
+locations in each of the partitions for m “ 1.
+In cases where we must explicitly distinguish the 0th element, this progression
+grows substantially faster, with m “ 1, . . . , 5 yielding r9, 45, 333, 3285, 40509s.
+
+19
+
+
+
+Summary:
+This research paper covers the following topic: A Partial-Order Approach
+to Array Content Analysis
+
+arXiv:1408.1754v1 [cs.PL] 8 Aug 2014
+
+Graeme Gange1 , Jorge A. Navas2 , Peter Schachte1 , Harald Søndergaard1, and
+Peter J. Stuckey1
+1
+
+2
+
+Department of Computing and Information Systems,
+The University of Melbourne, Victoria 3010, Australia
+{gkgange,schachte,harald,pstuckey}@unimelb.edu.au
+NASA Ames Research Center, Moffett Field, CA 94035, USA
+jorge.a.navaslaserna@nasa.gov
+
+Abstract. We present a parametric abstract domain for array content
+analysis. The method maintains invariants for contiguous regions of the
+array, similar to the methods of Gopan, Reps and Sagiv, and of Halbwachs and Péron. However, it introduces a novel concept of an array
+content graph, avoiding the need for an up-front factorial partitioning
+step. The resulting analysis can be used with arbitrary numeric relational abstract domains; we evaluate the domain on a range of array
+manipulating program fragments.
+
+1
+
+Introduction
+
+Most imperative programming languages offer mutable arrays. However, owing
+to the indirect relation between storage and retrieval, arrays are not particularly
+amenable to static analysis. While analysis of array bounds (e.g, [15,16,2]) is well
+studied, only recently has there been real progress in analyzing array content.
+Early approaches involved array smashing [1], where an entire array was treated
+as a single symbolic variable. This used the concept of weak updates: transfer
+functions for array assignment that can only weaken the previous abstract state.
+Weak updates generally lead to a rapid loss of precision when different segments
+of an array have different properties.
+A significant improvement was Gopan, Reps and Sagiv’s use of array partitioning [7] to split arrays into symbolic intervals, or segments. Partitioning
+is facilitated by an initial analysis of the array index expressions to determine
+the relative order of the indices they denote. A key idea is to distinguish segments that represent single array cells from those that represent multiple cells.
+This permits strong updates on the singleton segments. The array partitioning method selects a small set of partition variables, maintaining disjunctive
+information about properties which hold over all feasible total orderings of the
+partition variables.
+
+Halbwachs and Péron [9] extended the
+i1 := 0 ; . . . ; im := 0
+approach to support relational content dox := ‹
+mains and a limited form of quantified inwhile(i1 ă n ^ . . . ^ im ă n)
+variants. The resulting method is precise,
+p := ‹
+but has its own drawbacks. First, it reif (p ă 0)
+quires an initial segmentation phase, where
+Ari1 s := x ` 1
+the set of partition variables is identified;
+i1 := i1 ` 1
+and as this phase is purely syntactic, it is
+else if (p ă 1)
+possible for variables to be omitted which
+Ari2 s := x ` 2
+are critical to the invariant. Second, there
+i2 := i2 ` 1
+are exponentially many possible total or...
+derings of the partition variables; if many
+else
+partition variables are identified, the analyArim s := x ` m
+sis may become prohibitively expensive. For
+im := im ` 1
+example, on the init randm family of programs shown in Figure 1, the number of partitions at the loop head follows the progres- Fig. 1: The init randm family of
+sion r6, 30, 222, 2190, 27006s as m increases program fragments.
+from 1 to 5 (this is discussed in more detail
+in Appendix C). Finally, the analysis does
+not support arbitrary manipulation of index variables; indices may only be incremented and decremented.
+Cousot et al. [3] instead maintain a single partitioning of the array, selecting
+a consistent totally ordered subset from a scalar variable analysis. This does not
+require a separate segmentation phase, saving considerable overhead; however, as
+it considers only a single consistent ordering (and supports only value domains)
+the invariants it derives are quite weak. Consider init rand2 , with x fixed to
+0—so each element in r0, nq will be assigned either 1 or 2. In this case, the
+relationship between i1 and i2 is not known, so we must select either 0 ď i1 ă n
+or 0 ď i2 ă n. In either case, the desired invariant at the loop exit is lost.
+An alternative approach to expressing array properties is to lift an abstract
+domain to quantified invariants [8]. This technique is quite general but there
+are two major limitations. First, it requires from the user the specification of
+templates to describe when quantifiers are introduced. Second, it is expensive,
+owing to the computation of under-approximations. For example, to join the formulas @U pG ñ eq and @U pG1 ñ e1 q, we must compute an under-approximation
+of G \ G1 , since G and G1 are in negative positions, and this is prohibitively
+expensive for many domains.
+Dillig et al. [6] replace strong and weak updates with fluid updates. Their
+method is a points-to and value analysis, so not relational in our sense. It builds
+a points-to graph where nodes represent abstract locations that include arrays
+qualified by index variables. Edges represent constraints on index variables that
+identify which concrete elements in the source location point to which concrete
+location in the target. A fluid update removes the dichotomy between strong and
+weak updates by computing first a constraint ϕ representing the elements that
+2
+
+are modified by the update. Then it adds a new points-to edge with ϕ (strong
+update) while adding the negation of ϕ to existing edges from the source (weak
+update). As ϕ is an over-approximation, its negation is an under-approximation
+and thus it would be unsound to add it directly to other edges. Instead the
+analysis produces bracketing constraints which are pairs of over- and underapproximations so that negation can be done in a sound manner. This analysis
+is very expressive, avoiding the large number of explicit partitions fixed a priori
+in [7,9]. However, the method can still be very expensive since whenever an array
+is accessed, the points-to edges must be modified by adding possibly disjunctive
+formulas.
+We propose a new approach to array content analysis. We extend any existing scalar domain by introducing a pseudo-variable to refer to segments of
+each array, selecting index expressions as nodes in a graph, and annotating the
+graph edges with the properties that hold in the segments of the arrays between
+those index expressions. These array content graphs offer greater flexibility than
+other approaches, as they allow us to reason about properties that hold over contiguous array segments without committing to a single total ordering on index
+expressions, while still taking advantage of available partial ordering information. The result is an array content analysis which is fully automatic, can be
+used with arbitrary domains, and does not incur the up-front factorial cost of
+previous methods [7,9]. In particular, it can be used for relational analyses, and
+accounts for the possibility of array elements being related to array indices.
+We base our presentation on a small control flow graph language.
+
+Instructions
+Array assignments
+Jumps
+Blocks
+Programs
+
+I
+A
+J
+B
+P
+
+Ñ
+Ñ
+Ñ
+Ñ
+Ñ
+
+v1 “ constant | v1 “ ˝ v2 | v1 “ v2 ˛ v3 | A
+v1 “ arrrv2 s | arrrv1 s “ v2
+if pv1 ’ v2 q label 1 label 2 | br label | error | end
+label : I* J
+B`
+
+Each basic block is a (possibly empty) sequence of instructions, ending in a
+(possibly conditional) jump. Arithmetic unary and binary operators are denoted
+by ˝ and ˛ respectively, and comparison operators by ’. We assume that there is
+a fixed set of arrays tA1 , . . . , Ak u, which have global scope (and do not overlap in
+memory). The semantics is conventional and not discussed here. Figure 2 shows
+an example program in diagrammatic form.
+Our analysis assumes an abstract domain L “ xL, Ď, K, J, \, [y for analysis
+over the array-free fragment of the language (obtained by leaving out A) (scalar
+analysis). We use this parametric domain to construct the array content analysis.
+The remainder of this paper is structured as follows. Section 2 introduces
+the method and its underlying ideas. Section 3 discusses computational details
+and efficiency. The method has been evaluated experimentally; Section 4 gives
+a report and Section 5 concludes, suggesting further work.
+3
+
+2
+
+A Graph-Based Array Content Domain
+
+We let V and A be sets of scalar and array variables, respectively. A state in
+the concrete domain is a pair xσ, ρy, where σ : V ÞÑ Z maps scalar variables to
+integer values, and ρ : A Ñ Z Ñ Z maps array cells to values.3
+Let VA denote the set of variables, and CA
+the set of constants, which may act as segment
+bounds. We use an extended set of variables
+head :
+V 1 “ VA Y CA Y tv ` | v P VA Y CA u. The
+i“0
+pseudo-variable v ` represents the value v ` 1.
+br guard
+This allows us to talk about properties that
+apply to single array cells. The constant vertices are often needed; because array properguard :
+ties often hold over ranges bounded by a conif pi ă N q body tail
+stant on one side, and array processing code
+often initializes a fixed set of indices before
+body :
+processing the rest of the array, it is not suffitail :
+v “ Aris
+cient to consider only those variables and conend
+Bris “ v
+stants used directly as indices. Consider the
+i“i`1
+copy program shown in Figure 2. In this case
+br guard
+neither 0 nor N is ever used directly as an index, but both define boundary conditions of
+i, and are needed for the invariant of interest. Fig. 2: Copying array A to B
+In practice, however, VA is often considerably
+smaller than V .
+We wish to relate the value of elements in an array segment to variables in
+the scalar domain. A state in the abstract domain has the form xϕ, Ψ y, where
+ϕ expresses scalar properties and Ψ expresses array content properties. For each
+array A P A, we allocate a corresponding variable a, a segment variable, which
+occurs only in Ψ , never in ϕ. Relations between scalar and segment variables
+are captured in Ψ . We use U “ ta, b, . . .u to denote the set of segment variables.
+Sometimes, we may wish to relate the values in an array segment to the corresponding index, for example, to prove that Aris “ x ` i across a segment. To
+support this, we introduce a variable idx to represent the index of a given read.
+We use UI “ tidxu Y U to denote the augmented set of segment variables.
+The analyses of the scalar domain and array contents are based on the same
+lattice L. We represent the program state as a pair of the scalar properties ϕ and
+the |V 1 | ˆ |V 1 | matrix Ψ of array properties such that ψij denotes the properties
+which hold for all indices in the interval ri, jq. In a slight abuse of notation, we
+use ψpℓq to denote the formula ψ with each symbolic array variable a replaced
+with the corresponding array element Arℓs. That is:
+ψpℓq ” ψta ÞÑ Arℓs | A P Au
+3
+
+For simplicity we assume arrays elements are integers. The extension to arbitrary
+types (that may include integers) is not difficult, as the complexity of array elements
+acting as indices is present in what we consider.
+
+4
+
+J
+J
+
+ϕ“0ďiăN
+
+Ψ“
+
+0
+i
+i`
+N
+
+0 i
+i`
+Ka“b J
+K K a“v
+K K
+K
+K K
+K
+
+N
+J
+J
+J
+K
+
+a“b
+0
+
+a“v
+i
+
+J
+`
+
+i
+
+N
+
+i`
+
+N
+
+J
+a“b
+0
+
+a“v
+i
+
+Fig. 3: Array content graph after assignment v “ Aris in Figure 2. Vertices and
+matrix entries corresponding to 0` and N ` are omitted.
+
+Then the reading of an edge pi, ψij , jq is: @ i ď ℓ ă j . ψij pℓq. Given some numeric
+abstract domain L, a set of arrays A and scalar variables V , the array content
+domain CL pA, V 1 q is a pair xϕ, Ψ y, where ϕ is a value in L, and Ψ is a |V 1 | ˆ |V 1 |
+matrix of L-values. Assume we have a function evalA which constructs a new
+state which treats the ℓth element of each array as a scalar variable:
+evalA pσ, ρ, ℓq “ σ Y ta ÞÑ ρpAqpℓq | A P Au
+The concretization function γ is then defined on the components in terms of the
+concretization function γL of the scalar domain L:
+γpxϕ, Ψ yq “ txσ, ρy | σ P γL pϕqu X γA pΨ q
+č
+γA pΨ q “
+txσ, ρy | @σpiqďℓăσpjq evalA pσ, ρ, ℓq P γL pψij qu
+i,jPV 1
+
+Notice that there are no constraints on ρ in the first equation; ρ can be any array
+variable assignment of type A Ñ Z Ñ Z. As any value in the content domain
+CL pA, V 1 q is the Cartesian product of a fixed set of elements of L, CL pA, V 1 q also
+forms a lattice, and possesses all the corresponding fixed point properties.
+For each edge ψij , we can assume the corresponding interval is non-empty;
+that is, rri ă jss P ψij . Note that the edge from i to i` has no such constraint,
+since i ă i`1 is always true. Since the interval ri`1, iq is clearly empty, ψi` i “ K.
+Given the state representation, we can take the join of two abstract states
+by a piecewise application of the join from L:
+ﬁ
+» 1
+2
+1
+2
++
+*
+. . . ψ1n
+\ ψ1n
+ψ11 \ ψ11
+ﬃ
+.
+.
+1
+1
+2
+2
+1
+2 —
+.
+..
+..
+..
+xϕ , Ψ y \xϕ , Ψ y “ ϕ \ ϕ , –
+ﬂ
+1
+2
+1
+2
+ψn1 \ ψn1 . . . ψnn \ ψnn
+We can compute the meet [ analogously. To see how the analysis works, consider
+again the program in Figure 2. Figure 3 shows the abstract state immediately
+after executing v “ Aris. The array content information is given by the matrix
+5
+
+Ψ of array properties. The array content graph shown upper right is really just
+a way of visualizing the matrix. Note that infeasible edges, those labelled K,
+are omitted. In fact, we shall usually show only the “transitive reduction” of
+the array content graph, so that an edge ik whose value is given by ψik “
+Ű
+j pψij \ ψjk q is omitted. We depict edges representing J without a label. This
+leads to the shorthand graph in Figure 3’s lower right.
+2.1
+
+Normalization of Abstract States
+
+Given a set C of constraints of the form e P ri, jq ñ ψij , we wish to normalize
+the state by computing the strongest consequences of C, still in that form.
+The critical observation is this: @x, y . x ă y |ù @z.px ă zq _ pz ă yq. That
+is, any property that holds over both rx, zq and rz, yq must also hold over the
+range rx, yq. To compute the strongest consequences, then, we must compute
+the greatest fixed point of a rewrite system derived from the set of inequalities:
+@i, j, k . ψij Ď ψik \ ψkj .
+It is tempting to try to compute the fixed point using the obhead :
+vious rewrite system:
+x “ Ar0s
+i“1
+br guard
+
+@i, j, k . ψij “ ψij [pψik \ ψkj q
+But, as we shall see, this formulation does not guarantee termination for all useful domains.
+Mohri [12] describes the algebraic shortest path problem, where
+the operations p[, \q form a
+semiring in the domain of edge
+weights. This is very close to what
+we need, as every distributive lattice forms a bounded semiring. But
+“numeric” domains used in static
+analysis generally fail to be distributive, so we cannot use Mohri’s
+framework directly.
+
+guard :
+if pi ă N q body tail
+body :
+v “ Aris
+if pv ą xq update step
+step :
+i“i`1
+br guard
+
+update :
+x“v
+br step
+
+tail :
+end
+
+Fig. 4: Find maximum value in array A
+
+Example 1. Consider the array-maximum program from Figure 4. Figure 5(1)
+shows the program state just after v “ Aris is executed (scalar constraints on
+the left and array constraints on the right). On the branch with v ď x, we simply
+add the constraint to the scalar domain, resulting in (2a). If v ą x, we add the
+constraint to the scalar domain (2b), then update x with v, resulting in (2b1 ).
+Observe that, in both cases, we can only discover the relationship between a and
+x indirectly via v. If we do not push scalar relations into the edge properties,
+the underlined invariants are lost. The final result is shown at (3).
+If the statement x = v in update was instead replaced by x = Aris, we would
+first have to lift the invariant x “ v from the singleton property ψii` to the
+6
+
+(1)
+
+aďx
+
+0ďiďN
+
+a“v
+
+0
+0ďiďN
+(2a)
+vďx
+(2b)
+
+(2b1 )
+
+0ďiďN
+xăv
+0ďiďN
+x“v
+
+0
+
+i
+a ď x, a ă v
+
+0
+
+i`
+
+N
+
+i`
+
+N
+
+a“v
+i
+
+a ă v, a ă x a “ v, a “ x
+0
+
+i
+aďx
+
+i`
+
+N
+
+a “ v, a ď x
+
+0
+0ďiďN
+x“v
+
+N
+
+a “ v, a ď x
+
+aďx
+
+(3) 0 ď i ď N
+
+(2b: )
+
+i`
+
+i
+
+i
+
+i`
+
+N
+
+a ă x, a ă v a “ v, a “ x
+0
+
+i
+
+i`
+
+N
+
+Fig. 5: Array maximum example
+
+scalar domain. We then push this property into the segment ψ0i , allowing us to
+derive a ă x. The state in Figure 5(2b: ) shows the program state if x “ v were
+to be replaced with x “ Aris.
+This illustrates that it is not sufficient to simply compute the transitive closure
+of Ψ ; we must also lift properties from Ψ out to the scalar domain. For a fully
+reduced state xϕ, Ψ y, the following properties must be satisfied for all i, j, k:
+1. The graph of segments must be internally consistent: ψij Ď ψik \ ψkj
+2. Segment properties are consistent with the scalar domain: ψij Ď ϕ [rri ă jss
+3. For each non-empty segment, the scalar domain must be consistent with the
+scalar properties of that segment: ϕ |ù i ă j ñ ϕ Ď DUI . ψij
+Notice that we only propagate constraints to the scalar component from segments
+that are known to be non-empty. If we tried to propagate information from all
+segments, we would incorrectly derive K as soon as any segment was determined
+to be empty. One solution is to simply apply the three rules until a fixed point is
+reached. This is guaranteed to compute the fully reduced state. However, while
+this direct construction is conceptually clean, it suffers from some pragmatic
+issues relating to both termination and efficiency, as we shall see.
+2.2
+
+Termination
+
+The normalization process is not guaranteed to terminate for arbitrary lattices.
+Example 2. Assume the analysis uses convex polyhedra. Consider the state in
+Figure 6(a). Any fixed point will satisfy the properties A Ď B \ C and B Ď A \ C.
+7
+
+A
+0
+
+i
+
+A
+
+B
+
+C
+B
+
+j
+
+C
+
+(a)
+
+(b)
+
+Fig. 6: At a fixed point, we have A Ď B \ C and B Ď A \ C. The regions A and
+B will be progressively reduced, indefinitely.
+
+Let A, B and C be the gray regions shown in Figure 6(b)—the intention is
+that A shares a line segment with C, as does B. Assume we start by exploiting B Ď A \ C. We compute A \ C, yielding the polygon given by the topmost
+dashed line. This allows us to trim the top portion of B. We then compute
+B \ C, and trim the top-left region of A. However, now A has changed, so we
+re-compute A \ C and again reduce B. This process asymptotically approaches
+the greatest fixed point A “ A [ C, B “ B [ C.
+If we modify the equations in Example 2 slightly, to A ĎpA [ Bq \pA [ Cq (still
+a valid approximation of the concrete state), convergence is immediate.
+The fixed point process will clearly terminate for the interval domain, as the
+possible interval end-points are drawn from the initial set. We can also show that
+it is guaranteed to terminate for both octagons [11] and convex polyhedra [4];
+proofs are given in Appendix A. Unfortunately, we do not yet have a more general
+characterisation of the lattices for which termination is (or is not) guaranteed.
+2.3
+
+Abstract Transfer Functions
+
+In this section, we describe the abstract transfer functions necessary to perform
+array content analysis on the language described in Section 1.
+Variable assignment. The effect of a scalar assignment x “ f on an abstract
+state follows the behaviour of the underlying domain L. We first project out the
+previous value of x (assuming x does not occur in f ) then introduce the new
+constraint into the scalar domain. However, when we project x from our scalar
+domain, we must also update all incoming and outgoing edges of x (and x` ).
+This becomes: xϕ, Ψ yrrx “ fss “ xϕrrx “ fss, Ψ 1 y where Ψ 1 is given by, for all p, q:
+"
+J
+if p P tx, x` u _ q P tx, x` u
+1
+ψpq “
+Dx . ψpq otherwise
+The assumption that f is free of x is not always well founded; however, we can always transform the program so that it is the case: x “ f ñ xt “ x; x “ frx{xts.
+8
+
+0
+
+(b)
+
+a“b“v
+
+a“b
+
+(a)
+
+i
+
+b
+
+i
+
+0a “
+
+b
+
+i`
+
+it a “ b “ v it
+
+0a “
+
+`
+
+i`
+
+it a “ b “ v it
+
+N
+it a “ b “ v it `
+
+b
+
+i`
+N
+
+it a “ b “ v it
+
+`
+
+a“b
+
+(f)
+0
+
+N
+
+b
+
+b
+a“ i
+
+(e)
+N
+
+i
+
+(c)
+
+0a “
+
+N
+
+a“b“v
+
+b
+a“
+0a “
+
+i`
+
+i`
+
+i
+
+(d)
+
+i
+
+i`
+
+N
+
+`
+
+Fig. 7: Array content graph during analysis of the program given in Figure 2,
+while executing i “ i ` 1. The dashed edges indicate equality (in reality they
+represent two edges each labelled K).
+Example 3. Consider the array-copy program given in Figure 2, immediately
+before the assignment i “ i ` 1. The state is shown in Figure 7 (a).
+We must first introduce a new variable it to hold the prior value of i, transforming i “ i ` 1 to it “ i; i “ it ` 1. The normalized graph after the it “ i
+statement is shown in Figure 7 (b). To handle the i “ it ` 1 statement we
+must eliminate the annotations on edges corresponding to i and i` , resulting in
+state (c). Note that the edge ψ0it ` , omitted from the diagram, has annotation
+a “ b. State (d) completes the handling of the i “ it ` 1 statement, introducing
+the new value of i into the scalar domain. The scalar domain discovers that
+it ` “ i (the dashed edge). When normalizing state (d), ψit ` i “ K, so the rule
+ψ0i Ď ψ0it ` \ ψit ` i results in ψ0i becoming a “ b, the desired invariant (e), which
+after projecting out it and i`
+t gives (f).
+Array reads. An array read x “ Aris is relatively simple. As for standard
+variable assignment, we must existentially quantify the variable x. But instead
+of introducing a relation into the scalar domain, we add the constraint x “
+a to the singleton segment ψii` . This transfer function may be formulated as
+xϕ, Ψ yrrx “ Arisss “ xDx.ϕ, Ψ 1 y where Ψ 1 is given by, for all p, q:
+"
+ψpq rra “ xss if p “ i, q “ i`
+1
+ψpq “
+Dx . ψpq otherwise
+Normalization handles the consequences for the scalar part.
+Array writes. When we store a value into an array at index i, we update the
+corresponding edge property ψii` . However, this is not sufficient, as the singleton
+9
+
+a“
+
+S
+
+a“0
+
+0
+
+`
+
+a“
+
+i
+i
+a“0 a“0
+
+0
+
+0
+j
+
+N
+
+a“0
+
+0
+i
+i`
+j
+N
+0
+0 K
+
+a“
+
+SrrAris “ 1ss
+
+0
+
+a“1
+i
+...
+
+0
+
+i`
+...
+
+a“
+
+0
+j
+
+N
+
+i K
+i` K
+j K
+N K
+
+a “ 0\a “ 1
+
+0 i
+i`
+j N
+Ka“0a“0a“0 J
+K K a“0a“0 J
+K K
+K a“0 J
+K K
+K
+K J
+K K
+K
+K K
+
+`
+˛¨ j ˛N
+¨ i
+a“0
+a“0
+a “ 0 ˝ \ ‚˝ \ ‚ J
+a “ 1 ¨a “ 1˛
+a“0
+K
+a “ 1 ˝ \ ‚J
+a“1
+K
+K
+a“0 J
+K
+K
+K
+J
+K
+K
+K
+K
+
+i
+
+Fig. 8: In state S, we know that all elements between 0 and j have been initialized
+to 0. When we evaluate Aris “ 1, we update the edge ψii` . However, i may also
+be covered by the edge ψ0j . For these potentially overlapping edges, we must
+perform a weak update, taking the join of the previous value with the new.
+
+i may be covered by other edges. As with previous analyses, we distinguish
+between strong updates where all elements in a (generally, singleton) segment
+are updated with a given property, and weak updates [1] where some elements of
+a segment may be updated. An edge ψpq must be updated if p ď i ď q ^ p ă q
+is possible in the current state. This is possible if and only if the edges ψpi` and
+ψiq are both feasible.
+Consider the array state illustrated in Figure 8, where 0 ď i ď j ď N and the
+first j elements have been initialized to 0. When we store 1 at Aris, we update
+the singleton ψii` with the property a “ 1. However, there are other segments
+that may contain Aris. The segments ψ0i` , ψij and ψ0j are all consistent with
+index i. In this case, they must all be weakly updated (annotations on ψ0i` and
+ψij have been omitted; they are identical to the annotation on ψ0j ).
+We can formulate this as xϕ, Ψ yrrAris “ fss “ xϕ, Ψ 1 y, where Ψ 1 is given by,
+for all p, q:
+1
+ψpq
+
+$
+&
+
+ψpq rra “ fss
+if p “ i, q “ i`
+ψpq
+if ϕ |ù pp ą i _ q ă i` q
+“
+%
+ψpq \ ψpq rra “ fss otherwise
+
+Notice that if we have some other variable j such that ϕ |ù i “ j, we will initially
+perform only a weak update of the segment ψjj ` . However, the normalization
+procedure will then enforce consistency between ψii` and ψjj ` .
+10
+
+3
+
+Improving Efficiency through Relaxation
+
+When computing the strongest matrix entries, we perform a substantial amount
+of redundant work. We include all constraints ϕ from the scalar domain in each
+matrix entry ψij , and these constraints will be processed during each step in
+the shortest-path computation. This is not ideal, as many are irrelevant to the
+content properties, and abstract domain operations are often proportional to
+the number of constraints. Hence we want to construct some relaxation ψ:ij of
+ψij that discards irrelevant scalar properties. We shall use d to denote this
+relaxation operation (that is, ψ:ij “ ϕ d ψij ). At a minimum, it must satisfy:
+ψij Ď ϕ [ ψ:ij “ ϕ [pϕ d ψij q
+We want to make ϕ [ ψ:ij as close to ψij as possible, while keeping the representation of ψ:ij concise. This is very similar to the process of constraint abduction [10].
+However, even with a relaxation Ψ: such that ϕ [ ψ:ij ” ψij , we may still lose
+relevant information.
+Example 4. Consider a program state (using the domain of octagons) with
+scalar property ϕ “ rrx ă yss, and segment properties ψik “ ϕ [rri ă k ^ x ă ass,
+ψkj “ ϕ [rrk ă j ^ y “ ass. Computing the value of ψij gives the expected
+ψij “ ϕ [rri ă j ^ x ă ass. However, although the relaxations
+ψ:ik “ rri ă k ^ x ă ass and ψ:kj “ rrk ă j ^ y “ ass
+are exact, computing ψij as before yields:
+rri ă j ^ i ă k ^ x ă ass \rri ă j ^ k ă j ^ y “ ass “ rri ă jss
+We could avoid this loss of information by conjoining the scalar part during each
+step of the fixed point computation
+ψ:ij Ď ϕ d ppϕ [ ψ:ij [ ψ:ik q \pϕ [ ψ:ij [ ψ:kj qq
+but while this avoids the loss of information, it also defeats the original goal of
+reducing computation cost. Instead we define a more conservative d operation
+which maintains enough additional information to retain properties of interest.
+Example 5. Consider again the analysis that was performed in Example 4, but
+now with a modified d operation which gives us ψ:ik “ rri ă k ^ x ă ass and
+ψ:kj “ rrk ă j ^ y “ a ^ x ă ass. In this case, when we compute ψ:ij , we get:
+ψ:ij “ rri ă j ^i ă k ^x ă ass \rri ă j ^k ă j ^y “ a^x ă ass “ rri ă j ^x ă ass.
+This maintains the property of interest, without repeatedly conjoining with ϕ
+during the fixed point process.
+Another observation from Examples 4 and 5 is that while the boundary
+constraints for each edge (such as rri ă jss for ψij ) are not implied by ϕ, they
+are typically irrelevant to the segment properties, unless:
+11
+
+rri ă nss
+
+rri ă nss
+n
+
+i
+J
+
+i
+
+K
+i`
+
+rri
+ă
+
+n
+K
+
+nss
+i`
+
+Fig. 9: Solving this set of constraints, we strengthen ψii` and derive rri ă nss. If
+we use d, we have ψ:in “ J, so we fail to strengthen ψ:ii` .
+– ϕ [rri ă jss “ K, in which case the edge must be empty, or
+– the array content Arℓs is some function of the index ℓ
+– ψji` “ K (or j “ k ` for some k, and ψki “ K)
+This is particularly troublesome for domains that explicitly store the transitive
+closure of constraints, as we then expend substantial computation maintaining
+consequences of rri ă jss, which are largely irrelevant, and lost during the join.
+If we choose an operator d which discards the consequences of edge boundaries, we must take particular care not to lose information in the third case
+mentioned. Consider the state shown in Figure 9, where the edge from n to i` is
+infeasible. Computing the original fixed point, we obtain rri ă nss at ψii` , which
+is then lifted out to the scalar domain. However, rri ă nss is obviously implied
+by ϕ [rri ă nss, so will typically be discarded by d. The property rri ă nss is not
+obtained at ψii` , so is never lifted out to the scalar domain. We must, therefore,
+add the following case to the normalization rules given in Section 2.1:
+4. ϕ Ďrri ě jss if ψi,j “ K
+This ensures that any scalar properties resulting from infeasible segments are
+included in the scalar domain. Further, since many elements of Ψ: may be J, the
+relaxation operator allows us to take advantage of sparse matrix representations.
+Unfortunately we are not aware of any existing, general operations suitable
+for computing Ψ: ; as they must consider both underlying lattice and the characteristics of the implementation. We complete this section by outlining suitable
+relaxation operators for difference-bound matrices (DBMs) [5] (and octagons).
+Relaxations for polyhedra can be found in the appendix, and it should not be
+particularly difficult to define analogous operators for alternative domains.
+A value in the DBM (or octagon) domain consists of a set of constraints
+rrvi ´ vj ď kss (or rr˘vi ˘ vj ď kss for octagon). We can construct a relaxation
+‹
+of ψij by computing the transitive closure ψij
+, and discarding any constraints
+implied by ϕ [rri ă jss:
+‹
+ϕ d ψij “ tc | c P ψij
+, ϕ [rri ă jss & cu
+
+If the abstract states are stored in closed form, we can simply collect the constraints of ψij not appearing in ϕ [rri ă jss. Or we can avoid performing many
+implication tests by instead collecting the constraints involving variables in U .
+12
+
+4
+
+Experimental Evaluation
+
+We have implemented the analysis in sparcolyzer, a prototype array content
+analyser for the language described in Section 1. sparcolyzer is implemented
+in ocaml, using the Fixpoint library4 . For the underlying domain, we implemented the DBM domain in C++, customized for operating on sparse graphs.
+Experiments were performed on a 3.0GHz Core 2 Duo with 4Gb ram running
+Ubuntu Linux 12.04. The set VA of segment bounds were pre-computed using a
+simple data-flow analysis to collect all variables which may (possibly indirectly)
+be involved in the computation of an array index.
+We tested sparcolyzer on a number of array manipulation program fragments. Most of these were taken from Halbwachs and Péron [9]. We added several
+additional fragments that illustrate interesting properties of the analysis, including members of the init rand family discussed in Section 1 (Figure 1).
+Computation time for each instance is given in Table 1. For instances taken
+from [9], we include the original reported runtimes, although these are not directly comparable, as the experiments in [9] were performed on a slower machine
+(Core2 Duo 1.6 GHz, with 2MB of RAM) using the domain of difference bound
+matrices with disequalities (dDBM) [13].5 The implementation from [9] has not
+been available and we have not tried to reconstruct it.
+Table 1 compares the runtimes of two variants of our content domain to the
+approach of Halbwachs and Péron [9] (the hp08 column). The naive variant
+uses the direct implementation, where the matrix is represented as a |V 1 | ˆ |V 1 |
+array, and a copy of the scalar domain is stored in each matrix entry. The
+sparse variant stores, for each row and column, a set of non-J entries so that
+the normalization, \ and [ operations do not need to process entries that will
+definitely remain J, and computes the fixed point on the relaxed matrix Ψ: ,
+rather than directly on Ψ . sparse uses the simple relaxation step of discarding
+all constraints not involving some array variable A P U . Note that sparse still
+iterates over all |V 1 | ˆ |V 1 | elements when changes to the scalar domain occur,
+as a change to the scalar domain may affect any matrix element.
+In cases where there are very few partitions—either because there are very
+few index variables, or they are highly constrained—we expect the partitionbased methods to be faster (as they do not need to compute closure over transitive edges). The performance of naive is comparable to that of [9] on instances
+with few partitions, and it improves substantially on more complex instances.
+sparse is faster yet, sometimes by several orders of magnitude, and still finds
+the desired invariant in all but two cases.
+It is interesting to compare the behaviour of sentinel and first nonnull.
+These programs superficially appear quite similar; in both cases, we set up an
+‘end-of-array’ marker, then scan the array to find a particular element. However,
+the invariants necessary to prove the desired properties are quite different. In
+4
+5
+
+http://pop-art.inrialpes.fr/people/bjeannet/bjeannet-forge/fixpoint/
+Performance of the domains should be roughly equivalent, as in the absence of explicit disequalities, dDBM behaves identically to DBM.
+
+13
+
+program
+init
+init offset
+init rand2
+init rand3
+init rand4
+init rand5
+arraymax
+copy
+partition hoare
+partition hp08
+sentinel
+first nonnull
+
+naive
+0.11
+0.28
+2.48
+9.59
+31.14
+80.58
+0.13
+0.13
+1.51
+3.50
+0.14
+0.60:
+
+sparse
+0.02
+0.07
+0.14
+0.64
+1.98
+4.96
+ă0.01
+ă0.01
+0.06
+0.14:
+ă0.01
+0.01:
+
+hp08 [9]
+0.05
+
+0.10
+0.02
+22.87
+0.21
+2.25
+
+Table 1: Analysis times in seconds. Instances where we were unable to prove
+the desired invariant are marked with :.
+x := Ar0s
+i := 1
+j := n ´ 1
+while(i ď j)
+if (Aris ă x)
+Ari ´ 1s := Aris
+i := i ` 1
+else
+while(j ě i ^ Arjs ě x)
+j := j ´ 1
+(‹)
+if (j ą i)
+Ari ´ 1s := Arjs
+Arjs := Aris
+i := i ` 1
+j := j ´ 1
+Ari ´ 1s := x
+
+x := Ar0s
+i := 0
+j := n ´ 1
+while(i ď j)
+while(Aris ď x ^ i ď j)
+i := i ` 1
+while(Arjs ą x ^ i ď j)
+j := j ´ 1
+if (i ď j)
+t := Arjs
+Arjs := Aris
+Aris := t
+
+(a) partition hp08
+
+(b) partition hoare
+
+Fig. 10: Quicksort partitioning: (a) as done in [9]; and (b) a la Hoare
+the case of first nonnull, we require:
+ps “ n ^ @e P r0, nq . Ares ‰ 0q _ ps ă n ^ Arss “ 0 ^ @e P r0, sq . Ares ‰ 0q
+This can be expressed using the approaches of Gopan et al. and Halbwachs and
+Péron [7,9], as they store a separate invariant for each total ordering amongst
+the partition variables. Our approach, however, cannot handle such disjunctive
+reasoning, so the segment property quickly reaches J.
+Consider partition hp08 (the variant of the Quicksort partition step given
+in [9], shown in Figure 10(a)). As the imperative source language we use does
+14
+
+allow loads inside conditionals, such reads are hoisted outside the corresponding loops; for example, the loop marked p‹q is transformed as shown below.
+At the point marked p‹q, it is possible to determine
+that rrj ă iss ñ rrArjs ă xss. Thus it is easy to
+show that rrArjs ă xss holds at the loop exit. In
+ej := Arjs
+the hoisted version, naive method can prove the
+while(j ě i ^ ej ě x)
+invariant successfully, because the property rrj ă
+j := j ´ 1
+iss ñ rrej ă xss is derived for the edge ψji . When
+ej := Arjs
+we exit the loop with rrj ă iss, this property gets
+extracted to the scalar domain, and we get rrej ă
+xss ^ rrej “ ass at ψjj 1 . When using the sparse method, however, the property
+on ψji is discarded, as it involves only scalar variables, so the invariant is lost.
+If we were to use the original version without hoisting, we would be unable
+to prove the invariant using either method, as we cannot express rrj ă iss ñ
+rrArjs ă xss directly.
+However, our method easily proves the standard version (partition hoare;
+Figure 10(b)) correct, whether or not the reads are hoisted.
+
+5
+
+Conclusion and Future Work
+
+We have described a new approach to automatic discovery of array properties,
+inspired by algebraic shortest-path algorithms. This approach retains much of
+the expressiveness of the partitioning methods of [7] and [9], but avoids the
+need for syntax dependence and an up-front factorial partitioning step. The
+method can successfully derive invariants for a range of interesting array program
+fragments, and is substantially faster than partitioning-based approaches with
+even modest numbers of index variables.
+Several improvements could be made to the performance of the analysis.
+The current implementation does not take advantage of liveness information,
+and maintains entries in the content graph for all variables in VA at each step.
+Clearly, performance could be improved by eliminating non-live variables from
+the matrix.
+Algorithms which maintain shortest path information can often be improved
+by storing only the transitive reduction of the graph. As our domains are not
+distributive, it is non-trivial to determine whether a given edge must occur in
+the transitive reduction; however, it would be worth investigating whether maintaining the transitive reduction would prove beneficial.
+
+References
+1. B. Blanchet, P. Cousot, R. Cousot, J. Feret, L. Mauborgne, A. Miné, D. Monniaux,
+and X. Rival. Design and implementation of a special-purpose static program analyzer for safety-critical real-time embedded software. In T. Mogensen, D. Schmidt,
+and I. H. Sudborough, editors, The Essence of Computation: Complexity, Analysis,
+Transformation, volume 2566 of LNCS, pages 85–108. Springer, 2002.
+
+15
+
+2. R. Bodı́k, R. Gupta, and V. Sarkar. ABCD: Eliminating array bounds checks on
+demand. In ACM Symposium on Programming Language Design and Implementation (PLDI’00), pages 321–333. ACM Press, 2000.
+3. P. Cousot, R. Cousot, and F. Logozzo. A parametric segmentation functor for fully
+automatic and scalable array content analysis. In Proceedings of the 38th ACM
+Symposium on Principles of Programming Languages, pages 105–118. ACM Press,
+2011.
+4. P. Cousot and N. Halbwachs. Automatic discovery of linear constraints among
+variables of a program. In Proceedings of the Fifth ACM Symposium on Principles
+of Programming Languages, pages 84–97. ACM Press, 1978.
+5. D. L. Dill. Timing assumptions and verification of finite-state concurrent systems.
+In Automatic Verification Methods for Finite State Systems, volume 407 of LNCS,
+pages 179–212. Springer, 1989.
+6. I. Dillig, T. Dillig, and A. Aiken. Fluid updates: Beyond strong vs. weak updates. In A. D. Gordon, editor, Proceedings of the 19th European Symposium on
+Programming, volume 6012 of LNCS, pages 246–266. Springer, 2010.
+7. D. Gopan, T. Reps, and M. Sagiv. A framework for numeric analysis of array operations. In Proceedings of the 32nd ACM Symposium on Principles of Programming
+Languages, pages 338–350. ACM Press, 2005.
+8. S. Gulwani, B. McCloskey, and A. Tiwari. Lifting abstract interpreters to quantified
+logical domains. In Proceedings of the 35th ACM Symposium on Principles of
+Programming Languages, pages 235–246. ACM Press, 2008.
+9. N. Halbwachs and M. Péron. Discovering properties about arrays in simple programs. In ACM Symposium on Programming Language Design and Implementation
+(PLDI’08), pages 339–348. ACM Press, 2008.
+10. M. J. Maher. Herbrand constraint abduction. In Proceedings of the 20th IEEE
+Symposium on Logic in Computer Science, pages 397–406. IEEE Comp. Soc., 2005.
+11. A. Miné. The octagon abstract domain. Higher-Order and Symbolic Computation,
+19(1):31–100, 2006.
+12. M. Mohri. Semiring frameworks and algorithms for shortest-distance problems.
+Journal of Automata, Languages and Combinatorics, 7(3):321–350, 2002.
+13. M. Péron and N. Halbwachs. An abstract domain extending difference-bound
+matrices with disequality constraints. In B. Cook and A. Podelski, editors, Verification, Model Checking and Abstract Interpretation, volume 4349 of LNCS, pages
+268–282. Springer, 2007.
+14. A. Schrijver. Theory of Linear and Integer Programming. Wiley, 1986.
+15. N. Suzuki and K. Ishihata. Implementation of an array bound checker. In Proceedings of the Fourth ACM Symposium on Principles of Programming Languages,
+pages 132–143. ACM Press, 1977.
+16. H. Xi and F. Pfenning. Eliminating array bound checking through dependent
+types. In ACM Symposium on Programming Language Design and Implementation
+(PLDI’98), pages 249–257. ACM Press, 1998.
+
+16
+
+Appendix A: Termination Proofs
+Theorem 1. The shortest-path computation terminates for the octagon domain.
+Proof. Consider an initial set of abstract states X “ rx1 , . . . , xn s, and a system of
+inequalities of the form xi Ďpxi [ xj q \pxi [ xk q. Let BPpxq denote the bounding
+hyperplanes of x. We then have: BPppx [ yq \px [ zqq Ď BPpx [ yq Y BPpx [ zq.
+Each time one
+Ű 1 is evaluated, each bounding hyperplane is an
+Ť of the equations
+BPp
+X q As the initial set of bounding hyperplanes is
+element of:
+1
+X ĎX
+finite, and each iteration must tighten at least one bounding plane, the tightening
+process must eventually
+Ť terminate; in fact, the number of descending steps is
+\
+[
+bounded by: |X| ˆ | xPX BPpxq|
+
+In the case of octagons, projection cannot introduce new bounding hyperplanes,
+so the addition of the propagation rules (ϕ Ď D UI . ϕii` and ϕij Ď ψ) does not
+affect termination.
+Theorem 2. The shortest-path computation terminates for the convex polyhedron domain.
+Proof. We can prove termination for convex polyhedra in a similar fashion as
+for octagons. Consider an initial set of abstract states X “ rx1 , . . . , xn s, and a
+system of inequalities of the form xi Ďpxi [ xj q \pxi [ xk q. By the polyhedron
+decomposition theorem (see, e.g. [14]), any polyhedron may be generated by a
+finite set of points P , and a set of rays R. Let RV denote the set of rays of unit
+length in the direction of variable v (that is, a vector with v th component 1 or
+´1, and all other components 0), for each v P V . Given polyhedra x “ xPx , Rx y
+and y “ xPy , Ry y, the results of the operations of interest have the following
+properties:
+x [ y “ xP 1 , R1 y where R1 Ď Rx Y Ry
+x \ y “ xP 1 , R1 y where P 1 Ď Px Y Py , R1 Ď Rx Y Ry
+D V . x “ xP 1 , R1 y where P 1 Ď Px , R1 Ď Rx Y RV
+Ť
+None of these operations can introduce rays not in R “ RV Y xPX Rx . Additional extreme points can only be introduced during the application of [. During
+each fixed point iteration, exactly one of three cases must occur:
+1. All abstract values in X remain the same.
+2. The set of rays for some x P X changes.
+3. All the sets of rays remain the same, and the set of extreme points for some
+x P X changes.
+In case 1, we terminate. As the set of rays is restricted to R, and each iteration is
+strictly descending, case 2 can only occur finitely many times. Assuming the set
+of
+Ť rays remains fixed,Şevery introduced extreme point must be some element of
+xPX 1 xu. As this set is finite, and each step is descending,
+X 1 ĎX tP | xP, Ry “
+this can only occur finitely many times without case 2 occurring. As case 2 must
+always occur after a bounded number of steps, and can only occur finitely many
+times, the fixed point process must eventually terminate.
+\
+[
+17
+
+We conclude that this process will terminate on the most commonly used
+relational numeric domains. In the case of polyhedra, it is worth noting that
+Theorem 2 does not provide any bounds on the coefficients of hyperplanes in
+the resulting polyhedra. In some cases, the coefficients may grow quite large
+before converging, which can cause problems for domains implemented with
+fixed-precision machine arithmetic.
+
+Appendix B: Relaxation for polyhedra
+The relaxation algorithm for polyhedra follows the same intuition as that for
+octagons; we wish to collect the transitive closure of ψij , then discard anything
+implied separately by ϕ [rri ă jss.
+However, the polyhedra domain provides two difficulties: computing the
+transitive closure of a set of linear constraints is non-trivial (as the domain is
+typically stored as a minimal set of generators and hyperplanes [4]); and often is
+a bad idea in general: as the constraints do not have bounded arity, there may
+be exponentially more constraints in the transitive closure than in the original
+problem. Instead, we collect a set of constraints that is sufficient to reconstruct
+the constraints that, had we computed the transitive closure, would have been
+kept.
+Given constraints c1 “ rrk1⊺ x ě m1 ss and c2 “ rrk2⊺ x ě m2ss, we can construct
+a new constraint (that is not implied separately by either c1 or c2 ) by resolution if
+there is some matched pair of coefficients k1v , k2v , such that k1v ą 0 and k2v ă 0.
+1v
+k2 q⊺ x ě m1 ` kk1v
+m2 ss, which
+We then construct a new constraint c1 “ rrpk1 ` kk2v
+2v
+th
+has v coefficient 0.
+Example 6. Consider the constraints c1 “ rrx ` y ě 7ss, c2 “ rrz ´ 2y ě 2ss, and
+c3 “ rrw ` 2y ě 3ss. c1 and c2 may be resolved, as c1 contains the term y, and
+c2 contains ´2y. This yields c12 “ rrx ` z2 ě 8ss. We cannot, however, construct
+any new constraints by combining c1 with c3 .
+Rather than computing the transitive closure explicitly, given an initial set of
+interesting constraints C: and other constraints C, we find all those constraints
+that are resolvable with those in C: (taking into account the direction of previous
+: We then continue this process until no
+resolution steps), and add them to C.
+further resolvable constraints are found:
+$
+trans‹ pR Y tpsignpkv1 q, v 1 qu, C: Y tcu, Cq
+’
+’
+&
+if D ps, vq P R, c “ rrk ⊺ x ě mss P C, v 1 P x
+: Cq “
+trans‹ pR, C,
+s.t. v ‰ v 1 , kv s ă 0, ppsignpkv1 q, v 1 q R R _ c R C:
+’
+’
+%:
+C otherwise
+: Cq “ trans‹ ptsignpkv , vq | rrk ⊺ x ě mss P C,
+: v P xu, C,
+: Cq
+transpC,
+
+Given a set of linear constraints C defining a polyhedron, we can construct the
+initial set C: with the elements of C that are not implied by ϕ [rri ă jss, then
+18
+
+: C z Cq.
+: As with octagons, we can avoid
+compute the relaxation with transpC,
+performing implication tests by instead initializing C: with those constraints
+containing variables in VA .
+Example 7. Consider a constraint of interest c0 “ rra ´ y ě 0ss, with additional
+constraints C “ tc1 “ rry ´ z ě 0ss, c2 “ rrz ` w ě 0ss, c3 “ rrx´ y ě 0ssu. Initially,
+we have C: “ trra ´ y ě 0ssu, and R “ tp`, aq, p´, yqu. We can resolve with
+rry ´ z ě 0ss, since p´, yq P R, but p´, zq R R. During the second step, we include
+c2 , adding p´, wq to R. At this point, we have R “ tp`, aq, p´, yq, p´, zq, p`, wqu,
+: so we return
+and C: “ tc0 , c1 , c2 u, and we cannot add anything to either R or C;
+:
+the current value of C.
+
+Appendix C: Partitions for init randm
+The large number of partitions required for the init rand family is not necessarily obvious. Assuming n is non-negative, we must distinguish between the
+case where the array is empty (thus n “ 0) or non-empty (n ą 0). This gives
+us two base orderings: rt0, nus, and rt0u, tnus. In these descriptions, sets denote
+equivalence classes, and equivalence classes are listed in increasing order.
+If n “ 0, there is only one possible value for i1 : rt0, i, nu, ti`us. Otherwise,
+we must distinguish all the possible relations between 0, i and n. The resulting
+orderings are as follows:
+rt0u, ti1 , nuti`
+rt0, i1 , nu, ti`
+1 us
+1 us
+`
+rt0, i1 u, ti1 , nus rt0u, ti1u, ti`
+,
+1 nus
+`
+rt0, i1u, ti`
+u,
+tnus
+rt0u,
+ti
+u,
+ti
+1
+1
+1 u, tnus
+When we construct the partitions for m “ 2, we introduce i2 into all feasible
+locations in each of the partitions for m “ 1.
+In cases where we must explicitly distinguish the 0th element, this progression
+grows substantially faster, with m “ 1, . . . , 5 yielding r9, 45, 333, 3285, 40509s.
+
+19
+
+

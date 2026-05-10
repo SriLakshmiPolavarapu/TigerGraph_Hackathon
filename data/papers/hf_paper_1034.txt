@@ -1,0 +1,1597 @@
+Title: arXiv paper 1034
+
+Categories: 8
+
+Abstract:
+arXiv:1712.08328v1 [math.OC] 22 Dec 2017
+
+A simple introduction to Karmarkar’s Algorithm
+for Linear Programming
+Sanjeev Saxena∗
+Dept. of Computer Science and Engineering,
+Indian Institute of Technology,
+Kanpur, INDIA-208 016
+December 21, 2017
+
+Abstract
+An extremely simple, description of Karmarkar’s algorithm with very few
+technical terms is given.
+
+1
+
+Introduction
+
+A simple description of Karmarkar’s algorithm[5] together with analysis is
+given in this paper. Only knowledge of simple algebra, vector dot product
+and matrices is assumed. Even though the method is described in several
+books [8, 1, 2, 3, 7], analysis is either left out [8] or is fairly complicated.
+We show that the presentation of Roos, Terlaky and Vial[6] can be further
+simplified, (mainly) by using only essential notation. Allmost all results in
+this paper are from standard textbooks (see References).
+Let A be an m × n matrix of rank m and e is a vector of all ones.
+Karmarkar’s Problem is:
+min cT x subject to constraints Ax = 0, eT x = 1 and x ≥ 0.
+Further, it is assumed that optimal value of cT x is zero and all ones
+vector is feasible, i.e., Ae = 0. We have to either find a point of cost 0 or
+show that none exist
+We first scale the variables: x0 = xn, then the problem becomes min cT (x0 /n)
+or equivalently min cT (x0 ) subject to Ax0 = 0, eT x0 = n and x0 ≥ 0. We will
+drop the primes, and the problem is[6]:
+∗
+
+E-mail: ssax@iitk.ac.in
+
+1
+
+min cT x subject to constraints Ax = 0, eT x = n and x ≥ 0.
+Remark: Problem is trivial if cT e = 0, hence we assume that cT e > 0.
+We will assume that all m + 1 equality constraints are linearly independent (else we eliminate redundant rows of A).
+We need few definitions. Standard simplex consists of points in n
+dimensions s.t. eT x = n, x ≥ 0. The centre of the simplex is e = (1, 1, . . ., 1).
+Let R be the radius of outer sphere, the smallest sphere containing the
+standard simplex (circumscribes standard simplex). R is the distance from
+e to one of the corner point (see Figure for an example in three dimensions)
+of the standard simplex (say, (0, 0, . . ., n)), thus R2 = (0p− 1)2 + . . . + (0 −
+1)2 + (n − 1)2 = (n − 1)2 + (n − 1) = n(n − 1), or R = n(n − 1).
+Let r be the radius of another sphere— the largest sphere centred at e
+and completely inside the standard simplex (inscribed inside the standard
+simplex). This sphere will be tangent to each face. Each face will have one
+coordinate as 0. By symmetry, all other coordinates at the point of contact
+will be same (say w). As the point of contact is on the standard simplex S,
+0 + w + w + . . . + w = n or (n − 1)w = n or w = n/(n − 1). Hence,
+r2 = (0−1)2 +(w−1)2 +. . .+(w−1)2 = 1+(n−1)(w−1)2 = 1+
+Or
+
+r
+
+r=
+
+1
+n
+=
+n−1
+n−1
+
+n
+n−1
+
+We take e = (1, 1, . . ., 1) as the starting point (which by assumption is
+feasible). Then, we minimise the objective function over a smaller sphere,
+which we will call the inner sphere, having same centre e, but radius αr,
+less than r (we will see in Section 5.2 that α can be chosen as 1/(r + 1)).
+Let us assume that the minimum occurs at point z. Then, in next iteration,
+we take the starting point as z. The problem of minimisation on sphere is
+2
+
+discussed in next section (Section 2). Finally, the point z is mapped to e and
+the process repeated; the details of mapping are in Section 4. In Section 3,
+it is shown that the objective value at next point z is a fraction of that at
+the initial point e.
+
+2
+
+Mathematical Preliminaries
+
+Let P be a point in (possible hyper) plane and n̂ a unit vector normal to it.
+If P0 is any point in plane, then the (vector) dot product will be zero, i.e.,
+P P0 • n̂ = 0. Writing in full,
+n1 (x1 − x01 ) + n2 (x2 − x02 ) + . . . + nk (xk − x0k ) = 0 or equivalently,
+n1 x1 + n2 x2 + . . . + nk xk = n1 x01 + n2 x02 + . . . + nk x0k = C Thus, for a • x = b,
+normal will be in the direction of vector a.
+Equation of sphere with centre Q as β is: (x − β) • (x − β) = r2 Let P
+be any point in plane a • x = b, then we know that a • xP = b. If we want
+QP to be perpendicular to plane, then (xP − β) = (constant)a
+P
+Consider the problem [4]: min cT x subject to (x − a)2 ≤ ρ2 . There
+are two points on the sphere (see figure for an example in two dimensions),
+where planes parallel to given plane can be tangent— one corresponding to
+maxima and other minima. These are +n and −n. These points (say “P ”)
+are in direction ±n̂ (a unit vector in direction of c) with length |xP − β| = r.
+Thus, to minimise cT x over our sphere, we start at the centre β and take a
+step of length r in direction −cT Less informally, if c = 0, all points on the
+sphere are optimal. If c 6= 0, the solution is obtained by taking a step of
+length ρ (radius of sphere) from the centre a in the direction −c; this can
+be seen by considering “parallel” planes cT x =constant. The point at which
+minimum will be attained will be the point of contact on the sphere to a
+tangent plane.
+
+3
+
+Next [4] consider the problem: min cT x subject to Ax = b and (x −
+2
+a) ≤ ρ2 . If c = 0, all points common to (i.e., on the intersection of) sphere
+and the plane are optimal. If c 6= 0, let c̄ be the orthogonal projection of
+c onto the plane Ax = b. If c̄ = 0, then c is a linear combination of rows
+of A and the objective function (on the intersection of sphere and plane)
+is constant, and all “feasible” points are also optimal. If c̄ 6= 0, then the
+solution is obtained by taking a step of length equal to the radius of lowerdimensional sphere (intersection of our sphere and plane Ax = b) from the
+centre a in the direction −c̄.
+P
+
+3
+
+Solution on inner Sphere
+
+Let us consider the problem: min cT x subject to Ax = 0, i xi = n and
+P
+2
+2 2
+i (xi − 1) < α r , i.e, we are minimising only over points of the inner
+sphere. As the inner sphere is completely inside the standard simplex, we
+can drop the constraint eT x = n (and also x ≥ 0), and the problem becomes
+P
+min cT x s.t. Ax = 0 and (xi − 1)2 < α2 r2 .
+As the point e is feasible, Ae = 0, e lies on the plane Ax = 0. Moreover,
+as e, the centre of inner sphere, lies on Ax = 0, the intersection of Ax = 0
+and the inner sphere will be a “sphere” of the same radius αr but in lower
+dimension. (e.g., intersection of a sphere and a plane containing the centre
+is a circle with same radius and centre).
+The minimum value of a linear function on sphere will be at a point
+(lower one) where linear function touches the sphere. The radius vector at
+that point will be perpendicular to the plane. Let us assume that p̂ is a unit
+vector in that direction. Then the point at which minimum will be attained
+will be e − p̂(radius). Thus, for outer sphere it will be (say) zR = e − p̂R and
+for the inner sphere it will be zα = e − p̂αr. We will see how to determine
+p̂ later (see Section 4.2).
+As the outer sphere completely contains the solution space, the minimum
+value (of objective function cT x) will be smaller than (or equal to) the actual
+optimal value which is zero. Thus, (assuming minimum value is at zR )
+P
+
+0 ≥ cT zR = cT (e − p̂R) or cT p̂R ≥ cT e
+T
+
+Thus, cT p̂ ≥ cRe
+As the inner sphere is inside the simplex, value of the objective function
+can not be less than that on the simplex. But, as the optimal value on
+simplex is zero, optimal value on the inner sphere is non-negative. If the
+
+4
+
+minimum value occurs at zα on the inner sphere, then the value of objective
+function is:
+0 ≤ cT zα = cT (e − p̂αr) or cT p̂αr ≤ cT e
+But as
+
+cT e
+R
+
+≤ cT p̂, we get
+!
+
+T
+
+T
+
+T
+
+T
+
+c zα = c e − c p̂αr ≤ c e −
+
+cT e
+αr
+αr = cT e 1 −
+R
+R
+
+
+
+
+Thus, if we start with initial solution e, then zα (the next solution)
+is
+
+αr
+an improvement (in value of objective function) by a factor of 1 − R over
+the initial solution.
+
+4
+
+Karmarkar Transform and Algorithm
+
+We will like to map the new point z again to e to repeat the process. Thus,
+for a = (a1 , a2 , . . ., an ) and x = (x1 , x2 , . . ., xn ), we define the transform
+y = Ta (x) with (for i = 1, . . ., n)
+ai xi
+yi = n P
+j aj xj
+If all ai s and xi s are non-negative (at least ai xi should be non-zero),
+each component of transform will be less than n and sum of all coordinates
+will be n, thus the range
+is again our standard simplex. Moreover, if b =
+
+1 1
+1
+−1
+a = a1 , a2 , . . ., an , then Tb will be the inverse transformation. Thus
+this transformation is one-to-one on our standard simplex.
+Remark: This can also be seen directly. If Ta (x) = Ta (y), then xy11 =
+P
+P
+x1
+xn
+xi = yi = 1, we have r = 1.
+y2 = . . . = yn = r (say). But as
+Moreover, if λ is any number then if y 0 = Ta (λx) then
+nλai xi
+nλai xi
+nai xi
+yi0 = P
+= P
+=P
+= yi
+λaj xj
+λ aj xj
+aj xj
+Thus, Ta (λx) = Ta (x).
+
+4.1
+
+Modified Problem
+
+Assume that we are applying transform Ta (with ai = 1/zi ), then point z
+will be mapped to e. Let D be a diagonal matrix with diagonal entries:
+D = diag(a1 , . . ., an ).
+5
+
+If z is any feasible point, then for any positive x > 0 satisfying eT x = 1,
+we saw that there is a unique point ξ (which depends on x) s.t. x = Tz (ξ).
+P
+Remark: x = Tz (ξ) implies xi = zi ξi /( zi ξi ), thus ξi = ρ xzii where ρ is
+P
+such that ξi = 1.
+P
+P
+Then, equation Ax = 0 is equivalently to j Aij xj = 0 or j Aij ρxj = 0
+P
+or equivalently, Aij ξj zj = 0 or Aξz = 0.
+P
+P
+The objective function cT x = ci xi = ρ1 ci ξi zi . As optimal value of
+cT x is zero, it follows that the optimal value of the transformed objective
+P
+function ci ξi zi is also 0.
+Replacing ξ by x0 and using Z = diag(z1 , . . ., zn ), the transformed problem is:
+min(Zc)T x0 subject to AZx0 = 0, eT x0 = n and x0 ≥ 0.
+Moreover, as z is a feasible point Az = 0 or equivalently AZe = 0, thus e is
+again feasible.
+We can thus repeat the previous method with Zc instead of c and AZ
+instead of A. In other words, we have to minimise the modified objective
+function over inscribed sphere of radius αr i.e., the “modified” problem is:
+min(Zc)T x subject to AZx = 0, eT x = n and ||x − e|| ≤ αr.
+
+4.2
+
+Result from Algebra– Projection Matrix
+
+Assume that A is m×n matrix, then rank of A is said to be m, with m < n iff
+all m rows of A are linearly independent, i.e., β1 A1 + β2 A2 + . . . + βm An = 0
+(here 0 is a row vector of size n) has only one solution βi = 0. Thus, if v is
+any 1 × m matrix (a column vector of size m), then vA = 0 implies v = 0.
+We use the fact that the matrix AAT has rank m and is invertible1 .
+Let A be an m × n matrix, then Ax = b (hence Ax = 0) represents a set
+of m equations. Each equation will be a hyperplane in n dimensions. Let v
+be a vector of size n, we will like to “project” v onto the (lower dimension or
+intersection of) hyperplane Ax = b. If P = pv is the projection, then [9], we
+wish to write p = P v, as best as possible, as p = P v = α1 a1 + α2 a2 + . . . +
+αm am where a1 , . . ., am are rows of A. Projection p will again be a vector
+of size n. This can be written as p = AT α.
+1
+
+As A is m × n matrix, AT will be n × m matrix. The product AAT will be an m × m
+square matrix. Let y T be an m × 1 matrix (or y is a row-vector of size m).
+Consider the equation (AAT )y T = 0. Pre-multiplying by y we get yAAT y T = 0 or
+(yA)(yA)T = 0 or the dot product < yA, yA >= 0 which, for real vectors (matrices)
+means, that each term of yA is (individually) zero, or yA = 0, which implies y is identically
+zero. Thus, the matrix AAT has rank m and is invertible.
+
+6
+
+The error of projection (or rejection) E = v − p = v − P v will also be
+a vector of size n. Then as error E can not be in these hyperplane, i.e., it
+should be “perpendicular” to these hyperplanes, thus we want AE = 0. Or
+A(v − p) = 0, or A(v − AT α) = 0, thus Av = AAT α, or α = (AAT )−1 Av.
+T )−1 Av, or P = AT (AAT )−1 A.
+Hence, p = P v = AT α, or P v = AT (AA
+
+
+Or, E = v − P v = v − AT (AAT )−1 Av = I − AT (AAT )−1 A v
+Thus, to summarise, projection matrix is P = AT (AAT )−1 A and Rejection matrix (to get the part perpendicular to the hyperplanes) is: I −
+AT (AAT )−1 A
+
+4.3
+
+Algorithm
+
+Start the algorithm with x = e and find z, the optimal value on the inscribed
+sphere of radius αr (we will see more details of this step later).
+In a typical iteration, we next apply a transformation Tz −1 to map z to
+e (we need a transformation Tb such that z gets mapped to e, then b = 1/z).
+Modify A and c and find a new z (say z 0 ), the optimal value on the inscribed
+sphere of radius αr.
+Remark: As we know that transformed value of z is e, transform Tz −1 is
+not actually applied, only the values of A and c are updated.
+0
+Then apply inverse transformation Tz−1
+−1 (or Tz ) to map z to original
+0
+space, to get the value of x for next iteration.
+The formal algorithm
+is (value of α is fixed to 1/(r + 1) in Section 5.2):
+q
+n
+1
+Initialise: r = n−1 , α = r+1
+, x = e = (1, . . ., 1)
+Main step: If cT x < , return current x as solution of desired accuracy.
+Let D = diag(x1 , . . ., xn )
+AD
+I
+
+P =
+
+!
+
+Let
+
+
+cP
+
+=
+
+1−P
+
+T
+
+
+
+PP
+
+cP
+||cP ||
+z = e − αrp̂
+nDy
+x = T
+e Dy
+p̂ =
+
+7
+
+T
+
+−1
+
+
+
+P (cD)T
+
+5
+
+Analysis—Potential Function
+
+For analysis, we define a potential function:
+T
+
+Φ(x) = n log c x −
+
+n
+X
+
+log xi
+
+i=1
+
+As eT x = n we have n1 xi = 1. But as Arithmetic mean is greater than
+or equal to geometric mean:
+P
+P
+P xi
+Q
+1/n
+1=
+or taking logs, n1 log xi ≤ 0, or log xi ≤ 0, or
+n ≥ ( xi )
+Φ(x) ≤ n log cT x or
+cT x ≥ exp
+
+
+
+Φ(x)
+n
+
+
+
+Next observe that
+Φ(λx) = n log cT (λx) −
+
+n
+X
+
+log(λxi )
+
+i=1
+
+=
+
+
+
+
+
+T
+
+log c x + log λ −
+
+n
+X
+
+log xi +
+
+= n log c x −
+
+n
+X
+
+!
+
+log λ
+
+i=1
+
+i=1
+T
+
+n
+X
+
+log xi = Φ(x)
+
+i=1
+
+Let x be a positive vector in our standard simplex and let y = Tx (z),
+then
+nxi zi
+yi = P
+, or Φ(y) = Φ(Tz (x)) = Φ(xz)
+x i zi
+Moreover, Φ(xz) = n log cT (xz) −
+P
+log zi
+Finally,
+
+Pn
+
+i=1 log xi zi
+
+= n log cT xz −
+
+P
+
+X
+
+log zi
+
+log xi −
+
+∆Φ = Φ(x) − Φ(y) = Φ(x) − Φ(xz)
+= n log cT x −
+
+n
+X
+
+
+
+log xi − n log cT xz −
+
+log xi −
+
+X
+
+
+
+i=1
+
+= n log
+
+cT x
+cT xz
+
++
+
+X
+
+log zi
+
+T
+
+x
+But log ccT xz
+is the ratio of original
+and transformed problems, which we saw
+
+r
+reduces by at least 1 − α R . Thus:
+
+8
+
+r
+∆Φ ≥ −n log 1 − α
+R
+
+
+
+
++
+
+X
+
+log zi
+
+We will show that ∆ is more than a constant. But, before continuing
+with analysis, we need some more results from algebra.
+
+5.1
+
+Function Ψ
+
+In this section, all logs are to base e. Assume that |x| < 1. As log(1 + x) =
+2
+3
+4
+x − x2 + x3 − x4 + . . ., for −1 < y < 0, (let y = −x) we have
+3
+4
+2
+y − log(1 + y) = −x − log(1 − x) = x2 + x3 + x4 + . . . > 0
+We define[6] Ψ(x) = x − log(1 + x). Observe that Ψ(0) = 0 Hence,
+2
+3
+4
+Ψ(x) = x2 − x3 + x4 − . . . And, Ψ(x) ≥ 0 for x > −1
+Claim 1 If x > 0 and a2 = b2 + c2 , then if ax, bx, cx are greater than −1
+(for log(1 + hx) to be defined), then
+Ψ(−|a|x) > Ψ(bx) + Ψ(cx)
+Proof: From a2 = b2 + c2 , we know that |a| ≥ |b| and |a| ≥ |c|. Without
+loss of generality, assume a < 0, then −|ax| = ax and we have
+3 3
+4 4
+2 2
+Ψ(ax) = a 2x − a 3x + a 4x − . . .
+2 2
+3 3
+4 4
+Ψ(bx) = b 2x − b 3x + b 4x − . . .
+3 3
+4 4
+2 2
+Ψ(cx) = c 2x − c 3x + c 4x − . . .
+As a2 = b2 + c2 , coefficients of x2 on both sides are equal.
+3
+3 3
+3 3
+We thus need to compare − a 3x with − (b +c3 )x . As a2 = b2 + c2 ,
+a3 = ab2 + ac2 . Thus, we are comparing −x(ab2 + ac2 ) and −x(b3 + c3 ) or
+equivalently 0 and xb2 (a − b) + xc2 (a − c).
+As a < 0 and −a > |b| and −a > |c|, the expressions can be re-written
+as: 0 and −xb2 (b − a) − xc2 (c − a). Both terms inside brackets are positive,
+and as x > 0, right hand side will be negative.
+Claim 2 If a2 = b2 + c2 + . . . + s2 , then if ax, bx, cx, . . . are greater than −1
+(for log(1 + hx) to be defined), then if x > 0, Ψ(−|a|x) > Ψ(bx) + Ψ(cx) +
+. . . + Ψ(sx)
+Proof (induction): Let v 2 = c2 + . . . + s2 . Then a2 = b2 + v 2 . Then from
+the above claim, Ψ(−|a|x) > Ψ(bx) + Ψ(−|v|x). By induction hypothesis,
+Ψ(−|v|x) > Ψ(cx)+. . .+Ψ(sx) Proof follows by adding the two inequalities.
+
+9
+
+5.2
+
+Analysis Continued
+
+As − log(1 − x) = x +
+
+x2
+2
+
++
+
+x3
+3
+
++ . . . > x, hence,
+
+
+∆Φ ≥ −n log 1 − α
+
+r
+R
+
+
+
++
+
+X
+
+log zi
+
+X
+r
++
+log zi
+R X
+= αr2 +
+log zi
+
+= nα
+
+But z = e − αrp̂ or zi = 1 − αrpi
+And, log zi = log(1−αrpi ) = − (−αrpi − log(1 − αrpi ))−αrpi = −αrpi −
+Ψ(−αrpi ).
+P
+P
+P
+But p̂ is a unit vector, p2i = 1. As z is feasible zi = n, or pi = 0.
+Hence,
+−
+
+X
+
+log zi =
+
+X
+
+αrpi +
+
+X
+
+Ψ(−αrpi ) =
+
+X
+
+Ψ(−αrpi ) ≤ Ψ(−αr)
+
+The last inequality follows from Corollary 1 above.
+For Ψ(−αr) to be defined, αr < 1, we thus2 choose α =
+
+1
+r+1 ,
+
+we have
+
+∆Φ ≥ αr2 − Ψ(−αr) = αr2 − ((−αr) − log(1 − αr))
+= αr2 + αr + log(1 − αr)
+
+
+r
+r
+r2
++
++ log 1 −
+=
+1+r 1+r
+r+1
+
+
+r
+= r + log 1 −
+r+1
+= r − log(1 + r) = Ψ(r) but as r =
+
+q
+
+n/n − 1 > 1
+
+≥ Ψ(1) = 1 − ln 2 ≈ 0.3
+Hence, potential decreases by a fixed amount after each iteration.
+After k, iterations, Φ(e) − Φ(x) > kΨ(1). But as Ψ(e) = n log cT e, we
+get Φ(x) < n log cT e − kΨ(1). As x is inside the standard simplex,
+Φ(x)
+cT x ≤ exp
+n
+
+
+
+
+n log cT e − kΨ(1)
+< exp
+n
+
+!
+
+−r/R
+−αr
+Differentiating, f (α) = αr2 − Ψ(−αr) w.r.t. α, f 0 (α) = r2 − 1−αr
++ n 1−(αr/R)
+1
+1
+1
+, equating f 0 (α) to 0, we get 1 + r = 1−αr
+, or 1 − αr = 1+r
+or
+f 0 (α) = r2 + r + (−r) 1−αr
+1
+r
+1
+1
+αr = 1 − 1+r = r+1 or α = 1+r . Thus, the maximum value is at α = 1+r .
+2
+
+10
+
+If we stop as soon as error cT x ≤ , we get
+n log cT e − kΨ(1)
+exp
+n
+
+!
+
+≤  or
+
+n log cT e − kΨ(1)
+≤ log  or
+n
+log cT e − kΨ(1) ≤ n log  or
+cT e
+n
+log
+k ≥
+Ψ(1)
+
+Thus, after at most
+x for which cT x ≤ 
+
+n
+Ψ(1)
+
+T
+
+log c  e iterations, algorithm finds a feasible point
+
+Acknowledgments
+Many thanks to students of CS647A (2017-2018 batch) for their valuable
+feedback, questions and comments on an earlier version.
+
+References
+[1] Mokhtar S. Bazaraa, John J. Jarvis, Hanif D. Sherali, Linear Programming and Network Flows, 4th Edition, Wiley 2009
+[2] Donald Goldfarb and Michael J.Todd, Linear programming, Chapter
+II in Optimization Edited by G.L. Nemhauser, A.H.G. Rinooy Kan
+and M.J. Todd, Handbooks in Operations Research and Management
+Science Volume 1, 1989, Pages 73-170, Elsevier
+[3] H.Karloff, Linear Programming, Birkhauser, 1991.
+
+[4] Katta G. Murty, chapter 11, pp 472-473 of “Linear Complementarity, Linear and Nonlinear Programming”, web book
+http://www-personal.umich.edu/~murty/books/linear_complementarity_webbook/kat11.p
+[5] Narendra Karmarkar, A New Polynomial Time Algorithm for Linear
+Programming, Combinatorica, Vol 4, nr. 4, pp. 373-395 (1984).
+[6] C.Roos,T Terlaky and J-P Vial, Interior Point Methods for Linear Optimization, 2nd Ed, 2006, Springer.
+[7] R.Saigal, Linear Programming, A Modern Integrated Analysis, Kluwer,
+1995.
+11
+
+[8] Hamdy A. Taha, Operations Research: An Introduction, 7th Edition,
+Pearson, 2002.
+
+[9] Ling-Hsiao Lyu, Lecture notes on Linear Algebra Lecture 3 (Chap. 4),
+Projection and Projection Matrix, Institute of Space Science, National
+Central University, Chung-Li, Taiwan, R. O. C., 2012 Spring
+http://www.ss.ncu.edu.tw/~lyu/lecture_files_en/lyu_LA_Notes/Lyu_LA_2012/Lyu_LA_3_
+
+12
+
+
+
+Summary:
+This research paper covers the following topic: arXiv:1712.08328v1 [math.OC] 22 Dec 2017
+
+A simple introduction to Karmarkar’s Algorithm
+for Linear Programming
+Sanjeev Saxena∗
+Dept. of Computer Science and Engineering,
+Indian Institute of Technology,
+Kanpur, INDIA-208 016
+December 21, 2017
+
+Abstract
+An extremely simple, description of Karmarkar’s algorithm with very few
+technical terms is given.
+
+1
+
+Introduction
+
+A simple description of Karmarkar’s algorithm[5] together with analysis is
+given in this paper. Only knowledge of simple algebra, vector dot product
+and matrices is assumed. Even though the method is described in several
+books [8, 1, 2, 3, 7], analysis is either left out [8] or is fairly complicated.
+We show that the presentation of Roos, Terlaky and Vial[6] can be further
+simplified, (mainly) by using only essential notation. Allmost all results in
+this paper are from standard textbooks (see References).
+Let A be an m × n matrix of rank m and e is a vector of all ones.
+Karmarkar’s Problem is:
+min cT x subject to constraints Ax = 0, eT x = 1 and x ≥ 0.
+Further, it is assumed that optimal value of cT x is zero and all ones
+vector is feasible, i.e., Ae = 0. We have to either find a point of cost 0 or
+show that none exist
+We first scale the variables: x0 = xn, then the problem becomes min cT (x0 /n)
+or equivalently min cT (x0 ) subject to Ax0 = 0, eT x0 = n and x0 ≥ 0. We will
+drop the primes, and the problem is[6]:
+∗
+
+E-mail: ssax@iitk.ac.in
+
+1
+
+min cT x subject to constraints Ax = 0, eT x = n and x ≥ 0.
+Remark: Problem is trivial if cT e = 0, hence we assume that cT e > 0.
+We will assume that all m + 1 equality constraints are linearly independent (else we eliminate redundant rows of A).
+We need few definitions. Standard simplex consists of points in n
+dimensions s.t. eT x = n, x ≥ 0. The centre of the simplex is e = (1, 1, . . ., 1).
+Let R be the radius of outer sphere, the smallest sphere containing the
+standard simplex (circumscribes standard simplex). R is the distance from
+e to one of the corner point (see Figure for an example in three dimensions)
+of the standard simplex (say, (0, 0, . . ., n)), thus R2 = (0p− 1)2 + . . . + (0 −
+1)2 + (n − 1)2 = (n − 1)2 + (n − 1) = n(n − 1), or R = n(n − 1).
+Let r be the radius of another sphere— the largest sphere centred at e
+and completely inside the standard simplex (inscribed inside the standard
+simplex). This sphere will be tangent to each face. Each face will have one
+coordinate as 0. By symmetry, all other coordinates at the point of contact
+will be same (say w). As the point of contact is on the standard simplex S,
+0 + w + w + . . . + w = n or (n − 1)w = n or w = n/(n − 1). Hence,
+r2 = (0−1)2 +(w−1)2 +. . .+(w−1)2 = 1+(n−1)(w−1)2 = 1+
+Or
+
+r
+
+r=
+
+1
+n
+=
+n−1
+n−1
+
+n
+n−1
+
+We take e = (1, 1, . . ., 1) as the starting point (which by assumption is
+feasible). Then, we minimise the objective function over a smaller sphere,
+which we will call the inner sphere, having same centre e, but radius αr,
+less than r (we will see in Section 5.2 that α can be chosen as 1/(r + 1)).
+Let us assume that the minimum occurs at point z. Then, in next iteration,
+we take the starting point as z. The problem of minimisation on sphere is
+2
+
+discussed in next section (Section 2). Finally, the point z is mapped to e and
+the process repeated; the details of mapping are in Section 4. In Section 3,
+it is shown that the objective value at next point z is a fraction of that at
+the initial point e.
+
+2
+
+Mathematical Preliminaries
+
+Let P be a point in (possible hyper) plane and n̂ a unit vector normal to it.
+If P0 is any point in plane, then the (vector) dot product will be zero, i.e.,
+P P0 • n̂ = 0. Writing in full,
+n1 (x1 − x01 ) + n2 (x2 − x02 ) + . . . + nk (xk − x0k ) = 0 or equivalently,
+n1 x1 + n2 x2 + . . . + nk xk = n1 x01 + n2 x02 + . . . + nk x0k = C Thus, for a • x = b,
+normal will be in the direction of vector a.
+Equation of sphere with centre Q as β is: (x − β) • (x − β) = r2 Let P
+be any point in plane a • x = b, then we know that a • xP = b. If we want
+QP to be perpendicular to plane, then (xP − β) = (constant)a
+P
+Consider the problem [4]: min cT x subject to (x − a)2 ≤ ρ2 . There
+are two points on the sphere (see figure for an example in two dimensions),
+where planes parallel to given plane can be tangent— one corresponding to
+maxima and other minima. These are +n and −n. These points (say “P ”)
+are in direction ±n̂ (a unit vector in direction of c) with length |xP − β| = r.
+Thus, to minimise cT x over our sphere, we start at the centre β and take a
+step of length r in direction −cT Less informally, if c = 0, all points on the
+sphere are optimal. If c 6= 0, the solution is obtained by taking a step of
+length ρ (radius of sphere) from the centre a in the direction −c; this can
+be seen by considering “parallel” planes cT x =constant. The point at which
+minimum will be attained will be the point of contact on the sphere to a
+tangent plane.
+
+3
+
+Next [4] consider the problem: min cT x subject to Ax = b and (x −
+2
+a) ≤ ρ2 . If c = 0, all points common to (i.e., on the intersection of) sphere
+and the plane are optimal. If c 6= 0, let c̄ be the orthogonal projection of
+c onto the plane Ax = b. If c̄ = 0, then c is a linear combination of rows
+of A and the objective function (on the intersection of sphere and plane)
+is constant, and all “feasible” points are also optimal. If c̄ 6= 0, then the
+solution is obtained by taking a step of length equal to the radius of lowerdimensional sphere (intersection of our sphere and plane Ax = b) from the
+centre a in the direction −c̄.
+P
+
+3
+
+Solution on inner Sphere
+
+Let us consider the problem: min cT x subject to Ax = 0, i xi = n and
+P
+2
+2 2
+i (xi − 1) < α r , i.e, we are minimising only over points of the inner
+sphere. As the inner sphere is completely inside the standard simplex, we
+can drop the constraint eT x = n (and also x ≥ 0), and the problem becomes
+P
+min cT x s.t. Ax = 0 and (xi − 1)2 < α2 r2 .
+As the point e is feasible, Ae = 0, e lies on the plane Ax = 0. Moreover,
+as e, the centre of inner sphere, lies on Ax = 0, the intersection of Ax = 0
+and the inner sphere will be a “sphere” of the same radius αr but in lower
+dimension. (e.g., intersection of a sphere and a plane containing the centre
+is a circle with same radius and centre).
+The minimum value of a linear function on sphere will be at a point
+(lower one) where linear function touches the sphere. The radius vector at
+that point will be perpendicular to the plane. Let us assume that p̂ is a unit
+vector in that direction. Then the point at which minimum will be attained
+will be e − p̂(radius). Thus, for outer sphere it will be (say) zR = e − p̂R and
+for the inner sphere it will be zα = e − p̂αr. We will see how to determine
+p̂ later (see Section 4.2).
+As the outer sphere completely contains the solution space, the minimum
+value (of objective function cT x) will be smaller than (or equal to) the actual
+optimal value which is zero. Thus, (assuming minimum value is at zR )
+P
+
+0 ≥ cT zR = cT (e − p̂R) or cT p̂R ≥ cT e
+T
+
+Thus, cT p̂ ≥ cRe
+As the inner sphere is inside the simplex, value of the objective function
+can not be less than that on the simplex. But, as the optimal value on
+simplex is zero, optimal value on the inner sphere is non-negative. If the
+
+4
+
+minimum value occurs at zα on the inner sphere, then the value of objective
+function is:
+0 ≤ cT zα = cT (e − p̂αr) or cT p̂αr ≤ cT e
+But as
+
+cT e
+R
+
+≤ cT p̂, we get
+!
+
+T
+
+T
+
+T
+
+T
+
+c zα = c e − c p̂αr ≤ c e −
+
+cT e
+αr
+αr = cT e 1 −
+R
+R
+
+
+
+
+Thus, if we start with initial solution e, then zα (the next solution)
+is
+
+αr
+an improvement (in value of objective function) by a factor of 1 − R over
+the initial solution.
+
+4
+
+Karmarkar Transform and Algorithm
+
+We will like to map the new point z again to e to repeat the process. Thus,
+for a = (a1 , a2 , . . ., an ) and x = (x1 , x2 , . . ., xn ), we define the transform
+y = Ta (x) with (for i = 1, . . ., n)
+ai xi
+yi = n P
+j aj xj
+If all ai s and xi s are non-negative (at least ai xi should be non-zero),
+each component of transform will be less than n and sum of all coordinates
+will be n, thus the range
+is again our standard simplex. Moreover, if b =
+
+1 1
+1
+−1
+a = a1 , a2 , . . ., an , then Tb will be the inverse transformation. Thus
+this transformation is one-to-one on our standard simplex.
+Remark: This can also be seen directly. If Ta (x) = Ta (y), then xy11 =
+P
+P
+x1
+xn
+xi = yi = 1, we have r = 1.
+y2 = . . . = yn = r (say). But as
+Moreover, if λ is any number then if y 0 = Ta (λx) then
+nλai xi
+nλai xi
+nai xi
+yi0 = P
+= P
+=P
+= yi
+λaj xj
+λ aj xj
+aj xj
+Thus, Ta (λx) = Ta (x).
+
+4.1
+
+Modified Problem
+
+Assume that we are applying transform Ta (with ai = 1/zi ), then point z
+will be mapped to e. Let D be a diagonal matrix with diagonal entries:
+D = diag(a1 , . . ., an ).
+5
+
+If z is any feasible point, then for any positive x > 0 satisfying eT x = 1,
+we saw that there is a unique point ξ (which depends on x) s.t. x = Tz (ξ).
+P
+Remark: x = Tz (ξ) implies xi = zi ξi /( zi ξi ), thus ξi = ρ xzii where ρ is
+P
+such that ξi = 1.
+P
+P
+Then, equation Ax = 0 is equivalently to j Aij xj = 0 or j Aij ρxj = 0
+P
+or equivalently, Aij ξj zj = 0 or Aξz = 0.
+P
+P
+The objective function cT x = ci xi = ρ1 ci ξi zi . As optimal value of
+cT x is zero, it follows that the optimal value of the transformed objective
+P
+function ci ξi zi is also 0.
+Replacing ξ by x0 and using Z = diag(z1 , . . ., zn ), the transformed problem is:
+min(Zc)T x0 subject to AZx0 = 0, eT x0 = n and x0 ≥ 0.
+Moreover, as z is a feasible point Az = 0 or equivalently AZe = 0, thus e is
+again feasible.
+We can thus repeat the previous method with Zc instead of c and AZ
+instead of A. In other words, we have to minimise the modified objective
+function over inscribed sphere of radius αr i.e., the “modified” problem is:
+min(Zc)T x subject to AZx = 0, eT x = n and ||x − e|| ≤ αr.
+
+4.2
+
+Result from Algebra– Projection Matrix
+
+Assume that A is m×n matrix, then rank of A is said to be m, with m < n iff
+all m rows of A are linearly independent, i.e., β1 A1 + β2 A2 + . . . + βm An = 0
+(here 0 is a row vector of size n) has only one solution βi = 0. Thus, if v is
+any 1 × m matrix (a column vector of size m), then vA = 0 implies v = 0.
+We use the fact that the matrix AAT has rank m and is invertible1 .
+Let A be an m × n matrix, then Ax = b (hence Ax = 0) represents a set
+of m equations. Each equation will be a hyperplane in n dimensions. Let v
+be a vector of size n, we will like to “project” v onto the (lower dimension or
+intersection of) hyperplane Ax = b. If P = pv is the projection, then [9], we
+wish to write p = P v, as best as possible, as p = P v = α1 a1 + α2 a2 + . . . +
+αm am where a1 , . . ., am are rows of A. Projection p will again be a vector
+of size n. This can be written as p = AT α.
+1
+
+As A is m × n matrix, AT will be n × m matrix. The product AAT will be an m × m
+square matrix. Let y T be an m × 1 matrix (or y is a row-vector of size m).
+Consider the equation (AAT )y T = 0. Pre-multiplying by y we get yAAT y T = 0 or
+(yA)(yA)T = 0 or the dot product < yA, yA >= 0 which, for real vectors (matrices)
+means, that each term of yA is (individually) zero, or yA = 0, which implies y is identically
+zero. Thus, the matrix AAT has rank m and is invertible.
+
+6
+
+The error of projection (or rejection) E = v − p = v − P v will also be
+a vector of size n. Then as error E can not be in these hyperplane, i.e., it
+should be “perpendicular” to these hyperplanes, thus we want AE = 0. Or
+A(v − p) = 0, or A(v − AT α) = 0, thus Av = AAT α, or α = (AAT )−1 Av.
+T )−1 Av, or P = AT (AAT )−1 A.
+Hence, p = P v = AT α, or P v = AT (AA
+
+
+Or, E = v − P v = v − AT (AAT )−1 Av = I − AT (AAT )−1 A v
+Thus, to summarise, projection matrix is P = AT (AAT )−1 A and Rejection matrix (to get the part perpendicular to the hyperplanes) is: I −
+AT (AAT )−1 A
+
+4.3
+
+Algorithm
+
+Start the algorithm with x = e and find z, the optimal value on the inscribed
+sphere of radius αr (we will see more details of this step later).
+In a typical iteration, we next apply a transformation Tz −1 to map z to
+e (we need a transformation Tb such that z gets mapped to e, then b = 1/z).
+Modify A and c and find a new z (say z 0 ), the optimal value on the inscribed
+sphere of radius αr.
+Remark: As we know that transformed value of z is e, transform Tz −1 is
+not actually applied, only the values of A and c are updated.
+0
+Then apply inverse transformation Tz−1
+−1 (or Tz ) to map z to original
+0
+space, to get the value of x for next iteration.
+The formal algorithm
+is (value of α is fixed to 1/(r + 1) in Section 5.2):
+q
+n
+1
+Initialise: r = n−1 , α = r+1
+, x = e = (1, . . ., 1)
+Main step: If cT x < , return current x as solution of desired accuracy.
+Let D = diag(x1 , . . ., xn )
+AD
+I
+
+P =
+
+!
+
+Let
+
+
+cP
+
+=
+
+1−P
+
+T
+
+
+
+PP
+
+cP
+||cP ||
+z = e − αrp̂
+nDy
+x = T
+e Dy
+p̂ =
+
+7
+
+T
+
+−1
+
+
+
+P (cD)T
+
+5
+
+Analysis—Potential Function
+
+For analysis, we define a potential function:
+T
+
+Φ(x) = n log c x −
+
+n
+X
+
+log xi
+
+i=1
+
+As eT x = n we have n1 xi = 1. But as Arithmetic mean is greater than
+or equal to geometric mean:
+P
+P
+P xi
+Q
+1/n
+1=
+or taking logs, n1 log xi ≤ 0, or log xi ≤ 0, or
+n ≥ ( xi )
+Φ(x) ≤ n log cT x or
+cT x ≥ exp
+
+
+
+Φ(x)
+n
+
+
+
+Next observe that
+Φ(λx) = n log cT (λx) −
+
+n
+X
+
+log(λxi )
+
+i=1
+
+=
+
+
+
+
+
+T
+
+log c x + log λ −
+
+n
+X
+
+log xi +
+
+= n log c x −
+
+n
+X
+
+!
+
+log λ
+
+i=1
+
+i=1
+T
+
+n
+X
+
+log xi = Φ(x)
+
+i=1
+
+Let x be a positive vector in our standard simplex and let y = Tx (z),
+then
+nxi zi
+yi = P
+, or Φ(y) = Φ(Tz (x)) = Φ(xz)
+x i zi
+Moreover, Φ(xz) = n log cT (xz) −
+P
+log zi
+Finally,
+
+Pn
+
+i=1 log xi zi
+
+= n log cT xz −
+
+P
+
+X
+
+log zi
+
+log xi −
+
+∆Φ = Φ(x) − Φ(y) = Φ(x) − Φ(xz)
+= n log cT x −
+
+n
+X
+
+
+
+log xi − n log cT xz −
+
+log xi −
+
+X
+
+
+
+i=1
+
+= n log
+
+cT x
+cT xz
+
++
+
+X
+
+log zi
+
+T
+
+x
+But log ccT xz
+is the ratio of original
+and transformed problems, which we saw
+
+r
+reduces by at least 1 − α R . Thus:
+
+8
+
+r
+∆Φ ≥ −n log 1 − α
+R
+
+
+
+
++
+
+X
+
+log zi
+
+We will show that ∆ is more than a constant. But, before continuing
+with analysis, we need some more results from algebra.
+
+5.1
+
+Function Ψ
+
+In this section, all logs are to base e. Assume that |x| < 1. As log(1 + x) =
+2
+3
+4
+x − x2 + x3 − x4 + . . ., for −1 < y < 0, (let y = −x) we have
+3
+4
+2
+y − log(1 + y) = −x − log(1 − x) = x2 + x3 + x4 + . . . > 0
+We define[6] Ψ(x) = x − log(1 + x). Observe that Ψ(0) = 0 Hence,
+2
+3
+4
+Ψ(x) = x2 − x3 + x4 − . . . And, Ψ(x) ≥ 0 for x > −1
+Claim 1 If x > 0 and a2 = b2 + c2 , then if ax, bx, cx are greater than −1
+(for log(1 + hx) to be defined), then
+Ψ(−|a|x) > Ψ(bx) + Ψ(cx)
+Proof: From a2 = b2 + c2 , we know that |a| ≥ |b| and |a| ≥ |c|. Without
+loss of generality, assume a < 0, then −|ax| = ax and we have
+3 3
+4 4
+2 2
+Ψ(ax) = a 2x − a 3x + a 4x − . . .
+2 2
+3 3
+4 4
+Ψ(bx) = b 2x − b 3x + b 4x − . . .
+3 3
+4 4
+2 2
+Ψ(cx) = c 2x − c 3x + c 4x − . . .
+As a2 = b2 + c2 , coefficients of x2 on both sides are equal.
+3
+3 3
+3 3
+We thus need to compare − a 3x with − (b +c3 )x . As a2 = b2 + c2 ,
+a3 = ab2 + ac2 . Thus, we are comparing −x(ab2 + ac2 ) and −x(b3 + c3 ) or
+equivalently 0 and xb2 (a − b) + xc2 (a − c).
+As a < 0 and −a > |b| and −a > |c|, the expressions can be re-written
+as: 0 and −xb2 (b − a) − xc2 (c − a). Both terms inside brackets are positive,
+and as x > 0, right hand side will be negative.
+Claim 2 If a2 = b2 + c2 + . . . + s2 , then if ax, bx, cx, . . . are greater than −1
+(for log(1 + hx) to be defined), then if x > 0, Ψ(−|a|x) > Ψ(bx) + Ψ(cx) +
+. . . + Ψ(sx)
+Proof (induction): Let v 2 = c2 + . . . + s2 . Then a2 = b2 + v 2 . Then from
+the above claim, Ψ(−|a|x) > Ψ(bx) + Ψ(−|v|x). By induction hypothesis,
+Ψ(−|v|x) > Ψ(cx)+. . .+Ψ(sx) Proof follows by adding the two inequalities.
+
+9
+
+5.2
+
+Analysis Continued
+
+As − log(1 − x) = x +
+
+x2
+2
+
++
+
+x3
+3
+
++ . . . > x, hence,
+
+
+∆Φ ≥ −n log 1 − α
+
+r
+R
+
+
+
++
+
+X
+
+log zi
+
+X
+r
++
+log zi
+R X
+= αr2 +
+log zi
+
+= nα
+
+But z = e − αrp̂ or zi = 1 − αrpi
+And, log zi = log(1−αrpi ) = − (−αrpi − log(1 − αrpi ))−αrpi = −αrpi −
+Ψ(−αrpi ).
+P
+P
+P
+But p̂ is a unit vector, p2i = 1. As z is feasible zi = n, or pi = 0.
+Hence,
+−
+
+X
+
+log zi =
+
+X
+
+αrpi +
+
+X
+
+Ψ(−αrpi ) =
+
+X
+
+Ψ(−αrpi ) ≤ Ψ(−αr)
+
+The last inequality follows from Corollary 1 above.
+For Ψ(−αr) to be defined, αr < 1, we thus2 choose α =
+
+1
+r+1 ,
+
+we have
+
+∆Φ ≥ αr2 − Ψ(−αr) = αr2 − ((−αr) − log(1 − αr))
+= αr2 + αr + log(1 − αr)
+
+
+r
+r
+r2
++
++ log 1 −
+=
+1+r 1+r
+r+1
+
+
+r
+= r + log 1 −
+r+1
+= r − log(1 + r) = Ψ(r) but as r =
+
+q
+
+n/n − 1 > 1
+
+≥ Ψ(1) = 1 − ln 2 ≈ 0.3
+Hence, potential decreases by a fixed amount after each iteration.
+After k, iterations, Φ(e) − Φ(x) > kΨ(1). But as Ψ(e) = n log cT e, we
+get Φ(x) < n log cT e − kΨ(1). As x is inside the standard simplex,
+Φ(x)
+cT x ≤ exp
+n
+
+
+
+
+n log cT e − kΨ(1)
+< exp
+n
+
+!
+
+−r/R
+−αr
+Differentiating, f (α) = αr2 − Ψ(−αr) w.r.t. α, f 0 (α) = r2 − 1−αr
++ n 1−(αr/R)
+1
+1
+1
+, equating f 0 (α) to 0, we get 1 + r = 1−αr
+, or 1 − αr = 1+r
+or
+f 0 (α) = r2 + r + (−r) 1−αr
+1
+r
+1
+1
+αr = 1 − 1+r = r+1 or α = 1+r . Thus, the maximum value is at α = 1+r .
+2
+
+10
+
+If we stop as soon as error cT x ≤ , we get
+n log cT e − kΨ(1)
+exp
+n
+
+!
+
+≤  or
+
+n log cT e − kΨ(1)
+≤ log  or
+n
+log cT e − kΨ(1) ≤ n log  or
+cT e
+n
+log
+k ≥
+Ψ(1)
+
+Thus, after at most
+x for which cT x ≤ 
+
+n
+Ψ(1)
+
+T
+
+log c  e iterations, algorithm finds a feasible point
+
+Acknowledgments
+Many thanks to students of CS647A (2017-2018 batch) for their valuable
+feedback, questions and comments on an earlier version.
+
+References
+[1] Mokhtar S. Bazaraa, John J. Jarvis, Hanif D. Sherali, Linear Programming and Network Flows, 4th Edition, Wiley 2009
+[2] Donald Goldfarb and Michael J.Todd, Linear programming, Chapter
+II in Optimization Edited by G.L. Nemhauser, A.H.G. Rinooy Kan
+and M.J. Todd, Handbooks in Operations Research and Management
+Science Volume 1, 1989, Pages 73-170, Elsevier
+[3] H.Karloff, Linear Programming, Birkhauser, 1991.
+
+[4] Katta G. Murty, chapter 11, pp 472-473 of “Linear Complementarity, Linear and Nonlinear Programming”, web book
+http://www-personal.umich.edu/~murty/books/linear_complementarity_webbook/kat11.p
+[5] Narendra Karmarkar, A New Polynomial Time Algorithm for Linear
+Programming, Combinatorica, Vol 4, nr. 4, pp. 373-395 (1984).
+[6] C.Roos,T Terlaky and J-P Vial, Interior Point Methods for Linear Optimization, 2nd Ed, 2006, Springer.
+[7] R.Saigal, Linear Programming, A Modern Integrated Analysis, Kluwer,
+1995.
+11
+
+[8] Hamdy A. Taha, Operations Research: An Introduction, 7th Edition,
+Pearson, 2002.
+
+[9] Ling-Hsiao Lyu, Lecture notes on Linear Algebra Lecture 3 (Chap. 4),
+Projection and Projection Matrix, Institute of Space Science, National
+Central University, Chung-Li, Taiwan, R. O. C., 2012 Spring
+http://www.ss.ncu.edu.tw/~lyu/lecture_files_en/lyu_LA_Notes/Lyu_LA_2012/Lyu_LA_3_
+
+12
+
+

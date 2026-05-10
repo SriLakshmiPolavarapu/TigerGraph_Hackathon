@@ -1,0 +1,3109 @@
+Title: arXiv paper 1011
+
+Categories: 10
+
+Abstract:
+Two Distinct Seasonally Fractionally
+Differenced Periodic Processes
+
+arXiv:1803.03154v1 [math.ST] 8 Mar 2018
+
+1
+
+Ahmed BENSALMA 1,2
+ENSSEA Pôle universitaire Koléa, Tipaza (ex: INPS 11 Doudou mokhtar
+Benaknoun) Algeria)
+2
+Faculty of Mathematics, University of Science and Technology Houari
+Boumediene, Algeria
+Abstract
+This article is devoted to study the effects of the S-periodical fractional differencing filter (1 − LS )Dt . To put this effect in evidence, we
+have derived the periodic auto-covariance functions of two distinct univariate seasonally fractionally differenced periodic models. A multivariate
+representation of periodically correlated process is exploited to provide
+the exact and approximated expression auto-covariance of each models.
+The distinction between the models is clearly obvious through the expression of periodic auto-covariance function. Besides producing different
+auto-covariance functions, the two models differ in their implications.
+In the first model, the seasons of the multivariate series are separately
+fractionally integrated. In the second model, however, the seasons for the
+univariate series are fractionally co-integrated. On the simulated sample,
+for each models, with the same parameters, the empirical periodic autocovariance are calculated and graphically represented for illustrating the
+results and support the comparison between the two models.
+
+1
+
+Introduction
+
+Since their introduction by Gladyshev (1961, 1963) much attention has
+been given to periodically correlated processes. The interest, for such
+processes is due to their potential use in modeling of cyclical phenomena
+appearing in hydrology, climatology and in econometrics. Following pioneer work of Gladyshev (1963), an important part of the literature has
+been devoted to the periodically correlated discrete time processes. A discrete time process is periodically correlated, if there is a non zero integer
+S such that
+E (Xt+S ) = E (Xt ) and Cov(Xt1 +S , Xt2 +S ) = Cov(Xt1 , Xt2 ).
+A review of the periodically correlated discrete time processes is proposed in Lund and Basawa (1999), Bentarzi and Hallin (1994) give invertibility conditions for periodic moving average.. A large part of the
+literature on the subject is devoted to the periodic ARM A (P ARM A)
+models, which have the following representation:
+Xt −
+
+pt
+X
+i=0
+
+φi,t Xt−i =
+
+qt
+X
+
+θj,t ut−j , t = 0, ±1, ±2, ....,
+
+j=0
+
+1
+
+where ut is a zero-mean white noise with variance σ 2t . Among searchers
+who were interested with the periodic autoregressifs processes not periodically stationary, we cite Boswijk and Franses (1995) which studied the
+problem of the presence of a unit root in a periodic autoregression model
+of order p (P AR(p)) and Boswijk, Franses and Haldrup (1997) which studied the presence of multiple unit roots in a periodic autoregression model
+of order p. All work cited above were made under the assumption that
+the processes are periodically integrated of order zero (P I(0)), integrated
+of order one (I(1)) or periodically integrated of order one ((P I(1)). However currently, it well-known that in the scientific fields mentioned above
+(hydrology, meteorology, econometrics) much of sets of data that have
+a certain periodicity; have also a long range dependence (or long memory). Such phenomena can be modeled by stationary processes. The
+stationary processes with seasonal long memory are well know (see for example Gray, Zhang and Woodward (1989): Garma models; Purter-Hudak
+(1990):Seasonal ARF IM A; Oppenheim, G. and al (2000); ould Haye and
+al (2003) for references, properties and simulations). Another alternative, to take account of certain periodic phenomena with long memory
+is to consider nonstationary models (but periodically stationary) such as
+the periodically correlated processes with long memory. The periodically
+correlated processes, within the meaning of Gladyshev (1963), with long
+memory did not receive much attention on behalf of the statisticians and
+the probabilists. Among works associating periodicity within the meaning
+of Gladyshev (1963) and the presence of long memory we cite, Hui and
+Li (1995), Franses and Ooms (1997), Ooms and Franses (2001).
+For modelling of the Hong Kong United Christian Hospital attendance
+series, Hui and Li (1995) propose a 2-periodic correlated process,
+(1 − L)dt Yt = ut ,
+
+(1.1)
+
+where {ut , t ∈ Z} is a zero mean white noise with variance σ2t , and dt the
+2-periodic fractional parameter. The empirical series yt concerns seventy
+five (approximately one and half years) data on the average number of
+people entering the emergency unit on weekday and weekend.
+On the other hand, in order to analyzes the long-memory properties in
+the conditional mean of the quarterly inflation rate in the United Kingdom
+Franses and Ooms (1997) propose a 4-periodic correlated process,
+Yt = (1 − L)−dt ut ,
+
+(1.2)
+
+where {ut , t ∈ Z} is defined as above and dt is the 4-periodic fractional
+parameter.
+Finally, for the monthly empirical data, which concern the log transformed data of the monthly mean river flow in cubic feet per second,
+Ooms and Franses (2001) propose to use the seasonal periodic fractional
+operator defined, in simple framework as follows,
+Yt = (1 − LS )−Dt ut , S = 12
+
+(1.3)
+
+where {ut , t ∈ Z} is defined as above and S = 12.
+The main difference between, the one hand, the models (1.1) and (1.2)
+and the other hand, the model (1.3), is in the unit of lag to which the
+
+2
+
+fractional difference operator is applied. In the models (1.1) and (1.2)
+the fractional difference operator was applied to weekly and quarterly
+lags, respectively, corresponding to the basic time interval of the time
+series analyzed. In the model (1.3) the fractional difference operator was
+applied to yearly, which is the seasonal lag of the time series analyzed.
+Indeed, by using a binomial expansion for the difference operator (1−L)dt ,
+(1−L)−dt , (1−LS )−dt we can rewrite, respectively, the models (1.1), (1.2)
+and (1.3) as the following,
+∞
+X
+j=0
+
+Γ (j − dt )
+Yt−j = ut ,
+Γ (j + 1) Γ (−dt )
+
+Yt =
+
+∞
+X
+
+Γ (j + dt )
+ut−j ,
+Γ (j + 1) Γ (dt )
+
+(1.5)
+
+Γ (j + Dt )
+ut−Sj .
+Γ (j + 1) Γ (Dt )
+
+(1.6)
+
+j=0
+
+Yt =
+
+∞
+X
+j=0
+
+where
+Γ (z) =
+
+(1.4)
+
+ R +∞
+0
+
+sz−1 e−z ds,
+
+∞
+
+if z > 0
+if z = 0,
+
+if z < 0, Γ (z) is defined in terms of the above expressions and the recurrence formula zΓ (z) = Γ (z + 1).
+While, the invertibility and stationarity conditions of the model (1.3)
+are known (see Ooms and Franses 2001), apart when dt = d is a constant,
+nothing is clear about the models (1.1) and (1.2). More precisely, no thing
+is clear about the stationarity conditions for the model (1.1), because his
+infinite moving average representation is unknown and no thing is clear
+about the invertibility conditions for the model (1.2), because his infinite
+autoregressive representation is unknown. The model (1.3) is invertible
+and stationary if −0.5 < Dt < 0.5 and it is easy to show in this case that
+the infinite autoregressive representation of the process yt is given by
+∞
+X
+j=0
+
+Γ (j − Dt )
+Yt−Sj = ut .
+Γ (j + 1) Γ (−Dt )
+
+For the model (1.4), at any case, in general, we have,
+Yt 6=
+
+∞
+X
+j=0
+
+Γ (j + dt )
+ut−j ,
+Γ (j + 1) Γ (dt )
+
+and for the model (1.5), at any case, in general, we have,
+∞
+X
+j=0
+
+Γ (j − dt )
+Yt−j 6= ut .
+Γ (j + 1) Γ (−dt )
+
+For the particular periodic ARF IM A(0, dt , 0), namely (1 − L)dt yt =
+ut , ut ∼ i.i.d(0, σ 2t ), the infinite moving average representation is unknown. In this paper, we give the closed form of this representation. It
+
+3
+
+is important to known such representation in order to deduce the stationarity condition of this type of model. Unfortunately, the closed form
+obtained is not easy to handle due to her parametric complexity (see Appendix).
+Since the P ARF IM A(p, dt , q) is not easy to handle. The work that
+we present in this article is concerned only on the Seasonal periodical fractional operator, namely (1−LS )Dt . More Precisely, in this work we are interested in certain theoretical properties of the SP ARF IM A(p, 0, 0)(0, Dt , 0)S
+(Seasonal periodic ARF IM A). The study of the theoretical properties of this class of models remains to be made; because among works
+which evoke this class, only one exists; that is of Franses and Ooms
+(2001). The work of Franses and Ooms has to consist in adjusting a
+SP ARF IM A(p, 0, 0)(0, Dt , 0)S to a set of real data. Precisely the model
+considered by Ooms and Franses is defined as follows:
+φt (L) (Xt − µt ) = η t , t ∈ N∗ , with η t = (1 − LS )−Dt ut ,
+where µt is S-periodical constant such as µt = µt+S , φt (L) = 1 − φt,1 L −
+φt,2 L2 − ... − φt,p Lp . The parameters φt,i i = 1, ..., p are periodic functions
+in t, and η t a white noise seasonally fractionally integrated of order Dt ,
+where Dt is S-periodical fractional parameter. The model above, if 0 ≤
+Dt < 0.5, ∀t can be written as follows:
+(1 − LS )Dt φt (L) (Xt − µt ) = ut , t ∈ Z.
+
+(M odel(I))
+
+There is another class of models SP ARF IM A(p, 0, 0)(0, Dt , 0)S distinct from that used by Franses and Ooms (2001); this class is defined as
+follows:
+φt (L)(1 − LS )Dt (Xt − µt ) = ut , t ∈ Z,
+
+(M odel(II))
+
+where µt , φt (L), Dt are defined like above. These two classes coincide, only if Dt = D, ∀t, since, generally, the composition of φt (L) and
+(1 − LS )Dt is not necessarily commutative. To convince, it is sufficient
+to notice that the S-variate representation of the model (I) is a V ARF I
+model (vector autoregressive model, driven by fractionally integrated innovation) whereas the multivariate writing of the model (II) is a F IV AR
+model (fractionally integrated vector autoregression) (see Rebecca Sela
+and Clifford Mr. Hurvich (2008)). These two distinct classes, generalize
+the univariate model ARF IM A, the first is closely related to the cointegrated processes, whereas the second is closely related to the integrated
+processes. Consequently, in our case, the model (I) is closely related to the
+cointegrated season and the model (II) is closely related to the integrated
+season.
+In order to distinguish between the model (I) and (II), we note them,
+respectively as the following: P AR(p) − P SF I(Dt ) and P SF I(Dt ) −
+P AR(p). The rest of this paper is organized as follows: section 2 is
+devoted to defined two class of processes; the periodic autoregressive
+of order p process with periodic seasonal fractional integrated of order
+Dt innovation, namely P AR(p) − P SF I(Dt ) and the periodic seasonal
+fractional integrated process, periodic autoregressive of order p, namely
+P SF I(Dt ) − P AR(p). In section 3, for each model defined in section 2,
+
+4
+
+we provide the exact and approximated expression of the periodic autocovariances function. In the section 4, on the simulated samples for each
+model, with the same parameters for the model (I) and (II), the empirical periodic autocovariances are calculated and graphically represented
+for illustrating the theoretical results and comparison between the two
+models.
+Without restricting the generality, we suppose that all processes defined below have zero mean.
+
+2
+
+Representation and notation
+
+2.1 S-periodical seasonally fractionally integrated,
+periodic autoregressive process (P SF I(Dt)−P AR(p))
+A periodically correlated process {Yt , t ∈ Z} is said S-periodical seasonally
+fractionally integrated of order Dt , periodic autoregressive of order p; if
+it has the following representation:
+Φt (L)(1 − LS )Dt Yt = ut ,
+
+t ∈ Z,
+
+(2.1)
+
+where {ut , t ∈ Z} is a zero mean white noise with variance σ2t and (1 −
+LS )Dt are defined like above. φt (L) = 1 − φt,1 L − φt,2 L2 − ... − φt,p Lp
+where φt,1 , ..., φt,p are S-periodical parameters.
+Letting Yτ = (Y1,τ , ..., Ys,τ , ..., YS,τ )′ and uτ = (u1,τ , ..., us,τ , ..., uS,τ )′
+with Ys,τ = Ys+Sτ and us,τ = us+Sτ then the process (2.1) can be rewritten in the S variate form
+D
+
+Φ0 ∇S (L)Y τ −
+
+P
+X
+
+D
+
+Φi ∇S (L)Y τ −i = uτ ,
+
+(2.2)
+
+i=1
+
+
+
++ 1, with [x] denotes the smallest integer than or equal
+where P = p+1
+S
+D
+to x, ∇S (L) is defined like above. The autoregressive coefficient matrices
+are given by
+
+1
+s = j,
+
+0
+s < j,
+(Φ0 )s,j =
+
+−φs−j,j
+s > j,
+and
+
+(Φi )s,j = φiS+s−j,s , s, j = 1, ..., S and 1 ≤ i ≤ P.
+
+The periodic stationarity condition of the model (2.2) is the same as
+the stationarity condition of it equivalent fractional integrated vector autoregression, namely F IV AR, (Rebecca Sela and Clifford Hurvich (2008))
+representation (2.2), which means that the roots of the determinantal
+equation
+!
+P
+X
+P
+−1
+P−i
+det IS z −
+Φ0 Φi z
+= 0,
+i=1
+
+are less than 1 in absolute value (Hannan (1970), Fuller (1976)) and
+0 ≤ Ds < 0.5, for all s = 1, ..., S,
+
+5
+
+(Hosking (1981)). If the process (2.2) is stationary, then it has an infinite
+moving average representation given by
+D
+
+Y τ = ∇S (L)−1 Φ (L)−1 uτ ,
+!
+!
+∞
+∞
+P
+P
+j
+j
+Ψj L
+Πj L uτ ,
+=
+j=0
+
+=
+
+∞
+P
+
+j=0
+
+=
+
+∞
+P
+
+j=0
+
+
+
+j
+P
+
+
+Ψk Πj−k uτ −j ,
+
+k=0
+
+(2.3)
+
+Cj uτ −j ,
+
+j=0
+
+
+D
+where ∇S (L) = diag (1 − L)D1 , · · · , (1 − L)Ds , · · · , (1 − L)DS , Φ (L) =
+∞
+P
+Φ0 − Φ1 L − ... − ΦP LP and [Φ (L)]−1 = Π(L) =
+Πj Lj , with (Πj )j∈N
+j=0
+
+is sequence of absolutely summable matrix i.e.
+
+∞
+P
+
+|Πj (l, k)| < ∞, ∀l ∈
+
+j=0
+
+{1, ..., S} and ∀k ∈ {1, ..., S}. Cj =
+
+j
+P
+
+Ψk Πj−k with Ψj defined like
+
+k=0
+
+above. The ith element of Y τ , Yi,τ is written as follows
+
+Yi,τ = (1 − LS )Di Φ (L)−1 i uτ
+
+(2.4)
+
+
+where Φ (L)−1 i is the ith rows of Φ (L)−1 . From (2.4) we see clearly
+that,
+Yi,τ is integrated of order Di , i = 1, ..., S.
+
+2.2 Periodic autoregressive, S-periodical seasonally fractionally integrated process (P AR(p)−P SF I(Dt))
+A periodically correlated process {Zt , t ∈ Z} is said, periodic autoregressive of order p; S-periodical seasonally fractionally integrated of order Dt
+if it has the following representation:
+Φt (L)Zt = (1 − LS )−Dt ut ,
+
+t ∈ Z,
+
+(2.5)
+
+LS )Dt
+
+where {ut , t ∈ Z}, (1 −
+and φt (L) are defined like above. Letting Zτ = (Z1,τ , ..., Zs,τ , ..., ZS,τ )′ and uτ = (u1,τ , ..., us,τ , ..., uS,τ )′ with
+Zs,τ = Zs+Sτ and us,τ = us+Sτ then the process (2.5) can be rewritten
+in the S variate form
+Φ0 Zτ −
+
+P
+X
+
+−D
+
+Φi Zτ −i = ∇S (L)uτ ,
+
+(2.6)
+
+i=1
+
+
+
++ 1, with [x] denotes the smallest integer than or equal
+where P = p+1
+S
+(L),
+Φ
+to x, ∇−D
+0 and Φi , i = 1, ..., P are defined like above. The
+S
+model (2.6) is vector autoregression with fractional integrated innovation, namely V ARF I (Rebecca Sela and Clifford Hurvich (2008)). The
+
+6
+
+periodic stationarity condition of the model (2.6) is the same than the
+model (2.2). The ith relation of (2.6) is written
+(Φ(L))i Zτ = (1 − LS )−Di ui,τ
+where Φ (L) = Φ0 −Φ1 L−...−ΦP LP and (Φ(L))i is the ith rows of Φ (L),
+this means that the ith relation of (2.6) is integrated of order Di . Among
+the S relations of (2.6), those which are integrated of order lower than
+max Di are relations of cointegration. If all the values Di are different,
+1≤i≤S
+
+then we can say that there are (S − 1) relations of cointegrations. If
+D1 = .... = DS it does not exist any relation of cointegration. Generally,
+when we have D1 < D2 < ...DS−R−1 < (DS−R = DS−R+1 = ... = DS )
+that means that there are (S − R − 1) relations of cointegrations between
+the S seasons. If the model (2.6) is stationary, it has an infinite moving
+average representation given by
+−D
+
+Zτ = Φ (L)−1 ∇S (L)uτ
+!
+!
+∞
+∞
+P
+P
+j
+j
+Πj L
+Ψj L uτ
+=
+j=0
+
+=
+
+∞
+P
+
+j=0
+
+=
+
+∞
+P
+
+j=0
+
+
+
+j
+P
+
+Πk Ψj−k
+
+k=0
+
+
+
+uτ
+(2.7)
+
+Hj uτ −j ,
+
+j=0
+
+where Hj =
+
+j
+P
+
+Πk Ψj−k . The ith element of Zτ , Zi,τ is written as follows
+
+k=0
+
+Zi,τ =
+
+S
+X
+s=1
+
+−1
+
+
+
+Φ(L)−1
+
+
+
+i,s
+
+(1 − L)−DS us,τ ,
+
+where Φ(L)
+is (i, s) th element of the matrix Φ(L)−1 . Zi,τ is
+i,s
+written like linear combination of S independent processes, respectively,
+integrated of order D1 , ..., Ds , ..., DS ; consequently Zi,τ is integrated of
+order max Di (Granger 1986).
+1≤i≤S
+
+3
+
+Periodic autocovariances
+
+This section deals with the determination of theoretical periodic autocovariances of periodically correlated processes defined in precedent section.
+
+3.1
+
+P SF I(Dt) − P AR(p) periodic autocovariances
+
+Theorem 1 Given the stationary S-variate process Yτ defined by (2.2),
+we have
+h
+i
+h
+i
+(3.1)
+ΓYτ (h) ∼ ∆ hD−0.5 A∆ hD−0.5 , as h → ∞
+where the (i, k) th element of S × S matrix A is:
+
+Γ (1 − Di − Dk ) ′
+Π ΩΠk
+Γ (Dk ) Γ (1 − Dk ) i
+
+7
+
+with Π′i is the ith rows of the matrix Π and Ω = diag(σ21 , ..., σ 2s , ..., σ2S ).
+Proof. See Ching-Fan Chung (2002).
+Corollary 2 Given the process Yt defined in (2.1), we have:
+
+
+Γ(1 − Ds − Ds+ν−S∗δ )
+γ (s) (j) ∼ (h+δ)Ds +Ds+ν−S∗δ −1
+Π′s ΩΠs+ν−S∗δ ,
+Γ(Ds+ν−S∗δ )Γ(1 − Ds+ν−S∗δ )
+(3.2)
+where h and ν are integers such as j = h × S + ν, and j > 0, i.e. j ≡ ν [h]
+with 0 ≤ ν < S − 1 and δ is defined as follows:
+
+δ = 0,
+if 1 ≤ s + ν < S,
+δ = 1,
+if S + 1 ≤ s + ν ≤ 2S − 1,
+Π′s is the sth rows of the matrix Π and Ω = diag(σ21 , ..., σ 2s , ..., σ2S ).
+Proof. The proof of the corollary, rises directly from theorem 1. From
+theorem 1, we have :
+(i,k)
+
+ΓY
+
+τ
+
+(h) ∼ h(Di +Dk −1)
+
+Γ(1 − Di − Dk ) ′
+Πi ΩΠk ,
+Γ(Dk )Γ(1 − Dk )
+
+(3.3)
+
+(i,k)
+
+where ΓY τ (h) = Cov(Yi,τ , Yk,τ +h ) are the (i, k) th element of the
+covariance matrix of ΓYτ (h). Moreover, it is known that
+γ (s) (j) = Cov(YSτ +s , YSτ +s+j )
+= Cov(Ys,τ , Ys+j,τ ).
+
+(3.4)
+
+Putting j = Sh + ν with 0 ≤ ν < S − 1, by replacing j by Sh + ν in (3.4),
+we have
+γ (s) (j) = Cov(Ys,τ , Ys+ν,τ +h ).
+(3.5)
+According to the value of (s + ν), the equality (3.5), becomes
+( (s,s+ν)
+ΓY τ
+(h),
+if 1 ≤ s + ν < S,
+(s)
+γ (j) =
+(s,s+ν−S)
+(h + 1), if (S + 1) ≤ s + ν ≤ 2S − 1.
+ΓY τ
+By using the approximation (3.3), we have:
+
+Γ(1−Ds −Ds+ν )
+Π′s ΩΠs+ν ,
+h(Ds +Ds+ν −1) Γ(Ds+ν )Γ(1−D
+
+
+s+ν )
+
+
+
+if 1 ≤ s + ν < S,
+
+γ (s) (j) ∼
+
+Γ(1−Ds −Ds+ν−S∗ν )
+
+
+(h + 1)(Ds +Ds+ν−S∗δ −1) Γ(Ds+ν )Γ(1−D
+Π′s ΩΠs+ν−S∗δ ,
+
+
+s+ν−S∗δ )
+
+if (S + 1) ≤ s + ν ≤ 2S − 1,
+
+where Π′s is the sth rows of the matrix Π and Ω = diag(σ21 , ..., σ2s , ..., σ 2S ).
+From corollary 1; emerges several remarks, the most important are
+
+Remark 3 : The periodic autocovariances γ (s) (j) s = 1, ..., S taper off at
+different hyperbolic rates. If we suppose that min Di = D1 and max Di =
+1≤i≤S
+
+1≤i≤S
+
+DS (this does not restrict the generality) than γ (1) (j), with j ≡ 0[S] has
+the more speedy taper off hyperbolic rate (∝ h2D1 −1 ) and γ (S) (j), with
+j ≡ 0[S] has the lowest taper off hyperbolic rate (∝ h2DS −1 ).
+
+8
+
+This remark will be largely clarified graphically (see section 4, couples
+of figures (1a, 1b) to (5a, 5b). The advantage which offer by the periodic
+process is the possibility of representing the graph of the autocovariances
+in various manners. The autocovariances functions γ (s) (j), s = 1, ..., S
+can be represented in the same plot (hui ad Li 1995), or separately. For
+j = Sh + ν, with 0 ≤ ν < S − 1 we can also represented γ (s) (Sh + ν),
+ν = 0, ..., S − 1 in the same plot. These are the three kinds of graphs
+which we will use in the next section.
+
+3.2
+
+P AR(p) − P SF I(Dt) periodic autocovariances
+
+Before stating the main result of this section, we need some further notation. Let Dmax = max Ds and define Before stating the main result of
+1≤s≤S
+
+this section, we need some further notation. Let Dmax = max Ds and de1≤s≤S
+
+fine F = {1, ..., s, ..., S}, F1 = {i, i ∈ F / Di = Dmax }, with |F1 | = R and
+F2 = {i, i ∈ F / Di < Dmax }, with |F2 | = S − R. We have F1 ∩ F2 = ∅
+and F1 ∪ F2 = F .
+Theorem 4 Given the stationary S-variate process Zτ defined by (2.6),
+we have
+ΓZτ (j) ∼ j 2Dmax −1 A, as j → ∞
+(3.6)
+where the (i, k) th element of S × S matrix A, is:
+A(l, m) =
+
+X
+Γ (1 − 2Dmax )
+Π(l, i)Π(m, i)σ2i
+Γ (Dmax ) Γ (1 − Dmax ) i∈F
+1
+
+where Π = [Φ (1)]−1 =
+
+∞
+P
+
+Πj and Π(l, i) is (l, i) th element of Π.
+
+j=0
+
+Proof. See Ching-Fan Chung (2002).
+The corollary below, gives the approximated expression, as j → ∞, of
+the periodic autocovariances function, γ (s) (j) = cov(ZSτ +s , ZSτ +s+j ) of
+the process Zt , defined in (2.5).
+Corollary 5 Given the process Zt defined in (2.5), we have,
+
+X
+Γ(1 − 2Dmax )
+γ (s) (j) ∼ (h+δ)2Dmax −1
+Π(s, i)Π(s+ν−Sδ, i)σ2i
+Γ(Dmax )Γ(1 − Dmax ) i∈F
+1
+
+(3.7)
+where h and ν are integers such as j = hS + ν, and j > 0, i.e. j ≡ ν [h]
+with 0 ≤ ν < S − 1, and δ is defined as follows:
+
+δ = 0,
+if 1 ≤ s + ν < S
+δ = 1,
+if S + 1 ≤ s + ν ≤ 2S − 1
+and Π (i, s) is the (i, s) th element of the matrix Π = [Φ (1)]−1 =
+
+∞
+P
+
+Πj .
+
+j=0
+
+Proof. The proof of the corollary, rises directly from theorem 3. From
+theorem 3, we have :
+X
+Γ (1 − 2Dmax )
+(l,k)
+ΓZ (j) ∼ j 2Dmax −1
+Π(l, i)Π(k, i)σ 2i (3.8)
+τ
+Γ (Dmax ) Γ (1 − Dmax ) i∈F
+1
+
+9
+
+(l,k)
+
+where ΓZτ (j) = Cov(Zl,τ , Zk,τ +j ) is the (i, k) th element of the covariance matrix ΓZτ (j). Moreover, it is known that
+γ (s) (j) = Cov(ZSτ +s , ZSτ +s+j )
+= Cov(Zs,τ , Zs+j,τ )
+
+(3.9)
+
+Putting j = Sh + ν with 0 ≤ ν < S − 1, by replacing j by Sh + ν in (3.9),
+we have
+γ (s) (j) = Cov(Zs,τ , Zs+ν,τ +h )
+(3.10)
+According to the value of (s + ν), the equality (3.10), becomes
+( (s,s+ν)
+Γ Zτ
+(h),
+if 1 ≤ s + ν < S
+(s)
+γ (j) =
+(s,s+ν−S)
+(h + 1), if (S + 1) ≤ s + ν ≤ 2S − 1
+Γ Zτ
+By using the approximation (3.8), we have,
+
+P
+2
+max )
+
+h(2Dmax −1) Γ(DΓ(1−2D
+
+i∈F1 Π(s, i)Π(s + ν, i)σ i ,
+max )Γ(1−Dmax )
+
+
+
+if 1 ≤ s + ν < S
+
+
+
+(s)
+γ (j) ∼
+
+
+P
+
+Γ(1−2Dmax )
+2
+ (h + 1)(2Dmax −1)
+
+
+i∈F1 Π(s, i)Π(s + ν − S, i)σ i ,
+Γ(Dmax )Γ(1−Dmax )
+
+
+if (S + 1) ≤ s + ν ≤ 2S − 1
+Remark 6 If D1 = D2 = ... = DS the periodic autocovariances γ (s) (j)
+of the model (2.2) coincide with those of model (2.8)
+Remark 7 From corollary 4; we see that the periodic autocovariances
+γ (s) (j) s = 1, ..., S taper off at the same hyperbolic rates.
+
+4
+
+Simulation
+
+In this section we compare the finite sample of the periodic autocovariances γ (s) (j) s = 1, ..., 4 of the models (1.3), (2.1) and (2.5) for different value of D = (D1 , D2 , D3 , D4 ). The sample size for each model is
+T = 1000.
+The model we consider for the simulation study are
+• Model A
+
+(1 − L4 )Dt Xt = εt
+
+which has the following S-variate representation
+
+(1 − L)D1
+0
+0
+0
+D2
+
+0
+(1
+−
+L)
+0
+0
+
+
+0
+0
+(1 − L)D3
+0
+0
+0
+0
+(1 − L)D4
+
+10
+
+
+
+
+X = u
+τ
+ τ
+
+• Model B
+
+Φt (L)(1 − L4 )Dt Yt = ut
+
+which has the following S-variate representation
+
+
+(1 − L)D1
+0
+1
+0
+0
+−0.7
+
+ −0.8
+0
+(1
+−
+L)D2
+1
+0
+0
+
+
+ 0
+−0.6
+1
+0 
+0
+0
+0
+0
+−0.4
+1
+0
+0
+• Model C
+
+0
+0
+(1 − L)D3
+0
+
+(1 − L4 )Dt Φt (L)Zt = ut
+
+which has the following S-variate representation
+
+(1 − L)D1
+0
+0
+0
+D2
+
+0
+(1
+−
+L)
+0
+0
+
+
+0
+0
+(1 − L)D3
+0
+0
+0
+0
+(1 − L)D4
+
+
+
+1
+  −0.8
+
+ 0
+0
+
+0
+1
+−0.6
+0
+
+where uτ are i.i.d N (0, Ω) with Ω = diag(1, 1, 1, 1).
+
+4.1
+
+
+0
+
+0
+Y = u
+τ
+ τ
+0
+D4
+(1 − L)
+
+Simulated Autocovariances of model A
+
+In figures 1 to 4, we represent the empirical autocovariances function
+γ (s) (j) s = 1, ..., 4 in the same plot, for the model A for different value of
+
+11
+
+0
+0
+1
+−0.4
+
+
+−0.7
+0 
+Z = u
+τ
+0  τ
+1
+
+D = (D1 , D2 , D3 , D4 ).
+
+Figure 1: The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 25
+with D = (0.1, 0.2, 0.3, 0.4) for model A
+
+Figure 2: The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 25
+with D = (0.1, 0.2, 0.4, 0.4) for model A
+
+Figure 3: The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 25
+with D = (0.1, 0.4, 0.4, 0.4) for model A
+
+12
+Figure 4: The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 25
+with D = (0.4, 0.4, 0.4, 0.4) for model A
+
+The figures 1, illustrate well the theoretical result of theorem 1 and also
+states that the periodicity is caused by the fractional parameters D =
+(0.1, 0.2, 0.3, 0.4) (the auto-covariances γ (s) (j) s = 1, ..., 4 for lag j ≡ 0[4]
+taper off, respectively, at hyperbolic rates, according the value of D.
+
+4.2
+
+Simulated autocovariances of model B
+
+For D = (0.1, 0.2, 0.3, 0.4), the figures (1a) and (1b) represents the empirical autocovariances b
+γ (s) (j) s = 1, ..., 4, respectively, in spike graph and in
+line graph of the model B. The couples of figures (2a, 2b) to (5a, 5b) represents the empirical autocovariances γ
+b(1) (4h+ν), ν = 0, ..., 3 to b
+γ (4) (4h+ν),
+ν = 0, ..., 3, for h = 1 to 25, respectively, in spike graph and line graph,
+for the model B.
+
+Figure 1a
+
+Figure 1b
+(s)
+
+The periodic autocovariances b
+γ (j), s = 1, ..., 4, for lag j = 1 to 100,
+of model B, with D = (0.1, 0.2, 0.3, 0.4), taper off at different hyperbolic rates
+
+figure 2a
+
+figure 2b
+
+The figure 2a and 2b represents, respectively, the speedy and the lowest
+taper off hyperbolic rate of autocovariances of model (B)
+
+13
+
+Figure 2a
+
+Figure 2b
+(1)
+
+The periodic autocovariances γ (4h + ν), ν = 0, ..., 3, for fixed h (h = 1 to 25)
+have tendency to increase according with the value of D1 + D1+ν−4δ
+
+Figure 3a
+
+Figure 3b
+(2)
+
+The periodic autocovariances γ
+b (4h + ν), ν = 0, ..., 3, for fixed h (h = 1 to 25)
+have tendency to increase according with the value of D2 + D2+ν−4δ
+
+Figure 4a
+
+Figure 4b
+
+The periodic autocovariances γ (3) (4h + ν), ν = 0, ..., 3, for fixed h (h = 1 to 24)
+have tendency to increase according with the value of D3 + D3+ν−4δ
+
+14
+
+figure 5a
+
+figure 5b
+(4)
+
+The periodic autocovariances γ
+b (4h + ν), ν = 0, ..., 3, for fixed h (h = 1 to 25)
+have tendency to increase according with the value of D4 + D4+ν−4δ
+
+4.3
+
+Simulated autocovariances of model C
+
+The figures (1c) and (2c) represents the empirical autocovariances γ
+b(s) (j)
+s = 1, ..., 4, respectively, in spike graph and in line graph of the model C.
+The difference between the periodic autocovariances γ (s) (j), s = 1, ..., 4,
+for lag j = 1 to 100, decreases at the same manner, mainly because they
+taper off at the same hyperbolic rates
+
+Figure 1c
+
+Figure 2c
+
+The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 100 and
+D = (0.1, 0.2, 0.4, 0.4), taper off at the same hyperbolic rates
+
+4.4 Simulated comparison between autocovariances
+of model B and C
+In order to compare, both autocovariances γ
+b(s) (j), s = 1, ..., 4 for model
+(B) and model (C) we represent them graphically in the same scale for
+different value of D = (D1 , D2 , D3 , D4 ) (see below).
+
+15
+
+Figure 5: The periodic autocovariances b
+γ (s) (j), s = 1, ..., 4, for lag j = 1 to 100,
+D = (0.1, 0.2, 0.3, 0.4) for respectively, model (B) and model (C)
+
+Figure 6: The periodic autocovariances b
+γ (s) (j), s = 1, ..., 4, for lag j = 1 to 100,
+D = (0.1, 0.2, 0.4, 0.4) for respectively, model (B) and model (C)
+
+Figure 7: The periodic autocovariances b
+γ (s) (j), s = 1, ..., 4, for lag j = 1 to 100,
+D = (0.1, 0.4, 0.4, 0.4) for, respectively, model (B) and model (C)
+
+16
+
+Figure 8: The periodic autocovariances b
+γ (s) (j), s = 1, ..., 4, for lag j = 1 to 100,
+D = (0.4, 0.4, 0.4, 0.4) for, respectively, model (B) and model (C)
+
+In figures 5 to 8 we plot the autocovariance sequences b
+γ (s) (j), s =
+1, ..., 4 of model B and model C in the same scale and with identical
+parameters (Φ(L), Ω, and D). The autocovariances sequences differ dramatically. Rebecca Sela and Clifford Hurvich (2008) presents a similar
+conclusion for cross-covariance sequences of bivariate F IV AR(1, D) and
+V ARF I(1, D) processes with the same parameters. They point out that
+the first model have the series integrated separately (in our case the seasons are integrated separately) and in the second there is cointegration
+relation between the two series (in our case there are 3 cointegrations
+relations between the four seasons). This fact, does not explain clearly
+why there is such difference between the autocovariances of model B and
+model C. Further more, the taper off hyperbolic rates of the autocovariances of model (C) is equal than the lowest tapper off hyperbolic rate of
+the autocovariances of model (B), so why the autocovariance sequences
+differ dramatically? The explanation is in explicit results of corollary 3.1
+and corollary 3.2. Generally, in the literature of long memory models,
+attention is focused on the fractional parameters (which associate with
+hyperbolic tapper off of autocovariance) rather than on autoregressive or
+moving average parameters and V (εt ) included in expression of autocovariance. In the expression (3.4), the autoregressive parameters and V (εt )
+appears in the following form: π′s Ωπ s+ν−S∗δ and in expression (3.6) it appears in the following form: Π(s, S)Π(s + ν − S ∗ δ, S)σ2S . From model
+(B) and model (C), the set, of possible values, of these two quantities are
+respectively:
+
+
+2.131 1.8989 1.4628 1.3938
+ 1.8989 2.6744 1.8634 1.3923 
+
+
+(4.1)
+ 1.4628 1.8634 2.2734 1.2975 
+1.3938 1.3923 1.2975 1.6743
+and
+
+
+
+0.65398
+ 0.52318
+
+ 0.31391
+0.93428
+
+0.52318
+0.41854
+0.25113
+0.74742
+
+17
+
+0.31391
+0.25113
+0.15068
+0.4445
+
+
+0.93428
+0.74742 
+
+0.44845 
+1.3347
+
+(4.2)
+
+It seen that all, possible values, of π ′s Ωπ s+ν−S∗δ are greater than 1 (some
+are greater than 2, see the diagonal of matrix (4.1)). On the other hand,
+all values of Π(s, S)Π(s + ν − S ∗ δ, S)σ 2S are lower than 1 (except the last
+value in the diagonal of matrix (4.2).
+
+5
+
+Conclusion
+
+For Seasonal-Periodic-ARF IM A(p, 0, 0)(0, D, 0) model, allowing the seasonal fractional parameter D to be S-periodic rather than constant we have
+highlighted the existence of two distinct models (see section 1, model(I)
+and model (II)). For these two distinct models we have established the exact and approximated expression of the periodic autocovariance. On the
+simulated sample, for each model, the empirical periodic autocovariance
+are calculated and graphically represented.
+It is clear, through, theoretical and simulated results that it is not
+easy to distinguish between these two models (the shape of the autocovariance for each model is not sufficient). If we consider the general model,
+namely, Seasonal-Periodic-ARF IM A(p, dt , q)(P, Dt , Q) the situation becomes more complex to handle, because the number of different models we
+can distinguish is more than two models. Furthermore, the non seasonal
+part of the general model (i.e. P ARF IM A(p, dt , q)) did not receive much
+attention on behalf of the statisticians and the probabilists.
+
+References
+[1] Peter Boswijk, H. & Franses, Philip Hans, 1995. Testing for periodic
+integration, Economics Letters, Elsevier, vol. 48(3-4), pages 241-248.
+[2] Boswijk, H. Peter & Franses, Philip Hans & Haldrup, Niels, 1997.
+Multiple unit roots in periodic autoregression, Journal of Econometrics, Elsevier, vol. 80(1), pages 167-193.
+[3] Chung, Ching-Fan. (2002). Sample Means, Sample Autocovariances,
+and Linear Regression of Stationary Multivariate Long Memory Processes,” Econometric Theory, 18(1), 51-78.
+[4] Franses, P.H. and Ooms, M. (1997). A periodic long memory model
+for quartely UK inflation. International Journal of Forecasting 13,
+117-126.
+[5] Gladyshev, E. G. (1961). Periodically correlated random sequences.
+Soviet. Mathematics, 2.
+[6] Gladyshev, E. G. (1963). Periodically and almost PC random processes with continuous time parameter. Theory Probability and its
+Applications, 8.
+[7] Gray, H. L., Zhang, N.-F., and Woodward, W. (1989). On generalized
+fractional processes. J. Time Ser. Anal., 10:233–258.
+[8] Granger, C.W. J. (1980). Long Memory Relationships and the Aggregation of Dynamic Models. Journal of Econometrics, 14 227–238.
+
+18
+
+[9] Granger, C.W. J. (1986). Developements in the study of Cointegrated
+Economic Variables, Oxford Bulletin of Economics and Statistics, 48
+(3), 213-228.
+[10] Hosking, J. R. M. (1981) Fractional differencing, Biometrica, 68,16576.
+[11] Hui, Y. and Li, W. (1995). On fractionally differenced periodic processes. Sankhya,Ser. B, 57(1):19–31.
+[12] Lund, R. B. and Basawa, I. V. (1999). Modeling and inference for
+periodically correlated time series. In Asymptotics, nonparametrics,
+and time series, volume 158 of Statist. Textbooks Monogr., pages
+37–62. Dekker, New York.
+[13] Rebecca J. Sela & Clifford M. Hurvich, (2009). Computationally efficient methods for two multivariate fractionally integrated models,
+Journal of Time Series Analysis, Wiley Blackwell, vol. 30(6), pages
+631-651.
+[14] Ooms, M. and Franses, P.H. (2001). A seasonal periodic long memory
+model for monthly river flows. Envoronmental Modelling and Software. Volume 16, Issue 6, pages 495-581.
+[15] Oppenheim, G., Ould Haye, M., and Viano, M.-C. (2000). Long memory with seasonal effects. Statist. Inf. for Stoch. Proc., 3:53–68.
+[16] Ould Haye, M. and Viano, M.-C. (2003). Limit theorems under seasonal longmemory. In Doukhan, Paul (ed.) et al., Theory and applications of long-range dependence. Boston, MA: Birkhuser. 101-110.
+[17] Porter Hudak, S. (1990). An aplication of the seasonal fractionally di
+erenced model to the monetary aggegrates. Journal of the American
+Statistical Association, 85, 338-344.
+
+6
+
+Appendix A
+
+Proposition: The infinite moving average representation of the process,
+{yt , t ∈ Z} , defined by (1.1), is given by
+yt = ut +
+
+∞
+P
+
+j=1
+
+j
+P
+
+(−1)
+
+k
+
+k=1
+
+P
+
+π i1 (−dt )πi2 (−dt−i1 )πi3 (−dt−i1 −i2 ) · · · π ik
+
+i1 +i2 +···+ik =j
+
+t +i1 −1)
+. The numwhere π 0 (−dt ) = 1 and πi1 (−dt ) = −dt (−dt +1)···(−d
+(i1 )!
+P
+j−1
+ber terms in the sum ” i1 +i2 +···+ik =j ” is equal 2 . The number 2j−1
+represent the cardinal sets of k positive integers, namely, (i1 , i2 , · · · , ik ),
+which when summed together give j.
+Proof. Putting
+
+Π0 (−dt ) = 1 and
+
+Γ (j − dt )
+= Πj (−dt ),
+Γ (j + 1) Γ (−dt )
+
+we can rewrite (1.4) as
+yt +
+
+∞
+X
+
+Πj (−dt )yt−j = ut .
+
+j=1
+
+19
+
+(A1)
+
+
+
+−d Pk−1
+t−
+
+l=1
+
+il
+
+!
+
+ut−j ,
+
+More generally, we have
+yt−j +
+
+∞
+X
+
+Πj (−dt−j )yt−j−k = ut−j .
+
+k=1
+
+Suppose that the infinite moving average representation of (A1) is
+given by
+∞
+X
+Ψj (t)ut−j , with Ψ0 = 1,
+(A2)
+yt = Ψ0 (t)ut +
+j=1
+
+we have for the lagged variable yt−j ,
+yt−j = ut−j +
+
+∞
+X
+
+Ψk (t − j)ut−j−k .
+
+(A3)
+
+k=1
+
+By replacing yt−j by ut−j +
+Yt +
+
+∞
+X
+
+Πj (−dt )ut−j +
+
+j=1
+
+P∞
+
+k=1
+
+∞
+∞ X
+X
+
+Ψk (t − j)ut−j−k in (A1), we obtain
+
+Πj (−dt )Ψk (t − j)ut−j−k = ut .
+
+(A4)
+
+j=1 k=1
+
+Putting k′ = k + j, (A4) becomes
+Yt +
+
+∞
+X
+j=1
+
+Πj (−dt )ut−j +
+
+∞
+∞
+X
+X
+
+Πj (−dt )Ψk′ −j (t − j)ut−k′ = ut . (A5)
+
+j=1 k′ =j+1
+
+Let Φj,k′ (t − j) = Πj (−dt )Ψk′ −j (t − j), then we can rewrite (A5) as,
+
+20
+
+Yt +Π1 (−dt )ut−1
++
+
+∞
+P
+
+k′ =j+1
+
+∞
+P
+
+j=2
+
+Πj (−dt )ut−j +
+
+∞
+P
+
+k′ =2
+
+Φ1,k′ (t − 1)ut−k′ +
+
+Φj,k′ (t − j)ut−k′ + · · · = ut , (A6)
+
+∞
+P
+
+k′ =3
+
+Φ2,k′ (t − 2)ut−k′ + · · ·
+
+We can rewrite (A6) as,
+Yt + Π1 (−dt )ut−1 + (Π2 (−dt ) + Φ1,2 (t − 1)) ut−2
+
+(A7)
+
++ (Π3 (−dt ) + Φ1,3 (t − 1) + Φ2,3 (t − 2)) ut−3
++ (Π4 (−dt ) + Φ1,4 (t − 1) + Φ2,4 (t − 2) + Φ3,4 (t − 3)) ut−4
+..
+.
++ (Πh (−dt ) + Φ1,h (t − 1) + Φ2,h (t − 2) + · · · + Φh−1,h (t − h + 1)) ut−h
+.
++ ..
+Let Πh (−dt ) + Φ1,h (t − 1) + Φ2,h (t − 2) + · · · + Φh−1,h (t − h + 1) =
+β h (t − h + 1), for h ≥ 1, then we can rewrite (A7) as
+Yt + β 1 (t)ut−1 + β 2 (t − 1)ut−2 + · · · + β h (t − h + 1)ut−h + · · · = ut . (A8)
+From (A8), the infinite moving average representation of the process
+yt is
+∞
+X
+
+−β j (t) ut−j .
+(A9)
+Yt = ut +
+j=1
+
+By identification between (A2) and (A9), we obtain
+Ψj (t) = −β j (t − j + 1).
+
+(A10)
+
+From (A10), the first three coefficients, (Ψ1 (t), Ψ2 (t), Ψ3 (t)) are:
+• Ψ1 (t) = −β 1 (t),
+= −Π1 (−dt ).
+• Ψ2 (t) = −β 2 (t − 1)
+= − (Π2 (−dt ) + Φ1,2 (t − 1))
+= −Π2 (−dt ) − Π1 (−dt )Ψ1 (t − 1)
+= −Π2 (−dt ) + Π1 (−dt )Π1 (−dt−1 )
+
+=
+
+2
+P
+
+P
+π i1 (−dt ) +
+(−1)k 
+
+k=1
+
+i1 =2
+i1 6=0
+
+with il 6= 0, l ∈ 1, 2
+
+P
+
+i1 +i2 =2
+
+i1 6=0; i2 6=0
+
+
+
+
+πi1 (−dt )π i2 (−dt−i1 )
+
+• Ψ3 (t) = −β 3 (t − 2)
+= − (Π3 (−dt ) + Φ1,3 (t − 1) + Φ2,3 (t − 2))
+= − (Π3 (−dt ) + Π1 (−dt )Ψ2 (t − 1) + Π2 (−dt )Ψ1 (t − 2))
+= −Π3 (−dt )+Π1 (−dt )Π2 (−dt−1 )−Π1 (−dt )Π1 (−dt−1 )Π1 (−dt−2 )+
+Π2 (−dt )Π1 (−dt−2 )
+3
+P
+P
+P
+π i1 (−dt )πi2 (−dt−i1 ) +
+(−1)k
+π i1 (−dt ) +
+=
+i1 +i2 =3
+i1 =3
+k=1
+P
+πi1 (−dt )π i2 (−dt−i1 )πi3 (−dt−i1 −i2 ),
+i1 +i2 +i3 =3
+
+21
+
+with il 6= 0, l ∈ 1, 3.More generally, we have,
+Ψj (t) = −β j (t − j + 1)
+
+j
+X
+X
+=  (−1)k
+k=1
+
+i1 +i2 +···+ik =j
+
+
+
+π i1 (−dt )πi2 (−dt−i1 )πi3 (−dt−i1 −i2 ) · · · π ik (−dt−j+ik ) ,
+(A11)
+
+with il 6= 0, l ∈ 1, k
+
+When dt = d = constant, we have (Ψ1 (t), Ψ2 (t), Ψ3 (t)) = d,
+
+22
+
+d(d+1)
+, d(d+1)(d+2)
+1
+2
+
+
+
+.
+
+
+
+Summary:
+This research paper covers the following topic: Two Distinct Seasonally Fractionally
+Differenced Periodic Processes
+
+arXiv:1803.03154v1 [math.ST] 8 Mar 2018
+
+1
+
+Ahmed BENSALMA 1,2
+ENSSEA Pôle universitaire Koléa, Tipaza (ex: INPS 11 Doudou mokhtar
+Benaknoun) Algeria)
+2
+Faculty of Mathematics, University of Science and Technology Houari
+Boumediene, Algeria
+Abstract
+This article is devoted to study the effects of the S-periodical fractional differencing filter (1 − LS )Dt . To put this effect in evidence, we
+have derived the periodic auto-covariance functions of two distinct univariate seasonally fractionally differenced periodic models. A multivariate
+representation of periodically correlated process is exploited to provide
+the exact and approximated expression auto-covariance of each models.
+The distinction between the models is clearly obvious through the expression of periodic auto-covariance function. Besides producing different
+auto-covariance functions, the two models differ in their implications.
+In the first model, the seasons of the multivariate series are separately
+fractionally integrated. In the second model, however, the seasons for the
+univariate series are fractionally co-integrated. On the simulated sample,
+for each models, with the same parameters, the empirical periodic autocovariance are calculated and graphically represented for illustrating the
+results and support the comparison between the two models.
+
+1
+
+Introduction
+
+Since their introduction by Gladyshev (1961, 1963) much attention has
+been given to periodically correlated processes. The interest, for such
+processes is due to their potential use in modeling of cyclical phenomena
+appearing in hydrology, climatology and in econometrics. Following pioneer work of Gladyshev (1963), an important part of the literature has
+been devoted to the periodically correlated discrete time processes. A discrete time process is periodically correlated, if there is a non zero integer
+S such that
+E (Xt+S ) = E (Xt ) and Cov(Xt1 +S , Xt2 +S ) = Cov(Xt1 , Xt2 ).
+A review of the periodically correlated discrete time processes is proposed in Lund and Basawa (1999), Bentarzi and Hallin (1994) give invertibility conditions for periodic moving average.. A large part of the
+literature on the subject is devoted to the periodic ARM A (P ARM A)
+models, which have the following representation:
+Xt −
+
+pt
+X
+i=0
+
+φi,t Xt−i =
+
+qt
+X
+
+θj,t ut−j , t = 0, ±1, ±2, ....,
+
+j=0
+
+1
+
+where ut is a zero-mean white noise with variance σ 2t . Among searchers
+who were interested with the periodic autoregressifs processes not periodically stationary, we cite Boswijk and Franses (1995) which studied the
+problem of the presence of a unit root in a periodic autoregression model
+of order p (P AR(p)) and Boswijk, Franses and Haldrup (1997) which studied the presence of multiple unit roots in a periodic autoregression model
+of order p. All work cited above were made under the assumption that
+the processes are periodically integrated of order zero (P I(0)), integrated
+of order one (I(1)) or periodically integrated of order one ((P I(1)). However currently, it well-known that in the scientific fields mentioned above
+(hydrology, meteorology, econometrics) much of sets of data that have
+a certain periodicity; have also a long range dependence (or long memory). Such phenomena can be modeled by stationary processes. The
+stationary processes with seasonal long memory are well know (see for example Gray, Zhang and Woodward (1989): Garma models; Purter-Hudak
+(1990):Seasonal ARF IM A; Oppenheim, G. and al (2000); ould Haye and
+al (2003) for references, properties and simulations). Another alternative, to take account of certain periodic phenomena with long memory
+is to consider nonstationary models (but periodically stationary) such as
+the periodically correlated processes with long memory. The periodically
+correlated processes, within the meaning of Gladyshev (1963), with long
+memory did not receive much attention on behalf of the statisticians and
+the probabilists. Among works associating periodicity within the meaning
+of Gladyshev (1963) and the presence of long memory we cite, Hui and
+Li (1995), Franses and Ooms (1997), Ooms and Franses (2001).
+For modelling of the Hong Kong United Christian Hospital attendance
+series, Hui and Li (1995) propose a 2-periodic correlated process,
+(1 − L)dt Yt = ut ,
+
+(1.1)
+
+where {ut , t ∈ Z} is a zero mean white noise with variance σ2t , and dt the
+2-periodic fractional parameter. The empirical series yt concerns seventy
+five (approximately one and half years) data on the average number of
+people entering the emergency unit on weekday and weekend.
+On the other hand, in order to analyzes the long-memory properties in
+the conditional mean of the quarterly inflation rate in the United Kingdom
+Franses and Ooms (1997) propose a 4-periodic correlated process,
+Yt = (1 − L)−dt ut ,
+
+(1.2)
+
+where {ut , t ∈ Z} is defined as above and dt is the 4-periodic fractional
+parameter.
+Finally, for the monthly empirical data, which concern the log transformed data of the monthly mean river flow in cubic feet per second,
+Ooms and Franses (2001) propose to use the seasonal periodic fractional
+operator defined, in simple framework as follows,
+Yt = (1 − LS )−Dt ut , S = 12
+
+(1.3)
+
+where {ut , t ∈ Z} is defined as above and S = 12.
+The main difference between, the one hand, the models (1.1) and (1.2)
+and the other hand, the model (1.3), is in the unit of lag to which the
+
+2
+
+fractional difference operator is applied. In the models (1.1) and (1.2)
+the fractional difference operator was applied to weekly and quarterly
+lags, respectively, corresponding to the basic time interval of the time
+series analyzed. In the model (1.3) the fractional difference operator was
+applied to yearly, which is the seasonal lag of the time series analyzed.
+Indeed, by using a binomial expansion for the difference operator (1−L)dt ,
+(1−L)−dt , (1−LS )−dt we can rewrite, respectively, the models (1.1), (1.2)
+and (1.3) as the following,
+∞
+X
+j=0
+
+Γ (j − dt )
+Yt−j = ut ,
+Γ (j + 1) Γ (−dt )
+
+Yt =
+
+∞
+X
+
+Γ (j + dt )
+ut−j ,
+Γ (j + 1) Γ (dt )
+
+(1.5)
+
+Γ (j + Dt )
+ut−Sj .
+Γ (j + 1) Γ (Dt )
+
+(1.6)
+
+j=0
+
+Yt =
+
+∞
+X
+j=0
+
+where
+Γ (z) =
+
+(1.4)
+
+ R +∞
+0
+
+sz−1 e−z ds,
+
+∞
+
+if z > 0
+if z = 0,
+
+if z < 0, Γ (z) is defined in terms of the above expressions and the recurrence formula zΓ (z) = Γ (z + 1).
+While, the invertibility and stationarity conditions of the model (1.3)
+are known (see Ooms and Franses 2001), apart when dt = d is a constant,
+nothing is clear about the models (1.1) and (1.2). More precisely, no thing
+is clear about the stationarity conditions for the model (1.1), because his
+infinite moving average representation is unknown and no thing is clear
+about the invertibility conditions for the model (1.2), because his infinite
+autoregressive representation is unknown. The model (1.3) is invertible
+and stationary if −0.5 < Dt < 0.5 and it is easy to show in this case that
+the infinite autoregressive representation of the process yt is given by
+∞
+X
+j=0
+
+Γ (j − Dt )
+Yt−Sj = ut .
+Γ (j + 1) Γ (−Dt )
+
+For the model (1.4), at any case, in general, we have,
+Yt 6=
+
+∞
+X
+j=0
+
+Γ (j + dt )
+ut−j ,
+Γ (j + 1) Γ (dt )
+
+and for the model (1.5), at any case, in general, we have,
+∞
+X
+j=0
+
+Γ (j − dt )
+Yt−j 6= ut .
+Γ (j + 1) Γ (−dt )
+
+For the particular periodic ARF IM A(0, dt , 0), namely (1 − L)dt yt =
+ut , ut ∼ i.i.d(0, σ 2t ), the infinite moving average representation is unknown. In this paper, we give the closed form of this representation. It
+
+3
+
+is important to known such representation in order to deduce the stationarity condition of this type of model. Unfortunately, the closed form
+obtained is not easy to handle due to her parametric complexity (see Appendix).
+Since the P ARF IM A(p, dt , q) is not easy to handle. The work that
+we present in this article is concerned only on the Seasonal periodical fractional operator, namely (1−LS )Dt . More Precisely, in this work we are interested in certain theoretical properties of the SP ARF IM A(p, 0, 0)(0, Dt , 0)S
+(Seasonal periodic ARF IM A). The study of the theoretical properties of this class of models remains to be made; because among works
+which evoke this class, only one exists; that is of Franses and Ooms
+(2001). The work of Franses and Ooms has to consist in adjusting a
+SP ARF IM A(p, 0, 0)(0, Dt , 0)S to a set of real data. Precisely the model
+considered by Ooms and Franses is defined as follows:
+φt (L) (Xt − µt ) = η t , t ∈ N∗ , with η t = (1 − LS )−Dt ut ,
+where µt is S-periodical constant such as µt = µt+S , φt (L) = 1 − φt,1 L −
+φt,2 L2 − ... − φt,p Lp . The parameters φt,i i = 1, ..., p are periodic functions
+in t, and η t a white noise seasonally fractionally integrated of order Dt ,
+where Dt is S-periodical fractional parameter. The model above, if 0 ≤
+Dt < 0.5, ∀t can be written as follows:
+(1 − LS )Dt φt (L) (Xt − µt ) = ut , t ∈ Z.
+
+(M odel(I))
+
+There is another class of models SP ARF IM A(p, 0, 0)(0, Dt , 0)S distinct from that used by Franses and Ooms (2001); this class is defined as
+follows:
+φt (L)(1 − LS )Dt (Xt − µt ) = ut , t ∈ Z,
+
+(M odel(II))
+
+where µt , φt (L), Dt are defined like above. These two classes coincide, only if Dt = D, ∀t, since, generally, the composition of φt (L) and
+(1 − LS )Dt is not necessarily commutative. To convince, it is sufficient
+to notice that the S-variate representation of the model (I) is a V ARF I
+model (vector autoregressive model, driven by fractionally integrated innovation) whereas the multivariate writing of the model (II) is a F IV AR
+model (fractionally integrated vector autoregression) (see Rebecca Sela
+and Clifford Mr. Hurvich (2008)). These two distinct classes, generalize
+the univariate model ARF IM A, the first is closely related to the cointegrated processes, whereas the second is closely related to the integrated
+processes. Consequently, in our case, the model (I) is closely related to the
+cointegrated season and the model (II) is closely related to the integrated
+season.
+In order to distinguish between the model (I) and (II), we note them,
+respectively as the following: P AR(p) − P SF I(Dt ) and P SF I(Dt ) −
+P AR(p). The rest of this paper is organized as follows: section 2 is
+devoted to defined two class of processes; the periodic autoregressive
+of order p process with periodic seasonal fractional integrated of order
+Dt innovation, namely P AR(p) − P SF I(Dt ) and the periodic seasonal
+fractional integrated process, periodic autoregressive of order p, namely
+P SF I(Dt ) − P AR(p). In section 3, for each model defined in section 2,
+
+4
+
+we provide the exact and approximated expression of the periodic autocovariances function. In the section 4, on the simulated samples for each
+model, with the same parameters for the model (I) and (II), the empirical periodic autocovariances are calculated and graphically represented
+for illustrating the theoretical results and comparison between the two
+models.
+Without restricting the generality, we suppose that all processes defined below have zero mean.
+
+2
+
+Representation and notation
+
+2.1 S-periodical seasonally fractionally integrated,
+periodic autoregressive process (P SF I(Dt)−P AR(p))
+A periodically correlated process {Yt , t ∈ Z} is said S-periodical seasonally
+fractionally integrated of order Dt , periodic autoregressive of order p; if
+it has the following representation:
+Φt (L)(1 − LS )Dt Yt = ut ,
+
+t ∈ Z,
+
+(2.1)
+
+where {ut , t ∈ Z} is a zero mean white noise with variance σ2t and (1 −
+LS )Dt are defined like above. φt (L) = 1 − φt,1 L − φt,2 L2 − ... − φt,p Lp
+where φt,1 , ..., φt,p are S-periodical parameters.
+Letting Yτ = (Y1,τ , ..., Ys,τ , ..., YS,τ )′ and uτ = (u1,τ , ..., us,τ , ..., uS,τ )′
+with Ys,τ = Ys+Sτ and us,τ = us+Sτ then the process (2.1) can be rewritten in the S variate form
+D
+
+Φ0 ∇S (L)Y τ −
+
+P
+X
+
+D
+
+Φi ∇S (L)Y τ −i = uτ ,
+
+(2.2)
+
+i=1
+
+
+
++ 1, with [x] denotes the smallest integer than or equal
+where P = p+1
+S
+D
+to x, ∇S (L) is defined like above. The autoregressive coefficient matrices
+are given by
+
+1
+s = j,
+
+0
+s < j,
+(Φ0 )s,j =
+
+−φs−j,j
+s > j,
+and
+
+(Φi )s,j = φiS+s−j,s , s, j = 1, ..., S and 1 ≤ i ≤ P.
+
+The periodic stationarity condition of the model (2.2) is the same as
+the stationarity condition of it equivalent fractional integrated vector autoregression, namely F IV AR, (Rebecca Sela and Clifford Hurvich (2008))
+representation (2.2), which means that the roots of the determinantal
+equation
+!
+P
+X
+P
+−1
+P−i
+det IS z −
+Φ0 Φi z
+= 0,
+i=1
+
+are less than 1 in absolute value (Hannan (1970), Fuller (1976)) and
+0 ≤ Ds < 0.5, for all s = 1, ..., S,
+
+5
+
+(Hosking (1981)). If the process (2.2) is stationary, then it has an infinite
+moving average representation given by
+D
+
+Y τ = ∇S (L)−1 Φ (L)−1 uτ ,
+!
+!
+∞
+∞
+P
+P
+j
+j
+Ψj L
+Πj L uτ ,
+=
+j=0
+
+=
+
+∞
+P
+
+j=0
+
+=
+
+∞
+P
+
+j=0
+
+
+
+j
+P
+
+
+Ψk Πj−k uτ −j ,
+
+k=0
+
+(2.3)
+
+Cj uτ −j ,
+
+j=0
+
+
+D
+where ∇S (L) = diag (1 − L)D1 , · · · , (1 − L)Ds , · · · , (1 − L)DS , Φ (L) =
+∞
+P
+Φ0 − Φ1 L − ... − ΦP LP and [Φ (L)]−1 = Π(L) =
+Πj Lj , with (Πj )j∈N
+j=0
+
+is sequence of absolutely summable matrix i.e.
+
+∞
+P
+
+|Πj (l, k)| < ∞, ∀l ∈
+
+j=0
+
+{1, ..., S} and ∀k ∈ {1, ..., S}. Cj =
+
+j
+P
+
+Ψk Πj−k with Ψj defined like
+
+k=0
+
+above. The ith element of Y τ , Yi,τ is written as follows
+
+Yi,τ = (1 − LS )Di Φ (L)−1 i uτ
+
+(2.4)
+
+
+where Φ (L)−1 i is the ith rows of Φ (L)−1 . From (2.4) we see clearly
+that,
+Yi,τ is integrated of order Di , i = 1, ..., S.
+
+2.2 Periodic autoregressive, S-periodical seasonally fractionally integrated process (P AR(p)−P SF I(Dt))
+A periodically correlated process {Zt , t ∈ Z} is said, periodic autoregressive of order p; S-periodical seasonally fractionally integrated of order Dt
+if it has the following representation:
+Φt (L)Zt = (1 − LS )−Dt ut ,
+
+t ∈ Z,
+
+(2.5)
+
+LS )Dt
+
+where {ut , t ∈ Z}, (1 −
+and φt (L) are defined like above. Letting Zτ = (Z1,τ , ..., Zs,τ , ..., ZS,τ )′ and uτ = (u1,τ , ..., us,τ , ..., uS,τ )′ with
+Zs,τ = Zs+Sτ and us,τ = us+Sτ then the process (2.5) can be rewritten
+in the S variate form
+Φ0 Zτ −
+
+P
+X
+
+−D
+
+Φi Zτ −i = ∇S (L)uτ ,
+
+(2.6)
+
+i=1
+
+
+
++ 1, with [x] denotes the smallest integer than or equal
+where P = p+1
+S
+(L),
+Φ
+to x, ∇−D
+0 and Φi , i = 1, ..., P are defined like above. The
+S
+model (2.6) is vector autoregression with fractional integrated innovation, namely V ARF I (Rebecca Sela and Clifford Hurvich (2008)). The
+
+6
+
+periodic stationarity condition of the model (2.6) is the same than the
+model (2.2). The ith relation of (2.6) is written
+(Φ(L))i Zτ = (1 − LS )−Di ui,τ
+where Φ (L) = Φ0 −Φ1 L−...−ΦP LP and (Φ(L))i is the ith rows of Φ (L),
+this means that the ith relation of (2.6) is integrated of order Di . Among
+the S relations of (2.6), those which are integrated of order lower than
+max Di are relations of cointegration. If all the values Di are different,
+1≤i≤S
+
+then we can say that there are (S − 1) relations of cointegrations. If
+D1 = .... = DS it does not exist any relation of cointegration. Generally,
+when we have D1 < D2 < ...DS−R−1 < (DS−R = DS−R+1 = ... = DS )
+that means that there are (S − R − 1) relations of cointegrations between
+the S seasons. If the model (2.6) is stationary, it has an infinite moving
+average representation given by
+−D
+
+Zτ = Φ (L)−1 ∇S (L)uτ
+!
+!
+∞
+∞
+P
+P
+j
+j
+Πj L
+Ψj L uτ
+=
+j=0
+
+=
+
+∞
+P
+
+j=0
+
+=
+
+∞
+P
+
+j=0
+
+
+
+j
+P
+
+Πk Ψj−k
+
+k=0
+
+
+
+uτ
+(2.7)
+
+Hj uτ −j ,
+
+j=0
+
+where Hj =
+
+j
+P
+
+Πk Ψj−k . The ith element of Zτ , Zi,τ is written as follows
+
+k=0
+
+Zi,τ =
+
+S
+X
+s=1
+
+−1
+
+
+
+Φ(L)−1
+
+
+
+i,s
+
+(1 − L)−DS us,τ ,
+
+where Φ(L)
+is (i, s) th element of the matrix Φ(L)−1 . Zi,τ is
+i,s
+written like linear combination of S independent processes, respectively,
+integrated of order D1 , ..., Ds , ..., DS ; consequently Zi,τ is integrated of
+order max Di (Granger 1986).
+1≤i≤S
+
+3
+
+Periodic autocovariances
+
+This section deals with the determination of theoretical periodic autocovariances of periodically correlated processes defined in precedent section.
+
+3.1
+
+P SF I(Dt) − P AR(p) periodic autocovariances
+
+Theorem 1 Given the stationary S-variate process Yτ defined by (2.2),
+we have
+h
+i
+h
+i
+(3.1)
+ΓYτ (h) ∼ ∆ hD−0.5 A∆ hD−0.5 , as h → ∞
+where the (i, k) th element of S × S matrix A is:
+
+Γ (1 − Di − Dk ) ′
+Π ΩΠk
+Γ (Dk ) Γ (1 − Dk ) i
+
+7
+
+with Π′i is the ith rows of the matrix Π and Ω = diag(σ21 , ..., σ 2s , ..., σ2S ).
+Proof. See Ching-Fan Chung (2002).
+Corollary 2 Given the process Yt defined in (2.1), we have:
+
+
+Γ(1 − Ds − Ds+ν−S∗δ )
+γ (s) (j) ∼ (h+δ)Ds +Ds+ν−S∗δ −1
+Π′s ΩΠs+ν−S∗δ ,
+Γ(Ds+ν−S∗δ )Γ(1 − Ds+ν−S∗δ )
+(3.2)
+where h and ν are integers such as j = h × S + ν, and j > 0, i.e. j ≡ ν [h]
+with 0 ≤ ν < S − 1 and δ is defined as follows:
+
+δ = 0,
+if 1 ≤ s + ν < S,
+δ = 1,
+if S + 1 ≤ s + ν ≤ 2S − 1,
+Π′s is the sth rows of the matrix Π and Ω = diag(σ21 , ..., σ 2s , ..., σ2S ).
+Proof. The proof of the corollary, rises directly from theorem 1. From
+theorem 1, we have :
+(i,k)
+
+ΓY
+
+τ
+
+(h) ∼ h(Di +Dk −1)
+
+Γ(1 − Di − Dk ) ′
+Πi ΩΠk ,
+Γ(Dk )Γ(1 − Dk )
+
+(3.3)
+
+(i,k)
+
+where ΓY τ (h) = Cov(Yi,τ , Yk,τ +h ) are the (i, k) th element of the
+covariance matrix of ΓYτ (h). Moreover, it is known that
+γ (s) (j) = Cov(YSτ +s , YSτ +s+j )
+= Cov(Ys,τ , Ys+j,τ ).
+
+(3.4)
+
+Putting j = Sh + ν with 0 ≤ ν < S − 1, by replacing j by Sh + ν in (3.4),
+we have
+γ (s) (j) = Cov(Ys,τ , Ys+ν,τ +h ).
+(3.5)
+According to the value of (s + ν), the equality (3.5), becomes
+( (s,s+ν)
+ΓY τ
+(h),
+if 1 ≤ s + ν < S,
+(s)
+γ (j) =
+(s,s+ν−S)
+(h + 1), if (S + 1) ≤ s + ν ≤ 2S − 1.
+ΓY τ
+By using the approximation (3.3), we have:
+
+Γ(1−Ds −Ds+ν )
+Π′s ΩΠs+ν ,
+h(Ds +Ds+ν −1) Γ(Ds+ν )Γ(1−D
+
+
+s+ν )
+
+
+
+if 1 ≤ s + ν < S,
+
+γ (s) (j) ∼
+
+Γ(1−Ds −Ds+ν−S∗ν )
+
+
+(h + 1)(Ds +Ds+ν−S∗δ −1) Γ(Ds+ν )Γ(1−D
+Π′s ΩΠs+ν−S∗δ ,
+
+
+s+ν−S∗δ )
+
+if (S + 1) ≤ s + ν ≤ 2S − 1,
+
+where Π′s is the sth rows of the matrix Π and Ω = diag(σ21 , ..., σ2s , ..., σ 2S ).
+From corollary 1; emerges several remarks, the most important are
+
+Remark 3 : The periodic autocovariances γ (s) (j) s = 1, ..., S taper off at
+different hyperbolic rates. If we suppose that min Di = D1 and max Di =
+1≤i≤S
+
+1≤i≤S
+
+DS (this does not restrict the generality) than γ (1) (j), with j ≡ 0[S] has
+the more speedy taper off hyperbolic rate (∝ h2D1 −1 ) and γ (S) (j), with
+j ≡ 0[S] has the lowest taper off hyperbolic rate (∝ h2DS −1 ).
+
+8
+
+This remark will be largely clarified graphically (see section 4, couples
+of figures (1a, 1b) to (5a, 5b). The advantage which offer by the periodic
+process is the possibility of representing the graph of the autocovariances
+in various manners. The autocovariances functions γ (s) (j), s = 1, ..., S
+can be represented in the same plot (hui ad Li 1995), or separately. For
+j = Sh + ν, with 0 ≤ ν < S − 1 we can also represented γ (s) (Sh + ν),
+ν = 0, ..., S − 1 in the same plot. These are the three kinds of graphs
+which we will use in the next section.
+
+3.2
+
+P AR(p) − P SF I(Dt) periodic autocovariances
+
+Before stating the main result of this section, we need some further notation. Let Dmax = max Ds and define Before stating the main result of
+1≤s≤S
+
+this section, we need some further notation. Let Dmax = max Ds and de1≤s≤S
+
+fine F = {1, ..., s, ..., S}, F1 = {i, i ∈ F / Di = Dmax }, with |F1 | = R and
+F2 = {i, i ∈ F / Di < Dmax }, with |F2 | = S − R. We have F1 ∩ F2 = ∅
+and F1 ∪ F2 = F .
+Theorem 4 Given the stationary S-variate process Zτ defined by (2.6),
+we have
+ΓZτ (j) ∼ j 2Dmax −1 A, as j → ∞
+(3.6)
+where the (i, k) th element of S × S matrix A, is:
+A(l, m) =
+
+X
+Γ (1 − 2Dmax )
+Π(l, i)Π(m, i)σ2i
+Γ (Dmax ) Γ (1 − Dmax ) i∈F
+1
+
+where Π = [Φ (1)]−1 =
+
+∞
+P
+
+Πj and Π(l, i) is (l, i) th element of Π.
+
+j=0
+
+Proof. See Ching-Fan Chung (2002).
+The corollary below, gives the approximated expression, as j → ∞, of
+the periodic autocovariances function, γ (s) (j) = cov(ZSτ +s , ZSτ +s+j ) of
+the process Zt , defined in (2.5).
+Corollary 5 Given the process Zt defined in (2.5), we have,
+
+X
+Γ(1 − 2Dmax )
+γ (s) (j) ∼ (h+δ)2Dmax −1
+Π(s, i)Π(s+ν−Sδ, i)σ2i
+Γ(Dmax )Γ(1 − Dmax ) i∈F
+1
+
+(3.7)
+where h and ν are integers such as j = hS + ν, and j > 0, i.e. j ≡ ν [h]
+with 0 ≤ ν < S − 1, and δ is defined as follows:
+
+δ = 0,
+if 1 ≤ s + ν < S
+δ = 1,
+if S + 1 ≤ s + ν ≤ 2S − 1
+and Π (i, s) is the (i, s) th element of the matrix Π = [Φ (1)]−1 =
+
+∞
+P
+
+Πj .
+
+j=0
+
+Proof. The proof of the corollary, rises directly from theorem 3. From
+theorem 3, we have :
+X
+Γ (1 − 2Dmax )
+(l,k)
+ΓZ (j) ∼ j 2Dmax −1
+Π(l, i)Π(k, i)σ 2i (3.8)
+τ
+Γ (Dmax ) Γ (1 − Dmax ) i∈F
+1
+
+9
+
+(l,k)
+
+where ΓZτ (j) = Cov(Zl,τ , Zk,τ +j ) is the (i, k) th element of the covariance matrix ΓZτ (j). Moreover, it is known that
+γ (s) (j) = Cov(ZSτ +s , ZSτ +s+j )
+= Cov(Zs,τ , Zs+j,τ )
+
+(3.9)
+
+Putting j = Sh + ν with 0 ≤ ν < S − 1, by replacing j by Sh + ν in (3.9),
+we have
+γ (s) (j) = Cov(Zs,τ , Zs+ν,τ +h )
+(3.10)
+According to the value of (s + ν), the equality (3.10), becomes
+( (s,s+ν)
+Γ Zτ
+(h),
+if 1 ≤ s + ν < S
+(s)
+γ (j) =
+(s,s+ν−S)
+(h + 1), if (S + 1) ≤ s + ν ≤ 2S − 1
+Γ Zτ
+By using the approximation (3.8), we have,
+
+P
+2
+max )
+
+h(2Dmax −1) Γ(DΓ(1−2D
+
+i∈F1 Π(s, i)Π(s + ν, i)σ i ,
+max )Γ(1−Dmax )
+
+
+
+if 1 ≤ s + ν < S
+
+
+
+(s)
+γ (j) ∼
+
+
+P
+
+Γ(1−2Dmax )
+2
+ (h + 1)(2Dmax −1)
+
+
+i∈F1 Π(s, i)Π(s + ν − S, i)σ i ,
+Γ(Dmax )Γ(1−Dmax )
+
+
+if (S + 1) ≤ s + ν ≤ 2S − 1
+Remark 6 If D1 = D2 = ... = DS the periodic autocovariances γ (s) (j)
+of the model (2.2) coincide with those of model (2.8)
+Remark 7 From corollary 4; we see that the periodic autocovariances
+γ (s) (j) s = 1, ..., S taper off at the same hyperbolic rates.
+
+4
+
+Simulation
+
+In this section we compare the finite sample of the periodic autocovariances γ (s) (j) s = 1, ..., 4 of the models (1.3), (2.1) and (2.5) for different value of D = (D1 , D2 , D3 , D4 ). The sample size for each model is
+T = 1000.
+The model we consider for the simulation study are
+• Model A
+
+(1 − L4 )Dt Xt = εt
+
+which has the following S-variate representation
+
+(1 − L)D1
+0
+0
+0
+D2
+
+0
+(1
+−
+L)
+0
+0
+
+
+0
+0
+(1 − L)D3
+0
+0
+0
+0
+(1 − L)D4
+
+10
+
+
+
+
+X = u
+τ
+ τ
+
+• Model B
+
+Φt (L)(1 − L4 )Dt Yt = ut
+
+which has the following S-variate representation
+
+
+(1 − L)D1
+0
+1
+0
+0
+−0.7
+
+ −0.8
+0
+(1
+−
+L)D2
+1
+0
+0
+
+
+ 0
+−0.6
+1
+0 
+0
+0
+0
+0
+−0.4
+1
+0
+0
+• Model C
+
+0
+0
+(1 − L)D3
+0
+
+(1 − L4 )Dt Φt (L)Zt = ut
+
+which has the following S-variate representation
+
+(1 − L)D1
+0
+0
+0
+D2
+
+0
+(1
+−
+L)
+0
+0
+
+
+0
+0
+(1 − L)D3
+0
+0
+0
+0
+(1 − L)D4
+
+
+
+1
+  −0.8
+
+ 0
+0
+
+0
+1
+−0.6
+0
+
+where uτ are i.i.d N (0, Ω) with Ω = diag(1, 1, 1, 1).
+
+4.1
+
+
+0
+
+0
+Y = u
+τ
+ τ
+0
+D4
+(1 − L)
+
+Simulated Autocovariances of model A
+
+In figures 1 to 4, we represent the empirical autocovariances function
+γ (s) (j) s = 1, ..., 4 in the same plot, for the model A for different value of
+
+11
+
+0
+0
+1
+−0.4
+
+
+−0.7
+0 
+Z = u
+τ
+0  τ
+1
+
+D = (D1 , D2 , D3 , D4 ).
+
+Figure 1: The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 25
+with D = (0.1, 0.2, 0.3, 0.4) for model A
+
+Figure 2: The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 25
+with D = (0.1, 0.2, 0.4, 0.4) for model A
+
+Figure 3: The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 25
+with D = (0.1, 0.4, 0.4, 0.4) for model A
+
+12
+Figure 4: The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 25
+with D = (0.4, 0.4, 0.4, 0.4) for model A
+
+The figures 1, illustrate well the theoretical result of theorem 1 and also
+states that the periodicity is caused by the fractional parameters D =
+(0.1, 0.2, 0.3, 0.4) (the auto-covariances γ (s) (j) s = 1, ..., 4 for lag j ≡ 0[4]
+taper off, respectively, at hyperbolic rates, according the value of D.
+
+4.2
+
+Simulated autocovariances of model B
+
+For D = (0.1, 0.2, 0.3, 0.4), the figures (1a) and (1b) represents the empirical autocovariances b
+γ (s) (j) s = 1, ..., 4, respectively, in spike graph and in
+line graph of the model B. The couples of figures (2a, 2b) to (5a, 5b) represents the empirical autocovariances γ
+b(1) (4h+ν), ν = 0, ..., 3 to b
+γ (4) (4h+ν),
+ν = 0, ..., 3, for h = 1 to 25, respectively, in spike graph and line graph,
+for the model B.
+
+Figure 1a
+
+Figure 1b
+(s)
+
+The periodic autocovariances b
+γ (j), s = 1, ..., 4, for lag j = 1 to 100,
+of model B, with D = (0.1, 0.2, 0.3, 0.4), taper off at different hyperbolic rates
+
+figure 2a
+
+figure 2b
+
+The figure 2a and 2b represents, respectively, the speedy and the lowest
+taper off hyperbolic rate of autocovariances of model (B)
+
+13
+
+Figure 2a
+
+Figure 2b
+(1)
+
+The periodic autocovariances γ (4h + ν), ν = 0, ..., 3, for fixed h (h = 1 to 25)
+have tendency to increase according with the value of D1 + D1+ν−4δ
+
+Figure 3a
+
+Figure 3b
+(2)
+
+The periodic autocovariances γ
+b (4h + ν), ν = 0, ..., 3, for fixed h (h = 1 to 25)
+have tendency to increase according with the value of D2 + D2+ν−4δ
+
+Figure 4a
+
+Figure 4b
+
+The periodic autocovariances γ (3) (4h + ν), ν = 0, ..., 3, for fixed h (h = 1 to 24)
+have tendency to increase according with the value of D3 + D3+ν−4δ
+
+14
+
+figure 5a
+
+figure 5b
+(4)
+
+The periodic autocovariances γ
+b (4h + ν), ν = 0, ..., 3, for fixed h (h = 1 to 25)
+have tendency to increase according with the value of D4 + D4+ν−4δ
+
+4.3
+
+Simulated autocovariances of model C
+
+The figures (1c) and (2c) represents the empirical autocovariances γ
+b(s) (j)
+s = 1, ..., 4, respectively, in spike graph and in line graph of the model C.
+The difference between the periodic autocovariances γ (s) (j), s = 1, ..., 4,
+for lag j = 1 to 100, decreases at the same manner, mainly because they
+taper off at the same hyperbolic rates
+
+Figure 1c
+
+Figure 2c
+
+The periodic autocovariances γ
+b(s) (j), s = 1, ..., 4, for lag j = 1 to 100 and
+D = (0.1, 0.2, 0.4, 0.4), taper off at the same hyperbolic rates
+
+4.4 Simulated comparison between autocovariances
+of model B and C
+In order to compare, both autocovariances γ
+b(s) (j), s = 1, ..., 4 for model
+(B) and model (C) we represent them graphically in the same scale for
+different value of D = (D1 , D2 , D3 , D4 ) (see below).
+
+15
+
+Figure 5: The periodic autocovariances b
+γ (s) (j), s = 1, ..., 4, for lag j = 1 to 100,
+D = (0.1, 0.2, 0.3, 0.4) for respectively, model (B) and model (C)
+
+Figure 6: The periodic autocovariances b
+γ (s) (j), s = 1, ..., 4, for lag j = 1 to 100,
+D = (0.1, 0.2, 0.4, 0.4) for respectively, model (B) and model (C)
+
+Figure 7: The periodic autocovariances b
+γ (s) (j), s = 1, ..., 4, for lag j = 1 to 100,
+D = (0.1, 0.4, 0.4, 0.4) for, respectively, model (B) and model (C)
+
+16
+
+Figure 8: The periodic autocovariances b
+γ (s) (j), s = 1, ..., 4, for lag j = 1 to 100,
+D = (0.4, 0.4, 0.4, 0.4) for, respectively, model (B) and model (C)
+
+In figures 5 to 8 we plot the autocovariance sequences b
+γ (s) (j), s =
+1, ..., 4 of model B and model C in the same scale and with identical
+parameters (Φ(L), Ω, and D). The autocovariances sequences differ dramatically. Rebecca Sela and Clifford Hurvich (2008) presents a similar
+conclusion for cross-covariance sequences of bivariate F IV AR(1, D) and
+V ARF I(1, D) processes with the same parameters. They point out that
+the first model have the series integrated separately (in our case the seasons are integrated separately) and in the second there is cointegration
+relation between the two series (in our case there are 3 cointegrations
+relations between the four seasons). This fact, does not explain clearly
+why there is such difference between the autocovariances of model B and
+model C. Further more, the taper off hyperbolic rates of the autocovariances of model (C) is equal than the lowest tapper off hyperbolic rate of
+the autocovariances of model (B), so why the autocovariance sequences
+differ dramatically? The explanation is in explicit results of corollary 3.1
+and corollary 3.2. Generally, in the literature of long memory models,
+attention is focused on the fractional parameters (which associate with
+hyperbolic tapper off of autocovariance) rather than on autoregressive or
+moving average parameters and V (εt ) included in expression of autocovariance. In the expression (3.4), the autoregressive parameters and V (εt )
+appears in the following form: π′s Ωπ s+ν−S∗δ and in expression (3.6) it appears in the following form: Π(s, S)Π(s + ν − S ∗ δ, S)σ2S . From model
+(B) and model (C), the set, of possible values, of these two quantities are
+respectively:
+
+
+2.131 1.8989 1.4628 1.3938
+ 1.8989 2.6744 1.8634 1.3923 
+
+
+(4.1)
+ 1.4628 1.8634 2.2734 1.2975 
+1.3938 1.3923 1.2975 1.6743
+and
+
+
+
+0.65398
+ 0.52318
+
+ 0.31391
+0.93428
+
+0.52318
+0.41854
+0.25113
+0.74742
+
+17
+
+0.31391
+0.25113
+0.15068
+0.4445
+
+
+0.93428
+0.74742 
+
+0.44845 
+1.3347
+
+(4.2)
+
+It seen that all, possible values, of π ′s Ωπ s+ν−S∗δ are greater than 1 (some
+are greater than 2, see the diagonal of matrix (4.1)). On the other hand,
+all values of Π(s, S)Π(s + ν − S ∗ δ, S)σ 2S are lower than 1 (except the last
+value in the diagonal of matrix (4.2).
+
+5
+
+Conclusion
+
+For Seasonal-Periodic-ARF IM A(p, 0, 0)(0, D, 0) model, allowing the seasonal fractional parameter D to be S-periodic rather than constant we have
+highlighted the existence of two distinct models (see section 1, model(I)
+and model (II)). For these two distinct models we have established the exact and approximated expression of the periodic autocovariance. On the
+simulated sample, for each model, the empirical periodic autocovariance
+are calculated and graphically represented.
+It is clear, through, theoretical and simulated results that it is not
+easy to distinguish between these two models (the shape of the autocovariance for each model is not sufficient). If we consider the general model,
+namely, Seasonal-Periodic-ARF IM A(p, dt , q)(P, Dt , Q) the situation becomes more complex to handle, because the number of different models we
+can distinguish is more than two models. Furthermore, the non seasonal
+part of the general model (i.e. P ARF IM A(p, dt , q)) did not receive much
+attention on behalf of the statisticians and the probabilists.
+
+References
+[1] Peter Boswijk, H. & Franses, Philip Hans, 1995. Testing for periodic
+integration, Economics Letters, Elsevier, vol. 48(3-4), pages 241-248.
+[2] Boswijk, H. Peter & Franses, Philip Hans & Haldrup, Niels, 1997.
+Multiple unit roots in periodic autoregression, Journal of Econometrics, Elsevier, vol. 80(1), pages 167-193.
+[3] Chung, Ching-Fan. (2002). Sample Means, Sample Autocovariances,
+and Linear Regression of Stationary Multivariate Long Memory Processes,” Econometric Theory, 18(1), 51-78.
+[4] Franses, P.H. and Ooms, M. (1997). A periodic long memory model
+for quartely UK inflation. International Journal of Forecasting 13,
+117-126.
+[5] Gladyshev, E. G. (1961). Periodically correlated random sequences.
+Soviet. Mathematics, 2.
+[6] Gladyshev, E. G. (1963). Periodically and almost PC random processes with continuous time parameter. Theory Probability and its
+Applications, 8.
+[7] Gray, H. L., Zhang, N.-F., and Woodward, W. (1989). On generalized
+fractional processes. J. Time Ser. Anal., 10:233–258.
+[8] Granger, C.W. J. (1980). Long Memory Relationships and the Aggregation of Dynamic Models. Journal of Econometrics, 14 227–238.
+
+18
+
+[9] Granger, C.W. J. (1986). Developements in the study of Cointegrated
+Economic Variables, Oxford Bulletin of Economics and Statistics, 48
+(3), 213-228.
+[10] Hosking, J. R. M. (1981) Fractional differencing, Biometrica, 68,16576.
+[11] Hui, Y. and Li, W. (1995). On fractionally differenced periodic processes. Sankhya,Ser. B, 57(1):19–31.
+[12] Lund, R. B. and Basawa, I. V. (1999). Modeling and inference for
+periodically correlated time series. In Asymptotics, nonparametrics,
+and time series, volume 158 of Statist. Textbooks Monogr., pages
+37–62. Dekker, New York.
+[13] Rebecca J. Sela & Clifford M. Hurvich, (2009). Computationally efficient methods for two multivariate fractionally integrated models,
+Journal of Time Series Analysis, Wiley Blackwell, vol. 30(6), pages
+631-651.
+[14] Ooms, M. and Franses, P.H. (2001). A seasonal periodic long memory
+model for monthly river flows. Envoronmental Modelling and Software. Volume 16, Issue 6, pages 495-581.
+[15] Oppenheim, G., Ould Haye, M., and Viano, M.-C. (2000). Long memory with seasonal effects. Statist. Inf. for Stoch. Proc., 3:53–68.
+[16] Ould Haye, M. and Viano, M.-C. (2003). Limit theorems under seasonal longmemory. In Doukhan, Paul (ed.) et al., Theory and applications of long-range dependence. Boston, MA: Birkhuser. 101-110.
+[17] Porter Hudak, S. (1990). An aplication of the seasonal fractionally di
+erenced model to the monetary aggegrates. Journal of the American
+Statistical Association, 85, 338-344.
+
+6
+
+Appendix A
+
+Proposition: The infinite moving average representation of the process,
+{yt , t ∈ Z} , defined by (1.1), is given by
+yt = ut +
+
+∞
+P
+
+j=1
+
+j
+P
+
+(−1)
+
+k
+
+k=1
+
+P
+
+π i1 (−dt )πi2 (−dt−i1 )πi3 (−dt−i1 −i2 ) · · · π ik
+
+i1 +i2 +···+ik =j
+
+t +i1 −1)
+. The numwhere π 0 (−dt ) = 1 and πi1 (−dt ) = −dt (−dt +1)···(−d
+(i1 )!
+P
+j−1
+ber terms in the sum ” i1 +i2 +···+ik =j ” is equal 2 . The number 2j−1
+represent the cardinal sets of k positive integers, namely, (i1 , i2 , · · · , ik ),
+which when summed together give j.
+Proof. Putting
+
+Π0 (−dt ) = 1 and
+
+Γ (j − dt )
+= Πj (−dt ),
+Γ (j + 1) Γ (−dt )
+
+we can rewrite (1.4) as
+yt +
+
+∞
+X
+
+Πj (−dt )yt−j = ut .
+
+j=1
+
+19
+
+(A1)
+
+
+
+−d Pk−1
+t−
+
+l=1
+
+il
+
+!
+
+ut−j ,
+
+More generally, we have
+yt−j +
+
+∞
+X
+
+Πj (−dt−j )yt−j−k = ut−j .
+
+k=1
+
+Suppose that the infinite moving average representation of (A1) is
+given by
+∞
+X
+Ψj (t)ut−j , with Ψ0 = 1,
+(A2)
+yt = Ψ0 (t)ut +
+j=1
+
+we have for the lagged variable yt−j ,
+yt−j = ut−j +
+
+∞
+X
+
+Ψk (t − j)ut−j−k .
+
+(A3)
+
+k=1
+
+By replacing yt−j by ut−j +
+Yt +
+
+∞
+X
+
+Πj (−dt )ut−j +
+
+j=1
+
+P∞
+
+k=1
+
+∞
+∞ X
+X
+
+Ψk (t − j)ut−j−k in (A1), we obtain
+
+Πj (−dt )Ψk (t − j)ut−j−k = ut .
+
+(A4)
+
+j=1 k=1
+
+Putting k′ = k + j, (A4) becomes
+Yt +
+
+∞
+X
+j=1
+
+Πj (−dt )ut−j +
+
+∞
+∞
+X
+X
+
+Πj (−dt )Ψk′ −j (t − j)ut−k′ = ut . (A5)
+
+j=1 k′ =j+1
+
+Let Φj,k′ (t − j) = Πj (−dt )Ψk′ −j (t − j), then we can rewrite (A5) as,
+
+20
+
+Yt +Π1 (−dt )ut−1
++
+
+∞
+P
+
+k′ =j+1
+
+∞
+P
+
+j=2
+
+Πj (−dt )ut−j +
+
+∞
+P
+
+k′ =2
+
+Φ1,k′ (t − 1)ut−k′ +
+
+Φj,k′ (t − j)ut−k′ + · · · = ut , (A6)
+
+∞
+P
+
+k′ =3
+
+Φ2,k′ (t − 2)ut−k′ + · · ·
+
+We can rewrite (A6) as,
+Yt + Π1 (−dt )ut−1 + (Π2 (−dt ) + Φ1,2 (t − 1)) ut−2
+
+(A7)
+
++ (Π3 (−dt ) + Φ1,3 (t − 1) + Φ2,3 (t − 2)) ut−3
++ (Π4 (−dt ) + Φ1,4 (t − 1) + Φ2,4 (t − 2) + Φ3,4 (t − 3)) ut−4
+..
+.
++ (Πh (−dt ) + Φ1,h (t − 1) + Φ2,h (t − 2) + · · · + Φh−1,h (t − h + 1)) ut−h
+.
++ ..
+Let Πh (−dt ) + Φ1,h (t − 1) + Φ2,h (t − 2) + · · · + Φh−1,h (t − h + 1) =
+β h (t − h + 1), for h ≥ 1, then we can rewrite (A7) as
+Yt + β 1 (t)ut−1 + β 2 (t − 1)ut−2 + · · · + β h (t − h + 1)ut−h + · · · = ut . (A8)
+From (A8), the infinite moving average representation of the process
+yt is
+∞
+X
+
+−β j (t) ut−j .
+(A9)
+Yt = ut +
+j=1
+
+By identification between (A2) and (A9), we obtain
+Ψj (t) = −β j (t − j + 1).
+
+(A10)
+
+From (A10), the first three coefficients, (Ψ1 (t), Ψ2 (t), Ψ3 (t)) are:
+• Ψ1 (t) = −β 1 (t),
+= −Π1 (−dt ).
+• Ψ2 (t) = −β 2 (t − 1)
+= − (Π2 (−dt ) + Φ1,2 (t − 1))
+= −Π2 (−dt ) − Π1 (−dt )Ψ1 (t − 1)
+= −Π2 (−dt ) + Π1 (−dt )Π1 (−dt−1 )
+
+=
+
+2
+P
+
+P
+π i1 (−dt ) +
+(−1)k 
+
+k=1
+
+i1 =2
+i1 6=0
+
+with il 6= 0, l ∈ 1, 2
+
+P
+
+i1 +i2 =2
+
+i1 6=0; i2 6=0
+
+
+
+
+πi1 (−dt )π i2 (−dt−i1 )
+
+• Ψ3 (t) = −β 3 (t − 2)
+= − (Π3 (−dt ) + Φ1,3 (t − 1) + Φ2,3 (t − 2))
+= − (Π3 (−dt ) + Π1 (−dt )Ψ2 (t − 1) + Π2 (−dt )Ψ1 (t − 2))
+= −Π3 (−dt )+Π1 (−dt )Π2 (−dt−1 )−Π1 (−dt )Π1 (−dt−1 )Π1 (−dt−2 )+
+Π2 (−dt )Π1 (−dt−2 )
+3
+P
+P
+P
+π i1 (−dt )πi2 (−dt−i1 ) +
+(−1)k
+π i1 (−dt ) +
+=
+i1 +i2 =3
+i1 =3
+k=1
+P
+πi1 (−dt )π i2 (−dt−i1 )πi3 (−dt−i1 −i2 ),
+i1 +i2 +i3 =3
+
+21
+
+with il 6= 0, l ∈ 1, 3.More generally, we have,
+Ψj (t) = −β j (t − j + 1)
+
+j
+X
+X
+=  (−1)k
+k=1
+
+i1 +i2 +···+ik =j
+
+
+
+π i1 (−dt )πi2 (−dt−i1 )πi3 (−dt−i1 −i2 ) · · · π ik (−dt−j+ik ) ,
+(A11)
+
+with il 6= 0, l ∈ 1, k
+
+When dt = d = constant, we have (Ψ1 (t), Ψ2 (t), Ψ3 (t)) = d,
+
+22
+
+d(d+1)
+, d(d+1)(d+2)
+1
+2
+
+
+
+.
+
+

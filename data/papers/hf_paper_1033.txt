@@ -1,0 +1,2731 @@
+Title: arXiv paper 1033
+
+Categories: 1
+
+Abstract:
+STAR: Spatio-Temporal Altimeter Waveform Retracking using
+Sparse Representation and Conditional Random Fields
+Ribana Roscher, Bernd Uebbing, Jürgen Kusche
+
+arXiv:1709.07681v1 [physics.ao-ph] 22 Sep 2017
+
+Institute of Geodesy and Geoinformation, University of Bonn, Nußallee 15+17, 53115 Bonn, Germany
+
+Abstract
+Satellite radar altimetry is one of the most powerful techniques for measuring sea surface height variations,
+with applications ranging from operational oceanography to climate research. Over open oceans, altimeter
+return waveforms generally correspond to the Brown model, and by inversion, estimated shape parameters
+provide mean surface height and wind speed. However, in coastal areas or over inland waters, the waveform
+shape is often distorted by land influence, resulting in peaks or fast decaying trailing edges. As a result,
+derived sea surface heights are then less accurate and waveforms need to be reprocessed by sophisticated
+algorithms. To this end, this work suggests a novel Spatio-Temporal Altimetry Retracking (STAR) technique. We show that STAR enables the derivation of sea surface heights over the open ocean as well as
+over coastal regions of at least the same quality as compared to existing retracking methods, but for a
+larger number of cycles and thus retaining more useful data. Novel elements of our method are (a) integrating information from spatially and temporally neighboring waveforms through a conditional random
+field approach, (b) sub-waveform detection, where relevant sub-waveforms are separated from corrupted or
+non-relevant parts through a sparse representation approach, and (c) identifying the final best set of sea
+surfaces heights from multiple likely heights using Dijkstra’s algorithm. We apply STAR to data from the
+Jason-1, Jason-2 and Envisat missions for study sites in the Gulf of Trieste, Italy and in the coastal region
+of the Ganges-Brahmaputra-Meghna estuary, Bangladesh. We compare to several established and recent
+retracking methods, as well as to tide gauge data. Our experiments suggest that the obtained sea surface
+heights are significantly less affected by outliers when compared to results obtained by other approaches.
+Keywords: coastal, oceans, altimetry, retracking, sea surface heights, conditional random fields, sparse
+representation
+
+1. Introduction
+For several decades, radar altimetry is routinely being used for monitoring sea surface height (SSH)
+variations. Observed SSHs play a key role in several applications, ranging from operational oceanography
+(Chelton et al., 2001) and tidal modeling (Wang, 2004; Savcenko & Bosch, 2008) to gravity estimation
+(Hwang et al., 1998), and they serve as important indicators in climate research. Recently, radar altimetry
+in coastal zones (Gommenginger et al., 2011) and for inland water bodies (Birkett & Beckley, 2010) has
+become a topic of increasing interest. However, in both applications one needs to mitigate the potentially
+significant land influence on the altimeter return signal.
+The altimeter instrument on-board a satellite emits a spherically propagating, nadir-directed radar pulse,
+which is reflected at the surface. Range information can then be inferred from the two-way travel time (Fu
+& Cazenave, 2001). In addition, the returned signal energy is measured over time, forming an altimeter
+waveform. It can be shown that over an ideal surface, the return waveform corresponds to the theoretical
+Brown model (Brown, 1977) and the estimated shape parameters of this model provide information on mean
+SSH and significant wave height (SWH), while the amplitude strength of the reflected radar pulse can be
+used to derive wind speed. On board the satellite, the waveform signal is sampled at discrete epochs with a
+Preprint submitted to Remote Sensing of Environment
+
+September 25, 2017
+
+spacing of about 3 ns of two-way travel time, which are generally referred to as range gates (Chelton et al.,
+1989). Altimeter measurements do not refer to an individual point directly below the satellite, but rather
+to a footprint with a diameter of several kilometers, depending on SWH and the altitude of the altimetry
+mission.
+As illustrated in Fig. 1, the return waveform over the open ocean consists of three main parts; first,
+before any return energy from the radar pulse is measured, the waveform contains only thermal noise which
+is present in all radar systems. As soon as the front of the radar pulse hits the wave crests, the altimeter
+footprint is defined by a single point and the measured return energy begins to rise. Afterwards, more of
+the pulse illuminates the surface around the initial point and the footprint becomes a growing circle, which
+corresponds to rapidly increasing signal energy in the measured altimeter waveform. The leading edge of
+the altimeter return waveform is defined between the first energy return from wave crests and the return
+energy after the radar pulse has reached the wave troughs (Fig. 1). At this point. the area of the footprint
+circle reaches its maximum, which is defined as the pulse–limited footprint (PLF, Chelton et al., 1989).
+Afterwards, the circle transforms into an annulus with increasing inner and outer radii, but with a fixed
+illuminated area. The corresponding signal energy measured outside of the PLF is referred to as trailing
+edge of the measured waveform (Fig. 1). The slope of the trailing edge can be utilized to derive information
+on the off-nadir attitude of the altimeter satellite.
+The 50%-point on the leading edge corresponds to the mean sea level between wave crests and wave
+troughs, and thus represents the reference point for the range measurement. An algorithm on board of the
+satellite tries to position this point inside a pre-defined range window at a fixed tracking range gate (31
+for Jason-2, Quartly et al., 2001). This range window consists of a fixed number of range gates, covering
+about 50 m depending on the satellite mission, and it is positioned by the onboard tracker based on prior
+information on the range. However, positioning is not always perfect and the 50%-point is not located exactly
+at the tracking gate. Consequently, this requires a ground-based reprocessing of the altimeter waveforms
+transmitted back to Earth, a procedure which is called retracking. Over the open ocean, the shape of the
+waveform will be close to the theoretical Brown model with the 50%-point being only slightly shifted from
+the tracking gate position, and this can be easily corrected using an ocean model retracker (Brown, 1977;
+Hayne, 1980; Deng, 2003). For ice surfaces where the waveform signal often contains two leading edges due
+to the radar signal partly penetrating through the upper snow layer, specialized retracking algorithms have
+been developed (Martin et al., 1983). However, in coastal areas the waveform shape is typically disturbed
+by land influences in the altimeter footprint, resulting in peaks or fast decaying trailing edges.
+These deviations of coastal waveforms from the Brown model lead conventional ocean retrackers to
+generate diverging or strongly biased estimates of SSH, as land-induced peaks propagate along the trailing
+edge towards the leading edge while the altimeter ground track approaches the coast (Lee et al., 2010). In
+order to mitigate the land influences on the waveform shape, various tailored approaches have been proposed.
+As an example for methods that seek to model the entire waveform, (Halimi et al., 2013) combined a 3parameter Brown ocean model with a modeled asymmetric peak to account for land influences. A different
+approach for dealing with the influence of peaks on the retracked estimates is to first partition the waveform
+in a pre-processing step; i.e. to identify relevant parts of the waveform, such as the leading edge, but also
+possible peaks. For example, (Hwang et al., 2006) first identify relevant sub-waveforms and then apply a
+threshold retracking algorithm to each of the sub-waveforms, which leads to multiple equally likely SSH
+estimates at each location from which the final estimate is chosen based on comparison to a-priori height
+information. In this way, peaks that appear outside of the relevant sub-waveforms are ignored. Recently, for
+retracking SSHs over inland water bodies, (Uebbing et al., 2015) combined the sub-waveform approach from
+(Hwang et al., 2006) and the waveform model from (Halimi et al., 2013) to suppress land-induced peaks on
+the trailing edge, but also to account for possible peaks close to the leading edge of the waveform. This
+could be shown to lead to improved lake heights compared to conventional methods. In a different approach,
+(Passaro et al., 2014) suggested a two-step procedure, similar to a previously published approach by Sandwell
+& Smith (2005), where in the first step all 3 parameters (amplitude, range and SWH) are estimated. In
+the second iteration they fixed the SWH to a mean value derived from the first step and re-estimated the
+amplitude and range correction, since SWH estimations are strongly correlated to the range correction. This
+2
+
+leads to improved SSHs closer to the coast.
+Here, we introduce a novel method for the analysis of sea surface heights from altimetric waveforms,
+which will utilize spatial information from neighboring range gates within one waveform, as well as temporal information from neighboring waveforms along the altimeter track. This Spatio-Temporal Altimetry
+Retracker (STAR) can be applied to altimetry data over the open ocean, as well as in coastal areas. Our
+contributions are twofold: First, our analysis includes a novel sub-waveform detection scheme, which to our
+knowledge for the first time integrates spatial as well as temporal information. This differs from the conventional sub-waveform detection algorithm (Hwang et al., 2006) in that we partition the entire waveform
+into separate sub-waveforms, instead of identifying possible, disjointed leading edges. Second, in order to
+be largely independent of the choice of tuning (or ’hyper’) parameters within the sub-waveform detection
+scheme, we derive multiple sub-waveform partitionings by varying the weight w between unary and binary
+terms of the conditional random field. This leads to a range of partitionings of the entire waveform, and
+subsequently to a point cloud of equally likely SSHs at each measurement position, each of which is estimated
+using a 3-parameter ocean model (Halimi et al., 2013). We then employ Dijkstra algorithm (Dijkstra, 1959)
+to find reasonably smooth SSHs, without resorting to fitting.
+Our sub-waveform detection scheme uses a sparse representation (SR) approach, where the return power
+at all range gates within one particular sub-waveform is modeled by a weighted linear combination of a
+single common set of basis waveforms, which are derived from synthetic Brown waveforms. The concept of
+SR has been applied to many areas of signal analysis (Wright et al., 2010), but this study appears to be the
+first which uses it on radar altimetry.
+SSHs and other sea surface conditions such as wave height are neither independent along tracks, nor
+between neighboring tracks (Sandwell & Smith (1997)). Spatial information has been used in the analysis, for example, by Maus et al. (1998) through simultaneously processing of a sequence of waveforms for
+tracking of travel times, or Halimi et al. (2016) for a smooth estimation of altimetric parameters. This
+means, the integration of spatial information can be carried out in different parts of the analysis. The
+latter two approaches, for example, integrate spatial information about neighboring waveform to develop
+improved estimation algorithms for retracking. Here, we integrate spatio-temporal information by means of
+a conditional random field (CRF, Lafferty et al., 2001): to this end, we introduce spatial relations between
+the return power at range gates of temporally neighboring waveforms, i.e. neighboring waveforms within
+one pass and cycle, and relations between the range gate power within a single waveform. In this way, range
+gates which are relevant for SSH estimation can be distinguished from corrupted or non-relevant waveform
+parts, since they are represented through a different linear combination of basis sub-waveforms (see Fig. 1).
+In contrast to Halimi et al. (2016) where the conditional random field is used as part of an algorithm to
+enforce a smooth estimation of the retracking parameters, we propose to use the conditional random field at
+the sub-waveform detection step. Subsequently, any retracking method can be applied to the identified individual sub-waveforms for deriving the SSH, thus effectively ignoring disturbing signals outside the selected
+sub-waveform. This means, our approach could be transferred in future to the analysis of Delay-Doppler
+altimetry.
+This paper is organized as follows: First, we introduce the altimetry data that we used for validating
+our method, as well as our two study sites in Sec. 2. We describe the sub-waveform detection with SR and
+the integration of spatio-temporal knowledge by employing a CRF in Sec. 3. Moreover, the estimation of
+single SSHs and the determination of the best set of SSHs from multiple heights using Dijkstra’s algorithm
+is explained in Sec. 4. In Sec. 5, we compare the performance of our sub-waveform detection against an
+existing method and we evaluate the proposed analysis framework by means of analysing Jason-1, Jason-2
+and Envisat waveforms in the coastal regions of the Gulf of Trieste, and in the northern Bay of Bengal in
+the coastal waters of Bangladesh. Sec. 6 concludes the paper.
+
+3
+
+Figure 1: Waveform with disturbing peak caused by land influences (colored in blue). The relevant part for sea surface height,
+determined by sub-waveform detection, is illustrated in green. A theoretical waveform model is depicted in orange.
+
+2. Data and Study Sites
+2.1. Data
+We apply our retracking method to Jason-2 Sensor Geophysical Data Records (SGDR) of the Jason-2
+mission, as well as to SGDRs from the Jason-1 and European Environmental Satellite (Envisat) missions.
+The Ocean Surface Topography Mission (OSTM)/ Jason-2 was launched in mid of 2008 succeeding the
+Jason-1 mission on the same orbit. The satellite flies in a near circular ∼10 day repeat orbit with an altitude
+of 1336 km and inclination of 66 ◦ and a separation of the groundtracks equal to 315 km at the equator. The
+main instrument is the Poseidon-3 altimeter which emits radar pulses in the Ku-Band (13.575 GHz/2.21 cm)
+and C-Band (5.3 GHz/5.08 cm) (AVISO, 2015). Additional instruments are a microwave radiometer used to
+derive the wet troposphere correction, as well as GPS and DORIS systems for precise orbit determination
+(Rosmorduc et al., 2011). The Jason-2 SGDRs have been obtained from the Archiving, Validation and
+Interpretation of Satellite Oceanographic (AVISO) team which is part of Centre National d’Etudes Spatiales
+(CNES). The SGDRs are sorted by pass and cycle, including 254 passes per cycle or ∼10 day repeat orbit
+and we utilize data of passes 053 and 196 from the beginning of the mission in July 2008 (cycle 0) until the
+end of 2014 (cycle 239).
+The composition of the Jason-1 mission is very similar to Jason-2. It was launched in December, 2001
+as a successor to the Topex/Poseidon mission. After the launch of Jason-2 in June, 2008 both satellites
+flew on the same orbit in close distance to allow intercalibration of the satellite missions. After 6 months,
+Jason-1 was moved to an interleaved orbit located in the middle between the nominal orbit to increase the
+spatial resolution of the combined Jason-1 and Jason-2 data until January, 2012. Afterwards the satellite
+was moved to a drifting geodetic orbit and passivated and decommissioned in July, 2013 after losing contact. We will use data from the interleaved period from February, 2009 (cycle 263) until January, 2012
+(cycle 370). The Jason-1 SGDRs for the interleaved orbit are acquired from the Physical Oceanography
+Distributed Active Archive Center (PO.DAAC, ftp://podaac.jpl.nasa.gov/allData/coastal_alt/L2/
+ALES/jason-2/) operated by the Jet Propulsion Laboratory (JPL) which is part of the National Aeronautics
+and Space Administration (NASA).
+The Envisat satellite was launched in March, 2002 succeeding the ERS-2 mission in the same orbit by
+the European Space Agency (ESA). The orbit is a 35-day repeat orbit with an altitude of 800 km, about
+4
+
+an inclination of 98.55 ◦ which allows the satellite to cover higher latitude regions compared to e.g. Jason-2
+with a higher spatial resolution (80 km separation at the equator) at the cost of a longer repeat period
+of 35 days. The satellite carries a total of 10 instruments of which the DORIS positioning system, the
+microwave radiometer and the Radar Altimeter 2 (RA2) altimeter instrument are of most importance to us
+(Rosmorduc et al., 2011). The RA2 altimeter is a dual frequency altimeter emitting radar pulses in Ku-Band
+(13.575 GHz/2.21 cm) and S-Band (3.2 GHz/9.37 cm) (ESA, 2007). The Envisat SGDR data are provided
+by ESA (https://earth.esa.int/). We utilize data from June, 2002 (cycle 7) to September, 2010 (cycle
+93).
+We extract the 20 Hz (18 Hz for Envisat) tracker range, altitude and waveforms which are needed during
+the retracking algorithm. Additionally, 1 Hz atmospheric model corrections for the dry and wet troposphere,
+as well as the ionosphere are extracted from the SGDR data and linearly interpolated to the high rate
+positions.
+For validation of the retracked coastal SSHs, tide gauge data with hourly resolution from the University
+of Hawaii Sea Level Center (UHSLC) are used. The hourly data are uncorrected with respect to tidal and
+inverse barometric effects and we do not apply these corrections to neither the altimetry data, nor the tide
+gauge data to remove the influence of these corrections on the validation. The tide gauge data for Trieste,
+Italy is available from June, 2009 to December 2015 and for the tide gauge station in Chittagong, Bangladesh
+we have data from July, 2007 til December 2015. Additionally, we utilize openly available GDR datasets for
+the Jason-2 (cycles 1 to 239) and Envisat (cycles 7 to 93) mission that include the ALES retracked ranges
+for comparison which are distributed by PO.DAAC, JPL.
+For the validation of significant wave height and wind speed, we utilize model data from the ERAInterim reanalysis (Dee et al., 2011) which is distributed by the European Centre for Medium-Range Weather
+Forecast (ECMWF) and interpolated to the altimetry track.
+2.2. Study Sites
+For investigating the quality of our proposed STAR algorithm, we selected two study sites located in
+the Gulf of Triest and in the coastal regions of Bangladesh. The sites include varying conditions, including
+shallow coastal waters, open ocean areas, temporally submerged sand banks and transition zones between
+river estuaries and the ocean.
+
+(a) Triest TG at the Adriatic Sea and the groundtracks of Jason-2 pass 196, as well as Jason-1 interleaved orbit, pass 161.
+
+(b) Chittagong TG at the Bay of Bengal and the
+groundtracks of Jason-2 nominal orbit, pass 053, as
+well as Envisat, pass 0352.
+
+Figure 2: Location of the altimetry tracks and the tide gauges used for validation of the retracked SSHs.
+
+5
+
+2.2.1. Triest
+The first study site is located in the northern Adriatic Sea in the north-eastern part of the Gulf of Venice
+and includes the Gulf of Triest. The descending nominal orbit pass 196 of the Jason-2 mission crosses the
+study area from north-west to the south-east (Fig. 2(a)). It crosses from the Italian mainland to ocean close
+to the city of Marano Lagunare at approx 45.76 ◦ N and covers about 5.9 km of the Laguna di Marano before
+there is a short ocean-land-ocean transition over the Isola di Sant’ Andrea at ∼45.71 ◦ N. Then, the track
+covers about 45.5 km of open ocean in the Gulf of Venice before transitioning to the Croatian mainland at
+∼45.36 ◦ N. For the last 5 km from ∼45.4 ◦ N until the track is over the Croatian mainland, it runs very close
+to the Croatian coast with a distance of less than 2 km.
+Furthermore, we utilize data from the ascending Jason-1 pass 161 of the interleaved orbit (Fig. 2(a)).
+It crosses our study area from the south-west to the north-east. The first 37 km are located over the open
+ocean and the groundtrack covers the Croatian mainland from ∼45.48 ◦ N to 45.50 ◦ N. Then the track covers
+open water until it reaches the Italian mainland at ∼ 45.71 ◦ N. At about 45.54 ◦ N the track is located less
+than 2 km away from the Slovenian mainland.
+The tide gauge station Triest is located at ∼ 13.75 ◦ E and 45.65 ◦ N in the harbor of the city of Triest in
+the Gulf of Triest. The distance of the tide gauge station to the Jason-2 groundtrack is about 31 km at the
+closest point.
+2.2.2. Bangladesh
+The second study site is located in the northern Bay of Bengal in a region right off the coast of Bangladesh.
+The region is covered by the ascending Jason-2 nominal orbit pass 053 which crosses the study area from
+the south-west to the north-east (Fig. 2(b)). The track coverage starts over the open ocean parts of the Bay
+of Bengal and reaches Sandwip Island after ∼ 95 km at ∼ 22.41 ◦ N . From ∼ 22.53 ◦ N to 22.63 ◦ N the track
+again covers a strip of about 13 km of open water related to the estuary of the Ganges-Brahmaputra-Meghna
+Delta (GBMD) before it reaches the Bangladesh mainland. Between latitudes of ∼ 22.25 ◦ N and 22.35 ◦ N
+there are some sand banks located along the track which are submerged during high tide, but not during
+low tide.
+Additionally, the descending pass 0352 of the Envisat mission runs almost parallel to the Jason-2 track
+and crosses the study site from the north-east to the south-west. It first reaches open water related to the
+GBMD at ∼22.67 ◦ N and after about 14 km the track reaches Sandwip Island at ∼ 22.55 ◦ N. At 22.40 ◦ N,
+the track transitions back to open water and afterwards covers the remaining 104 km of open ocean in our
+study area. Again, the sandbanks mentioned above might influence the data acquisition during low tide.
+The Chittagong tide gauge station is located at ∼ 91.83 ◦ E and 22.25 ◦ N in the Chittagong harbor. The
+distance to the Jason-2 groundtrack is about 38 km at the closest point.
+
+3. Sub-waveform Detection
+3.1. Notation
+Let us consider L consecutive waveforms collected along a cycle, each of which contains return energy
+for G range gates. We arrange these waveforms in xl , l = 1, . . . , L. Each waveform can be represented
+through a set of overlapping windowed waveforms ξ l,g ∈ xl with windows centered at ξl,g and comprising
+Nξ neighboring range gates, as illustrated in Fig. 3 for a single echo. Within this framework, sub-waveform
+detection means identifying K sub-waveforms in each xl by deciding for each range gate on indices ŷ l,g ,
+which define the best-fitting sparse representation (SR)-based models. The aim of the proposed approach is
+to optimally detect these sub-waveforms, where the number of models per waveform is unknown and needs
+to be determined during the detection process.
+
+6
+
+3.2. Detection Framework
+The schematic of our sub-waveform detection framework is illustrated in Fig. 3. The input of the
+framework are windowed waveforms ξ l,g and synthetic Brown waveforms. These Brown waveforms are the
+basis waveforms collected in a dictionary D, which is used for a sparse representation-based modelling of
+signals. Given the input, a conditional random field (CRF) is formulated, which consists of an unary, datadependent term computed by sparse representation, and a binary term enforcing a smooth partitioning of
+the entire waveform.
+ w  A variation of the weighting between these two terms yield various sets of optimal
+w
+indices Ŷ = ŷ l,g , resulting in different partitionings of the entire waveform. The framework is flexible
+regarding the chosen methods, e.g. the sparse representation can be replaced by other methods such as
+correlation or other similarity measures. In the following, detailed explanations to the framework will be
+provided.
+
+Figure 3: Detection Framework: The input is given by altimetric waveforms and synthetic Brown waveforms. Each range
+gate is represented by a windowed waveform, i.e., the range gate’s center point and neighboring range gates, as illustrated
+by blue, violet and orange areas. A conditional random field is formulated, which consists of an unary, data-dependent term
+computed by sparse representation and a binary term enforcing a smooth partitioning of the waveform. In the conditional
+random field, the graphical model is constructed by connecting temporally adjacent range gates as well as adjacent range gates
+within one waveform. A variation of hyperparameters in the conditional random field result in different partitionings of the
+entire waveform.
+
+3.3. Conditional Random Field
+In order to perform sub-waveform detection while integrating information about neighboring range gates,
+we make use of a conditional random field (CRF). The range gates are represented in a graph, where each
+range gate is connected to spatially adjacent range gates within one waveform and to temporally adjacent
+range gates along the satellite’s ground track (see Fig. 3). The basic idea is the assignment of each range
+gate, represented as windowed waveform, to the best-fitting model, for which we use sparse representation
+in this framework. Neighbored range gates which are assigned to the same model are summarized to one
+sub-waveform. Therefore, all range gates in one sub-waveform follow the same underlying model. In our
+approach, the optimal sub-waveform partitioning minimizes the energy functional
+X
+X
+E(Y ) =
+U(ξ l,g , y l,g ) − w
+B(ξ l,g , ξ l,q , y l,g , y l,q ),
+(1)
+l,g
+
+l,g,q∈Q
+
+7
+
+where the unary term U, depending on the windowed waveforms ξ l,g , describes the agreement between
+the measured windowed waveform and a sparse representation model represented by y l,g . These models are
+
+
+identified by so-called non-zero activation indices Y = y l,g , indicating which synthetic basis waveforms are
+used for signal reconstruction within each specific model. The binary term B depends on both the non-zero
+activation indices y l,g and y l,q , as well as the windowed waveforms with q ∈ Q indicating the set of direct
+neighbors of each range gate. The weight between both terms is a hyperparameter and is denoted by w. In
+our approach, we assume a sub-waveform to be a set of neighboring range gates which are modeled with the
+same non-zero activation indices, as explained in more detail in the next paragraphs.
+3.3.1. Unary Term - Sparse Representation
+Generally, in terms of sparse coding (e.g., Olshausen & Field (1997)) a (G × 1)-dimensional waveform
+xl can be represented by a linear combination of a few basis waveforms, which are collected in a (G × V )dimensional dictionary D = [dv ], v = 1, . . . , V , such that xl = Dαl +  with kk being the reconstruction
+error. Solving this problem means finding the activation vector αl containing the optimal coefficients,
+whereas most of the elements are zero.
+During sub-waveform detection, instead of representing the whole waveform signal, only windowed waveforms will be sparsely represented by windowed basis waveforms. In this case, each range gate, represented by
+a windowed waveform, can be assigned to a specific sparse linear combination of windowed basis waveforms
+constituting the best approximation for it. In more detail, a windowed waveform ξ l,g is sparsely represented
+using activations αl,g and a sub-dictionary D g that contains certain rows of the underlying dictionary D (see
+identical colored entities in Fig. 3 and Fig. 4). Since the dictionary comprises synthetic Brown waveforms,
+sub-dictionaries contain specific parts of the synthetic waveforms. The indices of non-zero elements in αl,g ,
+i.e., the dictionary elements participating in the reconstruction, are the non-zero activation indices y l,g used
+for defining the models (cmp. Sec. 3.3). It is important to note that D is fixed for L consecutive waveforms,
+such that sub-dictionaries used for temporally neighboring windowed waveforms are identical.
+
+Figure 4: Schematic illustration of sparse representation of windowed waveforms. Colors in xl indicate different windowed
+waveforms ξl,g , which are independently sparsely represented. Colors in the dictionary are indicating D g , i.e. the respective
+rows used for reconstructing the windowed waveform. For sub-waveform detection, neighbored range gates which are represented
+with the same dictionary elements are grouped to one sub-waveform.
+
+The optimal α̂l,g can be formulated as
+b l,g = argmin kD g αl,g − ξ l,g k2
+α
+
+subject to kαl,g k0 ≤ M,
+
+(2)
+
+b l,g are given by the non-zero activation indices y l,g . For a set
+where the indices of M non-zero elements in α
+b l,g , the reconstruction error of windowed waveform ξ l,g will be
+of optimal activations α
+b l,g − ξ l,g k2 ,
+rl,g = kD g α
+
+(3)
+
+and r l,g = [rl,g ] is the vector collecting the reconstruction errors for all possible sets of dictionary elements.
+8
+
+This optimization can be solved with orthogonal matching pursuit (OMP, Tropp et al. (2006)), which falls in
+the class of greedy algorithms. For this, the first dictionary element is chosen to be the one that maximizes
+the absolute value of the inner product between the dictionary element itself and the sample which is
+meant to be reconstructed; i.e. we maximize the collinearity. Each further dictionary element is chosen
+in the same way, however, using the current residual  instead of the sample until the number of the used
+dictionary elements exceeds M . The dictionary elements and samples are normalized. An alternative would
+be an exhaustive search through all combinations of non-zero activation indices, which however, would be
+computationally challenging.
+In more detail, the unary term in the energy functional penalizes the reconstruction error for a given set
+of non-zero activation indices and the difference of its activations’ sum to 1, both describing the agreement
+between data and a specific sparse representation model:
+!
+X
+1
+1
+b v,l,g ,
+r l,g +
+abs 1 −
+α
+(4)
+U(ξ l,g , y l,g ) =
+Z1
+Z2
+v
+where the first term is the normalized reconstruction error obtained by the non-zero activation indices
+b l,g . Both unary
+y l,g , and the second term is the normalized difference to 1 of the estimated activations α
+terms are normalized P
+by the standard deviation ζ of the values for each range gate, given by Z1 = ζ(r l,g )
+b v,l,g )), in order to ensure an equal treatment of all range gates. The sum-toand Z2 = ζ(abs (1 − v α
+one penalization serves as regularization to constrain the solution space to reasonable results, which can
+alternatively be directly incorporated in (2) in a more restrictive way by introducing an additional sum-toone constraint, as often used in remote sensing (Bioucas-Dias et al., 2012).
+A dictionary should have the following properties for our purpose: First, the elements should have a high
+approximation ability, and second the choice of used dictionary elements for reconstruction should be unique
+and stable. In order to build a suitable dictionary, a set of synthetically generated waveforms is sampled
+and relevant waveforms are selected to serve as dictionary elements. We choose the most relevant synthetic
+waveforms by selecting these ones which are most similar to the estimated waveforms and most dissimilar
+to each other. For simulating dictionary elements, the parameters of the Brown model (Brown, 1977), such
+as the waveform amplitude or the epoch, are sampled randomly, where the probability density functions
+are chosen to resemble empirical distributions of Brown model parameters from a large set of open-ocean
+echoes from the Envisat or Jason-1/-2 missions. In this way, the proposed algorithm will be as independent
+as possible of the chosen altimetry mission.
+3.3.2. Binary Term
+The binary term in (1) serves to incorporate prior knowledge about the spatial relations between adjacent
+range gates within a single waveform and between temporally consecutive waveforms within one cycle. As
+mentioned before, we assume a sub-waveform to be a set of neighboring range gates which are sparsely
+represented by a common set of dictionary elements, i.e. they share the same non-zero activation indices
+y l,g , which is set to be the objective in (1). Therefore, we prefer neighboring range gates with similar
+characteristics to be reconstructed with a common set of dictionary elements. The binary term in (1) is
+given by
+
+
+cos ξ l,g , ξ l,q , if y l,g = y l,q
+B(ξ l,g , ξ l,q , y l,g , y l,q ) =
+.
+(5)
+0,
+if y l,g 6= y l,q
+
+The similarity measure cos ξ l,g , ξ l,q relaxes the constraint of the representation of neighboring range gates,
+e.g., in order to consider possible adaptions of the range window by the satellite on-board tracker.
+3.3.3. Sparse Representation-based Conditional Random Field
+As mentioned earlier, the evaluation of all possible sets of non-zero activation indices is computationally
+difficult. However, this information is needed in the CRF to find the best set of indices for all range gates.
+9
+
+To overcome this problem, we optimize the CRF in a greedy manner. In detail, the search for the optimal
+estimation of non-zero activation indices in iteration j = 1 for a windowed waveform is performed over
+j=1
+Dl,g
+= {1, . . . , V } and fixed after the CRF application. Stopping after a single iteration is identical to the
+usage of a correlation similarity as unary term. For each further iteration j > 1, the optimal sets of non-zero
+j
+j−1
+j−1
+activation indices will be derived from Dl,g
+= {{y l,g
+, 1}, . . . , {y j−1
+l,g , V }} with y l,g being the optimal set of
+non-zero activation indices from the previous iteration. The final CRF that is employed to find an optimal
+estimation of non-zero activation indices in each iteration is given by the minimizer of the energy
+!!
+X 1
+X
+X
+1
+b v,l,g
+r l,g +
+abs 1 −
+E(Y ) =
+α
+−w
+B(ξ l,g , ξ l,q , y l,g , y l,q ) ,
+(6)
+Z1
+Z2
+v
+l,g
+
+l,g,q∈Q
+
+where all entities correspond to the current iteration (index j is omitted for simplicity). The final optimal
+b w.
+set of non-zero activation indices given a specific weight w is denoted by Y
+
+4. Sea Surface Height Estimation
+In this study, we consider only the effect of the hyperparameter w, i.e. the choice of the relative weight
+between the unary and binary terms in (1). As it turned out in our numerical experiments, no single choice
+of w provides optimal results for different cycles, different study sites or altimetry missions. Therefore,
+we define a range of possible sub-waveforms by varying w. A variation of the hyperparameter w in (1)
+leads to a variation in the number of detected sub-waveforms. Therefore, we choose a set of reasonable
+W = {w1 , . . . , wP } hyperparameters. In other words, we derive multiple sub-waveform partitionings, ranging
+from a very coarse partitioning which includes only a few sub-waveforms to a very fine one which also captures
+small peaks in separate sub-waveforms. For SSH estimation, we use all sub-waveforms which are sufficiently
+large enough and which can be used for retracking. We end up with several equally likely SSHs at each
+measurement location which could be thought to form a ’point cloud’. Finally, the Dijkstra algorithm
+is employed to choose the smoothest combination of these SSHs, such that finally a single SSH at each
+along-track location is provided.
+4.1. Sea Surface Height
+In the context of this study, we define SSH e
+hSSH as given by
+e
+hSSH = a − (R + ∆dry + ∆wet + ∆iono + ∆retr ),
+
+(7)
+
+where a is the satellite’s altitude and R is the tracker range related to the fixed tracking gate and provided
+in the altimeter data records. The atmospheric model corrections ∆dry , ∆wet and ∆iono , extracted from the
+SGDR data, refer to the influence of the dry and wet part of the troposphere, as well as the ionospheric
+influence on the signal. The retracking range correction ∆retr is derived from the retracking procedure,
+described below, by converting the estimated epoch t0 from two-way travel time to range using ∆retr = 0.5ct0 ,
+where c is the speed of light in vacuum.
+Additional tidal corrections are applied after the final heights have been selected, to reduce the impact of
+noise in the tidal corrections on the final height detection. In particular, ocean tide correction will introduce
+a large noise component in coastal areas which will corrupt the selection of final SSHs through Dijkstra’s
+algorithm.
+Furthermore, we validate our retracking results against tide gauge data with at least hourly temporal resolution without any tidal and barometric corrections applied to remove possible effects from the comparison.
+For this purpose we add relevant corrections
+hSSH = e
+hSSH − ∆ssb − ∆set − ∆lt − 0.468∆pt ,
+10
+
+(8)
+
+where ∆ssb is the sea state bias correction which we compute as 5% of our retracked SWH. Additionally,
+∆set is the solid earth tide correction, ∆lt is the loading tide and ∆pt is the pole tide correction. The factor
+0.468 only applies the solid earth part of the pole tide correction, ignoring the part resulting from ocean
+tides (Fenoglio-Marc et al., 2015). In other words, we do not apply the ocean tide correction or the inverse
+barometric correction to render hSSH being directly comparable to the high rate tide gauge data.
+4.2. Ocean model for Retracking
+For retracking we employ a weighted 3-parameter ocean model (Halimi et al., 2013) which is given by
+
+
+
+t − t0 − ψσ 2
+A
+√
+1 + erf
+xl (t) =
+2
+2σ
+(9)
+
+
+
+ψσ 2
+exp −ψ t − t0 −
++ NT ,
+2
+for each two-way travel time t, centered on the tracking gate. Here, NT is the thermal noise which is
+pre-computed from the first few range gates. The three fitted model parameters represent the amplitude
+A, which is related to backscatter, the rise time of the leading edge σ which can be converted to SWH, as
+well as the epoch or retracking gate t0 which refers to the position of the mid point of the leading edge.
+Additionally, ψ is defined by
+ψ=
+
+1
+4c
+cos(2φ),
+γh 1 + a/Re
+
+sin2 (θ)
+,
+γ=
+ln 4
+
+(10)
+
+where c is the speed of light in vacuum, Re is the radius of the Earth (Deng, 2003) and φ is the off-nadir
+pointing angle which is assumed to be zero in our application. The antenna beamwidth parameter γ is
+defined in (Brown, 1977, Eq. (4)) and can be computed from the beamwidth θ of the altimeter instrument.
+4.3. Shortest-Path Algorithm for Finding the Best Set of Sea Surface Heights
+The problem that we discuss here can be viewed as an optimization problem with certain constraints.
+Given now a ’point-cloud’ of (equally) possible SSHs for each groundtrack-point, we need to realize a
+consistent SSH at each measurement position by finding the optimal SSH candidates. Before applying a
+shortest-path algorithm, we remove outliers from the ’point cloud’ through the RANdom SAmple Consensus
+(RANSAC) algorithm (Fischler & Bolles, 1981) while assuming a linear model of SSH change in along-track
+direction. Sea level change is not linear and thus, we apply the RANSAC algorithm with a threshold of 3 m
+to a moving window covering about 20 s of measured data. By selecting the moving window to cover 20 s we
+make sure that we always include a relatively large portion of water, especially at land-ocean transitions.
+All points that deviate too far from the linear model estimated by the RANSAC algorithm are discarded
+and the resulting set of accepted SSHs is then used to find the shortest path and estimating the optimal
+SSHs at each measurement location as illustrated in Fig. 5 and Fig. 6. Here, we chose Dijkstra algorithm
+(Dijkstra, 1959), but other shortest-path algorithms would also be possible. Dijkstra’s method requires
+one to choose edge weights between individual connected nodes. In our application, we chose the height
+differences between connected nodes as edge weights, thus, favoring smaller height changes over larger ones.
+For the start and end point of the Dijkstra graph we use the first and last sea surface height at the start
+and end position.
+
+11
+
+Figure 5: Schematic illustration of optimal sea surface height estimation employing Dijkstra algorithm. Dijkstra finds the
+optimal path (illustrated in blue) through equally likely successively arranged sea surface heights. where edge weights are
+derived from the difference between heights of 2 nodes.
+
+Figure 6: Exemplary SSH pointcloud from the Triest study site as part of our proposed STAR algorithm. The black points
+are selected by the RANSAC algorithm to estimate the linear model in order to discard outliers. Afterwards all points within
+range of the linear model are used in the Dijkstra algorithm to find the best (smoothest) set of SSHs (orange line).
+
+5. Results
+5.1. Setting
+We compare the STAR algorithm to existing retracking algorithms, such as the standard range derived
+from a MLE4 retracking method provided in the SGDR data, the 30%-threshold retracker (ICE1, Martin
+et al. (1983)) and the equally weighted 3-parameter ocean model (W3POM, see Eq. (9)). Furthermore, the
+specialized coastal algorithms, such as the Adaptive Leading Edge Subwaveform retracker (ALES, Passaro
+et al. (2014)) and the Improved Threshold Retracker (ITR, (Hwang et al., 2006)), the latter combined with
+a threshold of 50%, are considered.
+When implementing the STAR method as described above, we chose to set the neighborhood of the
+windowed waveforms ξ to Nξ = 5. For the number of non-zero elements in (2) we select M = 2. Values of
+M > 2 lead to significantly increased computation times while a larger combination of the limited number
+of dictionary elements might result in less clearly defined sub-waveforms from unique combinations of the
+basis elements. To avoid finding an optimal weighting parameter w for each measurement region, we run
+(1) for five different choices of w ∈ W = {0.1, 0.5, 1, 2, 100}. This will result in five partitionings of the total
+waveform into sub-waveforms, ranging from a very fine partitioning to a very coarse one. The parameters
+for the computation of our basis elements are generated based on the average estimated parameters from
+12
+
+an application of the 50%-threshold retracker to the current block of waveforms (20 waveforms per block
+in our framework). The mean epoch and amplitude serve as input into the basis element generation to
+produce 1000 waveforms by randomly varying the mean parameters: the amplitude is randomly varied by
+about 10% of its mean threshold-retracked value. The epoch is randomly sampled using a Gaussian weighted
+distribution with its maximum at the mean threshold-retracked value. The waveheight is randomly sampled
+from the range 0 m to 12 m, which is a most common range of waves. The cross-correlation coefficients
+between the obtained 1000 generated waveforms are computed and only the 15 waveforms which are most
+distinct from each other are kept and form the dictionary elements. In the following we utilize all the
+detected sub-waveforms to derive the results for STAR.
+Our STAR algorithm, ICE1, W3POM and ITR have been implemented in our in-house C++ altimetry
+toolbox. As ITR provides heights for each detected leading edge, we assumed the first detected leading edge
+to yield the correct retracking parameters, as we do not have any prior information on the heights. The
+SGDR SSHs are extracted from the GDR data and ALES retracked ranges are extracted from external
+GDR data. The SSHs from all retracking methods have been processed in the same way.
+5.2. Sub-waveform Detection
+First, we compare the sub-waveforms detected by STAR resulting from five different weights w ∈ W in
+(1) to sub-waveforms from the method by Hwang et al. (2006) for an arbitrarily chosen waveform measured
+off the coast of Croatia (Fig. 7). The waveform parts that have not been detected as part of a leading edge by
+the method presented by Hwang et al. (2006) are indicated by the white background. In contrast, individual
+sub-waveforms are depicted in alternating shades of grey. For this waveform, five potential leading edges
+have been identified by the method of Hwang et al. (2006), each of which can be utilized to derive potential
+sea surface heights. When comparing the partitioning of the total waveform for the different weights w ∈ W
+by STAR, lower weights lead to a significantly increased number of identified sub-waveforms. In some cases
+single sub-waveforms contain only one range gate since the binary term in (1) is weighted significantly lower
+than the unary term. With increased weight w, the similarity constraint is enforced and the sub-waveform
+size increases. For a weight w = 100, the identified sub-waveform corresponds to the entire waveform, which
+leads to including the standard case of retracking the complete waveform in our derived point clouds.
+In a next step, we compare the resulting point clouds of STAR (orange points, Fig. 8) to the point cloud
+derived using Hwang et al. (2006) algorithm (black points, Fig. 8) for one exemplary cycle during low tide
+conditions at the Bangladesh site. A small bias over the open ocean can be identified between both methods,
+which is related to the chosen threshold of 50% used for ITR. For the sandbank near 22.325 ◦ N both point
+clouds agree well. However, prior to reaching the sandbank the points derived from ITR drop rapidly by
+about 10 m to a level of approximately -64 m (outside the plot boundaries), while the point cloud based on
+STAR becomes less dense but still preserves enough meaningful SSHs of about -55.5 m up to the beginning
+of the sandbank. Between Sandwip Island and Bangladesh mainland, STAR is able to derive SSHs from the
+detected sub-waveforms, while ITR is more influenced by land returns disturbing the retrieved waveform,
+which results in no meaningful SSHs that can be detected during the low tide conditions in this case.
+5.3. Retracked SSHs
+For validation of the retracked SSHs, we compare STAR SSHs to retracked SSHs from various conventional and coastal methods. The top of Fig. 9 shows retracked SSHs derived for one arbitrarily selected
+cycle 165 at almost high tide at the Trieste study site. The bottom part of Fig. 9 shows the corresponding
+return waveforms at each measurement location.
+Over the open ocean between ∼45.46 ◦ N and 45.58 ◦ N, we find the waveforms corresponding well to the
+theoretical Brown model and the SSHs from all retracking algorithms agree well. However, ICE1 shows a
+small bias compared to the other retracking algorithms which is likely due to the 30%-threshold. At about
+5-7 km off the nearest coast in the northern and southern part of the study site, the SSHs based on the
+W3POM and SGDR indicate a rapid drop in sea level. This drop is related to the influence from peaks,
+resulting from land influence from the Croatian and Italian mainlands. The coastal methods STAR, ALES
+13
+
+Figure 7: Sub-waveform partitioning using our method for weights from the set W = {0.1, 0.5, 1, 2, 100} inserted into (1). The
+waveform is an arbitrarily selected coastal waveform from Jason-2 pass 196, cycle 69. Grey shaded background depicts the
+individual sub-waveforms while a white background indicates no sub-waveform in that part of the total waveform.
+
+and ITR are not influenced by the peaks as they consider only parts of the total waveform that do not
+include the peaks at these measurement positions.
+In the southern coastal area (45.37 ◦ N to 45.46 ◦ N), the SSHs from W3POM, again, generally agree with
+the SSHs from ICE1 and STAR with the latter showing less noisy along-track variations and providing SSHs
+right up to the coast of the Croatian mainland (Fig. 9). Between 2 to 4 km off the Croatian coast the SSHs
+based on ALES and ITR show significant outliers which are related to the peak, due to the land influence
+of the Croatian mainland, being located very close to the leading edge resulting in biased estimations.
+Additionally, smaller peaks preceding the leading edge can be detected (Fig. 9, bottom) which are identified
+as potential leading edges by the ITR algorithm and, thus, result in outliers due to our assumption to utilize
+the first identified leading edge in the ITR algorithm. Similar behavior can be observed from the ICE1
+algorithm, e.g. near ∼43.75 ◦ N, where the peaks preceding the leading edge lead to significant outliers.
+In the northern coastal area (45.64 ◦ N to 45.71 ◦ N), we find good agreement between the SSHs based
+on ALES, ITR and STAR, with a few significant outliers from ALES over the last two kilometers off the
+nearest coast. At about 3.5 km off the Isola di Sant’ Andrea, a drop in SSH can be detected from all three
+methods with ITR showing the strongest drop by several meters while the SSHs from STAR only drop less
+than 1 m (Fig. 9) due to relatively broad peaks located directly at the leading edge.
+Over the relatively shallow Laguna di Marano all methods, except for SGDR, provide a sea level similar
+to the open ocean level during high tide, despite of the waveforms consisting of strong specular peak shapes
+(Fig. 9, bottom).
+
+14
+
+Figure 8: Point cloud of SSHs resulting from STAR compared to ITR (Hwang et al., 2006).
+
+5.4. Repeatability of the Retracked SSHs
+The STAR method utilizes a randomized dictionary for sub-waveform decomposition; therefore it makes
+sense to investigate whether this leads to an uncertainty in the final SSHs. To answer this question we
+conduct a Monte Carlo study: we ran the STAR algorithm 1000 times, utilizing the arbitrarily selected
+cycle 69 of pass 196 of the Jason-2 mission. Resulting SSHs are shown in Fig. 10 (top) with additional
+zoom-in regions for two coastal areas, as well as for the open ocean. The bottom part of the figure displays
+the corresponding root mean square difference (RMS) ranging from about 0 to 1 m, where the open ocean
+area is also given in an additional sub-plot for a range of 0 to 5 cm.
+Over the open ocean area, the variability along the groundtrack is in the range of about 15-20 cm (Fig.
+10, top). Here, the repeatability of STAR is given by a RMS of less than 5 cm (Fig. 10, bottom).
+In the southern coastal area, the along-track variability is in the range of 60 cm revealing a slight increase
+in sea level towards the Croatian coast (Fig. 10, top). Due to the land influence on the shape of the waveform
+as is visible in the parabolas (Fig. 9, bottom), the retracking results are sensitive with respect to the size of
+the individual detected sub-waveforms. Nonetheless, we still find good repeatability in this region with RMS
+of less than 20 cm (Fig. 10, bottom), which is less compared to the along track variability and significantly
+less compared to the relatively large outliers produced by other retracking algorithms in this region (see Fig.
+9, top).
+Part of the variability in our current state of the algorithm is due to the Dijkstra algorithm, which
+is employed to find the best SSHs in our point cloud. Single points at a measurement location can have
+significant influence on the chosen path since we only allow edge connections between neighboring locations.
+For example at ∼45.375 ◦ N, we find a standard deviation of almost zero (Fig. 10, bottom) and in the top
+plot of Fig. 10 it is possible to identify a single point where the SSH-tracks of all runs intersect. Since all
+paths obtained by Dijkstra algorithm include this point, preceding and succeeding SSHs are influenced and
+tend to be close to the SSH at this point.
+In the northern coastal region, the general along-track variability is about in the same range of 20 cm as
+compared to the open ocean area. The repeatability in the shallow waters off the Isola di Sant’ Andrea is
+similar to the Croatian coast in the south with a RMS of less than 20 cm. However, we find some significant
+outliers in some runs which are related to a weak leading edge and strong peaks close to the leading edge
+(e.g., Fig. 9, bottom). Over the Laguna di Marano a large variability can be detected (Fig. 10) due to
+strong specular peak waveforms. Small changes in the detected sub-waveforms will have a significant impact
+15
+
+Figure 9: (top) Comparison of SSH derived by various retrackers along the Jason-2 pass 196 in the Gulf of Trieste for an
+arbitrarily chosen cycle (cycle 165). The distance to the nearest coastline (DTC) is provided in light gray. (bottom) Radargram
+of the corresponding waveforms of inside the study area. The waveform return power is given color coded and has been capped
+at a power of 300 for visual reasons.
+
+Table 1: Median values of the different quality measures for the study site in Trieste. See also top plots in Figs. 12, 13 and 14.
+Here, ρ represents the correlation, N the percentage of retained cycles and σ the RMS.
+
+Retracker
+SGDR
+W3POM
+ICE1
+ITR
+ALES
+STAR
+
+ρ [-]
+0.62
+0.53
+0.90
+0.86
+0.86
+0.90
+
+Open Ocean
+N [%] σ [m]
+85
+0.43
+85
+0.53
+99
+0.15
+99
+0.17
+97
+0.16
+99
+0.15
+
+Croatian Coast
+ρ [-] N [%] σ [m]
+0.54
+59
+0.53
+0.46
+42
+0.74
+0.34
+36
+0.83
+0.17
+3
+1.62
+0.73
+81
+0.28
+
+Italian Coast
+ρ [-] N [%] σ [m]
+0.27
+8
+1.35
+0.27
+7
+1.58
+0.63
+74
+0.44
+0.69
+88
+0.32
+0.26
+60
+0.50
+0.80
+98
+0.22
+
+on the derived SSHs.
+5.5. Comparison to Tide Gauge Data
+In this experiment we compare the SSH estimated using various retracking methods with tide gauge
+data for Trieste, Italy and Chittagong, Bangladesh. For comparison we utilize cycles 1 to 230 of Jason-2
+data acquired over the described study sites (see Sec. 2.1), since for this period hourly tide gauge data as
+well as data obtained by ALES is available. The tide gauge data between July 2009 and December 2014
+are interpolated to the times of crossing for each cycle. As the tide gauge data is not corrected for tidal or
+atmospheric pressure effects, we also do not apply these corrections to the altimetry data by employing (8).
+We then remove outliers from the altimetric SSHs (deviation > 3 m from mean SSH) and evaluate correlation
+and difference RMS with respect to tide gauge data. Due to the large number of available Jason-2 cycles,
+we set the minimum number of cycles that are required to derive reliable correlations and RMS to 50.
+The percentage of all cycles which meet the criteria above is shown in Fig. 11. The median results of
+the following sections are summarized in Tables 1 and 2.
+16
+
+Figure 10: Repeatability of STAR. (top) SSHs obtained from 1000 runs on cycle 69, pass 196 at our Trieste study site. Additionally, we show zoomed in sub-plots for coastal and open ocean regions. Colors are chosen randomly. (bottom) Corresponding
+root mean square difference (RMS) derived from 1000 runs where open ocean region is also provided in a zoomed in sub-plot.
+
+Table 2: Median values of the different quality measures for the study site at the coast of Bangladesh. See also bottom plots
+in Figs. 12, 13 and 14. Here, ρ represents the correlation, N the percentage of retained cycles and σ the RMS.
+
+Retracker
+SGDR
+W3POM
+ICE1
+ITR
+ALES
+STAR
+
+ρ [-]
+0.94
+0.92
+0.95
+0.97
+0.95
+0.97
+
+Open Ocean
+N [%] σ [m]
+93
+0.40
+96
+0.56
+99
+0.43
+99
+0.37
+98
+0.38
+99
+0.33
+
+ρ [-]
+0.64
+0.31
+0.50
+0.63
+0.14
+0.88
+
+Sandbank
+N [%] σ [m]
+15
+1.06
+24
+1.82
+55
+1.43
+72
+1.15
+47
+1.38
+78
+0.64
+
+ρ [-]
+0.29
+0.22
+0.40
+0.46
+0.88
+
+Channel
+N [%]
+28
+29
+34
+27
+68
+
+σ [m]
+1.33
+1.34
+1.33
+1.36
+0.72
+
+5.5.1. Overall Correlation
+We investigate the overall correlation ρ with tide gauge data at each 20 Hz along-track position, using
+all available cycles (Fig. 11). The results for the Jason-2 mission are shown in Fig. 12 for the study site at
+the Gulf of Trieste (top) and the coast of Bangladesh (bottom).
+Over the open ocean area at the Trieste study site (Fig. 12, top), SSHs obtained by ICE1, ITR, ALES
+and STAR show correlations of more than 0.8 with the tide gauge time series. For W3POM and SGDR
+we find correlations between 0.3 and 0.7. Over the open ocean, southward of 22.2 ◦ N, in the Bangladesh
+study area (Fig. 12, bottom), the SSHs derived from the considered retracking methods agree well to each
+other. In the South, the coastal shelf transitions towards the deep ocean and the correlation begins to drop
+to about ρ = 0.6 at the border of the study site. Over the deep ocean, the correlation with tide gauge data
+from the Chittagong station drops rapidly, as already seen by Kusche et al. (2016). Over the central coastal
+shelf up to about 15 km off the coast, we find correlations of up to 100% between retracked SSHs and tide
+gauge data. In the immediate coastal areas of the Trieste and Bangladesh study sites, the MLE4 algorithm
+used to derive the standard ranges in the SGDR data did not converge and consequently no SGDR SSHs
+are available in these regions.
+Towards the Croatian coast, we find ρICE1 and ρITR to decline to a level of 0.3 to 0.5 (Fig. 12, top) which
+agrees to ρW3POM in this region, while ρALES shows a rapid decline to a level of 0 to 0.2 at about 3 km off
+the coast. ρSTAR also declines towards the coast to a level of 0.5 to 0.7.
+At the Italian coast, we again find a decline in overall correlation of the retracked SSHs with the tide
+gauge time series (Fig. 12, top). About 4 to 5 km off the Isola di Sant’ Andrea, ρICE1 and ρALES rapidly
+17
+
+Figure 11: Percentage of the total number of available Jason-2 cycles (227) after applying outlier detection and minimum
+number of cycles requirement. (top) Study site at the Gulf of Trieste. (bottom) Study site at the coast of Bangladesh. The
+distance to the nearest coastline (DTC) is provided in light gray.
+
+decline to a level of 0 to 0.2. While ρALES remains at this level, ρICE1 increases again to a level of 0.8 right
+at the coast, which agrees well to ρW3POM , ρITR and ρSTAR . Over the Laguna di Marano, we generally find
+a lower correlation level of 0 to 0.3 or even negative correlation in the southern part of the Laguna for all
+retracked SSHs.
+Starting about 15 km off the coast of Sandwip Island at the Bangladesh study site, the overall correlations
+for all retrackers decline (Fig. 12, bottom). Over the sandbank area, ρICE1 drops to a level of 0.3 to 0.4,
+ρITR shows a more moderate drop to a level of 0.5 to 0.7 and ρSTAR indicates only a small drop to 0.8, which
+is achieved due to automatically removing low tide conditions where the sandbank height does not fit to the
+conditions imposed by the RANSAC algorithm before applying Dijkstra’s algorithm (see Sec. 4.3). Over the
+strip of about 13 km of open water which is part of the estuary of the Ganges-Brahmaputra-Meghna Delta,
+we find ρW3POM and ρICE1 at nearly zero, while for ALES, ITR and STAR, ρALES ≈ 0.7, ρITR ≈ 0.8 to 0.9
+and ρSTAR ≈ 0.9 are found in the central part of this region. Lower correlations of W3POM and ICE1 while
+showing similar number of retained cycles and RMS (Table 2) are related to the fact that both methods
+utilize the total waveform which mainly consists of a strong peak only. For W3POM this will often lead to
+divergence of the estimation. The heights from the ICE1 algorithm will be influenced by the signal shape
+of the waveform. This leads to varying parts of the waveform being used to derive the amplitudes and
+consequently to inconsistencies when deriving the range correction.
+5.5.2. Number of Retained cycles
+We compare the number of cycles of SSH derived from each retracker which can be utilized at each
+measurement location by iteratively eliminating the largest difference to the tide gauge time series from the
+time series above until a correlation of at least 0.9 is achieved. This enables a more direct comparison of the
+individual retracking methods. For evaluation, the number of retained cycles N is plotted for each 20 Hz
+along-track position in both of our study areas (Fig. 13).
+Over the open ocean regions of our study sites in the Gulf of Trieste and off the coast of Bangladesh,
+18
+
+Figure 12: Correlation ρ of SSHs derived from several retracking algorithms, including our STAR method, with hourly tide
+gauge data. (top) Study site at the Gulf of Trieste. (bottom) Study site at the coast of Bangladesh. The distance to the
+nearest coastline (DTC) is provided in light gray.
+
+we find good agreement between NICE1 , NALES , NITR and NSTAR with 95 − 100% of retained cycles. For
+NW3POM and NSGDR we find a slightly lower level of about 90% of retainable cycles resulting from divergence
+of the parameter estimation. In addition, it is obvious that the time series of altimetry derived SSHs over
+the deep ocean parts of the Bay of Bengal does not agree well with time series obtained on the coastal shelf.
+In the Croatian coastal area, all retracking methods experience a small downward peak near 45.425 ◦ N.
+About 4 km off the coast, we find a rapid drop in NALES and NITR to a level of 0 − 10% retained cycles,
+with NITR rising back to about 65% of retained cycles 1 km off the coast. For NICE1 we also detect a drop
+to about 30%, followed by a rise to 80% at about 1 km off the coast. About 60 − 80% of the SSHs can be
+retained from applying the W3POM model in this coastal area. NSTAR declines from nearly 100% over the
+open ocean to 80% at about 1 km off the coast.
+At the Italian coast, we find nearly 100% of retainable cycles up to approximately 3-4 km off the coast
+for ICE1, ITR, ALES and STAR. For NICE1 , NITR , NALES and NSTAR a steep drop to less than 20% of
+retained cycles can be detected near 45.675 ◦ N resulting from land influences from the small islands that
+separate the Laguna di Marano from the Gulf of Trieste (see also Sec. 5.3). The median percentage of
+retainable cycles for SGDR and W3POM in this coastal area (Table 1) is quite low, indicating difficulties
+to reach convergence when the total waveform is used. The sub-waveform retrackers provide a larger number
+of retainable cycles as they are less affected by the land influences. Over the central part of the Laguna
+di Marano, generally we find a level of 10 − 20% of retained cycles for all retrackers, except STAR, which
+provides NSTAR ≈ 40%.
+At the Bangladesh study site, NW3POM and NSGDR start to decline near 22.15 ◦ N towards the coast of
+Sandwip Island and reach a minimum level of 0 − 15% at about 15 km off the coast. In addition, a decrease
+of NICE1 , NALES , NITR and NSTAR can be detected. The STAR algorithm is able to retain at least 85% of
+SSHs of the available cycles in this region. In the northern Bay of Bengal, the tidal amplitude can reach
+several meters which leads to significantly different land influences on the shape of the waveform between
+low and high tide. Consequently, this starts to affect the retrieved SSHs at about 15 km off the coast with
+NALES , NITR and NSTAR starting to decrease towards the coast. For NALES we find a strong drop to 10%
+19
+
+Figure 13: Percentage of cycles retained to achieve a correlation of at least 0.9 with hourly tide gauge data from a total number
+of 227 available cycles. (top) Study site at the Gulf of Trieste. (bottom) Study site at the coast of Bangladesh. The distance
+to the nearest coastline (DTC) is provided in light gray.
+
+in front of the Sandbank region mentioned before followed by an increase to a level of NALES ≈ 50% at
+the coast. NITR and NSTAR drop to a level of 70 − 80% over the sandbank area. Here, ITR and STAR
+perform similar, while the overall correlations suggest a lower correlation for ITR in this region compared
+to STAR, due to already removed SSHs from low tide cycles by the RANSAC algorithm as part of STAR.
+Over the strip of open water between Sandwip Island and the mainland of Bangladesh, NALES , NITR and
+NSTAR indicate that all three algorithms are able to retain about 85 − 95% of the available cycles in the
+central parts of this open water strip, while STAR is able to provide a larger number of cycles towards the
+coastlines.
+5.5.3. Root Mean Square Difference
+The RMS between SSHs derived from the individual retracking methods and tide gauge data computed
+at each 20 Hz along-track position provides an additional quality measure (Fig. 14). We apply the same
+criteria for computation as introduced in Sec. 5.4.
+Over the open ocean, we generally find results similar to the analysis of the overall correlation with
+σICE1 , σITR , σALES and σSTAR agreeing well at a level of 0.15-0.2 m at the Trieste site and 0.2-1.0 m at the
+Bangladesh site and σW3POM and σSGDR being slightly larger compared to the other methods.
+Close to the Croatian coast, we find σICE1 , σITR and σALES to increase significantly with σALES reaching
+more than 1.5 m. The large RMS derived for ALES is probably related to the small peaks in front of the
+leading edge. Since ALES sub-waveforms are selected from the first range gate up to the end of the leading
+edge, small peaks in front of the leading edge will lead to difficulties during the parameter estimation. For
+STAR we find a smaller increase in RMS relative to the open ocean area to σSTAR ≈ 0.4 m. In the northern
+part of the Trieste site, ICE1, ITR, ALES and STAR keep their level of RMS from the open ocean area
+up to a distance of 4-5 km to the nearest coast.
+In the northern part of the Bay of Bengal (Fig. 14, bottom), the SSHs from all retracking methods
+become more noisy northward of about 22.0 ◦ N, with a minimum RMS level of about 0.25 m. Over the
+20
+
+Figure 14: Root mean square difference (RMS) derived for all along-track locations after applying the selection criteria mentioned above for all available cycles (Fig. 11) for both study sites. (top) Study site at the Gulf of Trieste. (bottom) Study site
+at the coast of Bangladesh. The distance to the nearest coastline (DTC) is provided in light gray.
+
+sandbank region, the RMS obtained from SGDR, W3POM, ICE1 and ALES show a rapid increase to at
+least 1 m, while the RMS based on STAR exhibits a relatively smaller increase to a level of about 70 cm up
+to the coast of Sandwip Island. The same level is found for σSTAR in the small strip of open water between
+Sandwip Island and the mainland of Bangladesh with σALES and σITR at a similar level in the center of this
+region.
+5.6. Significant Wave Height and Sigma-Nought
+Besides range corrections, the use of the 3-parameter retracking model also allows to retrieve SWH and
+sigma-nought σ 0 . The SWHs and sigma-nought are selected based on the heights chosen by the shortestpath algorithm. Theoretically it would be possible to run the Dijkstra algorithm independently on the
+point-clouds of SWH and sigma-nought. However, we think that the values should be consistent with the
+selected heights.
+No independently measured time series of wave height or wind speed is available for our two study sites.
+Therefore, we compare temporal median, RMS and the number of retained cycles of good SWH and wind
+speed which were obtained by individual retracking algorithms. We further compare the obtained results to
+ERA-Interim model data. We will focus on the Bangladesh study site since no model data is available from
+the Gulf of Trieste area.
+5.6.1. Significant Wave Height
+Fig. 15 shows the median SWH and RMS over all 239 cycles for the Bangladesh study site. Wave heights
+from SGDR and ALES agree well with the model data over the open ocean while STAR and W3POM
+are biased. At the same time, the median wave height values of all retrackers decline towards the coast,
+reaching a minimum over the sandbank area. On the contrary, the model data does not show this decline.
+Over open ocean, the RMS values from all retrackers agree well with ALES and STAR providing the lowest
+21
+
+Figure 15: SWH compared to ERA-Interim model data. Top: median over all cycles, Bottom: RMS over all cycles.
+
+RMS at a level of about 60 cm while the model data suggests a level of about 48 cm. At about 10 km off the
+coast the RMS values from all retrackers increase due to the sandbank’s influence during low tide cycles.
+The low agreement between the retracked SWH and the model data, especially closer to the coast, can
+be explained by the estimation of the retracking parameters. All utilized retrackers constrain the SWH
+parameter to positive values since wave heights below zero are not physically meaningful. This sometimes
+leads to forcing the wave height to be zero during the estimation for individual waveforms since the leading
+edge, necessary for SWH parameter estimation, is only represented by a limited amount of range gates
+during calm sea state conditions. For ALES method the problem appears less severe since it is a two stage
+procedure in which SWH is estimated and averaged along-track during the first stage and kept fixed during
+the second stage. For sub-waveform retrackers such as STAR the problem will occur more often in case
+the selected sub-waveform which contains the leading edge is relatively small. In case the zero wave heights
+are not utilized to derive the median and RMS value, SGDR, ALES and STAR agree well with the model
+data (Fig. 16, Table 3). Over the sandbank area and the channel between Sandwip Island and the main
+land, SGDR and W3POM quality decreases due to the low number of available cycles (Fig. 13, bottom).
+Zero wave heights occur for about 10-15 % of the cycles during calm sea state conditions at the Bangladesh
+study site, especially in coastal areas. Similar observations are made for the Trieste study site. In future,
+STAR may be extended to a two-step procedure similar to ALES in order to counter these effects. We also
+applied our method to reduced SAR (RDSAR) waveforms, which are conventional altimetry like waveforms
+that are derived from the SAR signal during post-processing. The RDSAR data from Cryosat-2 data showed
+that the problem does not occur when zero-padding is applied during the derivation of the reduced SAR
+waveforms due to doubling the number of range gates available which allows better estimation of SWH (not
+shown here).
+5.6.2. Wind Speed
+Wind speed has been derived from the estimated amplitudes utilizing the 2-parameter model by Gourrion
+et al. (2002) as described in AVISO (2015). The model input consists of the retracked sigma-nought and
+SWH. Here, we utilized only non-zero SWH in order to keep the wind speed estimate unbiased from problems
+in SWH estimation. Similar to SWH, we display the median and RMS for each retracker and from the ERAInterim model data at each measurement position.
+Over the open ocean, median wind speed and RMS from SGDR, W3POM, ICE1, ITR and STAR
+agree well with the wind speed derived from ERA-Interim model data (Fig. 17, Table 4). However, SGDR
+22
+
+Figure 16: SWH compared to ERA-Interim model data. Top: median over all cycles, Bottom: RMS over all cycles. All
+zero-SWH removed.
+
+Table 3: Median values of SWH median and RMS over different regions along the track at the Bangladesh study site. All
+zero-SWH removed. M denotes the median and σ the RMS.
+
+Retracker
+SGDR
+W3POM
+ALES
+STAR
+ERA-I
+
+Open Ocean
+M [m] σ [m]
+0.94
+0.69
+1.06
+0.80
+0.78
+0.57
+0.89
+0.59
+0.84
+0.45
+
+Sandbank
+M [m] σ [m]
+0.59
+0.80
+1.13
+1.20
+0.66
+0.86
+0.62
+0.68
+0.63
+0.38
+
+Channel
+M [m] σ [m]
+0.67
+0.82
+0.65
+0.71
+-
+
+and ICE1 are slightly biased above the model data, while W3POM, ITR and STAR are slightly biased
+below the model data. ALES shows a stronger bias with respect to the model data. From about 22.15◦ N
+towards the coast the waveforms start to get influenced by land returns leading to peaks moving along the
+trailing edge towards the leading edge. Retrackers that utilize the full waveform, such as SGDR, W3POM
+and ICE1, return amplitude estimates which are biased by the peak influence and thus do no longer provide
+reliable wind speed. Sub-waveform method, such as ITR, ALES and STAR also show a slight decline in
+wind speed, and over the sandbank area where one finds mostly specular peak waveforms, the derived wind
+speed, especially during low tide, is no longer meaningful. In the center of the channel between Sandwip
+Island and the Bangladesh main land only ALES and STAR are able to provide meaningful wind speed.
+The reason for the bias in wind speed between SGDR and W3POM and STAR is due to the chosen
+estimation model. For the SGDR data a MLE4 estimation method is employed utilizing a 4 parameter
+model (Amarouche et al., 2004). The fourth parameter is the off-nadir angle that can be derived from the
+slope of the trailing edge and which is assumed to be zero for the 3-parameter models. The off-nadir angle
+influences the estimation of the amplitude (Amarouche et al., 2004, Eq. 8) which will lead to a general bias
+in amplitude in case the off-nadir angle is different from zero. Here, the derived off-nadir angle is slightly
+positive which leads to a smaller amplitude and consequently higher estimated wind speed. Even small
+changes in sigma-nought have significant influence on the derived wind speed. However, for sub-waveform
+methods, such as STAR, it is not feasible to try and estimate the off-nadir angle since the sub-waveforms
+do not include enough range gates from the trailing edge for a reliable estimation.
+
+23
+
+Figure 17: Wind Speed compared to ERA-Interim model data. Top: median over all cycles, Bottom: RMS over all cycles.
+
+Table 4: Median values of wind speed median and RMS over different regions along the track at the Bangladesh study site. M
+denotes the median and σ the RMS.
+
+Retracker
+SGDR
+W3POM
+ICE1
+ITR
+ALES
+STAR
+ERA-I
+
+Open Ocean
+M [m/s] σ [m/s]
+4.57
+2.30
+3.85
+1.89
+4.85
+2.33
+4.06
+2.02
+3.35
+1.72
+3.86
+1.91
+4.60
+2.12
+
+Sandbank
+M [m/s] σ [m/s]
+2.31
+1.86
+0.49
+1.63
+0.23
+1.90
+1.76
+1.98
+2.42
+1.68
+2.43
+1.77
+3.58
+1.73
+
+Channel
+M [m/s] σ [m/s]
+0.10
+0.50
+-0.15
+0.38
+0.01
+1.61
+1.02
+1.68
+2.31
+1.70
+2.94
+1.37
+
+5.7. Application to Jason-1 and Envisat Data
+We investigate the application of STAR to altimetry data from the Jason-1 interleaved period to the
+Trieste site (Fig. 2(a)) and to Envisat data for the Banlgadesh site (Fig. 2(b)). However for Jason-1
+interleaved, there is no ALES-data available for comparison. Here, we focus on the number of cycles
+retained to reach a correlation of > 0.9 (Fig. 18 and 19, top), as well as the RMS at each along-track
+position (Fig. 18 and 19, bottom). For Jason-1, we found 95 cycles that overlapped with the available time
+period for the tide gauge data at the Trieste station, while we found only 32 cycles of Envisat data that
+overlapped with the tide gauge period available for the Chittagong station.
+Utilizing data from the Jason-1 mission over the open ocean at the Trieste study site, ICE1, ITR
+and STAR show more retained cycles, as well as a significantly smaller RMS compared to SGDR- and
+W3POM-based SSHs. In the coastal area over about the last 5 km in front of the Croatian coast, STAR
+derived SSHs fit well to the tide gauge data (Fig. 18). After crossing parts of the Croatian mainland, the
+track transitions back to the ocean and we find ICE1, ITR and STAR retaining significantly more cycles
+compared to SGDR- and W3POM. The general level of retained cycles is lower due to signal losses that
+happened between the coasts of Croatia and Italy during nine of the Jason-1 interleaved cycles. At the
+Italian coast, all ITR, ICE1 and STAR are able to maintain a high quality of SSHs in the coastal area with
+which decreases only slightly over the last 1-2 km off the coast.
+Additionally, we have utilized Envisat track 416 for our experiments, which crosses our Trieste study
+site from the north-east to the south-west. However, the overlapping period with the available tide gauge
+24
+
+Figure 18: (top) Percentage of cycles retained to achieve a correlation of at least 0.9 with the hourly tide gauge data from a
+total number of 95 available cycles of the Jason-1 interleaved mission. (bottom) Root mean square difference (RMS) derived
+for all along-track locations. The distance to the nearest coastline (DTC) is provided in light gray.
+
+data was less than one year and deriving any correlations or RMS from this short period containing only 10
+cycles of the 35-day Envisat repeat orbit would not be meaningful. Nonetheless, SSHs derived from these
+10 cycles of Envisat data compared well to the available tide gauge data (not shown here).
+For the study site at the coast of Bangladesh, we found an overlap period of more than 3 years between
+32 cycles (2007 - 2010) of Envisat data and the Chittagong tide gauge which allows to derive meaningful
+correlations and RMS differences. Over the open ocean area, the number of retained cycles and the RMS
+agree well between all the considered retracking methods with W3POM bases SSHs being slightly more
+noisy (Fig. 19). About 15 km before the Envisat track reaches Sandwip Island, the differences between the
+individual retracking methods become evident. Ratios of retained cycles for W3POM and SGDR show a
+rapid drop to less than 25% over the sandbank area and a gradual increase towards the coast of Sandwip
+Island to a level of 35% and 60%, respectively. This behavior is combined with a strong increase in RMS
+differences which increase to more than 1 m. Similar behavior can be observed for ICE1 and ITR, which
+both show a smaller drop in the number of retained cycles over the last 15 km towards the coast to a level
+of about 75%, but their corresponding RMS increases significantly to values greater than 1 m. For ALES
+there is no data available over the last 15 km in front of Sandwip Island. STAR shows the smallest drop in
+number of retained cycles and recovers back to a level of more than 90% close to Sandwip Island. Over the
+small strip of open water between Sandwip Island and the mainland of Bangladesh, the coastal retrackers
+ITR, ALES and STAR retain about 90% of the available cycles providing SSHs that fit well to the tide
+gauge data. SGDR, W3POM and ICE1 are not able to provide more than 0 − 25% of retained cycles and
+exhibit significantly higher RMSs in this region.
+
+6. Conclusion
+A novel method for analyzing altimetric waveforms and deriving sea surface heights, SWH and sigmanought has been suggested. The proposed technique partitions the total waveform into individual sub25
+
+Figure 19: (top) Percentage of cycles retained to achieve a correlation of at least 0.9 with the hourly tide gauge data from
+a total number of 32 available cycles of the Envisat mission. (bottom) Root mean square differences (RMS) derived for all
+along-track locations. The distance to the nearest coastline (DTC) is provided in light gray.
+
+waveforms which can be analyzed in combination with existing retracking models. The sea surface heights
+provided by STAR were found to be of at least the same quality or better compared to existing conventional
+and coastal retracking methods over the open ocean, as well as in coastal regions. In addition, correlations
+with tide gauge data revealed generally more usable cycles close to the coast in combination with lower root
+mean square differences compared to existing methods. Of course, depending on the retracking model that
+is combined with the derived sub-waveforms, it is possible to derive significant wave height and backscatter
+in the same way.
+Comparison of the derived sub-waveforms with the Hwang et al. (2006) method reveal good correspondence between identified parts of the waveform. We found the influence of the random component of STAR
+on the SSH results to be at a level of less than 5 cm over the open ocean and at about 20 cm in coastal regions.
+This is in range with modifications that can be applied to conventional retracking algorithms including biases
+between different retracking methods, different weighting schemes or varying estimators; these effects are
+considered to be in the order of a few centimeters. Sea surface heights derived from the STAR algorithm have
+been extensively validated for Jason-2 data and compared to five independent available retracking methods,
+as well as hourly in-situ tide gauge measurements. At the study sites in the Gulf of Trieste, Italy and off the
+coast of Bangladesh, we found varying surface conditions including (deep) open ocean and shallow coastal
+waters, temporally submerged sandbanks and transition zones between river estuaries and the ocean. Consequently, deriving five partitionings of the total waveform enabled the STAR algorithm to handle a larger
+variety of waveform shapes compared to existing coastal retracking algorithms. Examination of estimated
+SWH and wind speed revealed good agreement to other retracking algorithms as well as model data from
+ERA-Interim. Furthermore, we applied STAR to altimetry data from the Jason-1 interleaved period, as well
+as Envisat , which also resulted in significant improvements in the quality of coastal sea surface heights.
+We are confident that the STAR method will enable a wide range of further studies, including a more
+comprehensive validation of significant wave height and sigma-nought. In this context, we will also consider
+an improved selection of final retacking results by considering SWH, sigma-nought etc. instead of only utilizing the SSHs. In addition, the algorithm can be improved further by tuning the a-priori hyperparameters
+26
+
+that control, e.g., the resolution of the sub-waveform, as well as extending the Dijkstra algorithm to reduce
+the impact of potentially non-optimal sea surface heights of neighboring measurement locations. The derived
+sub-waveforms will be combined with different available waveform models in order to adapt and extend the
+concept to other regions, such as rivers and lakes. One might also consider a slightly different approach by
+using the partitioning into sub-waveform to derive weighting schemes for retracking of the whole waveform.
+
+Acknowledgements
+We acknowledge funding through the BanD-AID (KU 1207/19-1) project. We also thank the associate
+editor and three anonymous reviewers for their constructive comments which helped us to significantly
+improve the manuscript.
+
+References
+Amarouche, L., Thibaut, P., ZaZanife, O. Z., Dumont, J.-P., Vincent, P., & Steunou, N. (2004). Improving the Jason-1 Ground
+Retracking to Better Account for Attitude Effects. Marine Geodesy, 27 , 171–197. doi:10.1080/01490410490465210.
+AVISO (2015). OSTM / Jason-2 Products Handbook . CNES / NASA http://www.aviso.altimetry.fr. SALP-MU-M-OP15815-CN, Issue 1.9.
+Bioucas-Dias, J. M., Plaza, A., Dobigeon, N., Parente, M., Du, Q., Gader, P., & Chanussot, J. (2012). Hyperspectral unmixing
+overview: Geometrical, statistical, and sparse regression-based approaches. IEEE Journal of Selected Topics in Applied
+Earth Observations and Remote Sensing, 5 , 354–379.
+Birkett, C. M., & Beckley, B. (2010). Investigating the performance of the Jason-2/OSTM radar altimeter over lakes and
+reservoirs. Marine Geodesy, 33 , 204–238.
+Brown, G. S. (1977). The average impulse response of a rough surface and its applications. IEEE Trans. Antennas Propagat.,
+25 , 67–74.
+Chelton, D. B., Ries, J. C., Haines, B. J., Fu, L.-L., & Callahan, P. S. (2001). Satellite altimetry. In L.-L. Fu, & A. Cazenave
+(Eds.), Satellite Altimetry and Earth Sciences: A Handbook of Techniques and Applications chapter 1. (pp. 1–132). Academic
+Press.
+Chelton, D. B., Walsh, E. J., & MacArthur, J. L. (1989). Pulse compression and sea level tracking in satellite altimetry. J.
+Atmos. Oceanic Technol., 6 , 407–438.
+Dee, D. P., Uppala, S. M., Simmons, A. J., Berrisford, P., Poli, P., Kobayashi, S., Andrae, U., Balmaseda, M. A., Balsamo, G.,
+Bauer, P., Bechtold, P., Beljaars, A. C. M., van de Berg, L., Bidlot, J., Bormann, N., Delsol, C., Dragani, R., Fuentes, M.,
+Geer, A. J., Haimberger, L., Healy, S. B., Hersbach, H., Hólm, E. V., Isaksen, L., Kållberg, P., Köhler, M., Matricardi, M.,
+McNally, A. P., Monge-Sanz, B. M., Morcrette, J.-J., Park, B.-K., Peubey, C., de Rosnay, P., Tavolato, C., Thépaut, J.-N.,
+& Vitart, F. (2011). The era-interim reanalysis: configuration and performance of the data assimilation system. Quarterly
+Journal of the Royal Meteorological Society, 137 , 553–597. doi:http://dx.doi.org/10.1002/qj.828.
+Deng, X. (2003). Improvement of Geodetic Parameter Estimation in Coastal Regions from Satellite Radar Altimetry. Ph.D.
+thesis Curtin University of Technology.
+Dijkstra, E. W. (1959). A note on two problems in connexion with graphs. Numerische Mathematik , 1 , 269–271.
+ESA (2007). Envisat RA2/MWR Product Handbook . European Space Agency (ESA) https://earth.esa.int/handbooks/
+ra2-mwr/. URL: https://earth.esa.int/handbooks/ra2-mwr issue 2.2.
+Fenoglio-Marc, L., Dinardo, S., Scharroo, R., A., R., M., D. S., B., L., Becker, M., Benveniste, J., & Weiss, R. (2015). The
+German Bight: A Validation of CryoSat-2 altimeter data in SAR mode. Advances in Space Research, 55 , 2641 – 2656.
+doi:10.1016/j.asr.2015.02.014.
+
+27
+
+Fischler, M. A., & Bolles, R. C. (1981). Random sample consensus: a paradigm for model fitting with applications to image
+analysis and automated cartography. Communications of the ACM , 24 , 381–395.
+Fu, L.-L., & Cazenave, A. (Eds.) (2001). Satellite Altimetry and Earth Sciences: A Handbook of Techniques and Applications.
+Academic Press.
+Gommenginger, C., Thibaut, P., Fengolio-Marc, L., Quartly, G. D., Deng, X., Gómez-Enri, J., Challenor, P., & Gao, Y. (2011).
+Retracking altimeter waveforms near the coasts: A review of retracking methods and some applications to coastal waveforms.
+In S. Vignudelli, A. G. Kostianoy, P. Cipollini, & J. Benveniste (Eds.), Coastal Altimetry. Springer-Verlag Berlin Heidelberg.
+Gourrion, J., Vandermark, D., Bailey, S., Chapron, B., Gommenginger, G. P., Challenor, P. G., & Srokosz, M. A. (2002). A
+two-parameter wind speed algorithm for Ku-Band altimeters. J. Atmos. Oceanic Technol., 19 , 2030–2048.
+Halimi, A., Mailhes, C., Tourneret, J.-Y., & Snoussi, H. (2016). Bayesian estimation of smooth altimetric parameters: Application to conventional and delay/doppler altimetry. IEEE Transactions on Geoscience and Remote Sensing, 54 , 2207–2219.
+Halimi, A., Mailhes, C., Tourneret, J.-Y., Thibaut, P., & Boy, F. (2013). Parameter estimation for peaky altimetric waveforms.
+IEEE Trans. Geosci. Remote Sensing, 51 , 1568–1577.
+Hayne, G. S. (1980). Radar altimeter mean return waveforms from near-normal-incidence ocean surface scattering. IEEE
+Trans. Antennas Propagat., 28 , 687–692.
+Hwang, C., Guo, J., Deng, X., Hsu, H.-Y., & Liu, Y. (2006). Coastal gravity anomalies from retracked geosat/gm altimetry:
+improvement, limitation and the role of airborne gravity data. Journal of Geodesy, 80 , 204–216.
+Hwang, C., Kao, E., & Parsons, B. (1998). Global derivation of marine gravity anomalies from SEASAT, GEOSAT, ERS-1
+and Topex/Poseidon altimeter data. International Geophysical Journal, 134 , 449–459.
+Kusche, J., Uebbing, B., Rietbroek, R., Shum, C. K., & Khan, Z. H. (2016). Sea level budget in the bay of bengal (20022014)
+from grace and altimetry. Journal of Geophysical Research: Oceans, 122 . doi:10.1002/2015JC011471.
+Lafferty, J. D., McCallum, A., & Pereira, F. C. N. (2001). Conditional random fields: Probabilistic models for segmenting and
+labeling sequence data. In Proc. International Conference on Machine Learning (pp. 282–289). URL: http://dl.acm.org/
+citation.cfm?id=645530.655813.
+Lee, H., Shum, C., Emery, W., Calmant, S., Deng, X., Kuo, C.-Y., Roesler, C., & Yi, Y. (2010). Validation of jason-2 altimeter
+data by waveform retracking over california coastal ocean. Marine Geodesy, 33 , 304–316.
+Martin, T. V., Zwally, H. J., Brenner, A. C., & Bindschadler, R. A. (1983). Analysis and retracking of continental ice sheet
+radar altimeter waveforms. Journal of Geophysical Research: Oceans (1978–2012), 88 , 1608–1616.
+Maus, S., Green, C. M., & Fairhead, J. D. (1998). Improved ocean-geoid resolution from retracked ERS-1 satellite altimeter
+waveforms. Geophysical Journal International, 134 , 243–253.
+Olshausen, B. A., & Field, D. J. (1997). Sparse coding with an overcomplete basis set: A strategy employed by v1? Vision
+Research, 37 , 3311 – 3325. URL: http://www.sciencedirect.com/science/article/pii/S0042698997001697. doi:http://
+dx.doi.org/10.1016/S0042-6989(97)00169-7.
+Passaro, M., Cipollini, P., Vignudelli, S., Quartly, G. D., & Snaith, H. M. (2014). ALES: A multi-mission adaptive subwaveform
+retracker for coastal and open ocean altimetry. Remote Sensing of Environment, 145 , 173–189.
+Quartly, G. D., Srokosz, M. A., & McMillan, A. C. (2001). Analyzing altimeter artifacts: Statistical properties of ocean
+waveforms. Journal of Atmospheric and Oceanic Technology, 18 , 2074–2091.
+Rosmorduc, V., Benveniste, J., Bronner, E., Dinardo, S., Lauret, O., Maheu, C., Milagro, M., & Picot, N. (2011). Radar
+altimetry tutorial. http://www.altimetry.info/. URL: http://www.altimetry.info/ benveniste, J. (ESA) and Picot, N.
+(CNES) Ed.
+Sandwell, D. T., & Smith, W. H. F. (1997). Marine gravity anomaly from Geosat and ERS-1 satellite altimetry. Journal of
+Geophysical Research, 102 , 10,039–10,054.
+Sandwell, D. T., & Smith, W. H. F. (2005). Retracking ERS-1 altimeter waveforms for optimal gravity field recovery. Geo-
+
+28
+
+physical Journal International, 163 , 79–89. doi:10.1111/j.1365-246X.2005.02724.x.
+Savcenko, R., & Bosch, W. (2008). EOT08a empirical ocean tide model from multi-mission satellite altimetry. DGFI Report
+No. 81.
+Tropp, J. A., Gilbert, A. C., & Strauss, M. J. (2006). Algorithms for simultaneous sparse approximation. part i: Greedy
+pursuit. Signal Processing, 86 , 572–588.
+Uebbing, B., Kusche, J., & Forootan, E. (2015). Waveform retracking for improving level estimations from topex/poseidon,
+jason-1, and jason-2 altimetry observations over african lakes. IEEE Transactions on Geoscience and Remote Sensing, 53 ,
+2211–2224.
+Wang, Y. (2004). Ocean Tide Modeling in Southern Ocean. Technical Report 471 Department of Civil and Environmental
+Engineering and Geodetic Science, The Ohio State University, USA Columbus, Ohio 43210.
+Wright, J., Ma, Y., Mairal, J., Sapiro, G., Huang, T. S., & Yan, S. (2010). Sparse representation for computer vision and
+pattern recognition. Proceedings of the IEEE , 98 , 1031–1044.
+
+29
+
+
+
+Summary:
+This research paper covers the following topic: STAR: Spatio-Temporal Altimeter Waveform Retracking using
+Sparse Representation and Conditional Random Fields
+Ribana Roscher, Bernd Uebbing, Jürgen Kusche
+
+arXiv:1709.07681v1 [physics.ao-ph] 22 Sep 2017
+
+Institute of Geodesy and Geoinformation, University of Bonn, Nußallee 15+17, 53115 Bonn, Germany
+
+Abstract
+Satellite radar altimetry is one of the most powerful techniques for measuring sea surface height variations,
+with applications ranging from operational oceanography to climate research. Over open oceans, altimeter
+return waveforms generally correspond to the Brown model, and by inversion, estimated shape parameters
+provide mean surface height and wind speed. However, in coastal areas or over inland waters, the waveform
+shape is often distorted by land influence, resulting in peaks or fast decaying trailing edges. As a result,
+derived sea surface heights are then less accurate and waveforms need to be reprocessed by sophisticated
+algorithms. To this end, this work suggests a novel Spatio-Temporal Altimetry Retracking (STAR) technique. We show that STAR enables the derivation of sea surface heights over the open ocean as well as
+over coastal regions of at least the same quality as compared to existing retracking methods, but for a
+larger number of cycles and thus retaining more useful data. Novel elements of our method are (a) integrating information from spatially and temporally neighboring waveforms through a conditional random
+field approach, (b) sub-waveform detection, where relevant sub-waveforms are separated from corrupted or
+non-relevant parts through a sparse representation approach, and (c) identifying the final best set of sea
+surfaces heights from multiple likely heights using Dijkstra’s algorithm. We apply STAR to data from the
+Jason-1, Jason-2 and Envisat missions for study sites in the Gulf of Trieste, Italy and in the coastal region
+of the Ganges-Brahmaputra-Meghna estuary, Bangladesh. We compare to several established and recent
+retracking methods, as well as to tide gauge data. Our experiments suggest that the obtained sea surface
+heights are significantly less affected by outliers when compared to results obtained by other approaches.
+Keywords: coastal, oceans, altimetry, retracking, sea surface heights, conditional random fields, sparse
+representation
+
+1. Introduction
+For several decades, radar altimetry is routinely being used for monitoring sea surface height (SSH)
+variations. Observed SSHs play a key role in several applications, ranging from operational oceanography
+(Chelton et al., 2001) and tidal modeling (Wang, 2004; Savcenko & Bosch, 2008) to gravity estimation
+(Hwang et al., 1998), and they serve as important indicators in climate research. Recently, radar altimetry
+in coastal zones (Gommenginger et al., 2011) and for inland water bodies (Birkett & Beckley, 2010) has
+become a topic of increasing interest. However, in both applications one needs to mitigate the potentially
+significant land influence on the altimeter return signal.
+The altimeter instrument on-board a satellite emits a spherically propagating, nadir-directed radar pulse,
+which is reflected at the surface. Range information can then be inferred from the two-way travel time (Fu
+& Cazenave, 2001). In addition, the returned signal energy is measured over time, forming an altimeter
+waveform. It can be shown that over an ideal surface, the return waveform corresponds to the theoretical
+Brown model (Brown, 1977) and the estimated shape parameters of this model provide information on mean
+SSH and significant wave height (SWH), while the amplitude strength of the reflected radar pulse can be
+used to derive wind speed. On board the satellite, the waveform signal is sampled at discrete epochs with a
+Preprint submitted to Remote Sensing of Environment
+
+September 25, 2017
+
+spacing of about 3 ns of two-way travel time, which are generally referred to as range gates (Chelton et al.,
+1989). Altimeter measurements do not refer to an individual point directly below the satellite, but rather
+to a footprint with a diameter of several kilometers, depending on SWH and the altitude of the altimetry
+mission.
+As illustrated in Fig. 1, the return waveform over the open ocean consists of three main parts; first,
+before any return energy from the radar pulse is measured, the waveform contains only thermal noise which
+is present in all radar systems. As soon as the front of the radar pulse hits the wave crests, the altimeter
+footprint is defined by a single point and the measured return energy begins to rise. Afterwards, more of
+the pulse illuminates the surface around the initial point and the footprint becomes a growing circle, which
+corresponds to rapidly increasing signal energy in the measured altimeter waveform. The leading edge of
+the altimeter return waveform is defined between the first energy return from wave crests and the return
+energy after the radar pulse has reached the wave troughs (Fig. 1). At this point. the area of the footprint
+circle reaches its maximum, which is defined as the pulse–limited footprint (PLF, Chelton et al., 1989).
+Afterwards, the circle transforms into an annulus with increasing inner and outer radii, but with a fixed
+illuminated area. The corresponding signal energy measured outside of the PLF is referred to as trailing
+edge of the measured waveform (Fig. 1). The slope of the trailing edge can be utilized to derive information
+on the off-nadir attitude of the altimeter satellite.
+The 50%-point on the leading edge corresponds to the mean sea level between wave crests and wave
+troughs, and thus represents the reference point for the range measurement. An algorithm on board of the
+satellite tries to position this point inside a pre-defined range window at a fixed tracking range gate (31
+for Jason-2, Quartly et al., 2001). This range window consists of a fixed number of range gates, covering
+about 50 m depending on the satellite mission, and it is positioned by the onboard tracker based on prior
+information on the range. However, positioning is not always perfect and the 50%-point is not located exactly
+at the tracking gate. Consequently, this requires a ground-based reprocessing of the altimeter waveforms
+transmitted back to Earth, a procedure which is called retracking. Over the open ocean, the shape of the
+waveform will be close to the theoretical Brown model with the 50%-point being only slightly shifted from
+the tracking gate position, and this can be easily corrected using an ocean model retracker (Brown, 1977;
+Hayne, 1980; Deng, 2003). For ice surfaces where the waveform signal often contains two leading edges due
+to the radar signal partly penetrating through the upper snow layer, specialized retracking algorithms have
+been developed (Martin et al., 1983). However, in coastal areas the waveform shape is typically disturbed
+by land influences in the altimeter footprint, resulting in peaks or fast decaying trailing edges.
+These deviations of coastal waveforms from the Brown model lead conventional ocean retrackers to
+generate diverging or strongly biased estimates of SSH, as land-induced peaks propagate along the trailing
+edge towards the leading edge while the altimeter ground track approaches the coast (Lee et al., 2010). In
+order to mitigate the land influences on the waveform shape, various tailored approaches have been proposed.
+As an example for methods that seek to model the entire waveform, (Halimi et al., 2013) combined a 3parameter Brown ocean model with a modeled asymmetric peak to account for land influences. A different
+approach for dealing with the influence of peaks on the retracked estimates is to first partition the waveform
+in a pre-processing step; i.e. to identify relevant parts of the waveform, such as the leading edge, but also
+possible peaks. For example, (Hwang et al., 2006) first identify relevant sub-waveforms and then apply a
+threshold retracking algorithm to each of the sub-waveforms, which leads to multiple equally likely SSH
+estimates at each location from which the final estimate is chosen based on comparison to a-priori height
+information. In this way, peaks that appear outside of the relevant sub-waveforms are ignored. Recently, for
+retracking SSHs over inland water bodies, (Uebbing et al., 2015) combined the sub-waveform approach from
+(Hwang et al., 2006) and the waveform model from (Halimi et al., 2013) to suppress land-induced peaks on
+the trailing edge, but also to account for possible peaks close to the leading edge of the waveform. This
+could be shown to lead to improved lake heights compared to conventional methods. In a different approach,
+(Passaro et al., 2014) suggested a two-step procedure, similar to a previously published approach by Sandwell
+& Smith (2005), where in the first step all 3 parameters (amplitude, range and SWH) are estimated. In
+the second iteration they fixed the SWH to a mean value derived from the first step and re-estimated the
+amplitude and range correction, since SWH estimations are strongly correlated to the range correction. This
+2
+
+leads to improved SSHs closer to the coast.
+Here, we introduce a novel method for the analysis of sea surface heights from altimetric waveforms,
+which will utilize spatial information from neighboring range gates within one waveform, as well as temporal information from neighboring waveforms along the altimeter track. This Spatio-Temporal Altimetry
+Retracker (STAR) can be applied to altimetry data over the open ocean, as well as in coastal areas. Our
+contributions are twofold: First, our analysis includes a novel sub-waveform detection scheme, which to our
+knowledge for the first time integrates spatial as well as temporal information. This differs from the conventional sub-waveform detection algorithm (Hwang et al., 2006) in that we partition the entire waveform
+into separate sub-waveforms, instead of identifying possible, disjointed leading edges. Second, in order to
+be largely independent of the choice of tuning (or ’hyper’) parameters within the sub-waveform detection
+scheme, we derive multiple sub-waveform partitionings by varying the weight w between unary and binary
+terms of the conditional random field. This leads to a range of partitionings of the entire waveform, and
+subsequently to a point cloud of equally likely SSHs at each measurement position, each of which is estimated
+using a 3-parameter ocean model (Halimi et al., 2013). We then employ Dijkstra algorithm (Dijkstra, 1959)
+to find reasonably smooth SSHs, without resorting to fitting.
+Our sub-waveform detection scheme uses a sparse representation (SR) approach, where the return power
+at all range gates within one particular sub-waveform is modeled by a weighted linear combination of a
+single common set of basis waveforms, which are derived from synthetic Brown waveforms. The concept of
+SR has been applied to many areas of signal analysis (Wright et al., 2010), but this study appears to be the
+first which uses it on radar altimetry.
+SSHs and other sea surface conditions such as wave height are neither independent along tracks, nor
+between neighboring tracks (Sandwell & Smith (1997)). Spatial information has been used in the analysis, for example, by Maus et al. (1998) through simultaneously processing of a sequence of waveforms for
+tracking of travel times, or Halimi et al. (2016) for a smooth estimation of altimetric parameters. This
+means, the integration of spatial information can be carried out in different parts of the analysis. The
+latter two approaches, for example, integrate spatial information about neighboring waveform to develop
+improved estimation algorithms for retracking. Here, we integrate spatio-temporal information by means of
+a conditional random field (CRF, Lafferty et al., 2001): to this end, we introduce spatial relations between
+the return power at range gates of temporally neighboring waveforms, i.e. neighboring waveforms within
+one pass and cycle, and relations between the range gate power within a single waveform. In this way, range
+gates which are relevant for SSH estimation can be distinguished from corrupted or non-relevant waveform
+parts, since they are represented through a different linear combination of basis sub-waveforms (see Fig. 1).
+In contrast to Halimi et al. (2016) where the conditional random field is used as part of an algorithm to
+enforce a smooth estimation of the retracking parameters, we propose to use the conditional random field at
+the sub-waveform detection step. Subsequently, any retracking method can be applied to the identified individual sub-waveforms for deriving the SSH, thus effectively ignoring disturbing signals outside the selected
+sub-waveform. This means, our approach could be transferred in future to the analysis of Delay-Doppler
+altimetry.
+This paper is organized as follows: First, we introduce the altimetry data that we used for validating
+our method, as well as our two study sites in Sec. 2. We describe the sub-waveform detection with SR and
+the integration of spatio-temporal knowledge by employing a CRF in Sec. 3. Moreover, the estimation of
+single SSHs and the determination of the best set of SSHs from multiple heights using Dijkstra’s algorithm
+is explained in Sec. 4. In Sec. 5, we compare the performance of our sub-waveform detection against an
+existing method and we evaluate the proposed analysis framework by means of analysing Jason-1, Jason-2
+and Envisat waveforms in the coastal regions of the Gulf of Trieste, and in the northern Bay of Bengal in
+the coastal waters of Bangladesh. Sec. 6 concludes the paper.
+
+3
+
+Figure 1: Waveform with disturbing peak caused by land influences (colored in blue). The relevant part for sea surface height,
+determined by sub-waveform detection, is illustrated in green. A theoretical waveform model is depicted in orange.
+
+2. Data and Study Sites
+2.1. Data
+We apply our retracking method to Jason-2 Sensor Geophysical Data Records (SGDR) of the Jason-2
+mission, as well as to SGDRs from the Jason-1 and European Environmental Satellite (Envisat) missions.
+The Ocean Surface Topography Mission (OSTM)/ Jason-2 was launched in mid of 2008 succeeding the
+Jason-1 mission on the same orbit. The satellite flies in a near circular ∼10 day repeat orbit with an altitude
+of 1336 km and inclination of 66 ◦ and a separation of the groundtracks equal to 315 km at the equator. The
+main instrument is the Poseidon-3 altimeter which emits radar pulses in the Ku-Band (13.575 GHz/2.21 cm)
+and C-Band (5.3 GHz/5.08 cm) (AVISO, 2015). Additional instruments are a microwave radiometer used to
+derive the wet troposphere correction, as well as GPS and DORIS systems for precise orbit determination
+(Rosmorduc et al., 2011). The Jason-2 SGDRs have been obtained from the Archiving, Validation and
+Interpretation of Satellite Oceanographic (AVISO) team which is part of Centre National d’Etudes Spatiales
+(CNES). The SGDRs are sorted by pass and cycle, including 254 passes per cycle or ∼10 day repeat orbit
+and we utilize data of passes 053 and 196 from the beginning of the mission in July 2008 (cycle 0) until the
+end of 2014 (cycle 239).
+The composition of the Jason-1 mission is very similar to Jason-2. It was launched in December, 2001
+as a successor to the Topex/Poseidon mission. After the launch of Jason-2 in June, 2008 both satellites
+flew on the same orbit in close distance to allow intercalibration of the satellite missions. After 6 months,
+Jason-1 was moved to an interleaved orbit located in the middle between the nominal orbit to increase the
+spatial resolution of the combined Jason-1 and Jason-2 data until January, 2012. Afterwards the satellite
+was moved to a drifting geodetic orbit and passivated and decommissioned in July, 2013 after losing contact. We will use data from the interleaved period from February, 2009 (cycle 263) until January, 2012
+(cycle 370). The Jason-1 SGDRs for the interleaved orbit are acquired from the Physical Oceanography
+Distributed Active Archive Center (PO.DAAC, ftp://podaac.jpl.nasa.gov/allData/coastal_alt/L2/
+ALES/jason-2/) operated by the Jet Propulsion Laboratory (JPL) which is part of the National Aeronautics
+and Space Administration (NASA).
+The Envisat satellite was launched in March, 2002 succeeding the ERS-2 mission in the same orbit by
+the European Space Agency (ESA). The orbit is a 35-day repeat orbit with an altitude of 800 km, about
+4
+
+an inclination of 98.55 ◦ which allows the satellite to cover higher latitude regions compared to e.g. Jason-2
+with a higher spatial resolution (80 km separation at the equator) at the cost of a longer repeat period
+of 35 days. The satellite carries a total of 10 instruments of which the DORIS positioning system, the
+microwave radiometer and the Radar Altimeter 2 (RA2) altimeter instrument are of most importance to us
+(Rosmorduc et al., 2011). The RA2 altimeter is a dual frequency altimeter emitting radar pulses in Ku-Band
+(13.575 GHz/2.21 cm) and S-Band (3.2 GHz/9.37 cm) (ESA, 2007). The Envisat SGDR data are provided
+by ESA (https://earth.esa.int/). We utilize data from June, 2002 (cycle 7) to September, 2010 (cycle
+93).
+We extract the 20 Hz (18 Hz for Envisat) tracker range, altitude and waveforms which are needed during
+the retracking algorithm. Additionally, 1 Hz atmospheric model corrections for the dry and wet troposphere,
+as well as the ionosphere are extracted from the SGDR data and linearly interpolated to the high rate
+positions.
+For validation of the retracked coastal SSHs, tide gauge data with hourly resolution from the University
+of Hawaii Sea Level Center (UHSLC) are used. The hourly data are uncorrected with respect to tidal and
+inverse barometric effects and we do not apply these corrections to neither the altimetry data, nor the tide
+gauge data to remove the influence of these corrections on the validation. The tide gauge data for Trieste,
+Italy is available from June, 2009 to December 2015 and for the tide gauge station in Chittagong, Bangladesh
+we have data from July, 2007 til December 2015. Additionally, we utilize openly available GDR datasets for
+the Jason-2 (cycles 1 to 239) and Envisat (cycles 7 to 93) mission that include the ALES retracked ranges
+for comparison which are distributed by PO.DAAC, JPL.
+For the validation of significant wave height and wind speed, we utilize model data from the ERAInterim reanalysis (Dee et al., 2011) which is distributed by the European Centre for Medium-Range Weather
+Forecast (ECMWF) and interpolated to the altimetry track.
+2.2. Study Sites
+For investigating the quality of our proposed STAR algorithm, we selected two study sites located in
+the Gulf of Triest and in the coastal regions of Bangladesh. The sites include varying conditions, including
+shallow coastal waters, open ocean areas, temporally submerged sand banks and transition zones between
+river estuaries and the ocean.
+
+(a) Triest TG at the Adriatic Sea and the groundtracks of Jason-2 pass 196, as well as Jason-1 interleaved orbit, pass 161.
+
+(b) Chittagong TG at the Bay of Bengal and the
+groundtracks of Jason-2 nominal orbit, pass 053, as
+well as Envisat, pass 0352.
+
+Figure 2: Location of the altimetry tracks and the tide gauges used for validation of the retracked SSHs.
+
+5
+
+2.2.1. Triest
+The first study site is located in the northern Adriatic Sea in the north-eastern part of the Gulf of Venice
+and includes the Gulf of Triest. The descending nominal orbit pass 196 of the Jason-2 mission crosses the
+study area from north-west to the south-east (Fig. 2(a)). It crosses from the Italian mainland to ocean close
+to the city of Marano Lagunare at approx 45.76 ◦ N and covers about 5.9 km of the Laguna di Marano before
+there is a short ocean-land-ocean transition over the Isola di Sant’ Andrea at ∼45.71 ◦ N. Then, the track
+covers about 45.5 km of open ocean in the Gulf of Venice before transitioning to the Croatian mainland at
+∼45.36 ◦ N. For the last 5 km from ∼45.4 ◦ N until the track is over the Croatian mainland, it runs very close
+to the Croatian coast with a distance of less than 2 km.
+Furthermore, we utilize data from the ascending Jason-1 pass 161 of the interleaved orbit (Fig. 2(a)).
+It crosses our study area from the south-west to the north-east. The first 37 km are located over the open
+ocean and the groundtrack covers the Croatian mainland from ∼45.48 ◦ N to 45.50 ◦ N. Then the track covers
+open water until it reaches the Italian mainland at ∼ 45.71 ◦ N. At about 45.54 ◦ N the track is located less
+than 2 km away from the Slovenian mainland.
+The tide gauge station Triest is located at ∼ 13.75 ◦ E and 45.65 ◦ N in the harbor of the city of Triest in
+the Gulf of Triest. The distance of the tide gauge station to the Jason-2 groundtrack is about 31 km at the
+closest point.
+2.2.2. Bangladesh
+The second study site is located in the northern Bay of Bengal in a region right off the coast of Bangladesh.
+The region is covered by the ascending Jason-2 nominal orbit pass 053 which crosses the study area from
+the south-west to the north-east (Fig. 2(b)). The track coverage starts over the open ocean parts of the Bay
+of Bengal and reaches Sandwip Island after ∼ 95 km at ∼ 22.41 ◦ N . From ∼ 22.53 ◦ N to 22.63 ◦ N the track
+again covers a strip of about 13 km of open water related to the estuary of the Ganges-Brahmaputra-Meghna
+Delta (GBMD) before it reaches the Bangladesh mainland. Between latitudes of ∼ 22.25 ◦ N and 22.35 ◦ N
+there are some sand banks located along the track which are submerged during high tide, but not during
+low tide.
+Additionally, the descending pass 0352 of the Envisat mission runs almost parallel to the Jason-2 track
+and crosses the study site from the north-east to the south-west. It first reaches open water related to the
+GBMD at ∼22.67 ◦ N and after about 14 km the track reaches Sandwip Island at ∼ 22.55 ◦ N. At 22.40 ◦ N,
+the track transitions back to open water and afterwards covers the remaining 104 km of open ocean in our
+study area. Again, the sandbanks mentioned above might influence the data acquisition during low tide.
+The Chittagong tide gauge station is located at ∼ 91.83 ◦ E and 22.25 ◦ N in the Chittagong harbor. The
+distance to the Jason-2 groundtrack is about 38 km at the closest point.
+
+3. Sub-waveform Detection
+3.1. Notation
+Let us consider L consecutive waveforms collected along a cycle, each of which contains return energy
+for G range gates. We arrange these waveforms in xl , l = 1, . . . , L. Each waveform can be represented
+through a set of overlapping windowed waveforms ξ l,g ∈ xl with windows centered at ξl,g and comprising
+Nξ neighboring range gates, as illustrated in Fig. 3 for a single echo. Within this framework, sub-waveform
+detection means identifying K sub-waveforms in each xl by deciding for each range gate on indices ŷ l,g ,
+which define the best-fitting sparse representation (SR)-based models. The aim of the proposed approach is
+to optimally detect these sub-waveforms, where the number of models per waveform is unknown and needs
+to be determined during the detection process.
+
+6
+
+3.2. Detection Framework
+The schematic of our sub-waveform detection framework is illustrated in Fig. 3. The input of the
+framework are windowed waveforms ξ l,g and synthetic Brown waveforms. These Brown waveforms are the
+basis waveforms collected in a dictionary D, which is used for a sparse representation-based modelling of
+signals. Given the input, a conditional random field (CRF) is formulated, which consists of an unary, datadependent term computed by sparse representation, and a binary term enforcing a smooth partitioning of
+the entire waveform.
+ w  A variation of the weighting between these two terms yield various sets of optimal
+w
+indices Ŷ = ŷ l,g , resulting in different partitionings of the entire waveform. The framework is flexible
+regarding the chosen methods, e.g. the sparse representation can be replaced by other methods such as
+correlation or other similarity measures. In the following, detailed explanations to the framework will be
+provided.
+
+Figure 3: Detection Framework: The input is given by altimetric waveforms and synthetic Brown waveforms. Each range
+gate is represented by a windowed waveform, i.e., the range gate’s center point and neighboring range gates, as illustrated
+by blue, violet and orange areas. A conditional random field is formulated, which consists of an unary, data-dependent term
+computed by sparse representation and a binary term enforcing a smooth partitioning of the waveform. In the conditional
+random field, the graphical model is constructed by connecting temporally adjacent range gates as well as adjacent range gates
+within one waveform. A variation of hyperparameters in the conditional random field result in different partitionings of the
+entire waveform.
+
+3.3. Conditional Random Field
+In order to perform sub-waveform detection while integrating information about neighboring range gates,
+we make use of a conditional random field (CRF). The range gates are represented in a graph, where each
+range gate is connected to spatially adjacent range gates within one waveform and to temporally adjacent
+range gates along the satellite’s ground track (see Fig. 3). The basic idea is the assignment of each range
+gate, represented as windowed waveform, to the best-fitting model, for which we use sparse representation
+in this framework. Neighbored range gates which are assigned to the same model are summarized to one
+sub-waveform. Therefore, all range gates in one sub-waveform follow the same underlying model. In our
+approach, the optimal sub-waveform partitioning minimizes the energy functional
+X
+X
+E(Y ) =
+U(ξ l,g , y l,g ) − w
+B(ξ l,g , ξ l,q , y l,g , y l,q ),
+(1)
+l,g
+
+l,g,q∈Q
+
+7
+
+where the unary term U, depending on the windowed waveforms ξ l,g , describes the agreement between
+the measured windowed waveform and a sparse representation model represented by y l,g . These models are
+
+
+identified by so-called non-zero activation indices Y = y l,g , indicating which synthetic basis waveforms are
+used for signal reconstruction within each specific model. The binary term B depends on both the non-zero
+activation indices y l,g and y l,q , as well as the windowed waveforms with q ∈ Q indicating the set of direct
+neighbors of each range gate. The weight between both terms is a hyperparameter and is denoted by w. In
+our approach, we assume a sub-waveform to be a set of neighboring range gates which are modeled with the
+same non-zero activation indices, as explained in more detail in the next paragraphs.
+3.3.1. Unary Term - Sparse Representation
+Generally, in terms of sparse coding (e.g., Olshausen & Field (1997)) a (G × 1)-dimensional waveform
+xl can be represented by a linear combination of a few basis waveforms, which are collected in a (G × V )dimensional dictionary D = [dv ], v = 1, . . . , V , such that xl = Dαl +  with kk being the reconstruction
+error. Solving this problem means finding the activation vector αl containing the optimal coefficients,
+whereas most of the elements are zero.
+During sub-waveform detection, instead of representing the whole waveform signal, only windowed waveforms will be sparsely represented by windowed basis waveforms. In this case, each range gate, represented by
+a windowed waveform, can be assigned to a specific sparse linear combination of windowed basis waveforms
+constituting the best approximation for it. In more detail, a windowed waveform ξ l,g is sparsely represented
+using activations αl,g and a sub-dictionary D g that contains certain rows of the underlying dictionary D (see
+identical colored entities in Fig. 3 and Fig. 4). Since the dictionary comprises synthetic Brown waveforms,
+sub-dictionaries contain specific parts of the synthetic waveforms. The indices of non-zero elements in αl,g ,
+i.e., the dictionary elements participating in the reconstruction, are the non-zero activation indices y l,g used
+for defining the models (cmp. Sec. 3.3). It is important to note that D is fixed for L consecutive waveforms,
+such that sub-dictionaries used for temporally neighboring windowed waveforms are identical.
+
+Figure 4: Schematic illustration of sparse representation of windowed waveforms. Colors in xl indicate different windowed
+waveforms ξl,g , which are independently sparsely represented. Colors in the dictionary are indicating D g , i.e. the respective
+rows used for reconstructing the windowed waveform. For sub-waveform detection, neighbored range gates which are represented
+with the same dictionary elements are grouped to one sub-waveform.
+
+The optimal α̂l,g can be formulated as
+b l,g = argmin kD g αl,g − ξ l,g k2
+α
+
+subject to kαl,g k0 ≤ M,
+
+(2)
+
+b l,g are given by the non-zero activation indices y l,g . For a set
+where the indices of M non-zero elements in α
+b l,g , the reconstruction error of windowed waveform ξ l,g will be
+of optimal activations α
+b l,g − ξ l,g k2 ,
+rl,g = kD g α
+
+(3)
+
+and r l,g = [rl,g ] is the vector collecting the reconstruction errors for all possible sets of dictionary elements.
+8
+
+This optimization can be solved with orthogonal matching pursuit (OMP, Tropp et al. (2006)), which falls in
+the class of greedy algorithms. For this, the first dictionary element is chosen to be the one that maximizes
+the absolute value of the inner product between the dictionary element itself and the sample which is
+meant to be reconstructed; i.e. we maximize the collinearity. Each further dictionary element is chosen
+in the same way, however, using the current residual  instead of the sample until the number of the used
+dictionary elements exceeds M . The dictionary elements and samples are normalized. An alternative would
+be an exhaustive search through all combinations of non-zero activation indices, which however, would be
+computationally challenging.
+In more detail, the unary term in the energy functional penalizes the reconstruction error for a given set
+of non-zero activation indices and the difference of its activations’ sum to 1, both describing the agreement
+between data and a specific sparse representation model:
+!
+X
+1
+1
+b v,l,g ,
+r l,g +
+abs 1 −
+α
+(4)
+U(ξ l,g , y l,g ) =
+Z1
+Z2
+v
+where the first term is the normalized reconstruction error obtained by the non-zero activation indices
+b l,g . Both unary
+y l,g , and the second term is the normalized difference to 1 of the estimated activations α
+terms are normalized P
+by the standard deviation ζ of the values for each range gate, given by Z1 = ζ(r l,g )
+b v,l,g )), in order to ensure an equal treatment of all range gates. The sum-toand Z2 = ζ(abs (1 − v α
+one penalization serves as regularization to constrain the solution space to reasonable results, which can
+alternatively be directly incorporated in (2) in a more restrictive way by introducing an additional sum-toone constraint, as often used in remote sensing (Bioucas-Dias et al., 2012).
+A dictionary should have the following properties for our purpose: First, the elements should have a high
+approximation ability, and second the choice of used dictionary elements for reconstruction should be unique
+and stable. In order to build a suitable dictionary, a set of synthetically generated waveforms is sampled
+and relevant waveforms are selected to serve as dictionary elements. We choose the most relevant synthetic
+waveforms by selecting these ones which are most similar to the estimated waveforms and most dissimilar
+to each other. For simulating dictionary elements, the parameters of the Brown model (Brown, 1977), such
+as the waveform amplitude or the epoch, are sampled randomly, where the probability density functions
+are chosen to resemble empirical distributions of Brown model parameters from a large set of open-ocean
+echoes from the Envisat or Jason-1/-2 missions. In this way, the proposed algorithm will be as independent
+as possible of the chosen altimetry mission.
+3.3.2. Binary Term
+The binary term in (1) serves to incorporate prior knowledge about the spatial relations between adjacent
+range gates within a single waveform and between temporally consecutive waveforms within one cycle. As
+mentioned before, we assume a sub-waveform to be a set of neighboring range gates which are sparsely
+represented by a common set of dictionary elements, i.e. they share the same non-zero activation indices
+y l,g , which is set to be the objective in (1). Therefore, we prefer neighboring range gates with similar
+characteristics to be reconstructed with a common set of dictionary elements. The binary term in (1) is
+given by
+
+
+cos ξ l,g , ξ l,q , if y l,g = y l,q
+B(ξ l,g , ξ l,q , y l,g , y l,q ) =
+.
+(5)
+0,
+if y l,g 6= y l,q
+
+The similarity measure cos ξ l,g , ξ l,q relaxes the constraint of the representation of neighboring range gates,
+e.g., in order to consider possible adaptions of the range window by the satellite on-board tracker.
+3.3.3. Sparse Representation-based Conditional Random Field
+As mentioned earlier, the evaluation of all possible sets of non-zero activation indices is computationally
+difficult. However, this information is needed in the CRF to find the best set of indices for all range gates.
+9
+
+To overcome this problem, we optimize the CRF in a greedy manner. In detail, the search for the optimal
+estimation of non-zero activation indices in iteration j = 1 for a windowed waveform is performed over
+j=1
+Dl,g
+= {1, . . . , V } and fixed after the CRF application. Stopping after a single iteration is identical to the
+usage of a correlation similarity as unary term. For each further iteration j > 1, the optimal sets of non-zero
+j
+j−1
+j−1
+activation indices will be derived from Dl,g
+= {{y l,g
+, 1}, . . . , {y j−1
+l,g , V }} with y l,g being the optimal set of
+non-zero activation indices from the previous iteration. The final CRF that is employed to find an optimal
+estimation of non-zero activation indices in each iteration is given by the minimizer of the energy
+!!
+X 1
+X
+X
+1
+b v,l,g
+r l,g +
+abs 1 −
+E(Y ) =
+α
+−w
+B(ξ l,g , ξ l,q , y l,g , y l,q ) ,
+(6)
+Z1
+Z2
+v
+l,g
+
+l,g,q∈Q
+
+where all entities correspond to the current iteration (index j is omitted for simplicity). The final optimal
+b w.
+set of non-zero activation indices given a specific weight w is denoted by Y
+
+4. Sea Surface Height Estimation
+In this study, we consider only the effect of the hyperparameter w, i.e. the choice of the relative weight
+between the unary and binary terms in (1). As it turned out in our numerical experiments, no single choice
+of w provides optimal results for different cycles, different study sites or altimetry missions. Therefore,
+we define a range of possible sub-waveforms by varying w. A variation of the hyperparameter w in (1)
+leads to a variation in the number of detected sub-waveforms. Therefore, we choose a set of reasonable
+W = {w1 , . . . , wP } hyperparameters. In other words, we derive multiple sub-waveform partitionings, ranging
+from a very coarse partitioning which includes only a few sub-waveforms to a very fine one which also captures
+small peaks in separate sub-waveforms. For SSH estimation, we use all sub-waveforms which are sufficiently
+large enough and which can be used for retracking. We end up with several equally likely SSHs at each
+measurement location which could be thought to form a ’point cloud’. Finally, the Dijkstra algorithm
+is employed to choose the smoothest combination of these SSHs, such that finally a single SSH at each
+along-track location is provided.
+4.1. Sea Surface Height
+In the context of this study, we define SSH e
+hSSH as given by
+e
+hSSH = a − (R + ∆dry + ∆wet + ∆iono + ∆retr ),
+
+(7)
+
+where a is the satellite’s altitude and R is the tracker range related to the fixed tracking gate and provided
+in the altimeter data records. The atmospheric model corrections ∆dry , ∆wet and ∆iono , extracted from the
+SGDR data, refer to the influence of the dry and wet part of the troposphere, as well as the ionospheric
+influence on the signal. The retracking range correction ∆retr is derived from the retracking procedure,
+described below, by converting the estimated epoch t0 from two-way travel time to range using ∆retr = 0.5ct0 ,
+where c is the speed of light in vacuum.
+Additional tidal corrections are applied after the final heights have been selected, to reduce the impact of
+noise in the tidal corrections on the final height detection. In particular, ocean tide correction will introduce
+a large noise component in coastal areas which will corrupt the selection of final SSHs through Dijkstra’s
+algorithm.
+Furthermore, we validate our retracking results against tide gauge data with at least hourly temporal resolution without any tidal and barometric corrections applied to remove possible effects from the comparison.
+For this purpose we add relevant corrections
+hSSH = e
+hSSH − ∆ssb − ∆set − ∆lt − 0.468∆pt ,
+10
+
+(8)
+
+where ∆ssb is the sea state bias correction which we compute as 5% of our retracked SWH. Additionally,
+∆set is the solid earth tide correction, ∆lt is the loading tide and ∆pt is the pole tide correction. The factor
+0.468 only applies the solid earth part of the pole tide correction, ignoring the part resulting from ocean
+tides (Fenoglio-Marc et al., 2015). In other words, we do not apply the ocean tide correction or the inverse
+barometric correction to render hSSH being directly comparable to the high rate tide gauge data.
+4.2. Ocean model for Retracking
+For retracking we employ a weighted 3-parameter ocean model (Halimi et al., 2013) which is given by
+
+
+
+t − t0 − ψσ 2
+A
+√
+1 + erf
+xl (t) =
+2
+2σ
+(9)
+
+
+
+ψσ 2
+exp −ψ t − t0 −
++ NT ,
+2
+for each two-way travel time t, centered on the tracking gate. Here, NT is the thermal noise which is
+pre-computed from the first few range gates. The three fitted model parameters represent the amplitude
+A, which is related to backscatter, the rise time of the leading edge σ which can be converted to SWH, as
+well as the epoch or retracking gate t0 which refers to the position of the mid point of the leading edge.
+Additionally, ψ is defined by
+ψ=
+
+1
+4c
+cos(2φ),
+γh 1 + a/Re
+
+sin2 (θ)
+,
+γ=
+ln 4
+
+(10)
+
+where c is the speed of light in vacuum, Re is the radius of the Earth (Deng, 2003) and φ is the off-nadir
+pointing angle which is assumed to be zero in our application. The antenna beamwidth parameter γ is
+defined in (Brown, 1977, Eq. (4)) and can be computed from the beamwidth θ of the altimeter instrument.
+4.3. Shortest-Path Algorithm for Finding the Best Set of Sea Surface Heights
+The problem that we discuss here can be viewed as an optimization problem with certain constraints.
+Given now a ’point-cloud’ of (equally) possible SSHs for each groundtrack-point, we need to realize a
+consistent SSH at each measurement position by finding the optimal SSH candidates. Before applying a
+shortest-path algorithm, we remove outliers from the ’point cloud’ through the RANdom SAmple Consensus
+(RANSAC) algorithm (Fischler & Bolles, 1981) while assuming a linear model of SSH change in along-track
+direction. Sea level change is not linear and thus, we apply the RANSAC algorithm with a threshold of 3 m
+to a moving window covering about 20 s of measured data. By selecting the moving window to cover 20 s we
+make sure that we always include a relatively large portion of water, especially at land-ocean transitions.
+All points that deviate too far from the linear model estimated by the RANSAC algorithm are discarded
+and the resulting set of accepted SSHs is then used to find the shortest path and estimating the optimal
+SSHs at each measurement location as illustrated in Fig. 5 and Fig. 6. Here, we chose Dijkstra algorithm
+(Dijkstra, 1959), but other shortest-path algorithms would also be possible. Dijkstra’s method requires
+one to choose edge weights between individual connected nodes. In our application, we chose the height
+differences between connected nodes as edge weights, thus, favoring smaller height changes over larger ones.
+For the start and end point of the Dijkstra graph we use the first and last sea surface height at the start
+and end position.
+
+11
+
+Figure 5: Schematic illustration of optimal sea surface height estimation employing Dijkstra algorithm. Dijkstra finds the
+optimal path (illustrated in blue) through equally likely successively arranged sea surface heights. where edge weights are
+derived from the difference between heights of 2 nodes.
+
+Figure 6: Exemplary SSH pointcloud from the Triest study site as part of our proposed STAR algorithm. The black points
+are selected by the RANSAC algorithm to estimate the linear model in order to discard outliers. Afterwards all points within
+range of the linear model are used in the Dijkstra algorithm to find the best (smoothest) set of SSHs (orange line).
+
+5. Results
+5.1. Setting
+We compare the STAR algorithm to existing retracking algorithms, such as the standard range derived
+from a MLE4 retracking method provided in the SGDR data, the 30%-threshold retracker (ICE1, Martin
+et al. (1983)) and the equally weighted 3-parameter ocean model (W3POM, see Eq. (9)). Furthermore, the
+specialized coastal algorithms, such as the Adaptive Leading Edge Subwaveform retracker (ALES, Passaro
+et al. (2014)) and the Improved Threshold Retracker (ITR, (Hwang et al., 2006)), the latter combined with
+a threshold of 50%, are considered.
+When implementing the STAR method as described above, we chose to set the neighborhood of the
+windowed waveforms ξ to Nξ = 5. For the number of non-zero elements in (2) we select M = 2. Values of
+M > 2 lead to significantly increased computation times while a larger combination of the limited number
+of dictionary elements might result in less clearly defined sub-waveforms from unique combinations of the
+basis elements. To avoid finding an optimal weighting parameter w for each measurement region, we run
+(1) for five different choices of w ∈ W = {0.1, 0.5, 1, 2, 100}. This will result in five partitionings of the total
+waveform into sub-waveforms, ranging from a very fine partitioning to a very coarse one. The parameters
+for the computation of our basis elements are generated based on the average estimated parameters from
+12
+
+an application of the 50%-threshold retracker to the current block of waveforms (20 waveforms per block
+in our framework). The mean epoch and amplitude serve as input into the basis element generation to
+produce 1000 waveforms by randomly varying the mean parameters: the amplitude is randomly varied by
+about 10% of its mean threshold-retracked value. The epoch is randomly sampled using a Gaussian weighted
+distribution with its maximum at the mean threshold-retracked value. The waveheight is randomly sampled
+from the range 0 m to 12 m, which is a most common range of waves. The cross-correlation coefficients
+between the obtained 1000 generated waveforms are computed and only the 15 waveforms which are most
+distinct from each other are kept and form the dictionary elements. In the following we utilize all the
+detected sub-waveforms to derive the results for STAR.
+Our STAR algorithm, ICE1, W3POM and ITR have been implemented in our in-house C++ altimetry
+toolbox. As ITR provides heights for each detected leading edge, we assumed the first detected leading edge
+to yield the correct retracking parameters, as we do not have any prior information on the heights. The
+SGDR SSHs are extracted from the GDR data and ALES retracked ranges are extracted from external
+GDR data. The SSHs from all retracking methods have been processed in the same way.
+5.2. Sub-waveform Detection
+First, we compare the sub-waveforms detected by STAR resulting from five different weights w ∈ W in
+(1) to sub-waveforms from the method by Hwang et al. (2006) for an arbitrarily chosen waveform measured
+off the coast of Croatia (Fig. 7). The waveform parts that have not been detected as part of a leading edge by
+the method presented by Hwang et al. (2006) are indicated by the white background. In contrast, individual
+sub-waveforms are depicted in alternating shades of grey. For this waveform, five potential leading edges
+have been identified by the method of Hwang et al. (2006), each of which can be utilized to derive potential
+sea surface heights. When comparing the partitioning of the total waveform for the different weights w ∈ W
+by STAR, lower weights lead to a significantly increased number of identified sub-waveforms. In some cases
+single sub-waveforms contain only one range gate since the binary term in (1) is weighted significantly lower
+than the unary term. With increased weight w, the similarity constraint is enforced and the sub-waveform
+size increases. For a weight w = 100, the identified sub-waveform corresponds to the entire waveform, which
+leads to including the standard case of retracking the complete waveform in our derived point clouds.
+In a next step, we compare the resulting point clouds of STAR (orange points, Fig. 8) to the point cloud
+derived using Hwang et al. (2006) algorithm (black points, Fig. 8) for one exemplary cycle during low tide
+conditions at the Bangladesh site. A small bias over the open ocean can be identified between both methods,
+which is related to the chosen threshold of 50% used for ITR. For the sandbank near 22.325 ◦ N both point
+clouds agree well. However, prior to reaching the sandbank the points derived from ITR drop rapidly by
+about 10 m to a level of approximately -64 m (outside the plot boundaries), while the point cloud based on
+STAR becomes less dense but still preserves enough meaningful SSHs of about -55.5 m up to the beginning
+of the sandbank. Between Sandwip Island and Bangladesh mainland, STAR is able to derive SSHs from the
+detected sub-waveforms, while ITR is more influenced by land returns disturbing the retrieved waveform,
+which results in no meaningful SSHs that can be detected during the low tide conditions in this case.
+5.3. Retracked SSHs
+For validation of the retracked SSHs, we compare STAR SSHs to retracked SSHs from various conventional and coastal methods. The top of Fig. 9 shows retracked SSHs derived for one arbitrarily selected
+cycle 165 at almost high tide at the Trieste study site. The bottom part of Fig. 9 shows the corresponding
+return waveforms at each measurement location.
+Over the open ocean between ∼45.46 ◦ N and 45.58 ◦ N, we find the waveforms corresponding well to the
+theoretical Brown model and the SSHs from all retracking algorithms agree well. However, ICE1 shows a
+small bias compared to the other retracking algorithms which is likely due to the 30%-threshold. At about
+5-7 km off the nearest coast in the northern and southern part of the study site, the SSHs based on the
+W3POM and SGDR indicate a rapid drop in sea level. This drop is related to the influence from peaks,
+resulting from land influence from the Croatian and Italian mainlands. The coastal methods STAR, ALES
+13
+
+Figure 7: Sub-waveform partitioning using our method for weights from the set W = {0.1, 0.5, 1, 2, 100} inserted into (1). The
+waveform is an arbitrarily selected coastal waveform from Jason-2 pass 196, cycle 69. Grey shaded background depicts the
+individual sub-waveforms while a white background indicates no sub-waveform in that part of the total waveform.
+
+and ITR are not influenced by the peaks as they consider only parts of the total waveform that do not
+include the peaks at these measurement positions.
+In the southern coastal area (45.37 ◦ N to 45.46 ◦ N), the SSHs from W3POM, again, generally agree with
+the SSHs from ICE1 and STAR with the latter showing less noisy along-track variations and providing SSHs
+right up to the coast of the Croatian mainland (Fig. 9). Between 2 to 4 km off the Croatian coast the SSHs
+based on ALES and ITR show significant outliers which are related to the peak, due to the land influence
+of the Croatian mainland, being located very close to the leading edge resulting in biased estimations.
+Additionally, smaller peaks preceding the leading edge can be detected (Fig. 9, bottom) which are identified
+as potential leading edges by the ITR algorithm and, thus, result in outliers due to our assumption to utilize
+the first identified leading edge in the ITR algorithm. Similar behavior can be observed from the ICE1
+algorithm, e.g. near ∼43.75 ◦ N, where the peaks preceding the leading edge lead to significant outliers.
+In the northern coastal area (45.64 ◦ N to 45.71 ◦ N), we find good agreement between the SSHs based
+on ALES, ITR and STAR, with a few significant outliers from ALES over the last two kilometers off the
+nearest coast. At about 3.5 km off the Isola di Sant’ Andrea, a drop in SSH can be detected from all three
+methods with ITR showing the strongest drop by several meters while the SSHs from STAR only drop less
+than 1 m (Fig. 9) due to relatively broad peaks located directly at the leading edge.
+Over the relatively shallow Laguna di Marano all methods, except for SGDR, provide a sea level similar
+to the open ocean level during high tide, despite of the waveforms consisting of strong specular peak shapes
+(Fig. 9, bottom).
+
+14
+
+Figure 8: Point cloud of SSHs resulting from STAR compared to ITR (Hwang et al., 2006).
+
+5.4. Repeatability of the Retracked SSHs
+The STAR method utilizes a randomized dictionary for sub-waveform decomposition; therefore it makes
+sense to investigate whether this leads to an uncertainty in the final SSHs. To answer this question we
+conduct a Monte Carlo study: we ran the STAR algorithm 1000 times, utilizing the arbitrarily selected
+cycle 69 of pass 196 of the Jason-2 mission. Resulting SSHs are shown in Fig. 10 (top) with additional
+zoom-in regions for two coastal areas, as well as for the open ocean. The bottom part of the figure displays
+the corresponding root mean square difference (RMS) ranging from about 0 to 1 m, where the open ocean
+area is also given in an additional sub-plot for a range of 0 to 5 cm.
+Over the open ocean area, the variability along the groundtrack is in the range of about 15-20 cm (Fig.
+10, top). Here, the repeatability of STAR is given by a RMS of less than 5 cm (Fig. 10, bottom).
+In the southern coastal area, the along-track variability is in the range of 60 cm revealing a slight increase
+in sea level towards the Croatian coast (Fig. 10, top). Due to the land influence on the shape of the waveform
+as is visible in the parabolas (Fig. 9, bottom), the retracking results are sensitive with respect to the size of
+the individual detected sub-waveforms. Nonetheless, we still find good repeatability in this region with RMS
+of less than 20 cm (Fig. 10, bottom), which is less compared to the along track variability and significantly
+less compared to the relatively large outliers produced by other retracking algorithms in this region (see Fig.
+9, top).
+Part of the variability in our current state of the algorithm is due to the Dijkstra algorithm, which
+is employed to find the best SSHs in our point cloud. Single points at a measurement location can have
+significant influence on the chosen path since we only allow edge connections between neighboring locations.
+For example at ∼45.375 ◦ N, we find a standard deviation of almost zero (Fig. 10, bottom) and in the top
+plot of Fig. 10 it is possible to identify a single point where the SSH-tracks of all runs intersect. Since all
+paths obtained by Dijkstra algorithm include this point, preceding and succeeding SSHs are influenced and
+tend to be close to the SSH at this point.
+In the northern coastal region, the general along-track variability is about in the same range of 20 cm as
+compared to the open ocean area. The repeatability in the shallow waters off the Isola di Sant’ Andrea is
+similar to the Croatian coast in the south with a RMS of less than 20 cm. However, we find some significant
+outliers in some runs which are related to a weak leading edge and strong peaks close to the leading edge
+(e.g., Fig. 9, bottom). Over the Laguna di Marano a large variability can be detected (Fig. 10) due to
+strong specular peak waveforms. Small changes in the detected sub-waveforms will have a significant impact
+15
+
+Figure 9: (top) Comparison of SSH derived by various retrackers along the Jason-2 pass 196 in the Gulf of Trieste for an
+arbitrarily chosen cycle (cycle 165). The distance to the nearest coastline (DTC) is provided in light gray. (bottom) Radargram
+of the corresponding waveforms of inside the study area. The waveform return power is given color coded and has been capped
+at a power of 300 for visual reasons.
+
+Table 1: Median values of the different quality measures for the study site in Trieste. See also top plots in Figs. 12, 13 and 14.
+Here, ρ represents the correlation, N the percentage of retained cycles and σ the RMS.
+
+Retracker
+SGDR
+W3POM
+ICE1
+ITR
+ALES
+STAR
+
+ρ [-]
+0.62
+0.53
+0.90
+0.86
+0.86
+0.90
+
+Open Ocean
+N [%] σ [m]
+85
+0.43
+85
+0.53
+99
+0.15
+99
+0.17
+97
+0.16
+99
+0.15
+
+Croatian Coast
+ρ [-] N [%] σ [m]
+0.54
+59
+0.53
+0.46
+42
+0.74
+0.34
+36
+0.83
+0.17
+3
+1.62
+0.73
+81
+0.28
+
+Italian Coast
+ρ [-] N [%] σ [m]
+0.27
+8
+1.35
+0.27
+7
+1.58
+0.63
+74
+0.44
+0.69
+88
+0.32
+0.26
+60
+0.50
+0.80
+98
+0.22
+
+on the derived SSHs.
+5.5. Comparison to Tide Gauge Data
+In this experiment we compare the SSH estimated using various retracking methods with tide gauge
+data for Trieste, Italy and Chittagong, Bangladesh. For comparison we utilize cycles 1 to 230 of Jason-2
+data acquired over the described study sites (see Sec. 2.1), since for this period hourly tide gauge data as
+well as data obtained by ALES is available. The tide gauge data between July 2009 and December 2014
+are interpolated to the times of crossing for each cycle. As the tide gauge data is not corrected for tidal or
+atmospheric pressure effects, we also do not apply these corrections to the altimetry data by employing (8).
+We then remove outliers from the altimetric SSHs (deviation > 3 m from mean SSH) and evaluate correlation
+and difference RMS with respect to tide gauge data. Due to the large number of available Jason-2 cycles,
+we set the minimum number of cycles that are required to derive reliable correlations and RMS to 50.
+The percentage of all cycles which meet the criteria above is shown in Fig. 11. The median results of
+the following sections are summarized in Tables 1 and 2.
+16
+
+Figure 10: Repeatability of STAR. (top) SSHs obtained from 1000 runs on cycle 69, pass 196 at our Trieste study site. Additionally, we show zoomed in sub-plots for coastal and open ocean regions. Colors are chosen randomly. (bottom) Corresponding
+root mean square difference (RMS) derived from 1000 runs where open ocean region is also provided in a zoomed in sub-plot.
+
+Table 2: Median values of the different quality measures for the study site at the coast of Bangladesh. See also bottom plots
+in Figs. 12, 13 and 14. Here, ρ represents the correlation, N the percentage of retained cycles and σ the RMS.
+
+Retracker
+SGDR
+W3POM
+ICE1
+ITR
+ALES
+STAR
+
+ρ [-]
+0.94
+0.92
+0.95
+0.97
+0.95
+0.97
+
+Open Ocean
+N [%] σ [m]
+93
+0.40
+96
+0.56
+99
+0.43
+99
+0.37
+98
+0.38
+99
+0.33
+
+ρ [-]
+0.64
+0.31
+0.50
+0.63
+0.14
+0.88
+
+Sandbank
+N [%] σ [m]
+15
+1.06
+24
+1.82
+55
+1.43
+72
+1.15
+47
+1.38
+78
+0.64
+
+ρ [-]
+0.29
+0.22
+0.40
+0.46
+0.88
+
+Channel
+N [%]
+28
+29
+34
+27
+68
+
+σ [m]
+1.33
+1.34
+1.33
+1.36
+0.72
+
+5.5.1. Overall Correlation
+We investigate the overall correlation ρ with tide gauge data at each 20 Hz along-track position, using
+all available cycles (Fig. 11). The results for the Jason-2 mission are shown in Fig. 12 for the study site at
+the Gulf of Trieste (top) and the coast of Bangladesh (bottom).
+Over the open ocean area at the Trieste study site (Fig. 12, top), SSHs obtained by ICE1, ITR, ALES
+and STAR show correlations of more than 0.8 with the tide gauge time series. For W3POM and SGDR
+we find correlations between 0.3 and 0.7. Over the open ocean, southward of 22.2 ◦ N, in the Bangladesh
+study area (Fig. 12, bottom), the SSHs derived from the considered retracking methods agree well to each
+other. In the South, the coastal shelf transitions towards the deep ocean and the correlation begins to drop
+to about ρ = 0.6 at the border of the study site. Over the deep ocean, the correlation with tide gauge data
+from the Chittagong station drops rapidly, as already seen by Kusche et al. (2016). Over the central coastal
+shelf up to about 15 km off the coast, we find correlations of up to 100% between retracked SSHs and tide
+gauge data. In the immediate coastal areas of the Trieste and Bangladesh study sites, the MLE4 algorithm
+used to derive the standard ranges in the SGDR data did not converge and consequently no SGDR SSHs
+are available in these regions.
+Towards the Croatian coast, we find ρICE1 and ρITR to decline to a level of 0.3 to 0.5 (Fig. 12, top) which
+agrees to ρW3POM in this region, while ρALES shows a rapid decline to a level of 0 to 0.2 at about 3 km off
+the coast. ρSTAR also declines towards the coast to a level of 0.5 to 0.7.
+At the Italian coast, we again find a decline in overall correlation of the retracked SSHs with the tide
+gauge time series (Fig. 12, top). About 4 to 5 km off the Isola di Sant’ Andrea, ρICE1 and ρALES rapidly
+17
+
+Figure 11: Percentage of the total number of available Jason-2 cycles (227) after applying outlier detection and minimum
+number of cycles requirement. (top) Study site at the Gulf of Trieste. (bottom) Study site at the coast of Bangladesh. The
+distance to the nearest coastline (DTC) is provided in light gray.
+
+decline to a level of 0 to 0.2. While ρALES remains at this level, ρICE1 increases again to a level of 0.8 right
+at the coast, which agrees well to ρW3POM , ρITR and ρSTAR . Over the Laguna di Marano, we generally find
+a lower correlation level of 0 to 0.3 or even negative correlation in the southern part of the Laguna for all
+retracked SSHs.
+Starting about 15 km off the coast of Sandwip Island at the Bangladesh study site, the overall correlations
+for all retrackers decline (Fig. 12, bottom). Over the sandbank area, ρICE1 drops to a level of 0.3 to 0.4,
+ρITR shows a more moderate drop to a level of 0.5 to 0.7 and ρSTAR indicates only a small drop to 0.8, which
+is achieved due to automatically removing low tide conditions where the sandbank height does not fit to the
+conditions imposed by the RANSAC algorithm before applying Dijkstra’s algorithm (see Sec. 4.3). Over the
+strip of about 13 km of open water which is part of the estuary of the Ganges-Brahmaputra-Meghna Delta,
+we find ρW3POM and ρICE1 at nearly zero, while for ALES, ITR and STAR, ρALES ≈ 0.7, ρITR ≈ 0.8 to 0.9
+and ρSTAR ≈ 0.9 are found in the central part of this region. Lower correlations of W3POM and ICE1 while
+showing similar number of retained cycles and RMS (Table 2) are related to the fact that both methods
+utilize the total waveform which mainly consists of a strong peak only. For W3POM this will often lead to
+divergence of the estimation. The heights from the ICE1 algorithm will be influenced by the signal shape
+of the waveform. This leads to varying parts of the waveform being used to derive the amplitudes and
+consequently to inconsistencies when deriving the range correction.
+5.5.2. Number of Retained cycles
+We compare the number of cycles of SSH derived from each retracker which can be utilized at each
+measurement location by iteratively eliminating the largest difference to the tide gauge time series from the
+time series above until a correlation of at least 0.9 is achieved. This enables a more direct comparison of the
+individual retracking methods. For evaluation, the number of retained cycles N is plotted for each 20 Hz
+along-track position in both of our study areas (Fig. 13).
+Over the open ocean regions of our study sites in the Gulf of Trieste and off the coast of Bangladesh,
+18
+
+Figure 12: Correlation ρ of SSHs derived from several retracking algorithms, including our STAR method, with hourly tide
+gauge data. (top) Study site at the Gulf of Trieste. (bottom) Study site at the coast of Bangladesh. The distance to the
+nearest coastline (DTC) is provided in light gray.
+
+we find good agreement between NICE1 , NALES , NITR and NSTAR with 95 − 100% of retained cycles. For
+NW3POM and NSGDR we find a slightly lower level of about 90% of retainable cycles resulting from divergence
+of the parameter estimation. In addition, it is obvious that the time series of altimetry derived SSHs over
+the deep ocean parts of the Bay of Bengal does not agree well with time series obtained on the coastal shelf.
+In the Croatian coastal area, all retracking methods experience a small downward peak near 45.425 ◦ N.
+About 4 km off the coast, we find a rapid drop in NALES and NITR to a level of 0 − 10% retained cycles,
+with NITR rising back to about 65% of retained cycles 1 km off the coast. For NICE1 we also detect a drop
+to about 30%, followed by a rise to 80% at about 1 km off the coast. About 60 − 80% of the SSHs can be
+retained from applying the W3POM model in this coastal area. NSTAR declines from nearly 100% over the
+open ocean to 80% at about 1 km off the coast.
+At the Italian coast, we find nearly 100% of retainable cycles up to approximately 3-4 km off the coast
+for ICE1, ITR, ALES and STAR. For NICE1 , NITR , NALES and NSTAR a steep drop to less than 20% of
+retained cycles can be detected near 45.675 ◦ N resulting from land influences from the small islands that
+separate the Laguna di Marano from the Gulf of Trieste (see also Sec. 5.3). The median percentage of
+retainable cycles for SGDR and W3POM in this coastal area (Table 1) is quite low, indicating difficulties
+to reach convergence when the total waveform is used. The sub-waveform retrackers provide a larger number
+of retainable cycles as they are less affected by the land influences. Over the central part of the Laguna
+di Marano, generally we find a level of 10 − 20% of retained cycles for all retrackers, except STAR, which
+provides NSTAR ≈ 40%.
+At the Bangladesh study site, NW3POM and NSGDR start to decline near 22.15 ◦ N towards the coast of
+Sandwip Island and reach a minimum level of 0 − 15% at about 15 km off the coast. In addition, a decrease
+of NICE1 , NALES , NITR and NSTAR can be detected. The STAR algorithm is able to retain at least 85% of
+SSHs of the available cycles in this region. In the northern Bay of Bengal, the tidal amplitude can reach
+several meters which leads to significantly different land influences on the shape of the waveform between
+low and high tide. Consequently, this starts to affect the retrieved SSHs at about 15 km off the coast with
+NALES , NITR and NSTAR starting to decrease towards the coast. For NALES we find a strong drop to 10%
+19
+
+Figure 13: Percentage of cycles retained to achieve a correlation of at least 0.9 with hourly tide gauge data from a total number
+of 227 available cycles. (top) Study site at the Gulf of Trieste. (bottom) Study site at the coast of Bangladesh. The distance
+to the nearest coastline (DTC) is provided in light gray.
+
+in front of the Sandbank region mentioned before followed by an increase to a level of NALES ≈ 50% at
+the coast. NITR and NSTAR drop to a level of 70 − 80% over the sandbank area. Here, ITR and STAR
+perform similar, while the overall correlations suggest a lower correlation for ITR in this region compared
+to STAR, due to already removed SSHs from low tide cycles by the RANSAC algorithm as part of STAR.
+Over the strip of open water between Sandwip Island and the mainland of Bangladesh, NALES , NITR and
+NSTAR indicate that all three algorithms are able to retain about 85 − 95% of the available cycles in the
+central parts of this open water strip, while STAR is able to provide a larger number of cycles towards the
+coastlines.
+5.5.3. Root Mean Square Difference
+The RMS between SSHs derived from the individual retracking methods and tide gauge data computed
+at each 20 Hz along-track position provides an additional quality measure (Fig. 14). We apply the same
+criteria for computation as introduced in Sec. 5.4.
+Over the open ocean, we generally find results similar to the analysis of the overall correlation with
+σICE1 , σITR , σALES and σSTAR agreeing well at a level of 0.15-0.2 m at the Trieste site and 0.2-1.0 m at the
+Bangladesh site and σW3POM and σSGDR being slightly larger compared to the other methods.
+Close to the Croatian coast, we find σICE1 , σITR and σALES to increase significantly with σALES reaching
+more than 1.5 m. The large RMS derived for ALES is probably related to the small peaks in front of the
+leading edge. Since ALES sub-waveforms are selected from the first range gate up to the end of the leading
+edge, small peaks in front of the leading edge will lead to difficulties during the parameter estimation. For
+STAR we find a smaller increase in RMS relative to the open ocean area to σSTAR ≈ 0.4 m. In the northern
+part of the Trieste site, ICE1, ITR, ALES and STAR keep their level of RMS from the open ocean area
+up to a distance of 4-5 km to the nearest coast.
+In the northern part of the Bay of Bengal (Fig. 14, bottom), the SSHs from all retracking methods
+become more noisy northward of about 22.0 ◦ N, with a minimum RMS level of about 0.25 m. Over the
+20
+
+Figure 14: Root mean square difference (RMS) derived for all along-track locations after applying the selection criteria mentioned above for all available cycles (Fig. 11) for both study sites. (top) Study site at the Gulf of Trieste. (bottom) Study site
+at the coast of Bangladesh. The distance to the nearest coastline (DTC) is provided in light gray.
+
+sandbank region, the RMS obtained from SGDR, W3POM, ICE1 and ALES show a rapid increase to at
+least 1 m, while the RMS based on STAR exhibits a relatively smaller increase to a level of about 70 cm up
+to the coast of Sandwip Island. The same level is found for σSTAR in the small strip of open water between
+Sandwip Island and the mainland of Bangladesh with σALES and σITR at a similar level in the center of this
+region.
+5.6. Significant Wave Height and Sigma-Nought
+Besides range corrections, the use of the 3-parameter retracking model also allows to retrieve SWH and
+sigma-nought σ 0 . The SWHs and sigma-nought are selected based on the heights chosen by the shortestpath algorithm. Theoretically it would be possible to run the Dijkstra algorithm independently on the
+point-clouds of SWH and sigma-nought. However, we think that the values should be consistent with the
+selected heights.
+No independently measured time series of wave height or wind speed is available for our two study sites.
+Therefore, we compare temporal median, RMS and the number of retained cycles of good SWH and wind
+speed which were obtained by individual retracking algorithms. We further compare the obtained results to
+ERA-Interim model data. We will focus on the Bangladesh study site since no model data is available from
+the Gulf of Trieste area.
+5.6.1. Significant Wave Height
+Fig. 15 shows the median SWH and RMS over all 239 cycles for the Bangladesh study site. Wave heights
+from SGDR and ALES agree well with the model data over the open ocean while STAR and W3POM
+are biased. At the same time, the median wave height values of all retrackers decline towards the coast,
+reaching a minimum over the sandbank area. On the contrary, the model data does not show this decline.
+Over open ocean, the RMS values from all retrackers agree well with ALES and STAR providing the lowest
+21
+
+Figure 15: SWH compared to ERA-Interim model data. Top: median over all cycles, Bottom: RMS over all cycles.
+
+RMS at a level of about 60 cm while the model data suggests a level of about 48 cm. At about 10 km off the
+coast the RMS values from all retrackers increase due to the sandbank’s influence during low tide cycles.
+The low agreement between the retracked SWH and the model data, especially closer to the coast, can
+be explained by the estimation of the retracking parameters. All utilized retrackers constrain the SWH
+parameter to positive values since wave heights below zero are not physically meaningful. This sometimes
+leads to forcing the wave height to be zero during the estimation for individual waveforms since the leading
+edge, necessary for SWH parameter estimation, is only represented by a limited amount of range gates
+during calm sea state conditions. For ALES method the problem appears less severe since it is a two stage
+procedure in which SWH is estimated and averaged along-track during the first stage and kept fixed during
+the second stage. For sub-waveform retrackers such as STAR the problem will occur more often in case
+the selected sub-waveform which contains the leading edge is relatively small. In case the zero wave heights
+are not utilized to derive the median and RMS value, SGDR, ALES and STAR agree well with the model
+data (Fig. 16, Table 3). Over the sandbank area and the channel between Sandwip Island and the main
+land, SGDR and W3POM quality decreases due to the low number of available cycles (Fig. 13, bottom).
+Zero wave heights occur for about 10-15 % of the cycles during calm sea state conditions at the Bangladesh
+study site, especially in coastal areas. Similar observations are made for the Trieste study site. In future,
+STAR may be extended to a two-step procedure similar to ALES in order to counter these effects. We also
+applied our method to reduced SAR (RDSAR) waveforms, which are conventional altimetry like waveforms
+that are derived from the SAR signal during post-processing. The RDSAR data from Cryosat-2 data showed
+that the problem does not occur when zero-padding is applied during the derivation of the reduced SAR
+waveforms due to doubling the number of range gates available which allows better estimation of SWH (not
+shown here).
+5.6.2. Wind Speed
+Wind speed has been derived from the estimated amplitudes utilizing the 2-parameter model by Gourrion
+et al. (2002) as described in AVISO (2015). The model input consists of the retracked sigma-nought and
+SWH. Here, we utilized only non-zero SWH in order to keep the wind speed estimate unbiased from problems
+in SWH estimation. Similar to SWH, we display the median and RMS for each retracker and from the ERAInterim model data at each measurement position.
+Over the open ocean, median wind speed and RMS from SGDR, W3POM, ICE1, ITR and STAR
+agree well with the wind speed derived from ERA-Interim model data (Fig. 17, Table 4). However, SGDR
+22
+
+Figure 16: SWH compared to ERA-Interim model data. Top: median over all cycles, Bottom: RMS over all cycles. All
+zero-SWH removed.
+
+Table 3: Median values of SWH median and RMS over different regions along the track at the Bangladesh study site. All
+zero-SWH removed. M denotes the median and σ the RMS.
+
+Retracker
+SGDR
+W3POM
+ALES
+STAR
+ERA-I
+
+Open Ocean
+M [m] σ [m]
+0.94
+0.69
+1.06
+0.80
+0.78
+0.57
+0.89
+0.59
+0.84
+0.45
+
+Sandbank
+M [m] σ [m]
+0.59
+0.80
+1.13
+1.20
+0.66
+0.86
+0.62
+0.68
+0.63
+0.38
+
+Channel
+M [m] σ [m]
+0.67
+0.82
+0.65
+0.71
+-
+
+and ICE1 are slightly biased above the model data, while W3POM, ITR and STAR are slightly biased
+below the model data. ALES shows a stronger bias with respect to the model data. From about 22.15◦ N
+towards the coast the waveforms start to get influenced by land returns leading to peaks moving along the
+trailing edge towards the leading edge. Retrackers that utilize the full waveform, such as SGDR, W3POM
+and ICE1, return amplitude estimates which are biased by the peak influence and thus do no longer provide
+reliable wind speed. Sub-waveform method, such as ITR, ALES and STAR also show a slight decline in
+wind speed, and over the sandbank area where one finds mostly specular peak waveforms, the derived wind
+speed, especially during low tide, is no longer meaningful. In the center of the channel between Sandwip
+Island and the Bangladesh main land only ALES and STAR are able to provide meaningful wind speed.
+The reason for the bias in wind speed between SGDR and W3POM and STAR is due to the chosen
+estimation model. For the SGDR data a MLE4 estimation method is employed utilizing a 4 parameter
+model (Amarouche et al., 2004). The fourth parameter is the off-nadir angle that can be derived from the
+slope of the trailing edge and which is assumed to be zero for the 3-parameter models. The off-nadir angle
+influences the estimation of the amplitude (Amarouche et al., 2004, Eq. 8) which will lead to a general bias
+in amplitude in case the off-nadir angle is different from zero. Here, the derived off-nadir angle is slightly
+positive which leads to a smaller amplitude and consequently higher estimated wind speed. Even small
+changes in sigma-nought have significant influence on the derived wind speed. However, for sub-waveform
+methods, such as STAR, it is not feasible to try and estimate the off-nadir angle since the sub-waveforms
+do not include enough range gates from the trailing edge for a reliable estimation.
+
+23
+
+Figure 17: Wind Speed compared to ERA-Interim model data. Top: median over all cycles, Bottom: RMS over all cycles.
+
+Table 4: Median values of wind speed median and RMS over different regions along the track at the Bangladesh study site. M
+denotes the median and σ the RMS.
+
+Retracker
+SGDR
+W3POM
+ICE1
+ITR
+ALES
+STAR
+ERA-I
+
+Open Ocean
+M [m/s] σ [m/s]
+4.57
+2.30
+3.85
+1.89
+4.85
+2.33
+4.06
+2.02
+3.35
+1.72
+3.86
+1.91
+4.60
+2.12
+
+Sandbank
+M [m/s] σ [m/s]
+2.31
+1.86
+0.49
+1.63
+0.23
+1.90
+1.76
+1.98
+2.42
+1.68
+2.43
+1.77
+3.58
+1.73
+
+Channel
+M [m/s] σ [m/s]
+0.10
+0.50
+-0.15
+0.38
+0.01
+1.61
+1.02
+1.68
+2.31
+1.70
+2.94
+1.37
+
+5.7. Application to Jason-1 and Envisat Data
+We investigate the application of STAR to altimetry data from the Jason-1 interleaved period to the
+Trieste site (Fig. 2(a)) and to Envisat data for the Banlgadesh site (Fig. 2(b)). However for Jason-1
+interleaved, there is no ALES-data available for comparison. Here, we focus on the number of cycles
+retained to reach a correlation of > 0.9 (Fig. 18 and 19, top), as well as the RMS at each along-track
+position (Fig. 18 and 19, bottom). For Jason-1, we found 95 cycles that overlapped with the available time
+period for the tide gauge data at the Trieste station, while we found only 32 cycles of Envisat data that
+overlapped with the tide gauge period available for the Chittagong station.
+Utilizing data from the Jason-1 mission over the open ocean at the Trieste study site, ICE1, ITR
+and STAR show more retained cycles, as well as a significantly smaller RMS compared to SGDR- and
+W3POM-based SSHs. In the coastal area over about the last 5 km in front of the Croatian coast, STAR
+derived SSHs fit well to the tide gauge data (Fig. 18). After crossing parts of the Croatian mainland, the
+track transitions back to the ocean and we find ICE1, ITR and STAR retaining significantly more cycles
+compared to SGDR- and W3POM. The general level of retained cycles is lower due to signal losses that
+happened between the coasts of Croatia and Italy during nine of the Jason-1 interleaved cycles. At the
+Italian coast, all ITR, ICE1 and STAR are able to maintain a high quality of SSHs in the coastal area with
+which decreases only slightly over the last 1-2 km off the coast.
+Additionally, we have utilized Envisat track 416 for our experiments, which crosses our Trieste study
+site from the north-east to the south-west. However, the overlapping period with the available tide gauge
+24
+
+Figure 18: (top) Percentage of cycles retained to achieve a correlation of at least 0.9 with the hourly tide gauge data from a
+total number of 95 available cycles of the Jason-1 interleaved mission. (bottom) Root mean square difference (RMS) derived
+for all along-track locations. The distance to the nearest coastline (DTC) is provided in light gray.
+
+data was less than one year and deriving any correlations or RMS from this short period containing only 10
+cycles of the 35-day Envisat repeat orbit would not be meaningful. Nonetheless, SSHs derived from these
+10 cycles of Envisat data compared well to the available tide gauge data (not shown here).
+For the study site at the coast of Bangladesh, we found an overlap period of more than 3 years between
+32 cycles (2007 - 2010) of Envisat data and the Chittagong tide gauge which allows to derive meaningful
+correlations and RMS differences. Over the open ocean area, the number of retained cycles and the RMS
+agree well between all the considered retracking methods with W3POM bases SSHs being slightly more
+noisy (Fig. 19). About 15 km before the Envisat track reaches Sandwip Island, the differences between the
+individual retracking methods become evident. Ratios of retained cycles for W3POM and SGDR show a
+rapid drop to less than 25% over the sandbank area and a gradual increase towards the coast of Sandwip
+Island to a level of 35% and 60%, respectively. This behavior is combined with a strong increase in RMS
+differences which increase to more than 1 m. Similar behavior can be observed for ICE1 and ITR, which
+both show a smaller drop in the number of retained cycles over the last 15 km towards the coast to a level
+of about 75%, but their corresponding RMS increases significantly to values greater than 1 m. For ALES
+there is no data available over the last 15 km in front of Sandwip Island. STAR shows the smallest drop in
+number of retained cycles and recovers back to a level of more than 90% close to Sandwip Island. Over the
+small strip of open water between Sandwip Island and the mainland of Bangladesh, the coastal retrackers
+ITR, ALES and STAR retain about 90% of the available cycles providing SSHs that fit well to the tide
+gauge data. SGDR, W3POM and ICE1 are not able to provide more than 0 − 25% of retained cycles and
+exhibit significantly higher RMSs in this region.
+
+6. Conclusion
+A novel method for analyzing altimetric waveforms and deriving sea surface heights, SWH and sigmanought has been suggested. The proposed technique partitions the total waveform into individual sub25
+
+Figure 19: (top) Percentage of cycles retained to achieve a correlation of at least 0.9 with the hourly tide gauge data from
+a total number of 32 available cycles of the Envisat mission. (bottom) Root mean square differences (RMS) derived for all
+along-track locations. The distance to the nearest coastline (DTC) is provided in light gray.
+
+waveforms which can be analyzed in combination with existing retracking models. The sea surface heights
+provided by STAR were found to be of at least the same quality or better compared to existing conventional
+and coastal retracking methods over the open ocean, as well as in coastal regions. In addition, correlations
+with tide gauge data revealed generally more usable cycles close to the coast in combination with lower root
+mean square differences compared to existing methods. Of course, depending on the retracking model that
+is combined with the derived sub-waveforms, it is possible to derive significant wave height and backscatter
+in the same way.
+Comparison of the derived sub-waveforms with the Hwang et al. (2006) method reveal good correspondence between identified parts of the waveform. We found the influence of the random component of STAR
+on the SSH results to be at a level of less than 5 cm over the open ocean and at about 20 cm in coastal regions.
+This is in range with modifications that can be applied to conventional retracking algorithms including biases
+between different retracking methods, different weighting schemes or varying estimators; these effects are
+considered to be in the order of a few centimeters. Sea surface heights derived from the STAR algorithm have
+been extensively validated for Jason-2 data and compared to five independent available retracking methods,
+as well as hourly in-situ tide gauge measurements. At the study sites in the Gulf of Trieste, Italy and off the
+coast of Bangladesh, we found varying surface conditions including (deep) open ocean and shallow coastal
+waters, temporally submerged sandbanks and transition zones between river estuaries and the ocean. Consequently, deriving five partitionings of the total waveform enabled the STAR algorithm to handle a larger
+variety of waveform shapes compared to existing coastal retracking algorithms. Examination of estimated
+SWH and wind speed revealed good agreement to other retracking algorithms as well as model data from
+ERA-Interim. Furthermore, we applied STAR to altimetry data from the Jason-1 interleaved period, as well
+as Envisat , which also resulted in significant improvements in the quality of coastal sea surface heights.
+We are confident that the STAR method will enable a wide range of further studies, including a more
+comprehensive validation of significant wave height and sigma-nought. In this context, we will also consider
+an improved selection of final retacking results by considering SWH, sigma-nought etc. instead of only utilizing the SSHs. In addition, the algorithm can be improved further by tuning the a-priori hyperparameters
+26
+
+that control, e.g., the resolution of the sub-waveform, as well as extending the Dijkstra algorithm to reduce
+the impact of potentially non-optimal sea surface heights of neighboring measurement locations. The derived
+sub-waveforms will be combined with different available waveform models in order to adapt and extend the
+concept to other regions, such as rivers and lakes. One might also consider a slightly different approach by
+using the partitioning into sub-waveform to derive weighting schemes for retracking of the whole waveform.
+
+Acknowledgements
+We acknowledge funding through the BanD-AID (KU 1207/19-1) project. We also thank the associate
+editor and three anonymous reviewers for their constructive comments which helped us to significantly
+improve the manuscript.
+
+References
+Amarouche, L., Thibaut, P., ZaZanife, O. Z., Dumont, J.-P., Vincent, P., & Steunou, N. (2004). Improving the Jason-1 Ground
+Retracking to Better Account for Attitude Effects. Marine Geodesy, 27 , 171–197. doi:10.1080/01490410490465210.
+AVISO (2015). OSTM / Jason-2 Products Handbook . CNES / NASA http://www.aviso.altimetry.fr. SALP-MU-M-OP15815-CN, Issue 1.9.
+Bioucas-Dias, J. M., Plaza, A., Dobigeon, N., Parente, M., Du, Q., Gader, P., & Chanussot, J. (2012). Hyperspectral unmixing
+overview: Geometrical, statistical, and sparse regression-based approaches. IEEE Journal of Selected Topics in Applied
+Earth Observations and Remote Sensing, 5 , 354–379.
+Birkett, C. M., & Beckley, B. (2010). Investigating the performance of the Jason-2/OSTM radar altimeter over lakes and
+reservoirs. Marine Geodesy, 33 , 204–238.
+Brown, G. S. (1977). The average impulse response of a rough surface and its applications. IEEE Trans. Antennas Propagat.,
+25 , 67–74.
+Chelton, D. B., Ries, J. C., Haines, B. J., Fu, L.-L., & Callahan, P. S. (2001). Satellite altimetry. In L.-L. Fu, & A. Cazenave
+(Eds.), Satellite Altimetry and Earth Sciences: A Handbook of Techniques and Applications chapter 1. (pp. 1–132). Academic
+Press.
+Chelton, D. B., Walsh, E. J., & MacArthur, J. L. (1989). Pulse compression and sea level tracking in satellite altimetry. J.
+Atmos. Oceanic Technol., 6 , 407–438.
+Dee, D. P., Uppala, S. M., Simmons, A. J., Berrisford, P., Poli, P., Kobayashi, S., Andrae, U., Balmaseda, M. A., Balsamo, G.,
+Bauer, P., Bechtold, P., Beljaars, A. C. M., van de Berg, L., Bidlot, J., Bormann, N., Delsol, C., Dragani, R., Fuentes, M.,
+Geer, A. J., Haimberger, L., Healy, S. B., Hersbach, H., Hólm, E. V., Isaksen, L., Kållberg, P., Köhler, M., Matricardi, M.,
+McNally, A. P., Monge-Sanz, B. M., Morcrette, J.-J., Park, B.-K., Peubey, C., de Rosnay, P., Tavolato, C., Thépaut, J.-N.,
+& Vitart, F. (2011). The era-interim reanalysis: configuration and performance of the data assimilation system. Quarterly
+Journal of the Royal Meteorological Society, 137 , 553–597. doi:http://dx.doi.org/10.1002/qj.828.
+Deng, X. (2003). Improvement of Geodetic Parameter Estimation in Coastal Regions from Satellite Radar Altimetry. Ph.D.
+thesis Curtin University of Technology.
+Dijkstra, E. W. (1959). A note on two problems in connexion with graphs. Numerische Mathematik , 1 , 269–271.
+ESA (2007). Envisat RA2/MWR Product Handbook . European Space Agency (ESA) https://earth.esa.int/handbooks/
+ra2-mwr/. URL: https://earth.esa.int/handbooks/ra2-mwr issue 2.2.
+Fenoglio-Marc, L., Dinardo, S., Scharroo, R., A., R., M., D. S., B., L., Becker, M., Benveniste, J., & Weiss, R. (2015). The
+German Bight: A Validation of CryoSat-2 altimeter data in SAR mode. Advances in Space Research, 55 , 2641 – 2656.
+doi:10.1016/j.asr.2015.02.014.
+
+27
+
+Fischler, M. A., & Bolles, R. C. (1981). Random sample consensus: a paradigm for model fitting with applications to image
+analysis and automated cartography. Communications of the ACM , 24 , 381–395.
+Fu, L.-L., & Cazenave, A. (Eds.) (2001). Satellite Altimetry and Earth Sciences: A Handbook of Techniques and Applications.
+Academic Press.
+Gommenginger, C., Thibaut, P., Fengolio-Marc, L., Quartly, G. D., Deng, X., Gómez-Enri, J., Challenor, P., & Gao, Y. (2011).
+Retracking altimeter waveforms near the coasts: A review of retracking methods and some applications to coastal waveforms.
+In S. Vignudelli, A. G. Kostianoy, P. Cipollini, & J. Benveniste (Eds.), Coastal Altimetry. Springer-Verlag Berlin Heidelberg.
+Gourrion, J., Vandermark, D., Bailey, S., Chapron, B., Gommenginger, G. P., Challenor, P. G., & Srokosz, M. A. (2002). A
+two-parameter wind speed algorithm for Ku-Band altimeters. J. Atmos. Oceanic Technol., 19 , 2030–2048.
+Halimi, A., Mailhes, C., Tourneret, J.-Y., & Snoussi, H. (2016). Bayesian estimation of smooth altimetric parameters: Application to conventional and delay/doppler altimetry. IEEE Transactions on Geoscience and Remote Sensing, 54 , 2207–2219.
+Halimi, A., Mailhes, C., Tourneret, J.-Y., Thibaut, P., & Boy, F. (2013). Parameter estimation for peaky altimetric waveforms.
+IEEE Trans. Geosci. Remote Sensing, 51 , 1568–1577.
+Hayne, G. S. (1980). Radar altimeter mean return waveforms from near-normal-incidence ocean surface scattering. IEEE
+Trans. Antennas Propagat., 28 , 687–692.
+Hwang, C., Guo, J., Deng, X., Hsu, H.-Y., & Liu, Y. (2006). Coastal gravity anomalies from retracked geosat/gm altimetry:
+improvement, limitation and the role of airborne gravity data. Journal of Geodesy, 80 , 204–216.
+Hwang, C., Kao, E., & Parsons, B. (1998). Global derivation of marine gravity anomalies from SEASAT, GEOSAT, ERS-1
+and Topex/Poseidon altimeter data. International Geophysical Journal, 134 , 449–459.
+Kusche, J., Uebbing, B., Rietbroek, R., Shum, C. K., & Khan, Z. H. (2016). Sea level budget in the bay of bengal (20022014)
+from grace and altimetry. Journal of Geophysical Research: Oceans, 122 . doi:10.1002/2015JC011471.
+Lafferty, J. D., McCallum, A., & Pereira, F. C. N. (2001). Conditional random fields: Probabilistic models for segmenting and
+labeling sequence data. In Proc. International Conference on Machine Learning (pp. 282–289). URL: http://dl.acm.org/
+citation.cfm?id=645530.655813.
+Lee, H., Shum, C., Emery, W., Calmant, S., Deng, X., Kuo, C.-Y., Roesler, C., & Yi, Y. (2010). Validation of jason-2 altimeter
+data by waveform retracking over california coastal ocean. Marine Geodesy, 33 , 304–316.
+Martin, T. V., Zwally, H. J., Brenner, A. C., & Bindschadler, R. A. (1983). Analysis and retracking of continental ice sheet
+radar altimeter waveforms. Journal of Geophysical Research: Oceans (1978–2012), 88 , 1608–1616.
+Maus, S., Green, C. M., & Fairhead, J. D. (1998). Improved ocean-geoid resolution from retracked ERS-1 satellite altimeter
+waveforms. Geophysical Journal International, 134 , 243–253.
+Olshausen, B. A., & Field, D. J. (1997). Sparse coding with an overcomplete basis set: A strategy employed by v1? Vision
+Research, 37 , 3311 – 3325. URL: http://www.sciencedirect.com/science/article/pii/S0042698997001697. doi:http://
+dx.doi.org/10.1016/S0042-6989(97)00169-7.
+Passaro, M., Cipollini, P., Vignudelli, S., Quartly, G. D., & Snaith, H. M. (2014). ALES: A multi-mission adaptive subwaveform
+retracker for coastal and open ocean altimetry. Remote Sensing of Environment, 145 , 173–189.
+Quartly, G. D., Srokosz, M. A., & McMillan, A. C. (2001). Analyzing altimeter artifacts: Statistical properties of ocean
+waveforms. Journal of Atmospheric and Oceanic Technology, 18 , 2074–2091.
+Rosmorduc, V., Benveniste, J., Bronner, E., Dinardo, S., Lauret, O., Maheu, C., Milagro, M., & Picot, N. (2011). Radar
+altimetry tutorial. http://www.altimetry.info/. URL: http://www.altimetry.info/ benveniste, J. (ESA) and Picot, N.
+(CNES) Ed.
+Sandwell, D. T., & Smith, W. H. F. (1997). Marine gravity anomaly from Geosat and ERS-1 satellite altimetry. Journal of
+Geophysical Research, 102 , 10,039–10,054.
+Sandwell, D. T., & Smith, W. H. F. (2005). Retracking ERS-1 altimeter waveforms for optimal gravity field recovery. Geo-
+
+28
+
+physical Journal International, 163 , 79–89. doi:10.1111/j.1365-246X.2005.02724.x.
+Savcenko, R., & Bosch, W. (2008). EOT08a empirical ocean tide model from multi-mission satellite altimetry. DGFI Report
+No. 81.
+Tropp, J. A., Gilbert, A. C., & Strauss, M. J. (2006). Algorithms for simultaneous sparse approximation. part i: Greedy
+pursuit. Signal Processing, 86 , 572–588.
+Uebbing, B., Kusche, J., & Forootan, E. (2015). Waveform retracking for improving level estimations from topex/poseidon,
+jason-1, and jason-2 altimetry observations over african lakes. IEEE Transactions on Geoscience and Remote Sensing, 53 ,
+2211–2224.
+Wang, Y. (2004). Ocean Tide Modeling in Southern Ocean. Technical Report 471 Department of Civil and Environmental
+Engineering and Geodetic Science, The Ohio State University, USA Columbus, Ohio 43210.
+Wright, J., Ma, Y., Mairal, J., Sapiro, G., Huang, T. S., & Yan, S. (2010). Sparse representation for computer vision and
+pattern recognition. Proceedings of the IEEE , 98 , 1031–1044.
+
+29
+
+

@@ -1,0 +1,9671 @@
+Title: arXiv paper 1041
+
+Categories: 10
+
+Abstract:
+Submitted to the Annals of Statistics
+arXiv: arXiv:0000.0000
+
+arXiv:1507.03895v2 [math.ST] 21 Nov 2016
+
+ON CONSISTENCY AND SPARSITY FOR SLICED
+INVERSE REGRESSION IN HIGH DIMENSIONS
+By Qian Lin†∗ Zhigen Zhao‡∗ and Jun S. Liu†∗
+Harvard University†
+Temple University‡
+We provide here a framework to analyze the phase transition phenomenon of slice inverse regression (SIR), a supervised dimension
+reduction technique introduced by Li [1991]. Under mild conditions,
+the asymptotic ratio ρ = lim p/n is the phase transition parameter
+and the SIR estimator is consistent if and only if ρ = 0. When dimension p is greater than n, we propose a diagonal thresholding screening
+SIR (DT-SIR) algorithm. This method provides us with an estimate
+of the eigen-space of the covariance matrix of the conditional expectation var(E[x|y]). The desired dimension reduction space is then
+obtained by multiplying the inverse of the covariance matrix on the
+eigen-space. Under certain sparsity assumptions on both the covariance matrix of predictors and the loadings of the directions, we prove
+the consistency of DT-SIR in estimating the dimension reduction
+space in high dimensional data analysis. Extensive numerical experiments demonstrate superior performances of the proposed method
+in comparison to its competitors.
+
+1. Introduction. For a continuous multivariate random variable (y, x)
+where x ∈ Rp and y ∈ R, a subspace S ′ ⊂ Rp is called the effective dimension
+⊥ stands for independence.
+reduction (EDR) space if y ⊥
+⊥ x|PS ′ (x) where ⊥
+Under mild conditions (Cook [1996]), the intersection of all the EDR spaces
+is again an EDR space, which is denoted as S and called the central space.
+Many algorithms were proposed to find such subspace S under the assumption d = dimS ≪ p. This line of research is commonly known as sufficient
+dimension reduction. The Sliced Inverse Regression (SIR, Li [1991]) is the
+first, yet the most widely used method in sufficient dimension reduction,
+due to its simplicity, computational efficiency and generality. The asymptotic properties of SIR are of particular interest in the last two decades. The
+consistency of SIR has been proved for fixed p in Li [1991], Hsing and Carroll
+∗
+
+Lin’s research is supported by the Center of Mathematical Sciences and Applications
+at Harvard University. Zhao’s research is supported by the NSF Grant DMS-1208735. Liu’s
+research is supported by the NSF Grant DMS-1120368 and NIH Grant R01 GM113242-01
+MSC 2010 subject classifications: Primary 62J02; secondary 62H25
+Keywords and phrases: dimension reduction, random matrix theory, sliced inverse regression
+
+1
+
+2
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+[1992], Zhu and Ng [1995] and Zhu and Fang [1996]. Later, Zhu et al. [2006]
+√
+have obtained the consistency if p = o( n). A similar restriction also appears in two recent work (see Zhong et al. [2012] and Jiang and Liu [2014]).
+When p > n, a common strategy pursued by many recent researchers is to
+make sparsity assumptions that only a few predictors play a role in explaining and predicting y and apply various regularization methods. For instance,
+Li and Nachtsheim [2006], Li [2007] and Yu et al. [2013] applied LASSO
+(Tibshirani [1996]), Dantzig selector (Candes and Tao [2007]) and elastic
+net (Zou and Hastie [2005]) respectively to solve the generalized eigenvalue
+problems raised by a variety of SDR algorithms.
+However, a piece of jigsaw is missing in the understanding of SIR. If the
+dimension p diverges as n increases, when will the SIR break down? A similar question has been asked for a variety of SDR estimates in Cook et al.
+[2012]. In this paper, we prove that, under certain technical assumptions,
+the SIR estimator is consistent if and only if ρ = lim np = 0. Such a result on inconsistency provides theoretical justifications for imposing certain
+structural assumption, such as sparsity, in high dimensional settings. This
+behavior of SIR in high dimension, which will be called the phase transition
+phenomenon, is similar to that of the principal component analysis (PCA),
+an unsupervised counterpart of SIR. This extension is, however, by no means
+trivial. After all the samples (yi , xi ) are sliced into H bins according to the
+order statistics of yi , the sliced samples are neither independent nor identically distributed. This difference increases the difficulty significantly. In this
+paper, we provide a new framework to study the phase transition behaviour
+of SIR. The technical tools developed here can potentially be extended to
+study the phase transition behaviour of other SDR estimators.
+The second part of the article aims at extending the original SIR to the
+scenario with ultra-high dimension (p = o(exp(nξ ))). Based on equation (3)
+in Section 2, the central space can be estimated by the column space of
+b −1 col(Vb H ), where Σ
+b −1 is any consistent estimate of the precision matrix
+Σ
+x
+x
+b H ) is the estimate of the space col(var(E[x|y])). To estimate
+Σ−1
+and
+col(
+V
+x
+the column space of var (E[x|y]), we propose a diagonal screening procedure
+based on new univariate statistics varH (x(k)), which are the diagonal elements of var (E[x|y]), motivated by recent work in sparse PCA (Johnstone
+and Lu [2004]). After ranking the predictors according to the magnitude
+of varH (x(k)) decreasingly, we choose the set I consisting of the first R
+predictors as active predictors. The SIR procedure is subsequently applied
+to these selected predictors to estimate the d-dimensional column space of
+I
+I
+var(E[xI |y]) by col(Vb H ) where Vb H is the matrix formed by the top d eigenI
+I
+b . We embed Vb into Rp×d by filling in 0’s for entries outside
+vectors of Λ
+H
+H
+
+3
+
+DT-SIR
+I
+
+the chosen row set I, and denote this new matrix by e(Vb H ). The estimate
+b −1
+bI
+of the central space is defined to be col(Σ
+x e(V H )). We name this two-stage
+algorithm as Diagonal Thresholding SIR (DT-SIR), and prove that DTSIR is consistent in estimating the central space under certain regularity
+conditions. Extensive simulation studies show that DT-SIR performs better
+than its competitors and is computationally efficient.
+The rest of the paper is organized as follows. In Section 2, we briefly
+describe the SIR procedure and introduce the notations. In Section 3, after a brief review of existing asymptotic results of SIR procedure, we state
+Theorems 2 and 3 to discuss the phase transition phenomenon of SIR. In
+Section 4, we propose the DT-SIR method and show that DT-SIR is consistent in high dimensional data analysis. In Section 5, we provide simulation
+studies to compare DT-SIR with its competitors. Concluding remarks and
+discussions are put in Section 6. All the proofs are presented in appendices.
+2. Preliminaries and notations.
+2.1. Sliced inverse regression Consider the multiple index model
+(1)
+
+y = f (β τ1 x, · · · , β τd x, ǫ)
+
+where x ∈ Rp , ǫ is the noise and f is an unknown link function. Without
+loss of generality, we assume that E[x] = 0 ∈ Rp . Although the p × d matrix
+V = (β 1 , · · · , β d ) is not identifiable, the space spanned by the β’s, which is
+called the column space of V and denoted by col(V ), might be identified. Li
+[1991] proposed the Sliced Inverse Regression (SIR) procedure to estimate
+the central space col(V ) without knowing f (·), which can be briefly summarized as follows: Given n i.i.d. samples (yi , xi ), i = 1, · · · , n, SIR first
+divides them into H equal-sized slices according to the order statistics y(i) .1
+We re-express the data as yh,j and xh,j , where (h, j) is the double subscript
+in which h refers to the slice number and j refers to the order number of a
+sample in the h-th slice, i.e.,
+yh,j = y(c(h−1)+j) ,
+
+xh,j = x(c(h−1)+j) .
+
+Here x(k) is the concomitant of y(k) . Let the sample mean in the h-th slice
+be xh,· , and let the mean of all the samples be x. Then, Λp , var(E[x|y])
+can be estimated by:
+(2)
+
+H
+1 X
+b
+ΛH =
+x̄h,· x̄τh,· .
+H
+h=1
+
+1
+
+To ease notations and arguments, we assume that n = cH and H = o (log(n) ∧ log(p))
+throughout the article.
+
+4
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Based on the observation that
+(3)
+
+col(Λ) = Σx col(V ),
+
+b −1 col(Vb H ) where Vb H is
+the SIR then estimates the central space col(V ) by Σ
+x
+b H .. Throughout the article,
+the matrix formed by the top d eigenvectors of Λ
+we assume that d is fixed and the d-th largest eigenvalue λd of Λp is bounded
+away from 0 when n, p → ∞.
+In order for SIR to result in a consistent estimate of the central space, Li
+[1991] imposed the the following two conditions:
+• (A1). Linearity condition: For any ξ ∈ Rp , E[ξ τ x|β τ1 x, · · · , β τd x] is
+a linear combination of β τ1 x, · · · , β τd x.
+• (A2). Coverage condition: The dimension of the space spanned by
+the central curve equals the dimension of the central space, i.e., d′ = d.
+2.2. Further Notations. Let Sh be the h-th interval (yh−1,c , yh,c ] for 2 ≤
+h ≤ H − 1, S1 = (−∞, y1,c ] and SH = (yH−1,c , ∞). Note that these intervals depend on the order statistics y(i) and are thus random. For any
+ω
+R in the product sample space, we define a random variable δh = δh (ω) =
+y∈Sh (ω) f (y)dy where f (y) is the density function of y. For I ⊂ {1, · · · , n}, J ⊂
+
+{1, · · · , p} and a n × p matrix A, AI,J denotes the |I| × |J | sub-matrix
+formed by restricting the rows of A to I and columns to J . In articular,
+A−,J denotes the sub-matrix formed by restricting the columns to J ; For
+a matrix B = AI,J ∈ R|I|×|J | , we embed it into Rp×p by putting 0 on
+entries outside I × J and denote the new matrix as e(B). Similar notations
+apply to vectors. For two positive numbers a and b, we let a ∨ b ≡ max{a, b}
+and let a ∧ b ≡ min{a, b}. Let τ (x, t) = x × 1(|x| > t) be the hard thresholding function. Throughout the article, C, C1 and C2 are used to denote
+generic absolute constants, though the actual value may vary from case to
+case. For a vector x, we denote its k-th entry as x(k). Let β 1 and β 2 be
+two vectors with the same dimension, the angle between these two vectors
+is denoted as ∠(β 1 , β 2 ). For two sequences {an }, {bn }, we let an ≪ bn stand
+for an = O(bǫn ) for some positive ǫ < 1 and let an ≻ bn stand for lim abnn = 0.
+3. Consistency of SIR. In order to control the behavior of SIR, we
+need to impose the following boundedness condition (A3) on the predictors’
+covariance matrix in addition to the tail condition (sub-Gaussian) on their
+joint distribution. We also need a condition (A4) for the central curve.
+• (A3) Boundedness Condition: x is sub-Gaussian; and there exist
+positive constants C1 , C2 such that
+C1 ≤ λmin (Σx ) ≤ λmax (Σx ) ≤ C2
+
+DT-SIR
+
+5
+
+where λmin (Σx ) and λmax (Σx ) are the minimal and maximal eigenvalues of Σx respectively.
+• (A4) The central curve m(y) , E[x|y] has finite fourth moment and
+is ϑ-sliced stable (defined below) with respect to y and m(y).
+Definition 1. For two positive constants γ 1 < 1 < γ 2 , let AH (γ 1 , γ 2 )
+be the collection of all the partition −∞ = a0 < a1 < · · · < aH−1 < aH = ∞
+of R satisfying that
+γ
+γ1
+≤ P (ai ≤ y < ai+1 ) ≤ 2 .
+H
+H
+The central curve m(y) = E[x|y] is called ϑ-sliced stable with respect to y
+for some ϑ > 0 if there exist positive constants γ i , i = 1, 2, 3 such that for
+any β in the central space for any partition in AH (γ 1 , γ 2 ), we have
+(4)
+
+H−1
+1 X
+γ
+var(β τ m(y) | ah ≤ y ≤ ah+1 ) ≤ 3ϑ var(β τ m(y)).
+H
+H
+h=0
+
+The central curve is sliced stable if it is ϑ-sliced stable for some positive
+constant ϑ.
+Remark 1. Note that we only need (4) to hold for all unit vectors in
+the central space by rescaling. By considering the orthogonal decomposition
+of β in a general space with respect to the central space and its complement,
+it is easy to see that the sliced stability implies that (4) holds true for all
+vector β. In particular, we have the following two useful consequences of the
+slice-stability.
+i) By choosing β τ = (0, . . . , 0, 1, 0, . . . , 0) with 1 at the k-th position, we
+have
+|
+
+H
+X
+h=0
+
+var(m(y, k) | ah ≤ y ≤ ah+1 )| ≤ γ 3 H 1−ϑ var(m(y, k)),
+
+where m(y, k) is the k-th coordinate of the central curve m(y).
+ii) Since equation (4) holds for all unit vector β, we have
+k
+
+H
+X
+h=0
+
+var(m(y) | ah ≤ y ≤ ah+1 )k2 ≤ γ 3 H 1−ϑ kvar(m(y))k2 .
+
+6
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Remark 2. Suppose E[m(y)] = 0 and there are n samples mi , m(yi ).
+xh,· , respectively. On one
+Let mh,i and mh,· be defined similarly to xh,i and P
+hand, we have the classic consistent estimator n1 i mi mτi ofPvar(m(y)).
+On the other hand, if we expect that the slice-based estimate H1 h mh,· mτh,·
+of var(m(y)) is consistent, we must require that the average loss of variance
+in each slice to decrease to zero as H increases, i.e.,
+(5)
+
+1 X
+1 X1X
+1X
+mi mτi =
+(m̄h,· − m̄h,i )2 → 0.
+m̄h,· m̄τh,· −
+H
+n
+H
+c
+i
+
+h
+
+h
+
+i
+
+In Definition 1, we simply choose the decreasing rate to be a power of H. It
+would be easily seen that if m is smooth and y is compactly supported then
+(5) holds automatically. In this sense, for general curve m and random
+variable y, the sliced stability is a condition on smoothness of the central
+curve m and tail distribution of m(y). This is not surprised at all, since most
+work on the consistency of SIR estimate requires some kind of smoothness
+for the central curve and a tail distribution control for m(y).
+The most popular smoothness and tail condition might be the one proposed by Hsing and Carroll [1992] (later used in Zhu et al. [2006], Zhu and
+Ng [1995]) in their proof of the consistency of SIR, which is explained below. For B > 0 and n ≥ 1, let Πn (B) be the collection of all the n-point
+partitions −B ≤ y(1) ≤ · · · ≤ y(n) ≤ B of [−B, B]. First, they assumed that
+the central curve m(y) satisfies the following smoothness condition
+lim
+
+sup
+
+n→∞ y∈Π (B)
+n
+
+n−1/4
+
+n
+X
+i=2
+
+km(yi ) − m(yi−1 )k2 = 0, ∀B > 0.
+
+Second, they assumed that for B0 > 0, there exists a non-decreasing function
+m(y)
+e
+on (B0 , ∞), such that
+
+(6)
+
+m
+e 4 (y)P (|Y | > y) → 0 as y → ∞
+
+km(y) − m(y ′ )k2 ≤ |m(y)
+e
+− m(y
+e ′ )| for y, y ′ ∈ (−∞, −B0 ) ∪ (B0 , ∞)
+
+e 4] <
+By changing the tail condition (6) to a slightly stronger condition E[m(y)
+∞, Neykov et al. [2015] proved that the modified condition implies the sliced
+stability condition. Now, we are ready to state our main results.
+Theorem 1.
+(7)
+
+Under conditions (A1), (A2), (A3) and (A4), we have
+r
+H 2p
+H 2p
+1
+b
++
+).
+kΛH − Λp k2 = OP ( ϑ +
+H
+n
+n
+
+DT-SIR
+
+7
+
+The proof of the theorem is deferred to the Appendix. As a direct consequence of Theorem 1, we observe that if ρ = limn→∞ np = 0, we may choose
+H = log (n/p) such that the right hand side of equation (7) converges to 0.
+b H is a consistent estimate of Λp if ρ = 0.
+Thus, Theorem 1 implies that Λ
+
+Remark 3 (More on Convergence Rate). Note that the convergence rate
+in (7) depends on the choice of H. This may seem not very desirable at the
+b H might be different from that
+first glance. Since the convergence rate of Λ
+b
+of col(V H ), we may expect that the convergence rate of col(Vb H ) does not
+depend on the choice of H. In fact, we have
+
+
+ 
+b H − Λp = Λ
+b H PV − Λp .
+b H − PV Λ
+b H PV + PV Λ
+(8)
+Λ
+
+From the proof of Theorem
+q 1, we can easily check that the first term is of
+2
+pH 2
+1
+convergence rate n + pH
+n and the second term is of rate H ϑ . Since
+b H PV and Λp share the same column space, if we are only interested in
+PV Λ
+estimating PV , then the convergence rate of the second term does not matter
+provided that H is a large enough integer, which may depend on ϑ and γ 3
+but does not depend on n and p. For such an H, if AH (γ 1 , γ 2 ) is non-empty,
+Theorem 1 and (8) hold for both categorical and continuous response variable
+Y.
+
+Theorem 2. Under conditions (A1), (A2), (A3), (A4) and assuming
+that ρ = lim np = 0, we have
+b H − Σ−1 Λp k2 → 0
+b −1 Λ
+kΣ
+x
+x
+
+as n → ∞
+b x = 1 Pn xi xτ .
+with probability converging to one, where Σ
+i
+i=1
+n
+
+We define the distance D(V 1 , V 2 ) of two d-dimensional subspaces V 1 and
+V 2 as the operator norm (or Frobenius norm) of the difference between PV 1
+e ’s satisfy Σx β
+e = λi Λp β
+e,
+and PV 2 . Simple linear algebra shows that if the β
+i
+i
+i
+then
+o
+n
+e ,··· ,β
+e .
+col(V ) = span β
+1
+d
+
+b −1 , Λ
+b H ).
+Let Vb be the matrix formed by the top d generalized eigenvectors of (Σ
+x
+Recall that the d-th eigenvalue of Λp is assumed to be bounded away from
+0. Therefore Theorem 2 implies that D(PVb , PV ) → 0 when ρ = 0.
+We have already shown that the SIR procedure provides us with a consistent estimate of the sufficient dimension reduction space when ρ = 0 under
+mild conditions. It is then natural to ask: is this condition necessary? Our
+next theorem gives the answer.
+
+8
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Theorem 3. Under conditions (A1), (A2), (A4) and assuming that
+x ∼ N (0, Ip ) for the single index model
+y = f (β τ x, ǫ),
+we have:
+b H −Λp k2 , as a function of ρ, is dominated
+(i) When ρ = lim np ∈ (0, ∞), kΛ
+√
+by ρ ∨ ρ when H, n → ∞;
+b be the principal eigenvector of the SIR estimator Λ
+b H . If ρ =
+(ii) Let β
+p
+lim n > 0, then there exists a positive constant c(ρ) > 0 such that
+b > c(ρ)
+lim inf E∠(β, β)
+n→∞
+
+with probability converges to one.
+
+We illustrate this result via a numerical study of the linear model
+(9)
+
+y = xτ β + ǫ where β τ = (1, 0, · · · , 0), x ∼ N (0, Ip ), ǫ ∼ N (0, 1).
+
+b is related to the dimension p for fixed ratio
+Figure 1 shows how E∠(β, β)
+p
+ρ = n (taking values in {.1, .3, .7, 1, 2, 4}), where β is estimated by the
+b is calculated
+SIR with the slice number H = 10. For each p, E∠(β, β)
+based on 100 iterations. It is seen that this expected angle converges to a
+positive number when the ratio ρ is non-zero. In Figure 2, we have plotted
+b against the ratio ρ = p , varying between 0.01 and 4 with an
+the E∠(β, β)
+n
+increment of 0.01. The sample size n is 200 and the slice number H is 10. It
+is seen that the expected angle decreases to zero as ρ approaches zero, and
+increases monotonically when ρ increases.
+Results in this section have shown that there is a phase transition phenomenon of the SIR procedure. That is, the estimate of the dimension reduction space is consistent if and only if the ratio ρ = lim np = 0. This provides
+a theoretical justification of imposing additional structure assumption such
+as sparsity in high dimension.
+4. SIR in ultra-high dimension. As we have shown in Section 3, the
+SIR estimator fails to be consistent if ρ = lim np 6= 0. Hence, when p ≫ n,
+some structural assumptions are necessary for getting a consistent estimate
+of the central space. In this paper, we assume that both the loadings of all the
+directions β j ’s and the covariance matrix Σx are sparse. Other structural
+assumptions will be studied in our future work. For β i ’s, we impose the
+following prevalent sparsity condition.
+
+9
+
+DT-SIR
+0.4
+
+0.235
+
+0.395
+
+0.23
+
+0.39
+
+0.385
+0.225
+
+0.38
+
+0.22
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0.375
+
+0.6
+
+0.72
+
+0.595
+
+0.71
+
+0.59
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0.7
+
+0.585
+
+0.69
+
+0.58
+0.68
+0.575
+0.67
+0.57
+0.66
+
+0.565
+
+0.65
+
+0.56
+
+0.64
+
+0.555
+0.55
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+1.05
+
+0.63
+
+1.25
+
+1.2
+
+1
+
+1.15
+0.95
+1.1
+0.9
+1.05
+
+0.85
+
+0.8
+
+1
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0.95
+
+Fig 1: Numerical approximations of E∠(β̂, β) for model (9) as a function of
+dimension p for ρ = .1, .3, .7, 1, 2, and 4, respectively (up left, up right,
+b is estimated by
+middle left, middle right, lower left, lower right), where β
+SIR.
+
+b and the ratio p/n where β
+b is estimated
+Fig 2: The relationship of E∠(β, β)
+by SIR.
+
+10
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+n
+o
+• (A5) s = |S| ≪ p where S = i | β j (i) 6= 0 for some j, 1 ≤ j ≤ d
+and |S| is the number of elements in the set S.
+For Σx , the following class of covariance matrices has been introduced in
+Bickel and Levina [2008] (see also Cai et al. [2010]).
+n
+X
+{|σi,j | : |i − j| > l} ≤ Cl−α for all l > 0,
+U (ǫ0 , α, C) = Σx : max
+j
+
+i
+
+and 0 < ǫ0 ≤ λmin (Σx ) ≤ λmax (Σx ) ≤
+
+1 o
+.
+ǫ0
+
+In this paper, to simplify the notations and arguments, we choose a slightly
+stronger condition.
+• (A6) Σx ∈ U (ǫ0 , α, C) and max1≤i≤p ri is bounded where ri is the
+number of non-zero elements in the i-th row of Σx .
+
+Let T = k | var (E[x(k)|y]) 6= 0 . If k ∈ T , there exists η ∈ col(Λ) such
+that η(k) 6= 0. Since we have (3):
+Σx col(V ) = col(Λ),
+there exits a β ∈ col(V ) such that η = Σx β. Thus if k ∈ T , then k ∈
+supp(Σx β) for some β ∈ col(V ). In particular, with the above sparsity
+assumptions (A5) and (A6) , we have |T | ≤ s max1≤i≤p ri = O(s).2 Note
+that our goal here is to recover the column space col(V ) rather than S.
+Indeed, we are not able to consistently recover S unless for the trivial case.
+The key for recovering cov(V ) is to consistently recovering the set T .
+At the population level, var(E(x(k))|y) can separate T from T c . When
+there are only finite samples, we use
+(10)
+
+varH (x(k)) =
+
+H
+1 X
+x̄h,· (k)2
+H
+h=1
+
+as an estimate of var(E(x(k))|y). These are the diagonal elements of the
+b H . Note that these quantities depend on the sliced sample means,
+matrix Λ
+which are neither independent nor identically distributed. Thus, the usual
+concentration inequalities for χ2 are no longer applicable. We need extra
+efforts to get the concentration inequalities; this concentration result is one
+of the main technical contributions of this article, and can be further generalized.
+2
+
+We could introduce ξ = max1≤i≤p ri , then |T | ≤ sξ. The arguments below still work,
+except we might need sξ = o(p).
+
+11
+
+DT-SIR
+
+Remark 4. The link function f ( ) is not involved explicitly in the definition of varH (x(k)), and only the order statistics of the response is required.
+This nonparametric characteristic of the method is of particular interest to
+us and will be further investigated in a future research. Screening statistics
+inspired by the sliced inverse regression idea have been proposed in various
+formats, such as those in Jiang and Liu [2014], Zhu et al. [2012] and Cui
+et al. [2015].
+With the quantities varH (E[x(k)|y]), we define the inclusion set Ip (t) and
+the exclusion set Ep (t) below, which depend on a thresholding value t:
+n
+o
+n
+o
+Ip (t) = k |varH (x(k)) > t and Ep (t) = k |varH (x(k)) ≤ t .
+
+Note that Ip (t) can be viewed as an estimate of T and is thus also denoted
+by Tb . After reducing the dimension to a level such as p/n is sufficiently
+b b
+b
+b T ,T is a consistent estimate of ΛT ,T . Let Vb T be the
+small, the SIR estimator Λ
+b b
+b
+b T ,T . We then use Σ
+b −1
+bT
+matrix formed by the top d eigenvectors of Λ
+x col(e(V )) to
+b −1
+estimate the central space col(V ), where Σ
+x is a consistent estimate of Σx .
+Estimating the covariance matrix and precision matrix in high dimension is
+a challenging problem by itself and is not a main focus of this article. We
+employ the methods of Bickel and Levina [2008] to solve it. In summary,
+we propose the following Diagonal Thresholding screening SIR (DT-SIR)
+algorithm:
+Algorithm 1 DT-SIR
+1. Calculate varH (x(k)) according (10) for k = 1, 2, · · · , p;
+n
+o
+2. Let Tb = k | varH (x(k)) > t for an appropriate t ;
+b ,T
+b
+T
+
+b H be the SIR estimator of the conditional covariance matrix for the data (y, x−,Tb )
+3. Let Λ
+according to equation (2);
+
+4. Let
+
+b
+
+T
+Vb
+
+be the matrix formed by the top d eigenvectors of
+
+b −1
+b
+is the estimate of col(V )
+5. Σ
+x col e V
+
+b b
+
+b T ,T ;
+Λ
+
+b
+T
+
+A practical way to choose an appropriate t in step 2 will be presented in
+Section 5 . To ensure theoretical properties, we need an assumption on the
+signal strength:
+• (S1) ∃ C > 0 and ω > 0 such that var(E[x(k)|y]) > Cs−ω when
+E[x(k)|y] is not a constant.
+
+12
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Theorem 4. Under conditions (A1) – (A6) and (S1), and let t = as−ω
+for some constant a > 0 such that t < 12 var(m(y, k), ∀k ∈ T , we have
+i) T c ⊂ Ep holds with probability at least
+
+(11)
+
+
+1 − C1 exp −C2
+
+
+n
++
+C
+log(H)
++
+log(p
+−
+s)
+;
+3
+H 2 sω
+
+ii) T ⊂ Ip holds with probability at least
+(12)
+
+
+1 − C4 exp −C5
+
+
+n
++
+C
+log(H)
++
+log(s)
+,
+6
+H 2 sω
+
+for some positive constants C1 , · · · , C6 .
+
+This theorem has a simple implication. If
+n
+), so that
+choose H = log( sω log(p)
+
+n
+sω
+
+≻ log(p) + log(s), we may
+
+n
+≻ log(p) + log(H) + log(s).
+H 2 sω
+Thus , we know T = Ip with probability converging to one. Next, we have
+results for the consistency of DT-SIR.
+Theorem 5. Under the same assumptions and choosing the same t as
+Theorem 4, if snω ≻ log(p) + log(s), we have
+Tb ,Tb
+
+b
+ke(Λ
+H ) − Λp k2 → 0 as n → ∞
+
+n
+).
+with probability converging to one, where Tb = I(t) and H = log( sω log(p)
+
+b x be the estimator of co-variance matrix from Bickel
+Theorem 6. Let Σ
+and Levina [2008]. Under the same assumptions of Theorem 5, we have
+−1
+
+Tb ,Tb
+
+−1
+b e(Λ
+b
+kΣ
+H ) − Σx Λp k2 → 0 as n → ∞
+x
+
+with probability converging to one.
+
+5. Simulation Studies. We consider the following settings in generating the design matrix x and the response y. In Settings I-III, each row of x
+is independently sampled from N (0, I).
+iid
+
+• Setting I. yi = sin(xi1 + xi2 ) + exp(xi3 + xi4 ) + 0.5 ∗ ǫi , where ǫi ∼
+N (0, 1);
+
+13
+
+DT-SIR
+
+• Setting II. yi =
+
+P7
+
+• Setting III. yi =
+
+iid
+j=1 xij ∗ exp(xi8 + xi9 ) + 0.5 ∗ ǫi where ǫi ∼ N (0, 1);
+P10
+P20
+iid
+j=1 xij ∗ exp( i=11 xij ) + ǫi where ǫi ∼ N (0, 1);
+
+In Settings IV to VI, each row of x is independently sampled from N (0, Σ).
+iid
+
+• Setting IV. yi = (xi1 + xi2 + xi3 )3 /2 + 0.5 ∗ ǫi , where ǫi ∼ N (0, 1)
+and Σ = (σij ) is tri-diagonal with σii = 1, σi,i+1 = σi+1,i = ρ and
+σi,i+2 = σi+2,i = ρ2 ;
+P
+iid
+• Setting V. yi = 7j=1 xij ∗ exp(xi8 + xi9 ) + ǫi , where ǫi ∼ N (0, 1),
+and Σ = B ⊗ Ip/10 with B = (bij )1≤i≤10,1≤j≤10 given as bij = ρ|i−j| ;
+• Setting VI. Assume the same setting as in Setting V except that
+Σ = (σij ) is tri-diagonal with σii = 1, σi,i+1 = σi+1,i = ρ and σi,i+2 =
+σi+2,i = ρ2 .
+• Setting VII. Assume the same setting as in Setting V except that
+Σ = (σij ) is given as σij = ρ|i−j| .
+DT-SIR first screens all the predictors according to the statistic varH,c (x(k)),
+which requires a tuning parameter t. We chose t by using an auxiliary variable method based on an idea first proposed by Luo et al. [2006] and extended by Wu et al. [2007] and Zhu et al. [2011]. In our setting, for a given
+sample (yi , xi ), we generate z i ∼ N (0, Ip′ ) where p′ is sufficiently large and
+chosen as p in our simulation studies. It is known that y and z are independent. The threshold t can be chosen as
+t̂ = max ′ {varH,c (z(k)).}
+1≤k≤p
+
+In DT-SIR, when n > 1000, H is chosen as 20; when n ≤ 1000, H is chosen
+as 10 in the screening step and 20 in the SIR step.
+We also consider the following alternative methods in the screening step:
+Sure Independent Ranking and Screening (SIRS) in Zhu et al. [2011], SIR
+for variable selection via Inverse modeling (SIRI) in Jiang and Liu [2014],
+and trace pursuit in Yu et al. [2016]. As a comparison, we also considered
+two screening methods that are not based on the sliced regression: Distance
+correlation in Székely et al. [2007] and SURE independence Fan and Lv
+[2008]. For SIRS, the threshold is chosen according to the auxiliary statistic
+(2.9) of Zhu et al. [2011]. For SIRI, the predictors are chosen according to
+10-fold cross validation. The threshold values c̄SIR and cSIR are chosen as
+the 10-th and 5-th quantile of a weighted χ2 distribution given in Theorem
+3.1 of Yu et al. [2016]. In both SURE and DC screening, the top ⌊γn⌋ where
+γ = 0.01 are kept for subsequent analyses.
+After the screening step, similar to DT-SIR, we then applied the SIR algorithm (steps 3-5 of DT-SIR) to estimate col(V ). These alternative methods
+
+14
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+are denoted as SIRS-SIR, SIRI-SIR, SURE-SIR, DC-SIR, and TP-SIR, respectively, in the following discussions. Another method that we compared
+with is the sparse SIR, abbreviated as SpSIR, proposed in Li [2007]. After
+obtaining an estimator col(Vb ), we calculate D(Pcol(Vb ) , Pcol(V ) ) as a measure
+of the estimation error. We replicate this step 100 times, and calculate the
+average distance for the estimation result from each method and report these
+numbers in Table 1-3. For each setting, the average distance of the optimal
+method is highlighted using bold fonts. We further run a two-sample T-test
+to test if the actual estimation error of each method is significantly different
+from that of the best method for that example at 1% level of significance.
+Under all settings, the average distance obtained by DT-SIR was much
+smaller than that obtained by SpSIR and SURE-SIR. The p-values for comparing DT-SIR and SpSIR/SURE-SIR are all significant at the 0.01 level.
+When p ≥ n, the sparse SIR completely failed
+√ because the average distance
+of the estimated space to the true space is 2d, indicating that the space
+estimated by sparse SIR is orthogonal to the true space spanned by β.
+Under settings II-IV, DT-SIR performed either the best or not significantly worse than the best method. For all other cases, DT-SIR performed
+the best except for a few cases: Setting I when n = 500, p = 1000, setting
+V when n = 500, p = 6000, setting VI when n = 500, p = 6000, and setting
+VII when n = 1000, p = 1000.
+When p = 6000, n = 500, both DT-SIR and SIRI-SIR were the winners.
+Under Setting III, DT-SIR performed better than SIRI-SIR; under settings
+V and VI, SIRI-SIR performed better than DT-SIR; under other settings,
+these two methods were comparable.
+To graphically show the performance of various methods, we consider
+setting IV with d = 1. Consider two cases when (n, p) = (2000, 1000) and
+(n, p) = (500, 100). We calculated the estimated directions β̂ using various
+methods and computed the angle between < β̂ > and < β >. We replicate
+this step 100 times to calculate the average angles for each method. The
+results are displayed in Figure 3, which shows clearly that DT-SIR performed
+better than its competitors.
+Additionally, DT-SIR is computationally efficient. To show this, we report the computing time for one replication under Setting II for various
+pairs of (n, p) in Table 4. All computations were done on a computer with
+Intel Xeon(R) E5-1620 CPU@3.70GHz and 16GB memory. It is clearly seen
+that DT-SIR performed as fast as SURE-SIR, and both were much faster
+than other competitors. Consider the case when p = 3000, n = 2000. The
+computation time of DT-SIR was only 30 seconds; while that for DC-SIR
+was 21 minutes and 38 seconds, and the that for TP-SIR was 6 minutes and
+
+15
+
+DT-SIR
+
+Table 1
+The average distance of the space estimated by each of the 7 methods tested to the true
+space col(V ) under various settings with p = 1000. The boldfaced number in each row
+represents the best result for that simulation scenario, and the “*” in cells represents that
+the p-value of the two-sample T-test comparing the estimation error of the corresponding
+method with that of the best method is less than 0.01.
+n
+500
+1000
+2000
+3000
+
+DT-SIR
+0.655(*)
+0.3
+0.221
+0.167
+
+SIRI-SIR
+0.751(*)
+0.431(*)
+0.341(*)
+0.245(*)
+
+SIRS-SIR
+0.492
+0.309
+0.226
+0.149
+
+SpSIR
+2(*)
+2(*)
+1.58(*)
+1.48(*)
+
+SURE-SIR
+1.39(*)
+1.29(*)
+1.04(*)
+0.816(*)
+
+DC-SIR
+0.731(*)
+0.632(*)
+0.655(*)
+0.641(*)
+
+TP-SIR
+1.18(*)
+0.94(*)
+0.784(*)
+0.713(*)
+
+II
+
+500
+1000
+2000
+3000
+
+0.383
+0.235
+0.161
+0.134
+
+0.396
+0.227
+0.157
+0.129
+
+0.371
+0.256
+0.189(*)
+0.153(*)
+
+2(*)
+2(*)
+1.25(*)
+0.975(*)
+
+1.64(*)
+1.36(*)
+1.25(*)
+1.12(*)
+
+1.08(*)
+0.266(*)
+0.387(*)
+0.404(*)
+
+0.389
+0.318(*)
+0.264(*)
+0.23(*)
+
+III
+
+500
+1000
+2000
+3000
+
+1.15
+0.426
+0.263
+0.214
+
+1.48(*)
+0.974(*)
+0.403(*)
+0.297
+
+1.38(*)
+0.596(*)
+0.29(*)
+0.238(*)
+
+2(*)
+2(*)
+1.33(*)
+1.06(*)
+
+1.97(*)
+1.94(*)
+1.89(*)
+1.82(*)
+
+1.85(*)
+1.57(*)
+0.996(*)
+0.475(*)
+
+1.13
+0.429
+0.338(*)
+0.299(*)
+
+IV
+
+500
+1000
+2000
+3000
+
+0.263
+0.219
+0.161
+0.134
+
+0.257
+0.447(*)
+0.4(*)
+0.377(*)
+
+0.333
+0.25
+0.196(*)
+0.177(*)
+
+1.41(*)
+1.41(*)
+0.42(*)
+0.297(*)
+
+0.335(*)
+0.436(*)
+0.442(*)
+0.43(*)
+
+0.334(*)
+0.459(*)
+0.469(*)
+0.458(*)
+
+0.332(*)
+0.469(*)
+0.452(*)
+0.438(*)
+
+V
+
+500
+1000
+2000
+3000
+
+0.546
+0.401
+0.288
+0.249
+
+0.529
+0.463(*)
+0.418(*)
+0.399(*)
+
+0.562
+0.514(*)
+0.341(*)
+0.284(*)
+
+2(*)
+2(*)
+1.51(*)
+1.24(*)
+
+1.62(*)
+1.15(*)
+0.926(*)
+0.691(*)
+
+1.24(*)
+0.367
+0.569(*)
+0.597(*)
+
+1.09(*)
+0.615(*)
+0.54(*)
+0.511(*)
+
+VI
+
+500
+1000
+2000
+3000
+
+0.568
+0.427
+0.311
+0.265
+
+0.535
+0.524(*)
+0.469(*)
+0.456(*)
+
+0.566
+0.548(*)
+0.351(*)
+0.307(*)
+
+2(*)
+2(*)
+1.51(*)
+1.25(*)
+
+1.64(*)
+1.22(*)
+0.927(*)
+0.807(*)
+
+1.24(*)
+0.39
+0.598(*)
+0.622(*)
+
+1.08(*)
+0.641(*)
+0.583(*)
+0.56(*)
+
+VII
+
+500
+1000
+2000
+3000
+
+0.556
+0.436(*)
+0.303
+0.258
+
+0.534
+0.528(*)
+0.465(*)
+0.468(*)
+
+0.585(*)
+0.545(*)
+0.358(*)
+0.319(*)
+
+2(*)
+2(*)
+1.51(*)
+1.25(*)
+
+1.66(*)
+1.22(*)
+0.747(*)
+0.698(*)
+
+1.26(*)
+0.39
+0.589(*)
+0.63(*)
+
+1.11(*)
+0.643(*)
+0.579(*)
+0.558(*)
+
+I
+
+17 seconds.
+6. Conclusion. When the dimension p diverges to infinity, classical
+statistical procedures often fail unless additional structures such as sparsity
+conditions are imposed. Understanding boundary conditions of a statistical
+procedure provides us theoretical justification and practical guidance for our
+modeling efforts. In this article, we provide a new framework to show that
+ρ = lim np is the phase transition parameter for the SIR procedure. Under
+certain conditions, it is shown that the SIR estimator is consistent if and
+
+16
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Table 2
+The average distance of the space estimated by each of the 7 methods we tested to the
+true space col(V ) under various settings with n = 2000.
+p
+
+DT-SIR
+
+SIRI-SIR
+
+SIRS-SIR
+
+SpSIR
+
+SURE-SIR
+
+DC-SIR
+
+TP-SIR
+
+I
+
+500
+1000
+2000
+3000
+
+0.213
+0.221
+0.241
+0.23
+
+0.312(*)
+0.341(*)
+0.29
+0.278
+
+0.206
+0.226
+0.214
+0.218
+
+1.44(*)
+1.58(*)
+2(*)
+2(*)
+
+0.903(*)
+1.04(*)
+1.07(*)
+1.17(*)
+
+0.629(*)
+0.655(*)
+0.677(*)
+0.683(*)
+
+0.772(*)
+0.784(*)
+0.793(*)
+0.797(*)
+
+II
+
+500
+1000
+2000
+3000
+
+0.163
+0.161
+0.172
+0.164
+
+0.16
+0.157
+0.159
+0.158
+
+0.19(*)
+0.189(*)
+0.196(*)
+0.199(*)
+
+0.83(*)
+1.25(*)
+2(*)
+2(*)
+
+1.22(*)
+1.25(*)
+1.23(*)
+1.3(*)
+
+0.369(*)
+0.387(*)
+0.404(*)
+0.414(*)
+
+0.26(*)
+0.264(*)
+0.259(*)
+0.261(*)
+
+III
+
+500
+1000
+2000
+3000
+
+0.272
+0.263
+0.262
+0.269
+
+0.353
+0.403(*)
+0.368
+0.344
+
+0.29(*)
+0.29(*)
+0.285(*)
+0.291(*)
+
+0.916(*)
+1.33(*)
+2(*)
+2(*)
+
+1.84(*)
+1.89(*)
+1.92(*)
+1.93(*)
+
+0.846(*)
+0.996(*)
+0.98(*)
+1.09(*)
+
+0.341(*)
+0.338(*)
+0.339(*)
+0.339(*)
+
+IV
+
+500
+1000
+2000
+3000
+
+0.145
+0.161
+0.16
+0.15
+
+0.409(*)
+0.4(*)
+0.395(*)
+0.395(*)
+
+0.182(*)
+0.196(*)
+0.198(*)
+0.216(*)
+
+0.248(*)
+0.42(*)
+1.41(*)
+1.41(*)
+
+0.406(*)
+0.442(*)
+0.472(*)
+0.49(*)
+
+0.433(*)
+0.469(*)
+0.506(*)
+0.527(*)
+
+0.438(*)
+0.452(*)
+0.447(*)
+0.447(*)
+
+V
+
+500
+1000
+2000
+3000
+
+0.272
+0.288
+0.289
+0.3
+
+0.434(*)
+0.418(*)
+0.418(*)
+0.417(*)
+
+0.353(*)
+0.341(*)
+0.351(*)
+0.372(*)
+
+1.09(*)
+1.51(*)
+2(*)
+2(*)
+
+0.876(*)
+0.926(*)
+0.868(*)
+0.968(*)
+
+0.547(*)
+0.569(*)
+0.596(*)
+0.605(*)
+
+0.539(*)
+0.54(*)
+0.537(*)
+0.544(*)
+
+VI
+
+500
+1000
+2000
+3000
+
+0.307
+0.311
+0.309
+0.31
+
+0.479(*)
+0.469(*)
+0.461(*)
+0.46(*)
+
+0.368(*)
+0.351(*)
+0.399(*)
+0.408(*)
+
+1.1(*)
+1.51(*)
+2(*)
+2(*)
+
+0.858(*)
+0.927(*)
+1.08(*)
+1(*)
+
+0.566(*)
+0.598(*)
+0.617(*)
+0.638(*)
+
+0.583(*)
+0.583(*)
+0.585(*)
+0.587(*)
+
+VII
+
+500
+1000
+2000
+3000
+
+0.299
+0.303
+0.309
+0.308
+
+0.482(*)
+0.465(*)
+0.455(*)
+0.46(*)
+
+0.343(*)
+0.358(*)
+0.383(*)
+0.357(*)
+
+1.09(*)
+1.51(*)
+2(*)
+2(*)
+
+0.818(*)
+0.747(*)
+0.966(*)
+0.858(*)
+
+0.564(*)
+0.589(*)
+0.622(*)
+0.626(*)
+
+0.583(*)
+0.579(*)
+0.578(*)
+0.58(*)
+
+Table 3
+The average distance of the space estimated by each of the 7 methods tested to the true
+space col(V ) under various settings with n = 500 and p = 6000.
+I
+II
+III
+IV
+V
+VI
+VII
+
+DT-SIR
+
+SIRI-SIR
+
+SIRS-SIR
+
+SpSIR
+
+SURE-SIR
+
+DC-SIR
+
+TP-SIR
+
+0.694
+0.446
+1.35
+0.163
+0.481(*)
+0.463(*)
+0.44
+
+0.631
+0.462
+1.56(*)
+0.122
+0.431
+0.423
+0.412
+
+0.606
+0.414
+1.56(*)
+0.245(*)
+0.486(*)
+0.494(*)
+0.477(*)
+
+2(*)
+2(*)
+2(*)
+1.41(*)
+2(*)
+2(*)
+2(*)
+
+1.43(*)
+1.74(*)
+1.99(*)
+0.27(*)
+1.62(*)
+1.62(*)
+1.61(*)
+
+0.97(*)
+1.08(*)
+1.88(*)
+0.305(*)
+1.1(*)
+1.11(*)
+1.1(*)
+
+1.19(*)
+0.4
+1.37
+0.195(*)
+0.995(*)
+0.999(*)
+1.03(*)
+
+1
+
+DT-SIR
+
+0.5
+
+0.5
+
+1.0
+
+Directions
+
+1.0
+
+Directions
+
+−0.5
+
+0.0
+
+True Beta
+SIRI SIR
+SIRS SIR
+Sparse SIR
+DT−SIR
+
+−1.0
+
+−1.0
+
+−0.5
+
+0.0
+
+True Beta
+SIRI SIR
+SIRS SIR
+Sparse SIR
+DT−SIR
+
+−1.0
+
+−0.5
+
+0.0
+
+0.5
+
+1.0
+
+−1.0
+
+−0.5
+
+0.0
+
+0.5
+
+1.0
+
+Fig 3: Simulated value of E∠(β̂, β) for the various methods. Left panel:
+(n, p) = (2000, 1000); Right panel: (n, p) = (500, 1000).
+Table 4
+Comparison of computing time under setting II.
+DT-SIR
+n
+500
+1000
+2000
+3000
+
+1”
+2”
+3”
+4”
+
+p
+500
+1000
+2000
+3000
+
+1”
+3”
+12”
+30”
+
+SIRI-SIR
+
+SIRS-SIR
+
+SpSIR
+
+SURE-SIR
+
+DC-SIR
+
+TP-SIR
+
+1’12”
+2’2”
+3’27”
+4’59”
+
+7”
+20”
+1’14”
+2’45”
+
+p=1000
+11”
+11”
+13”
+15”
+
+1”
+1”
+2”
+3”
+
+24”
+1’52”
+7’38”
+6’51”
+
+29”
+1’2”
+2’18”
+3’7”
+
+2’48”
+3’27”
+4’55”
+6’0”
+
+35”
+1’14”
+2’35”
+4’10”
+
+n=2000
+2”
+13”
+1’39”
+5’19”
+
+1”
+2”
+12”
+30”
+
+3’46”
+7’38”
+14’24”
+21’38”
+
+1’7”
+2’18”
+3’22”
+6’17”
+
+only if ρ = 0. When ρ > 0, where the original SIR fails to be consistent, we
+propose a two-stage method, DT-SIR for variable screening and selection
+in ultra-high dimension situations and show that the method is consistent.
+We have used simulated examples to demonstrate the advantages of DT-SIR
+compared to its competitors. This method is computationally fast and can
+be easily implemented for large data sets.
+Appendices
+
+2
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+In the following two sections we offer some details about our theoretical
+derivations, but some more tedious intermediate steps (organized as Lemmas
+6-21) are deferred to the Supplemental Document to this article, which is
+available on line.
+A. The Key Lemma. The following lemma plays an important role
+in developing the high dimensional theory for sliced inverse regression. The
+proof of this key lemma is lengthy and technical. It will be helpful to keep
+in mind that H and ν (if they are not constants) grow at very slow rate
+compared with c and n (e.g., polynomial of log(n)). Let m(y) = E[x|y], and
+x = m(y) + ǫ. Notations mh,j , mh,· , m, and ǫh,j , ǫh,· , ǫ are similarly
+defined as xh,j , xh,· and x that were introduced before.
+Lemma 1. Let x ∈ Rp be a sub-Gaussian random variable which is upper
+exponentially bounded by K (see Definition 4). For any unit vector β ∈ Rp ,
+let x(β) = hx, βi and m(β) = hm, βi = E[x(β) | y], we have the following:
+i) If var(m(β)) = 0 , there exists positive constants C1 , C2 and C3 such
+that for any b = O(1) and sufficiently large H, we have
+
+
+nb
+P(varH (x(β)) > b) ≤ C1 exp −C2 2 + C3 log(H) .
+H
+ii) If var(m(β)) 6= 0 , there exists positive constants C1 , C2 and C3 such
+that, for any ν > 1, we have
+|varH (x(β)) − var(m(β))| ≥
+
+1
+var(m(β))
+2ν
+
+with probability at most
+
+
+n var(m(β))
++ C3 log(H) .
+C1 exp −C2
+H 2ν 2
+where we choose H such that H ϑ > C4 ν for some sufficiently large
+constant C4 .
+
+3
+
+DT-SIR
+
+A.1. Proof of Lemma 1 i) If m(β) = 0 (or equivalently var(m(β)) = 0),
+since
+!2
+c−1
+c−1 1 X
+1
+2
+ǭh,· (β) =
+ǫh,i (β) + ǫh,c (β)
+c c−1
+c
+i=1
+!2
+2
+
+c−1
+1
+1 X
+ǫh,c (β)
+ǫh,i (β) + 2
+≤2
+c−1
+c
+i=1
+
+for h = 1, ..., H − 1 and ǭH,· (β) =
+varH (x(β)) − var(m(β))
+
+1
+c
+
+Pc
+
+i=1 ǫH,i (β),
+
+we have
+
+H−1
+1 X
+1
+=
+ǭh,· (β)2 + ǭH,· (β)2
+H
+H
+h
+
+
+!2
+H−1
+H−1
+c−1
+X
+X
+2 X
+2 
+1
+2
+ǫh,i (β) + ǭH,· (β)
++
+≤
+ǫh,c (β)2
+H
+c−1
+Hc2
+h
+
+i=1
+
+h
+
+,2I + 2II.
+
+Thus
+(A.1)
+
+P(varH (x(β)) > b) ≤ P(I > b/4) + P(II > b/4).
+
+Lemma 17 (iii) in Supplement implies that
+P (ǫ(β)|y∈Sh
+
+
+
+t2
+> t) ≤ CH exp − 2
+K
+
+
+
+for some positive constant C. Since E[x(β)|y] = 0,we have E[x(β)|y ∈ Sh ] =
+0. From Lemma 9, we know that for 1 ≤ h ≤ H − 1, ǫh,i (β) can be treated
+as c − 1 i.i.d. samples from ǫ(β)|y∈Sh . According to Lemma 17 (iv),
+!
+
+
+c−1
+√
+1 X
+−b(c − 1)
+√
+P |
+.
+ǫh,i (β)| > b/2 ≤ C1 exp
+c−1
+8C2 HK 2 + 4 bK
+i=1
+Similarly, we have
+!
+
+
+c
+√
+1X
+−bc
+√
+P |
+ǫH,i (β)| > b/2 ≤ C1 exp
+.
+c
+8C2 HK 2 + 4 bK
+i=1
+
+4
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Thus, if b = O(1) and H is sufficiently large, we have
+
+
+
+
+
+−bc
+−b(c − 1)
+b
+√
+√
++ exp
+P(I > ) ≤C1 (H − 1) exp
+4
+8C2 HK 2 + 4 bK
+8C3 HK 2 + 4 bK
+
+
+cb
+≤C1 exp −C2 + C3 log(H)
+H
+for some positive constants C1 , C2 and C3 .
+Since ǫi (β) are i.i.d. samples from a sub-Gaussian distribution ǫ(β) with
+mean 0 and upper-exponentially bounded by 2K. Lemma 19 implies that if
+b = O(1) and H is sufficiently large, we have
+1X
+ǫi (β)2 > bc/4)
+n
+i
+1X
+≤P(
+ǫi (β)2 − E[ǫ(β)2 ] > bc/4 − E[ǫ(β)2 )
+n
+i
+!
+1X
+2
+2
+2
+ǫi (β) − E[ǫ(β) ] ≥ cb/4 − 4K
+≤P
+n
+i
+
+
+√
+n(cb/4 − 4K 2 )
+≤C1 exp −C2
+K2
+
+
+cb
+≤C1 exp −C2 + C3 log(H)
+H
+
+P(II > b/4) ≤P(
+
+for some positive constants C1 , C2 and C3 if H is sufficiently large. We used
+in above the fact that E[ǫ(β)2 ] ≤ 4K 2 .
+To summarize, if b = O(1) and H is sufficiently large, we have
+
+
+cb
+P(varH (x(β)) > b) ≤ C1 exp −C2 + C3 log(H)
+H
+for some positive absolute constants C1 , C2 and C3 .
+A.2. Proof of Lemma 1 ii) Since x is sub-Gaussian and β is unit vector,
+we know that var(m(β)) = O(1). If m(β) 6= 0 (or equivalently var(m (β)) 6=
+
+5
+
+DT-SIR
+
+0), we have
+varH (x(β)) − var(m(β))
+1 X
+xh,· (β)2 − var(m(β))
+=
+H
+h
+1 X
+2 X
+1 X
+=
+mh,· (β)2 +
+mh,· (β)ǫh,· (β) +
+ǫh,· (β)2
+H
+H
+H
+h
+
+h
+
+h
+
+− var(m(β))
+≤A1 + A2 + A3 + A4 ,
+where
+1 X
+µh (β)2 − var(m(β)) ,
+H
+h
+1 X
+mh,· (β)2 − µh (β)2 ,
+A2 =
+H
+h
+1 X
+A3 =
+ǭh,· (β)2 ,
+H
+h
+1 X
+1 X
+A4 = (
+mh,· (β)2 )1/2 (
+ǫh,· (β)2 )1/2 .
+H
+H
+
+A1 =
+
+(A.2)
+
+h
+
+h
+
+Lemma 1 ii) is a direct corollary of the following properties of Ai ’s.
+Lemma 2. Let the Ai ’s be defined as in equation (A.2). There exist
+positive constants C1 , C2 and C3 , such that for any ν > 1 and H satisfying
+H ϑ = N1 ν for sufficiently large N1 , we have that each of the following events
+o
+n
+1
+var(m(β)) ,
+i) Θ1 = A1 ≤ 4ν
+ii) Θ2 =
+iii) Θ3 =
+iv) Θ4 =
+
+n
+
+n
+
+n
+
+o
+
+A2 ≤
+
+1
+8ν var(m(β))
+
+A3 ≤
+
+1
+16ν var(m(β))
+
+A4 ≤
+
+1
+16ν var(m(β))
+
+,
+
+o
+o
+
+,
+,
+
+occurs with probability at least
+
+
+c var(m(β))
++ C3 log(H) .
+(A.3)
+1 − C1 exp −C2
+Hν 2
+
+
+6
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+A.2.1. Proof of Lemma 2.
+A.2.1.1. Proof of i) : Recall definitions of the
+R random intervals Sh , h =
+1, 2, · · · , H and random variable δh = δh (ω) = y∈Sh (ω) f (y)dy. We have
+1 X
+(µh (β))2 − var(m(β))
+H
+h
+X
+X
+1 X
+≤ var(m(β)) −
+δh (µh (β))2 +
+(µh (β))2 −
+δh (µh (β))2
+H
+h
+
+h
+
+h
+
+,B1 + B2
+
+Let ǫ = Hn10 +1 where n0 = N2 ν for some sufficiently large constant N2
+and
+n let event E(ǫ) be odefined as in Lemma 11 in Section E, i.e., E(ǫ) =
+ω |δh − H1 | > ǫ, ∀h . For any ω ∈ E(ǫ)c , we have
+B1 =
+
+X
+h
+
+δh (ω)var(m(β)|y ∈ Sh (ω))
+
+X
+1
++ ǫ)
+var(m(β)|y ∈ Sh (ω))
+H
+h
+γ
+≤(1 + Hǫ) 3ϑ var(m(β))
+H
+2γ 3
+≤
+var(m(β)),
+N1 ν
+
+(A.4)
+
+≤(
+
+(A.5)
+(A.6)
+
+where inequality (A.4) follows from the fact that δh (ω) ≤ H1 + ǫ, inequality
+(A.5) follows from the sliced stable condition (4) and inequality (A.6) follows
+from the requirement that H ϑ > N1 ν, and the fact
+X
+X ǫ
+δh (β τ µh )2
+B2 ≤ǫ
+(β τ µh )2 =
+δh
+h
+h
+Hǫ X
+(A.7)
+δh (β τ µh )2
+≤
+1 − Hǫ
+h
+2 X
+≤
+δh (β τ µh )2
+N2 ν
+h
+
+where inequality (A.7) follows from the fact δh ≥ H1 − ǫ.
+From (A.5), we observe that
+
+
+X
+2γ 3
+2
+δh (µh (β)) ≤ 1 +
+(A.8)
+var(m(β)).
+N1 ν
+h
+
+7
+
+DT-SIR
+
+Combining with (A.7), we then have
+
+
+2
+2γ 3
+B2 ≤
+1+
+var(m(β)).
+N2 ν
+N1 ν
+So when E(ǫ)c occurs, we have
+
+
+
+2γ 3
+2
+2γ 3
+B1 + B2 ≤
++
+1+
+var(m(β)).
+N1 ν
+N2 ν
+N1 ν
+Note that N1 and N2 can be chosen sufficiently large so that
+(A.9)
+
+B1 + B2 ≤
+
+1
+4γ 3
+var(m(β)) ≤
+var(m(β)).
+N1 ν
+4ν
+
+Consequently, conditioning on E(ǫ)c where ǫ =
+N1 ν, then
+(A.10)
+
+1
+HN2 ν+1 ,
+
+if we choose H ϑ >
+
+1
+1 X
+var(m(β)).
+(µh (β))2 − var(m(β)) ≤
+H
+4ν
+h
+
+Since var(m(β)) = O(1), H ϑ > N1 ν and ǫ = HN21ν+1 , the desired probability bound follows from Lemma 11, i.e.,
+
+
+√
+Hc + 1
+2
+P(E(ǫ)) ≤C1 exp −
++ log(H Hc + 1)
+32(Hn0 + 1)2
+
+
+c var(m(β))
++
+C
+log(H)
+.
+≤C1 exp −C2
+3
+Hν 2
+
+
+for some positive constants C1 , C2 and C3 .
+
+Remark 5. From (A.10), conditioning on E(ǫ)c , we obtain the following
+two inequalities
+
+
+1 X
+4γ 3
+2
+(A.11)
+(µh (β)) ≤ 1 + ϑ var (m(β))
+H
+H
+h
+
+and
+(A.12)
+
+
+
+1/2
+4γ 3
+1 X
+|µh (β)| ≤
+1 + ϑ var (m(β))
+.
+H
+H
+h
+
+In particular,
+
+1
+H
+
+P
+
+h (µh (β))
+
+2
+
+and
+
+1
+H
+
+P
+
+h |µh (β)|
+
+are bounded by OP (1).
+
+8
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+A.2.1.2. Proof of ii) : Denote
+by m′H (β), we have
+
+1
+c−1
+
+Pc−1
+i=1
+
+mh,i (β) by m′h (β) and mH,· (β)
+
+H
+H
+1 X
+1 X
+2
+2
+′
+A2 ≤
+mh (β) − µh (β) +
+mh,c (β)2
+H
+Hc2
+h=1
+h=1
+!
+!1/2
+1/2
+H
+H
+H
+1 X
+2 X
+2(c − 1) 1 X ′
+2
+2
+mh (β)
++
++
+m
+(β)
+µh (β)2
+h,c
+c
+H
+Hc2
+Hc
+h=1
+
+h=1
+
+h=1
+
+, I + II + III + IV
+
+Before we start proving this part, we need to introduce two events and bound
+their probabilities. First, let
+o
+n
+1 p
+var(m(β)) .
+(A.13)
+E1 (N3 , ν) = η(β) >
+N3 ν
+n
+o
+where η(β) = max1≤h≤H m′h (β) − µh (β) . According to Lemma 17 (i),
+(iv) and Bonferroni’s inequality, we have
+!
+1
+−(c − 1)var(m(β))
+p
+(A.14) P (E1 (N3 , ν)) ≤2H exp
+(N3 ν)2 2CHK 2 + N2 ν var(m(β))K
+3
+
+
+c var(m(β))
+(A.15)
++ C3 log(H)
+≤C1 exp −C2
+Hν 2
+for some positive constants C1 , C2 and C3 . Second, let
+n
+o
+1
+E2 (N4 , ν) , II >
+var(m(β)) ,
+N4 ν
+then
+
+!
+1 X 2 var(m(β))
+mi >
+P (E(N4 , ν)) ≤ P
+nc
+N4 ν
+i
+
+
+√
+var(m(β))
+2
+≤C1 exp −C2 n(c
+)−K )
+ν
+
+
+c var(m(β))
++ C3 log(H)
+≤C1 exp −C2
+Hν
+for some positive constant C1 , C2 and C3 . It is easily to see E(N4 , ν) ⊂
+E(N4 , ν 2 ).
+
+9
+
+DT-SIR
+
+For I. Conditioning on the event E(ǫ)c ∩E1 (N3 , ν)c , combining with (A.12),
+we have
+2η(β) X
+1 X
+η(β)(η(β) + 2|µh (β)|) ≤ η(β)2 +
+|µh (β)|
+I≤
+H
+H
+h
+h
+
+ !
+
+
+1 2
+2
+4γ 3 1/2
+≤
+var(m(β))
++
+1+ ϑ
+N3 ν
+N3 ν
+H
+
+1
+var(m(β))
+32ν
+if N3 is sufficiently large .
+≤
+
+Remark 6.
+we have
+(A.16)
+
+From above, conditioning on the event E(ǫ)c ∩ E1 (N3 , ν)c ,
+H
+1 + 32ν
+1 X ′
+var(m(β)).
+m (β)2 ≤
+H
+32ν
+h=1
+
+For II.
+
+Conditioning on E2 (N4 , ν)c , we have II ≤
+
+var(m(y))
+.
+N4 ν
+
+For III. When the event E(ǫ)c ∩ E1 (N3 , ν)c ∩ E2 (N4 , ν 2 )c occurs, according
+to equation (A.16),
+r
+1
+2(c − 1) 1 + 32ν 1
+√
+var(m(β)) <
+var(m(β)).
+III ≤
+c
+32ν
+16ν
+N4 ν
+if N4 is sufficiently large.
+For VI. When the event E(ǫ)c ∩ E1 (N3 , ν)c ∩ E2 (N4 , ν)c occurs, from
+(A.10), we know
+9
+1
+2 X
+µh (β)2 ≤ var(m(β)) <
+var(m(β)).
+VI =
+Hc
+4c
+16ν
+h
+
+To summarize, we know that there exist positive constant C1 , C2 , C3 and
+C4 such that
+1
+A2 ≤ I + II + III + V I ≤
+var(m(β))
+8ν
+holds on the event E(ǫ)c ∩ E1 (N3 , ν)c ∩ E2 (N4 , ν 2 )c which is with probability
+at least
+
+
+c var(m(β))
++ C3 log(H)
+1 − C1 exp −C2
+Hν 2
+for some positive constants C1 ,C2 and C3 .
+
+10
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+A.2.1.3. Proof of iii) :
+
+Similar to the proof of Lemma 1 (i) we have
+
+P(A3 > b) ≤ C1 H exp
+
+−(c − 1)b
+√
+8C2 HK12 + 4 bK2
+
+!
+
+for some positive constants C1 , C2 and C3 . In particular , if we take b =
+1
+16ν var(m(β)), we know that
+A3 ≤
+
+1
+var(m(β))
+16ν
+
+with probability at least
+
+c var(m(β))
++ C3 log(H)
+1 − C1 exp −C2
+Hν 2
+
+
+for some positive constant C1 , C2 and C3 .
+A.2.1.4. Proof of iv) : Let
+D1 ,
+
+1 X
+mh,· (β)2 ,
+H
+
+D2 , A3 =
+
+h
+
+1 X
+ǭh,· (β)2
+H
+h
+
+Consequently,
+
+
+(A.17)
+
+
+1
+P
+>
+var(m(β))
+16ν
+
+
+
+
+var(m(β))
+2ν + 1
+var(m(β)) + P D2 >
+≤P |D1 | >
+2ν
+(2ν + 1)16ν
+1/2 1/2
+D1 D2
+
+Note that
+|D1 − var(m(β))| ≤ A2 + A1
+According to (i) and (ii), the right hand side of (A.17) is bounded by
+
+
+c var(m(β)
+C1 exp −C2
++ C3 log(H)
+Hν 2
+for some positive constants C1 , C2 and C3 .
+
+B. Proofs of theorems in section 3.
+
+11
+
+DT-SIR
+
+B.1. Proof of Theorem 1. Let S be the central subspace of dimension
+d ≪ p, i.e., y ⊥
+⊥ x|P S x and dim(S) = d. We have the decomposition
+x = P S x + P S⊥ x , z + w
+
+(B.1)
+
+= E[z|y] + z − E[z|y] + w , m + v + w
+
+where z = P S x, m = E[z|y], v = z − E[z|y] and w = P S ⊥ x. Note that m
+lies in the central curve, v lies in the central space and w lies in the space
+perpendicular to S. We introduce
+(B.2)
+
+mh,j , mh,· , m,
+
+z h,j , z h,· , z, and wh,j , wh,· , w
+
+bz
+similar to the definition of xh,j , xh,· and x. Consequently, we can define Λ
+and have the following decomposition
+(B.3)
+
+X
+bH ≡ 1
+b z + ZW τ + WZ τ + WW τ ,
+Λ
+xh,· xτh,· = Λ
+H
+h
+
+where
+
+1
+1
+Z = √ (z 1,· , ..., z H,· ) and W = √ (w1,· , ..., w H,· ) .
+H
+H
+b z − Λp k2 and kWW τ k2 .
+We need to bound kΛ
+
+Lemma 3.
+
+kWW τ k2 ≤ OP (
+
+(B.4)
+
+H 2p
+)
+n
+
+Proof. From Lemma 1, for any unit vector β ⊥ col(Λ), i.e. var(m(β)) =
+0, we have
+(B.5)
+
+P(β τ WW τ β > C
+
+H 2p
+) ≤ C1 exp (−C2 p + log(H)) .
+n
+
+for some positive constants C1 and C2 . Then the ε-net argument (see e.g.,
+2
+Vershynin [2010]) implies that kWW τ k ≤ OP ( Hn p )
+
+Lemma 4.
+(B.6)
+
+b z − Λp k ≤ OP
+kΛ
+
+
+
+1
+Hϑ
+
+b z k ≤ OP (1).
+As a direct corollary, we have kΛ
+
+
+
+.
+
+12
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Proof. From Lemma 1, we have
+
+
+
+
+C
+c var(m(β))
+τ b
+P β (Λz − Λ)β > ϑ kΛk2 ≤ C1 exp −C2
++ C3 log(H) .
+H
+H 1+2ϑ
+Note that we only need to verify it for β ∈ col(Λp ), which is a d-dimensional
+
+b z − Λp k2 ≤ OP 1ϑ .
+
+space. Then the ε-net argument implies that kΛ
+H
+Theorem 1 follows from Lemma 4 and Lemma 3. In fact,
+
+b H − Λp k ≤ kΛ
+b z − Λp k + kZW τ + WZ τ k2 + kWW τ k2
+kΛ
+!
+r
+1
+H 2p H 2p
+≤ OP
++
++
+.
+Hϑ
+n
+n
+
+B.2. Proof of Theorem 2. Theorem 2 is a direct corollary of Theorem 1
+and Lemma 13. In fact, we have:
+−1
+b −1
+b
+kΣ
+X ΛH − ΣX Λp k2
+
+b H − Λp k2 ,
+b H k2 + kΣ−1 k2 kΛ
+b −1 − Σ−1 k2 kΛ
+≤ kΣ
+X
+X
+X
+
+which → 0 if ρ = limn→∞
+
+p
+n
+
+= 0.
+
+
+
+B.3. Proof of Theorem 3.
+(i) The proof for part (i) is similar to the proof of Theorem 1 and the
+standard Gaussian assumption on x simplifies the argument and improves
+the results. Since w = P S ⊥ x is normal and independent of y, there exists
+a normal random variable ǫ ∼ N (0, I) such that w = Σ1/2 ǫ where Σ =
+cov(w). Using the decomposition (B.3), we may write
+(B.7)
+
+W=√
+
+1
+Σ1/2 E p×H
+Hc
+
+where E p,H is a p × H matrix with i.i.d. standard normal entries. Corollary
+4 implies that
+kWW τ k2 ≤ C
+
+r
+
+p
++
+n
+
+r
+
+H
+n
+
+!2
+
+≤ OP
+
+p
+n
+
+.
+
+13
+
+DT-SIR
+
+Lemma 4 implies
+b z k2 ≤ kΛp k2 + OP
+kΛ
+
+By the Cauchy inequality, we have
+
+Thus,
+
+
+
+1
+Hϑ
+
+b z k2 kWW τ k2 ≤ OP
+kC1 k22 ≤ kΛ
+b H − Λp k2 ≤ OP ( 1 + p +
+kΛ
+Hϑ n
+
+
+
+.
+
+p
+n
+
+r
+
+.
+
+p
+).
+n
+
+b H −Λp k2
+In particular, if H, n → ∞ and ρ = lim np ∈ (0, ∞), we know that kΛ
+√
+is dominated by ρ ∨ ρ as a function of ρ.
+
+(ii) The proof for part (ii) is similar to the proof of Theorem 2 in
+Johnstone and Lu [2009] but is technically more challenging. Let D =
+ZZ τ + WW τ and B = ZW τ + WZ τ , then
+b H =D + B.
+Λ
+
+Since we are working on single index model with x is standard normal, z =
+Pβ x = βz(y) for some scalar function z(y) and w = Pβ ⊥ x are independent
+normal random variables. Let Σ = var(w), then we can write
+W=√
+
+1
+Σ1/2 E
+Hc
+
+where E is a p × H matrix with i.i.d. standard normal entries.
+Since z = βz(y), we have Z = √1H β(z 1,· , z 2,· , ..., z H,· ). To ease notation,
+let θ τ = (z 1,· , z 2,· , ..., z H,· ), then
+1
+1
+kθk2 ββ τ + Σ1/2 EE τ Σ1/2
+H
+n
+1
+B = βuτ + uβ τ where u = √ Σ1/2 Eθ.
+H c
+
+D=
+(B.8)
+
+1
+) and
+Let 0 < α < arctan( 16
+n
+o
+(B.9)
+Nα = x ∈ Rp : ∠ (x, β) ≤ α and kxk = 1
+
+be the set of unit vectors making angle at most α where ∠(x, y) is the angle
+between the vectors x and y. In order to proceed, we need the following
+lemma.
+
+14
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+b and β
+b be the principal eigenvector of S+ , D + B
+Lemma 5. Let β
+−
+and S− , D − B, respectively.
+exists a positive constant ω(α) such
+ There
+
+b
+b
+that for any β ∈ Nα , i.e., ∠ β, β ≤ α, we have
+(B.10)
+
+ 1
+
+b β
+b
+∠ β,
+− ≥ ω(α)
+3
+
+with probability converging to one as n → ∞.
+
+Proof. The proof is presented in Lin et al. [2015].
+Note that S+ and S− have the same distribution (viewed as functions of
+random terms E and θ):
+S− (E, θ) = S+ (−E, θ).
+n 
+
+o n 
+
+o
+b β ≤α ∪ ∠ β
+b , β ≤ α , then
+Let Aα denote the event ∠ β,
+−
+
+
+
+
+
+
+b β ] ≥ E[∠ β,
+b β , Ac ] + E[∠ β,
+b β , Aα ]
+E[∠ β,
+α
+
+
+
+
+b β , Ac ] + 1 E[∠ β,
+b β
+b , Aα ]
+≥ E[∠ β,
+−
+α
+2
+ω(α)
+≥ min{α,
+} > 0.
+6
+
+
+C. Proof of Lemma 5. We need the following lemmas.
+Lemma 6. Recall that u = H1√c Σ1/2 Eθ defined as in (B.8), then there
+exist positive constants C1 and C2 such that
+0 < C1 ≤ kuk2 ≤ C2
+with probability converging to one as n → ∞.
+Lemma 7. Assuming conditions in Theorem 3, let B and Nα be defined
+1
+).
+as in (B.8) and(B.9) respectively where 0 < α < arctan( 16
+i) There exists positive constant C1 such that for any x ∈ Nα , we have
+kBxk ≥ C1 with probability converging to one as n → ∞;
+ii) For any x ∈ Nα , we have cos ∠(x, Bx) ≤ 4α with probability converging to one as n → ∞.
+
+15
+
+DT-SIR
+
+The following lemma is borrowed from Johnstone and Lu [2004].
+Lemma 8. Let ξ be a principal eigenvector of a non-zero symmetric
+matrix M. For any η =
+6 0,
+∠(η, M η) ≤ 3∠(η, ξ).
+The proof of Lemma 5 is made plausible by reference to the Figure C1.
+Fig C1: An illustrated graph
+
+Since
+(C.1)
+(C.2)
+
+ 
+
+b S− β
+b
+sin ∠ β,
+= sin (ω1 + ω2 ) = sin (π − ω1 − ω2 )
+n
+o
+≥ min sin (ω1 ) , sin (ω3 ) ,
+
+we only need to prove that there exists a positive small constant ω(α) ( < π2
+) such that sin (ω1 ) , sin (ω2 ) ≥ sin (ω(α)) . In fact, if such ω(α) exists, we
+b in Lemma 8 and get
+may choose M = S− , ξ = β
+−
+ 1 
+
+
+b S− β
+b ≥ 1 ω(α).
+b β
+b
+≥
+∠
+β,
+∠ β,
+−
+3
+3
+b B β)
+b ≤ 4α, we know that there exists
+For ω3 . From Lemma 7 ii), cos ∠(β,
+positive constants δ(α)(< π2 ) such that sin ω3 ≥ sin (δ(α)) .
+For ω1 .
+(C.3)
+
+Applying the law of sines to the triangle △(O, O1 , O2 ) , we have
+
+
+
+b β
+b
+sin
+∠
+B
+β,
+sin ω1
+sin ω3 
+.
+=
+=
+b
+b
+b
+kB βk
+kD βk
+kD βk
+
+Note that from Lemma 7 i), there exists a constant C1 > 0 such that
+b > C1 and
+kB βk
+b ≤ kDk ≤
+kD βk
+
+1
+1
+kθk2 + k EE τ k,
+H
+n
+
+is bounded by an absolute constant C given limn→∞
+stable condition. Then (C.3) implies
+sin ω1 =
+
+p
+n
+
+= ρ 6= 0 and sliced
+
+b sin ∠(B β,
+b β)
+b
+kB βk
+C1 sin δ(α)
+≥ sin ω ′ > 0
+≥
+b
+C
+kD βk
+
+16
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+where ω ′ ( < π2 )is an small angle such that the last inequality holds. In
+particular, we have ω1 ≥ ω ′ . Hence
+b S− β)
+b ≥ω ′ ∧ δ(α) , ω(α)
+∠(β,
+
+
+
+C.1. Proof of Lemma 6 Proof : In fact, let T be an orthogonal matrix
+such that T β = (1, 0 · · · , 0)τ and M = T ββ τ T τ , then
+cH 2 uτ u = θ τ E τ ΣEθ
+
+= θ τ E τ Eθ − θ τ E τ ββ τ Eθ
+
+= θ τ E τ T τ T Eθ − θ τ E τ T τ (T β)β τ T τ T Eθ
+d.
+
+= θ τ E τ Eθ − θ τ E τ M Eθ
+d. p − 1 τ τ
+θ E Eθ,
+=
+p
+d.
+
+where = means equal in distribution. Note that E τ E is full rank H × H
+matrix, combining with Lemma 14 , we know that
+s
+s
+1 τ
+1 τ
+H 2
+H 2
+) ≤ λmin ( E E) ≤ λmax ( E E) ≤ C2 (1 +
+)
+C1 (1 −
+p
+p
+p
+p
+for some positive constants C1 and C2 with probability at least 1−2 exp(−p/8).
+Note that lim np = ρ > 0 as n → ∞ and n = Hc, we know there exists positive constants C1 and C2 such that
+C1
+
+1
+1
+kθk2 ≤ kuk2 ≤ C2 kθk2
+H
+H
+
+with probability at least 1 − 2 exp(−p/8).
+On the other hand, the sliced stable condition implies that lim H1 kθk2
+exists (6= 0), so kuk2 is bounded away from 0 and ∞ with probability 1 as
+n → ∞.
+
+C.2. Proof of Lemma 7 Proof : For i), ∀x ∈ Nα , let
+x = cos(δ)β + sin(δ)η where η ⊥ β, kηk = 1, δ ≤ α.
+Since Bx = cos(δ)u + (uτ η) sin(δ)β, we have:
+kBxk ≥ cos(δ)kuk − sin(δ)kuk ≥
+≥
+
+C1
+1
+cos(α)kuk >
+>0
+2
+4
+
+1
+cos(δ)kuk
+2
+
+DT-SIR
+
+17
+
+for some positive constant C1 .
+For ii), since
+xτ Bx = 2(uτ η) cos(δ) sin(δ)
+we have that uniformly over Nδ ,
+|xτ Bx| ≤ |uτ η| sin(2δ)
+which in turn implies:
+cos(∠(Bx, x)) =
+
+sin(2δ)|uτ η|
+|xτ Bx|
+≤ 1
+≤ 4δ ≤ 4α.
+kxkkBxk
+2 cos(δ)kuk
+
+
+
+D. Appendix B: Proofs of Theorems 4 to 6.
+D.1. Proof of Theorem 4. Let x(k) =< x, β k > where β k = (0, .., 1, ...0) ∈
+Rp with the only 1 at the k-th position. Recall that
+o
+n
+T = k E[x(k)|y] is not constant.
+n
+o
+Ip (t) = k varH (x(k)) > t
+n
+o
+Ep (t) = k varH (x(k)) ≤ t .
+
+and |T | ≤ Cs for some positive constant C. Since var(E[x(k)|y]) > sCω , we
+may choose t = saω for sufficiently small positive constant a such that for
+any k ∈ T , t < 12 var(E[x(k)|y]. According to Lemma 1 and the Bonferroni’s
+inequality, we have
+X
+P (T c ⊂ Ep (t)) ≥ 1 −
+P ( varH (x(k)) > t)
+k∈T c
+
+and
+
+
+
+ct
+≥ 1 − C1 exp −C2 + C3 log(H) + log(p − s) .
+H
+
+!
+o
+1
+varH (x(k)) ≥ var(m(k, y))
+P(T ⊂ Ip (t)) ≥ P
+2
+k∈T
+
+
+X
+1
+≥1−
+P varH (x(k)) < var (m(k, y))
+2
+k∈T
+
+
+c var(m(k, y))
+≥ 1 − C1 exp −C2
++ C3 log(H) + log (Cs) ,
+H
+\n
+
+i.e., we have (11) and (12) hold.
+
+
+
+18
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+D.2. Proof of Theorem 5 By choosing H, c and t = saω properly, from
+Theorem 4, we have
+
+
+n
+P (Tb = T ) ≥ 1 − C1 exp −C2 2 ω + C3 log(H) + log(p − s)
+H s
+
+for some positive constants Ci , i = 1, 2, 3. When Tb = T , we have |Tb | = O(s).
+b
+For the n samples (Yi , XiT ), apply Theorem 1, we have
+r
+T ,T
+T ,T
+H 2s
+1
+H 2s
+T ,T
+b
+b
++
+).
+ke(ΛH ) − Λp k2 ≤ kΛH − Λp k2 ≤ OP ( ϑ +
+H
+n
+n
+In particular, with probability converging to one, we have
+T ,T
+
+b
+ke(Λ
+H ) − Λp k2 → 0 as n → ∞.
+
+D.3. Proof of Theorem 6. The proof is almost identical to the proof of
+Theorem 2, except that we additionally need to use Theorem 1 in Bickel
+and Levina [2008].
+E. Appendix C
+E.1. Assisting Lemmas
+Definition 2. A set of random variables x1 , ..., xn can be treated as i.i.d
+random samples from a random variable x, if for any n variates symmetric
+function f (w1 , ..., wn ) , f (x1 , ..., xn ) is identically distributed as f (z1 , ..., zn )
+where z1 , ..., zn are i.i.d random samples from x.
+Lemma 9. Let (xi , yi ) be n i.i.d random samples from a joint distribution
+(x, y). Sort these samples according to the order statistics of yi ’s and denote
+the sorted samples by (x(1) , y(1) ), (x(2) , y(2) ), ..., (x(n) , y(n) ). Then for any a,
+b (1 ≤ a ≤ b + 1 ≤ n), x(a+1) , ..., x(b) can be treated as b − a i.i.d samples
+
+from x y ∈ [y(a) , y(b+1) ] .
+Proof. In fact, we only need to prove that y(a+1) , · · · , y(b) can be treated
+
+as b − a i.i.d. samples of y (y ∈ [y(a) , y(b+1) ]). The latter only needs to be
+proved for uniform distribution which can be verified directly.
+Corollary 1. In the slicing inverse regression contexts, recall that Sh
+denotes the h-th interval (yh−1,c , yh,c ] for 2 ≤ h ≤ H −1 and S1 = (−∞, y1,c ],
+SH = (yH−1,c , ∞). We have that xh,i , i = 1, · · · , c − 1 can be treated as c − 1
+
+DT-SIR
+
+19
+
+random samples of x (y ∈ Sh ) for h = 1, ..., H − 1 and xH,1 , ..., xH can be
+treated as c random samples of x (y ∈ SH ).
+Lemma 10. Suppose that (x, y) are defined over σ-finite space X × Y
+and g is a non-negative function such that E[g(x)] exists. For any fixed positive constants C1 < 1 < C2 , there exists a S
+constant C which only depends
+on C1 , C2 such that for any partition R = H
+h=1 Sh where Sh are intervals
+satisfying
+C2
+C1
+≤ P(y ∈ Sh ) ≤
+, ∀h,
+H
+H
+
+(E.1)
+we have
+
+sup E(g(x) y ∈ Sh′ ) ≤ CHE[g(x)].
+h
+
+Proof. According to Fubini’s Theorem, for any h,
+Z
+X
+E[g(x)] =
+g(x)p(x|y ∈ Sk )dx
+P(y ∈ Sk )
+k
+
+≥P(y ∈ Sh )
+
+Z
+
+X
+
+X
+
+g(x)p(x|y ∈ Sh )dx.
+
+Due to the condition (E.1), there exists a positive constant C such that
+Z
+g(x)p(x|y ∈ Sh )dx ≤ CHE[g(x)].
+X
+
+
+Corollary 2. Let x be a multivariate random variable with covariance
+matrix Σ. For any partition satisfying (E.1), there exists a constant C such
+that
+var(β τ x|y∈Sh′ ) ≤ CHvar(β τ x), for any unit vector β,
+and
+
+
+
+
+≤ CHλmax (var (x)) .
+λmax var x y ∈ Sh′
+
+Corollary 3. Let x be a sub-Gaussian random variable which is upperexponentially bounded by K. Then for any partition satisfying (E.1), there
+exists a constant C such that
+ 2
+ 2
+x
+x
+′
+E[exp
+]
+≤
+CHE[exp
+y
+∈
+S
+].
+h
+K2
+K2
+
+20
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Recall the definition of the
+R random intervals Sh , h = 1, 2, · · · , H and random variable δh = δh (ω) = y∈Sh (ω) f (y)dy.
+Lemma 11.
+
+Define the event E(ǫ) =
+
+n
+
+ω
+
+|δh −
+
+exists a positive constant C such that, for any ǫ >
+
+1
+H|
+
+4
+Hc−1
+
+> ǫ, ∀h
+
+we have
+
+o
+. There
+
+√
+ǫ2
+P (E(ǫ)) ≤ CH 2 Hc + 1 exp(−(Hc + 1) )
+32
+
+(E.2)
+
+for sufficient large H and c.
+Proof. The proof is deferred to the end of this paper.
+E.2. Some Results from Random Matrices Theory. We collect some direct corollaries of the non-asymptotic random matrices theory (e.g., Rudelson and Vershynin [2013]).
+Lemma 12. Let M be any p × n matrix (n > p) whose columns M i are
+independent sub-Gaussian random vectors in Rp with second moment Ip and
+λ+
+sing,min (M ), λsing,max (M ) be the minimal non-zero and maximal singular
+value of M . Then for every t, with probability at least 1 − 2 exp(−C ′ t2 ), we
+have :
+√
+√
+√
+√
+n − C p − t ≤ λ+
+n + C p + t.
+sing,min (M ) ≤ λsing,max (M ) ≤
+Lemma 13. Let x1 , · · · , xn be n i.i.d. samples from a p-dimensional
+sub-Gaussian random variable with covariance matrix Σ and ρ = np . If there
+exists positive constants C1 and C2 such that
+
+bx =
+Let Σ
+
+1
+n
+
+P
+
+C1 ≤ λmin (Σx ) ≤ λmax (Σx ) ≤ C2 .
+i
+
+xi xτi . Then
+b x − Σx k2 → 0 if ρ = 0 when n → ∞.
+kΣ
+
+b −1 −
+It is also easy to see that, given the boundedness condition on ΣX , kΣ
+X
+p
+Σ−1
+X k2 → 0 if ρ = n → 0 when n → ∞.
+1/2
+
+Proof. Let xi = Σx mi where mi is sub-Gaussian random variable
+with covariance matrix Ip and M = (m1 , ..., mn ). From Lemma 12, we
+
+21
+
+DT-SIR
+
+have
+1
+k M M τ − Ip k2 → 0
+n
+and
+−1
+
+b
+kΣ
+
+1
+− Σ−1 k2 = kΣ−1/2 k2 k M M τ − Ip k2 kΣ−1/2 k2 → 0,
+n
+
+with probability converges to 1 as n → ∞ because
+
+
+ 
+√ 
+(C + 1) p 2
+1
+τ
+√
+λmax
+MM
+≤ 1+
+n
+n
+and
+ 
+
+√ 
+(C + 1) p 2
+1
+√
+MMτ ≥ 1 −
+λmin
+n
+n
+
+with probability at least 1 − 2 exp(−C ′ p).
+
+
+
+The following lemma is well known in the non-asymptotic random matrix
+theory (Vershynin [2010] Proposition 5.34 ) which is slightly different from
+the Lemma 12.
+Lemma 14. Let E p×H be a p × H matrix, whose entries are independent
+standard normal random variables. Then for every t ≥ 0, with probability at
+least 1 − 2 exp(−t2 /2), we have :
+√
+√
+p − H − t,
+λ+
+sing,min (E p×H ) ≥
+and
+λsing,max (E p×H ) ≤
+
+√
+
+p+
+
+√
+
+H + t.
+
+Corollary 4. We have
+√ 
+√ 
+1 √
+3 √
+(E
+)
+≤
+λ
+(E
+)
+≤
+p − H ≤ λ−
+p
++
+H .
+p×H
+sing,max
+p×H
+sing,min
+2
+2
+
+with probability converging to one, as n → ∞.
+
+P
+
+√
+
+p/2, according to Lemma 14, we have:
+!
+!
+√
+p
+3
+λmax (EH )
+λmax (EH )
+√ ≤
+√ ≤1+ √
+√
+≥P √
+√
+2
+p+ H
+p+ H
+2 p+2 H
+
+Proof. Choosing t =
+
+22
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+and
+P
+
+λ+
+1
+H)
+min (E
+√ ≥
+√
+2
+p− H
+
+!
+
+≥P
+
+!
+√
+p
+λmax (EH )
+√ ≥1− √
+√
+√
+p− H
+2 p−2 H
+
+with probability at least 1 − 2 exp(−p/8). i.e., With probability converging
+to one, we have
+√
+√
+3 √
+1 √
+( p − H) ≤ λ−
+min (Ep×H ) ≤ λmax (Ep×H ) ≤ ( p + H).
+2
+2
+
+E.3. Basic Properties of sub-Gaussian random variables. We rephrased
+several equivalent definitions of the sub-Gaussian distribution here (See e.g.,
+Vershynin [2010] ):
+Definition 3. Let x be a random variable. Then the following properties
+are equivalent with parameters Ki ’s differing from each other by at most an
+absolute constant factor,
+1. Tails: P(|x| > t) ≤ exp(1 − t2 /K12 ) for all t ≥ 0.
+√
+2. Moments: (E[|x|p ])1/p ≤ K2 p for all p ≥ 1.
+3. Super-exponential moment: E exp(x2 /K32 ) ≤ e.
+Moreover, if E[x] = 0, then the properties 1 − 3 are also equivalent to the
+following one:
+4. Moment generating function: E[exp(tx)] ≤ exp(t2 K42 ).
+Definition 4. For a sub-Gaussian random variable x with the constants
+Ki , i = 1, 2, 3, 4 given in Definition 3, we will call a constant K an upperexponential bound of x or x is upper-exponentially bounded by K if K >
+maxi {K1 , K2 , K3 , K4 }.
+We summarize some properties regarding the sub-Gaussian distributions
+into the following lemmas.
+Lemma 15. Let δ1 , ..., δn be n (not necessarily independent or with mean
+zero) sub-Gaussian random variables upper-exponentially bounded by K.
+P
+i) n1 ni=1 δi is sub-Gaussian and upper-exponentially bounded by K.
+ii) δ1 − E[δ1 ] is sub-Gaussian upper-exponentially bounded by 2K.
+
+23
+
+DT-SIR
+
+iii) If they are independent and with mean zero , then
+Gaussian and upper-exponentially bounded by K.
+
+√1
+n
+
+P
+
+i δi
+
+is sub-
+
+iv) If they are i.i.d., then we have the concentration inequality:
+ Pn
+
+
+
+−nt2
+i=1 δi
+P
+− E[x] > t ≤ 2 exp
+.
+n
+2K 2 e + 2tK
+Proof. i) follows from the linear property of expectation and the the
+convexity of exponential function. i.e.,
+E[exp(
+
+1X
+δi2
+δi2
+1 X 2
+δ
+)]
+≤
+E[
+)]
+≤
+max
+E[exp(
+)] ≤ e.
+exp(
+i
+i
+nK 2
+n
+K2
+K2
+i
+
+h
+
+ii) From Definition 3, we know that |E[δi ]| ≤ K which gives us the desired
+upper-exponential bound of δi − E[δi ].
+iii) is trivial as δ1 , · · · , δc are independent and with mean zero.
+iv) Since δ1 is sub-Gaussian upper-exponentially bounded by K, we have:
+
+
+Z ∞
+Z ∞
+t2
+p−1
+p−1
+p
+pt
+exp 1 − 2 dt
+pt P(|δ1 | > t)dt ≤
+E[|δ1 | ] =
+K
+0
+0
+ep p p
+for any p ≥ 1
+= Γ( )K
+2 2
+(K 2 e)
+≤ p!K p−2
+for any p ≥ 2
+2
+Recall the well known Bernstein inequality.
+Lemma 16. ( Bernstein Inequality ). If there exists positive constants
+V and b such that for any integers m ≥ 2,
+E[|δ1 |m ] ≤ m!bm−2 V /2
+then
+(E.3)
+
+P
+
+ Pn
+
+i=1 δi
+
+n
+
+− E[x] > t
+
+
+
+≤ 2 exp
+
+
+
+−nt2
+2V + 2tb
+
+
+
+.
+
+By chooing V = K 2 e and b = K, we get the desired concentration inequality.
+
+Lemma 17. Suppose that (x, y) are defined over σ-finite space X × Y
+and x is sub-Gaussian with mean 0 and upper exponentially bounded by K,
+let m(y) = E[x|y], ǫ(y) = x − m(y), then we have
+
+24
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+i) m(y) and ǫ(y) are sub-Gaussian and upper-exponentially bounded by
+K and 2K respectively.
+ii) Let Z consists of points y such that x|y is not sub-Gaussian, i.e.,
+Z
+o
+n
+exp(tx2 )p(x|y)p(y)dx = ∞ ,
+Z , y | ∃t ∈ (0, t0 ] such that
+X
+
+then P(y ∈ Z) = 0.
+iii) For
+SH any fixed positive constants C1 < 1 < C2 and any partition R =
+h=1 Sh where Sh are intervals satisfying
+C2
+C1
+≤ P(y ∈ Sh ) ≤
+, ∀h,
+H
+H
+
+there exists a constant C such that
+sup P(x|y∈Sh
+h
+
+
+
+t2
+> t) ≤ CH exp 1 − 2
+K
+
+
+
+.
+
+As a direct corollary, we know that there exists a positive constant C
+such that
+
+
+
+(x|y∈Sh )2
+≤ CH,
+E exp
+2K 2
+and
+
+h
+E (x|y∈Sh )
+
+mi
+
+≤ CHmK m Γ(
+
+m
+)/2.
+2
+
+vi) Suppose that x|y∈Sh is
+Pdefined as in iii). Let xi , i=1,...,c be c samples
+from x|y∈Sh , x̄h = 1c i xi and µh = E[x|y∈Sh ], we have
+P[|x̄h − µh | > t] ≤ 2 exp
+
+
+
+−ct2
+2CHK 2 + 2tK
+
+
+
+.
+
+Proof. i) By Jensen’s inequality, we have
+E[exp(tE[x|y])] ≤ E[E[exp(tx)|y]] = E[exp(tx)] ≤ exp(t2 K12 ).
+i.e., m(y) is sub-Gaussian and upper-exponentially bounded by K1 . Since x
+, m(y) is sub-Gaussian and upper-exponentially bounded by K1 , we know
+that ǫ = x − m(y) is sub-Gaussian and upper-exponentially bounded by
+2K1 .
+
+25
+
+DT-SIR
+
+ii) Let p(x, y) be the joint density function of (x, y) and p(x), p(y) be the
+marginal distribution of x, y. Since x is sub-Gaussian, we know there exists
+t0 > 0 such that
+Z
+Z
+2
+p(x|y)p(y)dydx ≤ e for 0 ≤ t ≤ t0 .
+exp(tx )
+Y
+
+X
+
+By Fubini Theorem, we know
+Z
+Z
+exp(tx2 )p(x|y)dxdy ≤ e for 0 ≤ t ≤ t0 .
+p(y)
+(E.4)
+Y
+
+X
+
+R
+Recall that we have Z , {y|∃t ∈ (0, t0 ] such that X exp(tx2 )p(x|y)p(y)dx =
+∞}, from equation (E.4), we know P(y ∈ Z)=0. In particular, we know that
+for any y 6∈ Z, x|y is sub-Gaussian. However, the norm (e.g., sub-exponential
+norm)of x|y might be varying along with y and , as a function of y , it might
+be not bounded.
+iii) From Lemma 10, we know that there exists a positive constant C such
+that
+Z
+exp(tx2 )p(x|y ∈ Sh )dx ≤ CHe.
+X
+
+For simplicity if notation, we will denote x|y∈Sh by z through out this lemma.
+So for 0 ≤ t ≤ t0 = K1 , we have
+
+
+E[exp tz)2 ]
+≤ CHe exp −t2 a2 .
+P (z > a) ≤
+2
+2
+exp(t a )
+From the above tail bounds, we have that for any integer m > 0
+Z ∞
+Z ∞
+t2
+m
+m−1
+exp(− 2 )tm−1 dt
+P(|z| > t)(m)t
+dt ≤ CHm
+E[ z ] =
+K
+0
+0
+m
+≤CHmK (m/2)/2.
+
+We then have
+
+
+
+
+∞
+∞
+X
+
+ X
+E tm z 2m
+E tm z 2m
+2
+≤
+E exp tz
+≤
+m!
+m!
+m=0
+m=0
+
+∞ m
+∞
+X
+X
+t CHmK 2m Γ(m)
+tm K 2m
+≤
+= CH
+m!
+m=0
+
+m=0
+
+From which we know if 0 ≤ t < 12 K −2 , the R.H.S is bounded by CH for a
+positive constant C.
+
+26
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+vi) From the previous proof, we know that for any integer m ≥ 2
+E[|z|m ] ≤ CHm!K m = m!K m−2 (2CHK 2 )/2.
+By the Bernstein inequality (E.3), we have:
+
+
+
+ Pc
+−ct2
+i=1 zi
+− E[z] > t ≤ 2 exp
+.
+P
+c
+2CHK 2 + 2tK
+
+Lemma 18. Let zi , i = 1, · · · , n be i.i.d. samples of a sub-Gaussian distribution exponentially upper bounded by K, then there exist positive con√
+stants C1 , C2 such that, if nǫ → ∞, we have
+√
+ǫ n
+1X
+(zi − z̄)2 − var(z)| > ǫ) ≤ C1 exp(−C2 2 ),
+P(|
+n
+K
+i
+
+where z̄ =
+
+1
+n
+
+P
+
+i zi .
+
+Proof. Recall the following Hanson-Wright inequality in Rudelson and
+Vershynin [2013]
+Lemma 19. Let v = (x(1), · · · , x(n)) be a sub-Gaussian random vector
+with independent components x(β) such that E[x(β)] = 0 and kx(β)kψ2 ≤
+K. Let A be an n × n matrix. Then there exists a positive constant C such
+that for any t > 0,
+
+
+
+t
+t2
+τ
+τ
+.
+,
+P{|x Ax − E[x Ax]| > t} ≤ 2 exp −C min
+K 4 kAk2HS K 2 kAkHS
+Here the ψ2 norm of a random variable z is defined as kzkψ2 , supp p−1/2 (E|z|p )1/p
+P
+and the HS norm of a matrix A is defined as kAkHS = ( i,j |ai,j |2 )1/2 .
+Since
+
+1X
+P |
+(zi − z̄)2 − var(z)| > 2ǫ
+n
+i
+
+!
+
+!
+1X
+(zi − E[z])2 − (E[z] − z̄)2 − E[(z − E[z])2 ]| > 2ǫ
+=P |
+n
+i
+!
+
+1X
+2
+2
+≤P |
+(zi − E[z]) − E[(z − E[z]) ]| > ǫ + P (E[z] − z̄)2 > ǫ ,
+n
+i
+
+DT-SIR
+
+27
+
+and zi − E[z] are sub-Gaussian with mean 0, from Lemma 19 by choosing
+A = n1 Ip and z τ = (z1 − E[z], .., zp − E[z]), we have
+!
+
+√ 
+1X
+nǫ
+2
+2
+(E.5) P |
+(zi − E[z]) − E[(z − E[z]) ]| > ǫ ≤ 2 exp −C 2 ,
+n
+K
+i
+
+√
+since nǫ → ∞.
+The following follows from the usual deviation argument:
+
+P (E[z] − z̄)2 > ǫ ≤ C1 exp (−C2 nǫ) .
+
+Combining with the estimate (E.5), we know there exists positive constants C1 and C2 such that
+!
+
+√ 
+nǫ
+1X
+2
+P |
+(zi − z̄) − var(z)| > ǫ ≤ C1 exp −C2 2 ,
+n
+K
+i
+
+for sufficiently large n since
+
+√
+nǫ → ∞.
+
+
+
+E.4. Proof of Lemma 11. We only need to prove this lemma for n i.i.d.
+sample yi ’s from a uniform distribution over [0, 1]. We slightly change the
+notation of order statistics y(i) to y(i,n) so that we can keep track of the
+sample size. Since y is uniform distribution on [0, 1], it is well known that
+i−1
+i
+and mode n−1
+. Lemma 11
+y(i,n) ∼ Beta(i, n − i + 1) with expectation n+1
+is a direct corollary of the following lemma.
+Lemma 20. Suppose there are n = Hc i.i.d. samples from uniform distribution over [0, 1], when H,c are sufficiently large, we have the following
+large deviation inequalities of y(kc,Hc), k = 1, · · · , (H − 1).
+
+1
+i) There exists a positive constant C, such that for any ǫ > Hc−1
+, we
+have
+
+
+
+
+√
+k
+ǫ2
+P y(kc,Hc) >
++ ǫ ≤ CH Hc + 1 exp −(Hc + 1)
+;
+H
+2
+
+2
+, we
+ii) There exists a positive constant C, such that for any ǫ > Hc−1
+have
+
+
+
+
+√
+k
+ǫ2
+P y(kc,Hc) <
+− ǫ ≤ CH Hc + 1 exp −(Hc + 1)
+;
+H
+8
+
+28
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+iii) Let δ(k, H, c) = |y((k−1)c,Hc) −y(kc,Hc)| , for 2 ≤ k ≤ H −1, δ(1, H, c) =
+|y(c,Hc)| and δ(H, H, c) = |1 − y((H−1)c,Hc) |. There exists a positive
+4
+, we have for any 1 ≤ k ≤ H:
+constant C, such that for any ǫ > Hc−1
+
+
+
+
+√
+ǫ2
+1
+P |δ(k, H, c) − | > ǫ ≤ CH Hc + 1 exp −(Hc + 1)
+.
+H
+32
+We will prove Lemma 20 later. Assuming it, we have
+P (E(ǫ)) ≤
+
+H
+
+
+X
+1
+P |δ(k, H, c) − | > ǫ
+H
+k=1
+
+
+√
+ǫ2
+2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+32
+
+
+E.4.1. Proof of Lemma 20. The first part: For any 1 ≤ k ≤ H − 1, we
+note that
+
+
+
+
+kc
+k
++ ǫ ≤ P y(kc,Hc) >
++ǫ
+P y(kc,Hc) >
+H
+Hc + 1
+Z 1
+1
+=
+xkc−1 (1 − x)Hc−kc dx.
+B(kc, Hc − kc + 1) x> kc +ǫ
+Hc+1
+
+When ǫ >
+have
+
+(E.6)
+
+1
+Hc−1 ,
+
+we know the mode xM =
+
+kc−1
+Hc−1
+
+< xD ,
+
+kc
+Hc+1
+
++ ǫ , so we
+
+
+
+k
+(xD )kc−1 (1 − xD )Hc−kc+1
+P y(kc,Hc) >
++ǫ ≤
+H
+B(kc, Hc − kc + 1)
+(xD )kc (1 − xD )Hc−kc+1
+.
+≤H
+B(kc, Hc − kc + 1)
+
+k
++ǫ) =
+The last inequality due to HxD ≥ 1. If ǫ+ Hk ≥ 1, then P(y(kc,Hc) > H
+0 and Lemma 20 holds automatically.
+We may assume that ǫ + Hk < 1 below. Let us denote the right hand side
+of (E.6) by A, then
+
+log(A) = log(H) + kc log(E + ǫ) + (Hc − kc + 1) log(1 − E − ǫ)
++ log(Hc + 1)! − log(kc)! − log(Hc − kc + 1)!
+− log(Hc + 1) + log(kc) + log(Hc − kc + 1),
+
+29
+
+DT-SIR
+
+where E =
+
+kc
+Hc+1 .
+
+According to the Stirling formula:
+
+log(n!) = n log(n) − n +
+
+1
+1
+log(2πn) + O( ),
+2
+n
+
+when m is sufficiently large we have:
+log(A) = log(H) + (Hc + 1)(E log(1 +
+
+(E.7)
+
+ǫ
+ǫ
+) + (1 − E) log(1 −
+))
+E
+1−E
+
+1
+− (log(Hc + 1) − log(kc) − log(Hc − kc + 1))
+2
+1
+1
+1
+− log(2π) + O( ) + O(
+)
+2
+kc
+Hc − kc + 1
+≤ log(H) −
+
+(Hc + 1)ǫ2 1
+− log(2π)
+2(1 − E)
+2
+
+1
+1
+− (log(Hc + 1) − log(kc) − log(Hc − kc + 1)) + O( )
+2
+c
+(Hc + 1)ǫ2 1
+− (log(Hc + 1) − log(kc) − log(Hc − kc + 1)),
+≤ log(H) −
+2(1 − E)
+2
+kc
+≤ E + ǫ < 1 and the following elementary
+where we use the fact that Hc+1
+lemma, which can be proved by the Taylor expansion:
+
+Lemma 21. Suppose a, b are positive numbers such that a + b = 1, then
+for any 0 < ǫ < b, we have:
+ǫ
+ǫ2
+ǫ
+a log(1 + ) + b log(1 − ) ≤ − .
+a
+b
+2b
+Now we know that there exists a positive constant C such that for any
+1
+1 ≤ k ≤ H − 1 and for any ǫ > Hc−1
+, the following holds:
+
+
+k
+P y(kc,Hc) >
++ǫ
+H r
+
+
+ǫ2
+(kc)(Hc − kc + 1)
+exp −(Hc + 1)
+≤ CH
+Hc + 1
+2(1 − E)
+
+
+2
+√
+ǫ
+≤ CH Hc + 1 exp −(Hc + 1)
+2(1 − E)
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+2
+
+The last inequality follows from
+
+ǫ2
+1−E
+
+≥ ǫ2 since
+
+1
+H+1
+
+≤E≤
+
+H−1
+H .
+
+30
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+The second part: The proof of the second part is similar. For completeness,
+2
+,
+we sketch some calculations below. For any 1 ≤ k ≤ H − 1, when ǫ > Hc−1
+we have
+
+
+
+
+k
+kc
+P y(kc,Hc) <
+− ǫ ≤ P y(kc,Hc) <
+− ǫ/2
+H
+Hc + 1
+Z
+1
+=
+xkc−1 (1 − x)Hc−kc dx.
+B(kc, Hc − kc + 1) x< kc −ǫ
+Hc+1
+
+Since ǫ >
+have
+
+1
+Hc−1 ,
+
+we know the mode xM =
+
+
+
+P y(kc,Hc)
+
+k
+−ǫ
+≤
+H
+
+
+
+≤
+
+kc−1
+Hc−1
+
+> xD ′ ,
+
+kc
+Hc+1
+
+− ǫ/2, so we
+
+(xD′ )kc (1 − xD′ )Hc−kc
+B(kc, Hc − kc + 1)
+
+≤H
+
+(xD′ )kc (1 − xD′ )Hc−kc+1
+.
+B(kc, Hc − kc + 1)
+
+The last inequality due to H(1 − xD′ ) ≥ 1.
+The rest is similar to the first part. We have that for any 1 ≤ k ≤ H − 1
+2
+and for any ǫ > Hc−1
+,
+(E.8)
+
+
+P y(kc,Hc) <
+
+k
+−ǫ
+H +1
+
+
+
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+8
+
+The third part:
+The third part is a direct corollary of the first two
+4
+parts. Note that for any 2 ≤ k ≤ H − 2, for any ǫ > Hc−1
+
+
+1
+P |δ(k, H, c) − | > ǫ
+H
+
+k+1
+k
+= P y(k+1)c,Hc −
+− (ykc,Hc − ) > ǫ
+H
+H
+
+
+
+
+k+1
+ǫ
+ǫ
+k
+≤ P |y(k+1)c,Hc −
+|>
++ P |ykc,Hc − | >
+H
+2
+H
+2
+
+
+2
+√
+ǫ
+.
+≤ CH Hc + 1 exp −(Hc + 1)
+32
+
+DT-SIR
+
+31
+
+When k = 1, we have
+
+
+
+
+1
+1
+P |δ(1, H, c) − | > ǫ = P |yc,Hc − | > ǫ
+H
+H
+
+
+
+
+1
+1
+≤ P yc,Hc −
+> ǫ + P yc,Hc −
+< −ǫ
+H
+H
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+8
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+32
+When k = H, we have
+
+
+
+
+H −1
+1
+|>ǫ
+P |δ(H − 1, H, c) − | > ǫ = P |y(H−1)c,Hc −
+H
+H
+
+
+
+
+H −1
+H −1
+> ǫ + P y(H−1)c,Hc −
+< −ǫ
+≤ P y(k+1)c,Hc −
+H
+H
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+8
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+32
+
+References
+P. J. Bickel and E. Levina. Covariance regularization by thresholding. The Annals of
+Statistics, 36(6):2577–2604, 2008.
+T. T. Cai, C. Zhang, and H. Zhou. Optimal rates of convergence for covariance matrix
+estimation. The Annals of Statistics, 38(4):2118–2144, 2010.
+E. Candes and T. Tao. The Dantzig selector: Statistical estimation when p is much larger
+than n. The Annals of Statistics, pages 2313–2351, 2007.
+R. D. Cook. Graphics for regressions with a binary response. Journal of the American
+Statistical Association, 91(435):983–992, 1996.
+R. D. Cook, L. Forzani, and A. J. Rothman. Estimating sufficient reductions of the
+predictors in abundant high-dimensional regressions. The Annals of Statistics, 40(1):
+353–384, 2012.
+H. Cui, R. Li, and W. Zhong. Model-free feature screening for ultrahigh dimensional
+discriminant analysis. Journal of the American Statistical Association, 110(510):630–
+641, 2015.
+J. Fan and J. Lv. Sure independence screening for ultrahigh dimensional feature space.
+Journal of the Royal Statistical Society: Series B, 70(5):849–911, 2008.
+T. Hsing and R. J. Carroll. An asymptotic theory for sliced inverse regression. The Annals
+of Statistics, 20(2):1040–1061, 1992.
+B. Jiang and J. S. Liu. Variable selection for general index models via sliced inverse
+regression. The Annals of Statistics, 42(5):1751–1786, 2014.
+
+32
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+I. M. Johnstone and A. Y. Lu. Sparse principal components analysis. 2004.
+I. M. Johnstone and A. Y. Lu. On consistency and sparsity for principal components
+analysis in high dimensions. Journal of the American Statistical Association, 104(486),
+2009.
+K. Li. Sliced inverse regression for dimension reduction. Journal of the American Statistical
+Association, 86(414):316–327, 1991.
+L. Li. Sparse sufficient dimension reduction. Biometrika, 94(3):603–613, 2007.
+L. Li and C. J. Nachtsheim. Sparse sliced inverse regression. Technometrics, 48(4), 2006.
+Q. Lin, Z. Zhao, and J. S. Liu. Supplement to “on consistency and sparsity for sliced
+inverse regression in high dimensions”. 2015.
+X. Luo, L. A. Stefanski, and D. D. Boos. Tuning variable selection procedures by adding
+noise. Technometrics, 48(2):165–175, 2006.
+M. Neykov, Q. Lin, and J. S. Liu. Signed support recovery for single index models in
+high-dimensions. arXiv preprint arXiv:1511.02270, 2015.
+M. Rudelson and R. Vershynin. Hanson-wright inequality and sub-gaussian concentration.
+Electron. Commun. Probab, 18(82):1–9, 2013.
+G. J. Székely, M. L. Rizzo, and N. K. Bakirov. Measuring and testing dependence by
+correlation of distances. The Annals of Statistics, 35(6):2769–2794, 2007.
+R. Tibshirani. Regression shrinkage and selection via the lasso. Journal of the Royal
+Statistical Society: Series B, 58(1):267–288, 1996.
+R. Vershynin. Introduction to the non-asymptotic analysis of random matrices. arXiv
+preprint arXiv:1011.3027, 2010.
+Y. Wu, D. D. Boos, and L. A. Stefanski. Controlling variable selection by the addition
+of pseudovariables. Journal of the American Statistical Association, 102(477):235–243,
+2007.
+Z. Yu, L. Zhu, H. Peng, and L. Zhu. Dimension reduction and predictor selection in
+semiparametric models. Biometrika, page ast005, 2013.
+Z. Yu, Y. Dong, and L. X. Zhu. Trace pursuit: A general framework for model-free variable
+selection. Journal of the American Statistical Association, 2016. To appear.
+W. Zhong, T. Zhang, Y. Zhu, and J. S. Liu. Correlation pursuit: forward stepwise variable
+selection for index models. Journal of the Royal Statistical Society: Series B, 74(5):849–
+870, 2012.
+L. Zhu and K. Fang. Asymptotics for kernel estimate of sliced inverse regression. The
+Annals of Statistics, 24(3):1053–1068, 1996.
+L. Zhu, L. Li, R. Li, and L. Zhu. Model-free feature screening for ultrahigh-dimensional
+data. Journal of the American Statistical Association, 106(496), 2011.
+L. X. Zhu and K. W. Ng. Asymptotics of sliced inverse regression. Statistica Sinica, 5(2):
+727–736, 1995.
+L. X. Zhu, B. Miao, and H. Peng. On sliced inverse regression with high-dimensional
+covariates. Journal of the American Statistical Association, 101(474), 2006.
+Li-Ping Zhu, Lexin Li, Runze Li, and Li-Xing Zhu. Model-free feature screening for
+ultrahigh-dimensional data. Journal of the American Statistical Association, 2012.
+H. Zou and T. Hastie. Regularization and variable selection via the elastic net. Journal
+of the Royal Statistical Society: Series B, 67(2):301–320, 2005.
+
+33
+
+DT-SIR
+Qian Lin
+Center of Mathematical Sciences
+and Applications
+Harvard University
+One Oxford Street
+Cambridge, MA 02138
+USA
+E-mail: qianlin@cmsa.fas.harvard.edu
+
+Zhigen Zhao
+Department of Statistics
+Temple University
+346 Speakman Hall
+1810 N. 13th Street
+Philadelphia, PENNSYLVANIA, 19122
+USA
+E-mail: zhaozhg@temple.edu
+
+Jun S. Liu
+Department of Statistics
+Harvard University
+1 Oxford Street
+Cambridge, MA 02138
+USA
+E-mail: jliu@stat.harvard.edu
+
+
+
+Summary:
+This research paper covers the following topic: Submitted to the Annals of Statistics
+arXiv: arXiv:0000.0000
+
+arXiv:1507.03895v2 [math.ST] 21 Nov 2016
+
+ON CONSISTENCY AND SPARSITY FOR SLICED
+INVERSE REGRESSION IN HIGH DIMENSIONS
+By Qian Lin†∗ Zhigen Zhao‡∗ and Jun S. Liu†∗
+Harvard University†
+Temple University‡
+We provide here a framework to analyze the phase transition phenomenon of slice inverse regression (SIR), a supervised dimension
+reduction technique introduced by Li [1991]. Under mild conditions,
+the asymptotic ratio ρ = lim p/n is the phase transition parameter
+and the SIR estimator is consistent if and only if ρ = 0. When dimension p is greater than n, we propose a diagonal thresholding screening
+SIR (DT-SIR) algorithm. This method provides us with an estimate
+of the eigen-space of the covariance matrix of the conditional expectation var(E[x|y]). The desired dimension reduction space is then
+obtained by multiplying the inverse of the covariance matrix on the
+eigen-space. Under certain sparsity assumptions on both the covariance matrix of predictors and the loadings of the directions, we prove
+the consistency of DT-SIR in estimating the dimension reduction
+space in high dimensional data analysis. Extensive numerical experiments demonstrate superior performances of the proposed method
+in comparison to its competitors.
+
+1. Introduction. For a continuous multivariate random variable (y, x)
+where x ∈ Rp and y ∈ R, a subspace S ′ ⊂ Rp is called the effective dimension
+⊥ stands for independence.
+reduction (EDR) space if y ⊥
+⊥ x|PS ′ (x) where ⊥
+Under mild conditions (Cook [1996]), the intersection of all the EDR spaces
+is again an EDR space, which is denoted as S and called the central space.
+Many algorithms were proposed to find such subspace S under the assumption d = dimS ≪ p. This line of research is commonly known as sufficient
+dimension reduction. The Sliced Inverse Regression (SIR, Li [1991]) is the
+first, yet the most widely used method in sufficient dimension reduction,
+due to its simplicity, computational efficiency and generality. The asymptotic properties of SIR are of particular interest in the last two decades. The
+consistency of SIR has been proved for fixed p in Li [1991], Hsing and Carroll
+∗
+
+Lin’s research is supported by the Center of Mathematical Sciences and Applications
+at Harvard University. Zhao’s research is supported by the NSF Grant DMS-1208735. Liu’s
+research is supported by the NSF Grant DMS-1120368 and NIH Grant R01 GM113242-01
+MSC 2010 subject classifications: Primary 62J02; secondary 62H25
+Keywords and phrases: dimension reduction, random matrix theory, sliced inverse regression
+
+1
+
+2
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+[1992], Zhu and Ng [1995] and Zhu and Fang [1996]. Later, Zhu et al. [2006]
+√
+have obtained the consistency if p = o( n). A similar restriction also appears in two recent work (see Zhong et al. [2012] and Jiang and Liu [2014]).
+When p > n, a common strategy pursued by many recent researchers is to
+make sparsity assumptions that only a few predictors play a role in explaining and predicting y and apply various regularization methods. For instance,
+Li and Nachtsheim [2006], Li [2007] and Yu et al. [2013] applied LASSO
+(Tibshirani [1996]), Dantzig selector (Candes and Tao [2007]) and elastic
+net (Zou and Hastie [2005]) respectively to solve the generalized eigenvalue
+problems raised by a variety of SDR algorithms.
+However, a piece of jigsaw is missing in the understanding of SIR. If the
+dimension p diverges as n increases, when will the SIR break down? A similar question has been asked for a variety of SDR estimates in Cook et al.
+[2012]. In this paper, we prove that, under certain technical assumptions,
+the SIR estimator is consistent if and only if ρ = lim np = 0. Such a result on inconsistency provides theoretical justifications for imposing certain
+structural assumption, such as sparsity, in high dimensional settings. This
+behavior of SIR in high dimension, which will be called the phase transition
+phenomenon, is similar to that of the principal component analysis (PCA),
+an unsupervised counterpart of SIR. This extension is, however, by no means
+trivial. After all the samples (yi , xi ) are sliced into H bins according to the
+order statistics of yi , the sliced samples are neither independent nor identically distributed. This difference increases the difficulty significantly. In this
+paper, we provide a new framework to study the phase transition behaviour
+of SIR. The technical tools developed here can potentially be extended to
+study the phase transition behaviour of other SDR estimators.
+The second part of the article aims at extending the original SIR to the
+scenario with ultra-high dimension (p = o(exp(nξ ))). Based on equation (3)
+in Section 2, the central space can be estimated by the column space of
+b −1 col(Vb H ), where Σ
+b −1 is any consistent estimate of the precision matrix
+Σ
+x
+x
+b H ) is the estimate of the space col(var(E[x|y])). To estimate
+Σ−1
+and
+col(
+V
+x
+the column space of var (E[x|y]), we propose a diagonal screening procedure
+based on new univariate statistics varH (x(k)), which are the diagonal elements of var (E[x|y]), motivated by recent work in sparse PCA (Johnstone
+and Lu [2004]). After ranking the predictors according to the magnitude
+of varH (x(k)) decreasingly, we choose the set I consisting of the first R
+predictors as active predictors. The SIR procedure is subsequently applied
+to these selected predictors to estimate the d-dimensional column space of
+I
+I
+var(E[xI |y]) by col(Vb H ) where Vb H is the matrix formed by the top d eigenI
+I
+b . We embed Vb into Rp×d by filling in 0’s for entries outside
+vectors of Λ
+H
+H
+
+3
+
+DT-SIR
+I
+
+the chosen row set I, and denote this new matrix by e(Vb H ). The estimate
+b −1
+bI
+of the central space is defined to be col(Σ
+x e(V H )). We name this two-stage
+algorithm as Diagonal Thresholding SIR (DT-SIR), and prove that DTSIR is consistent in estimating the central space under certain regularity
+conditions. Extensive simulation studies show that DT-SIR performs better
+than its competitors and is computationally efficient.
+The rest of the paper is organized as follows. In Section 2, we briefly
+describe the SIR procedure and introduce the notations. In Section 3, after a brief review of existing asymptotic results of SIR procedure, we state
+Theorems 2 and 3 to discuss the phase transition phenomenon of SIR. In
+Section 4, we propose the DT-SIR method and show that DT-SIR is consistent in high dimensional data analysis. In Section 5, we provide simulation
+studies to compare DT-SIR with its competitors. Concluding remarks and
+discussions are put in Section 6. All the proofs are presented in appendices.
+2. Preliminaries and notations.
+2.1. Sliced inverse regression Consider the multiple index model
+(1)
+
+y = f (β τ1 x, · · · , β τd x, ǫ)
+
+where x ∈ Rp , ǫ is the noise and f is an unknown link function. Without
+loss of generality, we assume that E[x] = 0 ∈ Rp . Although the p × d matrix
+V = (β 1 , · · · , β d ) is not identifiable, the space spanned by the β’s, which is
+called the column space of V and denoted by col(V ), might be identified. Li
+[1991] proposed the Sliced Inverse Regression (SIR) procedure to estimate
+the central space col(V ) without knowing f (·), which can be briefly summarized as follows: Given n i.i.d. samples (yi , xi ), i = 1, · · · , n, SIR first
+divides them into H equal-sized slices according to the order statistics y(i) .1
+We re-express the data as yh,j and xh,j , where (h, j) is the double subscript
+in which h refers to the slice number and j refers to the order number of a
+sample in the h-th slice, i.e.,
+yh,j = y(c(h−1)+j) ,
+
+xh,j = x(c(h−1)+j) .
+
+Here x(k) is the concomitant of y(k) . Let the sample mean in the h-th slice
+be xh,· , and let the mean of all the samples be x. Then, Λp , var(E[x|y])
+can be estimated by:
+(2)
+
+H
+1 X
+b
+ΛH =
+x̄h,· x̄τh,· .
+H
+h=1
+
+1
+
+To ease notations and arguments, we assume that n = cH and H = o (log(n) ∧ log(p))
+throughout the article.
+
+4
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Based on the observation that
+(3)
+
+col(Λ) = Σx col(V ),
+
+b −1 col(Vb H ) where Vb H is
+the SIR then estimates the central space col(V ) by Σ
+x
+b H .. Throughout the article,
+the matrix formed by the top d eigenvectors of Λ
+we assume that d is fixed and the d-th largest eigenvalue λd of Λp is bounded
+away from 0 when n, p → ∞.
+In order for SIR to result in a consistent estimate of the central space, Li
+[1991] imposed the the following two conditions:
+• (A1). Linearity condition: For any ξ ∈ Rp , E[ξ τ x|β τ1 x, · · · , β τd x] is
+a linear combination of β τ1 x, · · · , β τd x.
+• (A2). Coverage condition: The dimension of the space spanned by
+the central curve equals the dimension of the central space, i.e., d′ = d.
+2.2. Further Notations. Let Sh be the h-th interval (yh−1,c , yh,c ] for 2 ≤
+h ≤ H − 1, S1 = (−∞, y1,c ] and SH = (yH−1,c , ∞). Note that these intervals depend on the order statistics y(i) and are thus random. For any
+ω
+R in the product sample space, we define a random variable δh = δh (ω) =
+y∈Sh (ω) f (y)dy where f (y) is the density function of y. For I ⊂ {1, · · · , n}, J ⊂
+
+{1, · · · , p} and a n × p matrix A, AI,J denotes the |I| × |J | sub-matrix
+formed by restricting the rows of A to I and columns to J . In articular,
+A−,J denotes the sub-matrix formed by restricting the columns to J ; For
+a matrix B = AI,J ∈ R|I|×|J | , we embed it into Rp×p by putting 0 on
+entries outside I × J and denote the new matrix as e(B). Similar notations
+apply to vectors. For two positive numbers a and b, we let a ∨ b ≡ max{a, b}
+and let a ∧ b ≡ min{a, b}. Let τ (x, t) = x × 1(|x| > t) be the hard thresholding function. Throughout the article, C, C1 and C2 are used to denote
+generic absolute constants, though the actual value may vary from case to
+case. For a vector x, we denote its k-th entry as x(k). Let β 1 and β 2 be
+two vectors with the same dimension, the angle between these two vectors
+is denoted as ∠(β 1 , β 2 ). For two sequences {an }, {bn }, we let an ≪ bn stand
+for an = O(bǫn ) for some positive ǫ < 1 and let an ≻ bn stand for lim abnn = 0.
+3. Consistency of SIR. In order to control the behavior of SIR, we
+need to impose the following boundedness condition (A3) on the predictors’
+covariance matrix in addition to the tail condition (sub-Gaussian) on their
+joint distribution. We also need a condition (A4) for the central curve.
+• (A3) Boundedness Condition: x is sub-Gaussian; and there exist
+positive constants C1 , C2 such that
+C1 ≤ λmin (Σx ) ≤ λmax (Σx ) ≤ C2
+
+DT-SIR
+
+5
+
+where λmin (Σx ) and λmax (Σx ) are the minimal and maximal eigenvalues of Σx respectively.
+• (A4) The central curve m(y) , E[x|y] has finite fourth moment and
+is ϑ-sliced stable (defined below) with respect to y and m(y).
+Definition 1. For two positive constants γ 1 < 1 < γ 2 , let AH (γ 1 , γ 2 )
+be the collection of all the partition −∞ = a0 < a1 < · · · < aH−1 < aH = ∞
+of R satisfying that
+γ
+γ1
+≤ P (ai ≤ y < ai+1 ) ≤ 2 .
+H
+H
+The central curve m(y) = E[x|y] is called ϑ-sliced stable with respect to y
+for some ϑ > 0 if there exist positive constants γ i , i = 1, 2, 3 such that for
+any β in the central space for any partition in AH (γ 1 , γ 2 ), we have
+(4)
+
+H−1
+1 X
+γ
+var(β τ m(y) | ah ≤ y ≤ ah+1 ) ≤ 3ϑ var(β τ m(y)).
+H
+H
+h=0
+
+The central curve is sliced stable if it is ϑ-sliced stable for some positive
+constant ϑ.
+Remark 1. Note that we only need (4) to hold for all unit vectors in
+the central space by rescaling. By considering the orthogonal decomposition
+of β in a general space with respect to the central space and its complement,
+it is easy to see that the sliced stability implies that (4) holds true for all
+vector β. In particular, we have the following two useful consequences of the
+slice-stability.
+i) By choosing β τ = (0, . . . , 0, 1, 0, . . . , 0) with 1 at the k-th position, we
+have
+|
+
+H
+X
+h=0
+
+var(m(y, k) | ah ≤ y ≤ ah+1 )| ≤ γ 3 H 1−ϑ var(m(y, k)),
+
+where m(y, k) is the k-th coordinate of the central curve m(y).
+ii) Since equation (4) holds for all unit vector β, we have
+k
+
+H
+X
+h=0
+
+var(m(y) | ah ≤ y ≤ ah+1 )k2 ≤ γ 3 H 1−ϑ kvar(m(y))k2 .
+
+6
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Remark 2. Suppose E[m(y)] = 0 and there are n samples mi , m(yi ).
+xh,· , respectively. On one
+Let mh,i and mh,· be defined similarly to xh,i and P
+hand, we have the classic consistent estimator n1 i mi mτi ofPvar(m(y)).
+On the other hand, if we expect that the slice-based estimate H1 h mh,· mτh,·
+of var(m(y)) is consistent, we must require that the average loss of variance
+in each slice to decrease to zero as H increases, i.e.,
+(5)
+
+1 X
+1 X1X
+1X
+mi mτi =
+(m̄h,· − m̄h,i )2 → 0.
+m̄h,· m̄τh,· −
+H
+n
+H
+c
+i
+
+h
+
+h
+
+i
+
+In Definition 1, we simply choose the decreasing rate to be a power of H. It
+would be easily seen that if m is smooth and y is compactly supported then
+(5) holds automatically. In this sense, for general curve m and random
+variable y, the sliced stability is a condition on smoothness of the central
+curve m and tail distribution of m(y). This is not surprised at all, since most
+work on the consistency of SIR estimate requires some kind of smoothness
+for the central curve and a tail distribution control for m(y).
+The most popular smoothness and tail condition might be the one proposed by Hsing and Carroll [1992] (later used in Zhu et al. [2006], Zhu and
+Ng [1995]) in their proof of the consistency of SIR, which is explained below. For B > 0 and n ≥ 1, let Πn (B) be the collection of all the n-point
+partitions −B ≤ y(1) ≤ · · · ≤ y(n) ≤ B of [−B, B]. First, they assumed that
+the central curve m(y) satisfies the following smoothness condition
+lim
+
+sup
+
+n→∞ y∈Π (B)
+n
+
+n−1/4
+
+n
+X
+i=2
+
+km(yi ) − m(yi−1 )k2 = 0, ∀B > 0.
+
+Second, they assumed that for B0 > 0, there exists a non-decreasing function
+m(y)
+e
+on (B0 , ∞), such that
+
+(6)
+
+m
+e 4 (y)P (|Y | > y) → 0 as y → ∞
+
+km(y) − m(y ′ )k2 ≤ |m(y)
+e
+− m(y
+e ′ )| for y, y ′ ∈ (−∞, −B0 ) ∪ (B0 , ∞)
+
+e 4] <
+By changing the tail condition (6) to a slightly stronger condition E[m(y)
+∞, Neykov et al. [2015] proved that the modified condition implies the sliced
+stability condition. Now, we are ready to state our main results.
+Theorem 1.
+(7)
+
+Under conditions (A1), (A2), (A3) and (A4), we have
+r
+H 2p
+H 2p
+1
+b
++
+).
+kΛH − Λp k2 = OP ( ϑ +
+H
+n
+n
+
+DT-SIR
+
+7
+
+The proof of the theorem is deferred to the Appendix. As a direct consequence of Theorem 1, we observe that if ρ = limn→∞ np = 0, we may choose
+H = log (n/p) such that the right hand side of equation (7) converges to 0.
+b H is a consistent estimate of Λp if ρ = 0.
+Thus, Theorem 1 implies that Λ
+
+Remark 3 (More on Convergence Rate). Note that the convergence rate
+in (7) depends on the choice of H. This may seem not very desirable at the
+b H might be different from that
+first glance. Since the convergence rate of Λ
+b
+of col(V H ), we may expect that the convergence rate of col(Vb H ) does not
+depend on the choice of H. In fact, we have
+
+
+ 
+b H − Λp = Λ
+b H PV − Λp .
+b H − PV Λ
+b H PV + PV Λ
+(8)
+Λ
+
+From the proof of Theorem
+q 1, we can easily check that the first term is of
+2
+pH 2
+1
+convergence rate n + pH
+n and the second term is of rate H ϑ . Since
+b H PV and Λp share the same column space, if we are only interested in
+PV Λ
+estimating PV , then the convergence rate of the second term does not matter
+provided that H is a large enough integer, which may depend on ϑ and γ 3
+but does not depend on n and p. For such an H, if AH (γ 1 , γ 2 ) is non-empty,
+Theorem 1 and (8) hold for both categorical and continuous response variable
+Y.
+
+Theorem 2. Under conditions (A1), (A2), (A3), (A4) and assuming
+that ρ = lim np = 0, we have
+b H − Σ−1 Λp k2 → 0
+b −1 Λ
+kΣ
+x
+x
+
+as n → ∞
+b x = 1 Pn xi xτ .
+with probability converging to one, where Σ
+i
+i=1
+n
+
+We define the distance D(V 1 , V 2 ) of two d-dimensional subspaces V 1 and
+V 2 as the operator norm (or Frobenius norm) of the difference between PV 1
+e ’s satisfy Σx β
+e = λi Λp β
+e,
+and PV 2 . Simple linear algebra shows that if the β
+i
+i
+i
+then
+o
+n
+e ,··· ,β
+e .
+col(V ) = span β
+1
+d
+
+b −1 , Λ
+b H ).
+Let Vb be the matrix formed by the top d generalized eigenvectors of (Σ
+x
+Recall that the d-th eigenvalue of Λp is assumed to be bounded away from
+0. Therefore Theorem 2 implies that D(PVb , PV ) → 0 when ρ = 0.
+We have already shown that the SIR procedure provides us with a consistent estimate of the sufficient dimension reduction space when ρ = 0 under
+mild conditions. It is then natural to ask: is this condition necessary? Our
+next theorem gives the answer.
+
+8
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Theorem 3. Under conditions (A1), (A2), (A4) and assuming that
+x ∼ N (0, Ip ) for the single index model
+y = f (β τ x, ǫ),
+we have:
+b H −Λp k2 , as a function of ρ, is dominated
+(i) When ρ = lim np ∈ (0, ∞), kΛ
+√
+by ρ ∨ ρ when H, n → ∞;
+b be the principal eigenvector of the SIR estimator Λ
+b H . If ρ =
+(ii) Let β
+p
+lim n > 0, then there exists a positive constant c(ρ) > 0 such that
+b > c(ρ)
+lim inf E∠(β, β)
+n→∞
+
+with probability converges to one.
+
+We illustrate this result via a numerical study of the linear model
+(9)
+
+y = xτ β + ǫ where β τ = (1, 0, · · · , 0), x ∼ N (0, Ip ), ǫ ∼ N (0, 1).
+
+b is related to the dimension p for fixed ratio
+Figure 1 shows how E∠(β, β)
+p
+ρ = n (taking values in {.1, .3, .7, 1, 2, 4}), where β is estimated by the
+b is calculated
+SIR with the slice number H = 10. For each p, E∠(β, β)
+based on 100 iterations. It is seen that this expected angle converges to a
+positive number when the ratio ρ is non-zero. In Figure 2, we have plotted
+b against the ratio ρ = p , varying between 0.01 and 4 with an
+the E∠(β, β)
+n
+increment of 0.01. The sample size n is 200 and the slice number H is 10. It
+is seen that the expected angle decreases to zero as ρ approaches zero, and
+increases monotonically when ρ increases.
+Results in this section have shown that there is a phase transition phenomenon of the SIR procedure. That is, the estimate of the dimension reduction space is consistent if and only if the ratio ρ = lim np = 0. This provides
+a theoretical justification of imposing additional structure assumption such
+as sparsity in high dimension.
+4. SIR in ultra-high dimension. As we have shown in Section 3, the
+SIR estimator fails to be consistent if ρ = lim np 6= 0. Hence, when p ≫ n,
+some structural assumptions are necessary for getting a consistent estimate
+of the central space. In this paper, we assume that both the loadings of all the
+directions β j ’s and the covariance matrix Σx are sparse. Other structural
+assumptions will be studied in our future work. For β i ’s, we impose the
+following prevalent sparsity condition.
+
+9
+
+DT-SIR
+0.4
+
+0.235
+
+0.395
+
+0.23
+
+0.39
+
+0.385
+0.225
+
+0.38
+
+0.22
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0.375
+
+0.6
+
+0.72
+
+0.595
+
+0.71
+
+0.59
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0.7
+
+0.585
+
+0.69
+
+0.58
+0.68
+0.575
+0.67
+0.57
+0.66
+
+0.565
+
+0.65
+
+0.56
+
+0.64
+
+0.555
+0.55
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+1.05
+
+0.63
+
+1.25
+
+1.2
+
+1
+
+1.15
+0.95
+1.1
+0.9
+1.05
+
+0.85
+
+0.8
+
+1
+
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+0.95
+
+Fig 1: Numerical approximations of E∠(β̂, β) for model (9) as a function of
+dimension p for ρ = .1, .3, .7, 1, 2, and 4, respectively (up left, up right,
+b is estimated by
+middle left, middle right, lower left, lower right), where β
+SIR.
+
+b and the ratio p/n where β
+b is estimated
+Fig 2: The relationship of E∠(β, β)
+by SIR.
+
+10
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+n
+o
+• (A5) s = |S| ≪ p where S = i | β j (i) 6= 0 for some j, 1 ≤ j ≤ d
+and |S| is the number of elements in the set S.
+For Σx , the following class of covariance matrices has been introduced in
+Bickel and Levina [2008] (see also Cai et al. [2010]).
+n
+X
+{|σi,j | : |i − j| > l} ≤ Cl−α for all l > 0,
+U (ǫ0 , α, C) = Σx : max
+j
+
+i
+
+and 0 < ǫ0 ≤ λmin (Σx ) ≤ λmax (Σx ) ≤
+
+1 o
+.
+ǫ0
+
+In this paper, to simplify the notations and arguments, we choose a slightly
+stronger condition.
+• (A6) Σx ∈ U (ǫ0 , α, C) and max1≤i≤p ri is bounded where ri is the
+number of non-zero elements in the i-th row of Σx .
+
+Let T = k | var (E[x(k)|y]) 6= 0 . If k ∈ T , there exists η ∈ col(Λ) such
+that η(k) 6= 0. Since we have (3):
+Σx col(V ) = col(Λ),
+there exits a β ∈ col(V ) such that η = Σx β. Thus if k ∈ T , then k ∈
+supp(Σx β) for some β ∈ col(V ). In particular, with the above sparsity
+assumptions (A5) and (A6) , we have |T | ≤ s max1≤i≤p ri = O(s).2 Note
+that our goal here is to recover the column space col(V ) rather than S.
+Indeed, we are not able to consistently recover S unless for the trivial case.
+The key for recovering cov(V ) is to consistently recovering the set T .
+At the population level, var(E(x(k))|y) can separate T from T c . When
+there are only finite samples, we use
+(10)
+
+varH (x(k)) =
+
+H
+1 X
+x̄h,· (k)2
+H
+h=1
+
+as an estimate of var(E(x(k))|y). These are the diagonal elements of the
+b H . Note that these quantities depend on the sliced sample means,
+matrix Λ
+which are neither independent nor identically distributed. Thus, the usual
+concentration inequalities for χ2 are no longer applicable. We need extra
+efforts to get the concentration inequalities; this concentration result is one
+of the main technical contributions of this article, and can be further generalized.
+2
+
+We could introduce ξ = max1≤i≤p ri , then |T | ≤ sξ. The arguments below still work,
+except we might need sξ = o(p).
+
+11
+
+DT-SIR
+
+Remark 4. The link function f ( ) is not involved explicitly in the definition of varH (x(k)), and only the order statistics of the response is required.
+This nonparametric characteristic of the method is of particular interest to
+us and will be further investigated in a future research. Screening statistics
+inspired by the sliced inverse regression idea have been proposed in various
+formats, such as those in Jiang and Liu [2014], Zhu et al. [2012] and Cui
+et al. [2015].
+With the quantities varH (E[x(k)|y]), we define the inclusion set Ip (t) and
+the exclusion set Ep (t) below, which depend on a thresholding value t:
+n
+o
+n
+o
+Ip (t) = k |varH (x(k)) > t and Ep (t) = k |varH (x(k)) ≤ t .
+
+Note that Ip (t) can be viewed as an estimate of T and is thus also denoted
+by Tb . After reducing the dimension to a level such as p/n is sufficiently
+b b
+b
+b T ,T is a consistent estimate of ΛT ,T . Let Vb T be the
+small, the SIR estimator Λ
+b b
+b
+b T ,T . We then use Σ
+b −1
+bT
+matrix formed by the top d eigenvectors of Λ
+x col(e(V )) to
+b −1
+estimate the central space col(V ), where Σ
+x is a consistent estimate of Σx .
+Estimating the covariance matrix and precision matrix in high dimension is
+a challenging problem by itself and is not a main focus of this article. We
+employ the methods of Bickel and Levina [2008] to solve it. In summary,
+we propose the following Diagonal Thresholding screening SIR (DT-SIR)
+algorithm:
+Algorithm 1 DT-SIR
+1. Calculate varH (x(k)) according (10) for k = 1, 2, · · · , p;
+n
+o
+2. Let Tb = k | varH (x(k)) > t for an appropriate t ;
+b ,T
+b
+T
+
+b H be the SIR estimator of the conditional covariance matrix for the data (y, x−,Tb )
+3. Let Λ
+according to equation (2);
+
+4. Let
+
+b
+
+T
+Vb
+
+be the matrix formed by the top d eigenvectors of
+
+b −1
+b
+is the estimate of col(V )
+5. Σ
+x col e V
+
+b b
+
+b T ,T ;
+Λ
+
+b
+T
+
+A practical way to choose an appropriate t in step 2 will be presented in
+Section 5 . To ensure theoretical properties, we need an assumption on the
+signal strength:
+• (S1) ∃ C > 0 and ω > 0 such that var(E[x(k)|y]) > Cs−ω when
+E[x(k)|y] is not a constant.
+
+12
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Theorem 4. Under conditions (A1) – (A6) and (S1), and let t = as−ω
+for some constant a > 0 such that t < 12 var(m(y, k), ∀k ∈ T , we have
+i) T c ⊂ Ep holds with probability at least
+
+(11)
+
+
+1 − C1 exp −C2
+
+
+n
++
+C
+log(H)
++
+log(p
+−
+s)
+;
+3
+H 2 sω
+
+ii) T ⊂ Ip holds with probability at least
+(12)
+
+
+1 − C4 exp −C5
+
+
+n
++
+C
+log(H)
++
+log(s)
+,
+6
+H 2 sω
+
+for some positive constants C1 , · · · , C6 .
+
+This theorem has a simple implication. If
+n
+), so that
+choose H = log( sω log(p)
+
+n
+sω
+
+≻ log(p) + log(s), we may
+
+n
+≻ log(p) + log(H) + log(s).
+H 2 sω
+Thus , we know T = Ip with probability converging to one. Next, we have
+results for the consistency of DT-SIR.
+Theorem 5. Under the same assumptions and choosing the same t as
+Theorem 4, if snω ≻ log(p) + log(s), we have
+Tb ,Tb
+
+b
+ke(Λ
+H ) − Λp k2 → 0 as n → ∞
+
+n
+).
+with probability converging to one, where Tb = I(t) and H = log( sω log(p)
+
+b x be the estimator of co-variance matrix from Bickel
+Theorem 6. Let Σ
+and Levina [2008]. Under the same assumptions of Theorem 5, we have
+−1
+
+Tb ,Tb
+
+−1
+b e(Λ
+b
+kΣ
+H ) − Σx Λp k2 → 0 as n → ∞
+x
+
+with probability converging to one.
+
+5. Simulation Studies. We consider the following settings in generating the design matrix x and the response y. In Settings I-III, each row of x
+is independently sampled from N (0, I).
+iid
+
+• Setting I. yi = sin(xi1 + xi2 ) + exp(xi3 + xi4 ) + 0.5 ∗ ǫi , where ǫi ∼
+N (0, 1);
+
+13
+
+DT-SIR
+
+• Setting II. yi =
+
+P7
+
+• Setting III. yi =
+
+iid
+j=1 xij ∗ exp(xi8 + xi9 ) + 0.5 ∗ ǫi where ǫi ∼ N (0, 1);
+P10
+P20
+iid
+j=1 xij ∗ exp( i=11 xij ) + ǫi where ǫi ∼ N (0, 1);
+
+In Settings IV to VI, each row of x is independently sampled from N (0, Σ).
+iid
+
+• Setting IV. yi = (xi1 + xi2 + xi3 )3 /2 + 0.5 ∗ ǫi , where ǫi ∼ N (0, 1)
+and Σ = (σij ) is tri-diagonal with σii = 1, σi,i+1 = σi+1,i = ρ and
+σi,i+2 = σi+2,i = ρ2 ;
+P
+iid
+• Setting V. yi = 7j=1 xij ∗ exp(xi8 + xi9 ) + ǫi , where ǫi ∼ N (0, 1),
+and Σ = B ⊗ Ip/10 with B = (bij )1≤i≤10,1≤j≤10 given as bij = ρ|i−j| ;
+• Setting VI. Assume the same setting as in Setting V except that
+Σ = (σij ) is tri-diagonal with σii = 1, σi,i+1 = σi+1,i = ρ and σi,i+2 =
+σi+2,i = ρ2 .
+• Setting VII. Assume the same setting as in Setting V except that
+Σ = (σij ) is given as σij = ρ|i−j| .
+DT-SIR first screens all the predictors according to the statistic varH,c (x(k)),
+which requires a tuning parameter t. We chose t by using an auxiliary variable method based on an idea first proposed by Luo et al. [2006] and extended by Wu et al. [2007] and Zhu et al. [2011]. In our setting, for a given
+sample (yi , xi ), we generate z i ∼ N (0, Ip′ ) where p′ is sufficiently large and
+chosen as p in our simulation studies. It is known that y and z are independent. The threshold t can be chosen as
+t̂ = max ′ {varH,c (z(k)).}
+1≤k≤p
+
+In DT-SIR, when n > 1000, H is chosen as 20; when n ≤ 1000, H is chosen
+as 10 in the screening step and 20 in the SIR step.
+We also consider the following alternative methods in the screening step:
+Sure Independent Ranking and Screening (SIRS) in Zhu et al. [2011], SIR
+for variable selection via Inverse modeling (SIRI) in Jiang and Liu [2014],
+and trace pursuit in Yu et al. [2016]. As a comparison, we also considered
+two screening methods that are not based on the sliced regression: Distance
+correlation in Székely et al. [2007] and SURE independence Fan and Lv
+[2008]. For SIRS, the threshold is chosen according to the auxiliary statistic
+(2.9) of Zhu et al. [2011]. For SIRI, the predictors are chosen according to
+10-fold cross validation. The threshold values c̄SIR and cSIR are chosen as
+the 10-th and 5-th quantile of a weighted χ2 distribution given in Theorem
+3.1 of Yu et al. [2016]. In both SURE and DC screening, the top ⌊γn⌋ where
+γ = 0.01 are kept for subsequent analyses.
+After the screening step, similar to DT-SIR, we then applied the SIR algorithm (steps 3-5 of DT-SIR) to estimate col(V ). These alternative methods
+
+14
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+are denoted as SIRS-SIR, SIRI-SIR, SURE-SIR, DC-SIR, and TP-SIR, respectively, in the following discussions. Another method that we compared
+with is the sparse SIR, abbreviated as SpSIR, proposed in Li [2007]. After
+obtaining an estimator col(Vb ), we calculate D(Pcol(Vb ) , Pcol(V ) ) as a measure
+of the estimation error. We replicate this step 100 times, and calculate the
+average distance for the estimation result from each method and report these
+numbers in Table 1-3. For each setting, the average distance of the optimal
+method is highlighted using bold fonts. We further run a two-sample T-test
+to test if the actual estimation error of each method is significantly different
+from that of the best method for that example at 1% level of significance.
+Under all settings, the average distance obtained by DT-SIR was much
+smaller than that obtained by SpSIR and SURE-SIR. The p-values for comparing DT-SIR and SpSIR/SURE-SIR are all significant at the 0.01 level.
+When p ≥ n, the sparse SIR completely failed
+√ because the average distance
+of the estimated space to the true space is 2d, indicating that the space
+estimated by sparse SIR is orthogonal to the true space spanned by β.
+Under settings II-IV, DT-SIR performed either the best or not significantly worse than the best method. For all other cases, DT-SIR performed
+the best except for a few cases: Setting I when n = 500, p = 1000, setting
+V when n = 500, p = 6000, setting VI when n = 500, p = 6000, and setting
+VII when n = 1000, p = 1000.
+When p = 6000, n = 500, both DT-SIR and SIRI-SIR were the winners.
+Under Setting III, DT-SIR performed better than SIRI-SIR; under settings
+V and VI, SIRI-SIR performed better than DT-SIR; under other settings,
+these two methods were comparable.
+To graphically show the performance of various methods, we consider
+setting IV with d = 1. Consider two cases when (n, p) = (2000, 1000) and
+(n, p) = (500, 100). We calculated the estimated directions β̂ using various
+methods and computed the angle between < β̂ > and < β >. We replicate
+this step 100 times to calculate the average angles for each method. The
+results are displayed in Figure 3, which shows clearly that DT-SIR performed
+better than its competitors.
+Additionally, DT-SIR is computationally efficient. To show this, we report the computing time for one replication under Setting II for various
+pairs of (n, p) in Table 4. All computations were done on a computer with
+Intel Xeon(R) E5-1620 CPU@3.70GHz and 16GB memory. It is clearly seen
+that DT-SIR performed as fast as SURE-SIR, and both were much faster
+than other competitors. Consider the case when p = 3000, n = 2000. The
+computation time of DT-SIR was only 30 seconds; while that for DC-SIR
+was 21 minutes and 38 seconds, and the that for TP-SIR was 6 minutes and
+
+15
+
+DT-SIR
+
+Table 1
+The average distance of the space estimated by each of the 7 methods tested to the true
+space col(V ) under various settings with p = 1000. The boldfaced number in each row
+represents the best result for that simulation scenario, and the “*” in cells represents that
+the p-value of the two-sample T-test comparing the estimation error of the corresponding
+method with that of the best method is less than 0.01.
+n
+500
+1000
+2000
+3000
+
+DT-SIR
+0.655(*)
+0.3
+0.221
+0.167
+
+SIRI-SIR
+0.751(*)
+0.431(*)
+0.341(*)
+0.245(*)
+
+SIRS-SIR
+0.492
+0.309
+0.226
+0.149
+
+SpSIR
+2(*)
+2(*)
+1.58(*)
+1.48(*)
+
+SURE-SIR
+1.39(*)
+1.29(*)
+1.04(*)
+0.816(*)
+
+DC-SIR
+0.731(*)
+0.632(*)
+0.655(*)
+0.641(*)
+
+TP-SIR
+1.18(*)
+0.94(*)
+0.784(*)
+0.713(*)
+
+II
+
+500
+1000
+2000
+3000
+
+0.383
+0.235
+0.161
+0.134
+
+0.396
+0.227
+0.157
+0.129
+
+0.371
+0.256
+0.189(*)
+0.153(*)
+
+2(*)
+2(*)
+1.25(*)
+0.975(*)
+
+1.64(*)
+1.36(*)
+1.25(*)
+1.12(*)
+
+1.08(*)
+0.266(*)
+0.387(*)
+0.404(*)
+
+0.389
+0.318(*)
+0.264(*)
+0.23(*)
+
+III
+
+500
+1000
+2000
+3000
+
+1.15
+0.426
+0.263
+0.214
+
+1.48(*)
+0.974(*)
+0.403(*)
+0.297
+
+1.38(*)
+0.596(*)
+0.29(*)
+0.238(*)
+
+2(*)
+2(*)
+1.33(*)
+1.06(*)
+
+1.97(*)
+1.94(*)
+1.89(*)
+1.82(*)
+
+1.85(*)
+1.57(*)
+0.996(*)
+0.475(*)
+
+1.13
+0.429
+0.338(*)
+0.299(*)
+
+IV
+
+500
+1000
+2000
+3000
+
+0.263
+0.219
+0.161
+0.134
+
+0.257
+0.447(*)
+0.4(*)
+0.377(*)
+
+0.333
+0.25
+0.196(*)
+0.177(*)
+
+1.41(*)
+1.41(*)
+0.42(*)
+0.297(*)
+
+0.335(*)
+0.436(*)
+0.442(*)
+0.43(*)
+
+0.334(*)
+0.459(*)
+0.469(*)
+0.458(*)
+
+0.332(*)
+0.469(*)
+0.452(*)
+0.438(*)
+
+V
+
+500
+1000
+2000
+3000
+
+0.546
+0.401
+0.288
+0.249
+
+0.529
+0.463(*)
+0.418(*)
+0.399(*)
+
+0.562
+0.514(*)
+0.341(*)
+0.284(*)
+
+2(*)
+2(*)
+1.51(*)
+1.24(*)
+
+1.62(*)
+1.15(*)
+0.926(*)
+0.691(*)
+
+1.24(*)
+0.367
+0.569(*)
+0.597(*)
+
+1.09(*)
+0.615(*)
+0.54(*)
+0.511(*)
+
+VI
+
+500
+1000
+2000
+3000
+
+0.568
+0.427
+0.311
+0.265
+
+0.535
+0.524(*)
+0.469(*)
+0.456(*)
+
+0.566
+0.548(*)
+0.351(*)
+0.307(*)
+
+2(*)
+2(*)
+1.51(*)
+1.25(*)
+
+1.64(*)
+1.22(*)
+0.927(*)
+0.807(*)
+
+1.24(*)
+0.39
+0.598(*)
+0.622(*)
+
+1.08(*)
+0.641(*)
+0.583(*)
+0.56(*)
+
+VII
+
+500
+1000
+2000
+3000
+
+0.556
+0.436(*)
+0.303
+0.258
+
+0.534
+0.528(*)
+0.465(*)
+0.468(*)
+
+0.585(*)
+0.545(*)
+0.358(*)
+0.319(*)
+
+2(*)
+2(*)
+1.51(*)
+1.25(*)
+
+1.66(*)
+1.22(*)
+0.747(*)
+0.698(*)
+
+1.26(*)
+0.39
+0.589(*)
+0.63(*)
+
+1.11(*)
+0.643(*)
+0.579(*)
+0.558(*)
+
+I
+
+17 seconds.
+6. Conclusion. When the dimension p diverges to infinity, classical
+statistical procedures often fail unless additional structures such as sparsity
+conditions are imposed. Understanding boundary conditions of a statistical
+procedure provides us theoretical justification and practical guidance for our
+modeling efforts. In this article, we provide a new framework to show that
+ρ = lim np is the phase transition parameter for the SIR procedure. Under
+certain conditions, it is shown that the SIR estimator is consistent if and
+
+16
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Table 2
+The average distance of the space estimated by each of the 7 methods we tested to the
+true space col(V ) under various settings with n = 2000.
+p
+
+DT-SIR
+
+SIRI-SIR
+
+SIRS-SIR
+
+SpSIR
+
+SURE-SIR
+
+DC-SIR
+
+TP-SIR
+
+I
+
+500
+1000
+2000
+3000
+
+0.213
+0.221
+0.241
+0.23
+
+0.312(*)
+0.341(*)
+0.29
+0.278
+
+0.206
+0.226
+0.214
+0.218
+
+1.44(*)
+1.58(*)
+2(*)
+2(*)
+
+0.903(*)
+1.04(*)
+1.07(*)
+1.17(*)
+
+0.629(*)
+0.655(*)
+0.677(*)
+0.683(*)
+
+0.772(*)
+0.784(*)
+0.793(*)
+0.797(*)
+
+II
+
+500
+1000
+2000
+3000
+
+0.163
+0.161
+0.172
+0.164
+
+0.16
+0.157
+0.159
+0.158
+
+0.19(*)
+0.189(*)
+0.196(*)
+0.199(*)
+
+0.83(*)
+1.25(*)
+2(*)
+2(*)
+
+1.22(*)
+1.25(*)
+1.23(*)
+1.3(*)
+
+0.369(*)
+0.387(*)
+0.404(*)
+0.414(*)
+
+0.26(*)
+0.264(*)
+0.259(*)
+0.261(*)
+
+III
+
+500
+1000
+2000
+3000
+
+0.272
+0.263
+0.262
+0.269
+
+0.353
+0.403(*)
+0.368
+0.344
+
+0.29(*)
+0.29(*)
+0.285(*)
+0.291(*)
+
+0.916(*)
+1.33(*)
+2(*)
+2(*)
+
+1.84(*)
+1.89(*)
+1.92(*)
+1.93(*)
+
+0.846(*)
+0.996(*)
+0.98(*)
+1.09(*)
+
+0.341(*)
+0.338(*)
+0.339(*)
+0.339(*)
+
+IV
+
+500
+1000
+2000
+3000
+
+0.145
+0.161
+0.16
+0.15
+
+0.409(*)
+0.4(*)
+0.395(*)
+0.395(*)
+
+0.182(*)
+0.196(*)
+0.198(*)
+0.216(*)
+
+0.248(*)
+0.42(*)
+1.41(*)
+1.41(*)
+
+0.406(*)
+0.442(*)
+0.472(*)
+0.49(*)
+
+0.433(*)
+0.469(*)
+0.506(*)
+0.527(*)
+
+0.438(*)
+0.452(*)
+0.447(*)
+0.447(*)
+
+V
+
+500
+1000
+2000
+3000
+
+0.272
+0.288
+0.289
+0.3
+
+0.434(*)
+0.418(*)
+0.418(*)
+0.417(*)
+
+0.353(*)
+0.341(*)
+0.351(*)
+0.372(*)
+
+1.09(*)
+1.51(*)
+2(*)
+2(*)
+
+0.876(*)
+0.926(*)
+0.868(*)
+0.968(*)
+
+0.547(*)
+0.569(*)
+0.596(*)
+0.605(*)
+
+0.539(*)
+0.54(*)
+0.537(*)
+0.544(*)
+
+VI
+
+500
+1000
+2000
+3000
+
+0.307
+0.311
+0.309
+0.31
+
+0.479(*)
+0.469(*)
+0.461(*)
+0.46(*)
+
+0.368(*)
+0.351(*)
+0.399(*)
+0.408(*)
+
+1.1(*)
+1.51(*)
+2(*)
+2(*)
+
+0.858(*)
+0.927(*)
+1.08(*)
+1(*)
+
+0.566(*)
+0.598(*)
+0.617(*)
+0.638(*)
+
+0.583(*)
+0.583(*)
+0.585(*)
+0.587(*)
+
+VII
+
+500
+1000
+2000
+3000
+
+0.299
+0.303
+0.309
+0.308
+
+0.482(*)
+0.465(*)
+0.455(*)
+0.46(*)
+
+0.343(*)
+0.358(*)
+0.383(*)
+0.357(*)
+
+1.09(*)
+1.51(*)
+2(*)
+2(*)
+
+0.818(*)
+0.747(*)
+0.966(*)
+0.858(*)
+
+0.564(*)
+0.589(*)
+0.622(*)
+0.626(*)
+
+0.583(*)
+0.579(*)
+0.578(*)
+0.58(*)
+
+Table 3
+The average distance of the space estimated by each of the 7 methods tested to the true
+space col(V ) under various settings with n = 500 and p = 6000.
+I
+II
+III
+IV
+V
+VI
+VII
+
+DT-SIR
+
+SIRI-SIR
+
+SIRS-SIR
+
+SpSIR
+
+SURE-SIR
+
+DC-SIR
+
+TP-SIR
+
+0.694
+0.446
+1.35
+0.163
+0.481(*)
+0.463(*)
+0.44
+
+0.631
+0.462
+1.56(*)
+0.122
+0.431
+0.423
+0.412
+
+0.606
+0.414
+1.56(*)
+0.245(*)
+0.486(*)
+0.494(*)
+0.477(*)
+
+2(*)
+2(*)
+2(*)
+1.41(*)
+2(*)
+2(*)
+2(*)
+
+1.43(*)
+1.74(*)
+1.99(*)
+0.27(*)
+1.62(*)
+1.62(*)
+1.61(*)
+
+0.97(*)
+1.08(*)
+1.88(*)
+0.305(*)
+1.1(*)
+1.11(*)
+1.1(*)
+
+1.19(*)
+0.4
+1.37
+0.195(*)
+0.995(*)
+0.999(*)
+1.03(*)
+
+1
+
+DT-SIR
+
+0.5
+
+0.5
+
+1.0
+
+Directions
+
+1.0
+
+Directions
+
+−0.5
+
+0.0
+
+True Beta
+SIRI SIR
+SIRS SIR
+Sparse SIR
+DT−SIR
+
+−1.0
+
+−1.0
+
+−0.5
+
+0.0
+
+True Beta
+SIRI SIR
+SIRS SIR
+Sparse SIR
+DT−SIR
+
+−1.0
+
+−0.5
+
+0.0
+
+0.5
+
+1.0
+
+−1.0
+
+−0.5
+
+0.0
+
+0.5
+
+1.0
+
+Fig 3: Simulated value of E∠(β̂, β) for the various methods. Left panel:
+(n, p) = (2000, 1000); Right panel: (n, p) = (500, 1000).
+Table 4
+Comparison of computing time under setting II.
+DT-SIR
+n
+500
+1000
+2000
+3000
+
+1”
+2”
+3”
+4”
+
+p
+500
+1000
+2000
+3000
+
+1”
+3”
+12”
+30”
+
+SIRI-SIR
+
+SIRS-SIR
+
+SpSIR
+
+SURE-SIR
+
+DC-SIR
+
+TP-SIR
+
+1’12”
+2’2”
+3’27”
+4’59”
+
+7”
+20”
+1’14”
+2’45”
+
+p=1000
+11”
+11”
+13”
+15”
+
+1”
+1”
+2”
+3”
+
+24”
+1’52”
+7’38”
+6’51”
+
+29”
+1’2”
+2’18”
+3’7”
+
+2’48”
+3’27”
+4’55”
+6’0”
+
+35”
+1’14”
+2’35”
+4’10”
+
+n=2000
+2”
+13”
+1’39”
+5’19”
+
+1”
+2”
+12”
+30”
+
+3’46”
+7’38”
+14’24”
+21’38”
+
+1’7”
+2’18”
+3’22”
+6’17”
+
+only if ρ = 0. When ρ > 0, where the original SIR fails to be consistent, we
+propose a two-stage method, DT-SIR for variable screening and selection
+in ultra-high dimension situations and show that the method is consistent.
+We have used simulated examples to demonstrate the advantages of DT-SIR
+compared to its competitors. This method is computationally fast and can
+be easily implemented for large data sets.
+Appendices
+
+2
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+In the following two sections we offer some details about our theoretical
+derivations, but some more tedious intermediate steps (organized as Lemmas
+6-21) are deferred to the Supplemental Document to this article, which is
+available on line.
+A. The Key Lemma. The following lemma plays an important role
+in developing the high dimensional theory for sliced inverse regression. The
+proof of this key lemma is lengthy and technical. It will be helpful to keep
+in mind that H and ν (if they are not constants) grow at very slow rate
+compared with c and n (e.g., polynomial of log(n)). Let m(y) = E[x|y], and
+x = m(y) + ǫ. Notations mh,j , mh,· , m, and ǫh,j , ǫh,· , ǫ are similarly
+defined as xh,j , xh,· and x that were introduced before.
+Lemma 1. Let x ∈ Rp be a sub-Gaussian random variable which is upper
+exponentially bounded by K (see Definition 4). For any unit vector β ∈ Rp ,
+let x(β) = hx, βi and m(β) = hm, βi = E[x(β) | y], we have the following:
+i) If var(m(β)) = 0 , there exists positive constants C1 , C2 and C3 such
+that for any b = O(1) and sufficiently large H, we have
+
+
+nb
+P(varH (x(β)) > b) ≤ C1 exp −C2 2 + C3 log(H) .
+H
+ii) If var(m(β)) 6= 0 , there exists positive constants C1 , C2 and C3 such
+that, for any ν > 1, we have
+|varH (x(β)) − var(m(β))| ≥
+
+1
+var(m(β))
+2ν
+
+with probability at most
+
+
+n var(m(β))
++ C3 log(H) .
+C1 exp −C2
+H 2ν 2
+where we choose H such that H ϑ > C4 ν for some sufficiently large
+constant C4 .
+
+3
+
+DT-SIR
+
+A.1. Proof of Lemma 1 i) If m(β) = 0 (or equivalently var(m(β)) = 0),
+since
+!2
+c−1
+c−1 1 X
+1
+2
+ǭh,· (β) =
+ǫh,i (β) + ǫh,c (β)
+c c−1
+c
+i=1
+!2
+2
+
+c−1
+1
+1 X
+ǫh,c (β)
+ǫh,i (β) + 2
+≤2
+c−1
+c
+i=1
+
+for h = 1, ..., H − 1 and ǭH,· (β) =
+varH (x(β)) − var(m(β))
+
+1
+c
+
+Pc
+
+i=1 ǫH,i (β),
+
+we have
+
+H−1
+1 X
+1
+=
+ǭh,· (β)2 + ǭH,· (β)2
+H
+H
+h
+
+
+!2
+H−1
+H−1
+c−1
+X
+X
+2 X
+2 
+1
+2
+ǫh,i (β) + ǭH,· (β)
++
+≤
+ǫh,c (β)2
+H
+c−1
+Hc2
+h
+
+i=1
+
+h
+
+,2I + 2II.
+
+Thus
+(A.1)
+
+P(varH (x(β)) > b) ≤ P(I > b/4) + P(II > b/4).
+
+Lemma 17 (iii) in Supplement implies that
+P (ǫ(β)|y∈Sh
+
+
+
+t2
+> t) ≤ CH exp − 2
+K
+
+
+
+for some positive constant C. Since E[x(β)|y] = 0,we have E[x(β)|y ∈ Sh ] =
+0. From Lemma 9, we know that for 1 ≤ h ≤ H − 1, ǫh,i (β) can be treated
+as c − 1 i.i.d. samples from ǫ(β)|y∈Sh . According to Lemma 17 (iv),
+!
+
+
+c−1
+√
+1 X
+−b(c − 1)
+√
+P |
+.
+ǫh,i (β)| > b/2 ≤ C1 exp
+c−1
+8C2 HK 2 + 4 bK
+i=1
+Similarly, we have
+!
+
+
+c
+√
+1X
+−bc
+√
+P |
+ǫH,i (β)| > b/2 ≤ C1 exp
+.
+c
+8C2 HK 2 + 4 bK
+i=1
+
+4
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Thus, if b = O(1) and H is sufficiently large, we have
+
+
+
+
+
+−bc
+−b(c − 1)
+b
+√
+√
++ exp
+P(I > ) ≤C1 (H − 1) exp
+4
+8C2 HK 2 + 4 bK
+8C3 HK 2 + 4 bK
+
+
+cb
+≤C1 exp −C2 + C3 log(H)
+H
+for some positive constants C1 , C2 and C3 .
+Since ǫi (β) are i.i.d. samples from a sub-Gaussian distribution ǫ(β) with
+mean 0 and upper-exponentially bounded by 2K. Lemma 19 implies that if
+b = O(1) and H is sufficiently large, we have
+1X
+ǫi (β)2 > bc/4)
+n
+i
+1X
+≤P(
+ǫi (β)2 − E[ǫ(β)2 ] > bc/4 − E[ǫ(β)2 )
+n
+i
+!
+1X
+2
+2
+2
+ǫi (β) − E[ǫ(β) ] ≥ cb/4 − 4K
+≤P
+n
+i
+
+
+√
+n(cb/4 − 4K 2 )
+≤C1 exp −C2
+K2
+
+
+cb
+≤C1 exp −C2 + C3 log(H)
+H
+
+P(II > b/4) ≤P(
+
+for some positive constants C1 , C2 and C3 if H is sufficiently large. We used
+in above the fact that E[ǫ(β)2 ] ≤ 4K 2 .
+To summarize, if b = O(1) and H is sufficiently large, we have
+
+
+cb
+P(varH (x(β)) > b) ≤ C1 exp −C2 + C3 log(H)
+H
+for some positive absolute constants C1 , C2 and C3 .
+A.2. Proof of Lemma 1 ii) Since x is sub-Gaussian and β is unit vector,
+we know that var(m(β)) = O(1). If m(β) 6= 0 (or equivalently var(m (β)) 6=
+
+5
+
+DT-SIR
+
+0), we have
+varH (x(β)) − var(m(β))
+1 X
+xh,· (β)2 − var(m(β))
+=
+H
+h
+1 X
+2 X
+1 X
+=
+mh,· (β)2 +
+mh,· (β)ǫh,· (β) +
+ǫh,· (β)2
+H
+H
+H
+h
+
+h
+
+h
+
+− var(m(β))
+≤A1 + A2 + A3 + A4 ,
+where
+1 X
+µh (β)2 − var(m(β)) ,
+H
+h
+1 X
+mh,· (β)2 − µh (β)2 ,
+A2 =
+H
+h
+1 X
+A3 =
+ǭh,· (β)2 ,
+H
+h
+1 X
+1 X
+A4 = (
+mh,· (β)2 )1/2 (
+ǫh,· (β)2 )1/2 .
+H
+H
+
+A1 =
+
+(A.2)
+
+h
+
+h
+
+Lemma 1 ii) is a direct corollary of the following properties of Ai ’s.
+Lemma 2. Let the Ai ’s be defined as in equation (A.2). There exist
+positive constants C1 , C2 and C3 , such that for any ν > 1 and H satisfying
+H ϑ = N1 ν for sufficiently large N1 , we have that each of the following events
+o
+n
+1
+var(m(β)) ,
+i) Θ1 = A1 ≤ 4ν
+ii) Θ2 =
+iii) Θ3 =
+iv) Θ4 =
+
+n
+
+n
+
+n
+
+o
+
+A2 ≤
+
+1
+8ν var(m(β))
+
+A3 ≤
+
+1
+16ν var(m(β))
+
+A4 ≤
+
+1
+16ν var(m(β))
+
+,
+
+o
+o
+
+,
+,
+
+occurs with probability at least
+
+
+c var(m(β))
++ C3 log(H) .
+(A.3)
+1 − C1 exp −C2
+Hν 2
+
+
+6
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+A.2.1. Proof of Lemma 2.
+A.2.1.1. Proof of i) : Recall definitions of the
+R random intervals Sh , h =
+1, 2, · · · , H and random variable δh = δh (ω) = y∈Sh (ω) f (y)dy. We have
+1 X
+(µh (β))2 − var(m(β))
+H
+h
+X
+X
+1 X
+≤ var(m(β)) −
+δh (µh (β))2 +
+(µh (β))2 −
+δh (µh (β))2
+H
+h
+
+h
+
+h
+
+,B1 + B2
+
+Let ǫ = Hn10 +1 where n0 = N2 ν for some sufficiently large constant N2
+and
+n let event E(ǫ) be odefined as in Lemma 11 in Section E, i.e., E(ǫ) =
+ω |δh − H1 | > ǫ, ∀h . For any ω ∈ E(ǫ)c , we have
+B1 =
+
+X
+h
+
+δh (ω)var(m(β)|y ∈ Sh (ω))
+
+X
+1
++ ǫ)
+var(m(β)|y ∈ Sh (ω))
+H
+h
+γ
+≤(1 + Hǫ) 3ϑ var(m(β))
+H
+2γ 3
+≤
+var(m(β)),
+N1 ν
+
+(A.4)
+
+≤(
+
+(A.5)
+(A.6)
+
+where inequality (A.4) follows from the fact that δh (ω) ≤ H1 + ǫ, inequality
+(A.5) follows from the sliced stable condition (4) and inequality (A.6) follows
+from the requirement that H ϑ > N1 ν, and the fact
+X
+X ǫ
+δh (β τ µh )2
+B2 ≤ǫ
+(β τ µh )2 =
+δh
+h
+h
+Hǫ X
+(A.7)
+δh (β τ µh )2
+≤
+1 − Hǫ
+h
+2 X
+≤
+δh (β τ µh )2
+N2 ν
+h
+
+where inequality (A.7) follows from the fact δh ≥ H1 − ǫ.
+From (A.5), we observe that
+
+
+X
+2γ 3
+2
+δh (µh (β)) ≤ 1 +
+(A.8)
+var(m(β)).
+N1 ν
+h
+
+7
+
+DT-SIR
+
+Combining with (A.7), we then have
+
+
+2
+2γ 3
+B2 ≤
+1+
+var(m(β)).
+N2 ν
+N1 ν
+So when E(ǫ)c occurs, we have
+
+
+
+2γ 3
+2
+2γ 3
+B1 + B2 ≤
++
+1+
+var(m(β)).
+N1 ν
+N2 ν
+N1 ν
+Note that N1 and N2 can be chosen sufficiently large so that
+(A.9)
+
+B1 + B2 ≤
+
+1
+4γ 3
+var(m(β)) ≤
+var(m(β)).
+N1 ν
+4ν
+
+Consequently, conditioning on E(ǫ)c where ǫ =
+N1 ν, then
+(A.10)
+
+1
+HN2 ν+1 ,
+
+if we choose H ϑ >
+
+1
+1 X
+var(m(β)).
+(µh (β))2 − var(m(β)) ≤
+H
+4ν
+h
+
+Since var(m(β)) = O(1), H ϑ > N1 ν and ǫ = HN21ν+1 , the desired probability bound follows from Lemma 11, i.e.,
+
+
+√
+Hc + 1
+2
+P(E(ǫ)) ≤C1 exp −
++ log(H Hc + 1)
+32(Hn0 + 1)2
+
+
+c var(m(β))
++
+C
+log(H)
+.
+≤C1 exp −C2
+3
+Hν 2
+
+
+for some positive constants C1 , C2 and C3 .
+
+Remark 5. From (A.10), conditioning on E(ǫ)c , we obtain the following
+two inequalities
+
+
+1 X
+4γ 3
+2
+(A.11)
+(µh (β)) ≤ 1 + ϑ var (m(β))
+H
+H
+h
+
+and
+(A.12)
+
+
+
+1/2
+4γ 3
+1 X
+|µh (β)| ≤
+1 + ϑ var (m(β))
+.
+H
+H
+h
+
+In particular,
+
+1
+H
+
+P
+
+h (µh (β))
+
+2
+
+and
+
+1
+H
+
+P
+
+h |µh (β)|
+
+are bounded by OP (1).
+
+8
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+A.2.1.2. Proof of ii) : Denote
+by m′H (β), we have
+
+1
+c−1
+
+Pc−1
+i=1
+
+mh,i (β) by m′h (β) and mH,· (β)
+
+H
+H
+1 X
+1 X
+2
+2
+′
+A2 ≤
+mh (β) − µh (β) +
+mh,c (β)2
+H
+Hc2
+h=1
+h=1
+!
+!1/2
+1/2
+H
+H
+H
+1 X
+2 X
+2(c − 1) 1 X ′
+2
+2
+mh (β)
++
++
+m
+(β)
+µh (β)2
+h,c
+c
+H
+Hc2
+Hc
+h=1
+
+h=1
+
+h=1
+
+, I + II + III + IV
+
+Before we start proving this part, we need to introduce two events and bound
+their probabilities. First, let
+o
+n
+1 p
+var(m(β)) .
+(A.13)
+E1 (N3 , ν) = η(β) >
+N3 ν
+n
+o
+where η(β) = max1≤h≤H m′h (β) − µh (β) . According to Lemma 17 (i),
+(iv) and Bonferroni’s inequality, we have
+!
+1
+−(c − 1)var(m(β))
+p
+(A.14) P (E1 (N3 , ν)) ≤2H exp
+(N3 ν)2 2CHK 2 + N2 ν var(m(β))K
+3
+
+
+c var(m(β))
+(A.15)
++ C3 log(H)
+≤C1 exp −C2
+Hν 2
+for some positive constants C1 , C2 and C3 . Second, let
+n
+o
+1
+E2 (N4 , ν) , II >
+var(m(β)) ,
+N4 ν
+then
+
+!
+1 X 2 var(m(β))
+mi >
+P (E(N4 , ν)) ≤ P
+nc
+N4 ν
+i
+
+
+√
+var(m(β))
+2
+≤C1 exp −C2 n(c
+)−K )
+ν
+
+
+c var(m(β))
++ C3 log(H)
+≤C1 exp −C2
+Hν
+for some positive constant C1 , C2 and C3 . It is easily to see E(N4 , ν) ⊂
+E(N4 , ν 2 ).
+
+9
+
+DT-SIR
+
+For I. Conditioning on the event E(ǫ)c ∩E1 (N3 , ν)c , combining with (A.12),
+we have
+2η(β) X
+1 X
+η(β)(η(β) + 2|µh (β)|) ≤ η(β)2 +
+|µh (β)|
+I≤
+H
+H
+h
+h
+
+ !
+
+
+1 2
+2
+4γ 3 1/2
+≤
+var(m(β))
++
+1+ ϑ
+N3 ν
+N3 ν
+H
+
+1
+var(m(β))
+32ν
+if N3 is sufficiently large .
+≤
+
+Remark 6.
+we have
+(A.16)
+
+From above, conditioning on the event E(ǫ)c ∩ E1 (N3 , ν)c ,
+H
+1 + 32ν
+1 X ′
+var(m(β)).
+m (β)2 ≤
+H
+32ν
+h=1
+
+For II.
+
+Conditioning on E2 (N4 , ν)c , we have II ≤
+
+var(m(y))
+.
+N4 ν
+
+For III. When the event E(ǫ)c ∩ E1 (N3 , ν)c ∩ E2 (N4 , ν 2 )c occurs, according
+to equation (A.16),
+r
+1
+2(c − 1) 1 + 32ν 1
+√
+var(m(β)) <
+var(m(β)).
+III ≤
+c
+32ν
+16ν
+N4 ν
+if N4 is sufficiently large.
+For VI. When the event E(ǫ)c ∩ E1 (N3 , ν)c ∩ E2 (N4 , ν)c occurs, from
+(A.10), we know
+9
+1
+2 X
+µh (β)2 ≤ var(m(β)) <
+var(m(β)).
+VI =
+Hc
+4c
+16ν
+h
+
+To summarize, we know that there exist positive constant C1 , C2 , C3 and
+C4 such that
+1
+A2 ≤ I + II + III + V I ≤
+var(m(β))
+8ν
+holds on the event E(ǫ)c ∩ E1 (N3 , ν)c ∩ E2 (N4 , ν 2 )c which is with probability
+at least
+
+
+c var(m(β))
++ C3 log(H)
+1 − C1 exp −C2
+Hν 2
+for some positive constants C1 ,C2 and C3 .
+
+10
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+A.2.1.3. Proof of iii) :
+
+Similar to the proof of Lemma 1 (i) we have
+
+P(A3 > b) ≤ C1 H exp
+
+−(c − 1)b
+√
+8C2 HK12 + 4 bK2
+
+!
+
+for some positive constants C1 , C2 and C3 . In particular , if we take b =
+1
+16ν var(m(β)), we know that
+A3 ≤
+
+1
+var(m(β))
+16ν
+
+with probability at least
+
+c var(m(β))
++ C3 log(H)
+1 − C1 exp −C2
+Hν 2
+
+
+for some positive constant C1 , C2 and C3 .
+A.2.1.4. Proof of iv) : Let
+D1 ,
+
+1 X
+mh,· (β)2 ,
+H
+
+D2 , A3 =
+
+h
+
+1 X
+ǭh,· (β)2
+H
+h
+
+Consequently,
+
+
+(A.17)
+
+
+1
+P
+>
+var(m(β))
+16ν
+
+
+
+
+var(m(β))
+2ν + 1
+var(m(β)) + P D2 >
+≤P |D1 | >
+2ν
+(2ν + 1)16ν
+1/2 1/2
+D1 D2
+
+Note that
+|D1 − var(m(β))| ≤ A2 + A1
+According to (i) and (ii), the right hand side of (A.17) is bounded by
+
+
+c var(m(β)
+C1 exp −C2
++ C3 log(H)
+Hν 2
+for some positive constants C1 , C2 and C3 .
+
+B. Proofs of theorems in section 3.
+
+11
+
+DT-SIR
+
+B.1. Proof of Theorem 1. Let S be the central subspace of dimension
+d ≪ p, i.e., y ⊥
+⊥ x|P S x and dim(S) = d. We have the decomposition
+x = P S x + P S⊥ x , z + w
+
+(B.1)
+
+= E[z|y] + z − E[z|y] + w , m + v + w
+
+where z = P S x, m = E[z|y], v = z − E[z|y] and w = P S ⊥ x. Note that m
+lies in the central curve, v lies in the central space and w lies in the space
+perpendicular to S. We introduce
+(B.2)
+
+mh,j , mh,· , m,
+
+z h,j , z h,· , z, and wh,j , wh,· , w
+
+bz
+similar to the definition of xh,j , xh,· and x. Consequently, we can define Λ
+and have the following decomposition
+(B.3)
+
+X
+bH ≡ 1
+b z + ZW τ + WZ τ + WW τ ,
+Λ
+xh,· xτh,· = Λ
+H
+h
+
+where
+
+1
+1
+Z = √ (z 1,· , ..., z H,· ) and W = √ (w1,· , ..., w H,· ) .
+H
+H
+b z − Λp k2 and kWW τ k2 .
+We need to bound kΛ
+
+Lemma 3.
+
+kWW τ k2 ≤ OP (
+
+(B.4)
+
+H 2p
+)
+n
+
+Proof. From Lemma 1, for any unit vector β ⊥ col(Λ), i.e. var(m(β)) =
+0, we have
+(B.5)
+
+P(β τ WW τ β > C
+
+H 2p
+) ≤ C1 exp (−C2 p + log(H)) .
+n
+
+for some positive constants C1 and C2 . Then the ε-net argument (see e.g.,
+2
+Vershynin [2010]) implies that kWW τ k ≤ OP ( Hn p )
+
+Lemma 4.
+(B.6)
+
+b z − Λp k ≤ OP
+kΛ
+
+
+
+1
+Hϑ
+
+b z k ≤ OP (1).
+As a direct corollary, we have kΛ
+
+
+
+.
+
+12
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Proof. From Lemma 1, we have
+
+
+
+
+C
+c var(m(β))
+τ b
+P β (Λz − Λ)β > ϑ kΛk2 ≤ C1 exp −C2
++ C3 log(H) .
+H
+H 1+2ϑ
+Note that we only need to verify it for β ∈ col(Λp ), which is a d-dimensional
+
+b z − Λp k2 ≤ OP 1ϑ .
+
+space. Then the ε-net argument implies that kΛ
+H
+Theorem 1 follows from Lemma 4 and Lemma 3. In fact,
+
+b H − Λp k ≤ kΛ
+b z − Λp k + kZW τ + WZ τ k2 + kWW τ k2
+kΛ
+!
+r
+1
+H 2p H 2p
+≤ OP
++
++
+.
+Hϑ
+n
+n
+
+B.2. Proof of Theorem 2. Theorem 2 is a direct corollary of Theorem 1
+and Lemma 13. In fact, we have:
+−1
+b −1
+b
+kΣ
+X ΛH − ΣX Λp k2
+
+b H − Λp k2 ,
+b H k2 + kΣ−1 k2 kΛ
+b −1 − Σ−1 k2 kΛ
+≤ kΣ
+X
+X
+X
+
+which → 0 if ρ = limn→∞
+
+p
+n
+
+= 0.
+
+
+
+B.3. Proof of Theorem 3.
+(i) The proof for part (i) is similar to the proof of Theorem 1 and the
+standard Gaussian assumption on x simplifies the argument and improves
+the results. Since w = P S ⊥ x is normal and independent of y, there exists
+a normal random variable ǫ ∼ N (0, I) such that w = Σ1/2 ǫ where Σ =
+cov(w). Using the decomposition (B.3), we may write
+(B.7)
+
+W=√
+
+1
+Σ1/2 E p×H
+Hc
+
+where E p,H is a p × H matrix with i.i.d. standard normal entries. Corollary
+4 implies that
+kWW τ k2 ≤ C
+
+r
+
+p
++
+n
+
+r
+
+H
+n
+
+!2
+
+≤ OP
+
+p
+n
+
+.
+
+13
+
+DT-SIR
+
+Lemma 4 implies
+b z k2 ≤ kΛp k2 + OP
+kΛ
+
+By the Cauchy inequality, we have
+
+Thus,
+
+
+
+1
+Hϑ
+
+b z k2 kWW τ k2 ≤ OP
+kC1 k22 ≤ kΛ
+b H − Λp k2 ≤ OP ( 1 + p +
+kΛ
+Hϑ n
+
+
+
+.
+
+p
+n
+
+r
+
+.
+
+p
+).
+n
+
+b H −Λp k2
+In particular, if H, n → ∞ and ρ = lim np ∈ (0, ∞), we know that kΛ
+√
+is dominated by ρ ∨ ρ as a function of ρ.
+
+(ii) The proof for part (ii) is similar to the proof of Theorem 2 in
+Johnstone and Lu [2009] but is technically more challenging. Let D =
+ZZ τ + WW τ and B = ZW τ + WZ τ , then
+b H =D + B.
+Λ
+
+Since we are working on single index model with x is standard normal, z =
+Pβ x = βz(y) for some scalar function z(y) and w = Pβ ⊥ x are independent
+normal random variables. Let Σ = var(w), then we can write
+W=√
+
+1
+Σ1/2 E
+Hc
+
+where E is a p × H matrix with i.i.d. standard normal entries.
+Since z = βz(y), we have Z = √1H β(z 1,· , z 2,· , ..., z H,· ). To ease notation,
+let θ τ = (z 1,· , z 2,· , ..., z H,· ), then
+1
+1
+kθk2 ββ τ + Σ1/2 EE τ Σ1/2
+H
+n
+1
+B = βuτ + uβ τ where u = √ Σ1/2 Eθ.
+H c
+
+D=
+(B.8)
+
+1
+) and
+Let 0 < α < arctan( 16
+n
+o
+(B.9)
+Nα = x ∈ Rp : ∠ (x, β) ≤ α and kxk = 1
+
+be the set of unit vectors making angle at most α where ∠(x, y) is the angle
+between the vectors x and y. In order to proceed, we need the following
+lemma.
+
+14
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+b and β
+b be the principal eigenvector of S+ , D + B
+Lemma 5. Let β
+−
+and S− , D − B, respectively.
+exists a positive constant ω(α) such
+ There
+
+b
+b
+that for any β ∈ Nα , i.e., ∠ β, β ≤ α, we have
+(B.10)
+
+ 1
+
+b β
+b
+∠ β,
+− ≥ ω(α)
+3
+
+with probability converging to one as n → ∞.
+
+Proof. The proof is presented in Lin et al. [2015].
+Note that S+ and S− have the same distribution (viewed as functions of
+random terms E and θ):
+S− (E, θ) = S+ (−E, θ).
+n 
+
+o n 
+
+o
+b β ≤α ∪ ∠ β
+b , β ≤ α , then
+Let Aα denote the event ∠ β,
+−
+
+
+
+
+
+
+b β ] ≥ E[∠ β,
+b β , Ac ] + E[∠ β,
+b β , Aα ]
+E[∠ β,
+α
+
+
+
+
+b β , Ac ] + 1 E[∠ β,
+b β
+b , Aα ]
+≥ E[∠ β,
+−
+α
+2
+ω(α)
+≥ min{α,
+} > 0.
+6
+
+
+C. Proof of Lemma 5. We need the following lemmas.
+Lemma 6. Recall that u = H1√c Σ1/2 Eθ defined as in (B.8), then there
+exist positive constants C1 and C2 such that
+0 < C1 ≤ kuk2 ≤ C2
+with probability converging to one as n → ∞.
+Lemma 7. Assuming conditions in Theorem 3, let B and Nα be defined
+1
+).
+as in (B.8) and(B.9) respectively where 0 < α < arctan( 16
+i) There exists positive constant C1 such that for any x ∈ Nα , we have
+kBxk ≥ C1 with probability converging to one as n → ∞;
+ii) For any x ∈ Nα , we have cos ∠(x, Bx) ≤ 4α with probability converging to one as n → ∞.
+
+15
+
+DT-SIR
+
+The following lemma is borrowed from Johnstone and Lu [2004].
+Lemma 8. Let ξ be a principal eigenvector of a non-zero symmetric
+matrix M. For any η =
+6 0,
+∠(η, M η) ≤ 3∠(η, ξ).
+The proof of Lemma 5 is made plausible by reference to the Figure C1.
+Fig C1: An illustrated graph
+
+Since
+(C.1)
+(C.2)
+
+ 
+
+b S− β
+b
+sin ∠ β,
+= sin (ω1 + ω2 ) = sin (π − ω1 − ω2 )
+n
+o
+≥ min sin (ω1 ) , sin (ω3 ) ,
+
+we only need to prove that there exists a positive small constant ω(α) ( < π2
+) such that sin (ω1 ) , sin (ω2 ) ≥ sin (ω(α)) . In fact, if such ω(α) exists, we
+b in Lemma 8 and get
+may choose M = S− , ξ = β
+−
+ 1 
+
+
+b S− β
+b ≥ 1 ω(α).
+b β
+b
+≥
+∠
+β,
+∠ β,
+−
+3
+3
+b B β)
+b ≤ 4α, we know that there exists
+For ω3 . From Lemma 7 ii), cos ∠(β,
+positive constants δ(α)(< π2 ) such that sin ω3 ≥ sin (δ(α)) .
+For ω1 .
+(C.3)
+
+Applying the law of sines to the triangle △(O, O1 , O2 ) , we have
+
+
+
+b β
+b
+sin
+∠
+B
+β,
+sin ω1
+sin ω3 
+.
+=
+=
+b
+b
+b
+kB βk
+kD βk
+kD βk
+
+Note that from Lemma 7 i), there exists a constant C1 > 0 such that
+b > C1 and
+kB βk
+b ≤ kDk ≤
+kD βk
+
+1
+1
+kθk2 + k EE τ k,
+H
+n
+
+is bounded by an absolute constant C given limn→∞
+stable condition. Then (C.3) implies
+sin ω1 =
+
+p
+n
+
+= ρ 6= 0 and sliced
+
+b sin ∠(B β,
+b β)
+b
+kB βk
+C1 sin δ(α)
+≥ sin ω ′ > 0
+≥
+b
+C
+kD βk
+
+16
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+where ω ′ ( < π2 )is an small angle such that the last inequality holds. In
+particular, we have ω1 ≥ ω ′ . Hence
+b S− β)
+b ≥ω ′ ∧ δ(α) , ω(α)
+∠(β,
+
+
+
+C.1. Proof of Lemma 6 Proof : In fact, let T be an orthogonal matrix
+such that T β = (1, 0 · · · , 0)τ and M = T ββ τ T τ , then
+cH 2 uτ u = θ τ E τ ΣEθ
+
+= θ τ E τ Eθ − θ τ E τ ββ τ Eθ
+
+= θ τ E τ T τ T Eθ − θ τ E τ T τ (T β)β τ T τ T Eθ
+d.
+
+= θ τ E τ Eθ − θ τ E τ M Eθ
+d. p − 1 τ τ
+θ E Eθ,
+=
+p
+d.
+
+where = means equal in distribution. Note that E τ E is full rank H × H
+matrix, combining with Lemma 14 , we know that
+s
+s
+1 τ
+1 τ
+H 2
+H 2
+) ≤ λmin ( E E) ≤ λmax ( E E) ≤ C2 (1 +
+)
+C1 (1 −
+p
+p
+p
+p
+for some positive constants C1 and C2 with probability at least 1−2 exp(−p/8).
+Note that lim np = ρ > 0 as n → ∞ and n = Hc, we know there exists positive constants C1 and C2 such that
+C1
+
+1
+1
+kθk2 ≤ kuk2 ≤ C2 kθk2
+H
+H
+
+with probability at least 1 − 2 exp(−p/8).
+On the other hand, the sliced stable condition implies that lim H1 kθk2
+exists (6= 0), so kuk2 is bounded away from 0 and ∞ with probability 1 as
+n → ∞.
+
+C.2. Proof of Lemma 7 Proof : For i), ∀x ∈ Nα , let
+x = cos(δ)β + sin(δ)η where η ⊥ β, kηk = 1, δ ≤ α.
+Since Bx = cos(δ)u + (uτ η) sin(δ)β, we have:
+kBxk ≥ cos(δ)kuk − sin(δ)kuk ≥
+≥
+
+C1
+1
+cos(α)kuk >
+>0
+2
+4
+
+1
+cos(δ)kuk
+2
+
+DT-SIR
+
+17
+
+for some positive constant C1 .
+For ii), since
+xτ Bx = 2(uτ η) cos(δ) sin(δ)
+we have that uniformly over Nδ ,
+|xτ Bx| ≤ |uτ η| sin(2δ)
+which in turn implies:
+cos(∠(Bx, x)) =
+
+sin(2δ)|uτ η|
+|xτ Bx|
+≤ 1
+≤ 4δ ≤ 4α.
+kxkkBxk
+2 cos(δ)kuk
+
+
+
+D. Appendix B: Proofs of Theorems 4 to 6.
+D.1. Proof of Theorem 4. Let x(k) =< x, β k > where β k = (0, .., 1, ...0) ∈
+Rp with the only 1 at the k-th position. Recall that
+o
+n
+T = k E[x(k)|y] is not constant.
+n
+o
+Ip (t) = k varH (x(k)) > t
+n
+o
+Ep (t) = k varH (x(k)) ≤ t .
+
+and |T | ≤ Cs for some positive constant C. Since var(E[x(k)|y]) > sCω , we
+may choose t = saω for sufficiently small positive constant a such that for
+any k ∈ T , t < 12 var(E[x(k)|y]. According to Lemma 1 and the Bonferroni’s
+inequality, we have
+X
+P (T c ⊂ Ep (t)) ≥ 1 −
+P ( varH (x(k)) > t)
+k∈T c
+
+and
+
+
+
+ct
+≥ 1 − C1 exp −C2 + C3 log(H) + log(p − s) .
+H
+
+!
+o
+1
+varH (x(k)) ≥ var(m(k, y))
+P(T ⊂ Ip (t)) ≥ P
+2
+k∈T
+
+
+X
+1
+≥1−
+P varH (x(k)) < var (m(k, y))
+2
+k∈T
+
+
+c var(m(k, y))
+≥ 1 − C1 exp −C2
++ C3 log(H) + log (Cs) ,
+H
+\n
+
+i.e., we have (11) and (12) hold.
+
+
+
+18
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+D.2. Proof of Theorem 5 By choosing H, c and t = saω properly, from
+Theorem 4, we have
+
+
+n
+P (Tb = T ) ≥ 1 − C1 exp −C2 2 ω + C3 log(H) + log(p − s)
+H s
+
+for some positive constants Ci , i = 1, 2, 3. When Tb = T , we have |Tb | = O(s).
+b
+For the n samples (Yi , XiT ), apply Theorem 1, we have
+r
+T ,T
+T ,T
+H 2s
+1
+H 2s
+T ,T
+b
+b
++
+).
+ke(ΛH ) − Λp k2 ≤ kΛH − Λp k2 ≤ OP ( ϑ +
+H
+n
+n
+In particular, with probability converging to one, we have
+T ,T
+
+b
+ke(Λ
+H ) − Λp k2 → 0 as n → ∞.
+
+D.3. Proof of Theorem 6. The proof is almost identical to the proof of
+Theorem 2, except that we additionally need to use Theorem 1 in Bickel
+and Levina [2008].
+E. Appendix C
+E.1. Assisting Lemmas
+Definition 2. A set of random variables x1 , ..., xn can be treated as i.i.d
+random samples from a random variable x, if for any n variates symmetric
+function f (w1 , ..., wn ) , f (x1 , ..., xn ) is identically distributed as f (z1 , ..., zn )
+where z1 , ..., zn are i.i.d random samples from x.
+Lemma 9. Let (xi , yi ) be n i.i.d random samples from a joint distribution
+(x, y). Sort these samples according to the order statistics of yi ’s and denote
+the sorted samples by (x(1) , y(1) ), (x(2) , y(2) ), ..., (x(n) , y(n) ). Then for any a,
+b (1 ≤ a ≤ b + 1 ≤ n), x(a+1) , ..., x(b) can be treated as b − a i.i.d samples
+
+from x y ∈ [y(a) , y(b+1) ] .
+Proof. In fact, we only need to prove that y(a+1) , · · · , y(b) can be treated
+
+as b − a i.i.d. samples of y (y ∈ [y(a) , y(b+1) ]). The latter only needs to be
+proved for uniform distribution which can be verified directly.
+Corollary 1. In the slicing inverse regression contexts, recall that Sh
+denotes the h-th interval (yh−1,c , yh,c ] for 2 ≤ h ≤ H −1 and S1 = (−∞, y1,c ],
+SH = (yH−1,c , ∞). We have that xh,i , i = 1, · · · , c − 1 can be treated as c − 1
+
+DT-SIR
+
+19
+
+random samples of x (y ∈ Sh ) for h = 1, ..., H − 1 and xH,1 , ..., xH can be
+treated as c random samples of x (y ∈ SH ).
+Lemma 10. Suppose that (x, y) are defined over σ-finite space X × Y
+and g is a non-negative function such that E[g(x)] exists. For any fixed positive constants C1 < 1 < C2 , there exists a S
+constant C which only depends
+on C1 , C2 such that for any partition R = H
+h=1 Sh where Sh are intervals
+satisfying
+C2
+C1
+≤ P(y ∈ Sh ) ≤
+, ∀h,
+H
+H
+
+(E.1)
+we have
+
+sup E(g(x) y ∈ Sh′ ) ≤ CHE[g(x)].
+h
+
+Proof. According to Fubini’s Theorem, for any h,
+Z
+X
+E[g(x)] =
+g(x)p(x|y ∈ Sk )dx
+P(y ∈ Sk )
+k
+
+≥P(y ∈ Sh )
+
+Z
+
+X
+
+X
+
+g(x)p(x|y ∈ Sh )dx.
+
+Due to the condition (E.1), there exists a positive constant C such that
+Z
+g(x)p(x|y ∈ Sh )dx ≤ CHE[g(x)].
+X
+
+
+Corollary 2. Let x be a multivariate random variable with covariance
+matrix Σ. For any partition satisfying (E.1), there exists a constant C such
+that
+var(β τ x|y∈Sh′ ) ≤ CHvar(β τ x), for any unit vector β,
+and
+
+
+
+
+≤ CHλmax (var (x)) .
+λmax var x y ∈ Sh′
+
+Corollary 3. Let x be a sub-Gaussian random variable which is upperexponentially bounded by K. Then for any partition satisfying (E.1), there
+exists a constant C such that
+ 2
+ 2
+x
+x
+′
+E[exp
+]
+≤
+CHE[exp
+y
+∈
+S
+].
+h
+K2
+K2
+
+20
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+Recall the definition of the
+R random intervals Sh , h = 1, 2, · · · , H and random variable δh = δh (ω) = y∈Sh (ω) f (y)dy.
+Lemma 11.
+
+Define the event E(ǫ) =
+
+n
+
+ω
+
+|δh −
+
+exists a positive constant C such that, for any ǫ >
+
+1
+H|
+
+4
+Hc−1
+
+> ǫ, ∀h
+
+we have
+
+o
+. There
+
+√
+ǫ2
+P (E(ǫ)) ≤ CH 2 Hc + 1 exp(−(Hc + 1) )
+32
+
+(E.2)
+
+for sufficient large H and c.
+Proof. The proof is deferred to the end of this paper.
+E.2. Some Results from Random Matrices Theory. We collect some direct corollaries of the non-asymptotic random matrices theory (e.g., Rudelson and Vershynin [2013]).
+Lemma 12. Let M be any p × n matrix (n > p) whose columns M i are
+independent sub-Gaussian random vectors in Rp with second moment Ip and
+λ+
+sing,min (M ), λsing,max (M ) be the minimal non-zero and maximal singular
+value of M . Then for every t, with probability at least 1 − 2 exp(−C ′ t2 ), we
+have :
+√
+√
+√
+√
+n − C p − t ≤ λ+
+n + C p + t.
+sing,min (M ) ≤ λsing,max (M ) ≤
+Lemma 13. Let x1 , · · · , xn be n i.i.d. samples from a p-dimensional
+sub-Gaussian random variable with covariance matrix Σ and ρ = np . If there
+exists positive constants C1 and C2 such that
+
+bx =
+Let Σ
+
+1
+n
+
+P
+
+C1 ≤ λmin (Σx ) ≤ λmax (Σx ) ≤ C2 .
+i
+
+xi xτi . Then
+b x − Σx k2 → 0 if ρ = 0 when n → ∞.
+kΣ
+
+b −1 −
+It is also easy to see that, given the boundedness condition on ΣX , kΣ
+X
+p
+Σ−1
+X k2 → 0 if ρ = n → 0 when n → ∞.
+1/2
+
+Proof. Let xi = Σx mi where mi is sub-Gaussian random variable
+with covariance matrix Ip and M = (m1 , ..., mn ). From Lemma 12, we
+
+21
+
+DT-SIR
+
+have
+1
+k M M τ − Ip k2 → 0
+n
+and
+−1
+
+b
+kΣ
+
+1
+− Σ−1 k2 = kΣ−1/2 k2 k M M τ − Ip k2 kΣ−1/2 k2 → 0,
+n
+
+with probability converges to 1 as n → ∞ because
+
+
+ 
+√ 
+(C + 1) p 2
+1
+τ
+√
+λmax
+MM
+≤ 1+
+n
+n
+and
+ 
+
+√ 
+(C + 1) p 2
+1
+√
+MMτ ≥ 1 −
+λmin
+n
+n
+
+with probability at least 1 − 2 exp(−C ′ p).
+
+
+
+The following lemma is well known in the non-asymptotic random matrix
+theory (Vershynin [2010] Proposition 5.34 ) which is slightly different from
+the Lemma 12.
+Lemma 14. Let E p×H be a p × H matrix, whose entries are independent
+standard normal random variables. Then for every t ≥ 0, with probability at
+least 1 − 2 exp(−t2 /2), we have :
+√
+√
+p − H − t,
+λ+
+sing,min (E p×H ) ≥
+and
+λsing,max (E p×H ) ≤
+
+√
+
+p+
+
+√
+
+H + t.
+
+Corollary 4. We have
+√ 
+√ 
+1 √
+3 √
+(E
+)
+≤
+λ
+(E
+)
+≤
+p − H ≤ λ−
+p
++
+H .
+p×H
+sing,max
+p×H
+sing,min
+2
+2
+
+with probability converging to one, as n → ∞.
+
+P
+
+√
+
+p/2, according to Lemma 14, we have:
+!
+!
+√
+p
+3
+λmax (EH )
+λmax (EH )
+√ ≤
+√ ≤1+ √
+√
+≥P √
+√
+2
+p+ H
+p+ H
+2 p+2 H
+
+Proof. Choosing t =
+
+22
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+and
+P
+
+λ+
+1
+H)
+min (E
+√ ≥
+√
+2
+p− H
+
+!
+
+≥P
+
+!
+√
+p
+λmax (EH )
+√ ≥1− √
+√
+√
+p− H
+2 p−2 H
+
+with probability at least 1 − 2 exp(−p/8). i.e., With probability converging
+to one, we have
+√
+√
+3 √
+1 √
+( p − H) ≤ λ−
+min (Ep×H ) ≤ λmax (Ep×H ) ≤ ( p + H).
+2
+2
+
+E.3. Basic Properties of sub-Gaussian random variables. We rephrased
+several equivalent definitions of the sub-Gaussian distribution here (See e.g.,
+Vershynin [2010] ):
+Definition 3. Let x be a random variable. Then the following properties
+are equivalent with parameters Ki ’s differing from each other by at most an
+absolute constant factor,
+1. Tails: P(|x| > t) ≤ exp(1 − t2 /K12 ) for all t ≥ 0.
+√
+2. Moments: (E[|x|p ])1/p ≤ K2 p for all p ≥ 1.
+3. Super-exponential moment: E exp(x2 /K32 ) ≤ e.
+Moreover, if E[x] = 0, then the properties 1 − 3 are also equivalent to the
+following one:
+4. Moment generating function: E[exp(tx)] ≤ exp(t2 K42 ).
+Definition 4. For a sub-Gaussian random variable x with the constants
+Ki , i = 1, 2, 3, 4 given in Definition 3, we will call a constant K an upperexponential bound of x or x is upper-exponentially bounded by K if K >
+maxi {K1 , K2 , K3 , K4 }.
+We summarize some properties regarding the sub-Gaussian distributions
+into the following lemmas.
+Lemma 15. Let δ1 , ..., δn be n (not necessarily independent or with mean
+zero) sub-Gaussian random variables upper-exponentially bounded by K.
+P
+i) n1 ni=1 δi is sub-Gaussian and upper-exponentially bounded by K.
+ii) δ1 − E[δ1 ] is sub-Gaussian upper-exponentially bounded by 2K.
+
+23
+
+DT-SIR
+
+iii) If they are independent and with mean zero , then
+Gaussian and upper-exponentially bounded by K.
+
+√1
+n
+
+P
+
+i δi
+
+is sub-
+
+iv) If they are i.i.d., then we have the concentration inequality:
+ Pn
+
+
+
+−nt2
+i=1 δi
+P
+− E[x] > t ≤ 2 exp
+.
+n
+2K 2 e + 2tK
+Proof. i) follows from the linear property of expectation and the the
+convexity of exponential function. i.e.,
+E[exp(
+
+1X
+δi2
+δi2
+1 X 2
+δ
+)]
+≤
+E[
+)]
+≤
+max
+E[exp(
+)] ≤ e.
+exp(
+i
+i
+nK 2
+n
+K2
+K2
+i
+
+h
+
+ii) From Definition 3, we know that |E[δi ]| ≤ K which gives us the desired
+upper-exponential bound of δi − E[δi ].
+iii) is trivial as δ1 , · · · , δc are independent and with mean zero.
+iv) Since δ1 is sub-Gaussian upper-exponentially bounded by K, we have:
+
+
+Z ∞
+Z ∞
+t2
+p−1
+p−1
+p
+pt
+exp 1 − 2 dt
+pt P(|δ1 | > t)dt ≤
+E[|δ1 | ] =
+K
+0
+0
+ep p p
+for any p ≥ 1
+= Γ( )K
+2 2
+(K 2 e)
+≤ p!K p−2
+for any p ≥ 2
+2
+Recall the well known Bernstein inequality.
+Lemma 16. ( Bernstein Inequality ). If there exists positive constants
+V and b such that for any integers m ≥ 2,
+E[|δ1 |m ] ≤ m!bm−2 V /2
+then
+(E.3)
+
+P
+
+ Pn
+
+i=1 δi
+
+n
+
+− E[x] > t
+
+
+
+≤ 2 exp
+
+
+
+−nt2
+2V + 2tb
+
+
+
+.
+
+By chooing V = K 2 e and b = K, we get the desired concentration inequality.
+
+Lemma 17. Suppose that (x, y) are defined over σ-finite space X × Y
+and x is sub-Gaussian with mean 0 and upper exponentially bounded by K,
+let m(y) = E[x|y], ǫ(y) = x − m(y), then we have
+
+24
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+i) m(y) and ǫ(y) are sub-Gaussian and upper-exponentially bounded by
+K and 2K respectively.
+ii) Let Z consists of points y such that x|y is not sub-Gaussian, i.e.,
+Z
+o
+n
+exp(tx2 )p(x|y)p(y)dx = ∞ ,
+Z , y | ∃t ∈ (0, t0 ] such that
+X
+
+then P(y ∈ Z) = 0.
+iii) For
+SH any fixed positive constants C1 < 1 < C2 and any partition R =
+h=1 Sh where Sh are intervals satisfying
+C2
+C1
+≤ P(y ∈ Sh ) ≤
+, ∀h,
+H
+H
+
+there exists a constant C such that
+sup P(x|y∈Sh
+h
+
+
+
+t2
+> t) ≤ CH exp 1 − 2
+K
+
+
+
+.
+
+As a direct corollary, we know that there exists a positive constant C
+such that
+
+
+
+(x|y∈Sh )2
+≤ CH,
+E exp
+2K 2
+and
+
+h
+E (x|y∈Sh )
+
+mi
+
+≤ CHmK m Γ(
+
+m
+)/2.
+2
+
+vi) Suppose that x|y∈Sh is
+Pdefined as in iii). Let xi , i=1,...,c be c samples
+from x|y∈Sh , x̄h = 1c i xi and µh = E[x|y∈Sh ], we have
+P[|x̄h − µh | > t] ≤ 2 exp
+
+
+
+−ct2
+2CHK 2 + 2tK
+
+
+
+.
+
+Proof. i) By Jensen’s inequality, we have
+E[exp(tE[x|y])] ≤ E[E[exp(tx)|y]] = E[exp(tx)] ≤ exp(t2 K12 ).
+i.e., m(y) is sub-Gaussian and upper-exponentially bounded by K1 . Since x
+, m(y) is sub-Gaussian and upper-exponentially bounded by K1 , we know
+that ǫ = x − m(y) is sub-Gaussian and upper-exponentially bounded by
+2K1 .
+
+25
+
+DT-SIR
+
+ii) Let p(x, y) be the joint density function of (x, y) and p(x), p(y) be the
+marginal distribution of x, y. Since x is sub-Gaussian, we know there exists
+t0 > 0 such that
+Z
+Z
+2
+p(x|y)p(y)dydx ≤ e for 0 ≤ t ≤ t0 .
+exp(tx )
+Y
+
+X
+
+By Fubini Theorem, we know
+Z
+Z
+exp(tx2 )p(x|y)dxdy ≤ e for 0 ≤ t ≤ t0 .
+p(y)
+(E.4)
+Y
+
+X
+
+R
+Recall that we have Z , {y|∃t ∈ (0, t0 ] such that X exp(tx2 )p(x|y)p(y)dx =
+∞}, from equation (E.4), we know P(y ∈ Z)=0. In particular, we know that
+for any y 6∈ Z, x|y is sub-Gaussian. However, the norm (e.g., sub-exponential
+norm)of x|y might be varying along with y and , as a function of y , it might
+be not bounded.
+iii) From Lemma 10, we know that there exists a positive constant C such
+that
+Z
+exp(tx2 )p(x|y ∈ Sh )dx ≤ CHe.
+X
+
+For simplicity if notation, we will denote x|y∈Sh by z through out this lemma.
+So for 0 ≤ t ≤ t0 = K1 , we have
+
+
+E[exp tz)2 ]
+≤ CHe exp −t2 a2 .
+P (z > a) ≤
+2
+2
+exp(t a )
+From the above tail bounds, we have that for any integer m > 0
+Z ∞
+Z ∞
+t2
+m
+m−1
+exp(− 2 )tm−1 dt
+P(|z| > t)(m)t
+dt ≤ CHm
+E[ z ] =
+K
+0
+0
+m
+≤CHmK (m/2)/2.
+
+We then have
+
+
+
+
+∞
+∞
+X
+
+ X
+E tm z 2m
+E tm z 2m
+2
+≤
+E exp tz
+≤
+m!
+m!
+m=0
+m=0
+
+∞ m
+∞
+X
+X
+t CHmK 2m Γ(m)
+tm K 2m
+≤
+= CH
+m!
+m=0
+
+m=0
+
+From which we know if 0 ≤ t < 12 K −2 , the R.H.S is bounded by CH for a
+positive constant C.
+
+26
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+vi) From the previous proof, we know that for any integer m ≥ 2
+E[|z|m ] ≤ CHm!K m = m!K m−2 (2CHK 2 )/2.
+By the Bernstein inequality (E.3), we have:
+
+
+
+ Pc
+−ct2
+i=1 zi
+− E[z] > t ≤ 2 exp
+.
+P
+c
+2CHK 2 + 2tK
+
+Lemma 18. Let zi , i = 1, · · · , n be i.i.d. samples of a sub-Gaussian distribution exponentially upper bounded by K, then there exist positive con√
+stants C1 , C2 such that, if nǫ → ∞, we have
+√
+ǫ n
+1X
+(zi − z̄)2 − var(z)| > ǫ) ≤ C1 exp(−C2 2 ),
+P(|
+n
+K
+i
+
+where z̄ =
+
+1
+n
+
+P
+
+i zi .
+
+Proof. Recall the following Hanson-Wright inequality in Rudelson and
+Vershynin [2013]
+Lemma 19. Let v = (x(1), · · · , x(n)) be a sub-Gaussian random vector
+with independent components x(β) such that E[x(β)] = 0 and kx(β)kψ2 ≤
+K. Let A be an n × n matrix. Then there exists a positive constant C such
+that for any t > 0,
+
+
+
+t
+t2
+τ
+τ
+.
+,
+P{|x Ax − E[x Ax]| > t} ≤ 2 exp −C min
+K 4 kAk2HS K 2 kAkHS
+Here the ψ2 norm of a random variable z is defined as kzkψ2 , supp p−1/2 (E|z|p )1/p
+P
+and the HS norm of a matrix A is defined as kAkHS = ( i,j |ai,j |2 )1/2 .
+Since
+
+1X
+P |
+(zi − z̄)2 − var(z)| > 2ǫ
+n
+i
+
+!
+
+!
+1X
+(zi − E[z])2 − (E[z] − z̄)2 − E[(z − E[z])2 ]| > 2ǫ
+=P |
+n
+i
+!
+
+1X
+2
+2
+≤P |
+(zi − E[z]) − E[(z − E[z]) ]| > ǫ + P (E[z] − z̄)2 > ǫ ,
+n
+i
+
+DT-SIR
+
+27
+
+and zi − E[z] are sub-Gaussian with mean 0, from Lemma 19 by choosing
+A = n1 Ip and z τ = (z1 − E[z], .., zp − E[z]), we have
+!
+
+√ 
+1X
+nǫ
+2
+2
+(E.5) P |
+(zi − E[z]) − E[(z − E[z]) ]| > ǫ ≤ 2 exp −C 2 ,
+n
+K
+i
+
+√
+since nǫ → ∞.
+The following follows from the usual deviation argument:
+
+P (E[z] − z̄)2 > ǫ ≤ C1 exp (−C2 nǫ) .
+
+Combining with the estimate (E.5), we know there exists positive constants C1 and C2 such that
+!
+
+√ 
+nǫ
+1X
+2
+P |
+(zi − z̄) − var(z)| > ǫ ≤ C1 exp −C2 2 ,
+n
+K
+i
+
+for sufficiently large n since
+
+√
+nǫ → ∞.
+
+
+
+E.4. Proof of Lemma 11. We only need to prove this lemma for n i.i.d.
+sample yi ’s from a uniform distribution over [0, 1]. We slightly change the
+notation of order statistics y(i) to y(i,n) so that we can keep track of the
+sample size. Since y is uniform distribution on [0, 1], it is well known that
+i−1
+i
+and mode n−1
+. Lemma 11
+y(i,n) ∼ Beta(i, n − i + 1) with expectation n+1
+is a direct corollary of the following lemma.
+Lemma 20. Suppose there are n = Hc i.i.d. samples from uniform distribution over [0, 1], when H,c are sufficiently large, we have the following
+large deviation inequalities of y(kc,Hc), k = 1, · · · , (H − 1).
+
+1
+i) There exists a positive constant C, such that for any ǫ > Hc−1
+, we
+have
+
+
+
+
+√
+k
+ǫ2
+P y(kc,Hc) >
++ ǫ ≤ CH Hc + 1 exp −(Hc + 1)
+;
+H
+2
+
+2
+, we
+ii) There exists a positive constant C, such that for any ǫ > Hc−1
+have
+
+
+
+
+√
+k
+ǫ2
+P y(kc,Hc) <
+− ǫ ≤ CH Hc + 1 exp −(Hc + 1)
+;
+H
+8
+
+28
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+iii) Let δ(k, H, c) = |y((k−1)c,Hc) −y(kc,Hc)| , for 2 ≤ k ≤ H −1, δ(1, H, c) =
+|y(c,Hc)| and δ(H, H, c) = |1 − y((H−1)c,Hc) |. There exists a positive
+4
+, we have for any 1 ≤ k ≤ H:
+constant C, such that for any ǫ > Hc−1
+
+
+
+
+√
+ǫ2
+1
+P |δ(k, H, c) − | > ǫ ≤ CH Hc + 1 exp −(Hc + 1)
+.
+H
+32
+We will prove Lemma 20 later. Assuming it, we have
+P (E(ǫ)) ≤
+
+H
+
+
+X
+1
+P |δ(k, H, c) − | > ǫ
+H
+k=1
+
+
+√
+ǫ2
+2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+32
+
+
+E.4.1. Proof of Lemma 20. The first part: For any 1 ≤ k ≤ H − 1, we
+note that
+
+
+
+
+kc
+k
++ ǫ ≤ P y(kc,Hc) >
++ǫ
+P y(kc,Hc) >
+H
+Hc + 1
+Z 1
+1
+=
+xkc−1 (1 − x)Hc−kc dx.
+B(kc, Hc − kc + 1) x> kc +ǫ
+Hc+1
+
+When ǫ >
+have
+
+(E.6)
+
+1
+Hc−1 ,
+
+we know the mode xM =
+
+kc−1
+Hc−1
+
+< xD ,
+
+kc
+Hc+1
+
++ ǫ , so we
+
+
+
+k
+(xD )kc−1 (1 − xD )Hc−kc+1
+P y(kc,Hc) >
++ǫ ≤
+H
+B(kc, Hc − kc + 1)
+(xD )kc (1 − xD )Hc−kc+1
+.
+≤H
+B(kc, Hc − kc + 1)
+
+k
++ǫ) =
+The last inequality due to HxD ≥ 1. If ǫ+ Hk ≥ 1, then P(y(kc,Hc) > H
+0 and Lemma 20 holds automatically.
+We may assume that ǫ + Hk < 1 below. Let us denote the right hand side
+of (E.6) by A, then
+
+log(A) = log(H) + kc log(E + ǫ) + (Hc − kc + 1) log(1 − E − ǫ)
++ log(Hc + 1)! − log(kc)! − log(Hc − kc + 1)!
+− log(Hc + 1) + log(kc) + log(Hc − kc + 1),
+
+29
+
+DT-SIR
+
+where E =
+
+kc
+Hc+1 .
+
+According to the Stirling formula:
+
+log(n!) = n log(n) − n +
+
+1
+1
+log(2πn) + O( ),
+2
+n
+
+when m is sufficiently large we have:
+log(A) = log(H) + (Hc + 1)(E log(1 +
+
+(E.7)
+
+ǫ
+ǫ
+) + (1 − E) log(1 −
+))
+E
+1−E
+
+1
+− (log(Hc + 1) − log(kc) − log(Hc − kc + 1))
+2
+1
+1
+1
+− log(2π) + O( ) + O(
+)
+2
+kc
+Hc − kc + 1
+≤ log(H) −
+
+(Hc + 1)ǫ2 1
+− log(2π)
+2(1 − E)
+2
+
+1
+1
+− (log(Hc + 1) − log(kc) − log(Hc − kc + 1)) + O( )
+2
+c
+(Hc + 1)ǫ2 1
+− (log(Hc + 1) − log(kc) − log(Hc − kc + 1)),
+≤ log(H) −
+2(1 − E)
+2
+kc
+≤ E + ǫ < 1 and the following elementary
+where we use the fact that Hc+1
+lemma, which can be proved by the Taylor expansion:
+
+Lemma 21. Suppose a, b are positive numbers such that a + b = 1, then
+for any 0 < ǫ < b, we have:
+ǫ
+ǫ2
+ǫ
+a log(1 + ) + b log(1 − ) ≤ − .
+a
+b
+2b
+Now we know that there exists a positive constant C such that for any
+1
+1 ≤ k ≤ H − 1 and for any ǫ > Hc−1
+, the following holds:
+
+
+k
+P y(kc,Hc) >
++ǫ
+H r
+
+
+ǫ2
+(kc)(Hc − kc + 1)
+exp −(Hc + 1)
+≤ CH
+Hc + 1
+2(1 − E)
+
+
+2
+√
+ǫ
+≤ CH Hc + 1 exp −(Hc + 1)
+2(1 − E)
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+2
+
+The last inequality follows from
+
+ǫ2
+1−E
+
+≥ ǫ2 since
+
+1
+H+1
+
+≤E≤
+
+H−1
+H .
+
+30
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+The second part: The proof of the second part is similar. For completeness,
+2
+,
+we sketch some calculations below. For any 1 ≤ k ≤ H − 1, when ǫ > Hc−1
+we have
+
+
+
+
+k
+kc
+P y(kc,Hc) <
+− ǫ ≤ P y(kc,Hc) <
+− ǫ/2
+H
+Hc + 1
+Z
+1
+=
+xkc−1 (1 − x)Hc−kc dx.
+B(kc, Hc − kc + 1) x< kc −ǫ
+Hc+1
+
+Since ǫ >
+have
+
+1
+Hc−1 ,
+
+we know the mode xM =
+
+
+
+P y(kc,Hc)
+
+k
+−ǫ
+≤
+H
+
+
+
+≤
+
+kc−1
+Hc−1
+
+> xD ′ ,
+
+kc
+Hc+1
+
+− ǫ/2, so we
+
+(xD′ )kc (1 − xD′ )Hc−kc
+B(kc, Hc − kc + 1)
+
+≤H
+
+(xD′ )kc (1 − xD′ )Hc−kc+1
+.
+B(kc, Hc − kc + 1)
+
+The last inequality due to H(1 − xD′ ) ≥ 1.
+The rest is similar to the first part. We have that for any 1 ≤ k ≤ H − 1
+2
+and for any ǫ > Hc−1
+,
+(E.8)
+
+
+P y(kc,Hc) <
+
+k
+−ǫ
+H +1
+
+
+
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+8
+
+The third part:
+The third part is a direct corollary of the first two
+4
+parts. Note that for any 2 ≤ k ≤ H − 2, for any ǫ > Hc−1
+
+
+1
+P |δ(k, H, c) − | > ǫ
+H
+
+k+1
+k
+= P y(k+1)c,Hc −
+− (ykc,Hc − ) > ǫ
+H
+H
+
+
+
+
+k+1
+ǫ
+ǫ
+k
+≤ P |y(k+1)c,Hc −
+|>
++ P |ykc,Hc − | >
+H
+2
+H
+2
+
+
+2
+√
+ǫ
+.
+≤ CH Hc + 1 exp −(Hc + 1)
+32
+
+DT-SIR
+
+31
+
+When k = 1, we have
+
+
+
+
+1
+1
+P |δ(1, H, c) − | > ǫ = P |yc,Hc − | > ǫ
+H
+H
+
+
+
+
+1
+1
+≤ P yc,Hc −
+> ǫ + P yc,Hc −
+< −ǫ
+H
+H
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+8
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+32
+When k = H, we have
+
+
+
+
+H −1
+1
+|>ǫ
+P |δ(H − 1, H, c) − | > ǫ = P |y(H−1)c,Hc −
+H
+H
+
+
+
+
+H −1
+H −1
+> ǫ + P y(H−1)c,Hc −
+< −ǫ
+≤ P y(k+1)c,Hc −
+H
+H
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+8
+
+
+√
+ǫ2
+≤ CH Hc + 1 exp −(Hc + 1)
+.
+32
+
+References
+P. J. Bickel and E. Levina. Covariance regularization by thresholding. The Annals of
+Statistics, 36(6):2577–2604, 2008.
+T. T. Cai, C. Zhang, and H. Zhou. Optimal rates of convergence for covariance matrix
+estimation. The Annals of Statistics, 38(4):2118–2144, 2010.
+E. Candes and T. Tao. The Dantzig selector: Statistical estimation when p is much larger
+than n. The Annals of Statistics, pages 2313–2351, 2007.
+R. D. Cook. Graphics for regressions with a binary response. Journal of the American
+Statistical Association, 91(435):983–992, 1996.
+R. D. Cook, L. Forzani, and A. J. Rothman. Estimating sufficient reductions of the
+predictors in abundant high-dimensional regressions. The Annals of Statistics, 40(1):
+353–384, 2012.
+H. Cui, R. Li, and W. Zhong. Model-free feature screening for ultrahigh dimensional
+discriminant analysis. Journal of the American Statistical Association, 110(510):630–
+641, 2015.
+J. Fan and J. Lv. Sure independence screening for ultrahigh dimensional feature space.
+Journal of the Royal Statistical Society: Series B, 70(5):849–911, 2008.
+T. Hsing and R. J. Carroll. An asymptotic theory for sliced inverse regression. The Annals
+of Statistics, 20(2):1040–1061, 1992.
+B. Jiang and J. S. Liu. Variable selection for general index models via sliced inverse
+regression. The Annals of Statistics, 42(5):1751–1786, 2014.
+
+32
+
+Q. LIN, Z. ZHAO AND J. S. LIU
+
+I. M. Johnstone and A. Y. Lu. Sparse principal components analysis. 2004.
+I. M. Johnstone and A. Y. Lu. On consistency and sparsity for principal components
+analysis in high dimensions. Journal of the American Statistical Association, 104(486),
+2009.
+K. Li. Sliced inverse regression for dimension reduction. Journal of the American Statistical
+Association, 86(414):316–327, 1991.
+L. Li. Sparse sufficient dimension reduction. Biometrika, 94(3):603–613, 2007.
+L. Li and C. J. Nachtsheim. Sparse sliced inverse regression. Technometrics, 48(4), 2006.
+Q. Lin, Z. Zhao, and J. S. Liu. Supplement to “on consistency and sparsity for sliced
+inverse regression in high dimensions”. 2015.
+X. Luo, L. A. Stefanski, and D. D. Boos. Tuning variable selection procedures by adding
+noise. Technometrics, 48(2):165–175, 2006.
+M. Neykov, Q. Lin, and J. S. Liu. Signed support recovery for single index models in
+high-dimensions. arXiv preprint arXiv:1511.02270, 2015.
+M. Rudelson and R. Vershynin. Hanson-wright inequality and sub-gaussian concentration.
+Electron. Commun. Probab, 18(82):1–9, 2013.
+G. J. Székely, M. L. Rizzo, and N. K. Bakirov. Measuring and testing dependence by
+correlation of distances. The Annals of Statistics, 35(6):2769–2794, 2007.
+R. Tibshirani. Regression shrinkage and selection via the lasso. Journal of the Royal
+Statistical Society: Series B, 58(1):267–288, 1996.
+R. Vershynin. Introduction to the non-asymptotic analysis of random matrices. arXiv
+preprint arXiv:1011.3027, 2010.
+Y. Wu, D. D. Boos, and L. A. Stefanski. Controlling variable selection by the addition
+of pseudovariables. Journal of the American Statistical Association, 102(477):235–243,
+2007.
+Z. Yu, L. Zhu, H. Peng, and L. Zhu. Dimension reduction and predictor selection in
+semiparametric models. Biometrika, page ast005, 2013.
+Z. Yu, Y. Dong, and L. X. Zhu. Trace pursuit: A general framework for model-free variable
+selection. Journal of the American Statistical Association, 2016. To appear.
+W. Zhong, T. Zhang, Y. Zhu, and J. S. Liu. Correlation pursuit: forward stepwise variable
+selection for index models. Journal of the Royal Statistical Society: Series B, 74(5):849–
+870, 2012.
+L. Zhu and K. Fang. Asymptotics for kernel estimate of sliced inverse regression. The
+Annals of Statistics, 24(3):1053–1068, 1996.
+L. Zhu, L. Li, R. Li, and L. Zhu. Model-free feature screening for ultrahigh-dimensional
+data. Journal of the American Statistical Association, 106(496), 2011.
+L. X. Zhu and K. W. Ng. Asymptotics of sliced inverse regression. Statistica Sinica, 5(2):
+727–736, 1995.
+L. X. Zhu, B. Miao, and H. Peng. On sliced inverse regression with high-dimensional
+covariates. Journal of the American Statistical Association, 101(474), 2006.
+Li-Ping Zhu, Lexin Li, Runze Li, and Li-Xing Zhu. Model-free feature screening for
+ultrahigh-dimensional data. Journal of the American Statistical Association, 2012.
+H. Zou and T. Hastie. Regularization and variable selection via the elastic net. Journal
+of the Royal Statistical Society: Series B, 67(2):301–320, 2005.
+
+33
+
+DT-SIR
+Qian Lin
+Center of Mathematical Sciences
+and Applications
+Harvard University
+One Oxford Street
+Cambridge, MA 02138
+USA
+E-mail: qianlin@cmsa.fas.harvard.edu
+
+Zhigen Zhao
+Department of Statistics
+Temple University
+346 Speakman Hall
+1810 N. 13th Street
+Philadelphia, PENNSYLVANIA, 19122
+USA
+E-mail: zhaozhg@temple.edu
+
+Jun S. Liu
+Department of Statistics
+Harvard University
+1 Oxford Street
+Cambridge, MA 02138
+USA
+E-mail: jliu@stat.harvard.edu
+
+

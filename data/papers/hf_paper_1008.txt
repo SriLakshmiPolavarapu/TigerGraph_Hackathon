@@ -1,0 +1,2513 @@
+Title: arXiv paper 1008
+
+Categories: 2
+
+Abstract:
+arXiv:1707.01415v1 [cs.AI] 5 Jul 2017
+
+Machine Learning, Deepest Learning:
+Statistical Data Assimilation Problems
+Henry Abarbanel,
+Department of Physics
+and
+Marine Physical Laboratory (Scripps Institution of Oceanography)
+Center for Engineered Natural Intelligence
+habarbanel@ucsd.edu
+Paul Rozdeba
+and
+Sasha Shirman
+
+Department of Physics
+University of California, San Diego
+9500 Gilman Drive, Mail Code 0374
+La Jolla, CA 92093-0374, USA
+Draft of July 6, 2017
+
+1
+
+1
+
+Abstract
+
+We formulate a strong equivalence between machine learning, artificial intelligence methods and the formulation of statistical data assimilation as
+used widely in physical and biological sciences. The correspondence is that
+layer number in the artificial network setting is the analog of time in the
+data assimilation setting. Within the discussion of this equivalence we show
+that adding more layers (making the network deeper) is analogous to adding
+temporal resolution in a data assimilation framework.
+How one can find a candidate for the global minimum of the cost functions
+in the machine learning context using a method from data assimilation is
+discussed. Calculations on simple models from each side of the equivalence
+are reported.
+Also discussed is a framework in which the time or layer label is taken
+to be continuous, providing a differential equation, the Euler-Lagrange equation, which shows that the problem being solved is a two point boundary
+value problem familiar in the discussion of variational methods. The use of
+continuous layers is denoted “deepest learning”. These problems respect a
+symplectic symmetry in continuous time/layer phase space. Both Lagrangian
+versions and Hamiltonian versions of these problems are presented. Their
+well-studied implementation in a discrete time/layer, while respected the
+symplectic structure, is addressed. The Hamiltonian version provides a direct rationale for back propagation as a solution method for the canonical
+momentum.
+
+2
+
+Introduction
+
+Through the use of enhanced computational capability two, seemingly unrelated, ‘inverse’ problems have flourished over the past decade. One is machine learning in the realm of artificial intelligence [1, 12, 21] with developments that often go under the name “deep learning”. The other is data
+assimilation in the physical and life sciences. This describes the transfer of
+information from observations to models of the processes producing those
+observations [4, 9, 2].
+This paper is directed towards demonstrating that these two areas of
+investigation are the same at a fundamental level. Each is a statistical physics
+problem where methods utilized in one may prove valuable for the other.
+2
+
+The main goal of the paper is to point out that many developments in data
+assimilation can be utilized in the arena of machine learning. We also suggest
+that innovative methods from machine learning may be valuable in data
+assimilation.
+Two areas of focus are attended to here: (1) a variational annealing (VA)
+method for the action (cost function) for machine learning or statistical data
+assimilation that permits the location of the apparent global minimum of
+that cost function. (2) The notion of analyzing each problem in continuous
+time or layer, which we call deepest learning, wherein it is clear that one
+is addressing a two point boundary value problem [33, 11] with an underlying
+symplectic structure. Methods abound for solving such two point boundary
+value problems [27] and for assuring that symplectic structures are respected
+when time (or layer) is discretized. These may be quite fruitful in machine
+learning.
+This paper primarily discusses multilayer perceptrons or feedforward networks [12] though it also makes it is clear that the discussion carries over to
+recurrent networks as well [14, 8, 26].
+
+3
+3.1
+
+Background
+Machine Learning; Standard Feedforward Neural
+Nets
+
+We begin with a brief characterization of simple architectures in feedforward
+neural networks [1, 12, 21]. The network we describe is composed of an input
+layer l0 and output layer lF and hidden layers l1 , l2 , ..., lF − 1. Within each
+layer we have N active units, called ‘neurons’, each of which has d degreesof-freedom. (Usually d is chosen to be 1.)
+Each layer has N neurons with d degrees of freedom, so each layer has
+D = N d degrees-of-freedom. For our purposes the ‘neurons’ in each layer
+are the same structure. This can be generalized to different numbers and
+different types of neurons in each layer at the cost of a notation explosion.
+Data is available to layer l0 and layer lF in M pairs of L-dimensional
+input, at l0 , and output, at lF . These are sets of vectors: {yr(k) (l0 ), yr(k) (lF )}
+where k = 1, 2, ..., M labels the pairs, r is an index on the L-dimensional
+data r = 1, 2, 3, ..., L ≤ D.
+The activity of the units in each hidden layer l, x(k)
+α (l); l0 < l < lF , is
+3
+
+determined by the activity in the previous layer. The index α combines the
+neuron number j and the neuron degrees-of-freedom a into one label: α =
+1, 2, ..., N d = D; j = 1, 2, ...N ; a = 1, 2, ...d. This connection is described by
+the nonlinear function fα (•) via
+x(k)
+α (l) = fα (x(l − 1), l) = fα
+
+NX
+d=D
+
+(k)
+
+
+
+Wα β (l)xβ (l − 1) ,
+
+(1)
+
+β=1
+(k)
+
+(k)
+
+(k)
+
+where x(k) (l) = {x(k)
+α (l)} = {x1 (l), x2 (l), ..., xN d (l)}. The summation over
+weights Wα β (l) determines how the activities in layer l − 1 are combined
+before allowing fα (•) to act, yielding the activities at layer l. There are
+numerous choices for the manner in which the weight functions act as well
+as numerous choices for the nonlinear functions, and we direct the reader to
+the references for the discussion of the virtues of those choices [1, 12, 21].
+At the input and the output layers l0 , lF the network activities are compared to the observations, and the network performance is assessed using an
+error metric, often a least squares criterion, or cost function
+CM
+
+
+
+M 
+L
+1 X
+1 X
+(k)
+(k)
+2
+(k)
+(k)
+2
+=
+Rm (r) [xr (l0 ) − yr (l0 )] + [xr (lF ) − yr (lF )]
+, (2)
+M k=1 2 L r=1
+
+where Rm (r) permits an inhomogeneous weighting in the comparison of the
+network activities and the data. Minimization of this cost function over all
+xα(k) (l) and weights Wα β (l), subject to the network model Eq. (1), is used
+to determine the weights, the variables x(k)
+α (l)in all layers, and any other
+parameters appearing in the architecture of the network.
+Before moving along to data assimilation, we note that one wishes to
+find the global minimum of the cost function Eq. (2), which is a nonlinear
+function of the neuron activities, the weights and any other parameters in
+the functions at each layer. This is an NP-complete problem [25] and as
+such suggests one cannot find a global minimum of the machine learning
+problem, as set, unless there is a special circumstance. We will see just such
+a circumstance in a data assimilation problem equivalent to machine learning
+tasks.
+The machine learning problem as described here assumes there is no error
+in the model itself, so that the minimization of the cost function Eq. (2)
+is subject to strong equality constraints through the model. This results
+in the output at layer lF x(k) (lF ) being a very complicated function of the
+parameters in the model and the activities at layers x(k) (l ≤ lF ). This is likely
+4
+
+connected with the many local minima associated with the NP-complete
+nature of the search problem.
+We introduce a variational annealing (VA) method in the next section
+which regularizes this by moving the equality constraint into the cost function
+via a penalty function. This introduces a hyperparameter allowing us to
+systematically vary the complexity of the search process.
+
+3.2
+
+Standard Statistical Data Assimilation
+
+Now we describe the formulation of a statistical data assimilation problem.
+In data assimilation observations are made of a sparse set of dynamical
+variables, associated with a model of the processes producing the observations. This will allow the estimation of parameters in the model and of the
+unobserved state variables of the model. The goal is to estimate any unknown parameters in the model, and because not all of the dynamical state
+variables in the model may be observed, to estimate those unmeasured state
+variables as well. After a certain time window in which information is transferred to the model, we have an estimate of the full model including an initial
+condition for all state variables, and predictions are made with the completed
+model and compared to new observations. This validation by prediction is
+essentially the same as the question of generalization as addressed in machine
+learning [12].
+In data assimilation, one has a window in time [t0 , tF ] during which observations are made at times t = {τ1 , τ2 , ..., τF } which lie in [t0 ≤ τs ≤ tF ]; s =
+1, 2, ..., F . At each observation time L measurements yl (τs ); l = 1, 2, ..., L
+are made, L ≤ D. Through knowledge of the measurement instruments the
+observations are related to the state variables of the model via ‘measurement
+functions’ hl (x) : yl (τk ) = hl (x(τk )); l = 1, 2, ..., L.
+Using what knowledge we have of the processes producing the observations, we develop a dynamical model for the state variables. These satisfy a
+set of D dynamical differential equations
+dxa (t)
+= Fa (x(t), t); a = 1, 2, ..., D.
+dt
+
+(3)
+
+The time dependence of the vector field F(x, t) may come from external
+forcing functions driving the dynamics.
+This set of differential equations will necessarily be represented in discrete
+time when solving them numerically, resulting in a map xa (tk ) → xa (tk+1 ) =
+5
+
+fa (x(tk ), tk ) in which the discrete time vector field fa (•) is related to Fa (x, t)
+via the integration procedure one chooses for Eq. (3).
+Starting from an initial condition at t0 , xa (t0 ) we use the discrete time
+model
+xa (tk+1 ) = fa (x(tk ), tk )
+(4)
+to move forward to the first observation time τ1 , then to τ2 , ... eventually
+reaching the end of the observation window at tF . Altogether by making N
+model integration steps in each of the intervals [τn , τn+1 ] we make (F + 1)N
+time steps.: t0 → τ1 → τ2 ... → τF → tF .
+The measurements are noisy, and the models have errors; so this is a statistical problem. Our goal is to construct the conditional probability distribution, P (X|Y), of the model states X(tF ) = {x(t0 ), x(t1 ), ..., x(tN ), ..., x(tF )},
+conditioned on the LF measurements Y(τF ) = {y(τ1 ), y(τ2 ), ..., y(τk ), ..., y(τF )}.
+Assuming the transition to the model state at time tk+1 depends only
+on the model state at time tk (that is, the dynamics in Eq. (4) is Markov)
+and using identities on conditional probabilities [2], one may write the action
+A(X) = − log[P (X|Y)] (suppressing the dependence on the observations Y
+in A(X)) as
+A(X) = −
+
+F
+X
+
+CM I[X(τn ), y(τn )|Y(τn−1 )]
+
+n=1
+N (F +1)−1
+
+−
+
+X
+
+log[P (x(tn+1 )|x(tn ))] − log[P (x(t0 ))],
+
+(5)
+
+n=0
+
+where
+the conditional
+mutual information is given as [10] CM I(a, b|c) =
+
+
+log
+
+P (a,b|c)
+P (a|c) P (b|c)
+
+. If the model is error free, P (x(tn+1 )|x(tn )) is a delta function:
+
+P (x(tn+1 )|x(tn )) = δ D (x(tn+1 ) − f (x(tn ), tn )).
+With a representation of P (X|Y) we may evaluate conditional expected
+values of functions G(X) on the path X(N F ) of the model through the
+observation window [t0 , tF ] as
+R
+
+E[G(X)|Y] = hG(X)i =
+
+dX G(X) exp[−A(X)]
+R
+,
+dX exp[−A(X)]
+
+in which
+A(X) = −
+
+F
+X
+
+log[P (y(τn )|X(τn ), Y(τn−1 )]
+
+n=1
+
+6
+
+(6)
+
+N (F +1)−1
+
+X
+
+−
+
+log P [(x(tn+1 )|x(tn ))] − log[P (x(t0 ))],
+
+(7)
+
+n=0
+
+and terms depending only on the observations were canceled between numerator and denominator in the expected value.
+If the observations at the times τk are independent, and if the measurement function is the identity yr (τk ) = hr (x(τk )) = xr (τk ), and if the noise
+in the measurements is Gaussian, with a diagonal inverse covariance matrix
+Rm (r, τk ), the first term in the action A(X), the measurement error term,
+takes the form
+
+2
+F X
+L
+X
+Rm (r, τn )
+(8)
+xr (τn ) − yr (τn ) .
+2
+n=1 r=1
+If no measurement is made at τk , Rm (r, τk ) = 0.
+If the error in the model Eq. (4) is taken as additive and Gaussian with
+diagonal inverse covariance matrix Rf (a) the second term in A(X), the model
+error term, becomes
+N (F +1)−1 D
+X
+X
+n=0
+
+2
+
+Rf (a)
+xa (tn+1 ) − fa (x(tn ), tn )
+2
+a=1
+
+
+.
+
+(9)
+
+In each term constants having to do with normalizations of the Gaussians
+cancel in the expected value. If we keep these constants and take the limit
+Rf (a) → ∞, we would restore the delta function in the dynamics.
+Finally, if one accepts ignorance of the distribution of initial conditions
+P (x(t0 )) and selects it as uniform over the dynamical range of the model
+variables, hG(X)i is evaluated with
+A0 (X) =
+
+
+L
+F X
+X
+Rm (r, τn )
+
+2
+
+n=1 r=1
+N (F +1)−1 D
+
++
+
+X
+
+X Rf (a) 
+
+n=0
+
+a=1
+
+2
+R
+
+hG(X)i =
+
+2
+
+xr (τn ) − yr (τn )
+
+xa (tn+1 ) − fa (x(tn ), tn )
+
+dX G(X) exp[−A0 (X)]
+R
+,
+dX exp[−A0 (X)]
+
+2
+
+.
+
+(10)
+
+(11)
+
+This is the desired connection between the machine learning formulation
+(with model error) and the statistical data assimilation formulation: identify
+layer labels as time l ⇔ t.
+7
+
+This alone could be of passing interest. However, there is much in the
+connection that may be of some utility. We will discuss these items in the
+data assimilation language, but the translation should be easy at this point.
+For statistical data assimilation we call this A0 (X) the standard model.
+The critical suggestion here relative to standard practice in machine learning [1, 12, 21], is that by allowing Rf to be finite from the outset–so acknowledging model error–we may add an additional tool for exploration in machine
+learning environments where typically no account for model error is introduced. Further, the hyper-parameter Rf serves as a regulating device for the
+complexity of the surface in path space in which the estimation of states and
+parameters occurs.
+
+4
+4.1
+
+Data Assimilation Developments of Use in
+Machine Learning
+Finding the Global Minimum
+
+The key to establishing estimates for unobserved state variables (L < D) and
+for unknown parameters in the model is to perform, approximately of course,
+the integral Eq. (11). One can do this using Monte Carlo methods [18] or
+by the method of Laplace [19, 20]. In the Laplace method one seeks minima
+of the action A0 (X), Eq. (10). The integral is not Gaussian. If it were, we
+would just do it. As the functions fa (•) are nonlinear, we must perform a
+numerical evaluation of Eq. (6).
+The Laplace method approximates the integral with contributions from
+the lowest minima of the action, if one can find them. Minima associated
+with paths X having larger action give exponentially smaller contributions
+to expected values, Eq. (11), than paths with smaller action. This allows
+one to circumvent a search for the global minimum if the parameters, hyperparameters [12], and other aspects of the model and data yield a set of action
+levels connected with minima of the action such that one path yields an action level much smaller than any other path. For numerical accuracy one
+may use that smallest minimum path (comprised of parameters and ‘hidden’
+(unobserved) state variables) neglecting larger minima of the action.
+We have developed a variational annealing (VA) approach [32, 33], to
+finding the path with the smallest value of the action. While we have no
+proof that the global minimum is found, our numerical results indicate this
+8
+
+may be the case. The VA method produces a set of minima of the action
+giving a numerical clue as to the roughness of the surface in path X space.
+In data assimilation the surface depends, among other items, on the number of measurements L at each observation time τk , on the hyper-parameter
+Rf , and on the number of model time steps between measurement times τn .
+This translates directly to the analogous machine learning problem with time
+→ layer. As the number of model time steps between measurement times
+increases, the number of hidden layers increases and the model architecture
+deepens.
+VA proceeds by a kind of numerical continuation [3] in Rf of the requirement that varying over all X and all parameters in A0 (X) minimizes A0 (X).
+The procedure begins by taking Rf → 0, namely the complete opposite of
+the value found in usual machine learning where Rf → ∞ (deterministic,
+error free layer to layer maps) from the outset. In the Rf = 0 limit, the
+action is just a quadratic function of the model variables x(τk ) at the times
+measurements are made, and the minimization is simple: xr (τk ) = yr (τk ) for
+the r = 1, 2, ..., L ≤ D data presented at the input and output layers. The
+minimum can be degenerate as we know only L ≤ D values for the state
+variables.
+At the first step of VA we choose as a solution to the optimization problem
+xr (τk ) = yr (τk ) and select the other D−L states as drawn from a uniform distribution with ranges known from the dynamical range of the state variables.
+One can learn that well enough by solving the underlying model forward for
+various initial conditions. We make this draw K times, and now have K paths
+X0 as candidates for the VA procedure.
+Now we select a small value for Rf , call it Rf 0 . With the previous K
+paths X0 as K initial choices in our minimization algorithm, we find K paths
+X1 for the minimization problem with Rf = Rf 0 . This gives us K values of
+the action A0 (X1 ) associated with the new paths X1 .
+Next we increase the value of Rf to Rf = Rf 0 α where α > 1. (We have
+found values of α in the range 1.1 to 2 to be good choices). For this new value
+of Rf , we perform the minimization of the action starting with the K initial
+paths X1 from the previous step to arrive at K new paths X2 . Evaluating the
+action on these paths A0 (X2 ) now gives us an ordered set of actions that are
+no longer as degenerate. Many of the paths X2 may give the same numerical
+value of the action, however,
+typically the ‘degeneracy’ lies within the noise
+√
+level of the data ≈ (1/ Rm ).
+This procedure is continued until Rf is ‘large enough’ which is indicated
+9
+
+by at least one of the action levels becoming substantially independent of
+Rf . As a check on the calculation, we observe that if the action A0 (X) is
+independent of Rf , its expected value is that of the measurement error term.
+As the measurement errors were taken to be Gaussian, this term in the action
+is distributed as χ2 , and its expected value is readily evaluated. If the action
+levels are at this expected value of χ2 for large Rf , the procedure is consistent
+and no further increases in Rf are required.
+Effectively VA starts with a problem (Rf = 0) where the global minimum is apparent and systematically tracks it and many other paths through
+increases in Rf . In doing the ‘tracking’ of the global minimum, one must
+check that the selected value of α is not too large lest one leave the global
+minimum and land in another minimum. Checking the result using smaller
+α is worthwhile.
+It is important to note that simply starting with a large value of Rf places
+one in the undesirable situation of the action A0 (X) having multiple local
+minima into which any optimization procedure is quite likely to fall.
+In the dynamical problems we have examined, one typically finds that as
+the number of measurements L at each τk is increased, fewer and fewer minima of the action remain and when L is large enough there is one minimum.
+This we attribute to the additional information from the augmented set of
+measurements, and this will be manifest in the discussion below where the
+additional information effectively controls unstable directions in the phase
+space.
+
+4.2
+
+Smallest Minimum; Not Necessarily a Convex Action
+
+As our goal is to provide accurate estimations of the conditional expected
+value of functions G(X) where X, a path in model space, is distributed as
+exp[−A(X)], we actually do not require convexity of A(X) as a function in
+path space. From the point of view of accurately estimating expected values,
+it is sufficient that the lowest action level be much smaller than the second
+lowest action level. If the action value at the lowest level A(Xlowest ) is
+much smaller than the action value at the next minimum A(Xsecond lowest ),
+then by a factor exp[−{A(Xlowest ) − A(Xsecond lowest )}], the lowest path
+Xlowest dominates the integral to be done and provides a sensible choice for
+the path at which to evaluate the integral.
+
+10
+
+5
+
+Examples from Feedforward Neural Networks and from Data Assimilation
+
+In this section we examine one example from multi-layer perceptrons and one
+example from statistical data assimilation. The latter utilizes a differential
+equation model introduced by Lorenz in 1996 [23] which permits one to easily
+increase the number of dimensions of the phase space, to easily select the
+number of observations within a designated measurement window, and to
+easily choose the number of model evaluations between measurement times.
+The latter is analogous to increasing the number of layers in a multi-layer
+perceptron.
+In each case we perform a ‘twin experiment’. We use a model to generate
+solutions from some initial conditions. These solutions, when Gaussian noise
+is added to them, become our noisy data. Using the noisy data we use
+VA to estimate the unobserved state variables (hidden layer variables) and
+parameters/weights.
+
+5.1
+
+Data Assimilation for Lorenz96 Model
+
+We begin by examining the dynamical equations introduced by [23]:
+dxa (t)
+= xa−1 (t)(xa+1 (t) − xa−2 (t)) − xa (t) + ν
+dt
+
+(12)
+
+and a = 1, 2, ..., D; x−1 (t) = xD−1 (t); x0 (t) = xD (t); xD+1 (t) = x1 (t). ν is a
+fixed parameter which we take to be 10.0 where the solutions to the dynamical
+equations are chaotic [16]. The equations for the states xa (t); a = 1, 2, ..., D
+are meant to describe ‘weather stations’ on a periodic spatial lattice. This
+model is widely used in atmospheric science as a testbed for the exploration
+of innovative data assimilation ideas.
+Our example selects D = 11, and displays the action level plot for L =
+2, 4, 5, and 6 observations at each measurement time within the window
+[t0 , tF ]. We perform a ‘twin experiment’ wherein we generate D time series
+{xa (t); a = 1, 2, ..., D} for Eq. (12) using a standard adaptive fourth order
+Runge-Kutta algorithm with a time step ∆t = 0.025 and an initial condition
+x(t0 ) drawn from a uniform distribution over the range of the variables x(t),
+namely [-10, +10]. To these solutions of Eq. (12) we add Gaussian noise
+with mean zero and variance σ 2 = 0.2 to each time series xa (t). These noisy
+11
+
+versions of our model time series constitute our ‘data’ {ya (t)}. L of these D
+time series are presented to the model at times τn ; t0 ≤ τn ≤ tF .
+The measurement window is from t0 = 0 to tF = 4.125. L = 2, 4, 5, 6
+‘measurements’ are made at each time step; these are the y(τn ). The measurement error matrix Rm is taken to have diagonal elements at each measurement time τn and is zero at other times. Its magnitude is taken as
+Rm = 1/σ 2 = 5.
+The model error matrix Rf (a) is also taken as diagonal, with elements
+along the diagonal Rf = Rf 0 2β , in performing the VA procedure, and we
+take β = 0, 1, 2, . . . . Rf 0 was chosen 0.01.
+The minimizations of nonlinear objective functions in the example using the Lorenz96 model was performed using the public domain software
+IPOPT [30] with a front end script written in Python.
+In Fig. (1) we display action level plots for L = 2, 3, 4, and 6 observations
+at each measurement time. As we can see in the TopLeftPanel, where
+L = 2, there are numerous local minima in the action A0 (X) for all values of
+Rf ≥ Rf 0 , and these remain to large Rf . None of these minima is very far
+separated from the paths with the smallest minimum, so that the evaluation
+of the expected value integrals Eq. (11) would require contributions from
+many maxima of the conditional probability distribution.
+When L = 4, TopRightPanel we begin to see an isolated action level
+whose contribution to the expected value integral is overwhelmingly larger
+than the contribution from path giving rise to the next largest action level.
+The value L = 4 is consistent with the observation in [16] that around 0.4D
+the instabilities in the Lorenz96 state space appear to be controlled by the
+data assimilation process.
+At L = 5 or 6, BottomPanels, we see that the dominance of the lowest
+action level is even clearer. The horizontal olive colored line is the expected
+value of the measurement error term in the action. This is a sign of the
+consistency of the data assimilation calculations.
+In Fig. (2) we explore another aspect of the action level plots. We
+still use D = 11, and we hold L = 6 fixed. The number of observations
+within the window [t0 , tF ] has been reduced from 165 to 28 and we move
+the model forward between observations 0, 2, 5 or 11 times. This is to
+provide an analogy to how many layers are present in an equivalent machine
+learning example. Our example here differs by having many entry points in
+the measurement window while the machine learning example has only one.
+We display in the LeftPanel the action level plots for the selected number
+12
+
+of model evaluation steps. As one can see for 0 and 2 intermediate steps we
+have many persisting minima of the action. At 5 and 11 intermediate steps,
+there is only a single minimum that is found, and for large Rf it comes to the
+same action level as with 2 intermediate steps. All are consistent with the
+expected value of the measurement error term. This calculation, performed
+in a machine learning context provides information on how many hidden
+layers are required to achieve a desired accuracy.
+In the RightPanel we display the accuracy of the estimation of the single
+parameter in the Lorenz96 model. It has been set at ν = 10.0 in producing
+the data, and that value is clearly selected for 5 or 11 intermediate model
+evaluations, while it is not so clearly selected for 2 intermediate steps and
+with zero intermediate steps there is a consistent few percent error.
+We see, in this collection of calculations, as noted earlier [32, 33], the ability to identify the dominant minimum of the action depends on the number
+of measurements presented during the statistical data assimilation procedure
+embodying transfer of information from the data to the model. In data assimilation this is associated with the number of positive conditional Lyapunov
+exponents [16] of the model. In the machine learning instantiation it may
+play the same role when the number of data presented at the output layer is
+not sufficient to determine the parameters and hidden states in each layer.
+We also see the analogue of deepening the network produces higher accuracy estimates of conditional expected values.
+
+5.2
+
+A Multi-Layer Perceptron; Feedforward Network
+
+We constructed a feedforward network with lF layers: One input layer at
+l0 and one output layer at lF . This network has lF − 2 hidden layers. We
+analyzed lF = 20, 30, 50 and 100. There are N = 10 ‘neurons’ in each layer.
+The activity in neuron j in layer l xj (l) is related to xj (l − 1) in the previous
+layer as
+z
+(13)
+xj (l) = g(W (l)x(l − 1)); g(z) = 0.5[1 + tanh( )].
+2
+We also investigated the “ReLU”-like function g(z) = log[1 + ez ], but we do
+not report on those results. The activations at the input layer are drawn from
+a Gaussian N (0, 1). The weights are selected from a uniform distribution
+U [−0.1, 0.1]. Gaussian measurement noise was added to the ‘data’ generated
+by the model; this has zero mean and variance 0.0025.
+
+13
+
+Figure 1: Action level plots for the Lorenz96 model Eq. (12) with D = 11
+and ν = 10.0. The variational annealing procedure is performed with 100
+different initial conditions for the minimization of the action at each value
+of Rf = Rf 0 αβ ; β = 0, 1, ...; α = 2. Top Left Panel: L = 2 measurements
+at each measurement time. At L = 2, there are many minima, but none so
+much smaller than the others that it dominates the expected value integral
+Eq. (11). Top Right Panel: L = 4 measurements at each measurement
+time. At L = 4, the action in path space X has numerous local minima. The
+lowest minimum has an action value much smaller than the action values
+from the other minima, and this dominates the expected value integral Eq.
+(11). Bottom Left Panel: L = 5 measurements at each measurement time.
+At L = 5, the number of minima found is only two, and again the lowest
+minimum dominates the expected value integral. Bottom Right Panel L
+= 6 measurements at each measurement time. At L = 6, there is only one
+minimum of the action. The solid green line is the expected value of the
+measurement error term. This is distributed as χ2 . As the action becomes
+independent of Rf , its expected value should equal this value.
+14
+
+Figure 2: Parameter estimation and action level results for the Lorenz96
+model, D = 11, L = 6. The parameter value ν = 10.0 was used in the twin
+experiments on the model. Observations were made every ∆tobs = 0.15, and L
+= 6 measurements were made at each observation time. Left Panel: Action
+Level Estimates These are the action levels when L = 6 observations are
+made at each measurement time and with the choice of 0, 2, 5, and 11
+model evaluation steps between measurement times. The horizontal olive
+green line indicates the expected action level for large Rf . Right Panel
+Parameter estimates Between the observations the model was evaluated
+0, 2, 5 and 11 times leading to ∆tmodel = 1.0, 0.33, 0.16, and 0.08 ∗∆tobs .
+The parameter estimates are quite accurate for 5 and for 11 model time
+steps between observations. They are more distributed for 0 or 2 model step
+between observations. One can associate the idea of increasing the number
+of model steps between observations as equivalent to ‘deepening’ the hidden
+(unobserved) layers. The horizontal olive green line indicates the parameter
+value, 10.0, used in generating the data.
+
+15
+
+Our data are for the twin experiment, where we know all weights, all
+inputs and generate all values of x(l) in each layer [l0 , lF ]. These are recorded,
+and Gaussian noise with mean zero and variance 0.0025 is added to the data
+at layers l0 = 1 and lF starting from known values x(l0 ). These data are
+yi (1) for the input layer and yi (20) for the output layer.
+M input/output pairs are presented to the model with L = 1, 5, and 10
+(k)
+(k)
+inputs yi (l0 ) at layer l0 and L = 1, 5, 10 data outputs yi (lF ) at layer lF .
+k = 1,2,...,M, and we investigated M = 1, 10, 100.
+We minimize the action over all the weights and the states x(k)
+a (l) at all
+layers of the model:
+
+M 
+L 
+Rm X
+1 X
+(k)
+(k)
+(k)
+(k)
+2
+2
+(xr (l0 ) − yr (l0 )) + (xi (lF ) − yi (lF ))
+AM (X) =
+M k=1 2L r=1
+lF
+−1 X
+N
+X
+Rf
+x(k) (l + 1) − g(W (l)x(k) (l))
+N (lF − 1) l=1 a=1 a
+
+2 
+
+
+
++
+
+,
+
+(14)
+
+where we have N = 10 neurons in each layer and L ≤ N data at the input l0
+and at the output layers lF .
+We use the variational annealing procedure described above to identify
+the action levels for various paths through the network. The initial value of
+Rf 0 /Rm is taken to be 10−8 and this is incremented via Rf /Rm = Rf 0 αβ
+with α = 1.1 and β = 0, 1, ...,.
+In the numerical optimizations for the machine learning example we used
+L-BFGS-B [5, 34].
+There are at least two ways to present more information to the model in
+this setting:
+• increase the number of training pairs available to the network at l0 and
+lF ; this is our number M . M can be chosen as large as the user wishes.
+• increase the number of components of the input/output pair vectors;
+this is our number L. L ≤ N , the number of neurons in l0 or lF .
+The resolution of the model in its ability to capture variations in activity
+from layer to layer is improved by increasing the number of layers lF .
+In Fig. (3) we explore the action levels as a function of Rf /Rm as we
+increase the number of layers lF in the model: lF = 20, 30, 50, 100. We hold
+fixed the number of neurons N = 10, the number of training pairs M = 100
+and the number of inputs and outputs L = 10 at l0 and lF .
+16
+
+In each case there are many local minima, but only when lf = 50 does
+the lowest action minimum significantly split from the other action minima
+and qualify to dominate the expected value integral Eq. (11). When lF is
+increased from 50 to 100, the lowest action minimum comes closer to the
+second lowest minimum. This is seen as a result of the much larger number
+of weights to be estimated at the latter value of lF while we are holding
+fixed through the values of L and M the information available to make those
+estimations.
+In Fig. (4) we hold M fixed at 100, and lF fixed at 50 while we look at
+L = 1, 5, 10 values of the dimension of input/output pairs.
+In Fig. (5) we hold fixed the number of layers lF , the number of neurons
+in each layer N = 10 and the dimension of the input/output vectors yr(k) (l0 )
+and yr(k) (lF ); r = 1, 2, ..L = 10. We show the effect of increasing the number
+of input/output pairs from M = 1 to M = 10 to M = 100. The emergence
+of a lowest action minimum as M increases is displayed. This can serve as a
+candidate for approximating Eq. (11).
+In Fig. (6) we display the error in prediction after the mode, with lF = 50
+layers, has been set by the estimation of the weights. This error is constructed
+by selecting MP new input output pairs. Using each of the input elements
+for L ≤ N components, we use the model with our estimated weights to
+(k)
+evaluate x(k)
+r (lF ) and compare that with yr (lF ) from each of the MP pairs.
+The square error averaged over L presented components and over MP pairs
+MP X
+L
+1 X
+(xr(k) (lF ) − yr(k) (lF ))2
+LMP k=1 r=1
+
+(15)
+
+is displayed.
+We see that increasing the information presented via increasing L or M
+leads to decreased average prediction errors when choosing the path corresponding to the lowest action level, Top Layers, or choosing the path
+associated with the second lowest action level Bottom Panel. The differences in quality of prediction (or generalization) in these examples among
+the cases analyzed is not large, and this has been noted [12].
+
+5.3
+
+Recurrent Networks
+
+In this network architecture one allows both interactions among neurons
+from one layer to another layer as well as interactions among neurons within
+17
+
+Figure 3: Holding the number of neurons in each layer fixed at 10, the
+number of input/output pairs fixed at M = 100, and the number of inputs
+and outputs at l0 and lF fixed at L = 10, we vary the number of layers (the
+deepening of the network) and examine the action level plots arising from the
+variational annealing procedure. Upper Left Panel lF = 20 Top Right
+Panel lF = 30 Bottom Left Panel lF = 50 and Bottom Right Panel
+lF = 100.
+
+18
+
+Figure 4: Holding the number of neurons fixed N = 10, the number of layers
+fixed lF = 50, and the number of input/output training pairs fixed M = 100,
+we display the action levels as we vary the number of inputs at l0 and the
+number of outputs at lF . Top Left Panel L = 1. Top Right Panel L = 5.
+Bottom Panel L = 10.
+
+19
+
+Figure 5: Holding the number of neurons fixed N = 10, the number of layers
+fixed lF = 50, and the number of inputs L = 10 at l0 and the number of
+outputs at lF , we display the action levels as we vary the number of training
+pairs M . Top Left Panel M = 1. Top Right Panel M = 10. Bottom
+Panel M = 100.
+
+20
+
+Figure 6:
+
+Prediction Errors for the AI/Machine Learning Network
+(k)
+(k)
+2
+r=1 (xr (lF ) − yr (lF )) averaged over MP new input/output
+k=1
+pairs. A noisy input yr(k) (l0 ) produces the output x(k)
+r (lF ) using the model estimated using the M training sets. This is compared with the output yr(k) (lF )
+produced with the original model used to produce the ‘data’ for the twin
+experiment. In each case the number of neurons is N = 10 and lF = 50. Top
+Left Panel Using the model associated with lowest Action Level: L = 10
+and M = 1 and M = 10. Top Right Panel Using the model associated with
+lowest Action Level: L = 5 and L = 10; M = 100. Bottom Panel Using
+the model associated with the second lowest Action Level: L = 5 and 10; M
+= 100.
+1
+LMP
+
+PMP PL
+
+21
+
+a single layer [14, 8]. The activity xj (l) of neuron j, j = 1,2,...,N in layer l
+P
+{l0 , l1 , ..., lF } is given by xj (l) = f [ i wji (l)xi (l − 1)] in a feedforward, layer
+goes to the next layer, network.
+We can add interactions with a layer in the same fashion, and to give
+some ‘dynamics’ to this within-layer activity we introduce a sequential label
+σ to the activity of neuron j in layer l: xj (l, σ). The mapping from layer to
+layer and within a layer can be summarized by
+xj (l, σ) = f [
+
+X
+
+wji (l)xi (l − 1, σ) +
+
+i
+
+X
+
+Wji (l)xj (l, σ − 1)],
+
+(16)
+
+i
+
+Another version of this allows the nonlinear function to be different for layerto-layer connections and within-layer connections, so
+xj (l, σ) = f [
+
+X
+
+X
+
+wji (l)xi (l − 1, σ)] + g[
+
+i
+
+Wji (l)xj (l, σ − 1)],
+
+(17)
+
+i
+
+where f (x) and g(x) can be different nonlinear functions.
+We can translate these expressions into the DA structure by recognizing
+that xj (l) is the ‘model variable’ in the layer-to-layer function while in the
+recurrent network, the state variables become xj (l, σ). It seems natural that
+as dimensions of connectivity are added–here going from solely feedforward
+to that plus within-layer connections–that additional independent variables
+would be aspects of the ‘neuron’ state variables’ representation.
+In adding connections among the neurons within a layer we have another
+independent variable, we called it σ, and the ‘point’ neurons depending on
+layer alone become fields xj (l, σ). In the machine learning/AI networks
+we have no restrictions on the number of independent variables. This may
+lead to the investigation of ‘neural’ fields φj (v) where v is a collection of
+independent variables indicating which layers are involved in the progression
+of the field from an input to an output layer.
+However many independent variables and however many ‘neurons’ we
+utilize in the architecture of our model network, the overall goal of identifying
+the conditional probability distribution P (X|Y) and estimating the moments
+or expected values of interest still comes down to one form or another in the
+approximation of integrals such as Eq. (6).
+
+22
+
+5.4
+
+Making Time Continuous; Continuous Layers: Deepest Learning
+
+There is much to learn about the data assimilation or machine learning problem as the number of layers or equivalently the number of time points within
+an epoch becomes very large. The limit of the action where the number
+of layers in an epoch becomes a continuous variable is, in data assimilation
+notation [15],
+Z tF
+
+A0 (x(t), ẋ(t)) =
+
+dt L(x(t), ẋ(t), t)
+t0
+L
+X
+
+2
+
+Rm (l, t)
+L(x(t), ẋ(t), t) =
+xr (t) − yr (t)
+2
+r=1
+
+
++
+
+
+D
+X
+Rf (a)
+a=1
+
+2
+
+2
+
+x˙a (t) − Fa (x(t))
+
+.
+
+In this formulation the quantity Rm (l, t) is non-zero only near the times
+t ≈ τk . It can be taken as proportional to δ(t − τk ).
+Within the machine learning context we call this ‘deepest learning’ as the
+number of layers goes to infinity in a useful manner.
+The minimization of the action now requires that the paths
+ x(t) in {x(t), ẋ(t)}
+d ∂L(x(t),ẋ(t),t)
+= ∂L(x(t),ẋ(t),t) ,
+space satisfy the Euler-Lagrange equation
+dt
+
+∂ ẋa (t)
+
+∂xa (t)
+
+along with the boundary conditions δxa (t0 )pa (t0 ) = 0; δxa (tF )pa (tF ) = 0
+where pa (t) = ∂L(x(t), ẋ(t), t)/∂ ẋa (t) is the canonical momentum.
+For the standard model, the Euler-Lagrange equations take the form
+Rf [
+
+dxb (t)
+d
+δab + DFab (x(t))][
+− Fb (x(t))] = Rm (l, t)δar (xr (t) − yr (t)), (18)
+dt
+dt
+
+where we have DF(x) = ∂F(x)/∂x.
+The E-L equations are the necessary condition, along with the accompanying boundary conditions, that show how errors represented on the right
+hand side of the E-L equation drive the model variables at all layers to produce x(l) → y(l) where data is available.
+In the integral for < G(X) >, the coordinates x(t0 ) and x(tF ) are not
+restricted, so we have the ‘natural’ boundary conditions [11, 17, 22] pa (t0 ) = 0
+and pa (tF ) = 0.
+This shows quite clearly that the minimization problem requires a solution
+of a two point boundary value problem in {x(t), v(t) = ẋ(t)} space. One way
+to address two point boundary value problems is to start at one end, t0 with
+a value of x(t0 ) and proceed from tF with a value of x(tF ) and integrate both
+23
+
+ways requiring a match [27]. Furthermore, the residual of the measurement
+error term on the right hand side of Eq. (18) nudges the solution in x(t) to
+the desired output.
+If one were to specify x(t0 ), but not x(tF ), then the boundary conditions
+for the Euler-Lagrange equation are the given x(t0 ) (δx(t0 ) = 0) and require
+the canonical momentum pa (tF ) = 0. Examining the Hamiltonian dynamics
+for this problem then suggest integrating the x(t) equation forward from
+t0 and the canonical momentum equation backward from tF . This is back
+propagation.
+5.4.1
+
+Hamiltonian Dynamics Realization
+
+If one moves from the Lagrangian realization of the variational problem to a
+Hamiltonian version by trading in the phase space from {x(t), v(t)} to canonical coordinates {x(t), p(t)}, then the Hamiltonian H(x, p) for the standard
+model reads
+H(x, p, t) =
+
+D 
+X
+pa (t)pa (t)
+a=1
+
+2Rf (a)
+
+
+
++ pa (t)Fa (x(t)) −
+
+L
+X
+Rm (r, t)
+r=1
+
+2
+
+(xr (t) − yr (t))2 . (19)
+
+In these coordinates the equations of motion are then given by Hamilton’s
+equations
+dpa (t)
+∂Fb (x(t))
+= −pb (t)
++ δar Rm (r, t)(xr (t) − yr (t))
+dt
+∂xa (t)
+dxa (t)
+pa (t)
+= Fa (x(t)) +
+.
+dt
+Rf (a)
+
+(20)
+
+Returning from this to discrete time (or layers) we see that if the variational principle is carried out in {x, p} space, the boundary conditions
+pa (t0 ) = pa (tF ) = 0 are quite easy to impose while the other variables,
+all the xa (tk ) and the pa (tk ); k 6= 0, F , are varied. Going forward in x and
+backward in p is neither required nor suggested by this formulation. It is
+worth noting that in either {x, v} space or {x, p} space, the continuous time
+(layer) formulation has a symplectic symmetry [11, 15]. This not automatically maintained when the discrete time (layer) problem is reinstated [24, 31];
+however, many choices of integration procedure in which time/layer becomes
+discrete and the symplectic symmetry is maintained are known [24, 31, 13]
+In a detailed analysis [15, 33] of the variational problem in Lagrangian
+and Hamiltonian formulations, it appears that the direct Lagrangian version
+24
+
+in which the state variables x(tn ) or x(ln ) are varied, the symplectic structure
+can be maintained and the boundary conditions on the canonical momentum
+respected [24, 31].
+In practice, this means that the direct variational methods suggested for
+the machine learning problems taking into account model error (Rf 6= ∞)
+may skirt issues associated with back propagation. This issue may be seen a
+bit more directly by comparing how one moves in {x(t), ẋ(t)} space organized
+by Eq. (18) with the motion in {x(t), p(t)} space guided by Eq. (20). These
+are equivalent motions of the model in time/layer, connected by a Legendre
+transformation from {x(t), ẋ(t)} → {x(t), p(t)}.
+In the Hamiltonian form, where Rf → ∞ is the limit where one usually
+works, moving in regions where DF(x) may have saddle points may ‘slow
+down’ the progression in the canonical momentum p(t). This may occur at a
+maximum, at a minimum, or at a saddle point of DF(x). At any of these the
+observation in [21]: “The analysis seems to show that saddle points with only
+a few downward curving directions are present in very large numbers, but
+almost all of them have very similar values of the objective function. Hence,
+it does not much matter which of these saddle points the algorithm gets
+stuck at.” may apply. In the Lagrangian formulation Eq. (18) the manner
+in which DF(x) enters the motion is quite different and may well avoid this
+confounding property. We have pointed out that Eq. (20) is backprop. The
+use of the Lagrangian variational principle [24, 31] solves the same problem,
+so may have an unexpected virtue.
+
+6
+
+Summary and Discussion
+
+This paper has been directed to drawing a direct analogy between the formulation of a much utilized class of machine learning problems and a set of
+equivalent problems in data assimilation as encountered in many physical,
+biological and geoscience problems as well as in many engineering analyses
+where data driven model development and testing is a goal. The fundamental
+equivalence of the two inquiries is the core of this paper.
+The analogy allows us to identify methods developed in data assimilation
+as potentially quite useful in machine learning contexts. In particular the
+possibility of using variational annealing to produce the global minimum of
+the action (cost function) of the standard model of data assimilation with
+both observation error and model error appears potentially of value.
+25
+
+The idea of making time continuous for purposes of exploring properties of
+data assimilation suggests a similar tactic in machine learning. The machine
+learning step of making layers continuous we have called “deepest learning”
+as deep learning appears to result from increasing the number of layers. In
+the continuous layer (time) formulation, we see clearly that the problem to
+be solved is a two point boundary value problem. This may lead to the
+construction and solution of tractable models that may helpfully illuminate
+how deep learning networks operate successfully and expand the possibilities
+of utilizing them employing additional methods for numerical calculations
+and for interpretation.
+In the formulation of the statistical data assimilation problem at the general level expressed in Eq. (5) we see that the measurement error term which
+is where information from data is passed to the model, it is explicitly information through the conditional mutual information that is being passed from
+observations to the model. This suggests that the idea that deep learning
+works because of major increases in computing power as well as in having
+large data sets, however, the attribute of the data sets is not so much as they
+are large but that they possess information, in a precise manner, that can be
+utilized to learn about models. The conjunction of information transfer and
+state and parameter estimation is embodied in the work of Rissanen [28, 29]
+where he identifies the cost of estimating a parameter or a state variable at
+some time. The arguments we have presented suggest evaluating how much
+information in a data set is available to inform a model is of greater utility
+than just the size of the data set itself.
+One point not made explicit in the main text, but worth noting, is that
+once we have formulated the data assimilation or machine learning problems
+as accurately performing high dimensional integrals such as Eq. (6), the
+Laplace approximation method, namely the usual variational principle, permits the investigation of corrections through further terms in the expansion
+of the action about the path leading to the global minimum. In [33] it is
+shown that corrections to this first approximation are small as Rf becomes
+large when analyzing the standard model. This need not be the case for
+other choices of noise distributions in the measurement error or model error
+terms in the action.
+Another item of interest is the argument noted in [21] that as the dimension of a model increases, one may find fewer and fewer local minima
+confounding the search in path space for a global minimum, and in that
+situation many more unstable saddle points in path space will arise [7, 6].
+26
+
+In the case of a chaotic system such as the Lorenz96 model, the evidence
+is that however large the dimension of the model itself and the paths over
+which one may search, there are multiple local minima until the number of
+measurements at any observation time is large enough and the information
+transferred to the model is sufficient. The role of the number of model
+evaluations between observations, suggested in some of the arguments here,
+also play a significant part in establishing whether the action surface has
+many local minima.
+The view of a deep network as moving from a few hidden layers to many
+may also be illuminated by our arguments. One idea is that by increasing
+the number of hidden layers one is increasing the resolution in the analog
+of ‘time’ in data assimilation. When one does that in data assimilation, we
+see it as probing the variation of the underlying model as it evolves from
+an initial condition through ‘layer’ = ‘time.’ Missing the higher frequency
+variations in time by employing a coarse grid in discrete time should have its
+counterpart role in the feedforward networks discussed here.
+It is recognized that the ‘neuron’ models widely utilized in machine learning applications have little in common with properties of biological neurons,
+the construction and implementation of large networks that have successful
+function within machine learning may prove a useful guide for the construction and implementation of functional natural neural networks.
+Finally, it is important to comment that while the analogy drawn and
+utilized here may improve the testing and validation of models supported by
+observational data, it does not assist in the selection of the models and their
+formulation. That is still a task to be addressed by the user.
+
+Acknowledgments
+We express our appreciation to our colleagues Dan Breen and Jeff Elman
+for important discussions. Also the CENI team made finding the analogs
+in this paper possible. Many thanks to Tim Gentner, Gert Cauwenberghs,
+and especially Gabe Silva improved the manuscript. Jon Shlens provided
+a detailed view from the active world of machine learning. Partial support from the MURI Program (N00014-13-1-0205) sponsored by the Office
+of Naval Research is acknowledged as is support for A. Shirman from the
+ARCS Foundation.
+
+27
+
+References
+[1] Perspectives on Research in Artificial Intelligence and Artificial
+General Intelligence Relevant to DoD, 2017. https://www.google.
+com/?gws_rd=ssl#q=perspectives+on+research+in+artificial+
+intelligence+and+artificial+general+intelligence.
+[2] Henry D. I. Abarbanel. Predicting the Future: Completing Models of
+Observed Complex Systems. Springer, 2013.
+[3] E. L. Allgower and K. Georg. Numerical Continuation Methods: An
+Introduction. Springer-Verlag, 1990.
+[4] A. F. Bennett. Inverse Methods in Physical Oceanography. Cambridge
+University Press, 1992.
+[5] R. H. Byrd, P. Lu, and J. Nocedal. A limited memory algorithm for
+bound constrained optimization. SIAM Journal on Scientific and Statistical Computing, 16:1190–1208, 1995.
+[6] Anna Choromanska, Mikael Henaff, Michael Mathieu, Ge’rard Ben
+Arous, and Yann LeCun. The loss surfaces of multilayer networks. In
+18th International Conference on Artificial Intelligence and Statistics
+(AISTATS), 2015.
+[7] Yann N. Dauphin, Razvan Pascanu, Caglar Gulcehre, Kyunghyun Cho,
+Surya Ganguli, and Yoshua Bengio. Identifying and attacking the saddle point problem in high-dimensional non-convex optimization. In Proceedings of the 27th International Conference on Neural Information
+Processing Systems, NIPS’14, pages 2933–2941, Cambridge, MA, USA,
+2014. MIT Press.
+[8] J. L. Elman. Finding structure in time. Cognitive Science, 14:179–211,
+1990.
+[9] Geir Evensen.
+Springer, 2009.
+
+Data Assimilation:
+
+The Ensemble Kalman Filter.
+
+[10] Robert M. Fano. Transmission of Information; A Statistical Theory of
+Communication. MIT Press, 1961.
+
+28
+
+[11] I. M. Gelfand and S. V. Fomin. Calculus of Variations. Dover Publications, Inc., 1963.
+[12] Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Deep Learning. MIT Press, Cambridge, MA; London, UK, 2016. http://www.
+deeplearningbook.org.
+[13] Ernst Hairer, Gerhard Wanner, and Christian Lubich. Geometric Numerical Integration: Structure-Preserving Algorithms for Ordinary Differential Equations. Springer Series in Computational Mathematics; Volume 31, 2nd edition, 2006.
+[14] M. Jordan. Attractor dynamics and parallelism in a connectionist sequential machine. In Proceedings of the Eighth Conference of the Cognitive Science Society, pages 531–546. Cognitive Science Society, 1986.
+[15] N. Kadakia, D. Rey, J. Ye, and H. D. I. Abarbanel. Symplectic structure
+of statistical variational data assimilation. Quarterly Journal of the
+Royal Meteorological Society, 143(703):756–771, 2017.
+[16] Mark Kostuk. Synchronization and statistical methods for the data
+assimilation of hvc neuron models. PhD Dissertation in Physics, University of California, San Diego, 2012.
+[17] Mark Kot. A First Course In the Calculus of Variations. American
+Mathematical Society; Providence, Rhode Island., 2014.
+[18] Rubin H. Landau, Manuel Jose’ Paez, and Cristian C. Bordeianu. A
+Survey of Computational Physics: Introductory Computational Science.
+Princeton University Press, 2010.
+[19] Pierre Simon Laplace. Memoir on the probability of causes of events.
+Mémoires de Mathématique et de Physique, Tome Sixième, pages 621–
+656, 1774.
+[20] Pierre Simon Laplace. Memoir on the probability of the causes of events.
+Statistical Science, 1(3):364–378, 1986. Translation to English by S. M.
+Stigler.
+[21] Yann LeCunn, Yoshua Bengio, and Geoffrey Hinton. Deep learning.
+Nature, 521:436–444, 2015.
+29
+
+[22] Daniel Liberzon. Calculus of Variations and Optimal Control Theory.
+Princeton University Press, 2012.
+[23] Edward N Lorenz. Predictability: A problem partly solved. In Tim
+Palmer and Renate Hagedorn, editors, Predictability of weather and climate. Cambridge, 2006.
+[24] J. E. Marsden and M. West. Discrete mechanics and variational integrators. Acta Numerica, pages 357–514, 2001.
+[25] K. G. Murty and S. N. Kabadi. Some np-complete problems in quadratic
+and nonlinear programming. Mathematical Programming, 39:117–129,
+1987.
+[26] Alexander G. Parlos, Kil T. Chong, and Amir F. Atiya. Application
+of the recurrent multilayer perceptron in modeling complex process dynamics. IEEE Transactions on Neural Networks, 5:255–266, 1994.
+[27] W. H. Press, S. A. Teukolsky, W. T. Vetterling, and B. P. Flannery.
+Numerical Recipes: The Art of Scientific Computing, Third Edition.
+Cambridge University Press, 2007.
+[28] Jorma Rissanen. Stochastic Complexity in Statistical Inquiry Theory.
+World Scientific Publishing Co., Inc., River Edge, NJ, USA, 1989.
+[29] Jorma Rissanen. Information and Complexity in Statistical Modeling.
+Springer, 2007.
+[30] A. R. Wachter and L. T. Biegler. On the implementation of an interiorpoint filter line-search algorithm for large-scale nonlinear programming.
+Mathematical programming, 106:25–57, 2006.
+[31] J. M. Wendlandt and J. E. Marsden. Mechanical integrators derived
+from a discrete variational principle. Physica D: Nonlinear Phenomena,
+106:223–246, 1997.
+[32] J. Ye, N. Kadakia, P. J. Rozdeba, H. D. I. Abarbanel, and J. C. Quinn.
+Improved variational methods in statistical data assimilation. Nonlinear
+Processes in Geophysics, 22(2):205–213, 2015.
+
+30
+
+[33] J. Ye, Daniel Rey, Nirag Kadakia, Michael Eldridge, Uri Morone, Paul
+Rozdeba, Henry D. I. Abarbanel, and John C. Quinn. A systematic variational method for statistical nonlinear state and parameter estimation.
+Physical Review E, 2015.
+[34] C. Zhu, R. H. Byrd, and J. Nocedal. L-bfgs-b: Algorithm 778: L-bfgs-b,
+fortran routines for large scale bound constrained optimization. ACM
+Transactions on Mathematical Software, 23:550–560, 1997.
+
+31
+
+
+
+Summary:
+This research paper covers the following topic: arXiv:1707.01415v1 [cs.AI] 5 Jul 2017
+
+Machine Learning, Deepest Learning:
+Statistical Data Assimilation Problems
+Henry Abarbanel,
+Department of Physics
+and
+Marine Physical Laboratory (Scripps Institution of Oceanography)
+Center for Engineered Natural Intelligence
+habarbanel@ucsd.edu
+Paul Rozdeba
+and
+Sasha Shirman
+
+Department of Physics
+University of California, San Diego
+9500 Gilman Drive, Mail Code 0374
+La Jolla, CA 92093-0374, USA
+Draft of July 6, 2017
+
+1
+
+1
+
+Abstract
+
+We formulate a strong equivalence between machine learning, artificial intelligence methods and the formulation of statistical data assimilation as
+used widely in physical and biological sciences. The correspondence is that
+layer number in the artificial network setting is the analog of time in the
+data assimilation setting. Within the discussion of this equivalence we show
+that adding more layers (making the network deeper) is analogous to adding
+temporal resolution in a data assimilation framework.
+How one can find a candidate for the global minimum of the cost functions
+in the machine learning context using a method from data assimilation is
+discussed. Calculations on simple models from each side of the equivalence
+are reported.
+Also discussed is a framework in which the time or layer label is taken
+to be continuous, providing a differential equation, the Euler-Lagrange equation, which shows that the problem being solved is a two point boundary
+value problem familiar in the discussion of variational methods. The use of
+continuous layers is denoted “deepest learning”. These problems respect a
+symplectic symmetry in continuous time/layer phase space. Both Lagrangian
+versions and Hamiltonian versions of these problems are presented. Their
+well-studied implementation in a discrete time/layer, while respected the
+symplectic structure, is addressed. The Hamiltonian version provides a direct rationale for back propagation as a solution method for the canonical
+momentum.
+
+2
+
+Introduction
+
+Through the use of enhanced computational capability two, seemingly unrelated, ‘inverse’ problems have flourished over the past decade. One is machine learning in the realm of artificial intelligence [1, 12, 21] with developments that often go under the name “deep learning”. The other is data
+assimilation in the physical and life sciences. This describes the transfer of
+information from observations to models of the processes producing those
+observations [4, 9, 2].
+This paper is directed towards demonstrating that these two areas of
+investigation are the same at a fundamental level. Each is a statistical physics
+problem where methods utilized in one may prove valuable for the other.
+2
+
+The main goal of the paper is to point out that many developments in data
+assimilation can be utilized in the arena of machine learning. We also suggest
+that innovative methods from machine learning may be valuable in data
+assimilation.
+Two areas of focus are attended to here: (1) a variational annealing (VA)
+method for the action (cost function) for machine learning or statistical data
+assimilation that permits the location of the apparent global minimum of
+that cost function. (2) The notion of analyzing each problem in continuous
+time or layer, which we call deepest learning, wherein it is clear that one
+is addressing a two point boundary value problem [33, 11] with an underlying
+symplectic structure. Methods abound for solving such two point boundary
+value problems [27] and for assuring that symplectic structures are respected
+when time (or layer) is discretized. These may be quite fruitful in machine
+learning.
+This paper primarily discusses multilayer perceptrons or feedforward networks [12] though it also makes it is clear that the discussion carries over to
+recurrent networks as well [14, 8, 26].
+
+3
+3.1
+
+Background
+Machine Learning; Standard Feedforward Neural
+Nets
+
+We begin with a brief characterization of simple architectures in feedforward
+neural networks [1, 12, 21]. The network we describe is composed of an input
+layer l0 and output layer lF and hidden layers l1 , l2 , ..., lF − 1. Within each
+layer we have N active units, called ‘neurons’, each of which has d degreesof-freedom. (Usually d is chosen to be 1.)
+Each layer has N neurons with d degrees of freedom, so each layer has
+D = N d degrees-of-freedom. For our purposes the ‘neurons’ in each layer
+are the same structure. This can be generalized to different numbers and
+different types of neurons in each layer at the cost of a notation explosion.
+Data is available to layer l0 and layer lF in M pairs of L-dimensional
+input, at l0 , and output, at lF . These are sets of vectors: {yr(k) (l0 ), yr(k) (lF )}
+where k = 1, 2, ..., M labels the pairs, r is an index on the L-dimensional
+data r = 1, 2, 3, ..., L ≤ D.
+The activity of the units in each hidden layer l, x(k)
+α (l); l0 < l < lF , is
+3
+
+determined by the activity in the previous layer. The index α combines the
+neuron number j and the neuron degrees-of-freedom a into one label: α =
+1, 2, ..., N d = D; j = 1, 2, ...N ; a = 1, 2, ...d. This connection is described by
+the nonlinear function fα (•) via
+x(k)
+α (l) = fα (x(l − 1), l) = fα
+
+NX
+d=D
+
+(k)
+
+
+
+Wα β (l)xβ (l − 1) ,
+
+(1)
+
+β=1
+(k)
+
+(k)
+
+(k)
+
+where x(k) (l) = {x(k)
+α (l)} = {x1 (l), x2 (l), ..., xN d (l)}. The summation over
+weights Wα β (l) determines how the activities in layer l − 1 are combined
+before allowing fα (•) to act, yielding the activities at layer l. There are
+numerous choices for the manner in which the weight functions act as well
+as numerous choices for the nonlinear functions, and we direct the reader to
+the references for the discussion of the virtues of those choices [1, 12, 21].
+At the input and the output layers l0 , lF the network activities are compared to the observations, and the network performance is assessed using an
+error metric, often a least squares criterion, or cost function
+CM
+
+
+
+M 
+L
+1 X
+1 X
+(k)
+(k)
+2
+(k)
+(k)
+2
+=
+Rm (r) [xr (l0 ) − yr (l0 )] + [xr (lF ) − yr (lF )]
+, (2)
+M k=1 2 L r=1
+
+where Rm (r) permits an inhomogeneous weighting in the comparison of the
+network activities and the data. Minimization of this cost function over all
+xα(k) (l) and weights Wα β (l), subject to the network model Eq. (1), is used
+to determine the weights, the variables x(k)
+α (l)in all layers, and any other
+parameters appearing in the architecture of the network.
+Before moving along to data assimilation, we note that one wishes to
+find the global minimum of the cost function Eq. (2), which is a nonlinear
+function of the neuron activities, the weights and any other parameters in
+the functions at each layer. This is an NP-complete problem [25] and as
+such suggests one cannot find a global minimum of the machine learning
+problem, as set, unless there is a special circumstance. We will see just such
+a circumstance in a data assimilation problem equivalent to machine learning
+tasks.
+The machine learning problem as described here assumes there is no error
+in the model itself, so that the minimization of the cost function Eq. (2)
+is subject to strong equality constraints through the model. This results
+in the output at layer lF x(k) (lF ) being a very complicated function of the
+parameters in the model and the activities at layers x(k) (l ≤ lF ). This is likely
+4
+
+connected with the many local minima associated with the NP-complete
+nature of the search problem.
+We introduce a variational annealing (VA) method in the next section
+which regularizes this by moving the equality constraint into the cost function
+via a penalty function. This introduces a hyperparameter allowing us to
+systematically vary the complexity of the search process.
+
+3.2
+
+Standard Statistical Data Assimilation
+
+Now we describe the formulation of a statistical data assimilation problem.
+In data assimilation observations are made of a sparse set of dynamical
+variables, associated with a model of the processes producing the observations. This will allow the estimation of parameters in the model and of the
+unobserved state variables of the model. The goal is to estimate any unknown parameters in the model, and because not all of the dynamical state
+variables in the model may be observed, to estimate those unmeasured state
+variables as well. After a certain time window in which information is transferred to the model, we have an estimate of the full model including an initial
+condition for all state variables, and predictions are made with the completed
+model and compared to new observations. This validation by prediction is
+essentially the same as the question of generalization as addressed in machine
+learning [12].
+In data assimilation, one has a window in time [t0 , tF ] during which observations are made at times t = {τ1 , τ2 , ..., τF } which lie in [t0 ≤ τs ≤ tF ]; s =
+1, 2, ..., F . At each observation time L measurements yl (τs ); l = 1, 2, ..., L
+are made, L ≤ D. Through knowledge of the measurement instruments the
+observations are related to the state variables of the model via ‘measurement
+functions’ hl (x) : yl (τk ) = hl (x(τk )); l = 1, 2, ..., L.
+Using what knowledge we have of the processes producing the observations, we develop a dynamical model for the state variables. These satisfy a
+set of D dynamical differential equations
+dxa (t)
+= Fa (x(t), t); a = 1, 2, ..., D.
+dt
+
+(3)
+
+The time dependence of the vector field F(x, t) may come from external
+forcing functions driving the dynamics.
+This set of differential equations will necessarily be represented in discrete
+time when solving them numerically, resulting in a map xa (tk ) → xa (tk+1 ) =
+5
+
+fa (x(tk ), tk ) in which the discrete time vector field fa (•) is related to Fa (x, t)
+via the integration procedure one chooses for Eq. (3).
+Starting from an initial condition at t0 , xa (t0 ) we use the discrete time
+model
+xa (tk+1 ) = fa (x(tk ), tk )
+(4)
+to move forward to the first observation time τ1 , then to τ2 , ... eventually
+reaching the end of the observation window at tF . Altogether by making N
+model integration steps in each of the intervals [τn , τn+1 ] we make (F + 1)N
+time steps.: t0 → τ1 → τ2 ... → τF → tF .
+The measurements are noisy, and the models have errors; so this is a statistical problem. Our goal is to construct the conditional probability distribution, P (X|Y), of the model states X(tF ) = {x(t0 ), x(t1 ), ..., x(tN ), ..., x(tF )},
+conditioned on the LF measurements Y(τF ) = {y(τ1 ), y(τ2 ), ..., y(τk ), ..., y(τF )}.
+Assuming the transition to the model state at time tk+1 depends only
+on the model state at time tk (that is, the dynamics in Eq. (4) is Markov)
+and using identities on conditional probabilities [2], one may write the action
+A(X) = − log[P (X|Y)] (suppressing the dependence on the observations Y
+in A(X)) as
+A(X) = −
+
+F
+X
+
+CM I[X(τn ), y(τn )|Y(τn−1 )]
+
+n=1
+N (F +1)−1
+
+−
+
+X
+
+log[P (x(tn+1 )|x(tn ))] − log[P (x(t0 ))],
+
+(5)
+
+n=0
+
+where
+the conditional
+mutual information is given as [10] CM I(a, b|c) =
+
+
+log
+
+P (a,b|c)
+P (a|c) P (b|c)
+
+. If the model is error free, P (x(tn+1 )|x(tn )) is a delta function:
+
+P (x(tn+1 )|x(tn )) = δ D (x(tn+1 ) − f (x(tn ), tn )).
+With a representation of P (X|Y) we may evaluate conditional expected
+values of functions G(X) on the path X(N F ) of the model through the
+observation window [t0 , tF ] as
+R
+
+E[G(X)|Y] = hG(X)i =
+
+dX G(X) exp[−A(X)]
+R
+,
+dX exp[−A(X)]
+
+in which
+A(X) = −
+
+F
+X
+
+log[P (y(τn )|X(τn ), Y(τn−1 )]
+
+n=1
+
+6
+
+(6)
+
+N (F +1)−1
+
+X
+
+−
+
+log P [(x(tn+1 )|x(tn ))] − log[P (x(t0 ))],
+
+(7)
+
+n=0
+
+and terms depending only on the observations were canceled between numerator and denominator in the expected value.
+If the observations at the times τk are independent, and if the measurement function is the identity yr (τk ) = hr (x(τk )) = xr (τk ), and if the noise
+in the measurements is Gaussian, with a diagonal inverse covariance matrix
+Rm (r, τk ), the first term in the action A(X), the measurement error term,
+takes the form
+
+2
+F X
+L
+X
+Rm (r, τn )
+(8)
+xr (τn ) − yr (τn ) .
+2
+n=1 r=1
+If no measurement is made at τk , Rm (r, τk ) = 0.
+If the error in the model Eq. (4) is taken as additive and Gaussian with
+diagonal inverse covariance matrix Rf (a) the second term in A(X), the model
+error term, becomes
+N (F +1)−1 D
+X
+X
+n=0
+
+2
+
+Rf (a)
+xa (tn+1 ) − fa (x(tn ), tn )
+2
+a=1
+
+
+.
+
+(9)
+
+In each term constants having to do with normalizations of the Gaussians
+cancel in the expected value. If we keep these constants and take the limit
+Rf (a) → ∞, we would restore the delta function in the dynamics.
+Finally, if one accepts ignorance of the distribution of initial conditions
+P (x(t0 )) and selects it as uniform over the dynamical range of the model
+variables, hG(X)i is evaluated with
+A0 (X) =
+
+
+L
+F X
+X
+Rm (r, τn )
+
+2
+
+n=1 r=1
+N (F +1)−1 D
+
++
+
+X
+
+X Rf (a) 
+
+n=0
+
+a=1
+
+2
+R
+
+hG(X)i =
+
+2
+
+xr (τn ) − yr (τn )
+
+xa (tn+1 ) − fa (x(tn ), tn )
+
+dX G(X) exp[−A0 (X)]
+R
+,
+dX exp[−A0 (X)]
+
+2
+
+.
+
+(10)
+
+(11)
+
+This is the desired connection between the machine learning formulation
+(with model error) and the statistical data assimilation formulation: identify
+layer labels as time l ⇔ t.
+7
+
+This alone could be of passing interest. However, there is much in the
+connection that may be of some utility. We will discuss these items in the
+data assimilation language, but the translation should be easy at this point.
+For statistical data assimilation we call this A0 (X) the standard model.
+The critical suggestion here relative to standard practice in machine learning [1, 12, 21], is that by allowing Rf to be finite from the outset–so acknowledging model error–we may add an additional tool for exploration in machine
+learning environments where typically no account for model error is introduced. Further, the hyper-parameter Rf serves as a regulating device for the
+complexity of the surface in path space in which the estimation of states and
+parameters occurs.
+
+4
+4.1
+
+Data Assimilation Developments of Use in
+Machine Learning
+Finding the Global Minimum
+
+The key to establishing estimates for unobserved state variables (L < D) and
+for unknown parameters in the model is to perform, approximately of course,
+the integral Eq. (11). One can do this using Monte Carlo methods [18] or
+by the method of Laplace [19, 20]. In the Laplace method one seeks minima
+of the action A0 (X), Eq. (10). The integral is not Gaussian. If it were, we
+would just do it. As the functions fa (•) are nonlinear, we must perform a
+numerical evaluation of Eq. (6).
+The Laplace method approximates the integral with contributions from
+the lowest minima of the action, if one can find them. Minima associated
+with paths X having larger action give exponentially smaller contributions
+to expected values, Eq. (11), than paths with smaller action. This allows
+one to circumvent a search for the global minimum if the parameters, hyperparameters [12], and other aspects of the model and data yield a set of action
+levels connected with minima of the action such that one path yields an action level much smaller than any other path. For numerical accuracy one
+may use that smallest minimum path (comprised of parameters and ‘hidden’
+(unobserved) state variables) neglecting larger minima of the action.
+We have developed a variational annealing (VA) approach [32, 33], to
+finding the path with the smallest value of the action. While we have no
+proof that the global minimum is found, our numerical results indicate this
+8
+
+may be the case. The VA method produces a set of minima of the action
+giving a numerical clue as to the roughness of the surface in path X space.
+In data assimilation the surface depends, among other items, on the number of measurements L at each observation time τk , on the hyper-parameter
+Rf , and on the number of model time steps between measurement times τn .
+This translates directly to the analogous machine learning problem with time
+→ layer. As the number of model time steps between measurement times
+increases, the number of hidden layers increases and the model architecture
+deepens.
+VA proceeds by a kind of numerical continuation [3] in Rf of the requirement that varying over all X and all parameters in A0 (X) minimizes A0 (X).
+The procedure begins by taking Rf → 0, namely the complete opposite of
+the value found in usual machine learning where Rf → ∞ (deterministic,
+error free layer to layer maps) from the outset. In the Rf = 0 limit, the
+action is just a quadratic function of the model variables x(τk ) at the times
+measurements are made, and the minimization is simple: xr (τk ) = yr (τk ) for
+the r = 1, 2, ..., L ≤ D data presented at the input and output layers. The
+minimum can be degenerate as we know only L ≤ D values for the state
+variables.
+At the first step of VA we choose as a solution to the optimization problem
+xr (τk ) = yr (τk ) and select the other D−L states as drawn from a uniform distribution with ranges known from the dynamical range of the state variables.
+One can learn that well enough by solving the underlying model forward for
+various initial conditions. We make this draw K times, and now have K paths
+X0 as candidates for the VA procedure.
+Now we select a small value for Rf , call it Rf 0 . With the previous K
+paths X0 as K initial choices in our minimization algorithm, we find K paths
+X1 for the minimization problem with Rf = Rf 0 . This gives us K values of
+the action A0 (X1 ) associated with the new paths X1 .
+Next we increase the value of Rf to Rf = Rf 0 α where α > 1. (We have
+found values of α in the range 1.1 to 2 to be good choices). For this new value
+of Rf , we perform the minimization of the action starting with the K initial
+paths X1 from the previous step to arrive at K new paths X2 . Evaluating the
+action on these paths A0 (X2 ) now gives us an ordered set of actions that are
+no longer as degenerate. Many of the paths X2 may give the same numerical
+value of the action, however,
+typically the ‘degeneracy’ lies within the noise
+√
+level of the data ≈ (1/ Rm ).
+This procedure is continued until Rf is ‘large enough’ which is indicated
+9
+
+by at least one of the action levels becoming substantially independent of
+Rf . As a check on the calculation, we observe that if the action A0 (X) is
+independent of Rf , its expected value is that of the measurement error term.
+As the measurement errors were taken to be Gaussian, this term in the action
+is distributed as χ2 , and its expected value is readily evaluated. If the action
+levels are at this expected value of χ2 for large Rf , the procedure is consistent
+and no further increases in Rf are required.
+Effectively VA starts with a problem (Rf = 0) where the global minimum is apparent and systematically tracks it and many other paths through
+increases in Rf . In doing the ‘tracking’ of the global minimum, one must
+check that the selected value of α is not too large lest one leave the global
+minimum and land in another minimum. Checking the result using smaller
+α is worthwhile.
+It is important to note that simply starting with a large value of Rf places
+one in the undesirable situation of the action A0 (X) having multiple local
+minima into which any optimization procedure is quite likely to fall.
+In the dynamical problems we have examined, one typically finds that as
+the number of measurements L at each τk is increased, fewer and fewer minima of the action remain and when L is large enough there is one minimum.
+This we attribute to the additional information from the augmented set of
+measurements, and this will be manifest in the discussion below where the
+additional information effectively controls unstable directions in the phase
+space.
+
+4.2
+
+Smallest Minimum; Not Necessarily a Convex Action
+
+As our goal is to provide accurate estimations of the conditional expected
+value of functions G(X) where X, a path in model space, is distributed as
+exp[−A(X)], we actually do not require convexity of A(X) as a function in
+path space. From the point of view of accurately estimating expected values,
+it is sufficient that the lowest action level be much smaller than the second
+lowest action level. If the action value at the lowest level A(Xlowest ) is
+much smaller than the action value at the next minimum A(Xsecond lowest ),
+then by a factor exp[−{A(Xlowest ) − A(Xsecond lowest )}], the lowest path
+Xlowest dominates the integral to be done and provides a sensible choice for
+the path at which to evaluate the integral.
+
+10
+
+5
+
+Examples from Feedforward Neural Networks and from Data Assimilation
+
+In this section we examine one example from multi-layer perceptrons and one
+example from statistical data assimilation. The latter utilizes a differential
+equation model introduced by Lorenz in 1996 [23] which permits one to easily
+increase the number of dimensions of the phase space, to easily select the
+number of observations within a designated measurement window, and to
+easily choose the number of model evaluations between measurement times.
+The latter is analogous to increasing the number of layers in a multi-layer
+perceptron.
+In each case we perform a ‘twin experiment’. We use a model to generate
+solutions from some initial conditions. These solutions, when Gaussian noise
+is added to them, become our noisy data. Using the noisy data we use
+VA to estimate the unobserved state variables (hidden layer variables) and
+parameters/weights.
+
+5.1
+
+Data Assimilation for Lorenz96 Model
+
+We begin by examining the dynamical equations introduced by [23]:
+dxa (t)
+= xa−1 (t)(xa+1 (t) − xa−2 (t)) − xa (t) + ν
+dt
+
+(12)
+
+and a = 1, 2, ..., D; x−1 (t) = xD−1 (t); x0 (t) = xD (t); xD+1 (t) = x1 (t). ν is a
+fixed parameter which we take to be 10.0 where the solutions to the dynamical
+equations are chaotic [16]. The equations for the states xa (t); a = 1, 2, ..., D
+are meant to describe ‘weather stations’ on a periodic spatial lattice. This
+model is widely used in atmospheric science as a testbed for the exploration
+of innovative data assimilation ideas.
+Our example selects D = 11, and displays the action level plot for L =
+2, 4, 5, and 6 observations at each measurement time within the window
+[t0 , tF ]. We perform a ‘twin experiment’ wherein we generate D time series
+{xa (t); a = 1, 2, ..., D} for Eq. (12) using a standard adaptive fourth order
+Runge-Kutta algorithm with a time step ∆t = 0.025 and an initial condition
+x(t0 ) drawn from a uniform distribution over the range of the variables x(t),
+namely [-10, +10]. To these solutions of Eq. (12) we add Gaussian noise
+with mean zero and variance σ 2 = 0.2 to each time series xa (t). These noisy
+11
+
+versions of our model time series constitute our ‘data’ {ya (t)}. L of these D
+time series are presented to the model at times τn ; t0 ≤ τn ≤ tF .
+The measurement window is from t0 = 0 to tF = 4.125. L = 2, 4, 5, 6
+‘measurements’ are made at each time step; these are the y(τn ). The measurement error matrix Rm is taken to have diagonal elements at each measurement time τn and is zero at other times. Its magnitude is taken as
+Rm = 1/σ 2 = 5.
+The model error matrix Rf (a) is also taken as diagonal, with elements
+along the diagonal Rf = Rf 0 2β , in performing the VA procedure, and we
+take β = 0, 1, 2, . . . . Rf 0 was chosen 0.01.
+The minimizations of nonlinear objective functions in the example using the Lorenz96 model was performed using the public domain software
+IPOPT [30] with a front end script written in Python.
+In Fig. (1) we display action level plots for L = 2, 3, 4, and 6 observations
+at each measurement time. As we can see in the TopLeftPanel, where
+L = 2, there are numerous local minima in the action A0 (X) for all values of
+Rf ≥ Rf 0 , and these remain to large Rf . None of these minima is very far
+separated from the paths with the smallest minimum, so that the evaluation
+of the expected value integrals Eq. (11) would require contributions from
+many maxima of the conditional probability distribution.
+When L = 4, TopRightPanel we begin to see an isolated action level
+whose contribution to the expected value integral is overwhelmingly larger
+than the contribution from path giving rise to the next largest action level.
+The value L = 4 is consistent with the observation in [16] that around 0.4D
+the instabilities in the Lorenz96 state space appear to be controlled by the
+data assimilation process.
+At L = 5 or 6, BottomPanels, we see that the dominance of the lowest
+action level is even clearer. The horizontal olive colored line is the expected
+value of the measurement error term in the action. This is a sign of the
+consistency of the data assimilation calculations.
+In Fig. (2) we explore another aspect of the action level plots. We
+still use D = 11, and we hold L = 6 fixed. The number of observations
+within the window [t0 , tF ] has been reduced from 165 to 28 and we move
+the model forward between observations 0, 2, 5 or 11 times. This is to
+provide an analogy to how many layers are present in an equivalent machine
+learning example. Our example here differs by having many entry points in
+the measurement window while the machine learning example has only one.
+We display in the LeftPanel the action level plots for the selected number
+12
+
+of model evaluation steps. As one can see for 0 and 2 intermediate steps we
+have many persisting minima of the action. At 5 and 11 intermediate steps,
+there is only a single minimum that is found, and for large Rf it comes to the
+same action level as with 2 intermediate steps. All are consistent with the
+expected value of the measurement error term. This calculation, performed
+in a machine learning context provides information on how many hidden
+layers are required to achieve a desired accuracy.
+In the RightPanel we display the accuracy of the estimation of the single
+parameter in the Lorenz96 model. It has been set at ν = 10.0 in producing
+the data, and that value is clearly selected for 5 or 11 intermediate model
+evaluations, while it is not so clearly selected for 2 intermediate steps and
+with zero intermediate steps there is a consistent few percent error.
+We see, in this collection of calculations, as noted earlier [32, 33], the ability to identify the dominant minimum of the action depends on the number
+of measurements presented during the statistical data assimilation procedure
+embodying transfer of information from the data to the model. In data assimilation this is associated with the number of positive conditional Lyapunov
+exponents [16] of the model. In the machine learning instantiation it may
+play the same role when the number of data presented at the output layer is
+not sufficient to determine the parameters and hidden states in each layer.
+We also see the analogue of deepening the network produces higher accuracy estimates of conditional expected values.
+
+5.2
+
+A Multi-Layer Perceptron; Feedforward Network
+
+We constructed a feedforward network with lF layers: One input layer at
+l0 and one output layer at lF . This network has lF − 2 hidden layers. We
+analyzed lF = 20, 30, 50 and 100. There are N = 10 ‘neurons’ in each layer.
+The activity in neuron j in layer l xj (l) is related to xj (l − 1) in the previous
+layer as
+z
+(13)
+xj (l) = g(W (l)x(l − 1)); g(z) = 0.5[1 + tanh( )].
+2
+We also investigated the “ReLU”-like function g(z) = log[1 + ez ], but we do
+not report on those results. The activations at the input layer are drawn from
+a Gaussian N (0, 1). The weights are selected from a uniform distribution
+U [−0.1, 0.1]. Gaussian measurement noise was added to the ‘data’ generated
+by the model; this has zero mean and variance 0.0025.
+
+13
+
+Figure 1: Action level plots for the Lorenz96 model Eq. (12) with D = 11
+and ν = 10.0. The variational annealing procedure is performed with 100
+different initial conditions for the minimization of the action at each value
+of Rf = Rf 0 αβ ; β = 0, 1, ...; α = 2. Top Left Panel: L = 2 measurements
+at each measurement time. At L = 2, there are many minima, but none so
+much smaller than the others that it dominates the expected value integral
+Eq. (11). Top Right Panel: L = 4 measurements at each measurement
+time. At L = 4, the action in path space X has numerous local minima. The
+lowest minimum has an action value much smaller than the action values
+from the other minima, and this dominates the expected value integral Eq.
+(11). Bottom Left Panel: L = 5 measurements at each measurement time.
+At L = 5, the number of minima found is only two, and again the lowest
+minimum dominates the expected value integral. Bottom Right Panel L
+= 6 measurements at each measurement time. At L = 6, there is only one
+minimum of the action. The solid green line is the expected value of the
+measurement error term. This is distributed as χ2 . As the action becomes
+independent of Rf , its expected value should equal this value.
+14
+
+Figure 2: Parameter estimation and action level results for the Lorenz96
+model, D = 11, L = 6. The parameter value ν = 10.0 was used in the twin
+experiments on the model. Observations were made every ∆tobs = 0.15, and L
+= 6 measurements were made at each observation time. Left Panel: Action
+Level Estimates These are the action levels when L = 6 observations are
+made at each measurement time and with the choice of 0, 2, 5, and 11
+model evaluation steps between measurement times. The horizontal olive
+green line indicates the expected action level for large Rf . Right Panel
+Parameter estimates Between the observations the model was evaluated
+0, 2, 5 and 11 times leading to ∆tmodel = 1.0, 0.33, 0.16, and 0.08 ∗∆tobs .
+The parameter estimates are quite accurate for 5 and for 11 model time
+steps between observations. They are more distributed for 0 or 2 model step
+between observations. One can associate the idea of increasing the number
+of model steps between observations as equivalent to ‘deepening’ the hidden
+(unobserved) layers. The horizontal olive green line indicates the parameter
+value, 10.0, used in generating the data.
+
+15
+
+Our data are for the twin experiment, where we know all weights, all
+inputs and generate all values of x(l) in each layer [l0 , lF ]. These are recorded,
+and Gaussian noise with mean zero and variance 0.0025 is added to the data
+at layers l0 = 1 and lF starting from known values x(l0 ). These data are
+yi (1) for the input layer and yi (20) for the output layer.
+M input/output pairs are presented to the model with L = 1, 5, and 10
+(k)
+(k)
+inputs yi (l0 ) at layer l0 and L = 1, 5, 10 data outputs yi (lF ) at layer lF .
+k = 1,2,...,M, and we investigated M = 1, 10, 100.
+We minimize the action over all the weights and the states x(k)
+a (l) at all
+layers of the model:
+
+M 
+L 
+Rm X
+1 X
+(k)
+(k)
+(k)
+(k)
+2
+2
+(xr (l0 ) − yr (l0 )) + (xi (lF ) − yi (lF ))
+AM (X) =
+M k=1 2L r=1
+lF
+−1 X
+N
+X
+Rf
+x(k) (l + 1) − g(W (l)x(k) (l))
+N (lF − 1) l=1 a=1 a
+
+2 
+
+
+
++
+
+,
+
+(14)
+
+where we have N = 10 neurons in each layer and L ≤ N data at the input l0
+and at the output layers lF .
+We use the variational annealing procedure described above to identify
+the action levels for various paths through the network. The initial value of
+Rf 0 /Rm is taken to be 10−8 and this is incremented via Rf /Rm = Rf 0 αβ
+with α = 1.1 and β = 0, 1, ...,.
+In the numerical optimizations for the machine learning example we used
+L-BFGS-B [5, 34].
+There are at least two ways to present more information to the model in
+this setting:
+• increase the number of training pairs available to the network at l0 and
+lF ; this is our number M . M can be chosen as large as the user wishes.
+• increase the number of components of the input/output pair vectors;
+this is our number L. L ≤ N , the number of neurons in l0 or lF .
+The resolution of the model in its ability to capture variations in activity
+from layer to layer is improved by increasing the number of layers lF .
+In Fig. (3) we explore the action levels as a function of Rf /Rm as we
+increase the number of layers lF in the model: lF = 20, 30, 50, 100. We hold
+fixed the number of neurons N = 10, the number of training pairs M = 100
+and the number of inputs and outputs L = 10 at l0 and lF .
+16
+
+In each case there are many local minima, but only when lf = 50 does
+the lowest action minimum significantly split from the other action minima
+and qualify to dominate the expected value integral Eq. (11). When lF is
+increased from 50 to 100, the lowest action minimum comes closer to the
+second lowest minimum. This is seen as a result of the much larger number
+of weights to be estimated at the latter value of lF while we are holding
+fixed through the values of L and M the information available to make those
+estimations.
+In Fig. (4) we hold M fixed at 100, and lF fixed at 50 while we look at
+L = 1, 5, 10 values of the dimension of input/output pairs.
+In Fig. (5) we hold fixed the number of layers lF , the number of neurons
+in each layer N = 10 and the dimension of the input/output vectors yr(k) (l0 )
+and yr(k) (lF ); r = 1, 2, ..L = 10. We show the effect of increasing the number
+of input/output pairs from M = 1 to M = 10 to M = 100. The emergence
+of a lowest action minimum as M increases is displayed. This can serve as a
+candidate for approximating Eq. (11).
+In Fig. (6) we display the error in prediction after the mode, with lF = 50
+layers, has been set by the estimation of the weights. This error is constructed
+by selecting MP new input output pairs. Using each of the input elements
+for L ≤ N components, we use the model with our estimated weights to
+(k)
+evaluate x(k)
+r (lF ) and compare that with yr (lF ) from each of the MP pairs.
+The square error averaged over L presented components and over MP pairs
+MP X
+L
+1 X
+(xr(k) (lF ) − yr(k) (lF ))2
+LMP k=1 r=1
+
+(15)
+
+is displayed.
+We see that increasing the information presented via increasing L or M
+leads to decreased average prediction errors when choosing the path corresponding to the lowest action level, Top Layers, or choosing the path
+associated with the second lowest action level Bottom Panel. The differences in quality of prediction (or generalization) in these examples among
+the cases analyzed is not large, and this has been noted [12].
+
+5.3
+
+Recurrent Networks
+
+In this network architecture one allows both interactions among neurons
+from one layer to another layer as well as interactions among neurons within
+17
+
+Figure 3: Holding the number of neurons in each layer fixed at 10, the
+number of input/output pairs fixed at M = 100, and the number of inputs
+and outputs at l0 and lF fixed at L = 10, we vary the number of layers (the
+deepening of the network) and examine the action level plots arising from the
+variational annealing procedure. Upper Left Panel lF = 20 Top Right
+Panel lF = 30 Bottom Left Panel lF = 50 and Bottom Right Panel
+lF = 100.
+
+18
+
+Figure 4: Holding the number of neurons fixed N = 10, the number of layers
+fixed lF = 50, and the number of input/output training pairs fixed M = 100,
+we display the action levels as we vary the number of inputs at l0 and the
+number of outputs at lF . Top Left Panel L = 1. Top Right Panel L = 5.
+Bottom Panel L = 10.
+
+19
+
+Figure 5: Holding the number of neurons fixed N = 10, the number of layers
+fixed lF = 50, and the number of inputs L = 10 at l0 and the number of
+outputs at lF , we display the action levels as we vary the number of training
+pairs M . Top Left Panel M = 1. Top Right Panel M = 10. Bottom
+Panel M = 100.
+
+20
+
+Figure 6:
+
+Prediction Errors for the AI/Machine Learning Network
+(k)
+(k)
+2
+r=1 (xr (lF ) − yr (lF )) averaged over MP new input/output
+k=1
+pairs. A noisy input yr(k) (l0 ) produces the output x(k)
+r (lF ) using the model estimated using the M training sets. This is compared with the output yr(k) (lF )
+produced with the original model used to produce the ‘data’ for the twin
+experiment. In each case the number of neurons is N = 10 and lF = 50. Top
+Left Panel Using the model associated with lowest Action Level: L = 10
+and M = 1 and M = 10. Top Right Panel Using the model associated with
+lowest Action Level: L = 5 and L = 10; M = 100. Bottom Panel Using
+the model associated with the second lowest Action Level: L = 5 and 10; M
+= 100.
+1
+LMP
+
+PMP PL
+
+21
+
+a single layer [14, 8]. The activity xj (l) of neuron j, j = 1,2,...,N in layer l
+P
+{l0 , l1 , ..., lF } is given by xj (l) = f [ i wji (l)xi (l − 1)] in a feedforward, layer
+goes to the next layer, network.
+We can add interactions with a layer in the same fashion, and to give
+some ‘dynamics’ to this within-layer activity we introduce a sequential label
+σ to the activity of neuron j in layer l: xj (l, σ). The mapping from layer to
+layer and within a layer can be summarized by
+xj (l, σ) = f [
+
+X
+
+wji (l)xi (l − 1, σ) +
+
+i
+
+X
+
+Wji (l)xj (l, σ − 1)],
+
+(16)
+
+i
+
+Another version of this allows the nonlinear function to be different for layerto-layer connections and within-layer connections, so
+xj (l, σ) = f [
+
+X
+
+X
+
+wji (l)xi (l − 1, σ)] + g[
+
+i
+
+Wji (l)xj (l, σ − 1)],
+
+(17)
+
+i
+
+where f (x) and g(x) can be different nonlinear functions.
+We can translate these expressions into the DA structure by recognizing
+that xj (l) is the ‘model variable’ in the layer-to-layer function while in the
+recurrent network, the state variables become xj (l, σ). It seems natural that
+as dimensions of connectivity are added–here going from solely feedforward
+to that plus within-layer connections–that additional independent variables
+would be aspects of the ‘neuron’ state variables’ representation.
+In adding connections among the neurons within a layer we have another
+independent variable, we called it σ, and the ‘point’ neurons depending on
+layer alone become fields xj (l, σ). In the machine learning/AI networks
+we have no restrictions on the number of independent variables. This may
+lead to the investigation of ‘neural’ fields φj (v) where v is a collection of
+independent variables indicating which layers are involved in the progression
+of the field from an input to an output layer.
+However many independent variables and however many ‘neurons’ we
+utilize in the architecture of our model network, the overall goal of identifying
+the conditional probability distribution P (X|Y) and estimating the moments
+or expected values of interest still comes down to one form or another in the
+approximation of integrals such as Eq. (6).
+
+22
+
+5.4
+
+Making Time Continuous; Continuous Layers: Deepest Learning
+
+There is much to learn about the data assimilation or machine learning problem as the number of layers or equivalently the number of time points within
+an epoch becomes very large. The limit of the action where the number
+of layers in an epoch becomes a continuous variable is, in data assimilation
+notation [15],
+Z tF
+
+A0 (x(t), ẋ(t)) =
+
+dt L(x(t), ẋ(t), t)
+t0
+L
+X
+
+2
+
+Rm (l, t)
+L(x(t), ẋ(t), t) =
+xr (t) − yr (t)
+2
+r=1
+
+
++
+
+
+D
+X
+Rf (a)
+a=1
+
+2
+
+2
+
+x˙a (t) − Fa (x(t))
+
+.
+
+In this formulation the quantity Rm (l, t) is non-zero only near the times
+t ≈ τk . It can be taken as proportional to δ(t − τk ).
+Within the machine learning context we call this ‘deepest learning’ as the
+number of layers goes to infinity in a useful manner.
+The minimization of the action now requires that the paths
+ x(t) in {x(t), ẋ(t)}
+d ∂L(x(t),ẋ(t),t)
+= ∂L(x(t),ẋ(t),t) ,
+space satisfy the Euler-Lagrange equation
+dt
+
+∂ ẋa (t)
+
+∂xa (t)
+
+along with the boundary conditions δxa (t0 )pa (t0 ) = 0; δxa (tF )pa (tF ) = 0
+where pa (t) = ∂L(x(t), ẋ(t), t)/∂ ẋa (t) is the canonical momentum.
+For the standard model, the Euler-Lagrange equations take the form
+Rf [
+
+dxb (t)
+d
+δab + DFab (x(t))][
+− Fb (x(t))] = Rm (l, t)δar (xr (t) − yr (t)), (18)
+dt
+dt
+
+where we have DF(x) = ∂F(x)/∂x.
+The E-L equations are the necessary condition, along with the accompanying boundary conditions, that show how errors represented on the right
+hand side of the E-L equation drive the model variables at all layers to produce x(l) → y(l) where data is available.
+In the integral for < G(X) >, the coordinates x(t0 ) and x(tF ) are not
+restricted, so we have the ‘natural’ boundary conditions [11, 17, 22] pa (t0 ) = 0
+and pa (tF ) = 0.
+This shows quite clearly that the minimization problem requires a solution
+of a two point boundary value problem in {x(t), v(t) = ẋ(t)} space. One way
+to address two point boundary value problems is to start at one end, t0 with
+a value of x(t0 ) and proceed from tF with a value of x(tF ) and integrate both
+23
+
+ways requiring a match [27]. Furthermore, the residual of the measurement
+error term on the right hand side of Eq. (18) nudges the solution in x(t) to
+the desired output.
+If one were to specify x(t0 ), but not x(tF ), then the boundary conditions
+for the Euler-Lagrange equation are the given x(t0 ) (δx(t0 ) = 0) and require
+the canonical momentum pa (tF ) = 0. Examining the Hamiltonian dynamics
+for this problem then suggest integrating the x(t) equation forward from
+t0 and the canonical momentum equation backward from tF . This is back
+propagation.
+5.4.1
+
+Hamiltonian Dynamics Realization
+
+If one moves from the Lagrangian realization of the variational problem to a
+Hamiltonian version by trading in the phase space from {x(t), v(t)} to canonical coordinates {x(t), p(t)}, then the Hamiltonian H(x, p) for the standard
+model reads
+H(x, p, t) =
+
+D 
+X
+pa (t)pa (t)
+a=1
+
+2Rf (a)
+
+
+
++ pa (t)Fa (x(t)) −
+
+L
+X
+Rm (r, t)
+r=1
+
+2
+
+(xr (t) − yr (t))2 . (19)
+
+In these coordinates the equations of motion are then given by Hamilton’s
+equations
+dpa (t)
+∂Fb (x(t))
+= −pb (t)
++ δar Rm (r, t)(xr (t) − yr (t))
+dt
+∂xa (t)
+dxa (t)
+pa (t)
+= Fa (x(t)) +
+.
+dt
+Rf (a)
+
+(20)
+
+Returning from this to discrete time (or layers) we see that if the variational principle is carried out in {x, p} space, the boundary conditions
+pa (t0 ) = pa (tF ) = 0 are quite easy to impose while the other variables,
+all the xa (tk ) and the pa (tk ); k 6= 0, F , are varied. Going forward in x and
+backward in p is neither required nor suggested by this formulation. It is
+worth noting that in either {x, v} space or {x, p} space, the continuous time
+(layer) formulation has a symplectic symmetry [11, 15]. This not automatically maintained when the discrete time (layer) problem is reinstated [24, 31];
+however, many choices of integration procedure in which time/layer becomes
+discrete and the symplectic symmetry is maintained are known [24, 31, 13]
+In a detailed analysis [15, 33] of the variational problem in Lagrangian
+and Hamiltonian formulations, it appears that the direct Lagrangian version
+24
+
+in which the state variables x(tn ) or x(ln ) are varied, the symplectic structure
+can be maintained and the boundary conditions on the canonical momentum
+respected [24, 31].
+In practice, this means that the direct variational methods suggested for
+the machine learning problems taking into account model error (Rf 6= ∞)
+may skirt issues associated with back propagation. This issue may be seen a
+bit more directly by comparing how one moves in {x(t), ẋ(t)} space organized
+by Eq. (18) with the motion in {x(t), p(t)} space guided by Eq. (20). These
+are equivalent motions of the model in time/layer, connected by a Legendre
+transformation from {x(t), ẋ(t)} → {x(t), p(t)}.
+In the Hamiltonian form, where Rf → ∞ is the limit where one usually
+works, moving in regions where DF(x) may have saddle points may ‘slow
+down’ the progression in the canonical momentum p(t). This may occur at a
+maximum, at a minimum, or at a saddle point of DF(x). At any of these the
+observation in [21]: “The analysis seems to show that saddle points with only
+a few downward curving directions are present in very large numbers, but
+almost all of them have very similar values of the objective function. Hence,
+it does not much matter which of these saddle points the algorithm gets
+stuck at.” may apply. In the Lagrangian formulation Eq. (18) the manner
+in which DF(x) enters the motion is quite different and may well avoid this
+confounding property. We have pointed out that Eq. (20) is backprop. The
+use of the Lagrangian variational principle [24, 31] solves the same problem,
+so may have an unexpected virtue.
+
+6
+
+Summary and Discussion
+
+This paper has been directed to drawing a direct analogy between the formulation of a much utilized class of machine learning problems and a set of
+equivalent problems in data assimilation as encountered in many physical,
+biological and geoscience problems as well as in many engineering analyses
+where data driven model development and testing is a goal. The fundamental
+equivalence of the two inquiries is the core of this paper.
+The analogy allows us to identify methods developed in data assimilation
+as potentially quite useful in machine learning contexts. In particular the
+possibility of using variational annealing to produce the global minimum of
+the action (cost function) of the standard model of data assimilation with
+both observation error and model error appears potentially of value.
+25
+
+The idea of making time continuous for purposes of exploring properties of
+data assimilation suggests a similar tactic in machine learning. The machine
+learning step of making layers continuous we have called “deepest learning”
+as deep learning appears to result from increasing the number of layers. In
+the continuous layer (time) formulation, we see clearly that the problem to
+be solved is a two point boundary value problem. This may lead to the
+construction and solution of tractable models that may helpfully illuminate
+how deep learning networks operate successfully and expand the possibilities
+of utilizing them employing additional methods for numerical calculations
+and for interpretation.
+In the formulation of the statistical data assimilation problem at the general level expressed in Eq. (5) we see that the measurement error term which
+is where information from data is passed to the model, it is explicitly information through the conditional mutual information that is being passed from
+observations to the model. This suggests that the idea that deep learning
+works because of major increases in computing power as well as in having
+large data sets, however, the attribute of the data sets is not so much as they
+are large but that they possess information, in a precise manner, that can be
+utilized to learn about models. The conjunction of information transfer and
+state and parameter estimation is embodied in the work of Rissanen [28, 29]
+where he identifies the cost of estimating a parameter or a state variable at
+some time. The arguments we have presented suggest evaluating how much
+information in a data set is available to inform a model is of greater utility
+than just the size of the data set itself.
+One point not made explicit in the main text, but worth noting, is that
+once we have formulated the data assimilation or machine learning problems
+as accurately performing high dimensional integrals such as Eq. (6), the
+Laplace approximation method, namely the usual variational principle, permits the investigation of corrections through further terms in the expansion
+of the action about the path leading to the global minimum. In [33] it is
+shown that corrections to this first approximation are small as Rf becomes
+large when analyzing the standard model. This need not be the case for
+other choices of noise distributions in the measurement error or model error
+terms in the action.
+Another item of interest is the argument noted in [21] that as the dimension of a model increases, one may find fewer and fewer local minima
+confounding the search in path space for a global minimum, and in that
+situation many more unstable saddle points in path space will arise [7, 6].
+26
+
+In the case of a chaotic system such as the Lorenz96 model, the evidence
+is that however large the dimension of the model itself and the paths over
+which one may search, there are multiple local minima until the number of
+measurements at any observation time is large enough and the information
+transferred to the model is sufficient. The role of the number of model
+evaluations between observations, suggested in some of the arguments here,
+also play a significant part in establishing whether the action surface has
+many local minima.
+The view of a deep network as moving from a few hidden layers to many
+may also be illuminated by our arguments. One idea is that by increasing
+the number of hidden layers one is increasing the resolution in the analog
+of ‘time’ in data assimilation. When one does that in data assimilation, we
+see it as probing the variation of the underlying model as it evolves from
+an initial condition through ‘layer’ = ‘time.’ Missing the higher frequency
+variations in time by employing a coarse grid in discrete time should have its
+counterpart role in the feedforward networks discussed here.
+It is recognized that the ‘neuron’ models widely utilized in machine learning applications have little in common with properties of biological neurons,
+the construction and implementation of large networks that have successful
+function within machine learning may prove a useful guide for the construction and implementation of functional natural neural networks.
+Finally, it is important to comment that while the analogy drawn and
+utilized here may improve the testing and validation of models supported by
+observational data, it does not assist in the selection of the models and their
+formulation. That is still a task to be addressed by the user.
+
+Acknowledgments
+We express our appreciation to our colleagues Dan Breen and Jeff Elman
+for important discussions. Also the CENI team made finding the analogs
+in this paper possible. Many thanks to Tim Gentner, Gert Cauwenberghs,
+and especially Gabe Silva improved the manuscript. Jon Shlens provided
+a detailed view from the active world of machine learning. Partial support from the MURI Program (N00014-13-1-0205) sponsored by the Office
+of Naval Research is acknowledged as is support for A. Shirman from the
+ARCS Foundation.
+
+27
+
+References
+[1] Perspectives on Research in Artificial Intelligence and Artificial
+General Intelligence Relevant to DoD, 2017. https://www.google.
+com/?gws_rd=ssl#q=perspectives+on+research+in+artificial+
+intelligence+and+artificial+general+intelligence.
+[2] Henry D. I. Abarbanel. Predicting the Future: Completing Models of
+Observed Complex Systems. Springer, 2013.
+[3] E. L. Allgower and K. Georg. Numerical Continuation Methods: An
+Introduction. Springer-Verlag, 1990.
+[4] A. F. Bennett. Inverse Methods in Physical Oceanography. Cambridge
+University Press, 1992.
+[5] R. H. Byrd, P. Lu, and J. Nocedal. A limited memory algorithm for
+bound constrained optimization. SIAM Journal on Scientific and Statistical Computing, 16:1190–1208, 1995.
+[6] Anna Choromanska, Mikael Henaff, Michael Mathieu, Ge’rard Ben
+Arous, and Yann LeCun. The loss surfaces of multilayer networks. In
+18th International Conference on Artificial Intelligence and Statistics
+(AISTATS), 2015.
+[7] Yann N. Dauphin, Razvan Pascanu, Caglar Gulcehre, Kyunghyun Cho,
+Surya Ganguli, and Yoshua Bengio. Identifying and attacking the saddle point problem in high-dimensional non-convex optimization. In Proceedings of the 27th International Conference on Neural Information
+Processing Systems, NIPS’14, pages 2933–2941, Cambridge, MA, USA,
+2014. MIT Press.
+[8] J. L. Elman. Finding structure in time. Cognitive Science, 14:179–211,
+1990.
+[9] Geir Evensen.
+Springer, 2009.
+
+Data Assimilation:
+
+The Ensemble Kalman Filter.
+
+[10] Robert M. Fano. Transmission of Information; A Statistical Theory of
+Communication. MIT Press, 1961.
+
+28
+
+[11] I. M. Gelfand and S. V. Fomin. Calculus of Variations. Dover Publications, Inc., 1963.
+[12] Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Deep Learning. MIT Press, Cambridge, MA; London, UK, 2016. http://www.
+deeplearningbook.org.
+[13] Ernst Hairer, Gerhard Wanner, and Christian Lubich. Geometric Numerical Integration: Structure-Preserving Algorithms for Ordinary Differential Equations. Springer Series in Computational Mathematics; Volume 31, 2nd edition, 2006.
+[14] M. Jordan. Attractor dynamics and parallelism in a connectionist sequential machine. In Proceedings of the Eighth Conference of the Cognitive Science Society, pages 531–546. Cognitive Science Society, 1986.
+[15] N. Kadakia, D. Rey, J. Ye, and H. D. I. Abarbanel. Symplectic structure
+of statistical variational data assimilation. Quarterly Journal of the
+Royal Meteorological Society, 143(703):756–771, 2017.
+[16] Mark Kostuk. Synchronization and statistical methods for the data
+assimilation of hvc neuron models. PhD Dissertation in Physics, University of California, San Diego, 2012.
+[17] Mark Kot. A First Course In the Calculus of Variations. American
+Mathematical Society; Providence, Rhode Island., 2014.
+[18] Rubin H. Landau, Manuel Jose’ Paez, and Cristian C. Bordeianu. A
+Survey of Computational Physics: Introductory Computational Science.
+Princeton University Press, 2010.
+[19] Pierre Simon Laplace. Memoir on the probability of causes of events.
+Mémoires de Mathématique et de Physique, Tome Sixième, pages 621–
+656, 1774.
+[20] Pierre Simon Laplace. Memoir on the probability of the causes of events.
+Statistical Science, 1(3):364–378, 1986. Translation to English by S. M.
+Stigler.
+[21] Yann LeCunn, Yoshua Bengio, and Geoffrey Hinton. Deep learning.
+Nature, 521:436–444, 2015.
+29
+
+[22] Daniel Liberzon. Calculus of Variations and Optimal Control Theory.
+Princeton University Press, 2012.
+[23] Edward N Lorenz. Predictability: A problem partly solved. In Tim
+Palmer and Renate Hagedorn, editors, Predictability of weather and climate. Cambridge, 2006.
+[24] J. E. Marsden and M. West. Discrete mechanics and variational integrators. Acta Numerica, pages 357–514, 2001.
+[25] K. G. Murty and S. N. Kabadi. Some np-complete problems in quadratic
+and nonlinear programming. Mathematical Programming, 39:117–129,
+1987.
+[26] Alexander G. Parlos, Kil T. Chong, and Amir F. Atiya. Application
+of the recurrent multilayer perceptron in modeling complex process dynamics. IEEE Transactions on Neural Networks, 5:255–266, 1994.
+[27] W. H. Press, S. A. Teukolsky, W. T. Vetterling, and B. P. Flannery.
+Numerical Recipes: The Art of Scientific Computing, Third Edition.
+Cambridge University Press, 2007.
+[28] Jorma Rissanen. Stochastic Complexity in Statistical Inquiry Theory.
+World Scientific Publishing Co., Inc., River Edge, NJ, USA, 1989.
+[29] Jorma Rissanen. Information and Complexity in Statistical Modeling.
+Springer, 2007.
+[30] A. R. Wachter and L. T. Biegler. On the implementation of an interiorpoint filter line-search algorithm for large-scale nonlinear programming.
+Mathematical programming, 106:25–57, 2006.
+[31] J. M. Wendlandt and J. E. Marsden. Mechanical integrators derived
+from a discrete variational principle. Physica D: Nonlinear Phenomena,
+106:223–246, 1997.
+[32] J. Ye, N. Kadakia, P. J. Rozdeba, H. D. I. Abarbanel, and J. C. Quinn.
+Improved variational methods in statistical data assimilation. Nonlinear
+Processes in Geophysics, 22(2):205–213, 2015.
+
+30
+
+[33] J. Ye, Daniel Rey, Nirag Kadakia, Michael Eldridge, Uri Morone, Paul
+Rozdeba, Henry D. I. Abarbanel, and John C. Quinn. A systematic variational method for statistical nonlinear state and parameter estimation.
+Physical Review E, 2015.
+[34] C. Zhu, R. H. Byrd, and J. Nocedal. L-bfgs-b: Algorithm 778: L-bfgs-b,
+fortran routines for large scale bound constrained optimization. ACM
+Transactions on Mathematical Software, 23:550–560, 1997.
+
+31
+
+

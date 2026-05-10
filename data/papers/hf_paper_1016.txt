@@ -1,0 +1,3985 @@
+Title: arXiv paper 1016
+
+Categories: 10
+
+Abstract:
+Submitted to the Brazilian Journal of Probability and Statistics
+arXiv: arXiv:1308.6626
+
+Searching for the core variables in principal
+components analysis
+
+arXiv:1308.6626v4 [math.ST] 30 Jan 2017
+
+Yanina Gimeneza , and Guido Giussania
+a
+
+Universidad de San Andrés and CONICET
+
+Abstract. In this article, we introduce a procedure for selecting variables in principal components analysis. It is developed to identify a small
+subset of the original variables that best explain the principal components through nonparametric relationships. There are usually some
+noisy uninformative variables in a dataset, and some variables that are
+strongly related to one another because of their general dependence. The
+procedure is designed to be used following the satisfactory initial principal components analysis with all variables, and its aim is to help to
+interpret the underlying structures. We analyze the asymptotic behavior
+of the method and provide some examples.
+
+1 Introduction
+Principal components analysis (PCA) is the best known dimensional reduction procedure for multivariate data. An important drawback of PCA is
+that it sometimes provides poor quality interpretation of data for practical
+problems, because the final output is a linear combination of the original
+variables. The aim of the present study is to identify a small subset of the
+original variables in a dataset, whilst retaining most of the information related to the first k principal components.
+There is a large body of literature that focuses on trying to interpret
+principal components. Jolliffe (1995) has introduced rotation techniques.
+Vines (2000) proposed to restrict the value of the loadings for PCA to a
+small set of allowable integers such as {-1, 0, 1}. McCabe (1984) presented a
+different strategy that aims to select a subset of the original variables with
+a similar criterion to PCA.
+A few years later a whole literature of variable selection appeared, inspired by the LASSO (least absolute shrinkage and selection operator). This
+technique was introduced by Tibshirani (1996). The way the LASSO works
+was described thus: “ It shrinks some coefficients and sets others to 0, and
+hence tries to retain the good features of both subset selection and ridge
+Primary 62H25; secondary 62G08
+Keywords and phrases. Informative Variables, Multivariate Analysis, Principal Components, Selection of Variables
+
+1
+
+2
+
+Gimenez and Giussani
+
+regression... The ‘LASSO’ minimizes the residual sum of squares subject to
+the sum of the absolute value of the coefficients being less than a constant.
+Because of the nature of this constraint it tends to produce some coefficients
+that are exactly 0 and hence gives interpretable models.”
+Jolliffe et al. (2003) proposed SCoTLASS that imposes a bound on the
+sum of the absolute values of the loadings in the component, using a similar
+idea to the one that LASSO used in regression. Zou et al. (2006) presented
+SPCA (sparse PCA) that extends the “elastic net” of Zou & Hastie (2005)
+that was a generalization of the LASSO. As they mentioned “SPCA is built
+on the fact that PCA can be written as a regression-type optimization problem, with quadratic penalty; the LASSO penalty (via the elastic net) can
+then be directly integrated into the regression criterion, leading to a modified
+PCA with sparse loadings.”
+Luss & d’Aspremont (2010) studied the application of sparse PCA to clustering and problems of feature selection. Sparse PCA seeks sparse factors, or
+linear combinations of variables in the dataset, to explain as much variance
+in the data as possible while limiting the number of nonzero coefficients as
+far as possible. The authors applied their results to some classic biological
+clustering and feature selection problems.
+Recently, Witten & Tibshirani (2008) introduced the notion of Lassoed
+principal components for identifying differentially-expressed genes, and considered the problem of testing the significance of features in high dimensional
+data.
+Our approach is rather different and is designed to be used after satisfactory PCA has been achieved rather than, as in other methods, to produce
+principal components with particular characteristics (e.g., some coefficients
+that are zero) so that only interpretable principal components are produced.
+We first perform classical PCA and then look for a small subset of the original variables that contain almost all the relevant information to explain the
+principal components. However, our method can also be used after performing any sparse PCA method as those described previously.
+To develop our method, we borrowed some ideas for selecting variables
+from Fraiman et al. (2008), who introduced two procedures for selecting
+variables in cluster analysis, and classification rules. Both of these procedures are based on the idea of “blinding” unnecessary variables. To cancel
+the effect of a variable, they substituted all its values with the marginal
+mean (in the first procedure) or with the conditional mean (in the second).
+The marginal mean approach was mainly intended to identify “noisy” uninformative variables, but the conditional mean approach could also deal with
+dependence. We adapted the idea behind the second procedure to PCA.
+
+Searching for the core variables in principal components analysis
+
+3
+
+In Section 2, we introduce the main definitions, a population version of
+our proposed method, and the empirical version; we also present our main
+results. In Section 3, a simulation study is conducted, where the results are
+compared with other well-known PCA variable selection procedures. Finally,
+in Section 4, we study a real data example. Proofs are given in the Appendix.
+
+2 Our method: Definitions and properties
+We begin by defining our notation and stating the problem in terms of the
+underlying distribution of the random vector X. Then we give our estimates
+based on the sample data, via the empirical distribution.
+2.1 Population version
+We define X ∈ Rp as a random vector with distribution P. The coordinates
+of the vector X are defined as X[i], i = 1, . . . , p. The covariance matrix of
+X is denoted Σ.
+For a given random vector X̃, we say that it satisfy the Assumption H1
+if:
+i) E(kX̃k2 ) < ∞;
+ii) The covariance matrix of X̃ is positive definite.
+iii) All the eigenvalues of the covariance matrix are different.
+Throughout the manuscript, X fulfills Assumption H1.
+As is well known, the first principal component associated with the vector
+X is defined as
+
+α1 (P) := α1 = arg max V ar α0 X
+kαk=1
+
+= arg max α0 Σα,
+kαk=1
+
+and the next principal components are defined as
+αk (P) := αk =
+
+arg max
+
+V ar α0 X
+
+
+
+kαk=1, α⊥[α1 ,...,αk−1 ]
+
+=
+
+arg max
+kαk=1,
+
+α0 Σα ∀ 2 ≤ k ≤ p,
+
+α⊥[α1 ,...,αk−1 ]
+
+where [α1 , . . . , αk−1 ] is the subspace generated by the vectors {α1 , . . . , αk−1 }.
+From the spectral theorem, it follows that, if λ1 > λ2 > . . . > λp are the
+Σ eigenvalues, the solutions to the PCA are the corresponding eigenvectors,
+αk , k = 1, . . . , p.
+
+4
+
+Gimenez and Giussani
+
+Given a subset of indices I ⊂ {1, . . . , p} with cardinality d ≤ p, we define
+X[I] as the subset of random variables {X[i], i ∈ I}. With a slight abuse
+of notation, if I = {i1 < . . . < id }, we can also denote X[I] to the vector
+(X[i1 ], . . . , X[id ]), and define the vector YI := (Y I [1], . . . , Y I [p]), where
+
+X[i]
+if i ∈ I
+I
+Y [i] =
+E(X[i]|X[I])
+if i ∈
+/ I.
+YI ∈ Rp depends only on the {X[i], i ∈ I} variables and then the principal
+components associated with the vector YI depend only on the variables in
+X[I]. The distribution of YI is denoted PYI , the covariance matrix is ΣYI
+and g i (z) = E(X[i]|X[I] = z) for i ∈
+/ I is the regression function.
+In what follows we assume that YI fulfills the Assumption H1.
+Remark: This assumptions will not hold if there is a variable X[i] such
+that g i (z) is a linear combination of the variables in I. For instance, if X is
+gaussian or X[i] is independent of the variables in I. In practice we will see
+how this problem can be tackled in the example 2 of section 3.
+We are looking for a subset I of small cardinality that minimizes the
+distance between the original principal components and the principal components that are function of the variables in the subset I. This can be done
+following two different approaches.
+Local approach
+We define the objective function h1 (I) as
+h1 (I, P, PYI ) := h1 (I, P) := h1 (I) = kα1 (P) − α1 (PYI )k2 ,
+
+(2.1)
+
+which measures the squared distance between the first original principal
+component and the first principal component that is a function of the variables in the subset I.
+Given a fixed integer d, 1 ≤ d << p, Id is the family of all subsets of
+{1, . . . , p} with cardinality d and I1,0 ⊂ Id is the family of subsets in which
+the minimum h1 (I) is attained for I ∈ Id , i.e.,
+I1,0 = argminI∈Id h1 (I),
+or, equivalently,
+h1 (I1 ) = minI∈Id h1 (I) for all I1 ∈ I1,0 .
+
+(2.2)
+
+Analogously, we define
+hk (I, P, PYI ) := hk (I, P) := hk (I) = kαk (P) − αk (PYI )k2 ,
+
+(2.3)
+
+Searching for the core variables in principal components analysis
+
+5
+
+and
+Ik,0 = argminI∈Id hk (I),
+for k = 2, . . . , p.
+For k = 1, . . . , p (2.3) measures the squared distance between the k-th
+original principal component and the k-th principal component that is a
+function of the variables in the subset I.
+Principal components may, in some cases, be rather difficult to interpret,
+which is an important issue in practice. If we can find a small cardinal
+subset I, for which the objective function (2.3) is small enough, then the
+k-th principal component will be well explained by a subset of the original
+variables.
+Global approach
+In this case, the objective function is
+h(I) :=
+
+q
+X
+
+pk hk (I),
+
+(2.4)
+
+k=1
+
+Pq
+with pk ≥ 0,
+k=1 pk = 1, 2 ≤ q < p,
+and we define
+Ĩq,0 = argminI∈Id h(I).
+This time the objective function (2.4) deals with finding a unique subset
+I to explain the first q principal components at once. If we think that the
+q components are equally important then we choose pk = 1q . Otherwise, if
+some components are more important than others then we can put different weights. As a default we suggest choosing weights proportional
+to the
+P
+variance that each component is explaining, i.e. pk = λk / qk=1 λk .
+On the Local approach, we consider a different subset for each principal
+component, using the objective function (2.3) for each k. On the Global approach, we seek a unique subset for all the first q principal components using
+(2.4). In practice, we can choose q, so that the first q principal components
+explain a high percent of the total variance and consider a subset for this
+principal components.
+These subsets tell us which are the original variables that “best explain”
+the first q principal components. In what follows we refer to this method as
+the Blinding Procedure (BP).
+An important issue is how to choose d, the cardinality of the set I. On
+the one hand we have that the objective function (2.3) decreases when d
+
+6
+
+Gimenez and Giussani
+
+increases for every k. On the other hand we look for a subset I with small
+cardinality, so we have a constant tug of war. Since the components have
+unitary norms there is a direct relationship between (2.3) and the angle
+between the two vectors. It is clear that the smaller the angle is the closer
+the components are.
+Hence, for the k-th component we propose to fix an angle, γ, and choose d
+as the smallest value for which Ik,0 (d) makes the angle between the blinding
+and the original component smaller than γ.
+If we want “to explain” the first q principal components at once, we
+propose to fix an angle, γ, and choose d as the smallest value for which
+Ĩq,0 (d) makes the largest of the q angles smaller than γ. In both cases, the
+angle γ must be chosen by the user. As default, we propose to fix an angle
+not larger than 25 degrees.
+2.2 Empirical version. Consistent estimates of the optimal subset
+We aimed to consistently estimate the sets I1 , . . . , Iq from a sample X1 , . . . , Xn
+of i.i.d. random vectors with distribution P.
+Given a subset I ∈ Id , the first step is to build a sample Y1I , . . . , YnI of
+random vectors in Rp , which only depends on X[I], using nonparametric
+estimates of the conditional expectation (the regression function). Below,
+we assume that
+Assumption H2 For all i ∈
+/ I, gni (z) is a strongly consistent estimate
+of g i (z) uniformly in z. Conditions under which H2 holds can be found in
+Hansen (2008).
+First, we define the empirical version of the blinded observations. As an
+example, we consider the nearest neighbours estimator. We therefore set an
+integer value r (the number of nearest neighbours that we are going to use)
+with respect to an appropriate metric (typically Euclidean or Mahalanobis
+distance), only considering the coordinates on I.
+More precisely, for each j ∈ {1, . . . , n}, we find the set of indices Cj =:
+Cj (Xj [I]) of the r-nearest neighbours of Xj [I] among {X1 [I], . . . , Xn [I]},
+where Xj [I] = {Xj [i], i ∈ I}.
+Next, we define the random vectors YjI , 1 ≤ j ≤ n, verifying:
+YjI [i]
+
+
+=
+
+1
+r
+
+P Xj [i]
+m∈Cj Xm [i]
+
+if i ∈ I
+otherwise,
+
+where Xj [i] stands for the ith-coordinate of the vector Xj .
+
+(2.5)
+
+7
+
+Searching for the core variables in principal components analysis
+
+This corresponds to use for i ∈
+/ I the nonparametric estimate
+gni (z) = gni (z[I]) =
+
+1
+r
+
+X
+
+Xm [i],
+
+m∈Cj (z[I])
+
+since gni (z) is a strongly consistent estimate of g i (z), where g i (z) =
+E(X[i]|X[I] = z). Moreover, observe that the notation z[I] is to emphasize that the function depends on the coordinates indicated by the subset
+I.
+Pn stands for the empirical distribution associated with {Xj , 1 ≤ j ≤ n}
+and Pn,YI stands for the empirical distribution of {YjI , 1 ≤ j ≤ n}.
+In our examples to consistently estimate the optimal number of nearest
+neighbours we use the generalized cross validation procedure proposed by
+Li & Gong (1987), i.e.
+2
+1 Pn
+j=1 (Xj [i] − Yj [i])
+n
+rbopt (i, I) = arg min
+, i∈
+/ I.
+
+2
+r
+1 − 1r
+When d is large, nonparametric estimators perform poorly due to the
+curse of dimensionality. In this case, a semi-parametric approach should be
+used like that proposed by He & Shi (1996). Also a recent proposal by Biau
+et al. (2013) called COBRA can be used to avoid the curse of dimensionality.
+The consistency result given in the following theorem will still be valid as
+long as the semi-parametric estimates verify the consistency assumptions
+required for the purely nonparametric estimates.
+We will be mainly interested in cases where d is small. In our experience a
+good idea is to start the search with some genetic algorithm which provides
+an initial solution with a few variables (d small) and then improve the result
+working with card(I) ≤ d. Also a forward-backward algorithm as the one
+proposed in Fraiman et al. (2008) can be used.
+Finally, we define, for each I ∈ Id , the corresponding empirical versions
+α̂nk (I) := αk (Pn,YI ), ĥkn (I) = hk (I, Pn , Pn,YI ), Iˆkn = argminI∈Id ĥkn (I) (2.6)
+and
+
+ĥn (I) =
+
+q
+X
+k=1
+
+respectively.
+
+pk ĥkn (I), Iˆn = argminI∈Id ĥn (I)
+
+(2.7)
+
+8
+
+Gimenez and Giussani
+
+Let us observe that α̂nk (I) corresponds to the principal component associated with the sample {YjI , 1 ≤ j ≤ n}. ĥkn (I) corresponds to the objective
+function of the k-th principal component, it measures the square distance
+between the k-th original principal component and the k-th principal component that is a function of the variables in the subset I. The function ĥkn (I)
+determines which are the variables that retain most of the information related to the k-th principal component. The variables we are choosing are
+the ones that minimize the function ĥkn (I). The subset Iˆkn indicates which
+this variables are. In case we are looking for a unique subset I to explain
+the first q principal components, we consider the function ĥn (I).
+A robust version can be obtained using robust principal components (see
+for instance Maronna et al. (2006)) and replacing in (2.5) the local mean by
+local median.
+Theorem 2.1. Under assumptions H1 for X and YI and H2 we have that
+Iˆkn ∈ Ik,0 ultimately for k = 1, . . . , q, i.e., Iˆkn = Ik with Ik ∈ Ik,0 ∀n >
+n0 (ω), with probability one. We also have that Iˆn ∈ Ĩq,0 ultimately.
+Proof. The proof is given in the Appendix.
+
+3 Some simulated examples
+In this section we consider two simulated experiments to analyze the behavior of our method and compare it with other methods proposed in the
+literature.
+3.1 Example 1
+To better understand the heart of our procedure we start with a simple
+simulation example in dimension four.
+There are two “hidden” factors:
+V1 ∼ N (0, 1.252 ),
+V2 ∼ N (0, 0.552 ),
+where V1 , V2 are independent.
+
+Searching for the core variables in principal components analysis
+
+9
+
+We construct the 4 observable variables as follows:
+X1 = V1 + 1 ,
+
+(3.1)
+
+X2 = |V1 | + 2 ,
+X3 = V2 + 3 ,
+X4 = V1 V2 + 4 ,
+where εj , 1 ≤ j ≤ 4 are i.i.d. N (0, σ 2 ), with σ = 0.01 (Case 1), σ = 0.1
+(Case 2) and σ = 0.25 (Case 3).
+When we perform the variable selection it is clear that two variables containing the information given by V1 and V2 should be kept. This means that
+{X1 , X3 }, {X1 , X4 } or {X3 , X4 } would be “good” choices while {X1 , X2 }
+is clearly a “bad” choice since only retains information of V1 . Additionally,
+{X2 , X3 } (respec. {X2 , X4 }) is not a “good” choice since can not recover all
+the information of V1 (respec. V1 and V2 ).
+In this example, in all the cases, we compare our procedure with other
+proposals: algorithms B2 and B4 (Jolliffe (2002)), a variable selection approach proposed by McCabe (1984) and sparce PCA introduced by Zou
+et al. (2006). To retain q variables, algorithm B2 associates one of the original variables to each of the p−q last PCA vectors and deletes those variables,
+while B4 associates one of the original variables to each of the first q PCA
+vectors and retains those variables.
+For each case, we perform 500 replicates and on each of them we generate
+samples of size 100 from model (3.1) and compute the covariance matrix.
+• Case 1: The first two principal components explain between 70 and
+85 percent of the total variance. For the BP 85% of the times the
+maximum angle conformed by the first two principal components is
+smaller than 25 degrees, hence we keep two variables.
+The results exhibitted in Table 1 on page 9 show that 78% of the
+times the BP makes a “good” choice of variables, B2 only does it 27%
+of the times, while the other methods fail in more than 75% of the
+replications.
+• Case 2: The first two principal components explain between 69 and 85
+percent of the total variance. For the BP more than 78% of the times
+the maximum angle conformed by the first two principal components
+is smaller than 25 degrees, hence we keep two variables.
+The results exhibitted in Table 2 on page 10 show that that 75% of
+the times the BP makes a “good” choice of variables, B2 only does
+it 29% of the times, B4 and SPCA 27%, while McCabe fails in more
+than 75% of the replications.
+
+10
+
+Gimenez and Giussani
+
+Table 1 Proportion of times where each method selects each pair of variables.(Case 1)
+X1 , X2
+X1 , X3
+X1 , X4
+X2 , X3
+X2 , X4
+X3 , X4
+
+BP
+0.22
+0.37
+0.366
+0
+0
+0.044
+
+B2
+0.732
+0.004
+0.264
+0
+0
+0
+
+B4
+0.76
+0.002
+0.238
+0
+0
+0
+
+McCabe
+0.782
+0.002
+0.216
+0
+0
+0
+
+SPCA
+0.76
+0.002
+0.238
+0
+0
+0
+
+Table 2 Proportion of times where each method selects each pair of variables.(Case 2)
+X1 , X2
+X1 , X3
+X1 , X4
+X2 , X3
+X2 , X4
+X3 , X4
+
+BP
+0.248
+0.354
+0.368
+0
+0
+0.03
+
+B2
+0.714
+0.002
+0.284
+0
+0
+0
+
+B4
+0.728
+0.002
+0.27
+0
+0
+0
+
+McCabe
+0.752
+0.002
+0.246
+0
+0
+0
+
+SPCA
+0.728
+0.002
+0.27
+0
+0
+0
+
+• Case 3: The first two principal components explain between 67 and
+82 percent of the total variance. For the BP, 69% of the times the
+maximum angle conformed by the first two principal components is
+smaller than 25 degrees, hence we keep two variables.
+The results exhibitted in Table 3 on page 10 show that 74% of the
+times the BP makes a “good” choice of variables, B2 does it 51% of
+the times, B4 and SPCA 48%, while McCabe 46%.
+Table 3 Proportion of times where each method selects each pair of variables.(Case 3)
+X1 , X2
+X1 , X3
+X1 , X4
+X2 , X3
+X2 , X4
+X3 , X4
+
+BP
+0.264
+0.192
+0.54
+0
+0
+0.004
+
+B2
+0.488
+0.002
+0.51
+0
+0
+0
+
+B4
+0.516
+0
+0.484
+0
+0
+0
+
+McCabe
+0.536
+0
+0.464
+0
+0
+0
+
+SPCA
+0.516
+0
+0.484
+0
+0
+0
+
+From the definition of X1 and X2 we have that X2 is a function of X1 plus
+an error. We can see from Table 1 on page 9, Table 2 on page 10 and Table
+3 on page 10 that our procedure selects X1 and X2 only between 0.22 and
+0.264 proportion of the times, when the other procedures select it in around
+a 0.5 proportion of the times or more. In most of the cases our procedure
+detects that X2 is a “function” of X1 . That is, if X1 is selected to be one
+of the two explanatory variables, for the other one, the BP, select between
+
+Searching for the core variables in principal components analysis
+
+11
+
+X3 and X4 . This way, the BP gains information about V2 instead of getting
+redundant information by choosing X2 . Note that {X3 , X4 } is also a “good”
+choice.
+To make the problem a bit more challenging we enlarge the dimension of
+the dataset repeating the same variables plus noisy noninformative errors
+and also add some i.i.d. noisy variables. More precisely we consider the
+following model:
+
+V1 + ε j ,
+
+
+
+
+ |V1 | + εj ,
+V 2 + εj ,
+Xj =
+
+
+V V + εj ,
+
+
+ 1 2
+εj ,
+
+if 1 ≤ j ≤ 5,
+if 6 ≤ j ≤ 10,
+if 11 ≤ j ≤ 15,
+if 16 ≤ j ≤ 20,
+if 21 ≤ j ≤ 23,
+
+where εj , 1 ≤ j ≤ 23 are i.i.d. N (0, σ 2 ), with σ = 0.01 (Case 1), σ = 0.1
+(Case 2) and σ = 0.25 (Case 3).
+We keep the first and second principal component because on 98% of the
+500 replicates they explain between 70% and 85% of the total variance in
+Case 1, between 70% and 83% in Case 2 and between 65% and 78% in Case
+3. Again we require all the methods to select two variables. In the three
+cases, at least 93% of the times the largest angle is smaller than 25 degrees,
+hence we consider it is a good decision to look for two variables.
+There are five groups of variables A1 , . . . , A5 . Within each group all the
+variables only differ on a noisy noninformative error. More precisely, the
+first four groups are Aj = {Xk , k = 5j − i, i = 0, . . . , 4} (j = 1, . . . , 4) and
+the last one is A5 = {Xk , k = 21, 22, 23}. Clearly {{Aj , Aj }, j = 1, . . . 5},
+{A1 , A2 } and {{Aj , A5 }, j = 1, . . . 4} are “bad” choices and also {A2 , A3 }
+and {A2 , A4 } are not good choices either.
+Table 4 on page 11, Table 5 on page 12, and Table 6 on page 12
+exhibit the proportion of replicates where each method selects one variable
+per group of variables. In the three cases the BP achieves the desired results
+more than 90% of the times, while the other methods fail more than 73% of
+the times.
+3.2 Example 2
+Zou et al. (2006) introduced the following simulation example. They have
+two “hidden” factors:
+V1 ∼ N (0, 290),
+V2 ∼ N (0, 300),
+
+12
+
+Gimenez and Giussani
+
+Table 4 Proportion of replicates where each method selects one variable per group of
+variables.(Case1)
+A1 , A1
+A1 , A2
+A1 , A3
+A1 , A4
+A1 , A5
+A2 , A2
+A2 , A3
+A2 , A4
+A2 , A5
+A3 , A3
+A3 , A4
+A3 , A5
+A4 , A4
+A4 , A5
+A5 , A5
+
+BP
+0.012
+0.026
+0.214
+0.57
+0.028
+0
+0
+0
+0
+0
+0.124
+0
+0
+0
+0.026
+
+B2
+0.184
+0.202
+0.08
+0.114
+0.086
+0.076
+0.048
+0.058
+0.032
+0.016
+0.02
+0.016
+0.036
+0.026
+0.006
+
+B4
+0
+0.744
+0.004
+0.252
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+McCabe
+0
+0.784
+0
+0.216
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+SPCA
+0
+0.744
+0.004
+0.252
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+Table 5 Proportion of replicates where each method selects one variable per group of
+variables.(Case2)
+A1 , A1
+A1 , A2
+A1 , A3
+A1 , A4
+A1 , A5
+A2 , A2
+A2 , A3
+A2 , A4
+A2 , A5
+A3 , A3
+A3 , A4
+A3 , A5
+A4 , A4
+A4 , A5
+A5 , A5
+
+BP
+0.006
+0.024
+0.254
+0.598
+0.026
+0
+0
+0
+0
+0
+0.092
+0
+0
+0
+0
+
+B2
+0.188
+0.218
+0.07
+0.114
+0.076
+0.074
+0.044
+0.072
+0.03
+0.014
+0.026
+0.012
+0.034
+0.022
+0.006
+
+B4
+0
+0.744
+0.006
+0.25
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+McCabe
+0
+0.79
+0
+0.21
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+SPCA
+0
+0.74
+0.006
+0.25
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+and a lineal combination of them,
+V3 = −0.3V1 + 0.925V2 + ε
+where V1 , V2 and ε are independent, ε ∼ N (0, 1).
+Then 10 observable variables are constructed as follows:
+
+Searching for the core variables in principal components analysis
+
+13
+
+Table 6 Proportion of replicates where each method selects one variable per group of
+variables.(Case3)
+A1 , A1
+A1 , A2
+A1 , A3
+A1 , A4
+A1 , A5
+A2 , A2
+A2 , A3
+A2 , A4
+A2 , A5
+A3 , A3
+A3 , A4
+A3 , A5
+A4 , A4
+A4 , A5
+A5 , A5
+
+BP
+0.028
+0.004
+0.292
+0.604
+0.026
+0
+0
+0
+0
+0
+0.046
+0
+0
+0
+0
+
+B2
+0.17
+0.234
+0.094
+0.104
+0.084
+0.072
+0.032
+0.07
+0.03
+0.022
+0.024
+0.012
+0.04
+0.006
+0.006
+
+
+ V1 + εj ,
+V2 + εj ,
+Xj =
+
+V3 + εj ,
+
+B4
+0
+0.736
+0.008
+0.256
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+McCabe
+0
+0.762
+0.004
+0.234
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+SPCA
+0
+0.728
+0.008
+0.256
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+if 1 ≤ j ≤ 4,
+if 5 ≤ j ≤ 8,
+if j = 9, 10,
+
+where εj , 1 ≤ j ≤ 10 are i.i.d. N (0, 1).
+Zou et al. (2006) used the true covariance matrix of (X1 , . . . , X10 ) to
+perform PCA, SPCA and Simple Thresholding.
+There are three groups of variables that share the same information. The
+first group, which we denote by A1 corresponds to the variables X1 to X4 ,
+the second one, A2 , to the variables X5 to X8 , and the third group, A3 , to
+the variables X9 and X10 . By definition V3 is also a function of V1 and V2 ,
+up to a noisy noninformative error.
+Zou et al. (2006) show that SPCA correctly identifies the sets of important
+variables, the first SPCA identifies the group of the variables A2 and the
+second SPCA the group of the variables A1 . Simple Thresholding incorrectly
+mixes two variables of A2 with two of A3 .
+We first consider the population version, using the true covariance matrix,
+where the first two principal components explain 99.6% of the total variance.
+This example is outside of the theoretical framework stated in section 2
+but this will not be a problem for the implemetation of our procedure.
+Clearly it is not adecuate to keep one variable because when the cardinality of I is 1, ΣYI has only one positive eigenvalue and then we can not
+
+14
+
+Gimenez and Giussani
+
+recover two principal components.
+If we choose a subset I of cardinal 2, then ΣYI has two positive eigenvalues
+of multiplicity one and then, we can recover two principal components. If we
+select one variable of each of the three groups will be a “good” solution. A
+“bad” solution should be to choose the 2 variables within the same group.
+Table 7 Theoretical objective’s value h(I) when two variables are chosen (one of each
+group).
+A1 , A1
+A1 , A2
+A1 , A3
+A2 , A2
+A2 , A3
+A3 , A3
+
+h(I)
+1.656
+2.257 × 10−6
+2.536 × 10−5
+1.028
+0.001
+1
+
+In Table 7 on page 14 we can see that h(I) takes large values (larger
+than one) for the “bad” choices and small values (smaller than 0.001) for the
+“good” choices. Moreover, for the “good” choices, the largest angle between
+the original and the blinded components is less than two dergees in all cases.
+Then, the BP is going to select a “good” choice. So our method performs
+perfectly well when the cardinal of I is 2.
+Next, we consider a more realistic situation and perform a small simulation, where we estimate the covariance matrix generating a sample of size
+50 which we iterate 500 times. We perform the analysis considering the two
+first principal components, which explain more than the 99% of the variance.
+We apply our procedure to select two variables for the first two principal
+components and in only 4.8% of the cases the larger angle was above 15
+degrees and in 2.2% of the cases larger than 20 degrees.
+In Table 8 on page 14 we can see that 99.2% of the times the BP makes a
+“good” choice. In addition McCabe and SPCA always make a “good” choice,
+B4 on 99% of the times and B2 only makes a “good” choice in 76.6% of the
+times.
+
+4 A real data example
+We consider a dataset obtained from the University of California, Irvine
+repository (Frank & Asuncion (2010)) as an example. This dataset contains
+the values of six bio-mechanical characteristic that were used to classify
+orthopaedic patients into three classes (normal, disc hernia and spondylolisthesis groups), and includes data for one hundred normal patients, sixty
+
+Searching for the core variables in principal components analysis
+
+15
+
+Table 8 Proportion of times where each method selects one variable per group of
+variables.
+BP
+B2
+B4
+McCabe SPCA
+A1 , A1 0
+0.134 0.01
+0
+0
+A1 , A2 0.426 0.57
+0.562 1
+0.736
+A1 , A3 0.222 0.108 0.428 0
+0.264
+A2 , A2 0
+0.096 0
+0
+0
+A2 , A3 0.344 0.088 0
+0
+0
+A3 , A3 0.008 0.004 0
+0
+0
+
+patients with a disc hernia, and one hundred and fifty patients with spondylolisthesis. Each patient is represented in the dataset in terms of the six
+bio-mechanical attributes associated with the shape and orientation of the
+pelvis and the lumbar spine, namely (a) pelvic incidence, (b) pelvic tilt, (c)
+lumbar lordosis angle, (d) sacral slope, (e) pelvic radius and (f) grade of
+spondylolisthesis.
+We use our procedure to select one variable for the first two principal
+components, which explain 85% of the variance. We give the same weight
+to all components, that is pk = 1/2 in equation (2.4), and the “grade of
+spondylolisthesis”, variable (f) is selected. In this case the largest angle is
+7.5 degrees, hence we decide to keep one variable. Cross-validation finds
+55 nearest neighbours for variables (a) and (b), 70 for variable (c), 102 for
+variable (d) and 39 for variable (e), while the empirical objective function
+(2.7) attains the value 0.017. We use the Euclidean distance in our procedure,
+but with the Mahalanobis distance we get the same results.
+
+50
+
+Second component
+
+Second component
+
+50
+
+0
+
+−50
+
+−100
+
+0
+
+−50
+
+−100
+−150
+
+−100
+
+First component
+
+−50
+
+0
+
+−150
+
+−100
+
+−50
+
+0
+
+First component
+
+Figure 1 Left: Map of the projection of the data on the original principal components.
+Right: Map of the projection of the data on the blinded based principal components. Blue:
+Disk Hernia patients. Black: Normal patients. Green: Spondylolisthesis patients.
+
+16
+
+Gimenez and Giussani
+
+−100
+
+−120
+
+−140
+
+−80
+
+Second component
+
+−80
+
+Second component
+
+Second component
+
+−80
+
+−100
+
+−120
+
+−140
+
+−140
+
+−120
+
+−100
+
+−80
+
+−60
+
+First component
+
+−40
+
+−20
+
+0
+
+−100
+
+−120
+
+−140
+
+−140
+
+−120
+
+−100
+
+−80
+
+−60
+
+First component
+
+−40
+
+−20
+
+0
+
+−140
+
+−120
+
+−100
+
+−80
+
+−60
+
+−40
+
+−20
+
+0
+
+First component
+
+Figure 2 Left: Map of the projection of the data on the original principal components.
+Middle: Map of the projection of the data on the blinded based principal components using
+Euclidean distance. Right: Map of the projection of the data on the blinded based principal components using Mahalanobis distance. Blue: Disk Hernia patients. Black: Normal
+patients.
+
+The plot on the first two principal components for the example data looks
+very similar to the plot on the principal components calculated using our
+procedure (Figure 1). It also shows that the patients with spondylolisthesis
+are separated from the rest of the patients, but the normal patients and the
+patients with disc hernias are mixed up together.
+Next, we calculate the two principal components using the traditional
+method and our procedure for the subset of normal and disc hernia patients,
+using now two variables. The first two principal components explain 75% of
+the variance then we decide to keep them. We discard to select one variable
+because in that case the largest angle is close to 78 degrees. For two variables
+the largest angle is close to 21 degrees and for three variables the angle does
+not decrease very much (19 degrees), so we decide to keep two variables.
+We consider both, the Euclidean and the Mahalanobis distance, and in
+both cases the variables selected are “lumbar lordosis angle” and “pelvic
+radius”. The value of the objective function (2.7) with the Euclidean distance
+is 0.125, while with the Mahalanobis distance is 0.141. Figure 2 shows that
+the plots for the principal components produced by these procedures look
+very similar.
+
+5 Conclusions
+In this paper we introduce a new variable selection procedure for PCA that
+aim to gain interpretation in principal components.
+On one hand we consider a local approach where we deals with finding a
+subset of variables that best explains each principal component, and on the
+other hand we analyzed a global approach when the objective is to find a
+
+Searching for the core variables in principal components analysis
+
+17
+
+unique subset to explain the first q principal components at once.
+We explained how through the conditional expectation we can choose the
+variables.
+Under wide regular conditions in the conditional expectation estimates
+and on the covariance matrix, strong consistency results are studied and
+numerical aspects have also been analysed.
+The performance of the procedure has been compared with several wellknown variable selection techniques using real and simulated data sets, showing the strengths of the method.
+
+Appendix: Proof of Theorem 2.1.
+First we are going to proof the following Proposition:
+Proposition. For k ∈ {1, ..., p}, if
+ĥkn (I) → hk (I) a.s. for all I ∈ Id ,
+
+(5.1)
+
+then it converges uniformly, and
+arg min ĥkn (I) → arg min hk (I) a.s.
+I∈Id
+
+I∈Id
+
+Proof. Since Id is a discrete and finite space , the convergence of (5.1) is
+uniform.
+For the sake of simplicity, let k = 1 (the proof is analogue for k ∈
+{2, ..., p}).
+For all δ > 0 there exists n0 (ω) such that for every n ≥ n0 (ω), with
+probability one
+ĥ1n (I) − h1 (I) < δ for all I ∈ Id ,
+then,
+h1 (I) − δ < ĥ1n (I) < h1 (I) + δ for all I ∈ Id
+
+(5.2)
+
+ĥ1n (I) − δ < h1 (I) < ĥ1n (I) + δ for all I ∈ Id .
+
+(5.3)
+
+and
+
+From (2.2), we know that exists δ0 > 0 such that
+
+18
+
+Gimenez and Giussani
+
+h1 (I1 ) < h1 (I) − δ0 for all I ∈
+/ I1,0 , for all I1 ∈ I1,0 .
+By choosing in (5.2) δ =
+
+ĥ1n (I1 ) < h1 (I1 ) +
+
+δ0
+2
+
+we obtain
+
+δ0
+δ0
+δ0
+< h1 (I) − δ0 +
+= h1 (I) −
+< ĥ1n (I)
+2
+2
+2
+
+for all I ∈
+/ I1,0 , for all I1 ∈ I1,0 , if n ≥ n0 (ω) with probability one.
+That means, that there exists n0 (ω) such that, if n ≥ n0 (ω), with probability one, if we choose I1 ∈ I1,0 , then I1 minimizes ĥ1n (I).
+Moreover, from (2.6), we have that for each n fix, exists δ1 > 0, such that
+
+ĥ1n (I 1 ) < ĥ1n (I) − δ1 for all I ∈
+/ Iˆ1n , for all I 1 ∈ Iˆ1n .
+Let δ =
+
+δ1
+2
+
+in (5.3) and n ≥ n1 (ω),
+
+h1 (I 1 ) < ĥ1n (I 1 ) +
+
+δ1
+δ1
+δ1
+< ĥ1n (I) − δ1 +
+= ĥ1n (I) −
+< h1 (I)
+2
+2
+2
+
+for all I ∈
+/ Iˆ1n , and for all I 1 ∈ Iˆ1n with probability one.
+That means, that exists n1 (ω) such that, if n ≥ n1 (ω) for all I 1 ∈ Iˆ1n , I 1
+minimizes h1 (I) with probability one.
+In conclusion, if n > max{n0 , n1 }, for all I1 ∈ I1,0 , I1 minimizes ĥ1n (I)
+and for all I 1 ∈ Iˆ1n , I 1 minimizes h1 (I) with probability one.
+As the proof is analogue for k ∈ {2, ..., p},
+Ik,0 = argminI∈Id hk (I),
+and
+Iˆkn = argminI∈Id ĥkn (I)
+this implies,
+arg min ĥkn (I) → arg min hk (I) a.s. for k ∈ {1, ..., p}.
+I∈Id
+
+I∈Id
+
+Searching for the core variables in principal components analysis
+
+19
+
+Proof. (of Theorem)
+To prove the Theorem 2.1 then it is enough to see that for each I the
+empirical objective function (2.6) converges a.s. to the theoretical objective
+function (2.3). To prove it, let us see that
+α̂nk (Pn ) − α̂nk (Pn,YI ) → αk (P) − αk (PYI )
+
+a.s. for all k.
+
+Dauxois et al. (1982) proved that under H1, if
+
+
+= max Σ̂n − Σ (u) → 0 a.s.,
+Σ̂n − Σ
+∞
+
+kuk=1
+
+then
+α̂nk (Pn ) − αk (P) → 0 a.s. for all 1 ≤ k ≤ p,
+where α̂nk (Pn ) (respec. αk (P)) are the eigenvectors of Σ̂n , that denotes the
+empirical covariance matrix associated with Pn (respec. Σ denotes the covariance matrix associated with P).
+So, if we prove that
+
+
+max Σ̂n (I) − Σ(I) (u) → 0 a.s.
+kuk=1
+
+then
+kα̂nk (Pn,YI ) − αk (PYI )k → 0 a.s. ∀1 ≤ k ≤ p,
+where α̂nk (Pn,YI ) (respec. αk (PYI )) are the eigenvectors of Σ̂n (I), that denotes the empirical covariance matrix associated with Pn,YI (respec. Σ(I)
+denotes the covariance matrix associated with PYI ).
+Note, that I = {1, . . . , p} is the classic case. We will show that this also
+holds for any I ⊆ {1, . . . , p}, that is
+
+
+max Σ̂n (I) − Σ(I) (u) → 0 a.s.
+kuk=1
+
+To simplify the notation, we can assume (without losing generality) that
+I = {1, . . . , d}, then
+
+t
+Yj = Xj [1], . . . , Xj [d], gn1 (Xj [I]), . . . , gnp−d (Xj [I]) ,
+where gni (z) is a uniformly consistent nonparametric estimate of g i (z). Specifically, gni will fulfil the following assumption,
+gnl (Xj [I]) → g l (Xj [I]) a.s. for any l, for all j, uniformly.
+
+20
+
+Gimenez and Giussani
+
+We define a non observable auxiliary vector,
+
+t
+Zj = Xj [1], . . . , Xj [d], g 1 (Xj [I]), . . . , g p−d (Xj [I]) ,
+where g i (z) = E(X[d + i]|X[I] = z).
+The proof will be complete if we show that
+max k(ΣZ − Σ(I)) (u)k → 0 a.s.,
+
+(5.4)
+
+max k(ΣY − ΣZ ) (u)k → 0 a.s.,
+
+(5.5)
+
+kuk=1
+
+and that
+kuk=1
+
+where ΣY = Σ̂n (I).
+Considering,
+X[i] =
+
+n
+1X
+Xj [i],
+n j=1
+
+gnl (X[I]) =
+
+n
+1X l
+gn (Xj [I]),
+n j=1
+
+g l (X[I]) =
+
+n
+1X l
+g (Xj [I])
+n j=1
+
+the three matrices are
+(Σ(I))ii0
+
+(ΣY )ii0 =
+
+
+
+
+
+
+
+
+
+
+
+
+
+(ΣZ )ii0 =
+
+
+
+
+
+
+
+
+
+
+
+cov(X[i], X[i0 ]) if 1 ≤ i, i0 ≤ d,
+cov(X[i], E(X[i0 ]|X[I])) if 1 ≤ i ≤ d < i0 ≤ p,
+=
+cov(E(X[i]|X[I]), X[i0 ]) if 1 ≤ i0 ≤ d < i ≤ p,
+
+
+
+cov(E(X[i]|X[I]), E(X[i0 ]|X[I])) if d + 1 ≤ i, i0 ≤ p,
+
+
+
+
+
+1
+n
+
+Pn
+
+j=1 (Xj [i]
+
+− X[i])(Xj [i0 ] − X[i0 ]) if 1 ≤ i, i0 ≤ d,
+
+0
+i0 −d
+1
+(Xj [I]) − gni −d (X[I])) if 1 ≤ i ≤ d < i0 ≤ p,
+j=1 (Xj [i] − X[i])(gn
+n
+Pn
+i−d
+0
+0
+i−d
+1
+0
+j=1 (gn (Xj [I]) − gn (X[I]))(Xj [i ] − X[i ]) if 1 ≤ i ≤ d < i ≤ p,
+n
+P
+0
+0
+n
+i−d
+i −d
+i−d
+1
+(Xj [I]) − gni −d (X[I])) if d + 1 ≤ i, i0
+j=1 (gn (Xj [I]) − gn (X[I]))(gn
+n
+
+Pn
+
+Pn
+
+0
+0
+0
+j=1 (Xj [i] − X[i])(Xj [i ] − X[i ]) if 1 ≤ i, i ≤ d,
+Pn
+0
+i0 −d
+1
+(Xj [i] − X[i])(g
+(Xj [I]) − g i −d (X[I])) if 1 ≤ i ≤ d < i0 ≤ p,
+n Pj=1
+n
+i−d
+1
+(Xj [I]) − g i−d (X[I]))(Xj [i0 ] − X[i0 ]) if 1 ≤ i0 ≤ d < i ≤ p,
+j=1 (g
+n
+P
+0
+n
+i−d
+1
+(Xj [I]) − g i−d (X[I]))(g i −d (Xj [I]) − g i0 −d (X[I])) if d + 1 ≤ i, i0
+j=1 (g
+n
+1
+n
+
+≤ p,
+
+We will now prove the convergence in (5.4) and (5.5).
+First, we show that
+max k(ΣZ − Σ(I)) (u)k → 0 a.s.
+
+kuk=1
+
+≤ p.
+
+21
+
+Searching for the core variables in principal components analysis
+
+It is sufficient to prove that each of the coordinates of the matrix ΣZ −Σ(I)
+converge to zero.
+Set 1 ≤ i, i0 ≤ p, then (ΣZ )ii0 → (Σ(I))ii0 a.s. and then (ΣZ − Σ(I))ii0 →
+0 a.s. ∀i, i0 = 1, ..., p.
+Because we are using a finite dimensional space, and each of the coordinates converge to zero, it holds that
+max k(ΣZ − Σ(I)) (u)k → 0 a.s.
+
+kuk=1
+
+Now, we show that
+max k(ΣY − ΣZ ) (u)k → 0 a.s.
+
+kuk=1
+
+As before, we are going to prove that each of the coordinates of the matrix
+ΣY − ΣZ converge to zero.
+For better understanding, we define
+G(l, j, n) = gnl (Xj [I]) − gnl (X[I]) − g l (Xj [I]) + g l (X[I]).
+• If 1 ≤ i, i0 ≤ d, (ΣY )ii0 = (ΣZ )ii0 then (ΣY − ΣZ )ii0 = 0.
+• If 1 ≤ i ≤ d, d + 1 ≤ i0 ≤ p,
+n
+
+(ΣY − ΣZ )ii0
+
+=
+
+=
+
+1X
+0
+0
+0
+(Xj [i] − X[i])(gni −d (Xj [I]) − gni −d (X[I]) − g i −d (Xj [I]) + g i0 −d (X[I]))
+n
+1
+n
+
+j=1
+n
+X
+
+(Xj [i] − X[i])G(i0 − d, j, n).
+
+j=1
+
+From the Cauchy-Schwarz inequality, we have that
+
+1 
+1
+2
+2
+n
+n
+n
+X
+X
+1X
+1
+1
+0
+2
+0
+2
+(Xj [i] − X[i])G(i − d, j, n) ≤ 
+(Xj [i] − X[i])  
+(G(i − d, j, n)) 
+n
+n
+n
+j=1
+
+j=1
+
+j=1
+
+On the other hand,
+n
+
+1X
+(Xj [i] − X[i])2 → V ar(X[i]) a.s.
+n
+j=1
+
+(5.6)
+
+22
+
+Gimenez and Giussani
+
+In addition, since
+gnl (Xj [I]) → g l (Xj [I]) a.s. uniformly, for any l, for all j,
+then for any l,
+n
+
+gnl (X[I])
+
+−
+
+g l (X[I])
+
+1X l
+=
+gn (Xj [I]) − g l (Xj [I]) ≤ max {gnl (Xj [I]) − g l (Xj [I])} → 0 a.s.
+1≤j≤n
+n
+j=1
+
+and therefore,
+G(l, j, n) → 0 a.s. for any l, for all j.
+This implies
+n
+
+1X
+(G(l, j, n))2 → 0 a.s. for any l.
+n
+
+(5.7)
+
+j=1
+
+Thus, by (5.6) and (5.7) we have
+n
+
+1X
+(Xj [i] − X[i])G(i0 − d, j, n) → 0 a.s.
+n
+
+(5.8)
+
+j=1
+
+which is what we required for our proof.
+• If d + 1 ≤ i ≤ p, 1 ≤ i0 ≤ d, from the simetry of the matrices and (5.8),
+we have that (ΣY − ΣZ )ii0 → 0 a.s.
+• If d + 1 ≤ i ≤ p, d + 1 ≤ i0 ≤ p,
+
+(ΣY − ΣZ )ii0
+
+=
+
+n
+i
+1 X h i−d
+0
+0
+(gn (Xj [I]) − gni−d (X[I]))(gni −d (Xj [I]) − gni −d (X[I])) −
+n
+j=1
+h
+i
+0
+(g i−d (Xj [I]) − g i−d (X[I]))(g i −d (Xj [I]) − g i0 −d (X[I])) .
+0
+
+0
+
+If we add and subtract (g i−d (Xj [I])−g i−d (X[I]))(gni −d (Xj [I])−gni −d (X[I])),
+and rearrange, we get that (ΣY − ΣZ )ii0 is the sum of
+n
+
+1 X i0 −d
+0
+(gn (Xj [I]) − gni −d (X[I]))G(i − d, j, n)
+n
+j=1
+
+(5.9)
+
+23
+
+Searching for the core variables in principal components analysis
+
+and
+n
+
+1 X i−d
+(g (Xj [I]) − g i−d (X[I]))G(i0 − d, j, n)
+n
+j=1
+
+were (5.9) can be rewrited as
+n
+
+1X
+0
+[G(i0 − d, j, n) + (g i −d (Xj [I]) − g i0 −d (X[I]))]G(i − d, j, n)
+n
+j=1
+
+or
+n
+
+n
+
+j=1
+
+j=1
+
+1 X i0 −d
+1X
+G(i0 − d, j, n)G(i − d, j, n) +
+(g
+(Xj [I]) − g i0 −d (X[I]))G(i − d, j, n).
+n
+n
+Then we have that
+n
+
+(ΣY − ΣZ )ii0
+
+=
+
+1X
+G(i0 − d, j, n)G(i − d, j, n)
+n
+j=1
+n
+X
+
++
+
+1
+n
+
++
+
+n
+1 X i−d
+(g (Xj [I]) − g i−d (X[I]))G(i0 − d, j, n).
+n
+
+0
+
+(g i −d (Xj [I]) − g i0 −d (X[I]))G(i − d, j, n)
+
+j=1
+
+j=1
+
+From triangular and Cauchy-Schwarz inequality,
+
+1/2 
+1/2
+n
+n
+X
+X
+1
+1
+|(ΣY − ΣZ )ii0 | ≤ 
+(G(i0 − d, j, n))2  
+(G(i − d, j, n))2 
+n
+n
+j=1
+
+j=1
+
+1/2 
+1/2
+n
+n
+X
+X
+1
+1
+0
++ 
+(g i −d (Xj [I]) − g i0 −d (X[I]))2  
+(G(i − d, j, n))2 
+n
+n
+
+
+j=1
+
+
+
+n
+
+j=1
+
+1 X i−d
+(g (Xj [I]) − g i−d (X[I]))2 
++ 
+n
+j=1
+
+1/2
+n
+X
+1
+
+(G(i0 − d, j, n))2 
+n
+
+1/2 
+
+j=1
+
+On the other hand, we have that
+n
+
+1X l
+(g (Xj [I]) − g l (X[I]))2 → V ar(g l (X[I])) a.s. for any l.
+n
+j=1
+
+24
+
+Gimenez and Giussani
+
+If V ar(g l (X[I])) < ∞ for any l and I, (5.7) entails |(ΣY − ΣZ )ii0 | → 0.
+As V ar(X[l]) < ∞, then for any l and any I,
+V ar(X[l]) = E(V ar(X[l]|X[I]))+V ar(E(X[l]|X[I])) = E(V ar(X[l]|X[I]))+V ar(g l (X[I]))
+We now that E(V ar(X[l]|X[I])) > 0, so we conclude that V ar(g l (X[I])) <
+∞
+We have proved that all the coordinates of the matrix ΣY − ΣZ converge
+to zero, so
+sup k(ΣY − ΣZ ) (u)k → 0 a.s.
+kuk=1
+
+Now we are ready to complete the proof of Theorem 2.1. From (5.4) and
+(5.5) we are able to use the result from Dauxois et al. (1982) to derive that,
+ĥkn (I) = kα̂nk (Pn )− α̂nk (Pn,YI )k2 → kαk (P)−αk (PYI )k2 = hk (I) a.s. (5.10)
+Indeed, we have that
+kα̂nk (Pn ) − α̂nk (Pn,YI )k − kαk (P) − αk (PYI )k ≤
+kα̂nk (Pn ) − αk (P)k + kαk (P) − αk (PYI )k +
+kαk (PYI ) − α̂nk (Pn,YI )k − kαk (P) − αk (PYI )k =
+kα̂nk (Pn ) − αk (P)k + kαk (PYI ) − α̂nk (Pn,YI )k → 0 a.s.
+and
+kαk (P) − αk (PYI )k − kα̂nk (Pn ) − α̂nk (Pn,YI )k ≤
+kαk (P) − α̂nk (Pn )k + kα̂nk (Pn ) − α̂nk (Pn,YI )k +
+kα̂nk (Pn,YI ) − αk (PYI )k − kα̂nk (Pn ) − α̂nk (Pn,YI )k =
+kαk (P) − α̂nk (Pn )k + kα̂nk (Pn,YI ) − αk (PYI )k → 0 a.s.
+which entails (5.10).
+Finally, (5.10) and the Proposition implies
+arg min ĥkn (I) → arg min hk (I) a.s.
+I∈Id
+
+I∈Id
+
+Searching for the core variables in principal components analysis
+
+25
+
+which concludes the proof.
+
+Acknowledgements
+This work has been partially supported by Grant pict 2008-0921 from ANPCyT (Agencia Nacional de Promoción Cientı́fica y Tecnológica), Argentina.
+We are very grateful to Dr. Ricardo Fraiman for his invaluable assistance
+and Dra. Marcela Svarc for her helpful suggestions. The authors would like
+to thank the referees for their constructive comments which improve significantly this work.
+
+References
+Biau, G., Fischer, A., Guedj, B. and Malley, J.D. (2013), “COBRA: A collective regression
+strategy”, arxiv.org/pdf/1303.2236.
+Dauxois, J., Pousse, A. and Romain, Y., (1982),“Asymptotic theory for the principal component analysis of a vector random function: some applications to statistical inference”,
+Journal of Multivariate Analysis 12, 136–154.
+Fraiman, R., Justel, A. and Svarc, M., (2008), “Selection of variables for cluster analysis
+and classification rules”, Journal of the American Statistical Association. 103(483),
+1294–1303.
+Frank, A. and Asuncion, A., (2010), UCI Machine Learning Repository
+[http://archive.ics.uci.edu/ml], Irvine, CA: University of California, School of
+Information and Computer Science.
+Hansen, B.E. (2008), “Uniform convergence rates for kernel estimation with dependent
+data”, Econometric Theory. 24, 726–748.
+He, X. and Shi, P., (1996), “Bivariate Tensor-Product B-Splines in Partly Linear Models”,
+Journal of Multivariate Analysis. 58, 162–181.
+Jolliffe, I., (1995), “ Rotation of principal components: choise of normalization constraints”, Journal of Applied Statistics.22, 29–35.
+Jolliffe, I. (2002), “Principal Components Analysis. Second Edition”, Ed. Springer.
+Jolliffe, I., Trendafilov, N. and Uddin, M. (2003), “ A modified principal component technique based on the LASSO”, Journal of Computational and Graphical Statistics. 12,
+531–547.
+Li, R. and Gong, G. (1987), “K-nn Nonparametric Estimation Of Regression Functions
+In the Presence of Irrelevant Variables”, Econometrics Journal, 00, 1-12.
+Luss, R. and d’Aspremont, A., (2010), “Clustering and feature selection using sparse
+principal component analysis”, Optimization and Engineering. 11(1), 145–157.
+Maronna, R. A., Martin, R. D. and Yohai, V. J., (2006), “Robust Statistics: Theory and
+Methods”, Wiley, London.
+McCabe, G. P. (1984), “Principal Variables”, Technometrics. 26, 137–144.
+
+26
+
+Gimenez and Giussani
+
+Tibshirani, R., (1996), “Regression shrinkage and selection via the LASSO”, Journal of
+the Royal statistical society. Series B 58(1), 267–288.
+Vines,S., (2000), “Simple principal components”, Applied Statistics. 49, 441–451.
+Witten, D.M. and Tibshirani, R., (2008), “Testing significance of features by lassoed principal components”, Annals of Applied Statistics. 2(3), 986–1012.
+Zou, H. and Hastie, T., (2005), “‘Regularizations and variable selection via the elastic
+net”, Journal of the Royal Statistical Society. Series B, 67, 301–320.
+Zou, H., Hastie, T. and Tibshirani, R. (2006), “Sparse principal component analysis”,
+Journal of Computational and Graphical Statistics, 15, 265–286.
+Universidad de San Andrés, Vito Dumas 284, 1644 Victoria, Buenos Aires, Argentina and CONICET
+E-mail: yanugimenez@gmail.com; ggiussani@udesa.edu.ar
+
+
+
+Summary:
+This research paper covers the following topic: Submitted to the Brazilian Journal of Probability and Statistics
+arXiv: arXiv:1308.6626
+
+Searching for the core variables in principal
+components analysis
+
+arXiv:1308.6626v4 [math.ST] 30 Jan 2017
+
+Yanina Gimeneza , and Guido Giussania
+a
+
+Universidad de San Andrés and CONICET
+
+Abstract. In this article, we introduce a procedure for selecting variables in principal components analysis. It is developed to identify a small
+subset of the original variables that best explain the principal components through nonparametric relationships. There are usually some
+noisy uninformative variables in a dataset, and some variables that are
+strongly related to one another because of their general dependence. The
+procedure is designed to be used following the satisfactory initial principal components analysis with all variables, and its aim is to help to
+interpret the underlying structures. We analyze the asymptotic behavior
+of the method and provide some examples.
+
+1 Introduction
+Principal components analysis (PCA) is the best known dimensional reduction procedure for multivariate data. An important drawback of PCA is
+that it sometimes provides poor quality interpretation of data for practical
+problems, because the final output is a linear combination of the original
+variables. The aim of the present study is to identify a small subset of the
+original variables in a dataset, whilst retaining most of the information related to the first k principal components.
+There is a large body of literature that focuses on trying to interpret
+principal components. Jolliffe (1995) has introduced rotation techniques.
+Vines (2000) proposed to restrict the value of the loadings for PCA to a
+small set of allowable integers such as {-1, 0, 1}. McCabe (1984) presented a
+different strategy that aims to select a subset of the original variables with
+a similar criterion to PCA.
+A few years later a whole literature of variable selection appeared, inspired by the LASSO (least absolute shrinkage and selection operator). This
+technique was introduced by Tibshirani (1996). The way the LASSO works
+was described thus: “ It shrinks some coefficients and sets others to 0, and
+hence tries to retain the good features of both subset selection and ridge
+Primary 62H25; secondary 62G08
+Keywords and phrases. Informative Variables, Multivariate Analysis, Principal Components, Selection of Variables
+
+1
+
+2
+
+Gimenez and Giussani
+
+regression... The ‘LASSO’ minimizes the residual sum of squares subject to
+the sum of the absolute value of the coefficients being less than a constant.
+Because of the nature of this constraint it tends to produce some coefficients
+that are exactly 0 and hence gives interpretable models.”
+Jolliffe et al. (2003) proposed SCoTLASS that imposes a bound on the
+sum of the absolute values of the loadings in the component, using a similar
+idea to the one that LASSO used in regression. Zou et al. (2006) presented
+SPCA (sparse PCA) that extends the “elastic net” of Zou & Hastie (2005)
+that was a generalization of the LASSO. As they mentioned “SPCA is built
+on the fact that PCA can be written as a regression-type optimization problem, with quadratic penalty; the LASSO penalty (via the elastic net) can
+then be directly integrated into the regression criterion, leading to a modified
+PCA with sparse loadings.”
+Luss & d’Aspremont (2010) studied the application of sparse PCA to clustering and problems of feature selection. Sparse PCA seeks sparse factors, or
+linear combinations of variables in the dataset, to explain as much variance
+in the data as possible while limiting the number of nonzero coefficients as
+far as possible. The authors applied their results to some classic biological
+clustering and feature selection problems.
+Recently, Witten & Tibshirani (2008) introduced the notion of Lassoed
+principal components for identifying differentially-expressed genes, and considered the problem of testing the significance of features in high dimensional
+data.
+Our approach is rather different and is designed to be used after satisfactory PCA has been achieved rather than, as in other methods, to produce
+principal components with particular characteristics (e.g., some coefficients
+that are zero) so that only interpretable principal components are produced.
+We first perform classical PCA and then look for a small subset of the original variables that contain almost all the relevant information to explain the
+principal components. However, our method can also be used after performing any sparse PCA method as those described previously.
+To develop our method, we borrowed some ideas for selecting variables
+from Fraiman et al. (2008), who introduced two procedures for selecting
+variables in cluster analysis, and classification rules. Both of these procedures are based on the idea of “blinding” unnecessary variables. To cancel
+the effect of a variable, they substituted all its values with the marginal
+mean (in the first procedure) or with the conditional mean (in the second).
+The marginal mean approach was mainly intended to identify “noisy” uninformative variables, but the conditional mean approach could also deal with
+dependence. We adapted the idea behind the second procedure to PCA.
+
+Searching for the core variables in principal components analysis
+
+3
+
+In Section 2, we introduce the main definitions, a population version of
+our proposed method, and the empirical version; we also present our main
+results. In Section 3, a simulation study is conducted, where the results are
+compared with other well-known PCA variable selection procedures. Finally,
+in Section 4, we study a real data example. Proofs are given in the Appendix.
+
+2 Our method: Definitions and properties
+We begin by defining our notation and stating the problem in terms of the
+underlying distribution of the random vector X. Then we give our estimates
+based on the sample data, via the empirical distribution.
+2.1 Population version
+We define X ∈ Rp as a random vector with distribution P. The coordinates
+of the vector X are defined as X[i], i = 1, . . . , p. The covariance matrix of
+X is denoted Σ.
+For a given random vector X̃, we say that it satisfy the Assumption H1
+if:
+i) E(kX̃k2 ) < ∞;
+ii) The covariance matrix of X̃ is positive definite.
+iii) All the eigenvalues of the covariance matrix are different.
+Throughout the manuscript, X fulfills Assumption H1.
+As is well known, the first principal component associated with the vector
+X is defined as
+
+α1 (P) := α1 = arg max V ar α0 X
+kαk=1
+
+= arg max α0 Σα,
+kαk=1
+
+and the next principal components are defined as
+αk (P) := αk =
+
+arg max
+
+V ar α0 X
+
+
+
+kαk=1, α⊥[α1 ,...,αk−1 ]
+
+=
+
+arg max
+kαk=1,
+
+α0 Σα ∀ 2 ≤ k ≤ p,
+
+α⊥[α1 ,...,αk−1 ]
+
+where [α1 , . . . , αk−1 ] is the subspace generated by the vectors {α1 , . . . , αk−1 }.
+From the spectral theorem, it follows that, if λ1 > λ2 > . . . > λp are the
+Σ eigenvalues, the solutions to the PCA are the corresponding eigenvectors,
+αk , k = 1, . . . , p.
+
+4
+
+Gimenez and Giussani
+
+Given a subset of indices I ⊂ {1, . . . , p} with cardinality d ≤ p, we define
+X[I] as the subset of random variables {X[i], i ∈ I}. With a slight abuse
+of notation, if I = {i1 < . . . < id }, we can also denote X[I] to the vector
+(X[i1 ], . . . , X[id ]), and define the vector YI := (Y I [1], . . . , Y I [p]), where
+
+X[i]
+if i ∈ I
+I
+Y [i] =
+E(X[i]|X[I])
+if i ∈
+/ I.
+YI ∈ Rp depends only on the {X[i], i ∈ I} variables and then the principal
+components associated with the vector YI depend only on the variables in
+X[I]. The distribution of YI is denoted PYI , the covariance matrix is ΣYI
+and g i (z) = E(X[i]|X[I] = z) for i ∈
+/ I is the regression function.
+In what follows we assume that YI fulfills the Assumption H1.
+Remark: This assumptions will not hold if there is a variable X[i] such
+that g i (z) is a linear combination of the variables in I. For instance, if X is
+gaussian or X[i] is independent of the variables in I. In practice we will see
+how this problem can be tackled in the example 2 of section 3.
+We are looking for a subset I of small cardinality that minimizes the
+distance between the original principal components and the principal components that are function of the variables in the subset I. This can be done
+following two different approaches.
+Local approach
+We define the objective function h1 (I) as
+h1 (I, P, PYI ) := h1 (I, P) := h1 (I) = kα1 (P) − α1 (PYI )k2 ,
+
+(2.1)
+
+which measures the squared distance between the first original principal
+component and the first principal component that is a function of the variables in the subset I.
+Given a fixed integer d, 1 ≤ d << p, Id is the family of all subsets of
+{1, . . . , p} with cardinality d and I1,0 ⊂ Id is the family of subsets in which
+the minimum h1 (I) is attained for I ∈ Id , i.e.,
+I1,0 = argminI∈Id h1 (I),
+or, equivalently,
+h1 (I1 ) = minI∈Id h1 (I) for all I1 ∈ I1,0 .
+
+(2.2)
+
+Analogously, we define
+hk (I, P, PYI ) := hk (I, P) := hk (I) = kαk (P) − αk (PYI )k2 ,
+
+(2.3)
+
+Searching for the core variables in principal components analysis
+
+5
+
+and
+Ik,0 = argminI∈Id hk (I),
+for k = 2, . . . , p.
+For k = 1, . . . , p (2.3) measures the squared distance between the k-th
+original principal component and the k-th principal component that is a
+function of the variables in the subset I.
+Principal components may, in some cases, be rather difficult to interpret,
+which is an important issue in practice. If we can find a small cardinal
+subset I, for which the objective function (2.3) is small enough, then the
+k-th principal component will be well explained by a subset of the original
+variables.
+Global approach
+In this case, the objective function is
+h(I) :=
+
+q
+X
+
+pk hk (I),
+
+(2.4)
+
+k=1
+
+Pq
+with pk ≥ 0,
+k=1 pk = 1, 2 ≤ q < p,
+and we define
+Ĩq,0 = argminI∈Id h(I).
+This time the objective function (2.4) deals with finding a unique subset
+I to explain the first q principal components at once. If we think that the
+q components are equally important then we choose pk = 1q . Otherwise, if
+some components are more important than others then we can put different weights. As a default we suggest choosing weights proportional
+to the
+P
+variance that each component is explaining, i.e. pk = λk / qk=1 λk .
+On the Local approach, we consider a different subset for each principal
+component, using the objective function (2.3) for each k. On the Global approach, we seek a unique subset for all the first q principal components using
+(2.4). In practice, we can choose q, so that the first q principal components
+explain a high percent of the total variance and consider a subset for this
+principal components.
+These subsets tell us which are the original variables that “best explain”
+the first q principal components. In what follows we refer to this method as
+the Blinding Procedure (BP).
+An important issue is how to choose d, the cardinality of the set I. On
+the one hand we have that the objective function (2.3) decreases when d
+
+6
+
+Gimenez and Giussani
+
+increases for every k. On the other hand we look for a subset I with small
+cardinality, so we have a constant tug of war. Since the components have
+unitary norms there is a direct relationship between (2.3) and the angle
+between the two vectors. It is clear that the smaller the angle is the closer
+the components are.
+Hence, for the k-th component we propose to fix an angle, γ, and choose d
+as the smallest value for which Ik,0 (d) makes the angle between the blinding
+and the original component smaller than γ.
+If we want “to explain” the first q principal components at once, we
+propose to fix an angle, γ, and choose d as the smallest value for which
+Ĩq,0 (d) makes the largest of the q angles smaller than γ. In both cases, the
+angle γ must be chosen by the user. As default, we propose to fix an angle
+not larger than 25 degrees.
+2.2 Empirical version. Consistent estimates of the optimal subset
+We aimed to consistently estimate the sets I1 , . . . , Iq from a sample X1 , . . . , Xn
+of i.i.d. random vectors with distribution P.
+Given a subset I ∈ Id , the first step is to build a sample Y1I , . . . , YnI of
+random vectors in Rp , which only depends on X[I], using nonparametric
+estimates of the conditional expectation (the regression function). Below,
+we assume that
+Assumption H2 For all i ∈
+/ I, gni (z) is a strongly consistent estimate
+of g i (z) uniformly in z. Conditions under which H2 holds can be found in
+Hansen (2008).
+First, we define the empirical version of the blinded observations. As an
+example, we consider the nearest neighbours estimator. We therefore set an
+integer value r (the number of nearest neighbours that we are going to use)
+with respect to an appropriate metric (typically Euclidean or Mahalanobis
+distance), only considering the coordinates on I.
+More precisely, for each j ∈ {1, . . . , n}, we find the set of indices Cj =:
+Cj (Xj [I]) of the r-nearest neighbours of Xj [I] among {X1 [I], . . . , Xn [I]},
+where Xj [I] = {Xj [i], i ∈ I}.
+Next, we define the random vectors YjI , 1 ≤ j ≤ n, verifying:
+YjI [i]
+
+
+=
+
+1
+r
+
+P Xj [i]
+m∈Cj Xm [i]
+
+if i ∈ I
+otherwise,
+
+where Xj [i] stands for the ith-coordinate of the vector Xj .
+
+(2.5)
+
+7
+
+Searching for the core variables in principal components analysis
+
+This corresponds to use for i ∈
+/ I the nonparametric estimate
+gni (z) = gni (z[I]) =
+
+1
+r
+
+X
+
+Xm [i],
+
+m∈Cj (z[I])
+
+since gni (z) is a strongly consistent estimate of g i (z), where g i (z) =
+E(X[i]|X[I] = z). Moreover, observe that the notation z[I] is to emphasize that the function depends on the coordinates indicated by the subset
+I.
+Pn stands for the empirical distribution associated with {Xj , 1 ≤ j ≤ n}
+and Pn,YI stands for the empirical distribution of {YjI , 1 ≤ j ≤ n}.
+In our examples to consistently estimate the optimal number of nearest
+neighbours we use the generalized cross validation procedure proposed by
+Li & Gong (1987), i.e.
+2
+1 Pn
+j=1 (Xj [i] − Yj [i])
+n
+rbopt (i, I) = arg min
+, i∈
+/ I.
+
+2
+r
+1 − 1r
+When d is large, nonparametric estimators perform poorly due to the
+curse of dimensionality. In this case, a semi-parametric approach should be
+used like that proposed by He & Shi (1996). Also a recent proposal by Biau
+et al. (2013) called COBRA can be used to avoid the curse of dimensionality.
+The consistency result given in the following theorem will still be valid as
+long as the semi-parametric estimates verify the consistency assumptions
+required for the purely nonparametric estimates.
+We will be mainly interested in cases where d is small. In our experience a
+good idea is to start the search with some genetic algorithm which provides
+an initial solution with a few variables (d small) and then improve the result
+working with card(I) ≤ d. Also a forward-backward algorithm as the one
+proposed in Fraiman et al. (2008) can be used.
+Finally, we define, for each I ∈ Id , the corresponding empirical versions
+α̂nk (I) := αk (Pn,YI ), ĥkn (I) = hk (I, Pn , Pn,YI ), Iˆkn = argminI∈Id ĥkn (I) (2.6)
+and
+
+ĥn (I) =
+
+q
+X
+k=1
+
+respectively.
+
+pk ĥkn (I), Iˆn = argminI∈Id ĥn (I)
+
+(2.7)
+
+8
+
+Gimenez and Giussani
+
+Let us observe that α̂nk (I) corresponds to the principal component associated with the sample {YjI , 1 ≤ j ≤ n}. ĥkn (I) corresponds to the objective
+function of the k-th principal component, it measures the square distance
+between the k-th original principal component and the k-th principal component that is a function of the variables in the subset I. The function ĥkn (I)
+determines which are the variables that retain most of the information related to the k-th principal component. The variables we are choosing are
+the ones that minimize the function ĥkn (I). The subset Iˆkn indicates which
+this variables are. In case we are looking for a unique subset I to explain
+the first q principal components, we consider the function ĥn (I).
+A robust version can be obtained using robust principal components (see
+for instance Maronna et al. (2006)) and replacing in (2.5) the local mean by
+local median.
+Theorem 2.1. Under assumptions H1 for X and YI and H2 we have that
+Iˆkn ∈ Ik,0 ultimately for k = 1, . . . , q, i.e., Iˆkn = Ik with Ik ∈ Ik,0 ∀n >
+n0 (ω), with probability one. We also have that Iˆn ∈ Ĩq,0 ultimately.
+Proof. The proof is given in the Appendix.
+
+3 Some simulated examples
+In this section we consider two simulated experiments to analyze the behavior of our method and compare it with other methods proposed in the
+literature.
+3.1 Example 1
+To better understand the heart of our procedure we start with a simple
+simulation example in dimension four.
+There are two “hidden” factors:
+V1 ∼ N (0, 1.252 ),
+V2 ∼ N (0, 0.552 ),
+where V1 , V2 are independent.
+
+Searching for the core variables in principal components analysis
+
+9
+
+We construct the 4 observable variables as follows:
+X1 = V1 + 1 ,
+
+(3.1)
+
+X2 = |V1 | + 2 ,
+X3 = V2 + 3 ,
+X4 = V1 V2 + 4 ,
+where εj , 1 ≤ j ≤ 4 are i.i.d. N (0, σ 2 ), with σ = 0.01 (Case 1), σ = 0.1
+(Case 2) and σ = 0.25 (Case 3).
+When we perform the variable selection it is clear that two variables containing the information given by V1 and V2 should be kept. This means that
+{X1 , X3 }, {X1 , X4 } or {X3 , X4 } would be “good” choices while {X1 , X2 }
+is clearly a “bad” choice since only retains information of V1 . Additionally,
+{X2 , X3 } (respec. {X2 , X4 }) is not a “good” choice since can not recover all
+the information of V1 (respec. V1 and V2 ).
+In this example, in all the cases, we compare our procedure with other
+proposals: algorithms B2 and B4 (Jolliffe (2002)), a variable selection approach proposed by McCabe (1984) and sparce PCA introduced by Zou
+et al. (2006). To retain q variables, algorithm B2 associates one of the original variables to each of the p−q last PCA vectors and deletes those variables,
+while B4 associates one of the original variables to each of the first q PCA
+vectors and retains those variables.
+For each case, we perform 500 replicates and on each of them we generate
+samples of size 100 from model (3.1) and compute the covariance matrix.
+• Case 1: The first two principal components explain between 70 and
+85 percent of the total variance. For the BP 85% of the times the
+maximum angle conformed by the first two principal components is
+smaller than 25 degrees, hence we keep two variables.
+The results exhibitted in Table 1 on page 9 show that 78% of the
+times the BP makes a “good” choice of variables, B2 only does it 27%
+of the times, while the other methods fail in more than 75% of the
+replications.
+• Case 2: The first two principal components explain between 69 and 85
+percent of the total variance. For the BP more than 78% of the times
+the maximum angle conformed by the first two principal components
+is smaller than 25 degrees, hence we keep two variables.
+The results exhibitted in Table 2 on page 10 show that that 75% of
+the times the BP makes a “good” choice of variables, B2 only does
+it 29% of the times, B4 and SPCA 27%, while McCabe fails in more
+than 75% of the replications.
+
+10
+
+Gimenez and Giussani
+
+Table 1 Proportion of times where each method selects each pair of variables.(Case 1)
+X1 , X2
+X1 , X3
+X1 , X4
+X2 , X3
+X2 , X4
+X3 , X4
+
+BP
+0.22
+0.37
+0.366
+0
+0
+0.044
+
+B2
+0.732
+0.004
+0.264
+0
+0
+0
+
+B4
+0.76
+0.002
+0.238
+0
+0
+0
+
+McCabe
+0.782
+0.002
+0.216
+0
+0
+0
+
+SPCA
+0.76
+0.002
+0.238
+0
+0
+0
+
+Table 2 Proportion of times where each method selects each pair of variables.(Case 2)
+X1 , X2
+X1 , X3
+X1 , X4
+X2 , X3
+X2 , X4
+X3 , X4
+
+BP
+0.248
+0.354
+0.368
+0
+0
+0.03
+
+B2
+0.714
+0.002
+0.284
+0
+0
+0
+
+B4
+0.728
+0.002
+0.27
+0
+0
+0
+
+McCabe
+0.752
+0.002
+0.246
+0
+0
+0
+
+SPCA
+0.728
+0.002
+0.27
+0
+0
+0
+
+• Case 3: The first two principal components explain between 67 and
+82 percent of the total variance. For the BP, 69% of the times the
+maximum angle conformed by the first two principal components is
+smaller than 25 degrees, hence we keep two variables.
+The results exhibitted in Table 3 on page 10 show that 74% of the
+times the BP makes a “good” choice of variables, B2 does it 51% of
+the times, B4 and SPCA 48%, while McCabe 46%.
+Table 3 Proportion of times where each method selects each pair of variables.(Case 3)
+X1 , X2
+X1 , X3
+X1 , X4
+X2 , X3
+X2 , X4
+X3 , X4
+
+BP
+0.264
+0.192
+0.54
+0
+0
+0.004
+
+B2
+0.488
+0.002
+0.51
+0
+0
+0
+
+B4
+0.516
+0
+0.484
+0
+0
+0
+
+McCabe
+0.536
+0
+0.464
+0
+0
+0
+
+SPCA
+0.516
+0
+0.484
+0
+0
+0
+
+From the definition of X1 and X2 we have that X2 is a function of X1 plus
+an error. We can see from Table 1 on page 9, Table 2 on page 10 and Table
+3 on page 10 that our procedure selects X1 and X2 only between 0.22 and
+0.264 proportion of the times, when the other procedures select it in around
+a 0.5 proportion of the times or more. In most of the cases our procedure
+detects that X2 is a “function” of X1 . That is, if X1 is selected to be one
+of the two explanatory variables, for the other one, the BP, select between
+
+Searching for the core variables in principal components analysis
+
+11
+
+X3 and X4 . This way, the BP gains information about V2 instead of getting
+redundant information by choosing X2 . Note that {X3 , X4 } is also a “good”
+choice.
+To make the problem a bit more challenging we enlarge the dimension of
+the dataset repeating the same variables plus noisy noninformative errors
+and also add some i.i.d. noisy variables. More precisely we consider the
+following model:
+
+V1 + ε j ,
+
+
+
+
+ |V1 | + εj ,
+V 2 + εj ,
+Xj =
+
+
+V V + εj ,
+
+
+ 1 2
+εj ,
+
+if 1 ≤ j ≤ 5,
+if 6 ≤ j ≤ 10,
+if 11 ≤ j ≤ 15,
+if 16 ≤ j ≤ 20,
+if 21 ≤ j ≤ 23,
+
+where εj , 1 ≤ j ≤ 23 are i.i.d. N (0, σ 2 ), with σ = 0.01 (Case 1), σ = 0.1
+(Case 2) and σ = 0.25 (Case 3).
+We keep the first and second principal component because on 98% of the
+500 replicates they explain between 70% and 85% of the total variance in
+Case 1, between 70% and 83% in Case 2 and between 65% and 78% in Case
+3. Again we require all the methods to select two variables. In the three
+cases, at least 93% of the times the largest angle is smaller than 25 degrees,
+hence we consider it is a good decision to look for two variables.
+There are five groups of variables A1 , . . . , A5 . Within each group all the
+variables only differ on a noisy noninformative error. More precisely, the
+first four groups are Aj = {Xk , k = 5j − i, i = 0, . . . , 4} (j = 1, . . . , 4) and
+the last one is A5 = {Xk , k = 21, 22, 23}. Clearly {{Aj , Aj }, j = 1, . . . 5},
+{A1 , A2 } and {{Aj , A5 }, j = 1, . . . 4} are “bad” choices and also {A2 , A3 }
+and {A2 , A4 } are not good choices either.
+Table 4 on page 11, Table 5 on page 12, and Table 6 on page 12
+exhibit the proportion of replicates where each method selects one variable
+per group of variables. In the three cases the BP achieves the desired results
+more than 90% of the times, while the other methods fail more than 73% of
+the times.
+3.2 Example 2
+Zou et al. (2006) introduced the following simulation example. They have
+two “hidden” factors:
+V1 ∼ N (0, 290),
+V2 ∼ N (0, 300),
+
+12
+
+Gimenez and Giussani
+
+Table 4 Proportion of replicates where each method selects one variable per group of
+variables.(Case1)
+A1 , A1
+A1 , A2
+A1 , A3
+A1 , A4
+A1 , A5
+A2 , A2
+A2 , A3
+A2 , A4
+A2 , A5
+A3 , A3
+A3 , A4
+A3 , A5
+A4 , A4
+A4 , A5
+A5 , A5
+
+BP
+0.012
+0.026
+0.214
+0.57
+0.028
+0
+0
+0
+0
+0
+0.124
+0
+0
+0
+0.026
+
+B2
+0.184
+0.202
+0.08
+0.114
+0.086
+0.076
+0.048
+0.058
+0.032
+0.016
+0.02
+0.016
+0.036
+0.026
+0.006
+
+B4
+0
+0.744
+0.004
+0.252
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+McCabe
+0
+0.784
+0
+0.216
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+SPCA
+0
+0.744
+0.004
+0.252
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+Table 5 Proportion of replicates where each method selects one variable per group of
+variables.(Case2)
+A1 , A1
+A1 , A2
+A1 , A3
+A1 , A4
+A1 , A5
+A2 , A2
+A2 , A3
+A2 , A4
+A2 , A5
+A3 , A3
+A3 , A4
+A3 , A5
+A4 , A4
+A4 , A5
+A5 , A5
+
+BP
+0.006
+0.024
+0.254
+0.598
+0.026
+0
+0
+0
+0
+0
+0.092
+0
+0
+0
+0
+
+B2
+0.188
+0.218
+0.07
+0.114
+0.076
+0.074
+0.044
+0.072
+0.03
+0.014
+0.026
+0.012
+0.034
+0.022
+0.006
+
+B4
+0
+0.744
+0.006
+0.25
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+McCabe
+0
+0.79
+0
+0.21
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+SPCA
+0
+0.74
+0.006
+0.25
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+and a lineal combination of them,
+V3 = −0.3V1 + 0.925V2 + ε
+where V1 , V2 and ε are independent, ε ∼ N (0, 1).
+Then 10 observable variables are constructed as follows:
+
+Searching for the core variables in principal components analysis
+
+13
+
+Table 6 Proportion of replicates where each method selects one variable per group of
+variables.(Case3)
+A1 , A1
+A1 , A2
+A1 , A3
+A1 , A4
+A1 , A5
+A2 , A2
+A2 , A3
+A2 , A4
+A2 , A5
+A3 , A3
+A3 , A4
+A3 , A5
+A4 , A4
+A4 , A5
+A5 , A5
+
+BP
+0.028
+0.004
+0.292
+0.604
+0.026
+0
+0
+0
+0
+0
+0.046
+0
+0
+0
+0
+
+B2
+0.17
+0.234
+0.094
+0.104
+0.084
+0.072
+0.032
+0.07
+0.03
+0.022
+0.024
+0.012
+0.04
+0.006
+0.006
+
+
+ V1 + εj ,
+V2 + εj ,
+Xj =
+
+V3 + εj ,
+
+B4
+0
+0.736
+0.008
+0.256
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+McCabe
+0
+0.762
+0.004
+0.234
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+SPCA
+0
+0.728
+0.008
+0.256
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+if 1 ≤ j ≤ 4,
+if 5 ≤ j ≤ 8,
+if j = 9, 10,
+
+where εj , 1 ≤ j ≤ 10 are i.i.d. N (0, 1).
+Zou et al. (2006) used the true covariance matrix of (X1 , . . . , X10 ) to
+perform PCA, SPCA and Simple Thresholding.
+There are three groups of variables that share the same information. The
+first group, which we denote by A1 corresponds to the variables X1 to X4 ,
+the second one, A2 , to the variables X5 to X8 , and the third group, A3 , to
+the variables X9 and X10 . By definition V3 is also a function of V1 and V2 ,
+up to a noisy noninformative error.
+Zou et al. (2006) show that SPCA correctly identifies the sets of important
+variables, the first SPCA identifies the group of the variables A2 and the
+second SPCA the group of the variables A1 . Simple Thresholding incorrectly
+mixes two variables of A2 with two of A3 .
+We first consider the population version, using the true covariance matrix,
+where the first two principal components explain 99.6% of the total variance.
+This example is outside of the theoretical framework stated in section 2
+but this will not be a problem for the implemetation of our procedure.
+Clearly it is not adecuate to keep one variable because when the cardinality of I is 1, ΣYI has only one positive eigenvalue and then we can not
+
+14
+
+Gimenez and Giussani
+
+recover two principal components.
+If we choose a subset I of cardinal 2, then ΣYI has two positive eigenvalues
+of multiplicity one and then, we can recover two principal components. If we
+select one variable of each of the three groups will be a “good” solution. A
+“bad” solution should be to choose the 2 variables within the same group.
+Table 7 Theoretical objective’s value h(I) when two variables are chosen (one of each
+group).
+A1 , A1
+A1 , A2
+A1 , A3
+A2 , A2
+A2 , A3
+A3 , A3
+
+h(I)
+1.656
+2.257 × 10−6
+2.536 × 10−5
+1.028
+0.001
+1
+
+In Table 7 on page 14 we can see that h(I) takes large values (larger
+than one) for the “bad” choices and small values (smaller than 0.001) for the
+“good” choices. Moreover, for the “good” choices, the largest angle between
+the original and the blinded components is less than two dergees in all cases.
+Then, the BP is going to select a “good” choice. So our method performs
+perfectly well when the cardinal of I is 2.
+Next, we consider a more realistic situation and perform a small simulation, where we estimate the covariance matrix generating a sample of size
+50 which we iterate 500 times. We perform the analysis considering the two
+first principal components, which explain more than the 99% of the variance.
+We apply our procedure to select two variables for the first two principal
+components and in only 4.8% of the cases the larger angle was above 15
+degrees and in 2.2% of the cases larger than 20 degrees.
+In Table 8 on page 14 we can see that 99.2% of the times the BP makes a
+“good” choice. In addition McCabe and SPCA always make a “good” choice,
+B4 on 99% of the times and B2 only makes a “good” choice in 76.6% of the
+times.
+
+4 A real data example
+We consider a dataset obtained from the University of California, Irvine
+repository (Frank & Asuncion (2010)) as an example. This dataset contains
+the values of six bio-mechanical characteristic that were used to classify
+orthopaedic patients into three classes (normal, disc hernia and spondylolisthesis groups), and includes data for one hundred normal patients, sixty
+
+Searching for the core variables in principal components analysis
+
+15
+
+Table 8 Proportion of times where each method selects one variable per group of
+variables.
+BP
+B2
+B4
+McCabe SPCA
+A1 , A1 0
+0.134 0.01
+0
+0
+A1 , A2 0.426 0.57
+0.562 1
+0.736
+A1 , A3 0.222 0.108 0.428 0
+0.264
+A2 , A2 0
+0.096 0
+0
+0
+A2 , A3 0.344 0.088 0
+0
+0
+A3 , A3 0.008 0.004 0
+0
+0
+
+patients with a disc hernia, and one hundred and fifty patients with spondylolisthesis. Each patient is represented in the dataset in terms of the six
+bio-mechanical attributes associated with the shape and orientation of the
+pelvis and the lumbar spine, namely (a) pelvic incidence, (b) pelvic tilt, (c)
+lumbar lordosis angle, (d) sacral slope, (e) pelvic radius and (f) grade of
+spondylolisthesis.
+We use our procedure to select one variable for the first two principal
+components, which explain 85% of the variance. We give the same weight
+to all components, that is pk = 1/2 in equation (2.4), and the “grade of
+spondylolisthesis”, variable (f) is selected. In this case the largest angle is
+7.5 degrees, hence we decide to keep one variable. Cross-validation finds
+55 nearest neighbours for variables (a) and (b), 70 for variable (c), 102 for
+variable (d) and 39 for variable (e), while the empirical objective function
+(2.7) attains the value 0.017. We use the Euclidean distance in our procedure,
+but with the Mahalanobis distance we get the same results.
+
+50
+
+Second component
+
+Second component
+
+50
+
+0
+
+−50
+
+−100
+
+0
+
+−50
+
+−100
+−150
+
+−100
+
+First component
+
+−50
+
+0
+
+−150
+
+−100
+
+−50
+
+0
+
+First component
+
+Figure 1 Left: Map of the projection of the data on the original principal components.
+Right: Map of the projection of the data on the blinded based principal components. Blue:
+Disk Hernia patients. Black: Normal patients. Green: Spondylolisthesis patients.
+
+16
+
+Gimenez and Giussani
+
+−100
+
+−120
+
+−140
+
+−80
+
+Second component
+
+−80
+
+Second component
+
+Second component
+
+−80
+
+−100
+
+−120
+
+−140
+
+−140
+
+−120
+
+−100
+
+−80
+
+−60
+
+First component
+
+−40
+
+−20
+
+0
+
+−100
+
+−120
+
+−140
+
+−140
+
+−120
+
+−100
+
+−80
+
+−60
+
+First component
+
+−40
+
+−20
+
+0
+
+−140
+
+−120
+
+−100
+
+−80
+
+−60
+
+−40
+
+−20
+
+0
+
+First component
+
+Figure 2 Left: Map of the projection of the data on the original principal components.
+Middle: Map of the projection of the data on the blinded based principal components using
+Euclidean distance. Right: Map of the projection of the data on the blinded based principal components using Mahalanobis distance. Blue: Disk Hernia patients. Black: Normal
+patients.
+
+The plot on the first two principal components for the example data looks
+very similar to the plot on the principal components calculated using our
+procedure (Figure 1). It also shows that the patients with spondylolisthesis
+are separated from the rest of the patients, but the normal patients and the
+patients with disc hernias are mixed up together.
+Next, we calculate the two principal components using the traditional
+method and our procedure for the subset of normal and disc hernia patients,
+using now two variables. The first two principal components explain 75% of
+the variance then we decide to keep them. We discard to select one variable
+because in that case the largest angle is close to 78 degrees. For two variables
+the largest angle is close to 21 degrees and for three variables the angle does
+not decrease very much (19 degrees), so we decide to keep two variables.
+We consider both, the Euclidean and the Mahalanobis distance, and in
+both cases the variables selected are “lumbar lordosis angle” and “pelvic
+radius”. The value of the objective function (2.7) with the Euclidean distance
+is 0.125, while with the Mahalanobis distance is 0.141. Figure 2 shows that
+the plots for the principal components produced by these procedures look
+very similar.
+
+5 Conclusions
+In this paper we introduce a new variable selection procedure for PCA that
+aim to gain interpretation in principal components.
+On one hand we consider a local approach where we deals with finding a
+subset of variables that best explains each principal component, and on the
+other hand we analyzed a global approach when the objective is to find a
+
+Searching for the core variables in principal components analysis
+
+17
+
+unique subset to explain the first q principal components at once.
+We explained how through the conditional expectation we can choose the
+variables.
+Under wide regular conditions in the conditional expectation estimates
+and on the covariance matrix, strong consistency results are studied and
+numerical aspects have also been analysed.
+The performance of the procedure has been compared with several wellknown variable selection techniques using real and simulated data sets, showing the strengths of the method.
+
+Appendix: Proof of Theorem 2.1.
+First we are going to proof the following Proposition:
+Proposition. For k ∈ {1, ..., p}, if
+ĥkn (I) → hk (I) a.s. for all I ∈ Id ,
+
+(5.1)
+
+then it converges uniformly, and
+arg min ĥkn (I) → arg min hk (I) a.s.
+I∈Id
+
+I∈Id
+
+Proof. Since Id is a discrete and finite space , the convergence of (5.1) is
+uniform.
+For the sake of simplicity, let k = 1 (the proof is analogue for k ∈
+{2, ..., p}).
+For all δ > 0 there exists n0 (ω) such that for every n ≥ n0 (ω), with
+probability one
+ĥ1n (I) − h1 (I) < δ for all I ∈ Id ,
+then,
+h1 (I) − δ < ĥ1n (I) < h1 (I) + δ for all I ∈ Id
+
+(5.2)
+
+ĥ1n (I) − δ < h1 (I) < ĥ1n (I) + δ for all I ∈ Id .
+
+(5.3)
+
+and
+
+From (2.2), we know that exists δ0 > 0 such that
+
+18
+
+Gimenez and Giussani
+
+h1 (I1 ) < h1 (I) − δ0 for all I ∈
+/ I1,0 , for all I1 ∈ I1,0 .
+By choosing in (5.2) δ =
+
+ĥ1n (I1 ) < h1 (I1 ) +
+
+δ0
+2
+
+we obtain
+
+δ0
+δ0
+δ0
+< h1 (I) − δ0 +
+= h1 (I) −
+< ĥ1n (I)
+2
+2
+2
+
+for all I ∈
+/ I1,0 , for all I1 ∈ I1,0 , if n ≥ n0 (ω) with probability one.
+That means, that there exists n0 (ω) such that, if n ≥ n0 (ω), with probability one, if we choose I1 ∈ I1,0 , then I1 minimizes ĥ1n (I).
+Moreover, from (2.6), we have that for each n fix, exists δ1 > 0, such that
+
+ĥ1n (I 1 ) < ĥ1n (I) − δ1 for all I ∈
+/ Iˆ1n , for all I 1 ∈ Iˆ1n .
+Let δ =
+
+δ1
+2
+
+in (5.3) and n ≥ n1 (ω),
+
+h1 (I 1 ) < ĥ1n (I 1 ) +
+
+δ1
+δ1
+δ1
+< ĥ1n (I) − δ1 +
+= ĥ1n (I) −
+< h1 (I)
+2
+2
+2
+
+for all I ∈
+/ Iˆ1n , and for all I 1 ∈ Iˆ1n with probability one.
+That means, that exists n1 (ω) such that, if n ≥ n1 (ω) for all I 1 ∈ Iˆ1n , I 1
+minimizes h1 (I) with probability one.
+In conclusion, if n > max{n0 , n1 }, for all I1 ∈ I1,0 , I1 minimizes ĥ1n (I)
+and for all I 1 ∈ Iˆ1n , I 1 minimizes h1 (I) with probability one.
+As the proof is analogue for k ∈ {2, ..., p},
+Ik,0 = argminI∈Id hk (I),
+and
+Iˆkn = argminI∈Id ĥkn (I)
+this implies,
+arg min ĥkn (I) → arg min hk (I) a.s. for k ∈ {1, ..., p}.
+I∈Id
+
+I∈Id
+
+Searching for the core variables in principal components analysis
+
+19
+
+Proof. (of Theorem)
+To prove the Theorem 2.1 then it is enough to see that for each I the
+empirical objective function (2.6) converges a.s. to the theoretical objective
+function (2.3). To prove it, let us see that
+α̂nk (Pn ) − α̂nk (Pn,YI ) → αk (P) − αk (PYI )
+
+a.s. for all k.
+
+Dauxois et al. (1982) proved that under H1, if
+
+
+= max Σ̂n − Σ (u) → 0 a.s.,
+Σ̂n − Σ
+∞
+
+kuk=1
+
+then
+α̂nk (Pn ) − αk (P) → 0 a.s. for all 1 ≤ k ≤ p,
+where α̂nk (Pn ) (respec. αk (P)) are the eigenvectors of Σ̂n , that denotes the
+empirical covariance matrix associated with Pn (respec. Σ denotes the covariance matrix associated with P).
+So, if we prove that
+
+
+max Σ̂n (I) − Σ(I) (u) → 0 a.s.
+kuk=1
+
+then
+kα̂nk (Pn,YI ) − αk (PYI )k → 0 a.s. ∀1 ≤ k ≤ p,
+where α̂nk (Pn,YI ) (respec. αk (PYI )) are the eigenvectors of Σ̂n (I), that denotes the empirical covariance matrix associated with Pn,YI (respec. Σ(I)
+denotes the covariance matrix associated with PYI ).
+Note, that I = {1, . . . , p} is the classic case. We will show that this also
+holds for any I ⊆ {1, . . . , p}, that is
+
+
+max Σ̂n (I) − Σ(I) (u) → 0 a.s.
+kuk=1
+
+To simplify the notation, we can assume (without losing generality) that
+I = {1, . . . , d}, then
+
+t
+Yj = Xj [1], . . . , Xj [d], gn1 (Xj [I]), . . . , gnp−d (Xj [I]) ,
+where gni (z) is a uniformly consistent nonparametric estimate of g i (z). Specifically, gni will fulfil the following assumption,
+gnl (Xj [I]) → g l (Xj [I]) a.s. for any l, for all j, uniformly.
+
+20
+
+Gimenez and Giussani
+
+We define a non observable auxiliary vector,
+
+t
+Zj = Xj [1], . . . , Xj [d], g 1 (Xj [I]), . . . , g p−d (Xj [I]) ,
+where g i (z) = E(X[d + i]|X[I] = z).
+The proof will be complete if we show that
+max k(ΣZ − Σ(I)) (u)k → 0 a.s.,
+
+(5.4)
+
+max k(ΣY − ΣZ ) (u)k → 0 a.s.,
+
+(5.5)
+
+kuk=1
+
+and that
+kuk=1
+
+where ΣY = Σ̂n (I).
+Considering,
+X[i] =
+
+n
+1X
+Xj [i],
+n j=1
+
+gnl (X[I]) =
+
+n
+1X l
+gn (Xj [I]),
+n j=1
+
+g l (X[I]) =
+
+n
+1X l
+g (Xj [I])
+n j=1
+
+the three matrices are
+(Σ(I))ii0
+
+(ΣY )ii0 =
+
+
+
+
+
+
+
+
+
+
+
+
+
+(ΣZ )ii0 =
+
+
+
+
+
+
+
+
+
+
+
+cov(X[i], X[i0 ]) if 1 ≤ i, i0 ≤ d,
+cov(X[i], E(X[i0 ]|X[I])) if 1 ≤ i ≤ d < i0 ≤ p,
+=
+cov(E(X[i]|X[I]), X[i0 ]) if 1 ≤ i0 ≤ d < i ≤ p,
+
+
+
+cov(E(X[i]|X[I]), E(X[i0 ]|X[I])) if d + 1 ≤ i, i0 ≤ p,
+
+
+
+
+
+1
+n
+
+Pn
+
+j=1 (Xj [i]
+
+− X[i])(Xj [i0 ] − X[i0 ]) if 1 ≤ i, i0 ≤ d,
+
+0
+i0 −d
+1
+(Xj [I]) − gni −d (X[I])) if 1 ≤ i ≤ d < i0 ≤ p,
+j=1 (Xj [i] − X[i])(gn
+n
+Pn
+i−d
+0
+0
+i−d
+1
+0
+j=1 (gn (Xj [I]) − gn (X[I]))(Xj [i ] − X[i ]) if 1 ≤ i ≤ d < i ≤ p,
+n
+P
+0
+0
+n
+i−d
+i −d
+i−d
+1
+(Xj [I]) − gni −d (X[I])) if d + 1 ≤ i, i0
+j=1 (gn (Xj [I]) − gn (X[I]))(gn
+n
+
+Pn
+
+Pn
+
+0
+0
+0
+j=1 (Xj [i] − X[i])(Xj [i ] − X[i ]) if 1 ≤ i, i ≤ d,
+Pn
+0
+i0 −d
+1
+(Xj [i] − X[i])(g
+(Xj [I]) − g i −d (X[I])) if 1 ≤ i ≤ d < i0 ≤ p,
+n Pj=1
+n
+i−d
+1
+(Xj [I]) − g i−d (X[I]))(Xj [i0 ] − X[i0 ]) if 1 ≤ i0 ≤ d < i ≤ p,
+j=1 (g
+n
+P
+0
+n
+i−d
+1
+(Xj [I]) − g i−d (X[I]))(g i −d (Xj [I]) − g i0 −d (X[I])) if d + 1 ≤ i, i0
+j=1 (g
+n
+1
+n
+
+≤ p,
+
+We will now prove the convergence in (5.4) and (5.5).
+First, we show that
+max k(ΣZ − Σ(I)) (u)k → 0 a.s.
+
+kuk=1
+
+≤ p.
+
+21
+
+Searching for the core variables in principal components analysis
+
+It is sufficient to prove that each of the coordinates of the matrix ΣZ −Σ(I)
+converge to zero.
+Set 1 ≤ i, i0 ≤ p, then (ΣZ )ii0 → (Σ(I))ii0 a.s. and then (ΣZ − Σ(I))ii0 →
+0 a.s. ∀i, i0 = 1, ..., p.
+Because we are using a finite dimensional space, and each of the coordinates converge to zero, it holds that
+max k(ΣZ − Σ(I)) (u)k → 0 a.s.
+
+kuk=1
+
+Now, we show that
+max k(ΣY − ΣZ ) (u)k → 0 a.s.
+
+kuk=1
+
+As before, we are going to prove that each of the coordinates of the matrix
+ΣY − ΣZ converge to zero.
+For better understanding, we define
+G(l, j, n) = gnl (Xj [I]) − gnl (X[I]) − g l (Xj [I]) + g l (X[I]).
+• If 1 ≤ i, i0 ≤ d, (ΣY )ii0 = (ΣZ )ii0 then (ΣY − ΣZ )ii0 = 0.
+• If 1 ≤ i ≤ d, d + 1 ≤ i0 ≤ p,
+n
+
+(ΣY − ΣZ )ii0
+
+=
+
+=
+
+1X
+0
+0
+0
+(Xj [i] − X[i])(gni −d (Xj [I]) − gni −d (X[I]) − g i −d (Xj [I]) + g i0 −d (X[I]))
+n
+1
+n
+
+j=1
+n
+X
+
+(Xj [i] − X[i])G(i0 − d, j, n).
+
+j=1
+
+From the Cauchy-Schwarz inequality, we have that
+
+1 
+1
+2
+2
+n
+n
+n
+X
+X
+1X
+1
+1
+0
+2
+0
+2
+(Xj [i] − X[i])G(i − d, j, n) ≤ 
+(Xj [i] − X[i])  
+(G(i − d, j, n)) 
+n
+n
+n
+j=1
+
+j=1
+
+j=1
+
+On the other hand,
+n
+
+1X
+(Xj [i] − X[i])2 → V ar(X[i]) a.s.
+n
+j=1
+
+(5.6)
+
+22
+
+Gimenez and Giussani
+
+In addition, since
+gnl (Xj [I]) → g l (Xj [I]) a.s. uniformly, for any l, for all j,
+then for any l,
+n
+
+gnl (X[I])
+
+−
+
+g l (X[I])
+
+1X l
+=
+gn (Xj [I]) − g l (Xj [I]) ≤ max {gnl (Xj [I]) − g l (Xj [I])} → 0 a.s.
+1≤j≤n
+n
+j=1
+
+and therefore,
+G(l, j, n) → 0 a.s. for any l, for all j.
+This implies
+n
+
+1X
+(G(l, j, n))2 → 0 a.s. for any l.
+n
+
+(5.7)
+
+j=1
+
+Thus, by (5.6) and (5.7) we have
+n
+
+1X
+(Xj [i] − X[i])G(i0 − d, j, n) → 0 a.s.
+n
+
+(5.8)
+
+j=1
+
+which is what we required for our proof.
+• If d + 1 ≤ i ≤ p, 1 ≤ i0 ≤ d, from the simetry of the matrices and (5.8),
+we have that (ΣY − ΣZ )ii0 → 0 a.s.
+• If d + 1 ≤ i ≤ p, d + 1 ≤ i0 ≤ p,
+
+(ΣY − ΣZ )ii0
+
+=
+
+n
+i
+1 X h i−d
+0
+0
+(gn (Xj [I]) − gni−d (X[I]))(gni −d (Xj [I]) − gni −d (X[I])) −
+n
+j=1
+h
+i
+0
+(g i−d (Xj [I]) − g i−d (X[I]))(g i −d (Xj [I]) − g i0 −d (X[I])) .
+0
+
+0
+
+If we add and subtract (g i−d (Xj [I])−g i−d (X[I]))(gni −d (Xj [I])−gni −d (X[I])),
+and rearrange, we get that (ΣY − ΣZ )ii0 is the sum of
+n
+
+1 X i0 −d
+0
+(gn (Xj [I]) − gni −d (X[I]))G(i − d, j, n)
+n
+j=1
+
+(5.9)
+
+23
+
+Searching for the core variables in principal components analysis
+
+and
+n
+
+1 X i−d
+(g (Xj [I]) − g i−d (X[I]))G(i0 − d, j, n)
+n
+j=1
+
+were (5.9) can be rewrited as
+n
+
+1X
+0
+[G(i0 − d, j, n) + (g i −d (Xj [I]) − g i0 −d (X[I]))]G(i − d, j, n)
+n
+j=1
+
+or
+n
+
+n
+
+j=1
+
+j=1
+
+1 X i0 −d
+1X
+G(i0 − d, j, n)G(i − d, j, n) +
+(g
+(Xj [I]) − g i0 −d (X[I]))G(i − d, j, n).
+n
+n
+Then we have that
+n
+
+(ΣY − ΣZ )ii0
+
+=
+
+1X
+G(i0 − d, j, n)G(i − d, j, n)
+n
+j=1
+n
+X
+
++
+
+1
+n
+
++
+
+n
+1 X i−d
+(g (Xj [I]) − g i−d (X[I]))G(i0 − d, j, n).
+n
+
+0
+
+(g i −d (Xj [I]) − g i0 −d (X[I]))G(i − d, j, n)
+
+j=1
+
+j=1
+
+From triangular and Cauchy-Schwarz inequality,
+
+1/2 
+1/2
+n
+n
+X
+X
+1
+1
+|(ΣY − ΣZ )ii0 | ≤ 
+(G(i0 − d, j, n))2  
+(G(i − d, j, n))2 
+n
+n
+j=1
+
+j=1
+
+1/2 
+1/2
+n
+n
+X
+X
+1
+1
+0
++ 
+(g i −d (Xj [I]) − g i0 −d (X[I]))2  
+(G(i − d, j, n))2 
+n
+n
+
+
+j=1
+
+
+
+n
+
+j=1
+
+1 X i−d
+(g (Xj [I]) − g i−d (X[I]))2 
++ 
+n
+j=1
+
+1/2
+n
+X
+1
+
+(G(i0 − d, j, n))2 
+n
+
+1/2 
+
+j=1
+
+On the other hand, we have that
+n
+
+1X l
+(g (Xj [I]) − g l (X[I]))2 → V ar(g l (X[I])) a.s. for any l.
+n
+j=1
+
+24
+
+Gimenez and Giussani
+
+If V ar(g l (X[I])) < ∞ for any l and I, (5.7) entails |(ΣY − ΣZ )ii0 | → 0.
+As V ar(X[l]) < ∞, then for any l and any I,
+V ar(X[l]) = E(V ar(X[l]|X[I]))+V ar(E(X[l]|X[I])) = E(V ar(X[l]|X[I]))+V ar(g l (X[I]))
+We now that E(V ar(X[l]|X[I])) > 0, so we conclude that V ar(g l (X[I])) <
+∞
+We have proved that all the coordinates of the matrix ΣY − ΣZ converge
+to zero, so
+sup k(ΣY − ΣZ ) (u)k → 0 a.s.
+kuk=1
+
+Now we are ready to complete the proof of Theorem 2.1. From (5.4) and
+(5.5) we are able to use the result from Dauxois et al. (1982) to derive that,
+ĥkn (I) = kα̂nk (Pn )− α̂nk (Pn,YI )k2 → kαk (P)−αk (PYI )k2 = hk (I) a.s. (5.10)
+Indeed, we have that
+kα̂nk (Pn ) − α̂nk (Pn,YI )k − kαk (P) − αk (PYI )k ≤
+kα̂nk (Pn ) − αk (P)k + kαk (P) − αk (PYI )k +
+kαk (PYI ) − α̂nk (Pn,YI )k − kαk (P) − αk (PYI )k =
+kα̂nk (Pn ) − αk (P)k + kαk (PYI ) − α̂nk (Pn,YI )k → 0 a.s.
+and
+kαk (P) − αk (PYI )k − kα̂nk (Pn ) − α̂nk (Pn,YI )k ≤
+kαk (P) − α̂nk (Pn )k + kα̂nk (Pn ) − α̂nk (Pn,YI )k +
+kα̂nk (Pn,YI ) − αk (PYI )k − kα̂nk (Pn ) − α̂nk (Pn,YI )k =
+kαk (P) − α̂nk (Pn )k + kα̂nk (Pn,YI ) − αk (PYI )k → 0 a.s.
+which entails (5.10).
+Finally, (5.10) and the Proposition implies
+arg min ĥkn (I) → arg min hk (I) a.s.
+I∈Id
+
+I∈Id
+
+Searching for the core variables in principal components analysis
+
+25
+
+which concludes the proof.
+
+Acknowledgements
+This work has been partially supported by Grant pict 2008-0921 from ANPCyT (Agencia Nacional de Promoción Cientı́fica y Tecnológica), Argentina.
+We are very grateful to Dr. Ricardo Fraiman for his invaluable assistance
+and Dra. Marcela Svarc for her helpful suggestions. The authors would like
+to thank the referees for their constructive comments which improve significantly this work.
+
+References
+Biau, G., Fischer, A., Guedj, B. and Malley, J.D. (2013), “COBRA: A collective regression
+strategy”, arxiv.org/pdf/1303.2236.
+Dauxois, J., Pousse, A. and Romain, Y., (1982),“Asymptotic theory for the principal component analysis of a vector random function: some applications to statistical inference”,
+Journal of Multivariate Analysis 12, 136–154.
+Fraiman, R., Justel, A. and Svarc, M., (2008), “Selection of variables for cluster analysis
+and classification rules”, Journal of the American Statistical Association. 103(483),
+1294–1303.
+Frank, A. and Asuncion, A., (2010), UCI Machine Learning Repository
+[http://archive.ics.uci.edu/ml], Irvine, CA: University of California, School of
+Information and Computer Science.
+Hansen, B.E. (2008), “Uniform convergence rates for kernel estimation with dependent
+data”, Econometric Theory. 24, 726–748.
+He, X. and Shi, P., (1996), “Bivariate Tensor-Product B-Splines in Partly Linear Models”,
+Journal of Multivariate Analysis. 58, 162–181.
+Jolliffe, I., (1995), “ Rotation of principal components: choise of normalization constraints”, Journal of Applied Statistics.22, 29–35.
+Jolliffe, I. (2002), “Principal Components Analysis. Second Edition”, Ed. Springer.
+Jolliffe, I., Trendafilov, N. and Uddin, M. (2003), “ A modified principal component technique based on the LASSO”, Journal of Computational and Graphical Statistics. 12,
+531–547.
+Li, R. and Gong, G. (1987), “K-nn Nonparametric Estimation Of Regression Functions
+In the Presence of Irrelevant Variables”, Econometrics Journal, 00, 1-12.
+Luss, R. and d’Aspremont, A., (2010), “Clustering and feature selection using sparse
+principal component analysis”, Optimization and Engineering. 11(1), 145–157.
+Maronna, R. A., Martin, R. D. and Yohai, V. J., (2006), “Robust Statistics: Theory and
+Methods”, Wiley, London.
+McCabe, G. P. (1984), “Principal Variables”, Technometrics. 26, 137–144.
+
+26
+
+Gimenez and Giussani
+
+Tibshirani, R., (1996), “Regression shrinkage and selection via the LASSO”, Journal of
+the Royal statistical society. Series B 58(1), 267–288.
+Vines,S., (2000), “Simple principal components”, Applied Statistics. 49, 441–451.
+Witten, D.M. and Tibshirani, R., (2008), “Testing significance of features by lassoed principal components”, Annals of Applied Statistics. 2(3), 986–1012.
+Zou, H. and Hastie, T., (2005), “‘Regularizations and variable selection via the elastic
+net”, Journal of the Royal Statistical Society. Series B, 67, 301–320.
+Zou, H., Hastie, T. and Tibshirani, R. (2006), “Sparse principal component analysis”,
+Journal of Computational and Graphical Statistics, 15, 265–286.
+Universidad de San Andrés, Vito Dumas 284, 1644 Victoria, Buenos Aires, Argentina and CONICET
+E-mail: yanugimenez@gmail.com; ggiussani@udesa.edu.ar
+
+

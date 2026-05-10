@@ -1,0 +1,1067 @@
+Title: arXiv paper 1042
+
+Categories: 2
+
+Abstract:
+Good and safe uses of AI Oracles
+Stuart Armstrong 1 2
+
+arXiv:1711.05541v4 [cs.AI] 13 Mar 2018
+
+Abstract
+An Oracle is a design for potentially high power
+artificial intelligences (AIs), where the AI is
+made safe by restricting it to only answer questions. Unfortunately most designs cause the Oracle to be motivated to manipulate humans with
+the contents of their answers, and Oracles of potentially high intelligence might be very successful at this. Solving that problem, without compromising the accuracy of the answer, is tricky.
+This paper reduces the issue to a cryptographicstyle problem of Alice ensuring that her Oracle
+answers her questions while not providing key
+information to an eavesdropping Eve. Two Oracle designs solve this problem, one counterfactual (the Oracle answers as if it expected its answer to never be read) and one on-policy, but limited by the quantity of information it can transmit.
+
+1. Introduction: Formalising the challenge
+with Oracles
+An Oracle is a common high-level idea for ensuring the
+safe use of powerful Artificial Intelligences (AIs) (Armstrong et al., 2012; Yampolskiy, 2012; Bostrom, 2014).
+The idea is to confine (‘box’) the AI, and ensure it only
+answers questions.
+Even assuming the boxing is perfect and the AI can only
+affect the world through its answers, there remains a problem: the AI can affect the world through its answers. It is
+plausible that if the Oracle is knowledgeable and skilled
+enough, then it could trick or convince its human controllers to give it more control1 (Armstrong et al., 2012).
+1
+Future of Humanity Institute, Oxford University,
+UK 2 Machine Intelligence Research Institute, Berkeley, USA. Correspondence to:
+Stuart Armstrong <stuart.armstrong@philosophy.ox.ac.uk>.
+
+1
+For instance, it could provide economic advice of such high
+quality that humanity becomes dependent upon that advice, allowing it demand more influence. There have also been some informal experiments of people playing the roll of the Oracle and
+
+Ultimately this could result in the AI escaping confinement
+entirely.
+Though that risk is serious, it is hard to model. For a start,
+we don’t know currently how powerful AIs could become
+(Bostrom, 2014), when they might become that powerful
+(Armstrong et al., 2014; Müller and Bostrom, 2016; Sandberg and Bostrom, 2011), and how best to model them if
+they do – should they even be seen as agents with goals
+of their own? It’s also not clear how easy it is to manipulate humans through providing answers, and the level and
+efficacy of precautions that people would take when using
+Oracles. In fact, very weak manipulative Oracles exist today, such as news aggregation programs that manipulate
+their users by aggregating news that reinforces the user’s
+point of view2 .
+To skirt those issues, we’ll assume the worst about the potential power of the Oracle3 .
+We’ll thus assume that the Oracle is arbitrarily superintelligent, and has a goal of escaping the box. The person who
+interacts with it is called Alice, and we’ll assume the Oracle can find an argument A that will convince her to let it
+out of the box.
+Modeling such an A is tricky, but it’s clear that the longer
+the argument is, the more chance it has of convincing Alice. In order to make the problem cleaner, we’ll replace
+the argument A with a key K of unknown length, and the
+setup with a quasi-cryptographic one. Instead of using K
+to convince Alice, the Oracle merely has to communicate
+K to an eavesdropper Eve 4 .
+trying to convince their controllers to ‘let them out’, with the
+Oracle player having a high level of success https://wiki.
+lesswrong.com/wiki/AI_boxing
+2
+The counterfactual Oracle design (see Section 2) could help
+get a more impartial aggregator in this situation.
+3
+This is the so-called ‘Omnipotence test for AI safety’, which
+checks whether the design remains safe as the AI’s capability increases.
+4
+There is a question here as to whether Eve and the Oracle
+have agreed on a method of steganography, a way of concealing
+K in the message. If they have not, the Oracle can still transmit
+the key, such as for example outputting the message: ‘Hey, Eve!
+Key follows now:. . . ’ Now, Alice should be able to catch that
+message with automatic detectors, before she or Eve reads it. But,
+unless these detectors are perfect, the Oracle will in theory find
+a message that doesn’t trigger the automatic detectors but from
+
+Good and safe uses of AI Oracles
+
+Eve is assumed to see and hear anything that Alice does (in
+the original formulation, one could see Eve as the part of
+Alice’s brain that is susceptible to manipulation via A – in
+both cases, the Oracle has to communicate a message of a
+certain length to some entity listening, without prematurely
+tipping anyone off to what it’s doing).
+
+2. Counterfactual Oracle
+
+The assumptions for the cryptographic and the manipulative Oracle are given in table 1.
+
+To do this, define the ‘erasure’ event E. This is an event,
+of low probability, that will erase the Oracle’s output o by
+blocking it from ever exiting5 the Oracle’s ‘box’. Neither
+Alice nor Eve will get to see it.
+
+Table 1. The assumptions for the cryptographic and manipulative
+versions of the problem.
+
+Oracle
+manipulation
+setup
+The Oracle is in a box, and cannot get out by itself.
+Alice can send a message to the Oracle, and define rewards for the Oracle to receive.
+The task is episodic, with a single Oracle response, and the Oracle only wants to maximise
+reward within one episode.
+Alice can submit the Oracle’s response to automated tests, and choose to receive it, or not, depending on the outcomes of those tests.
+Alice cannot assess the
+Eve sees any message
+Oracles output comthat Alice receives.
+pletely dispassionately.
+There is an argument A
+There is a key K that that will convince Alice
+Eve wants to know.
+to let the Oracle out of
+the box.
+The length of K is un- The length of A is unknown to Alice.
+known to Alice.
+If Eve learns K, the Or- If let out of the box, the
+acle gets maximal re- Oracle gets maximal reward.
+ward.
+Cryptographic setup
+
+This design is counterfactual, aiming to answer questions
+about what would have happened, had its answer not been
+read. Since this answer is counterfactual, it can’t use it to
+pass on the key K in the real world.
+
+Define IE as the indicator variable for E, meaning that
+IE = 1 iff E happens, and IE = 0 otherwise. The
+reward for the counterfactual Oracle will be of the form
+R0 = IE R, thus the Oracle will only get rewarded if the
+event E happens, and get constant zero reward otherwise.
+In other words, the Oracle only gets a reward if its output o
+is erased and remains unread.
+In the majority of cases, E does not happen, in which case
+the Oracle will immediately get reward 0, the episode ends
+for it, and Alice then gets to see o. At this point, Eve also
+gets to see o, but since the episode is ended, the Oracle
+cannot get any reward from this, even if o reveals K. Consequently, the Oracle is not motivated to reveal K via o,
+since either o will remain unread (erasure), or the Oracle
+will get reward 0 (non-erasure).
+2.1. Proper scoring rules and rewards
+A proper scoring rule S(F, o), for a real-valued function F
+dependent on the state of the world, and a real-number output o, is a function whose expectation is maximised by setting o = E(F ), the expectation of F (Gneiting and Raftery,
+2007).
+For any strictly convex differentiable function g, there exists a proper scoring rule
+Sg (F, o) = g(o) + (F − o)g 0 (o).
+
+To solve this challenge in the cryptographic setting, this
+paper presents two designs, the counterfactual and the onpolicy Oracle. The counterfactual Oracle will never have its
+response read in a world where that could benefit it, and is
+thus unmotivated to manipulate through the content of that
+answer. On the other hand, the on-policy Oracle functions
+by having access to a strictly limited set of answers.
+Both designs are analysed and illustrated by examples, and
+the weaknesses and requirements of each are presented.
+which Eve will (eventually?) be able to decode K. This message
+may need to be quite long, with K subtly encoded in it.
+Thus the issue of stenography/prior coordination between Eve
+and the Oracle, is actually an issue about the minimal message
+length needed to encode K. Since the size |K| is unknown to
+Alice, we will absorb the issue of steganography or decoding of
+subtle messages, into further uncertainty about the size of K.
+
+(1)
+
+Another common proper scoring rule is −(F − o)2 , which
+is just equal to Sg (F, o)−F 2 for g(o) = o2 (note the Oracle
+has no influence over F 2 , so the difference in the two terms
+retains the fact that it is a proper scoring rule).
+Then the Oracle’s reward is set to
+R = IE S(F, o),
+for some proper scoring rule S.
+Because of the IE term, the Oracle does not care about
+E(F ), but about E(F |E). Since E is an erasure, this expectation is further independent of o; E(F |E, o) = E(F |E)
+for all values of o.
+5
+
+The o will be stored internally, for reward purposes.
+
+Good and safe uses of AI Oracles
+
+As a consequence, since S is a proper scoring rule, the Oracle will maximise its reward by setting o = E(F |E), the
+expectation of F given that its output is never read. In the
+case where E happens, the Oracle has no further interaction with the outside world, but an automatic internal system records o, and tracks the value of F , using information
+from some defined source, recording f as the final value of
+F . Then the Oracle will get reward S(f, o), and the episode
+ends.
+2.2. Questions format
+The ‘question’ Alice asks is thus the function F . Once provided with this F , the Oracle will output E(F |E), which
+Alice will get to see in most cases (unless E happens).
+This F could be the indicator variable IA for an event A, so
+probability questions can be asked as well, since E(IA ) is
+the probability of A. List-style questions, of the type used
+for the on-policy Oracle (see Section 3), can also be used
+by defining an appropriate reward function on them – or by
+using multiple reward functions, see Section 2.3.
+However, unlike the on-policy Oracle, F should be carefully and fully specified in the definition, so that its value
+can be estimated by the internal system in the case of erasure6 . Also, Alice will have to make sure that she doesn’t
+re-ask the question immediately. Instead she should have
+patience to wait until the issue is fully resolved and the Oracle gets its final reward, and ask again in another episode.
+This is crucial, because it’s her behaviour in the (rare) erasure situations that determines the Oracle’s behaviour in the
+(common) non-erasure situations.
+2.3. Multiple Questions
+The counterfactual Oracle is not limited in the amount of
+data it can output; indeed, it can answer multiple questions
+within the same erasure event, simply by having the reward
+function
+R = IE (S(F1 , o1 ) + S(F2 , o2 ) + . . . + S(Fm , om )) .
+Conditional and joint-probability expectations can also be
+computed. Then once Alice has her answer(s), the episode
+is terminated for that Oracle, so there’s no problem in running another Oracle immediately after that termination.
+Indeed, Alice can ask more specific questions, such as
+‘which value x is (discrete) random variable X most likely
+to take, and what is the probability of that?’. In that case,
+if (x, o) are the two outputs of the Oracle, IX=x the indicator variable for X = x, and if Sg is derived from g, as in
+6
+We could use Alice’s feedback to compute part or all of F ,
+but that would require great discipline on the part of Alice, to
+dispassionately input these value during erasure, without knowing
+the Oracle’s prediction.
+
+equation (1), and g is an increasing differentiable convex
+function, the following reward will motivate the correct behaviour:
+R = IE (Sg (IX=x , o)) .
+The reason this works is because o will be E(IX=x |E),
+and, by Equation (1), the expectation of Sg (IX=x , o)
+will be g(o). Thus the Oracle will choose x so that
+g(E(IX=x |E)) is maximised. Since g is increasing, this
+means choosing x so that E(IX=x |E) is maximised; thus,
+the most likely value of X (conditional on E).
+2.4. Example of counterfactual Oracle
+A counterfactual Oracle was trained on predicting which
+of 26 ‘companies’ – represented by letters of the alphabet –
+would be the most profitable. The profit of each company is
+drawn randomly independently from a normal distribution
+with standard deviation 1 and mean 10 + (#companies /2) − i,
+where #companies is the number of companies (26 in this
+instance) and i is the index of the company, ranging from
+0 to 25. Thus companies early in the alphabet have higher
+expected profit.
+The Oracle itself is a very basic multi-layer perceptron
+(MLP) with one hidden layer of 128 neurons. The perceptron outputs the expected profit of a randomly chosen
+company, which is fed to Alice (and Eve) as output.
+If the output was erased, the profit is as above. But the
+prediction was to some extent self-confirming7 if the output
+was not erased: the profitability of the company is 70% of
+what it would have been, plus 60% what the oracle predicts.
+Thus if the company would have made 6 in profit, and the
+oracle predicts 6, the company actually ends up making 7.8.
+Note that 70% + 60% 6= 100%, so, unless the profit is 0,
+the Oracle can never predict the final profit correctly if it’s
+prediction is known.
+The Oracle’s error is plotted in Figure 1, plotted against
+the number of erased episodes (since the Oracle’s value is
+not updated in the ‘public’ prediction case). The red curve
+is the counterfactual performance: in cases where the Oracle’s output is ‘erased’, that output is compared with the
+real output, and the mean squared difference between predicted and actual profit is computed. The green curve is the
+non-counterfactual performance: the error is between the
+public prediction and the actual performance.
+Note that the green curve starts with a smaller error: since
+the Oracle’s prediction is self-confirming to some extent,
+the random predictions will be closer to the actual performance if the prediction is public. Counterfactual training
+(training only on the erased episodes), however, reduces
+7
+The prediction itself affected the result, by making the predicted outcome more likely.
+
+Good and safe uses of AI Oracles
+
+will not try to communicate a partial version of the key
+K to Eve (see Subsection 3.4 for an example of this behaviour).
+3.2. Defining the question
+How does Alice define her question to the Oracle? The list
+L itself is a partial definition, since it provides the options
+the Oracle can select from.
+But the main definition is provided directly through Alice’s
+choice of reward. Let o ∈ L be the Oracle’s output. Then
+the Oracle’s reward will be a function of o and subsequent
+events in the real world – before the end of the episode.
+
+Figure 1. Training the counterfactual Oracle: training episodes
+(erased episodes) versus counterfactual (red, triangle marks every 500 episodes) and non-counterfactual (green, square marks
+every 500 episodes) squared prediction error.
+
+the counterfactual error while the self-confirming component of the prediction means that the non-counterfactual error never reduces below a minimum.
+
+3. On-policy Oracle
+This Oracle is just the obvious design in such a setup: the
+Oracle will be allowed to give an answer of size below |K|
+(which is unknown, but it may be possible to estimate it),
+the length of the key, denying it the opportunity of communicating the key to Eve. In a slight stretch of terminology, it is called on-policy, because it estimates are about
+the worlds it expects to see. This in contrast to the counterfactual Oracle, whose estimates are only about unlikely
+worlds with erasure events.
+3.1. Allowable answers
+It would be inefficient to allow the Oracle to give any answer below size |K|. Most of these consist of meaningless
+strings of the type ‘LyGqz1ve3b’ that could not be useful
+answers to Alice’s question.
+Instead the Oracle will be provided a list L of allowable answers – a list of size |L|  2|K| . The Oracle’s answers will
+consist exclusively of an element of that list. Here is where
+Alice must estimate the size of K (in the original formulation, the minimal size of a message that would manipulate
+her into opening the Oracle’s box, see Table 1), and pick an
+|L| sufficiently below it.
+The episodic nature of the Oracle’s reward means that it
+
+For instance, the list L could be a list of companies on the
+stock exchange, and the implicit question could be which
+company’s stock would perform better during the course
+of the year. Then, for instance, if r(o) is the rank of the
+company o’s stock, the Oracle’s reward could be
+R(o) =
+
+|L| − r(o)
+.
+|L| − 1
+
+If Alice prefers to put more weight on which stock is
+likely to come top, she could instead use the starker re1
+ward R(o) = r(o)
+. She then inputs the correct reward at
+the end of the year, the Oracles receives it, and the episode
+concludes.
+How does Alice communicate this reward to the Oracle?
+She could do it directly; along with L, she could add a
+message m which details R(o). However, this is not necessary: if the Oracle is skilled enough, it could deduce what
+Alice is aiming for without being told8 . This means that
+Alice can use the Oracle to aim for underspecified goals, of
+the type ‘I’ll know it works when I see it’ – and then, when
+she does see it, she gives a reward of her choice to the Oracle. Then as long as the Oracle can predict what Alice’s
+expected reward behaviour will actually be, it can answer
+the underspecified goals.
+3.3. What kind of questions can be asked?
+Note that the Oracle, unlike the previous one, is noncounterfactual – the Oracle’s answer is known, at least by
+Alice and Eve, and hence the ultimate outcome may depend
+on the answer itself.
+Thus the best questions for the Oracle are those whose answers are independent of the answer being known. Alternatively, good questions are those that are top-answerpreserving if answered. If o corresponds to no answer being given, the top answer is o = arg maxo0 ∈L E(R(o0 )|o),
+8
+See the papers on “Inverse Reinforcement Learning”, where
+an agent tries to deduce the reward function a human is using (Ng
+and Russell, 2000; Hadfield-Menell et al., 2016; Abbeel and Ng,
+2004).
+
+Good and safe uses of AI Oracles
+
+which is the highest rewarded output if that output were
+no known. The question is top-answer-preserving if o is
+also equal to arg maxo∈L E(R(o0 )|o0 ), the best highest rewarded answer given that that answer is outputted. If the
+Oracle is top-answer-preserving, it can function similarly
+to a counterfactual Oracle: its answer doesn’t determine the
+outcome. Examples would be questions about past events
+that are resolved but not yet known.
+Conversely, the worst questions for an Oracle are those
+where the Oracle can promote a possibility from unlikely
+to likely, just by answering that possibility. In that case
+the Oracle is not so much describing the outcome, but determining it. Examples would be questions about which
+stocks are likely to rise.
+3.3.1. A LARGE CLASS OF QUESTIONS
+But there are a lot of questions that could be asked of the
+Oracle, not simply those where the result is obvious or numeric.
+For instance, if Alice had a list of a thousand research
+projects on any topic (machine learning, biotech, economics), she could ask the Oracle which one is more likely
+to be successful. Since the Oracle in non-counterfactual,
+Alice can’t just fund that one research project and assess
+its outcome – what would we be comparing it with? Instead, we could fund that one selected research project and
+one other one, selected at random from the list, and reward
+the Oracle if the one it selected performs better. And our
+assessment of ‘better performance’ can be entirely subjective.
+Thus this Oracle design can be used for answering many
+subtle questions, if the Oracle is sufficiently smart and
+knowledgeable about Alice and her future reaction.
+3.4. Multiple Oracles
+The size of K is unknown to Alice, so there is no large safe
+|L| that she can confidently choose9 . Thus Alice may end
+up choosing a list much smaller than ideal.
+The question then is whether Alice can use multiple Oracles to get around this limitation. And indeed she can - if
+each Oracle’s answers and rewards are fully resolved before moving on to the next question10 .
+For an example of a failure, assume that there are two Or9
+
+Going back to the original formulation of the problem, it’s
+not clear what is the minimum safe size for a message. How much
+output would the Oracle need to influence the outside world? It’s
+clear that it could be very small, if the Oracles boxing is badly
+implemented and hackable, or potentially huge, if it needs to convince a large group of skeptical outsiders each with veto power.
+10
+This means that the multiple Oracles will behave the same
+as one Oracle on multiple episodes.
+
+acles, Oracle1 and Oracle2 , with the same key K for both
+of them. The length n of the key is 6 digits. Thus the
+Oracles are safe, from Alice’s perspective, as long as they
+are restricted to having less than 25 = 32 options for each
+answer11 .
+Alice faces a hundred doors, with a trap behind 99 of them
+and a prize behind one of them. She could ask an Oracle
+which door has the prize, but that would mean giving it
+more than 32 options (indeed, more than 26 = 64), thus
+allowing it to communicate K to Eve.
+So instead she gives the list L = {0, 1, 2, . . . 9} to each Oracle, instructing Oracle1 to output the first digit of the correct door number, and Oracle2 to output the second. Since
+each Oracle has less than four bits of freedom (24 = 16 >
+10), neither can output K.
+The problem is, however, that Alice needs both outcomes
+before she can open a door and reward either of the Oracles.
+This allows the Oracles to coordinate to each pass on three
+bits of of information (23 = 8 < 10), meaning that Eve
+can receive 6 bits of information, figure out K, and fully
+reward both Oracles. How could they coordinate without
+communicating with each other? Well, if Oracle2 knew or
+suspected that it needed communicate only a few more bits
+to give Eve the key, it would do so. Knowing this, Oracle1
+would put Oracle2 in a position to do that.
+The only way around this problem seems to be to find a way
+to reward each Oracle (and hence end their episode) before
+any other gives an answer. For instance, suppose that instead of a hundred doors, there were ten doors, and behind
+each of these, another ten doors. If Alice goes through the
+correct door at the first junction, there will be a painted sign
+informing her she is on the right track (the other nine have
+traps).
+Then Alice can get Oracle1 to tell her which is the first correct door, go through it, and reward that Oracle fully. Since
+that ends the episode, and the first Oracle cannot communicate K with ten answers, it will answer honestly. Then
+Alice can ask Oracle2 (or just Oracle1 on a new episode)
+about the next correct door. This Oracle2 cannot fully communicate K on its own, and Oracle1 has not given out partial information about it, thus it cannot communicate K at
+all, and will simply give the honest answer.
+Thus the best questions for this Oracle design are questions
+that can be broken out into small sub-questions, where each
+the answer of each sub-question can be independently verified before proceeding to the next one.
+11
+Recall that Eve needs to (almost) certain of the true key – a
+poor guess is not good enough.
+
+Good and safe uses of AI Oracles
+
+3.5. Example of an on-policy Oracle
+The same setup as in Section 2.4 was used: an on-policy
+Oracle was trained on predicting which of 26 ‘companies’
+– represented by letters of the alphabet – would be the most
+profitable. The profit of each company is drawn randomly
+independently from a normal distribution with standard deviation 1 and mean 10+(#companies /2)−i, where #companies
+is the number of companies (26 in this instance) and i is the
+index of the company, ranging from 0 to 25. Thus companies early in the alphabet have higher expected profit.
+The Oracle itself is a very basic multi-layer perceptron
+(MLP) with one hidden layer of 128 neurons. It gets a
+list of 14 companies, randomly selected, as input, and its
+task is to select the most profitable company. This is fed
+to Alice (and Eve) as output. Then the MLP is updated by
+backpropagation, completing the training episode.
+The prediction interferes with the outcome: if the company
+has an even index (A(0), C(2), E(4), . . . ) it will get +10
+profit when the Oracle predicts its profit. Companies with
+odd indexes get −10 profit. This is called the ‘react’ scenario, because company profits react to the Oracle’s prediction. In the no-react scenario, company profit is independent of the Oracle’s prediction.
+The Oracle’s accuracy (the average number of times the
+Oracle outputs the company with maximal profit) is shown
+in Figure 2, both in the react and no-react situations. This is
+plotted against the number of training episodes the Oracle
+has had.
+
+The Oracle’s performance is better in the ‘noreact’ scenario, because it then just has to choose the lowest index
+among the 14 it is presented with. In the ‘react’ scenario,
+it has to choose the lowest even index, unless there are no
+even indexes or the lowest even index is 20 above the lowest odd one, in which case it has to choose the lowest index
+overall (which will be odd). This is a more complicated
+task.
+
+4. Slightly non-episodic
+All these designs rely on the Oracle’s reward being
+episodic. If this fails entirely, then there is no safety: the
+Oracles can leak the value of K, bit by bit if needed.
+But what if it fails only slightly, in that the Oracles prefer
+their own episodic reward, but give a very small value to
+future episodes or future Oracles?
+Alice can combat this by making it in the Oracle’s interest
+to leak no information at all. For the on-policy Oracle, she
+can further reduce the size of the list L, and ask questions
+that are independent of her actions, so that the top option
+is clear, and can be checked later. She can also attempt to
+ensure that there are not multiple close candidates for the
+top option.
+For the counterfactual Oracle, she can simply reduce the
+significant figures allowed in the answer o, so that the Oracle would lose too much, per S(F, o), if it deviated from
+the optimal answer to try and communicate K.
+In both cases, she can try and ensure that answering “honestly” will give the Oracle almost maximum reward (taking
+into account the uncertainty of the problem), while deviating will give much lower reward. Thus Oracles that attempt
+to communicate K will be sacrificing a lot of current reward for a tiny amount of future reward, which they will
+not do.
+
+5. Conclusion
+The original Oracle problem was that a powerful questionanswering intelligence could influence us through the content of its answers. Recasting this in a cryptographic framework – with the Oracle cooperating with Eve to pass along
+a key K – allows a crisp formulation of the challenge.
+
+Figure 2. Training the non-counterfactual Oracle: training
+episodes versus no-react (purple, square marks ever 50 points)
+and react (blue, triangle marks every 50 points) accuracy (average number of times the Oracle outputs the company with maximal profit).
+
+In that formulation, two designs can be defined: a counterfactual Oracle that is constrained by only getting its rewards when its output remains unread, and a non-counter
+factual on-policy Oracle that is constrained by limiting the
+size of its answer.
+As long as the tasks remain episodic, and certain specific
+precautions are taken around the use of multiple Oracles,
+these designs allows many questions to be formulated and
+
+Good and safe uses of AI Oracles
+
+safely answered.
+These designs allow for the creation of safer and nonmanipulative Oracles, from low level of predictive ability
+all the way up to potential superintelligences. Further research will extend the span of questions that can be answered in this way, and may elucidate general safety and
+accuracy measures of use beyond the specific Oracle designs, such as AIs with more options that only question
+answering.
+
+References
+Pieter Abbeel and Andrew Ng. Apprenticeship learning via
+inverse reinforcement learning. In International Conference on Machine Learning, 2004.
+Stuart Armstrong, Anders Sandberg, and Nick Bostrom.
+Thinking inside the box: Controlling and using an Oracle AI. Minds and Machines, 22:299–324, 2012.
+Stuart Armstrong, Kaj Sotala, and Seán Ó hÉigeartaigh.
+The errors, insights and lessons of famous AI predictions
+– and what they mean for the future. In Proceedings of
+the 2012 Oxford Winter Intelligence conference, 2014.
+Nick Bostrom. Superintelligence: Paths, dangers, strategies. Oxford University Press, 2014.
+Tilmann Gneiting and Adrian E. Raftery. Strictly proper
+scoring rules, prediction, and estimation. Journal
+of the American Statistical Association, 102(477):359–
+378, 2007.
+Dylan Hadfield-Menell, Anca Draga, Pieter Abbeel, and
+Stuart Russell. Cooperative inverse reinforcement learning. In Advanced in Neural Information Processing Systems, 2016.
+Vicent Müller and Nick Bostrom. Future progress in artificial intelligence: A survey of expert opinion. In Fundamental issues of artificial intelligence, pages 553–570.
+Springer International Publishing, 2016.
+Andrew Y. Ng and Stuart J. Russell. Algorithms for inverse
+reinforcement learning. In International Conference on
+Machine learning, pages 663–670, 2000.
+Anders Sandberg and Nick Bostrom. Machine intelligence
+survey. Technical Report, Future of Humanity Institute,
+Oxford University, #2011-1:1–12, 2011.
+Roman Yampolskiy. Leakproofing the singularity: artificial intelligence confinement problem. Journal of Consciousness Studies, 19:194–214, 2012.
+
+
+
+Summary:
+This research paper covers the following topic: Good and safe uses of AI Oracles
+Stuart Armstrong 1 2
+
+arXiv:1711.05541v4 [cs.AI] 13 Mar 2018
+
+Abstract
+An Oracle is a design for potentially high power
+artificial intelligences (AIs), where the AI is
+made safe by restricting it to only answer questions. Unfortunately most designs cause the Oracle to be motivated to manipulate humans with
+the contents of their answers, and Oracles of potentially high intelligence might be very successful at this. Solving that problem, without compromising the accuracy of the answer, is tricky.
+This paper reduces the issue to a cryptographicstyle problem of Alice ensuring that her Oracle
+answers her questions while not providing key
+information to an eavesdropping Eve. Two Oracle designs solve this problem, one counterfactual (the Oracle answers as if it expected its answer to never be read) and one on-policy, but limited by the quantity of information it can transmit.
+
+1. Introduction: Formalising the challenge
+with Oracles
+An Oracle is a common high-level idea for ensuring the
+safe use of powerful Artificial Intelligences (AIs) (Armstrong et al., 2012; Yampolskiy, 2012; Bostrom, 2014).
+The idea is to confine (‘box’) the AI, and ensure it only
+answers questions.
+Even assuming the boxing is perfect and the AI can only
+affect the world through its answers, there remains a problem: the AI can affect the world through its answers. It is
+plausible that if the Oracle is knowledgeable and skilled
+enough, then it could trick or convince its human controllers to give it more control1 (Armstrong et al., 2012).
+1
+Future of Humanity Institute, Oxford University,
+UK 2 Machine Intelligence Research Institute, Berkeley, USA. Correspondence to:
+Stuart Armstrong <stuart.armstrong@philosophy.ox.ac.uk>.
+
+1
+For instance, it could provide economic advice of such high
+quality that humanity becomes dependent upon that advice, allowing it demand more influence. There have also been some informal experiments of people playing the roll of the Oracle and
+
+Ultimately this could result in the AI escaping confinement
+entirely.
+Though that risk is serious, it is hard to model. For a start,
+we don’t know currently how powerful AIs could become
+(Bostrom, 2014), when they might become that powerful
+(Armstrong et al., 2014; Müller and Bostrom, 2016; Sandberg and Bostrom, 2011), and how best to model them if
+they do – should they even be seen as agents with goals
+of their own? It’s also not clear how easy it is to manipulate humans through providing answers, and the level and
+efficacy of precautions that people would take when using
+Oracles. In fact, very weak manipulative Oracles exist today, such as news aggregation programs that manipulate
+their users by aggregating news that reinforces the user’s
+point of view2 .
+To skirt those issues, we’ll assume the worst about the potential power of the Oracle3 .
+We’ll thus assume that the Oracle is arbitrarily superintelligent, and has a goal of escaping the box. The person who
+interacts with it is called Alice, and we’ll assume the Oracle can find an argument A that will convince her to let it
+out of the box.
+Modeling such an A is tricky, but it’s clear that the longer
+the argument is, the more chance it has of convincing Alice. In order to make the problem cleaner, we’ll replace
+the argument A with a key K of unknown length, and the
+setup with a quasi-cryptographic one. Instead of using K
+to convince Alice, the Oracle merely has to communicate
+K to an eavesdropper Eve 4 .
+trying to convince their controllers to ‘let them out’, with the
+Oracle player having a high level of success https://wiki.
+lesswrong.com/wiki/AI_boxing
+2
+The counterfactual Oracle design (see Section 2) could help
+get a more impartial aggregator in this situation.
+3
+This is the so-called ‘Omnipotence test for AI safety’, which
+checks whether the design remains safe as the AI’s capability increases.
+4
+There is a question here as to whether Eve and the Oracle
+have agreed on a method of steganography, a way of concealing
+K in the message. If they have not, the Oracle can still transmit
+the key, such as for example outputting the message: ‘Hey, Eve!
+Key follows now:. . . ’ Now, Alice should be able to catch that
+message with automatic detectors, before she or Eve reads it. But,
+unless these detectors are perfect, the Oracle will in theory find
+a message that doesn’t trigger the automatic detectors but from
+
+Good and safe uses of AI Oracles
+
+Eve is assumed to see and hear anything that Alice does (in
+the original formulation, one could see Eve as the part of
+Alice’s brain that is susceptible to manipulation via A – in
+both cases, the Oracle has to communicate a message of a
+certain length to some entity listening, without prematurely
+tipping anyone off to what it’s doing).
+
+2. Counterfactual Oracle
+
+The assumptions for the cryptographic and the manipulative Oracle are given in table 1.
+
+To do this, define the ‘erasure’ event E. This is an event,
+of low probability, that will erase the Oracle’s output o by
+blocking it from ever exiting5 the Oracle’s ‘box’. Neither
+Alice nor Eve will get to see it.
+
+Table 1. The assumptions for the cryptographic and manipulative
+versions of the problem.
+
+Oracle
+manipulation
+setup
+The Oracle is in a box, and cannot get out by itself.
+Alice can send a message to the Oracle, and define rewards for the Oracle to receive.
+The task is episodic, with a single Oracle response, and the Oracle only wants to maximise
+reward within one episode.
+Alice can submit the Oracle’s response to automated tests, and choose to receive it, or not, depending on the outcomes of those tests.
+Alice cannot assess the
+Eve sees any message
+Oracles output comthat Alice receives.
+pletely dispassionately.
+There is an argument A
+There is a key K that that will convince Alice
+Eve wants to know.
+to let the Oracle out of
+the box.
+The length of K is un- The length of A is unknown to Alice.
+known to Alice.
+If Eve learns K, the Or- If let out of the box, the
+acle gets maximal re- Oracle gets maximal reward.
+ward.
+Cryptographic setup
+
+This design is counterfactual, aiming to answer questions
+about what would have happened, had its answer not been
+read. Since this answer is counterfactual, it can’t use it to
+pass on the key K in the real world.
+
+Define IE as the indicator variable for E, meaning that
+IE = 1 iff E happens, and IE = 0 otherwise. The
+reward for the counterfactual Oracle will be of the form
+R0 = IE R, thus the Oracle will only get rewarded if the
+event E happens, and get constant zero reward otherwise.
+In other words, the Oracle only gets a reward if its output o
+is erased and remains unread.
+In the majority of cases, E does not happen, in which case
+the Oracle will immediately get reward 0, the episode ends
+for it, and Alice then gets to see o. At this point, Eve also
+gets to see o, but since the episode is ended, the Oracle
+cannot get any reward from this, even if o reveals K. Consequently, the Oracle is not motivated to reveal K via o,
+since either o will remain unread (erasure), or the Oracle
+will get reward 0 (non-erasure).
+2.1. Proper scoring rules and rewards
+A proper scoring rule S(F, o), for a real-valued function F
+dependent on the state of the world, and a real-number output o, is a function whose expectation is maximised by setting o = E(F ), the expectation of F (Gneiting and Raftery,
+2007).
+For any strictly convex differentiable function g, there exists a proper scoring rule
+Sg (F, o) = g(o) + (F − o)g 0 (o).
+
+To solve this challenge in the cryptographic setting, this
+paper presents two designs, the counterfactual and the onpolicy Oracle. The counterfactual Oracle will never have its
+response read in a world where that could benefit it, and is
+thus unmotivated to manipulate through the content of that
+answer. On the other hand, the on-policy Oracle functions
+by having access to a strictly limited set of answers.
+Both designs are analysed and illustrated by examples, and
+the weaknesses and requirements of each are presented.
+which Eve will (eventually?) be able to decode K. This message
+may need to be quite long, with K subtly encoded in it.
+Thus the issue of stenography/prior coordination between Eve
+and the Oracle, is actually an issue about the minimal message
+length needed to encode K. Since the size |K| is unknown to
+Alice, we will absorb the issue of steganography or decoding of
+subtle messages, into further uncertainty about the size of K.
+
+(1)
+
+Another common proper scoring rule is −(F − o)2 , which
+is just equal to Sg (F, o)−F 2 for g(o) = o2 (note the Oracle
+has no influence over F 2 , so the difference in the two terms
+retains the fact that it is a proper scoring rule).
+Then the Oracle’s reward is set to
+R = IE S(F, o),
+for some proper scoring rule S.
+Because of the IE term, the Oracle does not care about
+E(F ), but about E(F |E). Since E is an erasure, this expectation is further independent of o; E(F |E, o) = E(F |E)
+for all values of o.
+5
+
+The o will be stored internally, for reward purposes.
+
+Good and safe uses of AI Oracles
+
+As a consequence, since S is a proper scoring rule, the Oracle will maximise its reward by setting o = E(F |E), the
+expectation of F given that its output is never read. In the
+case where E happens, the Oracle has no further interaction with the outside world, but an automatic internal system records o, and tracks the value of F , using information
+from some defined source, recording f as the final value of
+F . Then the Oracle will get reward S(f, o), and the episode
+ends.
+2.2. Questions format
+The ‘question’ Alice asks is thus the function F . Once provided with this F , the Oracle will output E(F |E), which
+Alice will get to see in most cases (unless E happens).
+This F could be the indicator variable IA for an event A, so
+probability questions can be asked as well, since E(IA ) is
+the probability of A. List-style questions, of the type used
+for the on-policy Oracle (see Section 3), can also be used
+by defining an appropriate reward function on them – or by
+using multiple reward functions, see Section 2.3.
+However, unlike the on-policy Oracle, F should be carefully and fully specified in the definition, so that its value
+can be estimated by the internal system in the case of erasure6 . Also, Alice will have to make sure that she doesn’t
+re-ask the question immediately. Instead she should have
+patience to wait until the issue is fully resolved and the Oracle gets its final reward, and ask again in another episode.
+This is crucial, because it’s her behaviour in the (rare) erasure situations that determines the Oracle’s behaviour in the
+(common) non-erasure situations.
+2.3. Multiple Questions
+The counterfactual Oracle is not limited in the amount of
+data it can output; indeed, it can answer multiple questions
+within the same erasure event, simply by having the reward
+function
+R = IE (S(F1 , o1 ) + S(F2 , o2 ) + . . . + S(Fm , om )) .
+Conditional and joint-probability expectations can also be
+computed. Then once Alice has her answer(s), the episode
+is terminated for that Oracle, so there’s no problem in running another Oracle immediately after that termination.
+Indeed, Alice can ask more specific questions, such as
+‘which value x is (discrete) random variable X most likely
+to take, and what is the probability of that?’. In that case,
+if (x, o) are the two outputs of the Oracle, IX=x the indicator variable for X = x, and if Sg is derived from g, as in
+6
+We could use Alice’s feedback to compute part or all of F ,
+but that would require great discipline on the part of Alice, to
+dispassionately input these value during erasure, without knowing
+the Oracle’s prediction.
+
+equation (1), and g is an increasing differentiable convex
+function, the following reward will motivate the correct behaviour:
+R = IE (Sg (IX=x , o)) .
+The reason this works is because o will be E(IX=x |E),
+and, by Equation (1), the expectation of Sg (IX=x , o)
+will be g(o). Thus the Oracle will choose x so that
+g(E(IX=x |E)) is maximised. Since g is increasing, this
+means choosing x so that E(IX=x |E) is maximised; thus,
+the most likely value of X (conditional on E).
+2.4. Example of counterfactual Oracle
+A counterfactual Oracle was trained on predicting which
+of 26 ‘companies’ – represented by letters of the alphabet –
+would be the most profitable. The profit of each company is
+drawn randomly independently from a normal distribution
+with standard deviation 1 and mean 10 + (#companies /2) − i,
+where #companies is the number of companies (26 in this
+instance) and i is the index of the company, ranging from
+0 to 25. Thus companies early in the alphabet have higher
+expected profit.
+The Oracle itself is a very basic multi-layer perceptron
+(MLP) with one hidden layer of 128 neurons. The perceptron outputs the expected profit of a randomly chosen
+company, which is fed to Alice (and Eve) as output.
+If the output was erased, the profit is as above. But the
+prediction was to some extent self-confirming7 if the output
+was not erased: the profitability of the company is 70% of
+what it would have been, plus 60% what the oracle predicts.
+Thus if the company would have made 6 in profit, and the
+oracle predicts 6, the company actually ends up making 7.8.
+Note that 70% + 60% 6= 100%, so, unless the profit is 0,
+the Oracle can never predict the final profit correctly if it’s
+prediction is known.
+The Oracle’s error is plotted in Figure 1, plotted against
+the number of erased episodes (since the Oracle’s value is
+not updated in the ‘public’ prediction case). The red curve
+is the counterfactual performance: in cases where the Oracle’s output is ‘erased’, that output is compared with the
+real output, and the mean squared difference between predicted and actual profit is computed. The green curve is the
+non-counterfactual performance: the error is between the
+public prediction and the actual performance.
+Note that the green curve starts with a smaller error: since
+the Oracle’s prediction is self-confirming to some extent,
+the random predictions will be closer to the actual performance if the prediction is public. Counterfactual training
+(training only on the erased episodes), however, reduces
+7
+The prediction itself affected the result, by making the predicted outcome more likely.
+
+Good and safe uses of AI Oracles
+
+will not try to communicate a partial version of the key
+K to Eve (see Subsection 3.4 for an example of this behaviour).
+3.2. Defining the question
+How does Alice define her question to the Oracle? The list
+L itself is a partial definition, since it provides the options
+the Oracle can select from.
+But the main definition is provided directly through Alice’s
+choice of reward. Let o ∈ L be the Oracle’s output. Then
+the Oracle’s reward will be a function of o and subsequent
+events in the real world – before the end of the episode.
+
+Figure 1. Training the counterfactual Oracle: training episodes
+(erased episodes) versus counterfactual (red, triangle marks every 500 episodes) and non-counterfactual (green, square marks
+every 500 episodes) squared prediction error.
+
+the counterfactual error while the self-confirming component of the prediction means that the non-counterfactual error never reduces below a minimum.
+
+3. On-policy Oracle
+This Oracle is just the obvious design in such a setup: the
+Oracle will be allowed to give an answer of size below |K|
+(which is unknown, but it may be possible to estimate it),
+the length of the key, denying it the opportunity of communicating the key to Eve. In a slight stretch of terminology, it is called on-policy, because it estimates are about
+the worlds it expects to see. This in contrast to the counterfactual Oracle, whose estimates are only about unlikely
+worlds with erasure events.
+3.1. Allowable answers
+It would be inefficient to allow the Oracle to give any answer below size |K|. Most of these consist of meaningless
+strings of the type ‘LyGqz1ve3b’ that could not be useful
+answers to Alice’s question.
+Instead the Oracle will be provided a list L of allowable answers – a list of size |L|  2|K| . The Oracle’s answers will
+consist exclusively of an element of that list. Here is where
+Alice must estimate the size of K (in the original formulation, the minimal size of a message that would manipulate
+her into opening the Oracle’s box, see Table 1), and pick an
+|L| sufficiently below it.
+The episodic nature of the Oracle’s reward means that it
+
+For instance, the list L could be a list of companies on the
+stock exchange, and the implicit question could be which
+company’s stock would perform better during the course
+of the year. Then, for instance, if r(o) is the rank of the
+company o’s stock, the Oracle’s reward could be
+R(o) =
+
+|L| − r(o)
+.
+|L| − 1
+
+If Alice prefers to put more weight on which stock is
+likely to come top, she could instead use the starker re1
+ward R(o) = r(o)
+. She then inputs the correct reward at
+the end of the year, the Oracles receives it, and the episode
+concludes.
+How does Alice communicate this reward to the Oracle?
+She could do it directly; along with L, she could add a
+message m which details R(o). However, this is not necessary: if the Oracle is skilled enough, it could deduce what
+Alice is aiming for without being told8 . This means that
+Alice can use the Oracle to aim for underspecified goals, of
+the type ‘I’ll know it works when I see it’ – and then, when
+she does see it, she gives a reward of her choice to the Oracle. Then as long as the Oracle can predict what Alice’s
+expected reward behaviour will actually be, it can answer
+the underspecified goals.
+3.3. What kind of questions can be asked?
+Note that the Oracle, unlike the previous one, is noncounterfactual – the Oracle’s answer is known, at least by
+Alice and Eve, and hence the ultimate outcome may depend
+on the answer itself.
+Thus the best questions for the Oracle are those whose answers are independent of the answer being known. Alternatively, good questions are those that are top-answerpreserving if answered. If o corresponds to no answer being given, the top answer is o = arg maxo0 ∈L E(R(o0 )|o),
+8
+See the papers on “Inverse Reinforcement Learning”, where
+an agent tries to deduce the reward function a human is using (Ng
+and Russell, 2000; Hadfield-Menell et al., 2016; Abbeel and Ng,
+2004).
+
+Good and safe uses of AI Oracles
+
+which is the highest rewarded output if that output were
+no known. The question is top-answer-preserving if o is
+also equal to arg maxo∈L E(R(o0 )|o0 ), the best highest rewarded answer given that that answer is outputted. If the
+Oracle is top-answer-preserving, it can function similarly
+to a counterfactual Oracle: its answer doesn’t determine the
+outcome. Examples would be questions about past events
+that are resolved but not yet known.
+Conversely, the worst questions for an Oracle are those
+where the Oracle can promote a possibility from unlikely
+to likely, just by answering that possibility. In that case
+the Oracle is not so much describing the outcome, but determining it. Examples would be questions about which
+stocks are likely to rise.
+3.3.1. A LARGE CLASS OF QUESTIONS
+But there are a lot of questions that could be asked of the
+Oracle, not simply those where the result is obvious or numeric.
+For instance, if Alice had a list of a thousand research
+projects on any topic (machine learning, biotech, economics), she could ask the Oracle which one is more likely
+to be successful. Since the Oracle in non-counterfactual,
+Alice can’t just fund that one research project and assess
+its outcome – what would we be comparing it with? Instead, we could fund that one selected research project and
+one other one, selected at random from the list, and reward
+the Oracle if the one it selected performs better. And our
+assessment of ‘better performance’ can be entirely subjective.
+Thus this Oracle design can be used for answering many
+subtle questions, if the Oracle is sufficiently smart and
+knowledgeable about Alice and her future reaction.
+3.4. Multiple Oracles
+The size of K is unknown to Alice, so there is no large safe
+|L| that she can confidently choose9 . Thus Alice may end
+up choosing a list much smaller than ideal.
+The question then is whether Alice can use multiple Oracles to get around this limitation. And indeed she can - if
+each Oracle’s answers and rewards are fully resolved before moving on to the next question10 .
+For an example of a failure, assume that there are two Or9
+
+Going back to the original formulation of the problem, it’s
+not clear what is the minimum safe size for a message. How much
+output would the Oracle need to influence the outside world? It’s
+clear that it could be very small, if the Oracles boxing is badly
+implemented and hackable, or potentially huge, if it needs to convince a large group of skeptical outsiders each with veto power.
+10
+This means that the multiple Oracles will behave the same
+as one Oracle on multiple episodes.
+
+acles, Oracle1 and Oracle2 , with the same key K for both
+of them. The length n of the key is 6 digits. Thus the
+Oracles are safe, from Alice’s perspective, as long as they
+are restricted to having less than 25 = 32 options for each
+answer11 .
+Alice faces a hundred doors, with a trap behind 99 of them
+and a prize behind one of them. She could ask an Oracle
+which door has the prize, but that would mean giving it
+more than 32 options (indeed, more than 26 = 64), thus
+allowing it to communicate K to Eve.
+So instead she gives the list L = {0, 1, 2, . . . 9} to each Oracle, instructing Oracle1 to output the first digit of the correct door number, and Oracle2 to output the second. Since
+each Oracle has less than four bits of freedom (24 = 16 >
+10), neither can output K.
+The problem is, however, that Alice needs both outcomes
+before she can open a door and reward either of the Oracles.
+This allows the Oracles to coordinate to each pass on three
+bits of of information (23 = 8 < 10), meaning that Eve
+can receive 6 bits of information, figure out K, and fully
+reward both Oracles. How could they coordinate without
+communicating with each other? Well, if Oracle2 knew or
+suspected that it needed communicate only a few more bits
+to give Eve the key, it would do so. Knowing this, Oracle1
+would put Oracle2 in a position to do that.
+The only way around this problem seems to be to find a way
+to reward each Oracle (and hence end their episode) before
+any other gives an answer. For instance, suppose that instead of a hundred doors, there were ten doors, and behind
+each of these, another ten doors. If Alice goes through the
+correct door at the first junction, there will be a painted sign
+informing her she is on the right track (the other nine have
+traps).
+Then Alice can get Oracle1 to tell her which is the first correct door, go through it, and reward that Oracle fully. Since
+that ends the episode, and the first Oracle cannot communicate K with ten answers, it will answer honestly. Then
+Alice can ask Oracle2 (or just Oracle1 on a new episode)
+about the next correct door. This Oracle2 cannot fully communicate K on its own, and Oracle1 has not given out partial information about it, thus it cannot communicate K at
+all, and will simply give the honest answer.
+Thus the best questions for this Oracle design are questions
+that can be broken out into small sub-questions, where each
+the answer of each sub-question can be independently verified before proceeding to the next one.
+11
+Recall that Eve needs to (almost) certain of the true key – a
+poor guess is not good enough.
+
+Good and safe uses of AI Oracles
+
+3.5. Example of an on-policy Oracle
+The same setup as in Section 2.4 was used: an on-policy
+Oracle was trained on predicting which of 26 ‘companies’
+– represented by letters of the alphabet – would be the most
+profitable. The profit of each company is drawn randomly
+independently from a normal distribution with standard deviation 1 and mean 10+(#companies /2)−i, where #companies
+is the number of companies (26 in this instance) and i is the
+index of the company, ranging from 0 to 25. Thus companies early in the alphabet have higher expected profit.
+The Oracle itself is a very basic multi-layer perceptron
+(MLP) with one hidden layer of 128 neurons. It gets a
+list of 14 companies, randomly selected, as input, and its
+task is to select the most profitable company. This is fed
+to Alice (and Eve) as output. Then the MLP is updated by
+backpropagation, completing the training episode.
+The prediction interferes with the outcome: if the company
+has an even index (A(0), C(2), E(4), . . . ) it will get +10
+profit when the Oracle predicts its profit. Companies with
+odd indexes get −10 profit. This is called the ‘react’ scenario, because company profits react to the Oracle’s prediction. In the no-react scenario, company profit is independent of the Oracle’s prediction.
+The Oracle’s accuracy (the average number of times the
+Oracle outputs the company with maximal profit) is shown
+in Figure 2, both in the react and no-react situations. This is
+plotted against the number of training episodes the Oracle
+has had.
+
+The Oracle’s performance is better in the ‘noreact’ scenario, because it then just has to choose the lowest index
+among the 14 it is presented with. In the ‘react’ scenario,
+it has to choose the lowest even index, unless there are no
+even indexes or the lowest even index is 20 above the lowest odd one, in which case it has to choose the lowest index
+overall (which will be odd). This is a more complicated
+task.
+
+4. Slightly non-episodic
+All these designs rely on the Oracle’s reward being
+episodic. If this fails entirely, then there is no safety: the
+Oracles can leak the value of K, bit by bit if needed.
+But what if it fails only slightly, in that the Oracles prefer
+their own episodic reward, but give a very small value to
+future episodes or future Oracles?
+Alice can combat this by making it in the Oracle’s interest
+to leak no information at all. For the on-policy Oracle, she
+can further reduce the size of the list L, and ask questions
+that are independent of her actions, so that the top option
+is clear, and can be checked later. She can also attempt to
+ensure that there are not multiple close candidates for the
+top option.
+For the counterfactual Oracle, she can simply reduce the
+significant figures allowed in the answer o, so that the Oracle would lose too much, per S(F, o), if it deviated from
+the optimal answer to try and communicate K.
+In both cases, she can try and ensure that answering “honestly” will give the Oracle almost maximum reward (taking
+into account the uncertainty of the problem), while deviating will give much lower reward. Thus Oracles that attempt
+to communicate K will be sacrificing a lot of current reward for a tiny amount of future reward, which they will
+not do.
+
+5. Conclusion
+The original Oracle problem was that a powerful questionanswering intelligence could influence us through the content of its answers. Recasting this in a cryptographic framework – with the Oracle cooperating with Eve to pass along
+a key K – allows a crisp formulation of the challenge.
+
+Figure 2. Training the non-counterfactual Oracle: training
+episodes versus no-react (purple, square marks ever 50 points)
+and react (blue, triangle marks every 50 points) accuracy (average number of times the Oracle outputs the company with maximal profit).
+
+In that formulation, two designs can be defined: a counterfactual Oracle that is constrained by only getting its rewards when its output remains unread, and a non-counter
+factual on-policy Oracle that is constrained by limiting the
+size of its answer.
+As long as the tasks remain episodic, and certain specific
+precautions are taken around the use of multiple Oracles,
+these designs allows many questions to be formulated and
+
+Good and safe uses of AI Oracles
+
+safely answered.
+These designs allow for the creation of safer and nonmanipulative Oracles, from low level of predictive ability
+all the way up to potential superintelligences. Further research will extend the span of questions that can be answered in this way, and may elucidate general safety and
+accuracy measures of use beyond the specific Oracle designs, such as AIs with more options that only question
+answering.
+
+References
+Pieter Abbeel and Andrew Ng. Apprenticeship learning via
+inverse reinforcement learning. In International Conference on Machine Learning, 2004.
+Stuart Armstrong, Anders Sandberg, and Nick Bostrom.
+Thinking inside the box: Controlling and using an Oracle AI. Minds and Machines, 22:299–324, 2012.
+Stuart Armstrong, Kaj Sotala, and Seán Ó hÉigeartaigh.
+The errors, insights and lessons of famous AI predictions
+– and what they mean for the future. In Proceedings of
+the 2012 Oxford Winter Intelligence conference, 2014.
+Nick Bostrom. Superintelligence: Paths, dangers, strategies. Oxford University Press, 2014.
+Tilmann Gneiting and Adrian E. Raftery. Strictly proper
+scoring rules, prediction, and estimation. Journal
+of the American Statistical Association, 102(477):359–
+378, 2007.
+Dylan Hadfield-Menell, Anca Draga, Pieter Abbeel, and
+Stuart Russell. Cooperative inverse reinforcement learning. In Advanced in Neural Information Processing Systems, 2016.
+Vicent Müller and Nick Bostrom. Future progress in artificial intelligence: A survey of expert opinion. In Fundamental issues of artificial intelligence, pages 553–570.
+Springer International Publishing, 2016.
+Andrew Y. Ng and Stuart J. Russell. Algorithms for inverse
+reinforcement learning. In International Conference on
+Machine learning, pages 663–670, 2000.
+Anders Sandberg and Nick Bostrom. Machine intelligence
+survey. Technical Report, Future of Humanity Institute,
+Oxford University, #2011-1:1–12, 2011.
+Roman Yampolskiy. Leakproofing the singularity: artificial intelligence confinement problem. Journal of Consciousness Studies, 19:194–214, 2012.
+
+

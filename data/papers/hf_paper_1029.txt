@@ -1,0 +1,1689 @@
+Title: arXiv paper 1029
+
+Categories: 0
+
+Abstract:
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+arXiv:1210.8351v1 [math.AC] 31 Oct 2012
+
+KEVIN N. VANDER MEULEN, ADAM VAN TUYL, AND CATRIONA WATT
+Abstract. Let G be the circulant graph Cn (S) with S ⊆ {1, 2, . . . , ⌊ n2 ⌋}, and let I(G)
+denote its the edge ideal in the ring R = k[x1 , . . . , xn ]. We consider the problem of
+determining when G is Cohen-Macaulay, i.e, R/I(G) is a Cohen-Macaulay ring. Because
+a Cohen-Macaulay graph G must be well-covered, we focus on known families of wellcovered circulant graphs of the form Cn (1, 2, . . . , d). We also characterize which cubic
+circulant graphs are Cohen-Macaulay. We end with the observation that even though
+the well-covered property is preserved under lexicographical products of graphs, this is
+not true of the Cohen-Macaulay property.
+
+1. Introduction
+Let G = (VG , EG ) denote a finite simple graph on the vertex set VG = {x1 , . . . , xn } with
+edge set EG . By identifying the vertices of G with the variables of the polynomial ring
+R = k[x1 , . . . , xn ] (here, k is any field), we can associate to G the quadratic square-free
+monomial ideal
+I(G) = hxi xj | {xi , xj } ∈ EG i ⊆ R
+called the edge ideal of G. Edge ideals were first introduced by Villarreal [17]. During
+the last couple of years, there has been an interest in determining which graphs G are
+Cohen-Macaulay, that is, determining when the ring R/I(G) is a Cohen-Macaulay ring
+solely from the properties of the graphs. Although this problem is probably intractable
+for arbitrary graphs, results are known for some families of graphs, e.g., chordal graphs
+[8] and bipartite graphs [7]. Readers may also be interested in the recent survey of Morey
+and Villarreal [11] and the textbook of Herzog and Hibi [6], especially Chapter 9.
+Our goal is to identify families of circulant graphs that are Cohen-Macaulay. Given an
+integer n ≥ 1 and a subset S ⊆ {1, 2, . . . , ⌊ n2 ⌋}, the circulant graph Cn (S) is the graph on n
+vertices {x1 , . . . , xn } such that {xi , xj } is an edge of Cn (S) if and only if min{|i−j|, n−|i−
+j|} ∈ S. See, for example, the graph C12 (1, 3, 4) in Figure 1. For convenience of notation,
+we suppress the set brackets for the set S = {1, 3, 4} in C12 (1, 3, 4). Circulant graphs
+belong to the family of Cayley graphs and are sometimes viewed as generalized cycles since
+Cn = Cn (1). The complete graph is also a circulant graph because Kn = Cn (1, 2, . . . , ⌊ n2 ⌋).
+In the literature, circulant graphs have appeared in a number of applications related to
+2010 Mathematics Subject Classification. 13F55, 13H10, 05C75, 05E45.
+Key words and phrases. Cohen-Macaulay, circulant graph, well-covered graph, vertex decomposable,
+shellable.
+Last updated: January 7, 2018.
+Research of first two authors supported in part by NSERC Discovery Grants. Research of the third
+author supported by an NSERC USRA.
+1
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+2
+
+Figure 1. The circulant graph C12 (1, 3, 4).
+networks [1], error-correcting codes [14], and even music [3], in part, because of their
+regular structure (see [4]).
+To classify families of Cohen-Macaulay circulant graphs we will use the fact that all
+Cohen-Macaulay graphs must be well-covered. A graph G is well-covered if all the maximal independent sets of G have the same cardinality, equivalently, every maximal independent set is a maximum independent set (see the survey of Plummer [12]). From an
+algebraic point-of-view, when a graph G is well-covered, the edge ideal is I(G) is unmixed,
+that is, all of its associated primes have the same height. Some families of well-covered
+circulant graphs were recently classified by Brown and Hoshino [4]. Our main results
+(see Theorems 3.4 and 5.2) refine the work of Brown and Hoshino by determining which
+of these well-covered circulant graphs are also Cohen-Macaulay. In particular we show
+in Theorem 3.4 that for n ≥ 2d ≥ 2, the circulant Cn (1, 2, . . . , d) is Cohen-Macaulay
+if and only if n ≤ 3d + 2 and n 6= 2d + 2. We also show that the Cohen-Macaulay
+graphs Cn (1, 2, . . . , d) are in fact vertex decomposable and shellable. Although the wellcovered circulant graphs C2d+2 (1, 2, . . . , d) and C4d+3 (1, 2, . . . , d) are not Cohen-Macaulay,
+we prove that these graphs are Buchsbaum (see Theorem 3.7). We also classify which
+cubic circulant graphs are Cohen-Macaulay (see Theorem 5.5).
+Our paper is structured as follows. In Section 2 we recall the relevant background
+regarding graph theory and simplicial complexes. In Section 3 we classify the CohenMacaulay graphs of the form Cn (1, 2, . . . , d) with n ≥ 2d. Section 4 contains the proof
+of a lemma needed to prove the main result of Section 3. In Section 5, we look at cubic
+circulant graphs, and classify those that are Cohen-Macaulay. Section 6 contains some
+concluding comments and open questions related to the lexicographical product of graphs.
+
+2. Background Definitions and Results
+A simplicial complex ∆ on a vertex set V = {x1 , . . . , xn } is a set of subsets of V that
+satisfies: (i) if F ∈ ∆ and G ⊆ F , then G ∈ ∆, and (ii) for each i = 1, . . . , n, {xi } ∈ ∆.
+Note that condition (i) implies that ∅ ∈ ∆. The elements of ∆ are called its faces. The
+maximal elements of ∆, with respect to inclusion, are the facets of ∆.
+The dimension of a face F ∈ ∆ is given by dim F = |F | − 1; the dimension of a
+simplicial complex, denoted dim ∆, is the maximum dimension of all its faces. We call ∆
+a pure simplicial complex if all its facets have the same dimension. Let fi be the number
+of faces of ∆ of dimension i, with the convention that f−1 = 1. If dim ∆ = D, then the
+f -vector of ∆ is the (D + 2)-tuple f (∆) = (f−1 , f0 , f1 , . . . , fD ). The h-vector of ∆ is the
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+3
+
+(D + 2)-tuple h(∆) = (h0 , h1 , . . . , hD+1 ) with (see [18, Theorem 5.4.6])
+
+
+k
+X
+k−i D + 1 − i
+fi−1 .
+hk =
+(−1)
+k
+−
+i
+i=0
+Given any simplicial complex ∆ on V , we can associate to ∆ a monomial ideal I∆ in
+the polynomial ring R = k[x1 , . . . , xn ] (with k a field) as follows:
+I∆ = h{xj1 xj2 · · · xjr | {xj1 , . . . , xjr } 6∈ ∆}i.
+The ideal I∆ is commonly called the Stanley-Reisner ideal of ∆, and the quotient ring
+R/I∆ is the Stanley-Reisner ring of ∆.
+We say that ∆ is Cohen-Macaulay (over k) if its Stanley-Reisner ring R/I∆ is a CohenMacaulay ring, that is, K-dim(R/I∆ ) = depth(R/I∆ ). Here K-dim(R/I∆ ), the Krull
+dimension, is the length of the longest chain of prime ideals in R/I∆ with strict inclusions,
+and depth(R/I∆ ), the depth, is length of the longest sequence f1 , . . . , fj in hx1 , . . . , xn i
+that forms a regular sequence on R/I∆ .
+We review the required background on reduced homology; see [10] for complete details.
+To any simplicial complex ∆ with f (∆) = (f−1 , f0 , . . . , fD ) we can associate a reduced
+chain complex over k:
+∂
+
+∂
+
+∂
+
+∂
+
+0
+1
+2
+D
+C̃· (∆; k) : 0 ←− k f−1 ←−
+k f0 ←−
+k f1 ←−
+· · · ←−
+k fD ← 0.
+
+Here k fi is the vector space with basis elements ej0 ,j1 ,...,ji corresponding to the i-dimensional
+faces of ∆. We assume j0 < j1 < · · · < ji . The boundary maps ∂i are given by
+∂i (ej0 ,j1 ,...,ji ) = eĵ0 ,j1 ,...,ji − ej0 ,ĵ1 ,...,ji + ej0 ,j1,ĵ2 ...,ji + · · · + (−1)i ej0 ,j1,...,ĵi
+where ˆ denotes an omitted term. The ith reduced simplicial homology of ∆ with coefficients in k is the k-vector space
+H̃i (∆; k) = ker(∂i )/ im(∂i+1 ).
+The dimensions of H̃i (∆; k) are related to f (∆) via the reduced Euler characteristic:
+(2.1)
+
+D
+X
+
+(−1)i dimk H̃i (∆; k) =
+
+i=−1
+
+D
+X
+
+(−1)i fi .
+
+i=−1
+
+We will find it convenient to use Reisner’s Criterion. Given a face F ∈ ∆, the link of
+F in ∆ is the subcomplex
+link∆ (F ) = {G ∈ ∆ | F ∩ G = ∅, F ∪ G ∈ ∆}.
+Theorem 2.1 (Reisner’s Criterion). Let ∆ be a simplicial complex on V . Then R/I∆
+is Cohen-Macaulay over k if and only if for all F ∈ ∆, H̃i (link∆ (F ); k) = 0 for all
+i < dim link∆ (F ).
+For any vertex x ∈ V , the deletion of x in ∆ is the subcomplex
+del∆ ({x}) = {F ∈ ∆ | x 6∈ F }.
+The following combinatorial topology property was introduced by Provan and Billera [13].
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+4
+
+Definition 2.2. Let ∆ be a pure simplicial complex. Then ∆ is vertex decomposable if
+(i) ∆ is a simplex, i.e {x1 , . . . , xn } is the unique maximal facet, or
+(ii) there exists an x ∈ V such that link∆ ({x}) and del∆ ({x}) are vertex decomposable.
+We will also refer to the following family of simplicial complexes.
+Definition 2.3. Let ∆ be a pure simplicial complex with facets {F1 , . . . , Ft }. Then ∆ is
+shellable if there exists an ordering of F1 , . . . , Ft such that such that for all 1 ≤ j < i ≤ t,
+there is some x ∈ Fi \ Fj and some k ∈ {1, . . . , j − 1} such that {x} = Fi \ Fk .
+The following theorem summarizes a number of necessary and sufficient conditions of
+Cohen-Macaulay simplicial complexes that we require.
+Theorem 2.4. Let ∆ be a simplicial complex on the vertex set V = {x1 , . . . , xn }.
+(i) If ∆ is Cohen-Macaulay, then it is pure.
+(ii) If ∆ is Cohen-Macaulay, then h(∆) has only non-negative entries.
+(iii) If n−pdim(R/I∆ ) = K-dim(R/I∆ ), then ∆ is Cohen-Macaulay (here, pdim(R/I∆ )
+denotes the projective dimension of R/I∆ , the length of a minimal free resolution
+of R/I∆ ).
+(iv) If ∆ is vertex decomposable, then ∆ is Cohen-Macaulay.
+(v) If dim ∆ = 0, then ∆ is vertex decomposable/shellable/Cohen-Macaulay.
+(vi) If dim ∆ = 1, then ∆ is vertex decomposable/shellable/Cohen-Macaulay if and
+only if ∆ is connected.
+Proof. Many of these results are standard. For (i) see [18, Theorem 5.3.12]; for (ii) see [18,
+Theorem 5.4.8]; (iii) follows from the Auslander-Buchsbaum Theorem; for (iv) see [13,
+Corollary 2.9] and the fact that shellable implies Cohen-Macaulay [18, Theorem 5.3.18];
+(v) is [13, Proposition 3.1.1]; and (vi) is [13, Theorem 3.1.2].
+
+In this paper, we will be interested in independence complexes of finite simple graphs
+G = (VG , EG ). We say that a set of vertices W ⊆ VG is an independent set if for all
+e ∈ EG , e 6⊆ W . The independence complex of G is the set of all independent sets:
+Ind(G) = {W | W is an independent set of VG }.
+The set Ind(G) is a simplicial complex. Following convention, G is Cohen-Macaulay
+(resp. shellable, vertex decomposable) if Ind(G) is Cohen-Macaulay (resp. shellable,
+vertex decomposable).
+The facets of Ind(G) correspond to the maximal independent sets of vertices of G. It
+is common to let α(G) denote the cardinality of a maximum independent set of vertices
+in G. A graph G is well-covered if every maximal independent set has cardinality α(G).
+Moreover, a direct translation of the definitions gives us:
+Lemma 2.5. If G is Cohen-Macaulay, then G is well-covered.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+5
+
+3. Characterization of Circulant graphs Cn (1, 2, . . . , d).
+In this section, we classify which circulant graphs of the form Cn (1, 2, . . . , d) are CohenMacaulay. Brown and Hoshino recently classified the well-covered graphs in this family:
+Theorem 3.1. ([4, Theorem 4.1]). Let n and d be integers with n ≥ 2d ≥ 2. Then
+Cn (1, 2, . . . , d) is well-covered if and only if n ≤ 3d + 2 or n = 4d + 3.
+Brown and Hoshino’s result is a key ingredient for our main result. We also need one
+additional result of [4] on the independence polynomial of Cn (1, 2, . . . , d), but translated
+into a statement about f -vectors. The independence polynomial of a graph G is given
+Pα(G)
+by I(G, x) = k=0 ik xk where ik is the number of independent sets of cardinality k (we
+take i0 = 1). Note that if ∆ = Ind(G) and f (∆) = (f−1 , f0 , . . . , fD ), then ik = fk−1 for
+each k. If we translate [4, Theorem 3.1] into the language of f -vectors and independence
+complexes, we get the following statement.
+Lemma 3.2. Let n and d be
+ integers with n ≥ 2d ≥ 2, G = Cn (1, 2, . . . , d), and D =
+n
+− 1 and f (∆) = (f−1 , f0 , . . . , fD ) where
+dim Ind(G). Then D = d+1
+
+
+n
+n − dk
+fk−1 =
+for k = 0, . . . , (D + 1).
+k
+n − dk
+By Lemma 2.5, to characterize the Cohen-Macaulay circulant graphs of the form
+Cn (1, 2, . . . , d), it suffices to determine which of the well-covered graphs of Theorem 3.1 are
+also Cohen-Macaulay. Interestingly, proving that Cn (1, 2, . . . , d) is not Cohen-Macaulay
+when n = 4d + 3 is the most subtle part of this proof. To carry out this part of the proof,
+we need the following lemma, whose proof we postpone until the next section.
+Lemma 3.3. Fix an integer d ≥ 3, and let G = C4d+3 (1, 2, . . . , d). If ∆ = Ind(G), then
+
+
+(4d + 3) d − 1
+.
+dimk H̃2 (∆; k) ≥
+2
+3
+Assuming, for the moment, that Lemma 3.3 holds, we arrive at our main result:
+Theorem 3.4. Let n and d be integers with n ≥ 2d ≥ 2 and let G = Cn (1, 2, . . . , d).
+Then the following are equivalent:
+(i)
+(ii)
+(iii)
+(iv)
+
+G is Cohen-Macaulay.
+G is shellable.
+G is vertex decomposable.
+n ≤ 3d + 2 and n 6= 2d + 2.
+
+Proof. We always have (iii) ⇒ (ii) ⇒ (i). We now prove that (iv) ⇒ (iii).
+By Lemma 3.2, when n = 2d or n = 2d + 1, dim Ind(G) = 0. Now apply Theorem 2.4
+(v).
+n
+When 2d + 2 ≤ n ≤ 3d + 2, dim Ind(G) = ⌊ d+1
+⌋ − 1 = 1. Let V = {x1 , . . . , xn }. If
+n = 2d+2, then Ind(G) is not connected, because the only edges of Ind(G) are {xi , xd+1+i }
+for i = 1, . . . , d + 1. On the other hand, when 2d + 3 ≤ n ≤ 3d + 2, Ind(G) is connected.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+6
+
+To see this, let n = 2d + c for 3 ≤ c ≤ d + 2. For each i = 1, 2, . . . , n, {xi , xi+d+2 }
+and {xi+1 , xi+d+2 } ∈ Ind(G), with subscript addition adjusted modulo n. Thus, for any
+xi , xj ∈ V with i < j, we can make the path xi , xi+d+2 , xi+1 , xi+d+3 , xi+2 , . . . , xj . So,
+Ind(G) is connected. Applying Theorem 2.4 (vi) then shows that (iv) ⇒ (iii).
+To complete the proof, we will show that if n ≥ 2d with n = 2d + 2 or n > 3d + 2,
+then G is not Cohen-Macaulay. In the proof that (iv) ⇒ (iii), we already showed that if
+n = 2d + 2, then Ind(G) is not connected and dim Ind(G) = 1. Again by Theorem 2.4
+(vi) this implies G is not Cohen-Macaulay.
+If n > 3d + 2 and n 6= 4d + 3, then by Theorem 3.1, G is not well-covered, and
+consequently, by Lemma 2.5, G is not Cohen-Macaulay. It therefore remains to show that
+if n = 4d + 3, then G is not Cohen-Macaulay for all d ≥ 1. The remainder of this proof
+is dedicated to this case.
+By Lemma 3.2, dim Ind(G) = 2 and the f -vector of Ind(G) is given by
+
+
+4d3 + 15d2 + 17d + 6
+2
+f (Ind(G)) = 1, 4d + 3, 4d + 7d + 3,
+.
+6
+When d = 1, then f (Ind(G)) = (1, 7, 14, 7) and hence h(Ind(G)) = (1, 4, 3, −1). When
+d = 2, then f (Ind(G)) = (1, 11, 33, 21) and hence h(Ind(G)) = (1, 8, 13, −1). In these two
+cases, Theorem 2.4 (ii) implies G is not Cohen-Macaulay.
+We can therefore assume that d ≥ 3. To show that Ind(G) is not Cohen-Macaulay,
+we will show that H̃1 (Ind(G); k) 6= 0. This suffices because Ind(G) = linkInd(G) (∅), so
+Reisner’s Criterion (Theorem 2.1) would imply that Ind(G) is not Cohen-Macaulay.
+Using the fact that dim Ind(G) = 2, the f -vector given above, and the reduced Euler
+characteristic (2.1) we know
+2
+X
+4d3 + 15d2 + 17d + 6
+(−1)i dimk H̃i (Ind(G); k).
+=
+−1 + (4d + 3) − (4d + 7d + 3) +
+6
+i=−1
+2
+
+Because Ind(G) is a non-empty connected simplicial complex, we have dimk H̃i (Ind(G); k) =
+0, for i = −1, and 0. Simplifying both sides of the above equation and rearranging gives:
+d(4d2 − 9d − 1)
+dimk H̃1 (Ind(G); k) = dimk H̃2 (Ind(G); k) −
+.
+6
+By Lemma 3.3
+
+
+4d + 3 d − 1
+d(4d2 − 9d − 1)
+dimk H̃1 (Ind(G); k) ≥
+−
+= 1.
+2
+3
+6
+So, H̃1 (Ind(G); k) 6= 0 as desired.
+
+
+
+When we specialize the above theorem to the case d = 1, we recover the known classification of the Cohen-Macaulay cycles [18, Corollary 6.3.6]. Note that C2 (1) = K2 is also
+Cohen-Macaulay, but it is not a cycle.
+Corollary 3.5. Let n ≥ 3. Then Cn = Cn (1) is Cohen-Macaulay if and only if n = 3 or
+5.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+7
+
+Even though C2d+2 (1, 2, . . . , d) and C4d+3 (1, 2, . . . , d) are not Cohen-Macaulay, they still
+have an interesting algebraic structure, as noted in Theorem 3.7 below.
+Definition 3.6. A pure simplicial complex ∆ is called Buchsbaum over a field k if for
+every non-empty face F ∈ ∆, H̃i (link∆ (F ); k) = 0 for all i < dim link∆ (F ). We say a
+graph G is Buchsbaum if the independence complex of G is Buchsbaum.
+Note that by Reisner’s Criterion (Theorem 2.1), if G is Cohen-Macaulay, then G is
+Buchsbaum. We can now classify all circulant graphs of the form Cn (1, . . . , d) which are
+Buchsbaum, but not Cohen-Macaulay.
+Theorem 3.7. Let n and d be integers with n ≥ 2d and d ≥ 1. Let G = Cn (1, 2, . . . , d).
+Then G is Buchsbaum, but not Cohen-Macaulay if and only if n = 2d + 2 or n = 4d + 3.
+Proof. (⇒) For G to be Buchsbaum, Ind(G) must be pure, that is G is well-covered. By
+Theorem 3.1, 2d ≤ n ≤ 3d + 2 or n = 4d + 3. Because G is not Cohen-Macaulay, Theorem
+3.4 implies n = 2d + 2 or n = 4d + 3.
+(⇐) We first show that if n = 4d + 3, then G is Buchsbaum. Let ∆ = Ind(G). Since
+dim ∆ = 2, given any F ∈ ∆, |F | ∈ {0, 1, 2, 3}. We wish to show that if |F | = 1, 2, or 3,
+then H̃i (link∆ (F ); k) = 0 for all i < dim link∆ (F ).
+If |F | = 3, then link∆ (F ) = {∅}, and hence H̃i (link∆ (F ); k) = 0 for all i < dim link∆ (F ) =
+−1. When |F | = 2, then dim link∆ (F) = 0, and again, we have H̃i (link∆ (F ); k) = 0 for
+all i < dim link∆ (F ) = 0.
+It therefore suffices to show that when |F | = 1, then H̃i (link∆ (F ); k) = 0 for all
+i < dim link∆ (F ). Because of the symmetry of G, we can assume without a loss of
+generality that F = {x1 }. Because G is well-covered, any independent set containing
+x1 can be extended to a maximal independent set, and furthermore, this independent
+set has cardinality three. This, in turn, implies that dim link∆ (F ) = 1. For any i <
+0, H̃i (link∆ (F ); k) = 0, so it suffices to prove that H̃0 (link∆ (F ); k) = 0. Proving this
+condition is equivalent to proving that link∆ (F ) is connected.
+We first note that none of the vertices x2 , x3 , . . . , xd+1 , x3d+4 , x3d+5 , . . . , x4d+3 appear in
+link∆ ({x1 }) because these vertices are all adjacent to x1 in G. On the other hand, the
+following elements are facets of ∆:
+{x1 , xd+2 , x2d+3 }, {x1 , xd+2 , x2d+4 }, . . . , {x1 , xd+2 , x3d+3 },
+{x1 , xd+3 , x3d+3 }, {x1 , xd+4 , x3d+3 }, . . . , {x1 , x2d+2 , x3d+3 }.
+Consequently the following edges are in link∆ ({x1 }):
+{xd+2 , x2d+3 }, {xd+2 , x2d+4 }, . . . , {xd+2 , x3d+3 }, {xd+3 , x3d+3 }, {xd+4 , x3d+3 }, . . . , {x2d+2 , x3d+3 }.
+
+Thus link∆ ({x1 }) is connected, as desired.
+Now suppose n = 2d + 2. As shown in the proof of Theorem 3.4, Ind(G) consists of
+the disjoint edges {xi , xd+1+i } for i = 1, . . . , d + 1. If F ∈ Ind(G) and |F | = 2, then
+link∆ (F ) = {∅}. If F ∈ Ind(G) and |F | = 1, then link∆ (F ) = {{x}} for some variable x.
+Therefore G is Buchsbaum.
+
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+8
+
+4. Proof of Lemma 3.3
+The purpose of this section is to prove Lemma 3.3. We will be interested in finding
+induced octahedrons in our independence complex.
+Lemma 4.1. Fix an integer d ≥ 3. Let G = C4d+3 (1, 2, . . . , d) and let ∆ = Ind(G) be
+the associated independence complex. Let W = {i1 , i2 , j1 , j2 , k1, k2 } ⊆ VG be six distinct
+vertices. Then the induced simplicial complex ∆|W = {F ∈ ∆ | F ⊆ W } is isomorphic
+to the labeled octahedron in Figure 2 if and only if the induced graph GW is the graph of
+three disjoint edges {i1 , i2 }, {j1 , j2 }, and {k1 , k2}.
+i1
+
+k1
+
+j2
+j1
+
+k2
+
+i2
+Figure 2. A labeled octahedron
+
+Proof. Suppose that ∆|W is isomorphic to the octahedron in Figure 2. It follows that
+{i1 , i2 }, {j1 , j2 } and {k1 , k2 }, which are not edges of the octahedron, are also not edges
+of ∆. Because ∆ is an independence complex, these means that each set is not an
+independent set, or in other words, e1 = {i1 , i2 }, e2 = {j1 , j2 }, and e3 = {k1 , k2 } are all
+edges of G. It suffices to show that GW consists only of these edges. If not, there is a
+vertex x ∈ ei and a vertex y ∈ ej with i 6= j, such that {x, y} is an edge of G. However,
+for any x ∈ ei and y ∈ ej , {x, y} is an edge of ∆|W , and consequently, {x, y} cannot be
+an edge of G, a contradiction.
+For the converse, we reverse the argument. If GW is the three disjoint edges {i1 , i2 },
+{j1 , j2 } and {k1 , k2}, then it follows that {i1 , j1 , k1 }, {i1 , j1 , k2}, {i1 , j2 , k1 }, {i1 , j2 , k2 },
+{i2 , j1 , k1 }, {i2 , j1 , k2 }, {i2 , j2 , k1 }, {i2 , j2 , k2 } are all independent sets of G, and thus belong
+to ∆, and consequently, ∆|W . Because {i1 , i2 }, {j1 , j2 }, and {k1 , k2 } are not faces of ∆,
+the facets of the complex ∆|W are these eight faces, whence ∆|W is an octahedron.
+
+We now come to our desired proof.
+Proof. (of Lemma 3.3) We begin by first recalling some facts about ∆ = Ind(G). By
+Theorem 3.1 and Lemma 3.2, the simplicial complex ∆ is pure and two dimensional with
+f (∆) = (f−1 , f0 , f1 , f2 ). Therefore, the reduced chain complex of ∆ over k has the form
+∂
+
+∂
+
+∂
+
+0
+1
+2
+0 ←− k f−1 ←−
+k f0 ←−
+k f1 ←−
+k f2 ←− 0.
+
+It follows from this chain complex that dimk H̃2 (∆; k) = dimk ker ∂2 .
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+9
+
+linearly independent elements in ker ∂2 .
+Our strategy, therefore, is to identify (4d+3)
+3
+2
+Note that if W ⊆ V is a subset of the vertices such that the induced complex ∆|W is
+isomorphic to an octahedron, then this octahedron corresponds to an element of ker ∂2 .
+We make this more precise. Suppose that W = {i1 , i2 , j1 , j2 , k1 , k2 } ⊆ V and ∆|W is an
+octahedron, i.e, the simplicial complex with facets
+
+d−1
+
+∆|W = h{i1 , j1 , k1 }, {i1 , j1 , k2 }, {i1 , j2 , k1 }, {i1 , j2 , k2 },
+{i2 , j1 , k1 }, {i2 , j1 , k2 }, {i2 , j2 , k1 }, {i2 , j2 , k2}i.
+Note that each {ia , jb , kc } is a 2-dimensional face of ∆; we associate to ∆|W the following
+element of k f2 :
+OW = ei1 j1 k1 − ei1 j1 k2 − ei1 j2 k1 − ei2 j1 k1 + ei1 j2 k2 + ei2 j1 k2 + ei2 j2 k1 − ei2 j2 k2 .
+Here, we have assumed that the indices of each basis element have been written in increasing order. The boundary map ∂2 evaluated at OW gives ∂2 (OW ) = 0, i.e., OW ∈ ker ∂2 .
+To compute the lower bound on dimk H̃2 (∆; k), we will build a list L of octahedrons
+in ∆ and then order the elements of L using the lexicographical ordering so that each
+octahedron in the list L contains a face that has not appeared in any previous octahedron
+in L with respect to the ordering. By associating each octahedron to the corresponding
+element of k f2 , each octahedron will belong to ker ∂2 . Moreover, the fact that each octahedron in L has a face that has not appeared previously implies that the octahedron can
+not be written as a linear combination of our previous elements in ker ∂2 , thus giving us
+the required number of linearly independent elements.
+By Lemma 4.1, there is a one-to-one correspondence between the induced octahedrons
+of ∆ and the induced subgraphs of G consisting of three pairwise disjoint edges. So we
+can represent an octahedron by a tuple (i1 , i2 ; j1 , j2 ; k1, k2 ) where {i1 , i2 }, {j1 , j2 }, and
+{k1 , k2 } correspond to these edges.
+We begin by considering the octahedrons described by the following list:
+(1, 2;
+(1, 2;
+
+d + 3, d + 4;
+d + 3, d + 4;
+
+2d + 5, 3d + 3)
+2d + 6, 3d + 3)
+..
+.
+
+(1, 2;
+(1, 2;
+(1, 2;
+
+d + 3, d + 4;
+d + 3, d + 5;
+d + 3, d + 5;
+
+3d + 2, 3d + 3)
+2d + 6, 3d + 3)
+2d + 7, 3d + 3)
+..
+.
+
+(1, 2;
+(1, 2;
+
+d + 3, d + 5;
+d + 3, d + 6;
+
+3d + 2, 3d + 3)
+2d + 7, 3d + 3)
+..
+.
+
+(4.1)
+
+(1, 2; d + 3, 2d;
+3d + 1, 3d + 3)
+(1, 2; d + 3, 2d;
+3d + 2, 3d + 3)
+(1, 2; d + 3, 2d + 1; 3d + 2, 3d + 3)
+If we take our list of octahedrons in (4.1) and add one to each index, we will get a new list
+of octahedrons. In terms of the graph G = C4d+3 (1, 2, . . . , d), we are “rotating” our disjoint
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+10
+
+edges to the right. We “rotate” these disjoint edges, or equivalently, we add one to each
+index, until k1 = 4d + 3. So, for example, the disjoint edges (1, 2; d + 3, d + 4; 2d + 5, 3d + 3)
+can be rotated to the right 2d − 2 times to give us 2d − 1 octahedrons
+(1, 2;
+(2, 3;
+(3, 4;
+..
+.
+(2d − 1, 2d;
+
+d + 3, d + 4;
+d + 4, d + 5;
+d + 5, d + 6;
+..
+.
+3d + 1, 3d + 2;
+
+2d + 5, 3d + 3)
+2d + 6, 3d + 4)
+2d + 7, 3d + 5)
+..
+.
+4d + 3, d − 2).
+
+On the other hand, the disjoint edges (1, 2; d + 3, 2d + 1; 3d + 2, 3d + 3) are only rotated
+d + 1 times to create d + 2 octahedrons
+(1, 2;
+(2, 3;
+(3, 4;
+..
+.
+
+d + 3, 2d + 1;
+d + 4, 2d + 2;
+d + 5, 2d + 3;
+..
+.
+
+3d + 2, 3d + 3)
+3d + 3, 3d + 4)
+3d + 3, 3d + 5)
+..
+.
+
+(d + 2, d + 3; 2d + 4, 3d + 2; 4d + 3, 1)
+
+.
+
+If we carry out this procedure, we end up with an expanded list L of octahedrons with
+
+
+d−2
+d−2
+d−2
+X
+X
+X
+4d + 3 d − 1
+2
+.
+|L| =
+k(2d − k) = 2d
+k−
+k =
+2
+3
+k=1
+k=1
+k=1
+To see why, there is only one collection of disjoint edges with k1 = 2d + 5 which is rotated
+2d − 1 times, there are two tuples of disjoint edges with k1 = 2d + 6 which are rotated
+2d − 2 times, and so on, until we arrive at the d − 2 tuples which are constructed from all
+the tuples with k1 = 3d + 2 rotated d + 2 times.
+It now suffices to show that the corresponding elements of ker ∂2 are linearly independent. In (4.2), we have arranged the list L in lexicographical order from smallest to
+largest:
+(1, 2;
+
+d + 3, d + 4;
+..
+.
+d + 3, 2d + 1;
+d + 4, d + 5;
+..
+.
+d + 4, 2d + 2;
+..
+.
+
+2d + 5, 3d + 3)
+..
+.
+3d + 2, 3d + 3)
+2d + 6, 3d + 4)
+..
+.
+3d + 3, 3d + 4)
+
+(2d − 2, 2d − 1;
+3d, 3d + 1;
+(2d − 2, 2d − 1;
+3d, 3d + 2;
+(2d − 1, 2d;
+3d + 1, 3d + 2;
+
+4d + 3, d − 3)
+4d + 3, d − 3)
+4d + 3, d − 2)
+
+(1, 2;
+(2, 3;
+(4.2)
+
+(2, 3;
+
+For each (i1 , i2 ; j1 , j2 ; k1, k2 ) in L, we consider the two-dimensional face {i2 , j2 , k1 } of the
+associated octahedron. We claim that as we progress down the list in (4.2), each face
+{i2 , j2 , k1 } has not appeared in a previous octahedron.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+11
+
+In particular, suppose that (i1 , i2 ; j1 , j2 ; k1 , k2 ) is the ℓ-th item in (4.2). We wish to
+show that the face {i2 , j2 , k1 } has not appeared in any of the first ℓ − 1 octahedrons in
+the lexicographically ordered list (4.2). Suppose, that (a1 , a2 ; b1 , b2 , c1 , c2 ) appears earlier
+in the list and contains the face {i2 , j2 , k1 }. For this face to appear, {a1 , a2 } must contain
+exactly one of i2 , j2 , k1 , {b1 , b2 } must contain exactly one of the remaining two vertices,
+and {c1 , c2 }, must contain the remaining vertex of the face.
+By the way we listed and constructed our octahedrons, i2 < j2 < k1 , i1 = i2 − 1, and
+j1 = i2 +d+1. Further, k2 = i2 +3d+1 if i2 +3d+1 ≤ (4d−3), and k2 = i2 +3d+1−(4d−3)
+if i2 + 3d + 1 > (4d − 3). Note that a1 6= i2 , j2 or k2 otherwise a1 > i1 , contradicting
+the lexicographical ordering. Also, if a2 = j2 , then a1 = j2 − 1 ≥ i2 > i1 , again a
+contradiction. The same problem arises if a2 = k1 . Thus {a1 , a2 } = {i2 − 1, i2 } = {i1 , i2 },
+i.e., (a1 , a2 ; b1 , b2 ; c1 , c2 ) = (i1 , i2 , j1 , b2 , c1 , k2 ).
+Since j2 and k1 must also appear in this tuple, there are only two possibilities:
+(a1 , a2 ; b1 , b2 ; c1 , c2 ) = (i1 , i2 , j1 , k1 , j2 , k2 ) or (i1 , i2 , j1 , j2 , k1 , k2 ).
+But neither of these tuples appear strictly before (i1 , i2 , j1 , j2 , k1 , k2 ) with respect to our
+ordering, thus completing the proof.
+
+5. Cohen-Macaulay Circulant Cubic Graphs
+Brown and Hoshino [4] classified which circulant cubic graphs are well-covered. Recall
+that a cubic graph is a graph in which each vertex has degree 3. Thus, if G is a circulant
+cubic graph, then G = C2n (a, n) for some 1 ≤ a < n.
+There are only a finite number of connected well-covered circulant cubic graphs:
+Theorem 5.1 ([4, Theorem 4.3]). Let G be a connected circulant cubic graph. Then G
+is well-covered if and only if it is isomorphic to one of the following graphs: C4 (1, 2),
+C6 (1, 3), C6 (2, 3), C8 (1, 4) or C10 (2, 5).
+Using a computer algebra system like Macaulay2 [9], one can simply check which of
+these graphs, displayed in Figure 3, are Cohen-Macaulay.
+Theorem 5.2. Let G be a connected circulant cubic graph. Then is Cohen-Macaulay if
+and only if it is isomorphic to C4 (1, 2) or C6 (2, 3).
+Proof. By Theorem 5.1, it suffices to check which of the graphs C4 (1, 2), C6 (1, 3), C6 (2, 3),
+C8 (1, 4) or C10 (2, 5), are also Cohen-Macaulay.
+
+Figure 3. The well-covered connected cubic circulant graphs.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+12
+
+For any graph G, dim R/I(G) = α(G). So, by Theorem 2.4 (iii), we simply need to
+check if α(G) = n − pdim(R/I(G)). We can compute α(G) for each of the graphs G in
+Figure 3 by inspection; on the other hand, we compute the projective dimension using a
+computer algebra system. The following table summarizes these calculations:
+G
+C4 (1, 2) C6 (1, 3) C6 (2, 3) C8 (1, 4) C10 (2, 5)
+n − pdim(R/I(G))
+1
+1
+2
+2
+2
+α(G)
+1
+3
+2
+3
+4
+The conclusion now follows from the values in the table.
+
+
+
+As in Brown and Hoshino [4], we will use the following result to extend Theorem 5.2
+to all circulant cubic graphs. The following classification is due to Davis and Domke [5].
+Theorem 5.3. Let G = C2n (a, n) with 1 ≤ a < n, and let t = gcd(a, 2n).
+(i) If
+(ii) If
+
+2n
+t
+2n
+t
+
+is even, then G is isomorphic to t copies of C 2n (1, nt ).
+t
+is odd, then G is isomorphic to 2t copies of C 4n (2, 2n
+).
+t
+t
+
+We also use the following lemma in the next proof.
+Lemma 5.4 ([18, Proposition 6.2.8]). Suppose that the graph G = H ∪ K where H and
+K are disjoint components of G. Then G is Cohen-Macaulay if and only if H and K are
+Cohen-Macaulay.
+Theorem 5.5. Let G = C2n (a, n) with 1 ≤ a < n, that is, G is a cubic circulant graph.
+Let t = gcd(a, 2n). Then G is Cohen-Macaulay if and only if 2n
+= 3 or 4.
+t
+Proof. Suppose that 2n
+6= 3 or 4. If 2n
+is even, then C 2n (1, nt ) is not Cohen-Macaulay by
+t
+t
+t
+2n
+4n (2,
+is
+odd,
+then
+C
+)
+is
+also
+not
+Cohen-Macaulay by Theorem 5.2.
+Theorem 5.2 and if 2n
+t
+t
+t
+Thus by Lemma 5.4 G is not Cohen-Macaulay. Conversely, if 2n
+= 4, then by Theorem
+t
+2n
+5.3, G is isomorphic to t copies of C4 (1, 2) and if t = 3, then G is isomorphic to 2t copies
+of C6 (2, 3). In both cases, Theorem 5.2 and Lemma 5.4 imply G is Cohen-Macaulay. 
+6. Concluding Comments and Open Questions
+The question of classifying all Cohen-Macaulay circulant graphs Cn (S) is probably an
+intractable problem. Even the weaker question of determining whether or not a circulant
+graph Gn (S) is well-covered (equivalently, Ind(Cn (S)) is a pure simplicial complex) was
+shown by Brown and Hoshino to be co-NP-complete [4, Theorem 2.5]. At present, the
+best we can probably expect is to identify families of Cohen-Macaulay circulant graphs.
+Brown and Hoshino observed that circulant graphs behave well with respect to the
+lexicographical product. Recall this construction:
+Definition 6.1. Given two graphs G and H, the lexicographical product, denoted G[H], is
+graph with vertex set V (G) × V (H), where any two vertices (u, v) and (x, y) are adjacent
+in G[H] if and only if either {u, x} ∈ G or u = x and {v, y} ∈ H.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+13
+
+When G and H are both circulant graphs, then the lexicographical product G[H] is
+also circulant (see [4, Theorem 4.6]). The well-covered property is also preserved with
+respect to the lexicographical product (see [16]).
+Theorem 6.2. Let G and H be two non-empty graphs. Then G[H] is well-covered if and
+only if the graphs G and H are well-covered.
+As a consequence, the families of well-covered circulant graphs discovered in [4] can
+be combined into new well-covered circulant graphs using the lexicographical product. It
+is therefore natural to ask if the lexicographical product allows us to build new CohenMacaulay circulant graphs from known Cohen-Macaulay circulant graphs. In other words,
+can we replace “well-covered” in Theorem 6.2 by “Cohen-Macaulay”. This turns out not
+to always be the case, as the following example shows.
+Example 6.3. Let G and H be the Cohen-Macaulay circulant graphs G = C2 (1) and
+H = C5 (1). Then G[H] = C10 (1, 4, 5) and H[G] = C10 (1, 2, 3, 5) as seen in Figure 4.
+We can compute α(G) for the graphs in Figure 4 by inspection; on the other hand,
+
+Figure 4. Lexicographical products C2 [C5 ] and C5 [C2 ]
+we compute the projective dimension using Macaulay 2 [9]. We find that α(G[H]) =
+dim(R/I(G[H])) = 2 = n − pdim(R/I(G[H])), so G[H] is Cohen-Macaulay. However,
+α(H[G]) = dim(R/I(H[G])) = 2 > n − pdim(R/I(H[G])) = 1, so H[G] is not CohenMacaulay.
+In light of the above example, we can ask what conditions on G and H allow us to
+conclude that the lexicographical product G[H] is Cohen-Macaulay.
+We end with a question concerning Lemma 3.3. Using Macaulay 2 [9], we found that
+d−1
+dimk H̃2 (∆; k) = 4d+3
+for d = 1, . . . , 14. This suggests that the inequality of Lemma
+3
+2
+3.3 is actually an equality. We wonder if this is indeed true.
+Acknowledgements. We thank Brydon Eastman for writing the LATEX code to produce
+circulant graphs, and Russ Woodroofe and Jennifer Biermann for useful discussions.
+References
+[1] J.-C. Bermond, F. Comellas, D.F. Hsu, Distributed loop computer networks: a survey. J. Parallel
+Distrib. Comput. 24 (1995), 2–10.
+[2] F. Boesch, R. Tindell, Circulants and their connectivities. J. Graph Theory 8 (1984), 487–499.
+[3] J. Brown, R. Hoshino, Independence polynomials of circulants with an application to music. Discrete
+Math. 309 (2009), 2292–2304.
+[4] J. Brown, R. Hoshino, Well-covered circulant graphs. Discrete Math. 311 (2011), 244–251.
+[5] G. Davis, G. Domke, 3-Circulant Graphs. J. Combin. Math. Combin. Comput. 40 (2002), 133–142.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+14
+
+[6] J. Herzog, T. Hibi, Monomial ideals. Graduate Texts in Mathematics 260, Springer-Verlag, 2011.
+[7] J. Herzog, T. Hibi, Distributive lattices, bipartite graphs and Alexander duality. J. Algebraic Combin.
+22 (2005), 289–302.
+[8] J. Herzog, T. Hibi, X. Zheng, Cohen-Macaulay chordal graphs. J. Combin. Theory Ser. A 113
+(2006), 911–916.
+[9] D. R. Grayson, M. E. Stillman, Macaulay 2, a software system for research in algebraic geometry.
+http://www.math.uiuc.edu/Macaulay2/.
+[10] E. Miller, B. Sturmfels, Combinatorial Commutative Algebra. Graduate Texts in Mathematics, 227,
+Springer, 2005.
+[11] S. Morey, R. Villarreal, Edge ideals: algebraic and combinatorial properties. In Progress in Commutative Algebra 1: Combinatorics and Homology, edited by Christopher Francisco, Lee C. Klingler,
+Sean Sather-Wagstaff, Janet C. Vassilev, (2012) de Gruyter, Berlin/Boston, 85–126.
+[12] M. Plummer, Well-covered graphs: a survey. Quaestiones Math. 16 (1993), 253–287.
+[13] J. Provan, L. Billera, Decompositions of simplicial complexes related to the diameters of convex
+polyhedra. Math. Oper. Res. 5 (1980), no. 4, 576–594.
+[14] V.N. Sachkov, V.E. Tarakanov, Combinatorics of Nonnegative Matrices. In: Translations of Mathematical Monographs, 213, American Mathematical Society, Providence, 2002.
+[15] R. Stanley, Combinatorics and Commutative Algebra, Second Edition. Birkhäuser, Boston (1983).
+[16] J. Topp, L. Volkmann, On the well-coveredness of products of graphs. Ars Combin. 33 (1992),
+199–215.
+[17] R. H. Villarreal, Cohen-Macaulay graphs. Manuscripta Math. 66 (1990), 277–293.
+[18] R. H. Villarreal, Monomial algebras. Monographs and Textbooks in Pure and Applied Mathematics,
+238. Marcel Dekker, Inc., New York, 2001.
+Department of Mathematics, Redeemer University College, Ancaster, ON, L9K 1J4,
+Canada
+E-mail address: kvanderm@redeemer.ca
+Department of Mathematical Sciences, Lakehead University, Thunder Bay, ON, P7B
+5E1, Canada
+E-mail address: avantuyl@lakeheadu.ca
+Department of Mathematics, Redeemer University College, Ancaster, ON, L9K 1J4,
+Canada
+E-mail address: cwatt@redeemer.ca
+
+
+
+Summary:
+This research paper covers the following topic: COHEN-MACAULAY CIRCULANT GRAPHS
+
+arXiv:1210.8351v1 [math.AC] 31 Oct 2012
+
+KEVIN N. VANDER MEULEN, ADAM VAN TUYL, AND CATRIONA WATT
+Abstract. Let G be the circulant graph Cn (S) with S ⊆ {1, 2, . . . , ⌊ n2 ⌋}, and let I(G)
+denote its the edge ideal in the ring R = k[x1 , . . . , xn ]. We consider the problem of
+determining when G is Cohen-Macaulay, i.e, R/I(G) is a Cohen-Macaulay ring. Because
+a Cohen-Macaulay graph G must be well-covered, we focus on known families of wellcovered circulant graphs of the form Cn (1, 2, . . . , d). We also characterize which cubic
+circulant graphs are Cohen-Macaulay. We end with the observation that even though
+the well-covered property is preserved under lexicographical products of graphs, this is
+not true of the Cohen-Macaulay property.
+
+1. Introduction
+Let G = (VG , EG ) denote a finite simple graph on the vertex set VG = {x1 , . . . , xn } with
+edge set EG . By identifying the vertices of G with the variables of the polynomial ring
+R = k[x1 , . . . , xn ] (here, k is any field), we can associate to G the quadratic square-free
+monomial ideal
+I(G) = hxi xj | {xi , xj } ∈ EG i ⊆ R
+called the edge ideal of G. Edge ideals were first introduced by Villarreal [17]. During
+the last couple of years, there has been an interest in determining which graphs G are
+Cohen-Macaulay, that is, determining when the ring R/I(G) is a Cohen-Macaulay ring
+solely from the properties of the graphs. Although this problem is probably intractable
+for arbitrary graphs, results are known for some families of graphs, e.g., chordal graphs
+[8] and bipartite graphs [7]. Readers may also be interested in the recent survey of Morey
+and Villarreal [11] and the textbook of Herzog and Hibi [6], especially Chapter 9.
+Our goal is to identify families of circulant graphs that are Cohen-Macaulay. Given an
+integer n ≥ 1 and a subset S ⊆ {1, 2, . . . , ⌊ n2 ⌋}, the circulant graph Cn (S) is the graph on n
+vertices {x1 , . . . , xn } such that {xi , xj } is an edge of Cn (S) if and only if min{|i−j|, n−|i−
+j|} ∈ S. See, for example, the graph C12 (1, 3, 4) in Figure 1. For convenience of notation,
+we suppress the set brackets for the set S = {1, 3, 4} in C12 (1, 3, 4). Circulant graphs
+belong to the family of Cayley graphs and are sometimes viewed as generalized cycles since
+Cn = Cn (1). The complete graph is also a circulant graph because Kn = Cn (1, 2, . . . , ⌊ n2 ⌋).
+In the literature, circulant graphs have appeared in a number of applications related to
+2010 Mathematics Subject Classification. 13F55, 13H10, 05C75, 05E45.
+Key words and phrases. Cohen-Macaulay, circulant graph, well-covered graph, vertex decomposable,
+shellable.
+Last updated: January 7, 2018.
+Research of first two authors supported in part by NSERC Discovery Grants. Research of the third
+author supported by an NSERC USRA.
+1
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+2
+
+Figure 1. The circulant graph C12 (1, 3, 4).
+networks [1], error-correcting codes [14], and even music [3], in part, because of their
+regular structure (see [4]).
+To classify families of Cohen-Macaulay circulant graphs we will use the fact that all
+Cohen-Macaulay graphs must be well-covered. A graph G is well-covered if all the maximal independent sets of G have the same cardinality, equivalently, every maximal independent set is a maximum independent set (see the survey of Plummer [12]). From an
+algebraic point-of-view, when a graph G is well-covered, the edge ideal is I(G) is unmixed,
+that is, all of its associated primes have the same height. Some families of well-covered
+circulant graphs were recently classified by Brown and Hoshino [4]. Our main results
+(see Theorems 3.4 and 5.2) refine the work of Brown and Hoshino by determining which
+of these well-covered circulant graphs are also Cohen-Macaulay. In particular we show
+in Theorem 3.4 that for n ≥ 2d ≥ 2, the circulant Cn (1, 2, . . . , d) is Cohen-Macaulay
+if and only if n ≤ 3d + 2 and n 6= 2d + 2. We also show that the Cohen-Macaulay
+graphs Cn (1, 2, . . . , d) are in fact vertex decomposable and shellable. Although the wellcovered circulant graphs C2d+2 (1, 2, . . . , d) and C4d+3 (1, 2, . . . , d) are not Cohen-Macaulay,
+we prove that these graphs are Buchsbaum (see Theorem 3.7). We also classify which
+cubic circulant graphs are Cohen-Macaulay (see Theorem 5.5).
+Our paper is structured as follows. In Section 2 we recall the relevant background
+regarding graph theory and simplicial complexes. In Section 3 we classify the CohenMacaulay graphs of the form Cn (1, 2, . . . , d) with n ≥ 2d. Section 4 contains the proof
+of a lemma needed to prove the main result of Section 3. In Section 5, we look at cubic
+circulant graphs, and classify those that are Cohen-Macaulay. Section 6 contains some
+concluding comments and open questions related to the lexicographical product of graphs.
+
+2. Background Definitions and Results
+A simplicial complex ∆ on a vertex set V = {x1 , . . . , xn } is a set of subsets of V that
+satisfies: (i) if F ∈ ∆ and G ⊆ F , then G ∈ ∆, and (ii) for each i = 1, . . . , n, {xi } ∈ ∆.
+Note that condition (i) implies that ∅ ∈ ∆. The elements of ∆ are called its faces. The
+maximal elements of ∆, with respect to inclusion, are the facets of ∆.
+The dimension of a face F ∈ ∆ is given by dim F = |F | − 1; the dimension of a
+simplicial complex, denoted dim ∆, is the maximum dimension of all its faces. We call ∆
+a pure simplicial complex if all its facets have the same dimension. Let fi be the number
+of faces of ∆ of dimension i, with the convention that f−1 = 1. If dim ∆ = D, then the
+f -vector of ∆ is the (D + 2)-tuple f (∆) = (f−1 , f0 , f1 , . . . , fD ). The h-vector of ∆ is the
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+3
+
+(D + 2)-tuple h(∆) = (h0 , h1 , . . . , hD+1 ) with (see [18, Theorem 5.4.6])
+
+
+k
+X
+k−i D + 1 − i
+fi−1 .
+hk =
+(−1)
+k
+−
+i
+i=0
+Given any simplicial complex ∆ on V , we can associate to ∆ a monomial ideal I∆ in
+the polynomial ring R = k[x1 , . . . , xn ] (with k a field) as follows:
+I∆ = h{xj1 xj2 · · · xjr | {xj1 , . . . , xjr } 6∈ ∆}i.
+The ideal I∆ is commonly called the Stanley-Reisner ideal of ∆, and the quotient ring
+R/I∆ is the Stanley-Reisner ring of ∆.
+We say that ∆ is Cohen-Macaulay (over k) if its Stanley-Reisner ring R/I∆ is a CohenMacaulay ring, that is, K-dim(R/I∆ ) = depth(R/I∆ ). Here K-dim(R/I∆ ), the Krull
+dimension, is the length of the longest chain of prime ideals in R/I∆ with strict inclusions,
+and depth(R/I∆ ), the depth, is length of the longest sequence f1 , . . . , fj in hx1 , . . . , xn i
+that forms a regular sequence on R/I∆ .
+We review the required background on reduced homology; see [10] for complete details.
+To any simplicial complex ∆ with f (∆) = (f−1 , f0 , . . . , fD ) we can associate a reduced
+chain complex over k:
+∂
+
+∂
+
+∂
+
+∂
+
+0
+1
+2
+D
+C̃· (∆; k) : 0 ←− k f−1 ←−
+k f0 ←−
+k f1 ←−
+· · · ←−
+k fD ← 0.
+
+Here k fi is the vector space with basis elements ej0 ,j1 ,...,ji corresponding to the i-dimensional
+faces of ∆. We assume j0 < j1 < · · · < ji . The boundary maps ∂i are given by
+∂i (ej0 ,j1 ,...,ji ) = eĵ0 ,j1 ,...,ji − ej0 ,ĵ1 ,...,ji + ej0 ,j1,ĵ2 ...,ji + · · · + (−1)i ej0 ,j1,...,ĵi
+where ˆ denotes an omitted term. The ith reduced simplicial homology of ∆ with coefficients in k is the k-vector space
+H̃i (∆; k) = ker(∂i )/ im(∂i+1 ).
+The dimensions of H̃i (∆; k) are related to f (∆) via the reduced Euler characteristic:
+(2.1)
+
+D
+X
+
+(−1)i dimk H̃i (∆; k) =
+
+i=−1
+
+D
+X
+
+(−1)i fi .
+
+i=−1
+
+We will find it convenient to use Reisner’s Criterion. Given a face F ∈ ∆, the link of
+F in ∆ is the subcomplex
+link∆ (F ) = {G ∈ ∆ | F ∩ G = ∅, F ∪ G ∈ ∆}.
+Theorem 2.1 (Reisner’s Criterion). Let ∆ be a simplicial complex on V . Then R/I∆
+is Cohen-Macaulay over k if and only if for all F ∈ ∆, H̃i (link∆ (F ); k) = 0 for all
+i < dim link∆ (F ).
+For any vertex x ∈ V , the deletion of x in ∆ is the subcomplex
+del∆ ({x}) = {F ∈ ∆ | x 6∈ F }.
+The following combinatorial topology property was introduced by Provan and Billera [13].
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+4
+
+Definition 2.2. Let ∆ be a pure simplicial complex. Then ∆ is vertex decomposable if
+(i) ∆ is a simplex, i.e {x1 , . . . , xn } is the unique maximal facet, or
+(ii) there exists an x ∈ V such that link∆ ({x}) and del∆ ({x}) are vertex decomposable.
+We will also refer to the following family of simplicial complexes.
+Definition 2.3. Let ∆ be a pure simplicial complex with facets {F1 , . . . , Ft }. Then ∆ is
+shellable if there exists an ordering of F1 , . . . , Ft such that such that for all 1 ≤ j < i ≤ t,
+there is some x ∈ Fi \ Fj and some k ∈ {1, . . . , j − 1} such that {x} = Fi \ Fk .
+The following theorem summarizes a number of necessary and sufficient conditions of
+Cohen-Macaulay simplicial complexes that we require.
+Theorem 2.4. Let ∆ be a simplicial complex on the vertex set V = {x1 , . . . , xn }.
+(i) If ∆ is Cohen-Macaulay, then it is pure.
+(ii) If ∆ is Cohen-Macaulay, then h(∆) has only non-negative entries.
+(iii) If n−pdim(R/I∆ ) = K-dim(R/I∆ ), then ∆ is Cohen-Macaulay (here, pdim(R/I∆ )
+denotes the projective dimension of R/I∆ , the length of a minimal free resolution
+of R/I∆ ).
+(iv) If ∆ is vertex decomposable, then ∆ is Cohen-Macaulay.
+(v) If dim ∆ = 0, then ∆ is vertex decomposable/shellable/Cohen-Macaulay.
+(vi) If dim ∆ = 1, then ∆ is vertex decomposable/shellable/Cohen-Macaulay if and
+only if ∆ is connected.
+Proof. Many of these results are standard. For (i) see [18, Theorem 5.3.12]; for (ii) see [18,
+Theorem 5.4.8]; (iii) follows from the Auslander-Buchsbaum Theorem; for (iv) see [13,
+Corollary 2.9] and the fact that shellable implies Cohen-Macaulay [18, Theorem 5.3.18];
+(v) is [13, Proposition 3.1.1]; and (vi) is [13, Theorem 3.1.2].
+
+In this paper, we will be interested in independence complexes of finite simple graphs
+G = (VG , EG ). We say that a set of vertices W ⊆ VG is an independent set if for all
+e ∈ EG , e 6⊆ W . The independence complex of G is the set of all independent sets:
+Ind(G) = {W | W is an independent set of VG }.
+The set Ind(G) is a simplicial complex. Following convention, G is Cohen-Macaulay
+(resp. shellable, vertex decomposable) if Ind(G) is Cohen-Macaulay (resp. shellable,
+vertex decomposable).
+The facets of Ind(G) correspond to the maximal independent sets of vertices of G. It
+is common to let α(G) denote the cardinality of a maximum independent set of vertices
+in G. A graph G is well-covered if every maximal independent set has cardinality α(G).
+Moreover, a direct translation of the definitions gives us:
+Lemma 2.5. If G is Cohen-Macaulay, then G is well-covered.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+5
+
+3. Characterization of Circulant graphs Cn (1, 2, . . . , d).
+In this section, we classify which circulant graphs of the form Cn (1, 2, . . . , d) are CohenMacaulay. Brown and Hoshino recently classified the well-covered graphs in this family:
+Theorem 3.1. ([4, Theorem 4.1]). Let n and d be integers with n ≥ 2d ≥ 2. Then
+Cn (1, 2, . . . , d) is well-covered if and only if n ≤ 3d + 2 or n = 4d + 3.
+Brown and Hoshino’s result is a key ingredient for our main result. We also need one
+additional result of [4] on the independence polynomial of Cn (1, 2, . . . , d), but translated
+into a statement about f -vectors. The independence polynomial of a graph G is given
+Pα(G)
+by I(G, x) = k=0 ik xk where ik is the number of independent sets of cardinality k (we
+take i0 = 1). Note that if ∆ = Ind(G) and f (∆) = (f−1 , f0 , . . . , fD ), then ik = fk−1 for
+each k. If we translate [4, Theorem 3.1] into the language of f -vectors and independence
+complexes, we get the following statement.
+Lemma 3.2. Let n and d be
+ integers with n ≥ 2d ≥ 2, G = Cn (1, 2, . . . , d), and D =
+n
+− 1 and f (∆) = (f−1 , f0 , . . . , fD ) where
+dim Ind(G). Then D = d+1
+
+
+n
+n − dk
+fk−1 =
+for k = 0, . . . , (D + 1).
+k
+n − dk
+By Lemma 2.5, to characterize the Cohen-Macaulay circulant graphs of the form
+Cn (1, 2, . . . , d), it suffices to determine which of the well-covered graphs of Theorem 3.1 are
+also Cohen-Macaulay. Interestingly, proving that Cn (1, 2, . . . , d) is not Cohen-Macaulay
+when n = 4d + 3 is the most subtle part of this proof. To carry out this part of the proof,
+we need the following lemma, whose proof we postpone until the next section.
+Lemma 3.3. Fix an integer d ≥ 3, and let G = C4d+3 (1, 2, . . . , d). If ∆ = Ind(G), then
+
+
+(4d + 3) d − 1
+.
+dimk H̃2 (∆; k) ≥
+2
+3
+Assuming, for the moment, that Lemma 3.3 holds, we arrive at our main result:
+Theorem 3.4. Let n and d be integers with n ≥ 2d ≥ 2 and let G = Cn (1, 2, . . . , d).
+Then the following are equivalent:
+(i)
+(ii)
+(iii)
+(iv)
+
+G is Cohen-Macaulay.
+G is shellable.
+G is vertex decomposable.
+n ≤ 3d + 2 and n 6= 2d + 2.
+
+Proof. We always have (iii) ⇒ (ii) ⇒ (i). We now prove that (iv) ⇒ (iii).
+By Lemma 3.2, when n = 2d or n = 2d + 1, dim Ind(G) = 0. Now apply Theorem 2.4
+(v).
+n
+When 2d + 2 ≤ n ≤ 3d + 2, dim Ind(G) = ⌊ d+1
+⌋ − 1 = 1. Let V = {x1 , . . . , xn }. If
+n = 2d+2, then Ind(G) is not connected, because the only edges of Ind(G) are {xi , xd+1+i }
+for i = 1, . . . , d + 1. On the other hand, when 2d + 3 ≤ n ≤ 3d + 2, Ind(G) is connected.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+6
+
+To see this, let n = 2d + c for 3 ≤ c ≤ d + 2. For each i = 1, 2, . . . , n, {xi , xi+d+2 }
+and {xi+1 , xi+d+2 } ∈ Ind(G), with subscript addition adjusted modulo n. Thus, for any
+xi , xj ∈ V with i < j, we can make the path xi , xi+d+2 , xi+1 , xi+d+3 , xi+2 , . . . , xj . So,
+Ind(G) is connected. Applying Theorem 2.4 (vi) then shows that (iv) ⇒ (iii).
+To complete the proof, we will show that if n ≥ 2d with n = 2d + 2 or n > 3d + 2,
+then G is not Cohen-Macaulay. In the proof that (iv) ⇒ (iii), we already showed that if
+n = 2d + 2, then Ind(G) is not connected and dim Ind(G) = 1. Again by Theorem 2.4
+(vi) this implies G is not Cohen-Macaulay.
+If n > 3d + 2 and n 6= 4d + 3, then by Theorem 3.1, G is not well-covered, and
+consequently, by Lemma 2.5, G is not Cohen-Macaulay. It therefore remains to show that
+if n = 4d + 3, then G is not Cohen-Macaulay for all d ≥ 1. The remainder of this proof
+is dedicated to this case.
+By Lemma 3.2, dim Ind(G) = 2 and the f -vector of Ind(G) is given by
+
+
+4d3 + 15d2 + 17d + 6
+2
+f (Ind(G)) = 1, 4d + 3, 4d + 7d + 3,
+.
+6
+When d = 1, then f (Ind(G)) = (1, 7, 14, 7) and hence h(Ind(G)) = (1, 4, 3, −1). When
+d = 2, then f (Ind(G)) = (1, 11, 33, 21) and hence h(Ind(G)) = (1, 8, 13, −1). In these two
+cases, Theorem 2.4 (ii) implies G is not Cohen-Macaulay.
+We can therefore assume that d ≥ 3. To show that Ind(G) is not Cohen-Macaulay,
+we will show that H̃1 (Ind(G); k) 6= 0. This suffices because Ind(G) = linkInd(G) (∅), so
+Reisner’s Criterion (Theorem 2.1) would imply that Ind(G) is not Cohen-Macaulay.
+Using the fact that dim Ind(G) = 2, the f -vector given above, and the reduced Euler
+characteristic (2.1) we know
+2
+X
+4d3 + 15d2 + 17d + 6
+(−1)i dimk H̃i (Ind(G); k).
+=
+−1 + (4d + 3) − (4d + 7d + 3) +
+6
+i=−1
+2
+
+Because Ind(G) is a non-empty connected simplicial complex, we have dimk H̃i (Ind(G); k) =
+0, for i = −1, and 0. Simplifying both sides of the above equation and rearranging gives:
+d(4d2 − 9d − 1)
+dimk H̃1 (Ind(G); k) = dimk H̃2 (Ind(G); k) −
+.
+6
+By Lemma 3.3
+
+
+4d + 3 d − 1
+d(4d2 − 9d − 1)
+dimk H̃1 (Ind(G); k) ≥
+−
+= 1.
+2
+3
+6
+So, H̃1 (Ind(G); k) 6= 0 as desired.
+
+
+
+When we specialize the above theorem to the case d = 1, we recover the known classification of the Cohen-Macaulay cycles [18, Corollary 6.3.6]. Note that C2 (1) = K2 is also
+Cohen-Macaulay, but it is not a cycle.
+Corollary 3.5. Let n ≥ 3. Then Cn = Cn (1) is Cohen-Macaulay if and only if n = 3 or
+5.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+7
+
+Even though C2d+2 (1, 2, . . . , d) and C4d+3 (1, 2, . . . , d) are not Cohen-Macaulay, they still
+have an interesting algebraic structure, as noted in Theorem 3.7 below.
+Definition 3.6. A pure simplicial complex ∆ is called Buchsbaum over a field k if for
+every non-empty face F ∈ ∆, H̃i (link∆ (F ); k) = 0 for all i < dim link∆ (F ). We say a
+graph G is Buchsbaum if the independence complex of G is Buchsbaum.
+Note that by Reisner’s Criterion (Theorem 2.1), if G is Cohen-Macaulay, then G is
+Buchsbaum. We can now classify all circulant graphs of the form Cn (1, . . . , d) which are
+Buchsbaum, but not Cohen-Macaulay.
+Theorem 3.7. Let n and d be integers with n ≥ 2d and d ≥ 1. Let G = Cn (1, 2, . . . , d).
+Then G is Buchsbaum, but not Cohen-Macaulay if and only if n = 2d + 2 or n = 4d + 3.
+Proof. (⇒) For G to be Buchsbaum, Ind(G) must be pure, that is G is well-covered. By
+Theorem 3.1, 2d ≤ n ≤ 3d + 2 or n = 4d + 3. Because G is not Cohen-Macaulay, Theorem
+3.4 implies n = 2d + 2 or n = 4d + 3.
+(⇐) We first show that if n = 4d + 3, then G is Buchsbaum. Let ∆ = Ind(G). Since
+dim ∆ = 2, given any F ∈ ∆, |F | ∈ {0, 1, 2, 3}. We wish to show that if |F | = 1, 2, or 3,
+then H̃i (link∆ (F ); k) = 0 for all i < dim link∆ (F ).
+If |F | = 3, then link∆ (F ) = {∅}, and hence H̃i (link∆ (F ); k) = 0 for all i < dim link∆ (F ) =
+−1. When |F | = 2, then dim link∆ (F) = 0, and again, we have H̃i (link∆ (F ); k) = 0 for
+all i < dim link∆ (F ) = 0.
+It therefore suffices to show that when |F | = 1, then H̃i (link∆ (F ); k) = 0 for all
+i < dim link∆ (F ). Because of the symmetry of G, we can assume without a loss of
+generality that F = {x1 }. Because G is well-covered, any independent set containing
+x1 can be extended to a maximal independent set, and furthermore, this independent
+set has cardinality three. This, in turn, implies that dim link∆ (F ) = 1. For any i <
+0, H̃i (link∆ (F ); k) = 0, so it suffices to prove that H̃0 (link∆ (F ); k) = 0. Proving this
+condition is equivalent to proving that link∆ (F ) is connected.
+We first note that none of the vertices x2 , x3 , . . . , xd+1 , x3d+4 , x3d+5 , . . . , x4d+3 appear in
+link∆ ({x1 }) because these vertices are all adjacent to x1 in G. On the other hand, the
+following elements are facets of ∆:
+{x1 , xd+2 , x2d+3 }, {x1 , xd+2 , x2d+4 }, . . . , {x1 , xd+2 , x3d+3 },
+{x1 , xd+3 , x3d+3 }, {x1 , xd+4 , x3d+3 }, . . . , {x1 , x2d+2 , x3d+3 }.
+Consequently the following edges are in link∆ ({x1 }):
+{xd+2 , x2d+3 }, {xd+2 , x2d+4 }, . . . , {xd+2 , x3d+3 }, {xd+3 , x3d+3 }, {xd+4 , x3d+3 }, . . . , {x2d+2 , x3d+3 }.
+
+Thus link∆ ({x1 }) is connected, as desired.
+Now suppose n = 2d + 2. As shown in the proof of Theorem 3.4, Ind(G) consists of
+the disjoint edges {xi , xd+1+i } for i = 1, . . . , d + 1. If F ∈ Ind(G) and |F | = 2, then
+link∆ (F ) = {∅}. If F ∈ Ind(G) and |F | = 1, then link∆ (F ) = {{x}} for some variable x.
+Therefore G is Buchsbaum.
+
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+8
+
+4. Proof of Lemma 3.3
+The purpose of this section is to prove Lemma 3.3. We will be interested in finding
+induced octahedrons in our independence complex.
+Lemma 4.1. Fix an integer d ≥ 3. Let G = C4d+3 (1, 2, . . . , d) and let ∆ = Ind(G) be
+the associated independence complex. Let W = {i1 , i2 , j1 , j2 , k1, k2 } ⊆ VG be six distinct
+vertices. Then the induced simplicial complex ∆|W = {F ∈ ∆ | F ⊆ W } is isomorphic
+to the labeled octahedron in Figure 2 if and only if the induced graph GW is the graph of
+three disjoint edges {i1 , i2 }, {j1 , j2 }, and {k1 , k2}.
+i1
+
+k1
+
+j2
+j1
+
+k2
+
+i2
+Figure 2. A labeled octahedron
+
+Proof. Suppose that ∆|W is isomorphic to the octahedron in Figure 2. It follows that
+{i1 , i2 }, {j1 , j2 } and {k1 , k2 }, which are not edges of the octahedron, are also not edges
+of ∆. Because ∆ is an independence complex, these means that each set is not an
+independent set, or in other words, e1 = {i1 , i2 }, e2 = {j1 , j2 }, and e3 = {k1 , k2 } are all
+edges of G. It suffices to show that GW consists only of these edges. If not, there is a
+vertex x ∈ ei and a vertex y ∈ ej with i 6= j, such that {x, y} is an edge of G. However,
+for any x ∈ ei and y ∈ ej , {x, y} is an edge of ∆|W , and consequently, {x, y} cannot be
+an edge of G, a contradiction.
+For the converse, we reverse the argument. If GW is the three disjoint edges {i1 , i2 },
+{j1 , j2 } and {k1 , k2}, then it follows that {i1 , j1 , k1 }, {i1 , j1 , k2}, {i1 , j2 , k1 }, {i1 , j2 , k2 },
+{i2 , j1 , k1 }, {i2 , j1 , k2 }, {i2 , j2 , k1 }, {i2 , j2 , k2 } are all independent sets of G, and thus belong
+to ∆, and consequently, ∆|W . Because {i1 , i2 }, {j1 , j2 }, and {k1 , k2 } are not faces of ∆,
+the facets of the complex ∆|W are these eight faces, whence ∆|W is an octahedron.
+
+We now come to our desired proof.
+Proof. (of Lemma 3.3) We begin by first recalling some facts about ∆ = Ind(G). By
+Theorem 3.1 and Lemma 3.2, the simplicial complex ∆ is pure and two dimensional with
+f (∆) = (f−1 , f0 , f1 , f2 ). Therefore, the reduced chain complex of ∆ over k has the form
+∂
+
+∂
+
+∂
+
+0
+1
+2
+0 ←− k f−1 ←−
+k f0 ←−
+k f1 ←−
+k f2 ←− 0.
+
+It follows from this chain complex that dimk H̃2 (∆; k) = dimk ker ∂2 .
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+9
+
+linearly independent elements in ker ∂2 .
+Our strategy, therefore, is to identify (4d+3)
+3
+2
+Note that if W ⊆ V is a subset of the vertices such that the induced complex ∆|W is
+isomorphic to an octahedron, then this octahedron corresponds to an element of ker ∂2 .
+We make this more precise. Suppose that W = {i1 , i2 , j1 , j2 , k1 , k2 } ⊆ V and ∆|W is an
+octahedron, i.e, the simplicial complex with facets
+
+d−1
+
+∆|W = h{i1 , j1 , k1 }, {i1 , j1 , k2 }, {i1 , j2 , k1 }, {i1 , j2 , k2 },
+{i2 , j1 , k1 }, {i2 , j1 , k2 }, {i2 , j2 , k1 }, {i2 , j2 , k2}i.
+Note that each {ia , jb , kc } is a 2-dimensional face of ∆; we associate to ∆|W the following
+element of k f2 :
+OW = ei1 j1 k1 − ei1 j1 k2 − ei1 j2 k1 − ei2 j1 k1 + ei1 j2 k2 + ei2 j1 k2 + ei2 j2 k1 − ei2 j2 k2 .
+Here, we have assumed that the indices of each basis element have been written in increasing order. The boundary map ∂2 evaluated at OW gives ∂2 (OW ) = 0, i.e., OW ∈ ker ∂2 .
+To compute the lower bound on dimk H̃2 (∆; k), we will build a list L of octahedrons
+in ∆ and then order the elements of L using the lexicographical ordering so that each
+octahedron in the list L contains a face that has not appeared in any previous octahedron
+in L with respect to the ordering. By associating each octahedron to the corresponding
+element of k f2 , each octahedron will belong to ker ∂2 . Moreover, the fact that each octahedron in L has a face that has not appeared previously implies that the octahedron can
+not be written as a linear combination of our previous elements in ker ∂2 , thus giving us
+the required number of linearly independent elements.
+By Lemma 4.1, there is a one-to-one correspondence between the induced octahedrons
+of ∆ and the induced subgraphs of G consisting of three pairwise disjoint edges. So we
+can represent an octahedron by a tuple (i1 , i2 ; j1 , j2 ; k1, k2 ) where {i1 , i2 }, {j1 , j2 }, and
+{k1 , k2 } correspond to these edges.
+We begin by considering the octahedrons described by the following list:
+(1, 2;
+(1, 2;
+
+d + 3, d + 4;
+d + 3, d + 4;
+
+2d + 5, 3d + 3)
+2d + 6, 3d + 3)
+..
+.
+
+(1, 2;
+(1, 2;
+(1, 2;
+
+d + 3, d + 4;
+d + 3, d + 5;
+d + 3, d + 5;
+
+3d + 2, 3d + 3)
+2d + 6, 3d + 3)
+2d + 7, 3d + 3)
+..
+.
+
+(1, 2;
+(1, 2;
+
+d + 3, d + 5;
+d + 3, d + 6;
+
+3d + 2, 3d + 3)
+2d + 7, 3d + 3)
+..
+.
+
+(4.1)
+
+(1, 2; d + 3, 2d;
+3d + 1, 3d + 3)
+(1, 2; d + 3, 2d;
+3d + 2, 3d + 3)
+(1, 2; d + 3, 2d + 1; 3d + 2, 3d + 3)
+If we take our list of octahedrons in (4.1) and add one to each index, we will get a new list
+of octahedrons. In terms of the graph G = C4d+3 (1, 2, . . . , d), we are “rotating” our disjoint
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+10
+
+edges to the right. We “rotate” these disjoint edges, or equivalently, we add one to each
+index, until k1 = 4d + 3. So, for example, the disjoint edges (1, 2; d + 3, d + 4; 2d + 5, 3d + 3)
+can be rotated to the right 2d − 2 times to give us 2d − 1 octahedrons
+(1, 2;
+(2, 3;
+(3, 4;
+..
+.
+(2d − 1, 2d;
+
+d + 3, d + 4;
+d + 4, d + 5;
+d + 5, d + 6;
+..
+.
+3d + 1, 3d + 2;
+
+2d + 5, 3d + 3)
+2d + 6, 3d + 4)
+2d + 7, 3d + 5)
+..
+.
+4d + 3, d − 2).
+
+On the other hand, the disjoint edges (1, 2; d + 3, 2d + 1; 3d + 2, 3d + 3) are only rotated
+d + 1 times to create d + 2 octahedrons
+(1, 2;
+(2, 3;
+(3, 4;
+..
+.
+
+d + 3, 2d + 1;
+d + 4, 2d + 2;
+d + 5, 2d + 3;
+..
+.
+
+3d + 2, 3d + 3)
+3d + 3, 3d + 4)
+3d + 3, 3d + 5)
+..
+.
+
+(d + 2, d + 3; 2d + 4, 3d + 2; 4d + 3, 1)
+
+.
+
+If we carry out this procedure, we end up with an expanded list L of octahedrons with
+
+
+d−2
+d−2
+d−2
+X
+X
+X
+4d + 3 d − 1
+2
+.
+|L| =
+k(2d − k) = 2d
+k−
+k =
+2
+3
+k=1
+k=1
+k=1
+To see why, there is only one collection of disjoint edges with k1 = 2d + 5 which is rotated
+2d − 1 times, there are two tuples of disjoint edges with k1 = 2d + 6 which are rotated
+2d − 2 times, and so on, until we arrive at the d − 2 tuples which are constructed from all
+the tuples with k1 = 3d + 2 rotated d + 2 times.
+It now suffices to show that the corresponding elements of ker ∂2 are linearly independent. In (4.2), we have arranged the list L in lexicographical order from smallest to
+largest:
+(1, 2;
+
+d + 3, d + 4;
+..
+.
+d + 3, 2d + 1;
+d + 4, d + 5;
+..
+.
+d + 4, 2d + 2;
+..
+.
+
+2d + 5, 3d + 3)
+..
+.
+3d + 2, 3d + 3)
+2d + 6, 3d + 4)
+..
+.
+3d + 3, 3d + 4)
+
+(2d − 2, 2d − 1;
+3d, 3d + 1;
+(2d − 2, 2d − 1;
+3d, 3d + 2;
+(2d − 1, 2d;
+3d + 1, 3d + 2;
+
+4d + 3, d − 3)
+4d + 3, d − 3)
+4d + 3, d − 2)
+
+(1, 2;
+(2, 3;
+(4.2)
+
+(2, 3;
+
+For each (i1 , i2 ; j1 , j2 ; k1, k2 ) in L, we consider the two-dimensional face {i2 , j2 , k1 } of the
+associated octahedron. We claim that as we progress down the list in (4.2), each face
+{i2 , j2 , k1 } has not appeared in a previous octahedron.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+11
+
+In particular, suppose that (i1 , i2 ; j1 , j2 ; k1 , k2 ) is the ℓ-th item in (4.2). We wish to
+show that the face {i2 , j2 , k1 } has not appeared in any of the first ℓ − 1 octahedrons in
+the lexicographically ordered list (4.2). Suppose, that (a1 , a2 ; b1 , b2 , c1 , c2 ) appears earlier
+in the list and contains the face {i2 , j2 , k1 }. For this face to appear, {a1 , a2 } must contain
+exactly one of i2 , j2 , k1 , {b1 , b2 } must contain exactly one of the remaining two vertices,
+and {c1 , c2 }, must contain the remaining vertex of the face.
+By the way we listed and constructed our octahedrons, i2 < j2 < k1 , i1 = i2 − 1, and
+j1 = i2 +d+1. Further, k2 = i2 +3d+1 if i2 +3d+1 ≤ (4d−3), and k2 = i2 +3d+1−(4d−3)
+if i2 + 3d + 1 > (4d − 3). Note that a1 6= i2 , j2 or k2 otherwise a1 > i1 , contradicting
+the lexicographical ordering. Also, if a2 = j2 , then a1 = j2 − 1 ≥ i2 > i1 , again a
+contradiction. The same problem arises if a2 = k1 . Thus {a1 , a2 } = {i2 − 1, i2 } = {i1 , i2 },
+i.e., (a1 , a2 ; b1 , b2 ; c1 , c2 ) = (i1 , i2 , j1 , b2 , c1 , k2 ).
+Since j2 and k1 must also appear in this tuple, there are only two possibilities:
+(a1 , a2 ; b1 , b2 ; c1 , c2 ) = (i1 , i2 , j1 , k1 , j2 , k2 ) or (i1 , i2 , j1 , j2 , k1 , k2 ).
+But neither of these tuples appear strictly before (i1 , i2 , j1 , j2 , k1 , k2 ) with respect to our
+ordering, thus completing the proof.
+
+5. Cohen-Macaulay Circulant Cubic Graphs
+Brown and Hoshino [4] classified which circulant cubic graphs are well-covered. Recall
+that a cubic graph is a graph in which each vertex has degree 3. Thus, if G is a circulant
+cubic graph, then G = C2n (a, n) for some 1 ≤ a < n.
+There are only a finite number of connected well-covered circulant cubic graphs:
+Theorem 5.1 ([4, Theorem 4.3]). Let G be a connected circulant cubic graph. Then G
+is well-covered if and only if it is isomorphic to one of the following graphs: C4 (1, 2),
+C6 (1, 3), C6 (2, 3), C8 (1, 4) or C10 (2, 5).
+Using a computer algebra system like Macaulay2 [9], one can simply check which of
+these graphs, displayed in Figure 3, are Cohen-Macaulay.
+Theorem 5.2. Let G be a connected circulant cubic graph. Then is Cohen-Macaulay if
+and only if it is isomorphic to C4 (1, 2) or C6 (2, 3).
+Proof. By Theorem 5.1, it suffices to check which of the graphs C4 (1, 2), C6 (1, 3), C6 (2, 3),
+C8 (1, 4) or C10 (2, 5), are also Cohen-Macaulay.
+
+Figure 3. The well-covered connected cubic circulant graphs.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+12
+
+For any graph G, dim R/I(G) = α(G). So, by Theorem 2.4 (iii), we simply need to
+check if α(G) = n − pdim(R/I(G)). We can compute α(G) for each of the graphs G in
+Figure 3 by inspection; on the other hand, we compute the projective dimension using a
+computer algebra system. The following table summarizes these calculations:
+G
+C4 (1, 2) C6 (1, 3) C6 (2, 3) C8 (1, 4) C10 (2, 5)
+n − pdim(R/I(G))
+1
+1
+2
+2
+2
+α(G)
+1
+3
+2
+3
+4
+The conclusion now follows from the values in the table.
+
+
+
+As in Brown and Hoshino [4], we will use the following result to extend Theorem 5.2
+to all circulant cubic graphs. The following classification is due to Davis and Domke [5].
+Theorem 5.3. Let G = C2n (a, n) with 1 ≤ a < n, and let t = gcd(a, 2n).
+(i) If
+(ii) If
+
+2n
+t
+2n
+t
+
+is even, then G is isomorphic to t copies of C 2n (1, nt ).
+t
+is odd, then G is isomorphic to 2t copies of C 4n (2, 2n
+).
+t
+t
+
+We also use the following lemma in the next proof.
+Lemma 5.4 ([18, Proposition 6.2.8]). Suppose that the graph G = H ∪ K where H and
+K are disjoint components of G. Then G is Cohen-Macaulay if and only if H and K are
+Cohen-Macaulay.
+Theorem 5.5. Let G = C2n (a, n) with 1 ≤ a < n, that is, G is a cubic circulant graph.
+Let t = gcd(a, 2n). Then G is Cohen-Macaulay if and only if 2n
+= 3 or 4.
+t
+Proof. Suppose that 2n
+6= 3 or 4. If 2n
+is even, then C 2n (1, nt ) is not Cohen-Macaulay by
+t
+t
+t
+2n
+4n (2,
+is
+odd,
+then
+C
+)
+is
+also
+not
+Cohen-Macaulay by Theorem 5.2.
+Theorem 5.2 and if 2n
+t
+t
+t
+Thus by Lemma 5.4 G is not Cohen-Macaulay. Conversely, if 2n
+= 4, then by Theorem
+t
+2n
+5.3, G is isomorphic to t copies of C4 (1, 2) and if t = 3, then G is isomorphic to 2t copies
+of C6 (2, 3). In both cases, Theorem 5.2 and Lemma 5.4 imply G is Cohen-Macaulay. 
+6. Concluding Comments and Open Questions
+The question of classifying all Cohen-Macaulay circulant graphs Cn (S) is probably an
+intractable problem. Even the weaker question of determining whether or not a circulant
+graph Gn (S) is well-covered (equivalently, Ind(Cn (S)) is a pure simplicial complex) was
+shown by Brown and Hoshino to be co-NP-complete [4, Theorem 2.5]. At present, the
+best we can probably expect is to identify families of Cohen-Macaulay circulant graphs.
+Brown and Hoshino observed that circulant graphs behave well with respect to the
+lexicographical product. Recall this construction:
+Definition 6.1. Given two graphs G and H, the lexicographical product, denoted G[H], is
+graph with vertex set V (G) × V (H), where any two vertices (u, v) and (x, y) are adjacent
+in G[H] if and only if either {u, x} ∈ G or u = x and {v, y} ∈ H.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+13
+
+When G and H are both circulant graphs, then the lexicographical product G[H] is
+also circulant (see [4, Theorem 4.6]). The well-covered property is also preserved with
+respect to the lexicographical product (see [16]).
+Theorem 6.2. Let G and H be two non-empty graphs. Then G[H] is well-covered if and
+only if the graphs G and H are well-covered.
+As a consequence, the families of well-covered circulant graphs discovered in [4] can
+be combined into new well-covered circulant graphs using the lexicographical product. It
+is therefore natural to ask if the lexicographical product allows us to build new CohenMacaulay circulant graphs from known Cohen-Macaulay circulant graphs. In other words,
+can we replace “well-covered” in Theorem 6.2 by “Cohen-Macaulay”. This turns out not
+to always be the case, as the following example shows.
+Example 6.3. Let G and H be the Cohen-Macaulay circulant graphs G = C2 (1) and
+H = C5 (1). Then G[H] = C10 (1, 4, 5) and H[G] = C10 (1, 2, 3, 5) as seen in Figure 4.
+We can compute α(G) for the graphs in Figure 4 by inspection; on the other hand,
+
+Figure 4. Lexicographical products C2 [C5 ] and C5 [C2 ]
+we compute the projective dimension using Macaulay 2 [9]. We find that α(G[H]) =
+dim(R/I(G[H])) = 2 = n − pdim(R/I(G[H])), so G[H] is Cohen-Macaulay. However,
+α(H[G]) = dim(R/I(H[G])) = 2 > n − pdim(R/I(H[G])) = 1, so H[G] is not CohenMacaulay.
+In light of the above example, we can ask what conditions on G and H allow us to
+conclude that the lexicographical product G[H] is Cohen-Macaulay.
+We end with a question concerning Lemma 3.3. Using Macaulay 2 [9], we found that
+d−1
+dimk H̃2 (∆; k) = 4d+3
+for d = 1, . . . , 14. This suggests that the inequality of Lemma
+3
+2
+3.3 is actually an equality. We wonder if this is indeed true.
+Acknowledgements. We thank Brydon Eastman for writing the LATEX code to produce
+circulant graphs, and Russ Woodroofe and Jennifer Biermann for useful discussions.
+References
+[1] J.-C. Bermond, F. Comellas, D.F. Hsu, Distributed loop computer networks: a survey. J. Parallel
+Distrib. Comput. 24 (1995), 2–10.
+[2] F. Boesch, R. Tindell, Circulants and their connectivities. J. Graph Theory 8 (1984), 487–499.
+[3] J. Brown, R. Hoshino, Independence polynomials of circulants with an application to music. Discrete
+Math. 309 (2009), 2292–2304.
+[4] J. Brown, R. Hoshino, Well-covered circulant graphs. Discrete Math. 311 (2011), 244–251.
+[5] G. Davis, G. Domke, 3-Circulant Graphs. J. Combin. Math. Combin. Comput. 40 (2002), 133–142.
+
+COHEN-MACAULAY CIRCULANT GRAPHS
+
+14
+
+[6] J. Herzog, T. Hibi, Monomial ideals. Graduate Texts in Mathematics 260, Springer-Verlag, 2011.
+[7] J. Herzog, T. Hibi, Distributive lattices, bipartite graphs and Alexander duality. J. Algebraic Combin.
+22 (2005), 289–302.
+[8] J. Herzog, T. Hibi, X. Zheng, Cohen-Macaulay chordal graphs. J. Combin. Theory Ser. A 113
+(2006), 911–916.
+[9] D. R. Grayson, M. E. Stillman, Macaulay 2, a software system for research in algebraic geometry.
+http://www.math.uiuc.edu/Macaulay2/.
+[10] E. Miller, B. Sturmfels, Combinatorial Commutative Algebra. Graduate Texts in Mathematics, 227,
+Springer, 2005.
+[11] S. Morey, R. Villarreal, Edge ideals: algebraic and combinatorial properties. In Progress in Commutative Algebra 1: Combinatorics and Homology, edited by Christopher Francisco, Lee C. Klingler,
+Sean Sather-Wagstaff, Janet C. Vassilev, (2012) de Gruyter, Berlin/Boston, 85–126.
+[12] M. Plummer, Well-covered graphs: a survey. Quaestiones Math. 16 (1993), 253–287.
+[13] J. Provan, L. Billera, Decompositions of simplicial complexes related to the diameters of convex
+polyhedra. Math. Oper. Res. 5 (1980), no. 4, 576–594.
+[14] V.N. Sachkov, V.E. Tarakanov, Combinatorics of Nonnegative Matrices. In: Translations of Mathematical Monographs, 213, American Mathematical Society, Providence, 2002.
+[15] R. Stanley, Combinatorics and Commutative Algebra, Second Edition. Birkhäuser, Boston (1983).
+[16] J. Topp, L. Volkmann, On the well-coveredness of products of graphs. Ars Combin. 33 (1992),
+199–215.
+[17] R. H. Villarreal, Cohen-Macaulay graphs. Manuscripta Math. 66 (1990), 277–293.
+[18] R. H. Villarreal, Monomial algebras. Monographs and Textbooks in Pure and Applied Mathematics,
+238. Marcel Dekker, Inc., New York, 2001.
+Department of Mathematics, Redeemer University College, Ancaster, ON, L9K 1J4,
+Canada
+E-mail address: kvanderm@redeemer.ca
+Department of Mathematical Sciences, Lakehead University, Thunder Bay, ON, P7B
+5E1, Canada
+E-mail address: avantuyl@lakeheadu.ca
+Department of Mathematics, Redeemer University College, Ancaster, ON, L9K 1J4,
+Canada
+E-mail address: cwatt@redeemer.ca
+
+

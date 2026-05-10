@@ -1,0 +1,3941 @@
+Title: arXiv paper 1019
+
+Categories: 0
+
+Abstract:
+arXiv:1409.3605v2 [math.RA] 5 Jan 2016
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+OLGUR CELIKBAS, LARS WINTHER CHRISTENSEN, LI LIANG,
+AND GREG PIEPMEYER
+Abstract. We analyze stable homology over associative rings and obtain results over Artin algebras and commutative noetherian rings. Our study develops similarly for these classes; for simplicity we only discuss the latter here.
+Stable homology is a broad generalization of Tate homology. Vanishing of
+stable homology detects classes of rings—among them Gorenstein rings, the
+original domain of Tate homology. Closely related to gorensteinness of rings is
+Auslander’s G-dimension for modules. We show that vanishing of stable homology detects modules of finite G-dimension. This is the first characterization
+of such modules in terms of vanishing of (co)homology alone.
+Stable homology, like absolute homology, Tor, is a theory in two variables.
+It can be computed from a flat resolution of one module together with an
+injective resolution of the other. This betrays that stable homology is not
+balanced in the way Tor is balanced. In fact, we prove that a ring is Gorenstein
+if and only if stable homology is balanced.
+
+Introduction
+The homology theory studied in this paper was introduced by P. Vogel in the 1980s.
+Vogel did not publish his work, but the theory appeared in print in a 1992 paper by
+Goichot [18], who called it Tate–Vogel homology. As the name suggests, the theory
+is a generalization of Tate homology for modules over finite group rings. Vogel and
+Goichot also considered a generalization of Tate cohomology, which was studied
+in detail by Avramov and Veliche [5]. In that paper, the theory was called stable
+cohomology, to emphasize a relation to stabilization of module categories. To align
+terminology, we henceforth refer to the homology theory as stable homology.
+For modules M and N over a ring R, stable homology is a Z-indexed family of
+g R (M, N ). These fit into an exact sequence
+abelian groups Tor
+i
+
+(†)
+
+R
+R
+gR
+gR
+· · · → Tor
+i (M, N ) → Tori (M, N ) → Tori (M, N ) → Tori−1 (M, N ) → · · ·
+
+R
+where the groups TorR
+i (M, N ) and Tori (M, N ) form, respectively, the unbounded
+homology and the standard absolute homology of M and N . We are thus led to
+study stable and unbounded homology simultaneously. Our investigation takes cues
+from the studies of stable cohomology [5] and absolute homology, but our results
+look quite different. This comes down to an inherent asymmetry in the definition
+
+Date: 29 December 2015.
+2010 Mathematics Subject Classification. 16E05, 16E30, 16E10, 13H10.
+Key words and phrases. Stable homology, Tate homology, Gorenstein ring, G-dimension.
+This research was partly supported by a Simons Foundation Collaboration Grant for Mathematicians, award no. 281886 (L.W.C.), NSA grant H98230-14-0140 (L.W.C.) and NSFC grant
+11301240 (L.L.). Part of the work was done during L.L.’s stay at Texas Tech University with
+support from the China Scholarship Council; he thanks the Department of Mathematics and
+Statistics at Texas Tech for its kind hospitality.
+
+2
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+of stable homology that is not present in either of these precursors. It manifests
+itself in different ways, but it is apparent in most of our results.
+∗ ∗ ∗
+g R (M, N ), the ring acts on M from the right
+When we consider stable homology Tor
+and on N from the left. In this paper an R-module is a left R-module; to distinguish
+right R-modules, we speak of modules over the opposite ring R◦ . We study stable
+homology over associative rings and obtain conclusive results for Artin algebras and
+commutative noetherian rings. In the following overview, R denotes an Artin algebra or a commutative noetherian local ring. The results we discuss are special cases
+of results obtained within the paper; internal references are given in parentheses.
+One expects a homology theory to detect finiteness of homological dimensions.
+Our first two results reflect the asymmetry in the definition of stable homology.
+Right vanishing (3.1, 3.2). For a finitely generated R◦ -module M , the following
+conditions are equivalent.
+(i) M has finite projective dimension.
+g R (M, −) = 0 for all i ∈ Z.
+(ii) Tor
+i
+
+g R (M, −) = 0.
+(iii) There is an i > 0 with Tor
+i
+
+Left vanishing (5.1, 5.12). For a finitely generated R-module N , the following
+conditions are equivalent.
+(i) N has finite injective dimension.
+g R (−, N ) = 0 for all i ∈ Z.
+(ii) Tor
+i
+
+g R (−, N ) = 0.
+(iii) There is an i 6 0 with Tor
+i
+
+These two vanishing results reveal that stable homology cannot be balanced in the
+way absolute homology, Tor, is balanced.
+Balancedness (4.5, 4.6, 4.7). The following conditions on R are equivalent.
+(i) R has finite injective dimension over R and over R◦ .
+(ii) For all finitely generated R◦ -modules M , all finitely generated R-modules N ,
+g R◦ (N, M ).
+g R (M, N ) ∼
+and all i ∈ Z there are isomorphisms Tor
+= Tor
+i
+i
+(iii) For all R◦ -modules M , all R-modules N , and all i ∈ Z there are isomorphisms
+g R◦ (N, M ).
+g R (M, N ) ∼
+Tor
+= Tor
+i
+i
+
+Another way to phrase part (i) above is to say that R is Iwanaga-Gorenstein. On
+that topic: a commutative noetherian ring A is Gorenstein (regular or Cohen–
+Macaulay) if the local ring Ap is Iwanaga-Gorenstein (regular or Cohen–Macaulay)
+for every prime ideal p in A. It follows that a commutative noetherian ring of finite
+self-injective dimension is Gorenstein, but a Gorenstein ring need not have finite
+self-injective dimension; consider, for example, Nagata’s regular ring of infinite
+Krull dimension [28, appn. exa. 1].
+It came as a surprise to us that balancedness of stable homology detects gorensteinness outside of the local situation (4.6): A commutative noetherian ring A is
+g A (N, M ) are isomorphic for all finitely
+g A (M, N ) and Tor
+Gorenstein if and only if Tor
+i
+i
+generated A-modules M and N and all i ∈ Z. This turns out to be only one of
+several ways in which stable homology captures global properties of rings. Indeed,
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+3
+
+vanishing of stable homology detects if a commutative noetherian (not necessarily
+local) ring is regular (3.3), Gorenstein (3.12), or Cohen–Macaulay (5.11).
+For finitely generated modules over a noetherian ring, Auslander and Bridger [1]
+introduced a homological invariant called the G-dimension. A noetherian ring is
+Iwanaga-Gorenstein if and only if there is an integer d such that every finitely
+generated left or right module has G-dimension at most d; see Avramov and
+Martsinkovsky [4, 3.2]. In [18, sec. 3] Tate homology was defined for modules over
+Iwanaga-Gorenstein rings and shown to agree with stable homology. Iacob [24]
+generalized Tate homology further to a setting that includes the case where M is a
+finitely generated R◦ -module of finite G-dimension. We prove:
+Tate homology (6.4). Let M be a finitely generated R◦ -module of finite Gg R (M, −) is isomorphic
+dimension. For every i ∈ Z the stable homology functor Tor
+i
+d R (M, −).
+to the Tate homology functor Tor
+i
+
+There are two primary generalizations of G-dimension to modules that are not
+finitely generated: Gorenstein projective dimension and Gorenstein flat dimension.
+They are defined in terms of resolutions by Gorenstein projective (flat) modules,
+notions which were introduced by Enochs, Jenda, and collaborators; see Holm [21]1.
+In general, it is not known if Gorenstein projective modules are Gorenstein flat.
+d R (M, −) is for R◦ -modules M of finite
+Iacob’s definition of Tate homology Tor
+Gorenstein projective dimension. We show (6.7) that Tate homology agrees with
+g R (M, −) for all such R◦ -modules if and only if every Gorenstein
+stable homology Tor
+◦
+projective R -module is Gorenstein flat.
+Here is an example to illustrate how widely the various homology theories differ.
+
+Example. Let (R, m) be a commutative artinian local ring with m2 = 0, and
+assume that R is not Gorenstein. If k denotes a field, then k[x, y]/(x2 , xy, y 2 ) is an
+example of such a ring. Let E be the injective hull of the residue field R/m. Then:
+(a) Absolute homology TorR
+i (E, E) is non-zero for every i ≥ 2.
+R
+g
+(b) Stable homology Tori (E, E) is zero for every i.
+R
+(c) Unstable homology TorR
+i (E, E) agrees with Tori (E, E) for every i.
+d R (E, E)” is not defined.
+(d) Tate homology “Tor
+
+Since R is not Gorenstein, E has infinite G-dimension; see [22, thm. 3.2]. That
+explains (d); see 6.1 and 6.2. It also explains (a), as the first syzygy of E is a
+k-vector space, whence vanishing of TorR
+i (E, E) for some i > 2 would imply that E
+has finite projective dimension and hence finite G-dimension; see [4, thm. 4.9]. Left
+vanishing, see p. 2, yields (b), and then the exact sequence (†) on p. 1 gives (c).
+Finally we return to the topic of vanishing. A much studied question in Gorenstein homological algebra is how to detect finiteness of G-dimension. A finitely
+generated module G over a commutative noetherian ring A has G-dimension zero if
+it satisfies ExtiA (G, A) = 0 = ExtiA (HomA (G, A), A) for all i > 0 and the canonical
+map G → HomA (HomA (G, A), A) is an isomorphism. This is the original definition [1], and the last requirement cannot be dispensed with, as shown by Jorgensen
+1 Enochs and Jenda consolidated their work in [16, chaps. 10–12], which deal almost exclusively
+with Gorenstein rings. In [21] Holm does Gorenstein homological algebra over associative rings,
+so that is our standard reference for this topic. Basic definitions are recalled in 6.6.
+
+4
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+and Şega [26]. There are other characterizations of modules of finite G-dimension
+in the literature, but none that can be expressed solely in terms of vanishing of
+(co)homology functors. Hence, we were excited to discover:
+G-dimension (3.11). Let A be a commutative noetherian ring. A finitely generg A (M, A) = 0 holds for
+ated A-module M has finite G-dimension if and only if Tor
+i
+all i ∈ Z.
+1. Tensor products of complexes
+All rings in this paper are assumed to be associative algebras over a commutative
+ring k, where k = Z is always possible, and k = R works when R is commutative.
+For an Artin algebra R, one can take k to be an artinian ring such that R is finitely
+generated as a k-module. We recall that in this situation the functor D(−) =
+Homk (−, E), where E is the injective hull of k/Jac(k), yields a duality between the
+categories of finitely generated R-modules and finitely generated R◦ -modules.
+By M(R) we denote the category of R-modules. We work with complexes, index
+these homologically, and follow standard notation (see the appendix in [9] for what
+is not covered below).
+1.1. For a complex X with differential ∂ X and an integer n ∈ Z the symbol Cn (X)
+X
+, and Hn (X) denotes the homology of X in degree n,
+denotes the cokernel of ∂n+1
+X
+X
+i.e., Ker ∂n /Im ∂n+1 . A complex with H(X) = 0 is called acyclic, and a morphism
+of complexes X → Y that induces an isomorphism H(X) → H(Y ) is called a quasiisomorphism. The symbol ≃ is used to decorate quasi-isomorphisms; it is also used
+for isomorphisms in derived categories.
+1.2. For an R◦ -complex X and an R-complex Y
+`, the tensor product X ⊗R Y is
+the k-complex with degree n term (X ⊗R Y )n = i∈Z (Xi ⊗R Yn−i ) and differential
+Y
+given by ∂(x ⊗ y) = ∂iX (x) ⊗ y + (−1)i x ⊗ ∂n−i
+(y) for x ∈ Xi and y ∈ Yn−i .
+Contrast the standard tensor product complex in 1.2 with the construction in 1.3,
+which first appeared in [18]. Similar constructions for Hom were also treated in [18]
+and in great detail by Avramov and Veliche [5]. We recall the Hom constructions
+in the Appendix, where we also study their interactions with the one below.
+1.3 Definition. For an R◦ -complex X and an R-complex Y , consider the graded
+k-module X ⊗R Y with degree n component
+Y
+(X ⊗R Y )n =
+Xi ⊗R Yn−i .
+i∈Z
+
+Endowed with the degree −1 homomorphism ∂ defined on elementary tensors as in
+1.2, it becomes a complex called the unbounded tensor product. It contains the tensor product, X ⊗R Y , as a subcomplex. The quotient complex (X ⊗R Y )/(X ⊗R Y )
+e R Y , and it is called the stable tensor product.
+is denoted X ⊗
+
+1.4. The definition above yields an exact sequence of k-complexes,
+e R Y −→ 0 .
+(1.4.1)
+0 −→ X ⊗R Y −→ X ⊗R Y −→ X ⊗
+
+Notice that if X or Y is bounded, or if both complexes are bounded on the same
+side (above or below), then the unbounded tensor product coincides with the usual
+e R Y is zero.
+tensor product, and the stable tensor product X ⊗
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+5
+
+Note that the unbounded tensor product X ⊗R Y is the product totalization of
+the double complex (Xi ⊗R Yj ).
+1.5. We collect some basic results about the unbounded and stable tensor products. For the unbounded tensor product the proofs mimic the proofs for the tensor
+product, and one obtains the results for the stable tensor product via (1.4.1). As
+above X is an R◦ -complex and Y is an R-complex.
+(a) There are isomorphisms of k-complexes
+eR Y ∼
+e R◦ X .
+and
+X⊗
+X ⊗R Y ∼
+= Y ⊗
+= Y ⊗R◦ X
+
+(b)
+(c)
+(d)
+(e)
+
+e R − are additive and right exact.
+The functors X ⊗R − and X ⊗
+e R − preserve degree-wise split exact sequences.
+The functors X ⊗R − and X ⊗
+e R − preserve homotopy.
+The functors X ⊗R − and X ⊗
+′
+A morphism α : Y → Y of R-complexes yields isomorphisms of k-complexes
+e R α) ∼
+e R Cone α .
+Cone(X ⊗R α) ∼
+= X ⊗R Cone α and Cone(X ⊗
+= X⊗
+It follows that X ⊗R α is a quasi-isomorphism if and only if X ⊗R Cone α is
+e R α.
+acyclic, and similarly for X ⊗
+
+1.6 Lemma. Let D = (Di,j ) be a double k-complex. Let z be a cycle in the
+product totalization of D. Assume z contains a component zm,n that satisfies
+zm,n = ∂ h (x′ ) + ∂ v (x′′ ) for some x′ ∈ Dm+1,n and x′′ ∈ Dm,n+1 . If both
+(1) Hhm+k (D∗,n−k ) = 0 for every k > 0 and
+(2) Hvn+k (Dm−k,∗ ) = 0 for every k > 0,
+then z is a boundary in the product totalization of D.
+Proof. The goal is to prove the existence of a sequence (xi ) with xm+1 = x′ and
+xm = x′′ such that
+zm+k,n−k = ∂ h (xm+k+1 ) + ∂ v (xm+k )
+holds for all k ∈ Z; i.e., one has z = ∂(x) in the product totalization of D. Assume
+k is positive and that xm , . . . , xm+k have been constructed. Then
+zm+k−1,n−k+1 = ∂ h (xm+k ) + ∂ v (xm+k−1 )
+holds. As z is a cycle in the product totalization of D, one has
+0 = ∂ h (zm+k,n−k ) + ∂ v (zm+k−1,n−k+1 )
+= ∂ h (zm+k,n−k ) + ∂ v (∂ h (xm+k ) + ∂ v (xm+k−1 ))
+= ∂ h (zm+k,n−k ) − ∂ h (∂ v (xm+k )) .
+Thus, zm+k,n−k − ∂ v (xm+k ) is a horizontal cycle, and hence by (1) it is a horizontal boundary. There exists, therefore, an element xm+k+1 with ∂ h (xm+k+1 ) +
+∂ v (xm+k ) = zm+k,m−k . By induction, this argument yields the elements xm+k for
+k > 1; a symmetric argument using (2) yields xm+k for k < 0.
+
+1.7 Proposition. Let X be an R◦ -complex and let Y be an R-complex.
+(a) If X is bounded above and Xi ⊗R Y is acyclic for all i, then X ⊗R Y is acyclic.
+(b) If Y is bounded below and Xi ⊗R Y is acyclic for all i, then X ⊗R Y is acyclic.
+
+6
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+Proof. The product totalization of the double complex (Xi ⊗ Yj ) is X ⊗R Y .
+(a) Let m be an upper bound for X, let n be an integer, and let z = (zm+k,n−k )k
+be a cycle in X ⊗R Y of degree m + n. The component zm,n is a cycle in Xm ⊗R Y
+and hence a boundary as Xm ⊗R Y is assumed to be acyclic. Moreover, the assumption that Xi ⊗R Y is acyclic for every i ensures that condition (2) in Lemma 1.6 is
+met. Condition (1) is satisfied due to the boundedness of X; thus z is a boundary
+in X ⊗R Y . As n is arbitrary, it follows that X ⊗R Y is acyclic.
+(b) A similar argument with the roles of m and n exchanged handles this case. 
+2. Homology
+Now we consider the homology of unbounded and stable tensor product complexes.
+Our notation differs slightly from the one employed by Goichot [18].
+≃
+
+2.1 Definition. Let M be an R◦ -module and N be an R-module. Let P −−→ M be
+≃
+a projective resolution and let N −−→ I be an injective resolution. The k-modules
+TorR
+i (M, N ) = Hi (P ⊗R I)
+are the unbounded homology modules of M and N over R, and the stable homology
+modules of M and N over R are
+gR
+e
+Tor
+i (M, N ) = Hi+1 (P ⊗R I) .
+
+2.2. As any two projective resolutions of M , and similarly any two injective resolutions of N , are homotopy equivalent, it follows from 1.5(d) that the definitions
+in 2.1 are independent of the choices of resolutions.
+2.3. Notice from 1.4 that if M has finite projective dimension, or if N has finite
+R
+injective dimension, then for every i ∈ Z one has TorR
+i (M, N ) = Tori (M, N ) and
+g R (M, N ) = 0.
+hence Tor
+i
+
+2.4. The standard liftings of module homomorphisms to morphisms of resolutions
+gR
+imply that the definitions of TorR
+i (M, N ) and Tori (M, N ) are functorial in either
+argument; that is, for every i ∈ Z there are functors
+◦
+gR
+TorR
+i (−, −), Tori (−, −) : M(R ) × M(R) −→ M(k) .
+
+These functors are homological in the sense that every short exact sequence of R◦ modules 0 → M ′ → M → M ′′ → 0 and every R-module N give rise to a connected
+exact sequence of stable homology modules
+(2.4.1)
+g R (M ′′ , N ) → Tor
+g R (M ′ , N ) → Tor
+g R (M, N ) → Tor
+g R (M ′′ , N ) → · · · ,
+· · · → Tor
+i+1
+i
+i
+i
+and to an analogous sequence of Tor modules. Similarly, every short exact sequence
+0 → N ′ → N → N ′′ → 0 of R-modules and every R◦ -module M give rise to a
+connected exact sequence,
+(2.4.2)
+′′
+′
+′′
+gR
+gR
+gR
+gR
+· · · → Tor
+i+1 (M, N ) → Tori (M, N ) → Tori (M, N ) → Tori (M, N ) → · · · ,
+and an analogous sequence of Tor modules. For details see [18, sec. 1].
+Stable and unbounded homology entwine with absolute homology.
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+7
+
+2.5. For every R◦ -module M and every R-module N the exact sequence of complexes (1.4.1) yields an exact sequence of homology modules:
+g R (M, N ) → · · ·
+g R (M, N ) −
+→ Tor
+(2.5.1) · · · → Tor
+→ TorR
+→ TorR
+i (M, N ) −
+i−1
+i
+i (M, N ) −
+
+Flat resolutions. Just like absolute homology, unbounded and stable homology
+can be computed using flat resolutions in place of projective resolutions.
+≃
+
+2.6 Proposition. Let M be an R◦ -module and N be an R-module. If F −−→ M is
+≃
+a flat resolution and N −−→ I is an injective resolution, then there are isomorphisms,
+∼
+TorR
+i (M, N ) = Hi (F ⊗R I)
+
+g R (M, N ) ∼
+e R I)
+and Tor
+= Hi+1 (F ⊗
+i
+
+for every i ∈ Z, and they are natural in either argument.
+≃
+
+Proof. Let P −−→ M be a projective resolution, then there is a quasi-isomorphism
+α : P → F . For every R-complex E the complex Cone(α) ⊗R E is acyclic by [11,
+cor. 7.5]. In particular, Cone(α) ⊗R I is acyclic, and it follows from Proposition 1.7
+e R I is acyclic in view of (1.4.1). Thus,
+that Cone(α) ⊗R I is acyclic; now Cone(α) ⊗
+e
+the morphisms α ⊗R I and α ⊗R I are quasi-isomorphisms by 1.5(e), and the desired isomorphisms follow from 2.1; it is standard to verify that they are natural. 
+In view of 1.4 the next result is now immediate.
+g R (M, −) = 0
+2.7 Corollary. For every R◦ -module M of finite flat dimension, Tor
+i
+holds for every i ∈ Z.
+
+2.8 Remark. If every flat R◦ -module has finite projective dimension, then Corollary 2.7 is covered by 2.3. There are wide classes of rings over which flat modules
+have finite projective dimension: Iwanaga-Gorenstein rings, see [16, thm. 9.1.10],
+and more generally rings of finite finitistic projective dimension, see Jensen [25,
+prop. 6]; in a different direction, rings of cardinality at most ℵn for some n ∈ N,
+see Gruson and Jensen [20, thm. 7.10].
+On the other hand, recall that any product of fields is a von Neumann regular
+ring, i.e., every module over such a ring is flat. Osofsky [29, 3.1] shows that a
+sufficiently large product of fields has infinite global dimension and hence must
+have flat modules of infinite projective dimension.
+The next result is an analogue for stable homology of [5, thm. 2.2].
+2.9 Proposition. Let M be an R◦ -module and let n ∈ Z. The following conditions
+are equivalent.
+g R (M, −) → TorR (M, −) is an isomorphism for
+(i) The connecting morphism Tor
+i
+i
+every i > n.
+(ii) TorR
+i (M, E) = 0 for every injective R-module E and every i > n.
+(iii) TorR
+i (M, −) = 0 for every i > n.
+g R (M, E) = 0
+Proof. For every injective R-module E and for every i ∈ Z one has Tor
+i
+by 2.3. Thus (i) implies (ii).
+In the following we use the notation (−)⊃s for the soft truncation below at s.
+≃
+(ii) =⇒ (iii): Let N be an R-module and N −−→ I be an injective resolution. Let
+≃
++
+P −−→ M be a projective resolution and let P denote its mapping cone. Let E be
+an injective R-module; by assumption one has TorR
+i (M, E) = 0 for all i > n. By
+
+8
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+right exactness of the tensor product, P⊃+n−2 ⊗R E is acyclic and hence P⊃+n−2 ⊗R I
+is acyclic by 1.5(a) and Proposition 1.7. Thus, for every i > n one has
++
+TorR
+i (M, N ) = Hi (P ⊗R I) = Hi (P⊃n−2 ⊗R I) = 0.
+
+(Notice that for all n 6 0 one has P⊃+n−2 = P + .)
+(iii) =⇒ (i): This is immediate from the exact sequence (2.5.1).
+
+
+
+TorR
+≫0 (M, −)
+
+As vanishing of
+detects finite flat dimension of M , the next result
+is an immediate consequence of Proposition 2.9. In the parlance of [15] it says that
+g R (M, −) = 0.
+the flat and copure flat dimensions agree for R◦ -modules M with Tor
+
+g R (M, −) = 0 for all i ∈ Z, then
+2.10 Corollary. Let M be an R◦ -module. If Tor
+i
+fdR◦ M = sup{i ∈ Z | TorR
+i (M, E) 6= 0 for some injective R-module E } .
+
+
+
+Dimension shifting is a useful tool in computations with stable homology.
+2.11. For a module X, we denote by Ωm X the mth syzygy in a projective resolution
+of X and by Ωm X the mth cosyzygy in an injective resolution of X. By Schanuel’s
+lemma a syzygy/cosyzygy is uniquely determined up to a projective/injective summand. In view of 2.3 and the exact sequences in 2.4 one gets
+∼ gR
+gR
+Tor
+i (M, N ) = Tori−m (Ωm M, N ) for m > 0
+
+(2.11.1)
+(2.11.2)
+≃
+
+gR
+Tor
+i (M, N )
+
+∼
+=
+
+m
+gR
+Tor
+i+m (M, Ω N )
+
+and
+
+for m > 0 .
+
+Moreover, if F −−→ M is a flat resolution of M , then there are isomorphisms,
+g R (M, N ) ∼
+g R (Cm (F ), N ) for m > 0 ;
+Tor
+= Tor
+i
+i−m
+
+(2.11.3)
+
+this follows from (2.4.1) and Corollary 2.7.
+
+2.12. Suppose R is commutative and S is a flat R-algebra. For every S ◦ -module
+≃
+M , a projective resolution P −−→ M over S ◦ is a flat resolution of M as an Rg R (M, −)
+module. Thus, it follows from Proposition 2.6 that stable homology Tor
+i
+≃
+◦
+is a functor from M(R) to M(S ). Similarly, an injective resolution N −−→ I of an
+g R (−, N )
+S-module is also an injective resolution of N as an R-module, whence Tor
+i
+is a functor from M(R) to M(S).
+g
+3. Vanishing of stable homology Tor(M,
+−)
+
+We open with a partial converse to Corollary 2.7; recall, for example from [16,
+prop. 3.2.12], that a finitely presented module is flat if and only if it is projective.
+3.1 Theorem. Let M be an R◦ -module that has a degree-wise finitely generated
+projective resolution. The following conditions are equivalent.
+(i) pdR◦ M is finite.
+g R (M, −) = 0 for all i ∈ Z.
+(ii) Tor
+i
+g R (M, −) = 0 for some i > 0.
+(iii) Tor
+i
+
+g R (M, Homk (M, E)) = 0 for some faithfully injective k-module E.
+(iv ) Tor
+0
+
+Moreover, if R is left noetherian with idR R finite, then (i)–(iv ) are equivalent to
+g R (M, −) = 0 for some i ∈ Z.
+(iii’ ) Tor
+i
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+9
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) =⇒ (iii’ ) are clear; see 2.3. Part
+(iv ) follows from (iii) by dimension shifting (2.11.2).
+For (iv ) =⇒ (i) use Theorem A.8 to get
+∼
+gR
+g0
+0 = Tor
+0 (M, Homk (M, E)) = Homk (ExtR◦ (M, M ), E) .
+
+g 0 ◦ (M, M ) is zero, hence M has finite projective dimension by [5, prop. 2.2].
+Thus Ext
+R
+Finally, assume that R is left noetherian with idR R finite. Let E be a faithfully
+injective k-module; in view of what has already been proved, it is sufficient to show
+g R (M, −) = 0 for some i > 0 implies Tor
+g R (M, Homk (M, E)) = 0. It follows
+that Tor
+0
+−i
+from the assumptions on R that every free R-module has finite injective dimension.
+Thus every projective R-module P has finite injective dimension, and 2.3 yields
+g R (−, P ) = 0 for all i ∈ Z. From the exact sequence (2.4.2) it follows that there
+Tor
+i
+g R (M, Homk (M, E)) ∼
+g R (M, Ωi Homk (M, E)) for i > 0,
+are isomorphisms Tor
+= Tor
+0
+−i
+R
+R
+g (M, Homk (M, E)) = 0.
+g (M, −) implies Tor
+
+so vanishing of Tor
+0
+−i
+
+3.2 Corollary. Let R be an Artin algebra with duality functor D(−). For a finitely
+generated R◦ -module M the following conditions are equivalent.
+(i) pdR◦ M is finite.
+
+g R (M, N ) = 0 for all finitely generated R-modules N .
+(ii) There is an i > 0 with Tor
+i
+g R (M, D(M )) = 0.
+(iii) Tor
+0
+
+Proof. Part (ii) follows from (i) in view of 2.3. Part (iii) follows from (ii) by
+dimension shifting (2.11.2) in a degree-wise finitely generated injective resolution of
+D(M ). Finally, one has D(M ) = Homk (M, E), see the first paragraph in Section 1,
+so (i) follows from (iii) by Theorem 3.1, as the injective hull E of k/Jac(k) is
+faithfully injective.
+
+By a result of Bass and Murthy [6, lem. 4.5], a commutative noetherian ring is
+regular if and only if every finitely generated module has finite projective dimension.
+3.3 Corollary. For a commutative noetherian ring R, the following are equivalent:
+(i) R is regular.
+g R (M, −) = 0 for all finitely generated R-modules M and all i ∈ Z.
+(ii) Tor
+i
+g R (M, −) = 0 for all finitely generated R-modules M .
+(iii) There is an i ∈ Z with Tor
+i
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) are clear; see 2.3.
+(iii) =⇒ (i): If i > 0, then every finitely generated R-module has finite projective
+dimension by Theorem 3.1; i.e., R is regular. If i < 0, then for any finitely generated
+∼ gR
+gR
+R-module M one has Tor
+0 (M, −) = Tori (Ω−i M, −) = 0 by dimension shifting
+(2.11.1), and as above it follows that R is regular.
+
+Tate flat resolutions. We show that under extra assumptions on M one can
+g R (M, N ) without resolving the second argument.
+compute Tor
+≃
+
+3.4. Let N be an R-module; choose an injective resolution N −−→ I and a projective
+≃
+resolution P −−→ N . The composite P → N → I is a quasi-isomorphism, so the
+N
+complex CP I = Cone(P → N → I) is acyclic, and up to homotopy equivalence it
+is independent of the choice of resolutions. This construction is functorial in N .
+
+10
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+3.5 Lemma. Let F be a bounded below complex of flat R◦ -modules; let N be an
+≃
+≃
+R-module with a projective resolution P −−→ N and an injective resolution N −−→ I.
+N
+e R I ≃ F ⊗R CP I in the derived category D(k), and it
+There is an isomorphism F ⊗
+is functorial in the second argument; cf. 3.4.
+Proof. There is by 1.5(c) a short exact sequences of k-complexes
+0 −→ F ⊗R I −→ F ⊗R CN
+P I −→ F ⊗R Σ P −→ 0 .
+With (1.4.1) it forms a commutative diagram whose rows are triangles in D(k),
+F ⊗R P
+
+/ F ⊗R I
+
+/ F ⊗R CN
+PI
+
+≃
+
+
+F ⊗R I
+
+/ Σ(F ⊗R P )
+≃
+
+/ F ⊗R I
+
+/F⊗
+eR I
+
+
+/ Σ(F ⊗R I) ,
+
+where the top triangle is rotated back once. The isomorphism is induced by the
+composite quasi-isomorphism P → N → I, as one has F ⊗R P = F ⊗R P ; cf. 1.4.
+Completion of the morphism of triangles yields the desired isomorphism via the
+Triangulated Five Lemma; see [23, prop. 4.3]. Functoriality in the second argument
+is straightforward to verify.
+
+≃
+
+3.6 Lemma. Let N be an R-module with a projective resolution P −−→ N and
+≃
+an injective resolution N −−→ I. Let T be a complex of flat R◦ -modules such that
+T ⊗R E is acyclic for every injective R-module E. There is then an isomorphism
+T ⊗ R CN
+P I ≃ Σ(T ⊗R N ) in D(k) which is functorial in the second argument; cf. 3.4.
+Proof. By the assumptions and Proposition 1.7(a) the complex T ⊗R I is acyclic,
+so application of T ⊗R − to the exact sequence 0 → I → CN
+P I → Σ P → 0 yields
+→
+T
+⊗
+Σ
+P
+;
+cf.
+1.5(c).
+Now,
+let P + denote the
+a quasi-isomorphism T ⊗R CN
+R
+PI
+mapping cone of the quasi-isomorphism P → N . The complex T ⊗R P + is acyclic
+by Proposition 1.7(b), so application of T ⊗R − to the mapping cone sequence
+0 → N → P + → Σ P → 0 yields an isomorphism T ⊗R Σ P ≃ Σ(T ⊗R N ) in D(k),
+and the desired isomorphism follows as N is a module; cf. 1.4. Functoriality in the
+second argument is straightforward to verify; cf. 3.4.
+
+3.7 Remark. The quasi-isomorphisms in Lemmas 3.5 and 3.6 hold with CN
+P I re≃
+N
+placed by CF I where F −−→ N is a flat resolution.
+The objects discussed in the next paragraph appear in the literature under a
+variety of names; here we stick with the terminology from [27].
+3.8. An acyclic complex T of flat R◦ -modules is called totally acyclic if T ⊗R E is
+acyclic for every injective R-module E. A Tate flat resolution of an R◦ -module M is
+≃
+a pair (T, F ), where F −−→ M is a flat resolution and T is a totally acyclic complex
+◦
+of flat R -modules with T>n ∼
+= F>n for some n > 0. Tate’s name is invoked here
+because these resolutions can be used to compute Tate homology; see [27, thm. A].
+3.9. Over a left coherent ring R, an R◦ -module M has a Tate flat resolution if and
+only if it has finite Gorenstein flat dimension; see [27, prop. 3.4].
+If R is noetherian, then every finitely generated R◦ -module M of finite Gdimension has a Tate flat resolution. Here is a direct argument: By [4, thm. 3.1]
+≃
+there exists a pair (T, P ) where P −−→ M is a projective resolution and T is an
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+11
+
+acyclic complex of finitely generated projective R◦ -modules with the following properties: the complex HomR◦ (T, R) is acyclic, and there is an n > 0 with T>n ∼
+= P>n .
+For every injective R-module E one now has
+∼ T ⊗R HomR (R, E) =
+∼ HomR (HomR◦ (T, R), E)
+(3.9.1)
+T ⊗R E =
+where the last isomorphism holds because T is degree-wise finitely generated; see [7,
+prop. VI.5.2]. Thus T is a totally acyclic complex of flat R◦ -modules and (T, P ) is
+a Tate flat resolution of M .
+The next result shows that stable homology can be computed via Tate flat resolutions. We apply it in Section 6 to compare stable homology to Tate homology,
+but before that it is used in the proofs of Theorems 3.11 and 4.2.
+3.10 Theorem. Let M be an R◦ -module that has a Tate flat resolution (T, F ).
+For every R-module N and every i ∈ Z there is an isomorphism,
+g R (M, N ) ∼
+Tor
+= Hi (T ⊗R N ) ,
+i
+
+and it is functorial in the second argument.
+
+Proof. Choose n > 0 such that T>n and F>n are isomorphic, and consider the
+degree-wise split exact sequence
+0 −→ T6n−1 −→ T −→ F>n −→ 0 .
+≃
+
+≃
+
+Let P −−→ N be a projective resolution and N −−→ I be an injective resolution; set
+C = CN
+P I ; cf. 3.4. There is, by 1.5(c), an exact sequence of k-complexes,
+0 −→ T6n−1 ⊗R C −→ T ⊗R C −→ F>n ⊗R C −→ 0 .
+As C is acyclic, it follows from Proposition 1.7(a) that T6n−1 ⊗R C is acyclic,
+whence the surjective morphism above is a quasi-isomorphism. Since T is a totally acyclic complex of flat modules, there is by Lemma 3.6 an isomorphism
+T ⊗R C ≃ Σ(T ⊗R N ) in D(k). Moreover, Lemma 3.5 yields an isomorphism
+e R I in D(k).
+e R I in D(k). Thus one has Σ(T ⊗R N ) ≃ F>n ⊗
+F>n ⊗R C ≃ F>n ⊗
+This explains the second isomorphism in the next computation.
+g R (M, N ) ∼
+g R (Cn (F ), N )
+Tor
+= Tor
+i
+i−n
+
+e R I)
+= Hi−n+1 ((Σ−n F>n ) ⊗
+e R I)
+= Hi+1 (F>n ⊗
+∼
+= Hi+1 (Σ(T ⊗R N ))
+= Hi (T ⊗R N )
+
+The first isomorphism holds by (2.11.3); the first equality follows from Proposition 2.6 as the canonical surjection Σ−n F>n → Cn (F ) is a flat resolution.
+
+As discussed in the introduction, the G-dimension is a homological invariant for
+finitely generated modules over noetherian rings. Characterizations of modules of
+finite G-dimension have traditionally involved both vanishing of (co)homology and
+invertibility of a certain morphism; see for example [9, (2.1.6), (2.2.3), (3.1.5), and
+(3.1.11)]. More recently, Avramov, Iyengar, and Lipman [3] showed that a finitely
+generated module M over a commutative noetherian ring R has finite G-dimension
+if and only M is isomorphic to the complex RHomR (RHomR (M, R), R) in the
+
+12
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+derive category D(R). The crucial step in our proof of the next theorem is to show
+g R (M, R) implies such an isomorphism.
+that vanishing of stable homology Tor
+
+3.11 Theorem. Let R be a commutative noetherian ring. For a finitely generated
+R-module M , the following conditions are equivalent.
+(i) G-dimR M < ∞.
+g R (M, N ) = 0 for every R-module N of finite flat dimension and all i ∈ Z.
+(ii) Tor
+i
+R
+g
+(iii) Tor (M, R) = 0 for all i ∈ Z.
+i
+
+Proof. The implication (ii) =⇒ (iii) is trivial.
+(i) =⇒ (ii): By 3.9 the R◦ module M has a Tate flat resolution (T, F ). Theog R (M, −) ∼
+rem 3.10 yields isomorphisms Tor
+= Hi (T ⊗R −) for all i ∈ Z. It follows
+i
+by induction on the flat dimension of N that T ⊗R N is acyclic; cf. [10, lem. 2.3].
+≃
+(iii) =⇒ (i): Let P −−→ M be a degree-wise finitely generated projective reso≃
+lution, and let R −−→ I be an injective resolution. By assumption, the complex
+e R I is acyclic, which explains the third ≃ below:
+P⊗
+M ≃ P ⊗R R ≃ P ⊗R I ≃ P ⊗R I ∼
+= P ⊗R HomR (R, I) ∼
+= HomR (HomR (P, R), I).
+The last isomorphism holds by Proposition A.6 as HomR (P, R) equals HomR (P, R).
+Now it follows from [3, thm. 2] and [9, thm. (2.2.3)] that G-dimR M is finite.
+
+3.12 Corollary. For a commutative noetherian ring R the following are equivalent.
+(i) R is Gorenstein.
+g R (M, R) = 0 for all finitely generated R-modules M and all i ∈ Z.
+(ii) Tor
+i
+R
+g
+(iii) Tori (M, R) = 0 for all finitely generated R-modules M and all i < 0.
+
+Proof. By a result of Goto, R is Gorenstein if and only if every finitely generated
+R-module has finite G-dimension [19, cor. 2]. Combining this with Theorem 3.11
+one gets the the equivalence of (i) and (ii). The implication (ii) =⇒ (iii) is clear.
+Finally, (ii) follows from (iii) by dimension shifting (2.11.1).
+
+4. Balancedness of stable homology
+Absolute homology is balanced over any ring: there are always isomorphisms
+◦
+TorR (M, N ) ∼
+= TorR (N, M ). It follows already from Corollary 3.2 that stable
+homology can be balanced only over special rings. Indeed, if R is an Artin algebra and stable homology is balanced over R, then the dual module of R has finite
+projective dimension over both R and R◦ , whence R is Iwanaga-Gorenstein. The
+converse is part of Corollary 4.5.
+We open this section with a technical lemma; it is similar to a result of Enochs,
+Estrada, and Iacob [14, thm. 3.6]. Recall the notation Cm (−) from 1.1.
+4.1 Lemma. Let T and T ′ be acyclic complexes of flat R◦ -modules and flat Rmodules, respectively. For all integers m and n there are isomorphisms in D(k),
+T6n−1 ⊗R Cm (T ′ ) ≃ Σn−m (Cn (T ) ⊗R T6′ m−1 )
+T>n ⊗R Cm (T ′ ) ≃ Σn−m (Cn (T ) ⊗R T>′ m )
+T ⊗R Cm (T ′ ) ≃ Σn−m (Cn (T ) ⊗R T ′ ) .
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+13
+
+Proof. Because the complexes T and T ′ are acyclic, there are quasi-isomorphisms
+Cn (T ) → Σ1−n T6n−1 and Cm (T ′ ) → Σ1−m T6′ m−1 . Hence [10, prop. 2.14(b)] yields
+T6n−1 ⊗R Cm (T ′ ) ≃ T6n−1 ⊗R Σ1−m T6′ m−1
+≃ Σn−m (Σ1−n T6n−1 ⊗R T6′ m−1 )
+≃ Σn−m (Cn (T ) ⊗R T6′ m−1 ) .
+This demonstrates the first isomorphism in the statement, and the second is proved
+similarly. Finally, these two isomorphisms connect the exact sequences
+0 → T6n−1 ⊗R Cm (T ′ ) → T ⊗R Cm (T ′ ) → T>n ⊗R Cm (T ′ ) → 0
+and
+0 → Cn (T ) ⊗R T6′ m−1 → Cn (T ) ⊗R T ′ → Cn (T ) ⊗R T>′ m → 0 ,
+and one obtains the last isomorphism via the Triangulated Five Lemma in D(k);
+see [23, prop. 4.3].
+
+4.2 Theorem. Let M be an R◦ -module and N be an R-module. If they both have
+Tate flat resolutions, then for each i ∈ Z there is an isomorphism
+∼ g R◦
+gR
+Tor
+i (M, N ) = Tori (N, M ) .
+
+Proof. Let (T, F ) and (T ′ , F ′ ) be Tate flat resolutions of M and N , respectively.
+Choose n ∈ Z such that there are isomorphisms T>n ∼
+= F>′ n . For
+= F>n and T>′ n ∼
+every i ∈ Z one has
+∼
+gR
+Tor
+i (M, N ) = Hi (T ⊗R N )
+∼
+= Hi−n (T ⊗R Cn (T ′ ))
+∼
+= Hi−n (Cn (T ) ⊗R T ′ )
+∼
+= Hi (M ⊗R T ′ )
+◦
+∼
+gR
+= Tor
+i (N, M ) ,
+
+where the first and the last isomorphisms follow from Theorem 3.10, the second
+and fourth isomorphisms follow by dimension shifting, and the third isomorphism
+holds by the last isomorphism in Lemma 4.1.
+
+4.3 Definition. Let M be an R◦ -module and N be an R-module. Stable homology
+g R (M, N ) ∼
+g R◦ (N, M ) for all i ∈ Z.
+is balanced for M and N if one has Tor
+= Tor
+i
+i
+4.4. Theorem 4.2 says that stable homology is balanced for all (pairs of) R◦ - and Rmodules that have Tate flat resolutions. If R is Iwanaga–Gorenstein, then every R◦ module and every R-module has a Tate flat resolution, see 3.9 and [16, thm. 12.3.1],
+so stable homology is balanced for all (pairs of) R◦ - and R-modules.
+4.5 Corollary. For an Artin algebra R the following conditions are equivalent.
+(i) R is Iwanaga-Gorenstein.
+(ii) Stable homology is balanced for all R◦ - and R-modules.
+(iii) Stable homology is balanced for all finitely generated R◦ - and R-modules.
+
+14
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+Proof. Per 4.4, part (i) implies (ii), which clearly implies (iii). Let E = D(R)
+be the dual module of R; it is injective and finitely generated over R◦ and over
+R. Thus, if stable homology is balanced for finitely generated R◦ - and R modules,
+then it follows from 2.3 and Corollary 3.2 that pdR E as well as pdR◦ E is finite.
+By duality, both idR R and idR◦ R are then finite.
+
+4.6 Corollary. A commutative noetherian ring R is Gorenstein if and only if stable
+homology is balanced for all finitely generated R-modules.
+Proof. Over a Gorenstein ring, the G-dimension of every finitely generated module
+is finite by [19, cor. 2], so every finitely generated module has a Tate flat resolution;
+see 3.9. Thus, balancedness of stable homology follows from Theorem 4.2. Cong R (M, R) = 0 for every finitely
+versely, balancedness of stable homology implies Tor
+i
+generated R-module M and all i ∈ Z, so R is Gorenstein by Corollary 3.12.
+
+4.7 Corollary. A commutative noetherian ring R of finite Krull dimension is
+Gorenstein if and only if stable homology is balanced over R.
+Proof. If R is Gorenstein of finite Krull dimension, then it is Iwanaga-Gorenstein.
+Therefore, stable homology is balanced over R per 4.4. The converse holds by
+Corollary 4.6.
+
+g
+5. Vanishing of stable homology Tor(−,
+N)
+
+g R (−, N ) over an Artin algebra can by duality be
+Vanishing of stable homology Tor
+i
+g R (M, −).
+understood via vanishing of Tor
+i
+
+5.1 Proposition. Let R be an Artin algebra with duality functor D(−). For a
+finitely generated R-module N the following conditions are equivalent.
+(i) idR N is finite.
+g R (−, N ) = 0 for all i ∈ Z.
+(ii) Tor
+i
+
+g R (M, N ) = 0 for all finitely generated
+(iii) There is an integer i 6 0 with Tor
+i
+◦
+R -modules M .
+g R (D(N ), N ) = 0.
+(iv ) Tor
+0
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) are clear; see 2.3. Part (iv ) follows
+from (iii) by dimension shifting (2.11.1), as D(N ) is finitely generated. Finally,
+∼ gR
+gR
+vanishing of Tor
+0 (D(N ), N ) = Tor0 (D(N ), D(D(N ))) implies by Corollary 3.2 that
+pdR◦ D(N ) is finite, whence idR N is finite, and so (i) follows from (iv ).
+
+g R (−, N ) over commuLocal rings. To analyze vanishing of stable homology Tor
+i
+tative noetherian rings, we start locally.
+
+5.2. Let R be a commutative noetherian local ring with residue field k. For an
+R-module M , the depth invariant can be defined as
+depthR M = inf{i ∈ Z | ExtiR (k, M ) 6= 0} ,
+and if M is finitely generated, then its injective dimension can be computed as
+idR M = sup{i ∈ Z | ExtiR (k, M ) 6= 0} .
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+15
+
+The depth is finite for M 6= 0. The ring R is Cohen–Macaulay if there exists a
+finitely generated module M 6= 0 of finite injective dimension; this is a consequence
+of the New Intersection Theorem due to Peskine and Szpiro [30] and Roberts [32].
+The following is an analogue of [5, thm. 6.1].
+5.3 Lemma. Let R be a commutative noetherian local ring with residue field k.
+For every finitely generated R-module N and for every i ∈ Z there is an isomorphism
+Y
+j−i
+∼
+TorR
+Homk (ExtjR (k, R), ExtR
+(k, N ))
+i (k, N ) =
+j∈Z
+
+of R-modules, and in particular, TorR
+i (k, N ) is a k-vector space.
+≃
+
+Proof. Let P −−→ k be a degree-wise finitely generated projective resolution and
+≃
+≃
+let N −−→ I and R −−→ J be injective resolutions. By definition TorR
+i (k, N ) is the
+ith homology of the complex P ⊗R I which we compute using Proposition A.6 as
+follows P ⊗R I ∼
+= P ⊗R HomR (R, I) ∼
+= HomR (HomR (P, R), I). Next we simplify
+using quasi-isomorphisms and Hom-tensor adjointness:
+HomR (HomR (P, R), I) ≃ HomR (HomR (P, J), I)
+≃ HomR (HomR (k, J), I)
+∼
+= HomR (HomR (k, J) ⊗k k, I)
+∼
+= Homk (HomR (k, J), HomR (k, I)) .
+Finally, pass to homology.
+
+
+
+g R (k, N ) may be a k5.4 Remark. Lemma 5.3 suggests that stable homology Tor
+i
+vector space, and indeed it is. If R is a ring and if x annihilates the R◦ -module M ,
+or the R-module N , then there are two homotopic lifts—zero and multiplication by
+x—to the projective resolution in the case of M or to the injective resolution in the
+case of N ; see Definition 2.1 and [34, 22.6 and 2.3.7]. Hence multiplication by x is
+zero on unbounded and on stable homology of M against N . In particular, stable
+g R (k, N ) is a k-vector space.
+homology Tor
+i
+5.5 Proposition. Let R be a commutative noetherian local ring with residue field
+k and let N be a finitely generated R-module. If for some i ∈ Z the k-vector space
+g R (k, N ) has finite rank, then N has finite injective dimension, or R is Gorenstein.
+Tor
+i
+
+R
+Proof. Each k-vector space TorR
+j (k, N ) has finite rank, so Tori+1 (k, N ) has finite
+rank by the assumption and the exact sequence (2.5.1). For a finitely generated
+R-module M 6= 0 the vector spaces ExtjR (k, M ) are non-zero for all j between
+depthR M < ∞ and idR M ; see Roberts [31, thm. 2]. When TorR
+i+1 (k, N ) has finite
+rank, it follows from Lemma 5.3 that R or N has finite injective dimension.
+
+
+Compared to the characterization of globally Gorenstein rings in Corollary 3.12,
+condition (iii) below is sharper.
+5.6 Theorem. Let R be a commutative noetherian local ring with residue field k.
+The following conditions are equivalent.
+(i) R is Gorenstein.
+g R (−, R) = 0 for all i ∈ Z.
+(ii) Tor
+i
+
+16
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+g R (k, R) has finite rank for some i ∈ Z.
+(iii) Tor
+i
+
+g R (k, M ) has finite
+(iv ) There exists a finitely generated R-module M such that Tor
+i
+g R (M, R) = 0 holds for all i ∈ Z.
+rank for some i ∈ Z and Tor
+i
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) =⇒ (iv ) are clear; see 2.3. Let M
+be a module as specified in (iv ); Theorem 3.11 yields G-dimR M < ∞. By a result
+of Holm [22, thm. 3.2], R is Gorenstein if idR M is also finite. Now it follows from
+Proposition 5.5 that R is Gorenstein.
+
+5.7 Remark. Let R be a commutative noetherian local ring with residue field
+k, and let E denote the injective hull of k; it is a faithfully injective R-module.
+g R (k, k) and
+A computation based on Theorem A.8 shows that the ranks of Tor
+i
+i
+g (k, k) are simultaneously finite:
+Ext
+R
+g R (k, HomR (k, E))
+g R (k, k) = rankk Tor
+rankk Tor
+i
+i
+
+g iR (k, k), E)
+= rankk HomR (Ext
+
+g iR (k, k) .
+= rankk Ext
+
+Combined with this equality of ranks, [5, thm. 6.4, 6.5, and 6.7] yield characterizations of regular, complete intersection, and Gorenstein local rings in terms of the
+g R (k, k). For example, R is regular if and only
+size of the stable homology spaces Tor
+i
+g R (k, k) = 0 holds for some (equivalently, all) i ∈ Z, and R is Gorenstein if
+if Tor
+i
+g R (k, k) has finite rank for some (equivalently, all) i ∈ Z.
+and only if Tor
+i
+Commutative rings. If R is commutative and p is a prime ideal in R, then the
+local ring Rp is a flat R-algebra, and for an Rp -module M it follows from 2.12 that
+g R (M, N ) are Rp -modules.
+the stable homology modules Tor
+i
+
+5.8 Lemma. Let R be a commutative noetherian ring and let N be an R-module;
+let p be a prime ideal in R and let M be an Rp -module. For every i ∈ Z there is a
+natural isomorphism of Rp -modules,
+g R (M, N ) ∼
+g Rp (M, Np ) .
+Tor
+= Tor
+i
+i
+
+g R (−, N ) = 0 implies Tor
+g Rp (−, Np ) = 0 for all prime ideals p in R.
+Hence, Tor
+i
+i
+≃
+
+≃
+
+Proof. Let N −−→ I be an injective resolution. Let P −−→ M be a projective resolution over Rp ; it is a flat resolution of M as an R-module. The second isomorphism
+below follows from Proposition A.4.
+∼ (P ⊗R Rp ) ⊗R I
+P ⊗R I =
+p
+
+∼
+= P ⊗Rp (Rp ⊗R I)
+∼
+= P ⊗Rp (Rp ⊗R I)
+The computation gives P ⊗R I ∼
+= P ⊗Rp Ip .
+= P ⊗Rp Ip ; similarly one gets P ⊗R I ∼
+eR I ∼
+e Rp Ip , and the desired isoNow (1.4.1) and the Five Lemma yield P ⊗
+=P⊗
+morphisms follow as Np → Ip is an injective resolution by Matlis Theory.
+
+The proof of the next result is similar. Compared to Lemma 5.8 the noetherian
+hypothesis on R has been dropped, as it was only used to invoke Matlis Theory.
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+17
+
+5.9 Lemma. Let R be a commutative ring and let M be an R-module; let p be a
+prime ideal in R and let N be an Rp -module. For every i ∈ Z there is a natural
+isomorphism of Rp -modules,
+∼ g Rp
+gR
+Tor
+i (M, N ) = Tori (Mp , N ) .
+
+g R (M, −) = 0 implies Tor
+g Rp (Mp , −) = 0 for all prime ideals p in R.
+Hence, Tor
+i
+i
+
+
+
+5.10 Theorem. Let R be a commutative noetherian ring and let N be a finitely
+g R (−, N ) = 0 holds for some i ∈ Z, then idRp Np is
+generated R-module. If Tor
+i
+finite for every prime ideal p in R.
+R
+
+g p (−, Np ) = 0. It follows
+Proof. From the hypotheses and Lemma 5.8 one has Tor
+i
+from Proposition 5.5 that the local ring Rp is Gorenstein, or idRp Np is finite.
+g Rp (−, Np ) = 0 implies that
+However, if Rp is Gorenstein, then vanishing of Tor
+i
+pdRp Np is finite by Corollary 4.7 and Theorem 3.1, and then idRp Np is finite. 
+The next corollary is now immediate per the remarks in 5.2.
+5.11 Corollary. A commutative noetherian ring R is Cohen–Macaulay if there is
+g R (−, N ) = 0 for some i ∈ Z.
+
+a finitely generated R-module N 6= 0 with Tor
+i
+5.12 Corollary. Let R be a commutative noetherian ring of finite Krull dimension.
+For a finitely generated R-module N , the following conditions are equivalent.
+(i) idR N is finite.
+g R (−, N ) = 0 for all i ∈ Z.
+(ii) Tor
+i
+g R (−, N ) = 0 for some i ∈ Z.
+(iii) Tor
+i
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) are clear; see 2.3. Part (i) follows
+
+from (iii) as idR N equals sup{idRp Np | p is a prime ideal in R} 6 dim R.
+5.13 Remark. We do not know if the assumption of finite Krull dimension in
+g R (−, N ) implies that
+Corollary 5.12 is necessary. By Theorem 5.10, vanishing of Tor
+N is locally of finite injective dimension, but that does not imply finite injective
+dimension over R: Just consider a Gorenstein ring R of infinite Krull dimension.
+g R (−, R) vanishes for such a ring.
+On the other hand, we do not know if Tor
+6. Comparison to Tate homology
+In this section we compare stable homology to Tate homology. We parallel some of
+the findings of Avramov and Veliche [5]. First we recall a few definitions.
+6.1. An acyclic complex T of projective R◦ -modules is called totally acyclic if
+HomR◦ (T, P ) is acyclic for every projective R◦ -module P ; cf. 3.8. A complete
+̟
+≃
+projective resolution of an R◦ -module M is a diagram T −−→ P −−→ M , where
+≃
+◦
+T is a totally acyclic complex of projective R -modules, P −−→ M is a projective
+resolution, and ̟i is an isomorphism for i ≫ 0; see [33, sec. 2].
+Let M be an R◦ -module with a complete projective resolution T → P → M .
+For an R-module N , the Tate homology of M and N over R are the k-modules
+d R (M, N ) = Hi (T ⊗R N ) for i ∈ Z; see Iacob [24, sec. 2].
+Tor
+i
+
+18
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+6.2. An R◦ -module has a complete projective resolution if and only if it has finite
+Gorenstein projective dimension; see [33, thm. 3.4].
+If R is noetherian and M is a finitely generated R◦ -module with a complete projective resolution, then M has finite G-dimension and it has a complete projective
+resolution T → P → M with T and P degree-wise finitely generated and T → P
+surjective; see [33, 2.4.1] and [4, thm. 3.1].
+6.3 Lemma. Let M be an R◦ -module that has a complete projective resolution
+T → P → M . The following conditions are equivalent.
+(i) T ⊗R E is acyclic for every injective R-module E.
+d R (M, −) for all i ∈ Z.
+g R (M, −) ∼
+(ii) There are isomorphisms of functors Tor
+= Tor
+i
+i
+
+Proof. Assume that T ⊗R E is acyclic for every injective R-module E. The pair
+(T, P ) is then a Tate flat resolution of M , see 3.8, and it follows from Theorem 3.10
+d R (M, −) are isomorphic for all i ∈ Z. For
+g R (M, −) and Tor
+that the functors Tor
+i
+i
+the converse, let E be an injective R-module. By 2.3 one then has
+∼ dR
+gR
+0 = Tor
+i (M, E) = Tori (M, E)
+
+for all i ∈ Z, and hence H(T ⊗R E) = 0.
+
+
+
+6.4 Theorem. Let R be noetherian, and let M be a finitely generated R◦ -module
+that has a complete projective resolution. There are isomorphisms of functors
+g R (M, −) ∼
+d R (M, −) for all i ∈ Z .
+Tor
+= Tor
+i
+i
+
+Proof. The module M has a complete projective resolution T → P → M with T
+and P degree-wise finitely generated; see 6.2. The isomorphisms (3.9.1) show that
+the complex T ⊗R E is acyclic for every injective R-module E, and Lemma 6.3
+finishes the argument.
+
+6.5 Remark. The isomorphisms of homology modules in Theorem 6.4 actually
+follow from one isomorphism in D(k), but this is unapparent in the proof, which
+rests on Theorem 3.10. The finitely generated module M has a complete projective
+resolution T → L → M with T and L degree-wise finitely generated and T → L
+surjective; see 6.2. Thus the kernel K = Ker(T → L) is a bounded above complex of
+projective modules. Given a module N , let C be the cone as one would construct in
+3.4. By Proposition 1.7(a) the complex K ⊗R C is acyclic, so that Lemma 3.5 and
+e R I) ≃ Σ−1 (L ⊗R C) ≃ Σ−1 (T ⊗R C). As in the proof above,
+1.5(c) yield Σ−1 (L ⊗
+T ⊗R E is acyclic, so Lemma 3.6 gives Σ−1 (T ⊗R C) ≃ T ⊗R N , and combining
+these isomorphisms in D(k) gives the desired one.
+Without extra assumptions on the ring, we do not know if stable homology agrees
+with Tate homology whenever the latter is defined. In general, the relation between
+stable homology and Tate homology is tied to an unresolved problem in Gorenstein
+homological algebra. Theorem 6.7 explains how.
+6.6. An R◦ -module G is called Gorenstein projective if there exists a totally acyclic
+complex T of projective R◦ -modules with C0 (T ) ∼
+= G; see 6.1. Similarly, an R◦ module G is called Gorenstein flat if there exists a totally acyclic complex T of flat
+R◦ -modules with C0 (T ) ∼
+= G; see 3.8.
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+19
+
+6.7 Theorem. The following conditions on R are equivalent.
+(i) Every Gorenstein projective R◦ -module is Gorenstein flat.
+(ii) For every R◦ -module M that has a complete projective resolution there are
+g R (M, −) ∼
+d R (M, −) for all i ∈ Z.
+isomorphisms of functors Tor
+= Tor
+i
+i
+
+Proof. Assume that every Gorenstein projective R◦ -module is Gorenstein flat.
+Let T → P → M be a complete projective resolution. It follows that T is a
+totally acyclic complex of flat modules; see Emmanouil [13, thm. 2.2]. Thus stable
+homology and Tate homology coincide by Lemma 6.3.
+For the converse, let M be a Gorenstein projective R◦ -module and let T be a
+totally acyclic complex of projective R◦ -modules with M ∼
+= C0 (T ). Since there are
+R
+R
+∼
+g
+d
+isomorphisms of functors Tori (M, −) = Tori (M, −) for all i ∈ Z, it follows from
+2.3 that T ⊗R E is acyclic for every injective R-module E. Thus T is a totally
+acyclic complex of flat R◦ -modules, and so M is Gorenstein flat.
+
+6.8 Remark. As Holm notes [21, prop. 3.4], the obvious way to achieve that every
+Gorenstein projective R◦ -module is Gorenstein flat is to ensure that (1) the Pontryagin dual of every injective R-module is flat, and (2) that every flat R◦ -module
+has finite projective dimension. The first condition is satisfied if R is left coherent,
+and the second is discussed in Remark 2.8. A description of the rings over which
+Gorenstein projective modules are Gorenstein flat seems elusive; see [13, sec. 2].
+Complete homology . In his thesis, Triulzi considers the J-completion of the homological functor TorR (M, −) = {TorR
+i (M, −) | i ∈ Z}. His construction is similar
+to Mislin’s P-completion of covariant Ext and Nucinkis’ I-completion of contravariant Ext. The resulting homology theory is called complete homology. Like stable
+homology, it is a generalization of Tate homology. We compare these two generalizations in [8]. From the point of view of stable homology, it is interesting to know
+when it agrees with complete homology, because the latter has a universal property.
+In this direction the main results in [8] are that these two homology theories agree
+over Iwanaga-Gorenstein rings, and for finitely generated modules over Artin algebras and complete commutative local rings. Moreover, the two theories agree with
+Tate homology, whenever it is defined, under the exact same condition; that is, if
+and only if every Gorenstein projective module is Gorenstein flat; see Theorem 6.7.
+Appendix
+We start by recalling the definition of stable cohomology.
+A.1. Let X and Y be R-complexes, following [5, 18] we denote by HomR (X, Y )
+the subcomplex of HomR (X, Y ) with degree n term
+a
+HomR (X, Y )n =
+HomR (Xi , Yi+n ) .
+i∈Z
+
+It is called the bounded Hom complex, and the quotient complex
+] R (X, Y ) = HomR (X, Y )/HomR (X, Y )
+Hom
+is called the stable Hom complex.
+≃
+≃
+For R-modules M and N with projective resolutions PM −−→ M and PN −−→ N ,
+the k-modules
+ExtiR (M, N ) = H−i (HomR (PM , PN )) ,
+
+20
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+are called the bounded cohomology of M and N over R, and the stable cohomology
+modules of M and N over R are
+g i (M, N ) = H−i (Hom
+] R (PM , PN )) .
+Ext
+R
+
+d i (M, N ) for the stable cohomolAvramov and Veliche [5] use the notation Ext
+R
+ogy; this notation is standard for Tate cohomology, which coincides with stable
+cohomology whenever the former is defined; see [5, cor. 2.4].
+A.2 Proposition. Let X and Y be R-complexes.
+(a) If X or Y is bounded above, and HomR (Xi , Y ) is acyclic for all i, then the
+complex HomR (X, Y ) is acyclic.
+(b) If X or Y is bounded below, and HomR (X, Yi ) is acyclic for all i, then the
+complex HomR (X, Y ) is acyclic.
+
+Proof. Similar to the proof of Proposition 1.7.
+
+
+
+Standard isomorphisms. We study composites of the functors Hom and ⊗. To
+the extent possible, we establish analogs of the standard isomorphisms for composites of Hom and ⊗; see [7, sec. II.5 and VI.5]. There seems to be no analog of
+Hom-tensor adjunction [7, prop. II.5.2].
+The setup is the same for Propositions A.4–A.6; namely:
+A.3. Let X be a complex of R◦ -modules, let Y be a complex of (R, S ◦ )-bimodules,
+and let Z be a complex of S-modules.
+Under finiteness conditions, the unbounded tensor product is associative.
+A.4 Proposition. For complexes as in A.3, under either of the following conditions
+• X and Z are complexes of finitely presented modules
+• Y is a bounded complex
+there is an isomorphism of k-complexes,
+(X ⊗R Y ) ⊗S Z −→ X ⊗R (Y ⊗S Z) ,
+and it is functorial in X, Y , and Z.
+Proof. For every n ∈ Z one has,
+((X ⊗R Y ) ⊗S Z)n =
+
+Y Q
+
+j∈Z
+
+
+Xj ⊗R Yi−j ⊗S Zn−i
+
+i∈Z
+
+and
+(X ⊗R (Y ⊗S Z))n =
+
+Y
+
+j∈Z
+
+Xj ⊗ R
+
+Q
+
+i∈Z
+
+
+Yi−j ⊗S Zn−i ,
+
+and from each of these modules there is a canonical homomorphism to
+YY
+YY
+(Xj ⊗R Yi−j ) ⊗S Zn−i ∼
+Xj ⊗R (Yi−j ⊗S Zn−i ) .
+=
+i∈Z j∈Z
+
+j∈Z i∈Z
+
+If Y is bounded, then these homomorphisms are isomorphisms as the inner most
+products are finite. Recall, e.g. from [16, thm. 3.2.22], that the functor M ⊗R −
+commutes with products if M is finitely presented. Thus, the canonical homomorphisms are isomorphisms when X and Z are complexes of finitely presented
+modules. It is straightforward to verify that these isomorphisms commute with the
+differentials and form an isomorphism of complexes.
+
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+21
+
+The model for the following swap isomorphism is [7, ex. II.4]. The proof is similar
+to the proof of Proposition A.4 and uses that the functor HomR (M, −) commutes
+with coproducts if M is a finitely generated R-module.
+A.5 Proposition. For complexes as in A.3, under either of the following conditions
+• X and Z are complexes of finitely generated modules
+• Y is a bounded complex
+there is an isomorphism of k-complexes,
+HomR◦ (X, HomS (Z, Y )) −→ HomS (Z, HomR◦ (X, Y )) ,
+and it is functorial in X, Y , and Z.
+
+
+
+The next result is an analog of [7, prop. VI.5.2 and VI.5.3]; it is used below to
+establish a duality between stable homology and stable cohomology.
+A.6 Proposition. Let X, Y , and Z be as in A.3, and assume further that X is a
+complex of finitely presented R◦ -modules. There is a morphism of k-complexes,
+X ⊗R HomS (Y, Z) −→ HomS (HomR◦ (X, Y ), Z) ,
+and it is functorial in X, Y , and Z. Furthermore, it is an isomorphism if X is a
+complex of projective modules or Z is a complex of injective modules.
+Proof. For every n ∈ Z one can compute as follows,
+Y
+(Xi ⊗R HomS (Y, Z)n−i )
+(X ⊗R HomS (Y, Z))n =
+i∈Z
+
+=
+
+Y
+
+Q
+
+(Xi ⊗R
+
+∼
+=
+
+HomS (Yj , Zn−i+j ))
+
+j∈Z
+
+i∈Z
+
+YY
+
+(Xi ⊗R HomS (Yj , Zn−i+j )) ,
+
+i∈Z j∈Z
+
+where the isomorphism holds as the module Xi is finitely presented for every i ∈ Z;
+see [16, thm. 3.2.22]. On the other hand, for every n ∈ Z one has
+Y
+HomS (HomR◦ (X, Y ), Z)n =
+HomS (HomR◦ (X, Y )h , Zn+h )
+h∈Z
+
+=
+
+Y
+
+HomS (
+
+h∈Z
+
+∼
+=
+
+`
+
+HomR◦ (Xi , Yi+h ), Zn+h )
+
+i∈Z
+
+YY
+
+HomS (HomR◦ (Xi , Yi+h ), Zn+h )
+
+YY
+
+HomS (HomR◦ (Xi , Yj ), Zn−i+j ) .
+
+h∈Z i∈Z
+
+=
+
+i∈Z j∈Z
+
+Now set (θXY Z )n =
+
+Q
+
+i∈Z
+
+Q
+
+i(n−j)
+θXi Yj Zn−i+j ,
+j∈Z (−1)
+
+where
+
+θXi Yj Zn−i+j : Xi ⊗R HomS (Yj , Zn−i+j ) −→ HomS (HomR◦ (Xi , Yj ), Zn−i+j )
+is the homomorphism of k-modules given by θXi Yj Zn−i+j (x ⊗ ψ)(φ) = ψφ(x). It is
+straightforward to verify that θXY Z is a morphism of k-complexes and functorial
+in X, Y , and Z.
+
+22
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+Finally, if each module Xi is projective or each module Zn−i+j is injective, then
+it follows from [7, prop. VI.5.2 and VI.5.3] that θXi Yj Zn−i+j is invertible for all
+i, j, n ∈ Z, and so the morphism θXY Z is invertible.
+
+A.7 Lemma. Let P be a bounded below complex of finitely generated projective
+R◦ -modules and let X be a complex of R◦ -modules with H(X) bounded. For every
+injective k-module E, there is an isomorphism in the derived category D(k):
+] R◦ (P, X), E) ,
+e R Homk (X, E) −→ Σ Homk (Hom
+P⊗
+
+and it is functorial in P , X, and E.
+
+Proof. Set (−)∨ = Homk (−, E). In the commutative square of k-complexes
+P ⊗R X ∨
+
+τ
+
+/ P ⊗R X ∨
+∼
+= α
+
+θ
+
+
+HomR◦ (P, X)∨
+
+ϑ∨
+
+
+/ HomR◦ (P, X)∨
+
+each horizontal morphism is (the dual of) a canonical embedding. The vertical
+map α is the isomorphism from Proposition A.6. The morphism θ is the standard
+evaluation map; it is a quasi-isomorphism by [2, 4.4(I)]. The square induces a
+morphism of triangles in the homotopy category:
+τ
+
+P ⊗R X ∨
+
+/ P ⊗R X ∨
+
+γ
+
+≃ θ
+
+∼
+= α
+
+
+HomR◦ (P, X)∨
+
+
+/ HomR◦ (P, X)∨
+
+∨
+
+ϑ
+
+/ Σ(P ⊗R X ∨ )
+
+/ Cone τ
+
+≃ Σθ
+
+
+/ Σ HomR◦ (P, X)∨
+
+
+/ Cone ϑ∨
+
+The construction of γ is functorial in all three arguments, and it is a quasi-isomorphism
+because α and θ are quasi-isomorphisms. Recall, say from [17, III.3.4–5], that there
+are natural quasi-isomorphisms
+∨
+
+Cone ϑ
+
+eR X∨
+Cone τ ≃ Coker τ = P ⊗
+
+∼
+= Σ(Cone ϑ)
+
+∨
+
+∨
+
+≃ Σ(Coker ϑ)
+
+and
+
+] R◦ (P, X)∨ .
+= Σ Hom
+
+They yield the desired isomorphism in the derived category
+] R◦ (P, X), E) .
+e R Homk (X, E) −→ Σ Homk (Hom
+P⊗
+
+With regard to functoriality of γ, notice that a morphism between arguments,
+P → P1 say, induces the solid commutative square in the following diagram.
+❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴/ Coker τ1
+Coker
+✤ e❑τ❑
+8 ✤
+❑❑
+rrr ✤
+✤
+❑❑
+r
+r
+r
+≃ ❑❑❑
+✤
+✤
+rrr ≃
+/
+✤
+✤
+Cone τ
+Cone τ1
+✤
+✤
+γ
+γ1
+✤
+✤
+
+
+✤
+✤
+∨
+∨
+/ Cone(ϑ1 )
+Cone ϑ
+✤
+✤
+▲▲▲
+tt
+✤
+✤
+≃ tt
+▲▲≃
+t
+▲▲▲
+tt
+✤
+✤
+t
+▲
+% 
+ zt
+∨ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴/
+Σ(Coker ϑ)
+Σ(Coker ϑ1 )∨
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+23
+
+Commutativity in the derived category of the dashed square is now a consequence.
+Functoriality in the other arguments is handles similarly.
+
+The Lemma immediately yields a useful duality.
+A.8 Theorem. Let M and N be R◦ -modules and assume that M has a degreewise finitely generated projective resolution. For every injective k-module E and
+for every i ∈ Z there is an isomorphism of k-modules,
+g i ◦ (M, N ), E) ∼
+g R (M, Homk (N, E)) ,
+Homk (Ext
+= Tor
+R
+i
+
+and it is functorial in M , N , and E.
+
+
+
+To prove the next two results one proceeds as in the proof of Proposition A.6.
+A.9 Proposition. Let X be a complex of finitely generated R-modules and let Y
+and Z be as in A.3. There is a morphism of k-complexes
+HomR (X, Y ) ⊗S Z −→ HomR (X, Y ⊗S Z) ,
+and it is functorial in X, Y , and Z. Furthermore, it is an isomorphism under each
+of the following conditions
+• Z is a complex of finitely generated projective modules
+• X is a complex of finitely presented modules and Z is a complex of flat modules
+• X is a complex of projective modules
+
+A.10 Proposition. Let X be a complex of R-modules, let Y be a complex of
+(R, S ◦ )-bimodules, and let Z be a complex of finitely presented S-modules. There
+is a morphism of k-complexes,
+HomR (X, Y ) ⊗S Z −→ HomR (X, Y ⊗S Z) ,
+and it is functorial in X, Y , and Z. Furthermore, it is an isomorphism if X or Z
+is a complex of projective modules.
+
+Pinched tensor products. Christensen and Jorgensen devised in [12] a pinched
+tensor product, − ⊗✶
+R −, to compute Tate homology. In view of Theorem 3.10 their
+proof of [12, thm. 3.5] applies verbatim to yield the next result; we refer the reader
+to [12] for the definition of the pinched tensor product.
+A.11 Theorem. Let M be an R◦ -module that has a Tate flat resolution (T, F ),
+let A be an acyclic complex of R-modules and set N = C0 (A). For every i ∈ Z,
+there is an isomorphism of k-modules
+✶
+∼
+gR
+Tor
+i (M, N ) = Hi (T ⊗R A) .
+
+
+
+The next corollary is an analogue of [12, Corollary 4.10].
+A.12 Corollary. Let R be commutative and let M and N be Gorenstein flat Rmodules with corresponding totally acyclic complexes of flat modules T and T ′ ,
+g R (M, N ) = 0 holds for all i ∈ Z, then T ⊗✶ T ′ is an acyclic
+respectively. If Tor
+i
+R
+complex of flat R-modules, and the following statements are equivalent:
+′
+(i) T ⊗✶
+R T is a totally acyclic complex of flat R-modules.
+g R (M, N ⊗R E) = 0 holds for every injective R-module E and all i ∈ Z.
+(ii) Tor
+i
+
+24
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+′
+When these conditions hold, M ⊗R N is a Gorenstein flat R-module and T ⊗✶
+RT
+is a corresponding totally acyclic complex of flat R-modules.
+′
+Proof. It follows from the definition of pinched tensor products that T ⊗✶
+RT
+R
+g
+is a complex of flat R-modules, and if Tori (M, N ) = 0 holds for all i ∈ Z,
+then the complex is acyclic by Theorem A.11. It is totally acyclic if and only
+′
+✶
+∼
+if (T ⊗✶
+R T ) ⊗R E = T ⊗R (T ⊗R E) is acyclic for every injective R-module E;
+g R (M, N ⊗R E) = 0 holds for every injective R-module E
+that is, if and only if Tor
+i
+and all i ∈ Z. Finally, it follows from the definition of pinched tensor products that
+′
+there is an isomorphism M ⊗R N ∼
+
+= C0 (T ⊗✶
+R T ).
+
+References
+[1] Maurice Auslander and Mark Bridger, Stable module theory, Memoirs of the American Mathematical Society, No. 94, American Mathematical Society, Providence, R.I., 1969. MR0269685
+[2] Luchezar L. Avramov and Hans-Bjørn Foxby, Homological dimensions of unbounded complexes, J. Pure Appl. Algebra 71 (1991), no. 2-3, 129–155. MR1117631
+[3] Luchezar L. Avramov, Srikanth B. Iyengar, and Joseph Lipman, Reflexivity and rigidity for
+complexes. I. Commutative rings, Algebra Number Theory 4 (2010), no. 1, 47–86. MR2592013
+[4] Luchezar L. Avramov and Alex Martsinkovsky, Absolute, relative, and Tate cohomology of
+modules of finite Gorenstein dimension, Proc. London Math. Soc. (3) 85 (2002), no. 2, 393–
+440. MR1912056
+[5] Luchezar L. Avramov and Oana Veliche, Stable cohomology over local rings, Adv. Math. 213
+(2007), no. 1, 93–139. MR2331239
+[6] Hyman Bass and M. Pavaman Murthy, Grothendieck groups and Picard groups of abelian
+group rings, Ann. of Math. (2) 86 (1967), 16–73. MR0219592
+[7] Henri Cartan and Samuel Eilenberg, Homological algebra, Princeton Landmarks in Mathematics, Princeton University Press, Princeton, NJ, 1999, With an appendix by David A.
+Buchsbaum, Reprint of the 1956 original. MR1731415
+[8] Olgur Celikbas, Lars Winther Christensen, Li Liang, and Greg Piepmeyer, Complete homology over associative rings, Israel J. Math, to appear. Preprint arXiv:1501.00297 [math.RA].
+[9] Lars Winther Christensen, Gorenstein dimensions, Lecture Notes in Mathematics, vol. 1747,
+Springer-Verlag, Berlin, 2000. MR1799866
+[10] Lars Winther Christensen, Anders Frankild, and Henrik Holm, On Gorenstein projective,
+injective and flat dimensions—A functorial description with applications, J. Algebra 302
+(2006), no. 1, 231–279. MR2236602
+[11] Lars Winther Christensen and Henrik Holm, The direct limit closure of perfect complexes, J.
+Pure Appl. Algebra 219 (2015), no. 3, 449–463. MR3279365
+[12] Lars Winther Christensen and David A. Jorgensen, Tate (co)homology via pinched complexes,
+Trans. Amer. Math. Soc. 366 (2014), no. 2, 667–689. MR3130313
+[13] Ioannis Emmanouil, On the finiteness of Gorenstein homological dimensions, J. Algebra 372
+(2012), 376–396. MR2990016
+[14] Edgar E. Enochs, Sergio Estrada, and Alina C. Iacob, Balance with unbounded complexes,
+Bull. Lond. Math. Soc. 44 (2012), no. 3, 439–442. MR2966988
+[15] Edgar E. Enochs and Overtoun M. G. Jenda, Copure injective resolutions, flat resolvents
+and dimensions, Comment. Math. Univ. Carolin. 34 (1993), no. 2, 203–211. MR1241728
+[16] Edgar E. Enochs and Overtoun M. G. Jenda, Relative homological algebra, de Gruyter Expositions in Mathematics, vol. 30, Walter de Gruyter & Co., Berlin, 2000. MR1753146
+[17] Sergei I. Gelfand and Yuri I. Manin, Methods of homological algebra, second ed., Springer
+Monographs in Mathematics, Springer-Verlag, Berlin, 2003. MR1950475
+[18] François Goichot, Homologie de Tate-Vogel équivariante, J. Pure Appl. Algebra 82 (1992),
+no. 1, 39–64. MR1181092
+[19] Shiro Goto, Vanishing of ExtiA (M, A), J. Math. Kyoto Univ. 22 (1982/83), no. 3, 481–484.
+MR0674605
+[20] Laurent Gruson and Christian U. Jensen, Dimensions cohomologiques reliées aux foncteurs
+lim(i) , Paul Dubreil and Marie-Paule Malliavin Algebra Seminar, 33rd Year (Paris, 1980),
+←−
+Lecture Notes in Math., vol. 867, Springer, Berlin, 1981, pp. 234–294. MR0633523
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+25
+
+[21] Henrik Holm, Gorenstein homological dimensions, J. Pure Appl. Algebra 189 (2004), no. 1-3,
+167–193. MR2038564
+[22] Henrik Holm, Rings with finite Gorenstein injective dimension, Proc. Amer. Math. Soc. 132
+(2004), no. 5, 1279–1283. MR2053331
+[23] Thorsten Holm and Peter Jørgensen, Triangulated categories: definitions, properties, and
+examples, Triangulated categories, London Math. Soc. Lecture Note Ser., vol. 375, Cambridge
+Univ. Press, Cambridge, 2010, pp. 1–51. MR2681706
+[24] Alina Iacob, Absolute, Gorenstein, and Tate torsion modules, Comm. Algebra 35 (2007),
+no. 5, 1589–1606. MR2317632
+[25] Christian U. Jensen, On the vanishing of lim(i) , J. Algebra 15 (1970), 151–166. MR0260839
+←−
+
+[26] David A. Jorgensen and Liana M. Şega, Independence of the total reflexivity conditions for
+modules, Algebr. Represent. Theory 9 (2006), no. 2, 217–226. MR2238367
+[27] Li Liang, Tate homology of modules of finite Gorenstein flat dimension, Algebr. Represent.
+Theory 16 (2013), no. 6, 1541–1560. MR3127346
+[28] Masayoshi Nagata, Local rings, Interscience Tracts in Pure and Applied Mathematics, No. 13,
+Interscience Publishers a division of John Wiley & Sons New York-London, 1962. MR0155856
+[29] Barbara L. Osofsky, Homological dimension and cardinality, Trans. Amer. Math. Soc. 151
+(1970), 641–649. MR0265411
+[30] Christian Peskine and Lucien Szpiro, Dimension projective finie et cohomologie locale. Applications à la démonstration de conjectures de M. Auslander, H. Bass et A. Grothendieck,
+Inst. Hautes Études Sci. Publ. Math. (1973), no. 42, 47–119. MR0374130
+[31] Paul Roberts, Two applications of dualizing complexes over local rings, Ann. Sci. École Norm.
+Sup. (4) 9 (1976), no. 1, 103–106. MR0399075
+[32] Paul Roberts, Le théorème d’intersection, C. R. Acad. Sci. Paris Sér. I Math. 304 (1987),
+no. 7, 177–180. MR0880574
+[33] Oana Veliche, Gorenstein projective dimension for complexes, Trans. Amer. Math. Soc. 358
+(2006), no. 3, 1257–1283. MR2187653
+[34] Charles A. Weibel, An introduction to homological algebra, Cambridge Studies in Advanced
+Mathematics, vol. 38, Cambridge University Press, Cambridge, 1994. MR1269324
+University of Missouri, Columbia, MO 65211, U.S.A.
+Current address: University of Connecticut, Storrs, CT 06269, U.S.A
+E-mail address: olgur.celikbas@uconn.edu
+Texas Tech University, Lubbock, TX 79409, U.S.A.
+E-mail address: lars.w.christensen@ttu.edu
+URL: http://www.math.ttu.edu/~ lchriste
+Lanzhou Jiaotong University, Lanzhou 730070, China
+E-mail address: lliangnju@gmail.com
+Columbia Basin College, Pasco, WA 99301, U.S.A.
+E-mail address: pggreg@gmail.com
+
+
+
+Summary:
+This research paper covers the following topic: arXiv:1409.3605v2 [math.RA] 5 Jan 2016
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+OLGUR CELIKBAS, LARS WINTHER CHRISTENSEN, LI LIANG,
+AND GREG PIEPMEYER
+Abstract. We analyze stable homology over associative rings and obtain results over Artin algebras and commutative noetherian rings. Our study develops similarly for these classes; for simplicity we only discuss the latter here.
+Stable homology is a broad generalization of Tate homology. Vanishing of
+stable homology detects classes of rings—among them Gorenstein rings, the
+original domain of Tate homology. Closely related to gorensteinness of rings is
+Auslander’s G-dimension for modules. We show that vanishing of stable homology detects modules of finite G-dimension. This is the first characterization
+of such modules in terms of vanishing of (co)homology alone.
+Stable homology, like absolute homology, Tor, is a theory in two variables.
+It can be computed from a flat resolution of one module together with an
+injective resolution of the other. This betrays that stable homology is not
+balanced in the way Tor is balanced. In fact, we prove that a ring is Gorenstein
+if and only if stable homology is balanced.
+
+Introduction
+The homology theory studied in this paper was introduced by P. Vogel in the 1980s.
+Vogel did not publish his work, but the theory appeared in print in a 1992 paper by
+Goichot [18], who called it Tate–Vogel homology. As the name suggests, the theory
+is a generalization of Tate homology for modules over finite group rings. Vogel and
+Goichot also considered a generalization of Tate cohomology, which was studied
+in detail by Avramov and Veliche [5]. In that paper, the theory was called stable
+cohomology, to emphasize a relation to stabilization of module categories. To align
+terminology, we henceforth refer to the homology theory as stable homology.
+For modules M and N over a ring R, stable homology is a Z-indexed family of
+g R (M, N ). These fit into an exact sequence
+abelian groups Tor
+i
+
+(†)
+
+R
+R
+gR
+gR
+· · · → Tor
+i (M, N ) → Tori (M, N ) → Tori (M, N ) → Tori−1 (M, N ) → · · ·
+
+R
+where the groups TorR
+i (M, N ) and Tori (M, N ) form, respectively, the unbounded
+homology and the standard absolute homology of M and N . We are thus led to
+study stable and unbounded homology simultaneously. Our investigation takes cues
+from the studies of stable cohomology [5] and absolute homology, but our results
+look quite different. This comes down to an inherent asymmetry in the definition
+
+Date: 29 December 2015.
+2010 Mathematics Subject Classification. 16E05, 16E30, 16E10, 13H10.
+Key words and phrases. Stable homology, Tate homology, Gorenstein ring, G-dimension.
+This research was partly supported by a Simons Foundation Collaboration Grant for Mathematicians, award no. 281886 (L.W.C.), NSA grant H98230-14-0140 (L.W.C.) and NSFC grant
+11301240 (L.L.). Part of the work was done during L.L.’s stay at Texas Tech University with
+support from the China Scholarship Council; he thanks the Department of Mathematics and
+Statistics at Texas Tech for its kind hospitality.
+
+2
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+of stable homology that is not present in either of these precursors. It manifests
+itself in different ways, but it is apparent in most of our results.
+∗ ∗ ∗
+g R (M, N ), the ring acts on M from the right
+When we consider stable homology Tor
+and on N from the left. In this paper an R-module is a left R-module; to distinguish
+right R-modules, we speak of modules over the opposite ring R◦ . We study stable
+homology over associative rings and obtain conclusive results for Artin algebras and
+commutative noetherian rings. In the following overview, R denotes an Artin algebra or a commutative noetherian local ring. The results we discuss are special cases
+of results obtained within the paper; internal references are given in parentheses.
+One expects a homology theory to detect finiteness of homological dimensions.
+Our first two results reflect the asymmetry in the definition of stable homology.
+Right vanishing (3.1, 3.2). For a finitely generated R◦ -module M , the following
+conditions are equivalent.
+(i) M has finite projective dimension.
+g R (M, −) = 0 for all i ∈ Z.
+(ii) Tor
+i
+
+g R (M, −) = 0.
+(iii) There is an i > 0 with Tor
+i
+
+Left vanishing (5.1, 5.12). For a finitely generated R-module N , the following
+conditions are equivalent.
+(i) N has finite injective dimension.
+g R (−, N ) = 0 for all i ∈ Z.
+(ii) Tor
+i
+
+g R (−, N ) = 0.
+(iii) There is an i 6 0 with Tor
+i
+
+These two vanishing results reveal that stable homology cannot be balanced in the
+way absolute homology, Tor, is balanced.
+Balancedness (4.5, 4.6, 4.7). The following conditions on R are equivalent.
+(i) R has finite injective dimension over R and over R◦ .
+(ii) For all finitely generated R◦ -modules M , all finitely generated R-modules N ,
+g R◦ (N, M ).
+g R (M, N ) ∼
+and all i ∈ Z there are isomorphisms Tor
+= Tor
+i
+i
+(iii) For all R◦ -modules M , all R-modules N , and all i ∈ Z there are isomorphisms
+g R◦ (N, M ).
+g R (M, N ) ∼
+Tor
+= Tor
+i
+i
+
+Another way to phrase part (i) above is to say that R is Iwanaga-Gorenstein. On
+that topic: a commutative noetherian ring A is Gorenstein (regular or Cohen–
+Macaulay) if the local ring Ap is Iwanaga-Gorenstein (regular or Cohen–Macaulay)
+for every prime ideal p in A. It follows that a commutative noetherian ring of finite
+self-injective dimension is Gorenstein, but a Gorenstein ring need not have finite
+self-injective dimension; consider, for example, Nagata’s regular ring of infinite
+Krull dimension [28, appn. exa. 1].
+It came as a surprise to us that balancedness of stable homology detects gorensteinness outside of the local situation (4.6): A commutative noetherian ring A is
+g A (N, M ) are isomorphic for all finitely
+g A (M, N ) and Tor
+Gorenstein if and only if Tor
+i
+i
+generated A-modules M and N and all i ∈ Z. This turns out to be only one of
+several ways in which stable homology captures global properties of rings. Indeed,
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+3
+
+vanishing of stable homology detects if a commutative noetherian (not necessarily
+local) ring is regular (3.3), Gorenstein (3.12), or Cohen–Macaulay (5.11).
+For finitely generated modules over a noetherian ring, Auslander and Bridger [1]
+introduced a homological invariant called the G-dimension. A noetherian ring is
+Iwanaga-Gorenstein if and only if there is an integer d such that every finitely
+generated left or right module has G-dimension at most d; see Avramov and
+Martsinkovsky [4, 3.2]. In [18, sec. 3] Tate homology was defined for modules over
+Iwanaga-Gorenstein rings and shown to agree with stable homology. Iacob [24]
+generalized Tate homology further to a setting that includes the case where M is a
+finitely generated R◦ -module of finite G-dimension. We prove:
+Tate homology (6.4). Let M be a finitely generated R◦ -module of finite Gg R (M, −) is isomorphic
+dimension. For every i ∈ Z the stable homology functor Tor
+i
+d R (M, −).
+to the Tate homology functor Tor
+i
+
+There are two primary generalizations of G-dimension to modules that are not
+finitely generated: Gorenstein projective dimension and Gorenstein flat dimension.
+They are defined in terms of resolutions by Gorenstein projective (flat) modules,
+notions which were introduced by Enochs, Jenda, and collaborators; see Holm [21]1.
+In general, it is not known if Gorenstein projective modules are Gorenstein flat.
+d R (M, −) is for R◦ -modules M of finite
+Iacob’s definition of Tate homology Tor
+Gorenstein projective dimension. We show (6.7) that Tate homology agrees with
+g R (M, −) for all such R◦ -modules if and only if every Gorenstein
+stable homology Tor
+◦
+projective R -module is Gorenstein flat.
+Here is an example to illustrate how widely the various homology theories differ.
+
+Example. Let (R, m) be a commutative artinian local ring with m2 = 0, and
+assume that R is not Gorenstein. If k denotes a field, then k[x, y]/(x2 , xy, y 2 ) is an
+example of such a ring. Let E be the injective hull of the residue field R/m. Then:
+(a) Absolute homology TorR
+i (E, E) is non-zero for every i ≥ 2.
+R
+g
+(b) Stable homology Tori (E, E) is zero for every i.
+R
+(c) Unstable homology TorR
+i (E, E) agrees with Tori (E, E) for every i.
+d R (E, E)” is not defined.
+(d) Tate homology “Tor
+
+Since R is not Gorenstein, E has infinite G-dimension; see [22, thm. 3.2]. That
+explains (d); see 6.1 and 6.2. It also explains (a), as the first syzygy of E is a
+k-vector space, whence vanishing of TorR
+i (E, E) for some i > 2 would imply that E
+has finite projective dimension and hence finite G-dimension; see [4, thm. 4.9]. Left
+vanishing, see p. 2, yields (b), and then the exact sequence (†) on p. 1 gives (c).
+Finally we return to the topic of vanishing. A much studied question in Gorenstein homological algebra is how to detect finiteness of G-dimension. A finitely
+generated module G over a commutative noetherian ring A has G-dimension zero if
+it satisfies ExtiA (G, A) = 0 = ExtiA (HomA (G, A), A) for all i > 0 and the canonical
+map G → HomA (HomA (G, A), A) is an isomorphism. This is the original definition [1], and the last requirement cannot be dispensed with, as shown by Jorgensen
+1 Enochs and Jenda consolidated their work in [16, chaps. 10–12], which deal almost exclusively
+with Gorenstein rings. In [21] Holm does Gorenstein homological algebra over associative rings,
+so that is our standard reference for this topic. Basic definitions are recalled in 6.6.
+
+4
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+and Şega [26]. There are other characterizations of modules of finite G-dimension
+in the literature, but none that can be expressed solely in terms of vanishing of
+(co)homology functors. Hence, we were excited to discover:
+G-dimension (3.11). Let A be a commutative noetherian ring. A finitely generg A (M, A) = 0 holds for
+ated A-module M has finite G-dimension if and only if Tor
+i
+all i ∈ Z.
+1. Tensor products of complexes
+All rings in this paper are assumed to be associative algebras over a commutative
+ring k, where k = Z is always possible, and k = R works when R is commutative.
+For an Artin algebra R, one can take k to be an artinian ring such that R is finitely
+generated as a k-module. We recall that in this situation the functor D(−) =
+Homk (−, E), where E is the injective hull of k/Jac(k), yields a duality between the
+categories of finitely generated R-modules and finitely generated R◦ -modules.
+By M(R) we denote the category of R-modules. We work with complexes, index
+these homologically, and follow standard notation (see the appendix in [9] for what
+is not covered below).
+1.1. For a complex X with differential ∂ X and an integer n ∈ Z the symbol Cn (X)
+X
+, and Hn (X) denotes the homology of X in degree n,
+denotes the cokernel of ∂n+1
+X
+X
+i.e., Ker ∂n /Im ∂n+1 . A complex with H(X) = 0 is called acyclic, and a morphism
+of complexes X → Y that induces an isomorphism H(X) → H(Y ) is called a quasiisomorphism. The symbol ≃ is used to decorate quasi-isomorphisms; it is also used
+for isomorphisms in derived categories.
+1.2. For an R◦ -complex X and an R-complex Y
+`, the tensor product X ⊗R Y is
+the k-complex with degree n term (X ⊗R Y )n = i∈Z (Xi ⊗R Yn−i ) and differential
+Y
+given by ∂(x ⊗ y) = ∂iX (x) ⊗ y + (−1)i x ⊗ ∂n−i
+(y) for x ∈ Xi and y ∈ Yn−i .
+Contrast the standard tensor product complex in 1.2 with the construction in 1.3,
+which first appeared in [18]. Similar constructions for Hom were also treated in [18]
+and in great detail by Avramov and Veliche [5]. We recall the Hom constructions
+in the Appendix, where we also study their interactions with the one below.
+1.3 Definition. For an R◦ -complex X and an R-complex Y , consider the graded
+k-module X ⊗R Y with degree n component
+Y
+(X ⊗R Y )n =
+Xi ⊗R Yn−i .
+i∈Z
+
+Endowed with the degree −1 homomorphism ∂ defined on elementary tensors as in
+1.2, it becomes a complex called the unbounded tensor product. It contains the tensor product, X ⊗R Y , as a subcomplex. The quotient complex (X ⊗R Y )/(X ⊗R Y )
+e R Y , and it is called the stable tensor product.
+is denoted X ⊗
+
+1.4. The definition above yields an exact sequence of k-complexes,
+e R Y −→ 0 .
+(1.4.1)
+0 −→ X ⊗R Y −→ X ⊗R Y −→ X ⊗
+
+Notice that if X or Y is bounded, or if both complexes are bounded on the same
+side (above or below), then the unbounded tensor product coincides with the usual
+e R Y is zero.
+tensor product, and the stable tensor product X ⊗
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+5
+
+Note that the unbounded tensor product X ⊗R Y is the product totalization of
+the double complex (Xi ⊗R Yj ).
+1.5. We collect some basic results about the unbounded and stable tensor products. For the unbounded tensor product the proofs mimic the proofs for the tensor
+product, and one obtains the results for the stable tensor product via (1.4.1). As
+above X is an R◦ -complex and Y is an R-complex.
+(a) There are isomorphisms of k-complexes
+eR Y ∼
+e R◦ X .
+and
+X⊗
+X ⊗R Y ∼
+= Y ⊗
+= Y ⊗R◦ X
+
+(b)
+(c)
+(d)
+(e)
+
+e R − are additive and right exact.
+The functors X ⊗R − and X ⊗
+e R − preserve degree-wise split exact sequences.
+The functors X ⊗R − and X ⊗
+e R − preserve homotopy.
+The functors X ⊗R − and X ⊗
+′
+A morphism α : Y → Y of R-complexes yields isomorphisms of k-complexes
+e R α) ∼
+e R Cone α .
+Cone(X ⊗R α) ∼
+= X ⊗R Cone α and Cone(X ⊗
+= X⊗
+It follows that X ⊗R α is a quasi-isomorphism if and only if X ⊗R Cone α is
+e R α.
+acyclic, and similarly for X ⊗
+
+1.6 Lemma. Let D = (Di,j ) be a double k-complex. Let z be a cycle in the
+product totalization of D. Assume z contains a component zm,n that satisfies
+zm,n = ∂ h (x′ ) + ∂ v (x′′ ) for some x′ ∈ Dm+1,n and x′′ ∈ Dm,n+1 . If both
+(1) Hhm+k (D∗,n−k ) = 0 for every k > 0 and
+(2) Hvn+k (Dm−k,∗ ) = 0 for every k > 0,
+then z is a boundary in the product totalization of D.
+Proof. The goal is to prove the existence of a sequence (xi ) with xm+1 = x′ and
+xm = x′′ such that
+zm+k,n−k = ∂ h (xm+k+1 ) + ∂ v (xm+k )
+holds for all k ∈ Z; i.e., one has z = ∂(x) in the product totalization of D. Assume
+k is positive and that xm , . . . , xm+k have been constructed. Then
+zm+k−1,n−k+1 = ∂ h (xm+k ) + ∂ v (xm+k−1 )
+holds. As z is a cycle in the product totalization of D, one has
+0 = ∂ h (zm+k,n−k ) + ∂ v (zm+k−1,n−k+1 )
+= ∂ h (zm+k,n−k ) + ∂ v (∂ h (xm+k ) + ∂ v (xm+k−1 ))
+= ∂ h (zm+k,n−k ) − ∂ h (∂ v (xm+k )) .
+Thus, zm+k,n−k − ∂ v (xm+k ) is a horizontal cycle, and hence by (1) it is a horizontal boundary. There exists, therefore, an element xm+k+1 with ∂ h (xm+k+1 ) +
+∂ v (xm+k ) = zm+k,m−k . By induction, this argument yields the elements xm+k for
+k > 1; a symmetric argument using (2) yields xm+k for k < 0.
+
+1.7 Proposition. Let X be an R◦ -complex and let Y be an R-complex.
+(a) If X is bounded above and Xi ⊗R Y is acyclic for all i, then X ⊗R Y is acyclic.
+(b) If Y is bounded below and Xi ⊗R Y is acyclic for all i, then X ⊗R Y is acyclic.
+
+6
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+Proof. The product totalization of the double complex (Xi ⊗ Yj ) is X ⊗R Y .
+(a) Let m be an upper bound for X, let n be an integer, and let z = (zm+k,n−k )k
+be a cycle in X ⊗R Y of degree m + n. The component zm,n is a cycle in Xm ⊗R Y
+and hence a boundary as Xm ⊗R Y is assumed to be acyclic. Moreover, the assumption that Xi ⊗R Y is acyclic for every i ensures that condition (2) in Lemma 1.6 is
+met. Condition (1) is satisfied due to the boundedness of X; thus z is a boundary
+in X ⊗R Y . As n is arbitrary, it follows that X ⊗R Y is acyclic.
+(b) A similar argument with the roles of m and n exchanged handles this case. 
+2. Homology
+Now we consider the homology of unbounded and stable tensor product complexes.
+Our notation differs slightly from the one employed by Goichot [18].
+≃
+
+2.1 Definition. Let M be an R◦ -module and N be an R-module. Let P −−→ M be
+≃
+a projective resolution and let N −−→ I be an injective resolution. The k-modules
+TorR
+i (M, N ) = Hi (P ⊗R I)
+are the unbounded homology modules of M and N over R, and the stable homology
+modules of M and N over R are
+gR
+e
+Tor
+i (M, N ) = Hi+1 (P ⊗R I) .
+
+2.2. As any two projective resolutions of M , and similarly any two injective resolutions of N , are homotopy equivalent, it follows from 1.5(d) that the definitions
+in 2.1 are independent of the choices of resolutions.
+2.3. Notice from 1.4 that if M has finite projective dimension, or if N has finite
+R
+injective dimension, then for every i ∈ Z one has TorR
+i (M, N ) = Tori (M, N ) and
+g R (M, N ) = 0.
+hence Tor
+i
+
+2.4. The standard liftings of module homomorphisms to morphisms of resolutions
+gR
+imply that the definitions of TorR
+i (M, N ) and Tori (M, N ) are functorial in either
+argument; that is, for every i ∈ Z there are functors
+◦
+gR
+TorR
+i (−, −), Tori (−, −) : M(R ) × M(R) −→ M(k) .
+
+These functors are homological in the sense that every short exact sequence of R◦ modules 0 → M ′ → M → M ′′ → 0 and every R-module N give rise to a connected
+exact sequence of stable homology modules
+(2.4.1)
+g R (M ′′ , N ) → Tor
+g R (M ′ , N ) → Tor
+g R (M, N ) → Tor
+g R (M ′′ , N ) → · · · ,
+· · · → Tor
+i+1
+i
+i
+i
+and to an analogous sequence of Tor modules. Similarly, every short exact sequence
+0 → N ′ → N → N ′′ → 0 of R-modules and every R◦ -module M give rise to a
+connected exact sequence,
+(2.4.2)
+′′
+′
+′′
+gR
+gR
+gR
+gR
+· · · → Tor
+i+1 (M, N ) → Tori (M, N ) → Tori (M, N ) → Tori (M, N ) → · · · ,
+and an analogous sequence of Tor modules. For details see [18, sec. 1].
+Stable and unbounded homology entwine with absolute homology.
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+7
+
+2.5. For every R◦ -module M and every R-module N the exact sequence of complexes (1.4.1) yields an exact sequence of homology modules:
+g R (M, N ) → · · ·
+g R (M, N ) −
+→ Tor
+(2.5.1) · · · → Tor
+→ TorR
+→ TorR
+i (M, N ) −
+i−1
+i
+i (M, N ) −
+
+Flat resolutions. Just like absolute homology, unbounded and stable homology
+can be computed using flat resolutions in place of projective resolutions.
+≃
+
+2.6 Proposition. Let M be an R◦ -module and N be an R-module. If F −−→ M is
+≃
+a flat resolution and N −−→ I is an injective resolution, then there are isomorphisms,
+∼
+TorR
+i (M, N ) = Hi (F ⊗R I)
+
+g R (M, N ) ∼
+e R I)
+and Tor
+= Hi+1 (F ⊗
+i
+
+for every i ∈ Z, and they are natural in either argument.
+≃
+
+Proof. Let P −−→ M be a projective resolution, then there is a quasi-isomorphism
+α : P → F . For every R-complex E the complex Cone(α) ⊗R E is acyclic by [11,
+cor. 7.5]. In particular, Cone(α) ⊗R I is acyclic, and it follows from Proposition 1.7
+e R I is acyclic in view of (1.4.1). Thus,
+that Cone(α) ⊗R I is acyclic; now Cone(α) ⊗
+e
+the morphisms α ⊗R I and α ⊗R I are quasi-isomorphisms by 1.5(e), and the desired isomorphisms follow from 2.1; it is standard to verify that they are natural. 
+In view of 1.4 the next result is now immediate.
+g R (M, −) = 0
+2.7 Corollary. For every R◦ -module M of finite flat dimension, Tor
+i
+holds for every i ∈ Z.
+
+2.8 Remark. If every flat R◦ -module has finite projective dimension, then Corollary 2.7 is covered by 2.3. There are wide classes of rings over which flat modules
+have finite projective dimension: Iwanaga-Gorenstein rings, see [16, thm. 9.1.10],
+and more generally rings of finite finitistic projective dimension, see Jensen [25,
+prop. 6]; in a different direction, rings of cardinality at most ℵn for some n ∈ N,
+see Gruson and Jensen [20, thm. 7.10].
+On the other hand, recall that any product of fields is a von Neumann regular
+ring, i.e., every module over such a ring is flat. Osofsky [29, 3.1] shows that a
+sufficiently large product of fields has infinite global dimension and hence must
+have flat modules of infinite projective dimension.
+The next result is an analogue for stable homology of [5, thm. 2.2].
+2.9 Proposition. Let M be an R◦ -module and let n ∈ Z. The following conditions
+are equivalent.
+g R (M, −) → TorR (M, −) is an isomorphism for
+(i) The connecting morphism Tor
+i
+i
+every i > n.
+(ii) TorR
+i (M, E) = 0 for every injective R-module E and every i > n.
+(iii) TorR
+i (M, −) = 0 for every i > n.
+g R (M, E) = 0
+Proof. For every injective R-module E and for every i ∈ Z one has Tor
+i
+by 2.3. Thus (i) implies (ii).
+In the following we use the notation (−)⊃s for the soft truncation below at s.
+≃
+(ii) =⇒ (iii): Let N be an R-module and N −−→ I be an injective resolution. Let
+≃
++
+P −−→ M be a projective resolution and let P denote its mapping cone. Let E be
+an injective R-module; by assumption one has TorR
+i (M, E) = 0 for all i > n. By
+
+8
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+right exactness of the tensor product, P⊃+n−2 ⊗R E is acyclic and hence P⊃+n−2 ⊗R I
+is acyclic by 1.5(a) and Proposition 1.7. Thus, for every i > n one has
++
+TorR
+i (M, N ) = Hi (P ⊗R I) = Hi (P⊃n−2 ⊗R I) = 0.
+
+(Notice that for all n 6 0 one has P⊃+n−2 = P + .)
+(iii) =⇒ (i): This is immediate from the exact sequence (2.5.1).
+
+
+
+TorR
+≫0 (M, −)
+
+As vanishing of
+detects finite flat dimension of M , the next result
+is an immediate consequence of Proposition 2.9. In the parlance of [15] it says that
+g R (M, −) = 0.
+the flat and copure flat dimensions agree for R◦ -modules M with Tor
+
+g R (M, −) = 0 for all i ∈ Z, then
+2.10 Corollary. Let M be an R◦ -module. If Tor
+i
+fdR◦ M = sup{i ∈ Z | TorR
+i (M, E) 6= 0 for some injective R-module E } .
+
+
+
+Dimension shifting is a useful tool in computations with stable homology.
+2.11. For a module X, we denote by Ωm X the mth syzygy in a projective resolution
+of X and by Ωm X the mth cosyzygy in an injective resolution of X. By Schanuel’s
+lemma a syzygy/cosyzygy is uniquely determined up to a projective/injective summand. In view of 2.3 and the exact sequences in 2.4 one gets
+∼ gR
+gR
+Tor
+i (M, N ) = Tori−m (Ωm M, N ) for m > 0
+
+(2.11.1)
+(2.11.2)
+≃
+
+gR
+Tor
+i (M, N )
+
+∼
+=
+
+m
+gR
+Tor
+i+m (M, Ω N )
+
+and
+
+for m > 0 .
+
+Moreover, if F −−→ M is a flat resolution of M , then there are isomorphisms,
+g R (M, N ) ∼
+g R (Cm (F ), N ) for m > 0 ;
+Tor
+= Tor
+i
+i−m
+
+(2.11.3)
+
+this follows from (2.4.1) and Corollary 2.7.
+
+2.12. Suppose R is commutative and S is a flat R-algebra. For every S ◦ -module
+≃
+M , a projective resolution P −−→ M over S ◦ is a flat resolution of M as an Rg R (M, −)
+module. Thus, it follows from Proposition 2.6 that stable homology Tor
+i
+≃
+◦
+is a functor from M(R) to M(S ). Similarly, an injective resolution N −−→ I of an
+g R (−, N )
+S-module is also an injective resolution of N as an R-module, whence Tor
+i
+is a functor from M(R) to M(S).
+g
+3. Vanishing of stable homology Tor(M,
+−)
+
+We open with a partial converse to Corollary 2.7; recall, for example from [16,
+prop. 3.2.12], that a finitely presented module is flat if and only if it is projective.
+3.1 Theorem. Let M be an R◦ -module that has a degree-wise finitely generated
+projective resolution. The following conditions are equivalent.
+(i) pdR◦ M is finite.
+g R (M, −) = 0 for all i ∈ Z.
+(ii) Tor
+i
+g R (M, −) = 0 for some i > 0.
+(iii) Tor
+i
+
+g R (M, Homk (M, E)) = 0 for some faithfully injective k-module E.
+(iv ) Tor
+0
+
+Moreover, if R is left noetherian with idR R finite, then (i)–(iv ) are equivalent to
+g R (M, −) = 0 for some i ∈ Z.
+(iii’ ) Tor
+i
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+9
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) =⇒ (iii’ ) are clear; see 2.3. Part
+(iv ) follows from (iii) by dimension shifting (2.11.2).
+For (iv ) =⇒ (i) use Theorem A.8 to get
+∼
+gR
+g0
+0 = Tor
+0 (M, Homk (M, E)) = Homk (ExtR◦ (M, M ), E) .
+
+g 0 ◦ (M, M ) is zero, hence M has finite projective dimension by [5, prop. 2.2].
+Thus Ext
+R
+Finally, assume that R is left noetherian with idR R finite. Let E be a faithfully
+injective k-module; in view of what has already been proved, it is sufficient to show
+g R (M, −) = 0 for some i > 0 implies Tor
+g R (M, Homk (M, E)) = 0. It follows
+that Tor
+0
+−i
+from the assumptions on R that every free R-module has finite injective dimension.
+Thus every projective R-module P has finite injective dimension, and 2.3 yields
+g R (−, P ) = 0 for all i ∈ Z. From the exact sequence (2.4.2) it follows that there
+Tor
+i
+g R (M, Homk (M, E)) ∼
+g R (M, Ωi Homk (M, E)) for i > 0,
+are isomorphisms Tor
+= Tor
+0
+−i
+R
+R
+g (M, Homk (M, E)) = 0.
+g (M, −) implies Tor
+
+so vanishing of Tor
+0
+−i
+
+3.2 Corollary. Let R be an Artin algebra with duality functor D(−). For a finitely
+generated R◦ -module M the following conditions are equivalent.
+(i) pdR◦ M is finite.
+
+g R (M, N ) = 0 for all finitely generated R-modules N .
+(ii) There is an i > 0 with Tor
+i
+g R (M, D(M )) = 0.
+(iii) Tor
+0
+
+Proof. Part (ii) follows from (i) in view of 2.3. Part (iii) follows from (ii) by
+dimension shifting (2.11.2) in a degree-wise finitely generated injective resolution of
+D(M ). Finally, one has D(M ) = Homk (M, E), see the first paragraph in Section 1,
+so (i) follows from (iii) by Theorem 3.1, as the injective hull E of k/Jac(k) is
+faithfully injective.
+
+By a result of Bass and Murthy [6, lem. 4.5], a commutative noetherian ring is
+regular if and only if every finitely generated module has finite projective dimension.
+3.3 Corollary. For a commutative noetherian ring R, the following are equivalent:
+(i) R is regular.
+g R (M, −) = 0 for all finitely generated R-modules M and all i ∈ Z.
+(ii) Tor
+i
+g R (M, −) = 0 for all finitely generated R-modules M .
+(iii) There is an i ∈ Z with Tor
+i
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) are clear; see 2.3.
+(iii) =⇒ (i): If i > 0, then every finitely generated R-module has finite projective
+dimension by Theorem 3.1; i.e., R is regular. If i < 0, then for any finitely generated
+∼ gR
+gR
+R-module M one has Tor
+0 (M, −) = Tori (Ω−i M, −) = 0 by dimension shifting
+(2.11.1), and as above it follows that R is regular.
+
+Tate flat resolutions. We show that under extra assumptions on M one can
+g R (M, N ) without resolving the second argument.
+compute Tor
+≃
+
+3.4. Let N be an R-module; choose an injective resolution N −−→ I and a projective
+≃
+resolution P −−→ N . The composite P → N → I is a quasi-isomorphism, so the
+N
+complex CP I = Cone(P → N → I) is acyclic, and up to homotopy equivalence it
+is independent of the choice of resolutions. This construction is functorial in N .
+
+10
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+3.5 Lemma. Let F be a bounded below complex of flat R◦ -modules; let N be an
+≃
+≃
+R-module with a projective resolution P −−→ N and an injective resolution N −−→ I.
+N
+e R I ≃ F ⊗R CP I in the derived category D(k), and it
+There is an isomorphism F ⊗
+is functorial in the second argument; cf. 3.4.
+Proof. There is by 1.5(c) a short exact sequences of k-complexes
+0 −→ F ⊗R I −→ F ⊗R CN
+P I −→ F ⊗R Σ P −→ 0 .
+With (1.4.1) it forms a commutative diagram whose rows are triangles in D(k),
+F ⊗R P
+
+/ F ⊗R I
+
+/ F ⊗R CN
+PI
+
+≃
+
+
+F ⊗R I
+
+/ Σ(F ⊗R P )
+≃
+
+/ F ⊗R I
+
+/F⊗
+eR I
+
+
+/ Σ(F ⊗R I) ,
+
+where the top triangle is rotated back once. The isomorphism is induced by the
+composite quasi-isomorphism P → N → I, as one has F ⊗R P = F ⊗R P ; cf. 1.4.
+Completion of the morphism of triangles yields the desired isomorphism via the
+Triangulated Five Lemma; see [23, prop. 4.3]. Functoriality in the second argument
+is straightforward to verify.
+
+≃
+
+3.6 Lemma. Let N be an R-module with a projective resolution P −−→ N and
+≃
+an injective resolution N −−→ I. Let T be a complex of flat R◦ -modules such that
+T ⊗R E is acyclic for every injective R-module E. There is then an isomorphism
+T ⊗ R CN
+P I ≃ Σ(T ⊗R N ) in D(k) which is functorial in the second argument; cf. 3.4.
+Proof. By the assumptions and Proposition 1.7(a) the complex T ⊗R I is acyclic,
+so application of T ⊗R − to the exact sequence 0 → I → CN
+P I → Σ P → 0 yields
+→
+T
+⊗
+Σ
+P
+;
+cf.
+1.5(c).
+Now,
+let P + denote the
+a quasi-isomorphism T ⊗R CN
+R
+PI
+mapping cone of the quasi-isomorphism P → N . The complex T ⊗R P + is acyclic
+by Proposition 1.7(b), so application of T ⊗R − to the mapping cone sequence
+0 → N → P + → Σ P → 0 yields an isomorphism T ⊗R Σ P ≃ Σ(T ⊗R N ) in D(k),
+and the desired isomorphism follows as N is a module; cf. 1.4. Functoriality in the
+second argument is straightforward to verify; cf. 3.4.
+
+3.7 Remark. The quasi-isomorphisms in Lemmas 3.5 and 3.6 hold with CN
+P I re≃
+N
+placed by CF I where F −−→ N is a flat resolution.
+The objects discussed in the next paragraph appear in the literature under a
+variety of names; here we stick with the terminology from [27].
+3.8. An acyclic complex T of flat R◦ -modules is called totally acyclic if T ⊗R E is
+acyclic for every injective R-module E. A Tate flat resolution of an R◦ -module M is
+≃
+a pair (T, F ), where F −−→ M is a flat resolution and T is a totally acyclic complex
+◦
+of flat R -modules with T>n ∼
+= F>n for some n > 0. Tate’s name is invoked here
+because these resolutions can be used to compute Tate homology; see [27, thm. A].
+3.9. Over a left coherent ring R, an R◦ -module M has a Tate flat resolution if and
+only if it has finite Gorenstein flat dimension; see [27, prop. 3.4].
+If R is noetherian, then every finitely generated R◦ -module M of finite Gdimension has a Tate flat resolution. Here is a direct argument: By [4, thm. 3.1]
+≃
+there exists a pair (T, P ) where P −−→ M is a projective resolution and T is an
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+11
+
+acyclic complex of finitely generated projective R◦ -modules with the following properties: the complex HomR◦ (T, R) is acyclic, and there is an n > 0 with T>n ∼
+= P>n .
+For every injective R-module E one now has
+∼ T ⊗R HomR (R, E) =
+∼ HomR (HomR◦ (T, R), E)
+(3.9.1)
+T ⊗R E =
+where the last isomorphism holds because T is degree-wise finitely generated; see [7,
+prop. VI.5.2]. Thus T is a totally acyclic complex of flat R◦ -modules and (T, P ) is
+a Tate flat resolution of M .
+The next result shows that stable homology can be computed via Tate flat resolutions. We apply it in Section 6 to compare stable homology to Tate homology,
+but before that it is used in the proofs of Theorems 3.11 and 4.2.
+3.10 Theorem. Let M be an R◦ -module that has a Tate flat resolution (T, F ).
+For every R-module N and every i ∈ Z there is an isomorphism,
+g R (M, N ) ∼
+Tor
+= Hi (T ⊗R N ) ,
+i
+
+and it is functorial in the second argument.
+
+Proof. Choose n > 0 such that T>n and F>n are isomorphic, and consider the
+degree-wise split exact sequence
+0 −→ T6n−1 −→ T −→ F>n −→ 0 .
+≃
+
+≃
+
+Let P −−→ N be a projective resolution and N −−→ I be an injective resolution; set
+C = CN
+P I ; cf. 3.4. There is, by 1.5(c), an exact sequence of k-complexes,
+0 −→ T6n−1 ⊗R C −→ T ⊗R C −→ F>n ⊗R C −→ 0 .
+As C is acyclic, it follows from Proposition 1.7(a) that T6n−1 ⊗R C is acyclic,
+whence the surjective morphism above is a quasi-isomorphism. Since T is a totally acyclic complex of flat modules, there is by Lemma 3.6 an isomorphism
+T ⊗R C ≃ Σ(T ⊗R N ) in D(k). Moreover, Lemma 3.5 yields an isomorphism
+e R I in D(k).
+e R I in D(k). Thus one has Σ(T ⊗R N ) ≃ F>n ⊗
+F>n ⊗R C ≃ F>n ⊗
+This explains the second isomorphism in the next computation.
+g R (M, N ) ∼
+g R (Cn (F ), N )
+Tor
+= Tor
+i
+i−n
+
+e R I)
+= Hi−n+1 ((Σ−n F>n ) ⊗
+e R I)
+= Hi+1 (F>n ⊗
+∼
+= Hi+1 (Σ(T ⊗R N ))
+= Hi (T ⊗R N )
+
+The first isomorphism holds by (2.11.3); the first equality follows from Proposition 2.6 as the canonical surjection Σ−n F>n → Cn (F ) is a flat resolution.
+
+As discussed in the introduction, the G-dimension is a homological invariant for
+finitely generated modules over noetherian rings. Characterizations of modules of
+finite G-dimension have traditionally involved both vanishing of (co)homology and
+invertibility of a certain morphism; see for example [9, (2.1.6), (2.2.3), (3.1.5), and
+(3.1.11)]. More recently, Avramov, Iyengar, and Lipman [3] showed that a finitely
+generated module M over a commutative noetherian ring R has finite G-dimension
+if and only M is isomorphic to the complex RHomR (RHomR (M, R), R) in the
+
+12
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+derive category D(R). The crucial step in our proof of the next theorem is to show
+g R (M, R) implies such an isomorphism.
+that vanishing of stable homology Tor
+
+3.11 Theorem. Let R be a commutative noetherian ring. For a finitely generated
+R-module M , the following conditions are equivalent.
+(i) G-dimR M < ∞.
+g R (M, N ) = 0 for every R-module N of finite flat dimension and all i ∈ Z.
+(ii) Tor
+i
+R
+g
+(iii) Tor (M, R) = 0 for all i ∈ Z.
+i
+
+Proof. The implication (ii) =⇒ (iii) is trivial.
+(i) =⇒ (ii): By 3.9 the R◦ module M has a Tate flat resolution (T, F ). Theog R (M, −) ∼
+rem 3.10 yields isomorphisms Tor
+= Hi (T ⊗R −) for all i ∈ Z. It follows
+i
+by induction on the flat dimension of N that T ⊗R N is acyclic; cf. [10, lem. 2.3].
+≃
+(iii) =⇒ (i): Let P −−→ M be a degree-wise finitely generated projective reso≃
+lution, and let R −−→ I be an injective resolution. By assumption, the complex
+e R I is acyclic, which explains the third ≃ below:
+P⊗
+M ≃ P ⊗R R ≃ P ⊗R I ≃ P ⊗R I ∼
+= P ⊗R HomR (R, I) ∼
+= HomR (HomR (P, R), I).
+The last isomorphism holds by Proposition A.6 as HomR (P, R) equals HomR (P, R).
+Now it follows from [3, thm. 2] and [9, thm. (2.2.3)] that G-dimR M is finite.
+
+3.12 Corollary. For a commutative noetherian ring R the following are equivalent.
+(i) R is Gorenstein.
+g R (M, R) = 0 for all finitely generated R-modules M and all i ∈ Z.
+(ii) Tor
+i
+R
+g
+(iii) Tori (M, R) = 0 for all finitely generated R-modules M and all i < 0.
+
+Proof. By a result of Goto, R is Gorenstein if and only if every finitely generated
+R-module has finite G-dimension [19, cor. 2]. Combining this with Theorem 3.11
+one gets the the equivalence of (i) and (ii). The implication (ii) =⇒ (iii) is clear.
+Finally, (ii) follows from (iii) by dimension shifting (2.11.1).
+
+4. Balancedness of stable homology
+Absolute homology is balanced over any ring: there are always isomorphisms
+◦
+TorR (M, N ) ∼
+= TorR (N, M ). It follows already from Corollary 3.2 that stable
+homology can be balanced only over special rings. Indeed, if R is an Artin algebra and stable homology is balanced over R, then the dual module of R has finite
+projective dimension over both R and R◦ , whence R is Iwanaga-Gorenstein. The
+converse is part of Corollary 4.5.
+We open this section with a technical lemma; it is similar to a result of Enochs,
+Estrada, and Iacob [14, thm. 3.6]. Recall the notation Cm (−) from 1.1.
+4.1 Lemma. Let T and T ′ be acyclic complexes of flat R◦ -modules and flat Rmodules, respectively. For all integers m and n there are isomorphisms in D(k),
+T6n−1 ⊗R Cm (T ′ ) ≃ Σn−m (Cn (T ) ⊗R T6′ m−1 )
+T>n ⊗R Cm (T ′ ) ≃ Σn−m (Cn (T ) ⊗R T>′ m )
+T ⊗R Cm (T ′ ) ≃ Σn−m (Cn (T ) ⊗R T ′ ) .
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+13
+
+Proof. Because the complexes T and T ′ are acyclic, there are quasi-isomorphisms
+Cn (T ) → Σ1−n T6n−1 and Cm (T ′ ) → Σ1−m T6′ m−1 . Hence [10, prop. 2.14(b)] yields
+T6n−1 ⊗R Cm (T ′ ) ≃ T6n−1 ⊗R Σ1−m T6′ m−1
+≃ Σn−m (Σ1−n T6n−1 ⊗R T6′ m−1 )
+≃ Σn−m (Cn (T ) ⊗R T6′ m−1 ) .
+This demonstrates the first isomorphism in the statement, and the second is proved
+similarly. Finally, these two isomorphisms connect the exact sequences
+0 → T6n−1 ⊗R Cm (T ′ ) → T ⊗R Cm (T ′ ) → T>n ⊗R Cm (T ′ ) → 0
+and
+0 → Cn (T ) ⊗R T6′ m−1 → Cn (T ) ⊗R T ′ → Cn (T ) ⊗R T>′ m → 0 ,
+and one obtains the last isomorphism via the Triangulated Five Lemma in D(k);
+see [23, prop. 4.3].
+
+4.2 Theorem. Let M be an R◦ -module and N be an R-module. If they both have
+Tate flat resolutions, then for each i ∈ Z there is an isomorphism
+∼ g R◦
+gR
+Tor
+i (M, N ) = Tori (N, M ) .
+
+Proof. Let (T, F ) and (T ′ , F ′ ) be Tate flat resolutions of M and N , respectively.
+Choose n ∈ Z such that there are isomorphisms T>n ∼
+= F>′ n . For
+= F>n and T>′ n ∼
+every i ∈ Z one has
+∼
+gR
+Tor
+i (M, N ) = Hi (T ⊗R N )
+∼
+= Hi−n (T ⊗R Cn (T ′ ))
+∼
+= Hi−n (Cn (T ) ⊗R T ′ )
+∼
+= Hi (M ⊗R T ′ )
+◦
+∼
+gR
+= Tor
+i (N, M ) ,
+
+where the first and the last isomorphisms follow from Theorem 3.10, the second
+and fourth isomorphisms follow by dimension shifting, and the third isomorphism
+holds by the last isomorphism in Lemma 4.1.
+
+4.3 Definition. Let M be an R◦ -module and N be an R-module. Stable homology
+g R (M, N ) ∼
+g R◦ (N, M ) for all i ∈ Z.
+is balanced for M and N if one has Tor
+= Tor
+i
+i
+4.4. Theorem 4.2 says that stable homology is balanced for all (pairs of) R◦ - and Rmodules that have Tate flat resolutions. If R is Iwanaga–Gorenstein, then every R◦ module and every R-module has a Tate flat resolution, see 3.9 and [16, thm. 12.3.1],
+so stable homology is balanced for all (pairs of) R◦ - and R-modules.
+4.5 Corollary. For an Artin algebra R the following conditions are equivalent.
+(i) R is Iwanaga-Gorenstein.
+(ii) Stable homology is balanced for all R◦ - and R-modules.
+(iii) Stable homology is balanced for all finitely generated R◦ - and R-modules.
+
+14
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+Proof. Per 4.4, part (i) implies (ii), which clearly implies (iii). Let E = D(R)
+be the dual module of R; it is injective and finitely generated over R◦ and over
+R. Thus, if stable homology is balanced for finitely generated R◦ - and R modules,
+then it follows from 2.3 and Corollary 3.2 that pdR E as well as pdR◦ E is finite.
+By duality, both idR R and idR◦ R are then finite.
+
+4.6 Corollary. A commutative noetherian ring R is Gorenstein if and only if stable
+homology is balanced for all finitely generated R-modules.
+Proof. Over a Gorenstein ring, the G-dimension of every finitely generated module
+is finite by [19, cor. 2], so every finitely generated module has a Tate flat resolution;
+see 3.9. Thus, balancedness of stable homology follows from Theorem 4.2. Cong R (M, R) = 0 for every finitely
+versely, balancedness of stable homology implies Tor
+i
+generated R-module M and all i ∈ Z, so R is Gorenstein by Corollary 3.12.
+
+4.7 Corollary. A commutative noetherian ring R of finite Krull dimension is
+Gorenstein if and only if stable homology is balanced over R.
+Proof. If R is Gorenstein of finite Krull dimension, then it is Iwanaga-Gorenstein.
+Therefore, stable homology is balanced over R per 4.4. The converse holds by
+Corollary 4.6.
+
+g
+5. Vanishing of stable homology Tor(−,
+N)
+
+g R (−, N ) over an Artin algebra can by duality be
+Vanishing of stable homology Tor
+i
+g R (M, −).
+understood via vanishing of Tor
+i
+
+5.1 Proposition. Let R be an Artin algebra with duality functor D(−). For a
+finitely generated R-module N the following conditions are equivalent.
+(i) idR N is finite.
+g R (−, N ) = 0 for all i ∈ Z.
+(ii) Tor
+i
+
+g R (M, N ) = 0 for all finitely generated
+(iii) There is an integer i 6 0 with Tor
+i
+◦
+R -modules M .
+g R (D(N ), N ) = 0.
+(iv ) Tor
+0
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) are clear; see 2.3. Part (iv ) follows
+from (iii) by dimension shifting (2.11.1), as D(N ) is finitely generated. Finally,
+∼ gR
+gR
+vanishing of Tor
+0 (D(N ), N ) = Tor0 (D(N ), D(D(N ))) implies by Corollary 3.2 that
+pdR◦ D(N ) is finite, whence idR N is finite, and so (i) follows from (iv ).
+
+g R (−, N ) over commuLocal rings. To analyze vanishing of stable homology Tor
+i
+tative noetherian rings, we start locally.
+
+5.2. Let R be a commutative noetherian local ring with residue field k. For an
+R-module M , the depth invariant can be defined as
+depthR M = inf{i ∈ Z | ExtiR (k, M ) 6= 0} ,
+and if M is finitely generated, then its injective dimension can be computed as
+idR M = sup{i ∈ Z | ExtiR (k, M ) 6= 0} .
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+15
+
+The depth is finite for M 6= 0. The ring R is Cohen–Macaulay if there exists a
+finitely generated module M 6= 0 of finite injective dimension; this is a consequence
+of the New Intersection Theorem due to Peskine and Szpiro [30] and Roberts [32].
+The following is an analogue of [5, thm. 6.1].
+5.3 Lemma. Let R be a commutative noetherian local ring with residue field k.
+For every finitely generated R-module N and for every i ∈ Z there is an isomorphism
+Y
+j−i
+∼
+TorR
+Homk (ExtjR (k, R), ExtR
+(k, N ))
+i (k, N ) =
+j∈Z
+
+of R-modules, and in particular, TorR
+i (k, N ) is a k-vector space.
+≃
+
+Proof. Let P −−→ k be a degree-wise finitely generated projective resolution and
+≃
+≃
+let N −−→ I and R −−→ J be injective resolutions. By definition TorR
+i (k, N ) is the
+ith homology of the complex P ⊗R I which we compute using Proposition A.6 as
+follows P ⊗R I ∼
+= P ⊗R HomR (R, I) ∼
+= HomR (HomR (P, R), I). Next we simplify
+using quasi-isomorphisms and Hom-tensor adjointness:
+HomR (HomR (P, R), I) ≃ HomR (HomR (P, J), I)
+≃ HomR (HomR (k, J), I)
+∼
+= HomR (HomR (k, J) ⊗k k, I)
+∼
+= Homk (HomR (k, J), HomR (k, I)) .
+Finally, pass to homology.
+
+
+
+g R (k, N ) may be a k5.4 Remark. Lemma 5.3 suggests that stable homology Tor
+i
+vector space, and indeed it is. If R is a ring and if x annihilates the R◦ -module M ,
+or the R-module N , then there are two homotopic lifts—zero and multiplication by
+x—to the projective resolution in the case of M or to the injective resolution in the
+case of N ; see Definition 2.1 and [34, 22.6 and 2.3.7]. Hence multiplication by x is
+zero on unbounded and on stable homology of M against N . In particular, stable
+g R (k, N ) is a k-vector space.
+homology Tor
+i
+5.5 Proposition. Let R be a commutative noetherian local ring with residue field
+k and let N be a finitely generated R-module. If for some i ∈ Z the k-vector space
+g R (k, N ) has finite rank, then N has finite injective dimension, or R is Gorenstein.
+Tor
+i
+
+R
+Proof. Each k-vector space TorR
+j (k, N ) has finite rank, so Tori+1 (k, N ) has finite
+rank by the assumption and the exact sequence (2.5.1). For a finitely generated
+R-module M 6= 0 the vector spaces ExtjR (k, M ) are non-zero for all j between
+depthR M < ∞ and idR M ; see Roberts [31, thm. 2]. When TorR
+i+1 (k, N ) has finite
+rank, it follows from Lemma 5.3 that R or N has finite injective dimension.
+
+
+Compared to the characterization of globally Gorenstein rings in Corollary 3.12,
+condition (iii) below is sharper.
+5.6 Theorem. Let R be a commutative noetherian local ring with residue field k.
+The following conditions are equivalent.
+(i) R is Gorenstein.
+g R (−, R) = 0 for all i ∈ Z.
+(ii) Tor
+i
+
+16
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+g R (k, R) has finite rank for some i ∈ Z.
+(iii) Tor
+i
+
+g R (k, M ) has finite
+(iv ) There exists a finitely generated R-module M such that Tor
+i
+g R (M, R) = 0 holds for all i ∈ Z.
+rank for some i ∈ Z and Tor
+i
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) =⇒ (iv ) are clear; see 2.3. Let M
+be a module as specified in (iv ); Theorem 3.11 yields G-dimR M < ∞. By a result
+of Holm [22, thm. 3.2], R is Gorenstein if idR M is also finite. Now it follows from
+Proposition 5.5 that R is Gorenstein.
+
+5.7 Remark. Let R be a commutative noetherian local ring with residue field
+k, and let E denote the injective hull of k; it is a faithfully injective R-module.
+g R (k, k) and
+A computation based on Theorem A.8 shows that the ranks of Tor
+i
+i
+g (k, k) are simultaneously finite:
+Ext
+R
+g R (k, HomR (k, E))
+g R (k, k) = rankk Tor
+rankk Tor
+i
+i
+
+g iR (k, k), E)
+= rankk HomR (Ext
+
+g iR (k, k) .
+= rankk Ext
+
+Combined with this equality of ranks, [5, thm. 6.4, 6.5, and 6.7] yield characterizations of regular, complete intersection, and Gorenstein local rings in terms of the
+g R (k, k). For example, R is regular if and only
+size of the stable homology spaces Tor
+i
+g R (k, k) = 0 holds for some (equivalently, all) i ∈ Z, and R is Gorenstein if
+if Tor
+i
+g R (k, k) has finite rank for some (equivalently, all) i ∈ Z.
+and only if Tor
+i
+Commutative rings. If R is commutative and p is a prime ideal in R, then the
+local ring Rp is a flat R-algebra, and for an Rp -module M it follows from 2.12 that
+g R (M, N ) are Rp -modules.
+the stable homology modules Tor
+i
+
+5.8 Lemma. Let R be a commutative noetherian ring and let N be an R-module;
+let p be a prime ideal in R and let M be an Rp -module. For every i ∈ Z there is a
+natural isomorphism of Rp -modules,
+g R (M, N ) ∼
+g Rp (M, Np ) .
+Tor
+= Tor
+i
+i
+
+g R (−, N ) = 0 implies Tor
+g Rp (−, Np ) = 0 for all prime ideals p in R.
+Hence, Tor
+i
+i
+≃
+
+≃
+
+Proof. Let N −−→ I be an injective resolution. Let P −−→ M be a projective resolution over Rp ; it is a flat resolution of M as an R-module. The second isomorphism
+below follows from Proposition A.4.
+∼ (P ⊗R Rp ) ⊗R I
+P ⊗R I =
+p
+
+∼
+= P ⊗Rp (Rp ⊗R I)
+∼
+= P ⊗Rp (Rp ⊗R I)
+The computation gives P ⊗R I ∼
+= P ⊗Rp Ip .
+= P ⊗Rp Ip ; similarly one gets P ⊗R I ∼
+eR I ∼
+e Rp Ip , and the desired isoNow (1.4.1) and the Five Lemma yield P ⊗
+=P⊗
+morphisms follow as Np → Ip is an injective resolution by Matlis Theory.
+
+The proof of the next result is similar. Compared to Lemma 5.8 the noetherian
+hypothesis on R has been dropped, as it was only used to invoke Matlis Theory.
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+17
+
+5.9 Lemma. Let R be a commutative ring and let M be an R-module; let p be a
+prime ideal in R and let N be an Rp -module. For every i ∈ Z there is a natural
+isomorphism of Rp -modules,
+∼ g Rp
+gR
+Tor
+i (M, N ) = Tori (Mp , N ) .
+
+g R (M, −) = 0 implies Tor
+g Rp (Mp , −) = 0 for all prime ideals p in R.
+Hence, Tor
+i
+i
+
+
+
+5.10 Theorem. Let R be a commutative noetherian ring and let N be a finitely
+g R (−, N ) = 0 holds for some i ∈ Z, then idRp Np is
+generated R-module. If Tor
+i
+finite for every prime ideal p in R.
+R
+
+g p (−, Np ) = 0. It follows
+Proof. From the hypotheses and Lemma 5.8 one has Tor
+i
+from Proposition 5.5 that the local ring Rp is Gorenstein, or idRp Np is finite.
+g Rp (−, Np ) = 0 implies that
+However, if Rp is Gorenstein, then vanishing of Tor
+i
+pdRp Np is finite by Corollary 4.7 and Theorem 3.1, and then idRp Np is finite. 
+The next corollary is now immediate per the remarks in 5.2.
+5.11 Corollary. A commutative noetherian ring R is Cohen–Macaulay if there is
+g R (−, N ) = 0 for some i ∈ Z.
+
+a finitely generated R-module N 6= 0 with Tor
+i
+5.12 Corollary. Let R be a commutative noetherian ring of finite Krull dimension.
+For a finitely generated R-module N , the following conditions are equivalent.
+(i) idR N is finite.
+g R (−, N ) = 0 for all i ∈ Z.
+(ii) Tor
+i
+g R (−, N ) = 0 for some i ∈ Z.
+(iii) Tor
+i
+
+Proof. The implications (i) =⇒ (ii) =⇒ (iii) are clear; see 2.3. Part (i) follows
+
+from (iii) as idR N equals sup{idRp Np | p is a prime ideal in R} 6 dim R.
+5.13 Remark. We do not know if the assumption of finite Krull dimension in
+g R (−, N ) implies that
+Corollary 5.12 is necessary. By Theorem 5.10, vanishing of Tor
+N is locally of finite injective dimension, but that does not imply finite injective
+dimension over R: Just consider a Gorenstein ring R of infinite Krull dimension.
+g R (−, R) vanishes for such a ring.
+On the other hand, we do not know if Tor
+6. Comparison to Tate homology
+In this section we compare stable homology to Tate homology. We parallel some of
+the findings of Avramov and Veliche [5]. First we recall a few definitions.
+6.1. An acyclic complex T of projective R◦ -modules is called totally acyclic if
+HomR◦ (T, P ) is acyclic for every projective R◦ -module P ; cf. 3.8. A complete
+̟
+≃
+projective resolution of an R◦ -module M is a diagram T −−→ P −−→ M , where
+≃
+◦
+T is a totally acyclic complex of projective R -modules, P −−→ M is a projective
+resolution, and ̟i is an isomorphism for i ≫ 0; see [33, sec. 2].
+Let M be an R◦ -module with a complete projective resolution T → P → M .
+For an R-module N , the Tate homology of M and N over R are the k-modules
+d R (M, N ) = Hi (T ⊗R N ) for i ∈ Z; see Iacob [24, sec. 2].
+Tor
+i
+
+18
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+6.2. An R◦ -module has a complete projective resolution if and only if it has finite
+Gorenstein projective dimension; see [33, thm. 3.4].
+If R is noetherian and M is a finitely generated R◦ -module with a complete projective resolution, then M has finite G-dimension and it has a complete projective
+resolution T → P → M with T and P degree-wise finitely generated and T → P
+surjective; see [33, 2.4.1] and [4, thm. 3.1].
+6.3 Lemma. Let M be an R◦ -module that has a complete projective resolution
+T → P → M . The following conditions are equivalent.
+(i) T ⊗R E is acyclic for every injective R-module E.
+d R (M, −) for all i ∈ Z.
+g R (M, −) ∼
+(ii) There are isomorphisms of functors Tor
+= Tor
+i
+i
+
+Proof. Assume that T ⊗R E is acyclic for every injective R-module E. The pair
+(T, P ) is then a Tate flat resolution of M , see 3.8, and it follows from Theorem 3.10
+d R (M, −) are isomorphic for all i ∈ Z. For
+g R (M, −) and Tor
+that the functors Tor
+i
+i
+the converse, let E be an injective R-module. By 2.3 one then has
+∼ dR
+gR
+0 = Tor
+i (M, E) = Tori (M, E)
+
+for all i ∈ Z, and hence H(T ⊗R E) = 0.
+
+
+
+6.4 Theorem. Let R be noetherian, and let M be a finitely generated R◦ -module
+that has a complete projective resolution. There are isomorphisms of functors
+g R (M, −) ∼
+d R (M, −) for all i ∈ Z .
+Tor
+= Tor
+i
+i
+
+Proof. The module M has a complete projective resolution T → P → M with T
+and P degree-wise finitely generated; see 6.2. The isomorphisms (3.9.1) show that
+the complex T ⊗R E is acyclic for every injective R-module E, and Lemma 6.3
+finishes the argument.
+
+6.5 Remark. The isomorphisms of homology modules in Theorem 6.4 actually
+follow from one isomorphism in D(k), but this is unapparent in the proof, which
+rests on Theorem 3.10. The finitely generated module M has a complete projective
+resolution T → L → M with T and L degree-wise finitely generated and T → L
+surjective; see 6.2. Thus the kernel K = Ker(T → L) is a bounded above complex of
+projective modules. Given a module N , let C be the cone as one would construct in
+3.4. By Proposition 1.7(a) the complex K ⊗R C is acyclic, so that Lemma 3.5 and
+e R I) ≃ Σ−1 (L ⊗R C) ≃ Σ−1 (T ⊗R C). As in the proof above,
+1.5(c) yield Σ−1 (L ⊗
+T ⊗R E is acyclic, so Lemma 3.6 gives Σ−1 (T ⊗R C) ≃ T ⊗R N , and combining
+these isomorphisms in D(k) gives the desired one.
+Without extra assumptions on the ring, we do not know if stable homology agrees
+with Tate homology whenever the latter is defined. In general, the relation between
+stable homology and Tate homology is tied to an unresolved problem in Gorenstein
+homological algebra. Theorem 6.7 explains how.
+6.6. An R◦ -module G is called Gorenstein projective if there exists a totally acyclic
+complex T of projective R◦ -modules with C0 (T ) ∼
+= G; see 6.1. Similarly, an R◦ module G is called Gorenstein flat if there exists a totally acyclic complex T of flat
+R◦ -modules with C0 (T ) ∼
+= G; see 3.8.
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+19
+
+6.7 Theorem. The following conditions on R are equivalent.
+(i) Every Gorenstein projective R◦ -module is Gorenstein flat.
+(ii) For every R◦ -module M that has a complete projective resolution there are
+g R (M, −) ∼
+d R (M, −) for all i ∈ Z.
+isomorphisms of functors Tor
+= Tor
+i
+i
+
+Proof. Assume that every Gorenstein projective R◦ -module is Gorenstein flat.
+Let T → P → M be a complete projective resolution. It follows that T is a
+totally acyclic complex of flat modules; see Emmanouil [13, thm. 2.2]. Thus stable
+homology and Tate homology coincide by Lemma 6.3.
+For the converse, let M be a Gorenstein projective R◦ -module and let T be a
+totally acyclic complex of projective R◦ -modules with M ∼
+= C0 (T ). Since there are
+R
+R
+∼
+g
+d
+isomorphisms of functors Tori (M, −) = Tori (M, −) for all i ∈ Z, it follows from
+2.3 that T ⊗R E is acyclic for every injective R-module E. Thus T is a totally
+acyclic complex of flat R◦ -modules, and so M is Gorenstein flat.
+
+6.8 Remark. As Holm notes [21, prop. 3.4], the obvious way to achieve that every
+Gorenstein projective R◦ -module is Gorenstein flat is to ensure that (1) the Pontryagin dual of every injective R-module is flat, and (2) that every flat R◦ -module
+has finite projective dimension. The first condition is satisfied if R is left coherent,
+and the second is discussed in Remark 2.8. A description of the rings over which
+Gorenstein projective modules are Gorenstein flat seems elusive; see [13, sec. 2].
+Complete homology . In his thesis, Triulzi considers the J-completion of the homological functor TorR (M, −) = {TorR
+i (M, −) | i ∈ Z}. His construction is similar
+to Mislin’s P-completion of covariant Ext and Nucinkis’ I-completion of contravariant Ext. The resulting homology theory is called complete homology. Like stable
+homology, it is a generalization of Tate homology. We compare these two generalizations in [8]. From the point of view of stable homology, it is interesting to know
+when it agrees with complete homology, because the latter has a universal property.
+In this direction the main results in [8] are that these two homology theories agree
+over Iwanaga-Gorenstein rings, and for finitely generated modules over Artin algebras and complete commutative local rings. Moreover, the two theories agree with
+Tate homology, whenever it is defined, under the exact same condition; that is, if
+and only if every Gorenstein projective module is Gorenstein flat; see Theorem 6.7.
+Appendix
+We start by recalling the definition of stable cohomology.
+A.1. Let X and Y be R-complexes, following [5, 18] we denote by HomR (X, Y )
+the subcomplex of HomR (X, Y ) with degree n term
+a
+HomR (X, Y )n =
+HomR (Xi , Yi+n ) .
+i∈Z
+
+It is called the bounded Hom complex, and the quotient complex
+] R (X, Y ) = HomR (X, Y )/HomR (X, Y )
+Hom
+is called the stable Hom complex.
+≃
+≃
+For R-modules M and N with projective resolutions PM −−→ M and PN −−→ N ,
+the k-modules
+ExtiR (M, N ) = H−i (HomR (PM , PN )) ,
+
+20
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+are called the bounded cohomology of M and N over R, and the stable cohomology
+modules of M and N over R are
+g i (M, N ) = H−i (Hom
+] R (PM , PN )) .
+Ext
+R
+
+d i (M, N ) for the stable cohomolAvramov and Veliche [5] use the notation Ext
+R
+ogy; this notation is standard for Tate cohomology, which coincides with stable
+cohomology whenever the former is defined; see [5, cor. 2.4].
+A.2 Proposition. Let X and Y be R-complexes.
+(a) If X or Y is bounded above, and HomR (Xi , Y ) is acyclic for all i, then the
+complex HomR (X, Y ) is acyclic.
+(b) If X or Y is bounded below, and HomR (X, Yi ) is acyclic for all i, then the
+complex HomR (X, Y ) is acyclic.
+
+Proof. Similar to the proof of Proposition 1.7.
+
+
+
+Standard isomorphisms. We study composites of the functors Hom and ⊗. To
+the extent possible, we establish analogs of the standard isomorphisms for composites of Hom and ⊗; see [7, sec. II.5 and VI.5]. There seems to be no analog of
+Hom-tensor adjunction [7, prop. II.5.2].
+The setup is the same for Propositions A.4–A.6; namely:
+A.3. Let X be a complex of R◦ -modules, let Y be a complex of (R, S ◦ )-bimodules,
+and let Z be a complex of S-modules.
+Under finiteness conditions, the unbounded tensor product is associative.
+A.4 Proposition. For complexes as in A.3, under either of the following conditions
+• X and Z are complexes of finitely presented modules
+• Y is a bounded complex
+there is an isomorphism of k-complexes,
+(X ⊗R Y ) ⊗S Z −→ X ⊗R (Y ⊗S Z) ,
+and it is functorial in X, Y , and Z.
+Proof. For every n ∈ Z one has,
+((X ⊗R Y ) ⊗S Z)n =
+
+Y Q
+
+j∈Z
+
+
+Xj ⊗R Yi−j ⊗S Zn−i
+
+i∈Z
+
+and
+(X ⊗R (Y ⊗S Z))n =
+
+Y
+
+j∈Z
+
+Xj ⊗ R
+
+Q
+
+i∈Z
+
+
+Yi−j ⊗S Zn−i ,
+
+and from each of these modules there is a canonical homomorphism to
+YY
+YY
+(Xj ⊗R Yi−j ) ⊗S Zn−i ∼
+Xj ⊗R (Yi−j ⊗S Zn−i ) .
+=
+i∈Z j∈Z
+
+j∈Z i∈Z
+
+If Y is bounded, then these homomorphisms are isomorphisms as the inner most
+products are finite. Recall, e.g. from [16, thm. 3.2.22], that the functor M ⊗R −
+commutes with products if M is finitely presented. Thus, the canonical homomorphisms are isomorphisms when X and Z are complexes of finitely presented
+modules. It is straightforward to verify that these isomorphisms commute with the
+differentials and form an isomorphism of complexes.
+
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+21
+
+The model for the following swap isomorphism is [7, ex. II.4]. The proof is similar
+to the proof of Proposition A.4 and uses that the functor HomR (M, −) commutes
+with coproducts if M is a finitely generated R-module.
+A.5 Proposition. For complexes as in A.3, under either of the following conditions
+• X and Z are complexes of finitely generated modules
+• Y is a bounded complex
+there is an isomorphism of k-complexes,
+HomR◦ (X, HomS (Z, Y )) −→ HomS (Z, HomR◦ (X, Y )) ,
+and it is functorial in X, Y , and Z.
+
+
+
+The next result is an analog of [7, prop. VI.5.2 and VI.5.3]; it is used below to
+establish a duality between stable homology and stable cohomology.
+A.6 Proposition. Let X, Y , and Z be as in A.3, and assume further that X is a
+complex of finitely presented R◦ -modules. There is a morphism of k-complexes,
+X ⊗R HomS (Y, Z) −→ HomS (HomR◦ (X, Y ), Z) ,
+and it is functorial in X, Y , and Z. Furthermore, it is an isomorphism if X is a
+complex of projective modules or Z is a complex of injective modules.
+Proof. For every n ∈ Z one can compute as follows,
+Y
+(Xi ⊗R HomS (Y, Z)n−i )
+(X ⊗R HomS (Y, Z))n =
+i∈Z
+
+=
+
+Y
+
+Q
+
+(Xi ⊗R
+
+∼
+=
+
+HomS (Yj , Zn−i+j ))
+
+j∈Z
+
+i∈Z
+
+YY
+
+(Xi ⊗R HomS (Yj , Zn−i+j )) ,
+
+i∈Z j∈Z
+
+where the isomorphism holds as the module Xi is finitely presented for every i ∈ Z;
+see [16, thm. 3.2.22]. On the other hand, for every n ∈ Z one has
+Y
+HomS (HomR◦ (X, Y ), Z)n =
+HomS (HomR◦ (X, Y )h , Zn+h )
+h∈Z
+
+=
+
+Y
+
+HomS (
+
+h∈Z
+
+∼
+=
+
+`
+
+HomR◦ (Xi , Yi+h ), Zn+h )
+
+i∈Z
+
+YY
+
+HomS (HomR◦ (Xi , Yi+h ), Zn+h )
+
+YY
+
+HomS (HomR◦ (Xi , Yj ), Zn−i+j ) .
+
+h∈Z i∈Z
+
+=
+
+i∈Z j∈Z
+
+Now set (θXY Z )n =
+
+Q
+
+i∈Z
+
+Q
+
+i(n−j)
+θXi Yj Zn−i+j ,
+j∈Z (−1)
+
+where
+
+θXi Yj Zn−i+j : Xi ⊗R HomS (Yj , Zn−i+j ) −→ HomS (HomR◦ (Xi , Yj ), Zn−i+j )
+is the homomorphism of k-modules given by θXi Yj Zn−i+j (x ⊗ ψ)(φ) = ψφ(x). It is
+straightforward to verify that θXY Z is a morphism of k-complexes and functorial
+in X, Y , and Z.
+
+22
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+Finally, if each module Xi is projective or each module Zn−i+j is injective, then
+it follows from [7, prop. VI.5.2 and VI.5.3] that θXi Yj Zn−i+j is invertible for all
+i, j, n ∈ Z, and so the morphism θXY Z is invertible.
+
+A.7 Lemma. Let P be a bounded below complex of finitely generated projective
+R◦ -modules and let X be a complex of R◦ -modules with H(X) bounded. For every
+injective k-module E, there is an isomorphism in the derived category D(k):
+] R◦ (P, X), E) ,
+e R Homk (X, E) −→ Σ Homk (Hom
+P⊗
+
+and it is functorial in P , X, and E.
+
+Proof. Set (−)∨ = Homk (−, E). In the commutative square of k-complexes
+P ⊗R X ∨
+
+τ
+
+/ P ⊗R X ∨
+∼
+= α
+
+θ
+
+
+HomR◦ (P, X)∨
+
+ϑ∨
+
+
+/ HomR◦ (P, X)∨
+
+each horizontal morphism is (the dual of) a canonical embedding. The vertical
+map α is the isomorphism from Proposition A.6. The morphism θ is the standard
+evaluation map; it is a quasi-isomorphism by [2, 4.4(I)]. The square induces a
+morphism of triangles in the homotopy category:
+τ
+
+P ⊗R X ∨
+
+/ P ⊗R X ∨
+
+γ
+
+≃ θ
+
+∼
+= α
+
+
+HomR◦ (P, X)∨
+
+
+/ HomR◦ (P, X)∨
+
+∨
+
+ϑ
+
+/ Σ(P ⊗R X ∨ )
+
+/ Cone τ
+
+≃ Σθ
+
+
+/ Σ HomR◦ (P, X)∨
+
+
+/ Cone ϑ∨
+
+The construction of γ is functorial in all three arguments, and it is a quasi-isomorphism
+because α and θ are quasi-isomorphisms. Recall, say from [17, III.3.4–5], that there
+are natural quasi-isomorphisms
+∨
+
+Cone ϑ
+
+eR X∨
+Cone τ ≃ Coker τ = P ⊗
+
+∼
+= Σ(Cone ϑ)
+
+∨
+
+∨
+
+≃ Σ(Coker ϑ)
+
+and
+
+] R◦ (P, X)∨ .
+= Σ Hom
+
+They yield the desired isomorphism in the derived category
+] R◦ (P, X), E) .
+e R Homk (X, E) −→ Σ Homk (Hom
+P⊗
+
+With regard to functoriality of γ, notice that a morphism between arguments,
+P → P1 say, induces the solid commutative square in the following diagram.
+❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴/ Coker τ1
+Coker
+✤ e❑τ❑
+8 ✤
+❑❑
+rrr ✤
+✤
+❑❑
+r
+r
+r
+≃ ❑❑❑
+✤
+✤
+rrr ≃
+/
+✤
+✤
+Cone τ
+Cone τ1
+✤
+✤
+γ
+γ1
+✤
+✤
+
+
+✤
+✤
+∨
+∨
+/ Cone(ϑ1 )
+Cone ϑ
+✤
+✤
+▲▲▲
+tt
+✤
+✤
+≃ tt
+▲▲≃
+t
+▲▲▲
+tt
+✤
+✤
+t
+▲
+% 
+ zt
+∨ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴ ❴/
+Σ(Coker ϑ)
+Σ(Coker ϑ1 )∨
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+23
+
+Commutativity in the derived category of the dashed square is now a consequence.
+Functoriality in the other arguments is handles similarly.
+
+The Lemma immediately yields a useful duality.
+A.8 Theorem. Let M and N be R◦ -modules and assume that M has a degreewise finitely generated projective resolution. For every injective k-module E and
+for every i ∈ Z there is an isomorphism of k-modules,
+g i ◦ (M, N ), E) ∼
+g R (M, Homk (N, E)) ,
+Homk (Ext
+= Tor
+R
+i
+
+and it is functorial in M , N , and E.
+
+
+
+To prove the next two results one proceeds as in the proof of Proposition A.6.
+A.9 Proposition. Let X be a complex of finitely generated R-modules and let Y
+and Z be as in A.3. There is a morphism of k-complexes
+HomR (X, Y ) ⊗S Z −→ HomR (X, Y ⊗S Z) ,
+and it is functorial in X, Y , and Z. Furthermore, it is an isomorphism under each
+of the following conditions
+• Z is a complex of finitely generated projective modules
+• X is a complex of finitely presented modules and Z is a complex of flat modules
+• X is a complex of projective modules
+
+A.10 Proposition. Let X be a complex of R-modules, let Y be a complex of
+(R, S ◦ )-bimodules, and let Z be a complex of finitely presented S-modules. There
+is a morphism of k-complexes,
+HomR (X, Y ) ⊗S Z −→ HomR (X, Y ⊗S Z) ,
+and it is functorial in X, Y , and Z. Furthermore, it is an isomorphism if X or Z
+is a complex of projective modules.
+
+Pinched tensor products. Christensen and Jorgensen devised in [12] a pinched
+tensor product, − ⊗✶
+R −, to compute Tate homology. In view of Theorem 3.10 their
+proof of [12, thm. 3.5] applies verbatim to yield the next result; we refer the reader
+to [12] for the definition of the pinched tensor product.
+A.11 Theorem. Let M be an R◦ -module that has a Tate flat resolution (T, F ),
+let A be an acyclic complex of R-modules and set N = C0 (A). For every i ∈ Z,
+there is an isomorphism of k-modules
+✶
+∼
+gR
+Tor
+i (M, N ) = Hi (T ⊗R A) .
+
+
+
+The next corollary is an analogue of [12, Corollary 4.10].
+A.12 Corollary. Let R be commutative and let M and N be Gorenstein flat Rmodules with corresponding totally acyclic complexes of flat modules T and T ′ ,
+g R (M, N ) = 0 holds for all i ∈ Z, then T ⊗✶ T ′ is an acyclic
+respectively. If Tor
+i
+R
+complex of flat R-modules, and the following statements are equivalent:
+′
+(i) T ⊗✶
+R T is a totally acyclic complex of flat R-modules.
+g R (M, N ⊗R E) = 0 holds for every injective R-module E and all i ∈ Z.
+(ii) Tor
+i
+
+24
+
+O. CELIKBAS, L. W. CHRISTENSEN, L. LIANG, AND G. PIEPMEYER
+
+′
+When these conditions hold, M ⊗R N is a Gorenstein flat R-module and T ⊗✶
+RT
+is a corresponding totally acyclic complex of flat R-modules.
+′
+Proof. It follows from the definition of pinched tensor products that T ⊗✶
+RT
+R
+g
+is a complex of flat R-modules, and if Tori (M, N ) = 0 holds for all i ∈ Z,
+then the complex is acyclic by Theorem A.11. It is totally acyclic if and only
+′
+✶
+∼
+if (T ⊗✶
+R T ) ⊗R E = T ⊗R (T ⊗R E) is acyclic for every injective R-module E;
+g R (M, N ⊗R E) = 0 holds for every injective R-module E
+that is, if and only if Tor
+i
+and all i ∈ Z. Finally, it follows from the definition of pinched tensor products that
+′
+there is an isomorphism M ⊗R N ∼
+
+= C0 (T ⊗✶
+R T ).
+
+References
+[1] Maurice Auslander and Mark Bridger, Stable module theory, Memoirs of the American Mathematical Society, No. 94, American Mathematical Society, Providence, R.I., 1969. MR0269685
+[2] Luchezar L. Avramov and Hans-Bjørn Foxby, Homological dimensions of unbounded complexes, J. Pure Appl. Algebra 71 (1991), no. 2-3, 129–155. MR1117631
+[3] Luchezar L. Avramov, Srikanth B. Iyengar, and Joseph Lipman, Reflexivity and rigidity for
+complexes. I. Commutative rings, Algebra Number Theory 4 (2010), no. 1, 47–86. MR2592013
+[4] Luchezar L. Avramov and Alex Martsinkovsky, Absolute, relative, and Tate cohomology of
+modules of finite Gorenstein dimension, Proc. London Math. Soc. (3) 85 (2002), no. 2, 393–
+440. MR1912056
+[5] Luchezar L. Avramov and Oana Veliche, Stable cohomology over local rings, Adv. Math. 213
+(2007), no. 1, 93–139. MR2331239
+[6] Hyman Bass and M. Pavaman Murthy, Grothendieck groups and Picard groups of abelian
+group rings, Ann. of Math. (2) 86 (1967), 16–73. MR0219592
+[7] Henri Cartan and Samuel Eilenberg, Homological algebra, Princeton Landmarks in Mathematics, Princeton University Press, Princeton, NJ, 1999, With an appendix by David A.
+Buchsbaum, Reprint of the 1956 original. MR1731415
+[8] Olgur Celikbas, Lars Winther Christensen, Li Liang, and Greg Piepmeyer, Complete homology over associative rings, Israel J. Math, to appear. Preprint arXiv:1501.00297 [math.RA].
+[9] Lars Winther Christensen, Gorenstein dimensions, Lecture Notes in Mathematics, vol. 1747,
+Springer-Verlag, Berlin, 2000. MR1799866
+[10] Lars Winther Christensen, Anders Frankild, and Henrik Holm, On Gorenstein projective,
+injective and flat dimensions—A functorial description with applications, J. Algebra 302
+(2006), no. 1, 231–279. MR2236602
+[11] Lars Winther Christensen and Henrik Holm, The direct limit closure of perfect complexes, J.
+Pure Appl. Algebra 219 (2015), no. 3, 449–463. MR3279365
+[12] Lars Winther Christensen and David A. Jorgensen, Tate (co)homology via pinched complexes,
+Trans. Amer. Math. Soc. 366 (2014), no. 2, 667–689. MR3130313
+[13] Ioannis Emmanouil, On the finiteness of Gorenstein homological dimensions, J. Algebra 372
+(2012), 376–396. MR2990016
+[14] Edgar E. Enochs, Sergio Estrada, and Alina C. Iacob, Balance with unbounded complexes,
+Bull. Lond. Math. Soc. 44 (2012), no. 3, 439–442. MR2966988
+[15] Edgar E. Enochs and Overtoun M. G. Jenda, Copure injective resolutions, flat resolvents
+and dimensions, Comment. Math. Univ. Carolin. 34 (1993), no. 2, 203–211. MR1241728
+[16] Edgar E. Enochs and Overtoun M. G. Jenda, Relative homological algebra, de Gruyter Expositions in Mathematics, vol. 30, Walter de Gruyter & Co., Berlin, 2000. MR1753146
+[17] Sergei I. Gelfand and Yuri I. Manin, Methods of homological algebra, second ed., Springer
+Monographs in Mathematics, Springer-Verlag, Berlin, 2003. MR1950475
+[18] François Goichot, Homologie de Tate-Vogel équivariante, J. Pure Appl. Algebra 82 (1992),
+no. 1, 39–64. MR1181092
+[19] Shiro Goto, Vanishing of ExtiA (M, A), J. Math. Kyoto Univ. 22 (1982/83), no. 3, 481–484.
+MR0674605
+[20] Laurent Gruson and Christian U. Jensen, Dimensions cohomologiques reliées aux foncteurs
+lim(i) , Paul Dubreil and Marie-Paule Malliavin Algebra Seminar, 33rd Year (Paris, 1980),
+←−
+Lecture Notes in Math., vol. 867, Springer, Berlin, 1981, pp. 234–294. MR0633523
+
+STABLE HOMOLOGY OVER ASSOCIATIVE RINGS
+
+25
+
+[21] Henrik Holm, Gorenstein homological dimensions, J. Pure Appl. Algebra 189 (2004), no. 1-3,
+167–193. MR2038564
+[22] Henrik Holm, Rings with finite Gorenstein injective dimension, Proc. Amer. Math. Soc. 132
+(2004), no. 5, 1279–1283. MR2053331
+[23] Thorsten Holm and Peter Jørgensen, Triangulated categories: definitions, properties, and
+examples, Triangulated categories, London Math. Soc. Lecture Note Ser., vol. 375, Cambridge
+Univ. Press, Cambridge, 2010, pp. 1–51. MR2681706
+[24] Alina Iacob, Absolute, Gorenstein, and Tate torsion modules, Comm. Algebra 35 (2007),
+no. 5, 1589–1606. MR2317632
+[25] Christian U. Jensen, On the vanishing of lim(i) , J. Algebra 15 (1970), 151–166. MR0260839
+←−
+
+[26] David A. Jorgensen and Liana M. Şega, Independence of the total reflexivity conditions for
+modules, Algebr. Represent. Theory 9 (2006), no. 2, 217–226. MR2238367
+[27] Li Liang, Tate homology of modules of finite Gorenstein flat dimension, Algebr. Represent.
+Theory 16 (2013), no. 6, 1541–1560. MR3127346
+[28] Masayoshi Nagata, Local rings, Interscience Tracts in Pure and Applied Mathematics, No. 13,
+Interscience Publishers a division of John Wiley & Sons New York-London, 1962. MR0155856
+[29] Barbara L. Osofsky, Homological dimension and cardinality, Trans. Amer. Math. Soc. 151
+(1970), 641–649. MR0265411
+[30] Christian Peskine and Lucien Szpiro, Dimension projective finie et cohomologie locale. Applications à la démonstration de conjectures de M. Auslander, H. Bass et A. Grothendieck,
+Inst. Hautes Études Sci. Publ. Math. (1973), no. 42, 47–119. MR0374130
+[31] Paul Roberts, Two applications of dualizing complexes over local rings, Ann. Sci. École Norm.
+Sup. (4) 9 (1976), no. 1, 103–106. MR0399075
+[32] Paul Roberts, Le théorème d’intersection, C. R. Acad. Sci. Paris Sér. I Math. 304 (1987),
+no. 7, 177–180. MR0880574
+[33] Oana Veliche, Gorenstein projective dimension for complexes, Trans. Amer. Math. Soc. 358
+(2006), no. 3, 1257–1283. MR2187653
+[34] Charles A. Weibel, An introduction to homological algebra, Cambridge Studies in Advanced
+Mathematics, vol. 38, Cambridge University Press, Cambridge, 1994. MR1269324
+University of Missouri, Columbia, MO 65211, U.S.A.
+Current address: University of Connecticut, Storrs, CT 06269, U.S.A
+E-mail address: olgur.celikbas@uconn.edu
+Texas Tech University, Lubbock, TX 79409, U.S.A.
+E-mail address: lars.w.christensen@ttu.edu
+URL: http://www.math.ttu.edu/~ lchriste
+Lanzhou Jiaotong University, Lanzhou 730070, China
+E-mail address: lliangnju@gmail.com
+Columbia Basin College, Pasco, WA 99301, U.S.A.
+E-mail address: pggreg@gmail.com
+
+

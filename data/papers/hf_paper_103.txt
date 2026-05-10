@@ -1,0 +1,1973 @@
+Title: arXiv paper 103
+
+Categories: 6
+
+Abstract:
+An Emptiness Algorithm for Regular Types with
+Set Operators
+
+arXiv:cs/9811015v1 [cs.LO] 11 Nov 1998
+
+Lunjin Lu and John G. Cleary
+Department of Computer Science
+University of Waikato
+Hamilton, New Zealand
+Phone: +64-838-4627/4378
+{lunjin,jcleary}@cs.waikato.ac.nz
+
+Abstract. An algorithm to decide the emptiness of a regular type expression with set operators given a set of parameterised type definitions
+is presented. The algorithm can also be used to decide the equivalence
+of two regular type expressions and the inclusion of one regular type expression in another. The algorithm strictly generalises previous work in
+that tuple distributivity is not assumed and set operators are permitted
+in type expressions.
+Keywords: type, emptiness, prescriptive type
+
+1
+
+Introduction
+
+Types play an important role in programming languages [6]. They
+make programs easier to understand and help detect errors. Types
+have been introduced into logic programming in the forms of type
+checking and inference [5,9,12,26,32] or type analysis [25,33,17,19,13,22,7,23]
+or typed languages [16,21,28,31]. Recent logic programming systems
+allow the programmer to declare types for predicates and type errors
+are then detected either at compile time or at run time. The reader
+is referred to [27] for more details on types in logic programming.
+A type is a possibly infinite set of ground terms with a finite
+representation. An integral part of any type system is its type language that specifies which sets of ground terms are types. To be
+useful, types should be closed under intersection, union and complement operations. The decision problems such as the emptiness of
+a type, inclusion of a type in another and equivalence of two types
+should be decidable. Regular term languages [14,8], called regular
+types, satisfy these conditions and have been used widely used as
+types [29,25,33,9,17,21,28,31,12,32,19,13,22,7,23].
+Most type systems use tuple distributive regular types which are
+strictly less powerful than regular types [29,25,33,17,21,28,31,12,32,19,13,22,7,23].
+
+Tuple distributive regular types are regular types closed under tuple
+distributive closure. Intuitively, the tuple distributive closure of a set
+of terms is the set of all terms constructed recursively by permuting
+each argument position among all terms that have the same function
+symbol [32].
+This paper gives an algorithm to decide if a type expression denotes an empty set of terms. The correctness of the algorithm is
+proved and its complexity is analysed. The algorithm works on prescriptive types [28]. By prescriptive types, we mean that the meaning of a type is determined by a given set of type definitions. We
+allow parametric and overloading polymorphism in type definitions.
+Prescriptive types are useful both in compilers and other program
+manipulation tools such as debuggers because they are easy to understand for programmers. Type expressions may contain set operators
+with their usual interpretations. Thus, the algorithm can be used to
+decide the equivalence of two type expressions and the inclusion of
+one type expression in another. The introduction of set operators
+into type expressions allows concise and intuitive representation of
+regular types.
+Though using regular term languages as types allow us to make
+use of theoretical results in the field of tree automata [14], algorithms
+for testing the emptiness of tree automata cannot be applied directly
+as type definitions may be parameterised. For instance, in order to
+decide the emptiness of a type expression given a set of type definitions, it would be necessary to construct a tree automaton from
+the type expression and the set of type definitions before an algorithm for determining the emptiness of an tree automaton can be
+used. When type definitions are parameterised, this would make it
+necessary to construct a different automaton each time the emptiness of a type expression is tested. Thus, an algorithm that works
+directly with type definitions is desirable as it avoids this repeated
+construction of automata.
+Attempts have been made in the past to find algorithms for regular types [25,12,32,33,31,10,9]. To our knowledge, Dart and Zobel’s
+work [10] is the only one to present decision algorithms for emptiness
+and inclusion problems for prescriptive regular types without the tuple distributive restriction. Unfortunately, their decision algorithm
+for the inclusion problem is incorrect for regular types in general.
+See [24] for a counterexample. Moreover, the type language of Dart
+
+and Zobel is less expressive than that considered in this paper since
+it doesn’t allow set operators and parameterised type definitions.
+Set constraint solving has also been used in type checking and
+type inference [3,2,20,18,11]. However, set constraint solving methods are intended to infer descriptive types [28] rather than for testing
+emptiness of prescriptive types [28]. Therefore, they are useful in different settings from the algorithm presented in this paper. Moreover,
+algorithms proposed for set constraint solving [3,4,2,1] are not applicable to the emptiness problem we considered in this paper as they
+don’t take type definitions into account.
+The remainder of this paper is organised as follows. Section 2
+describes our language of type expressions and type definitions. Section 3 presents our algorithm for testing if a type expression denotes
+an empty set of terms. Section 4 addresses the of the algorithm.
+Section 5 presents the complexity of the algorithm and section 6
+concludes the paper. Some lemmas are presented in the appendix.
+2
+
+Type Language
+
+Let Σ be a fixed ranked alphabet. Each symbol in Σ is called a
+function symbol and has a fixed arity. It is assumed that Σ contains
+at least one constant that is a function symbol of arity 0. The arity
+of a symbol f is denoted as arity(f ). Σ may be considered as the set
+of function symbols in a program. Let T (Φ) be the set of all terms
+over Φ. T (Σ) is the set of all possible values that a program variable
+can take. We shall use regular term languages over Σ as types.
+A type is represented by a ground term constructed from another
+ranked alphabet Π and {⊓, ⊔, ∼, 1, 0}, called type constructors. It is
+assumed that (Π ∪ {⊓, ⊔, ∼, 1, 0}) ∩ Σ = ∅. Thus, a type expression
+is a term in T (Π ∪ {⊓, ⊔, ∼, 1, 0}). The denotations of type constructors in Π are determined by type definitions whilst ⊓, ⊔, ∼, 1
+and 0 have fixed denotations that will be given soon.
+Several equivalent formalisms such as tree automata [14,8], regular term grammars [14,10,8] and regular unary logic programs [32]
+have been used to define regular types. We define types by type
+rules. A type rule is a production rule of the form c(ζ1 , · · · , ζm ) → τ
+where c ∈ Π, ζ1 , · · · , ζm are different type parameters and τ ∈
+T (Σ ∪ Π ∪ Ξm ) where Ξm = {ζ1 , · · · , ζm }. The restriction that every
+type parameter in the righthand side of a type rule must occur in
+
+the lefthand side of the type rule is often referred to as type preserving [30] and has been used in all the type definition formalisms.
+Note that overloading of function symbols is permitted as a function
+symbol can appear in the righthand sides of many type rules. We
+def S
+denote by ∆ the set of all type rules and define Ξ = c∈Π Ξarity(c) .
+hΠ, Σ, ∆i is a restricted form of context-free term grammar.
+Example 1. Let Σ = {0, s(), nil, cons(, )} and Π = {Nat, Even, List()}.
+∆ defines natural numbers, even numbers, and lists where
+
+
+ Nat
+
+
+
+
+→ 0 | s(Nat),
+
+∆ = Even → 0 | s(s(Even)),
+
+
+ List(ζ) → nil | cons(ζ, List(ζ)) 
+
+where, for instance, Nat → 0 | s(Nat) is an abbreviation of two rules
+Nat → 0 and Nat → s(Nat).
+∆ is called simplified if τ in each production rule c(ζ1 , · · · , ζm ) → τ
+is of the form f (τ1 , · · · , τn ) such that each τj , for 1 ≤ j ≤ n, is either
+in Ξm or of the form d(ζ1′ , · · · , ζk′ ) and ζ1′ , · · · , ζk′ ∈ Ξm . We shall
+assume that ∆ is simplified. There is no loss of generality to use
+a simplified set of type rules since every set of type rules can be
+simplified by introducing new type constructors and rewriting and
+adding type rules in the spirit of [10].
+Example 2. The following is the simplified version of the set of type
+rules in example 1. Σ = {0, s(), nil, cons(, )}, Π = {Nat, Even, Odd, List()}
+and
+∆=
+
+(
+
+Nat → 0 | s(Nat), Even → 0 | s(Odd),
+Odd → s(Even), List(ζ) → nil | cons(ζ, List(ζ))
+
+)
+
+A type valuation φ is a mapping from Ξ to T (Π ∪{⊓, ⊔, ∼, 1, 0}).
+The instance φ(R) of a production rule R under φ is obtained by replacing each occurrence of each type parameter ζ in R with φ(ζ).
+E.g., List(Nat⊓(∼Even)) → cons(Nat⊓(∼Even), List(Nat⊓(∼Even)))
+is the instance of List(ζ) → cons(ζ, List(ζ)) under a type valuation
+that maps ζ to Nat⊓(∼Even). Let
+def
+
+ground(∆) = {φ(R) | R ∈ ∆ ∧ φ ∈ (Ξ 7→ T (Π ∪ {⊓, ⊔, ∼, 1, 0}))}
+∪ {1 7→ f (1, · · · , 1) | f ∈ Σ}
+
+ground(∆) is the set of all ground instances of grammar rules in ∆
+plus rules of the form 1 → f (1, · · · , 1) for every f ∈ Σ.
+Given a set ∆ of type definitions, the type denoted by a type
+expression is determined by the following meaning function.
+def
+
+[1]]∆ = T (Σ)
+def
+
+[0]]∆ = ∅
+def
+
+[E1 ⊓E2]∆ = [E1]∆ ∩ [E2]∆
+def
+
+[E1 ⊔E2]∆ = [E1]∆ ∪ [E2]∆
+def
+
+[∼E]]∆ = T (Σ) − [E]]∆
+def
+
+[ω]]∆ =
+
+[
+
+{f (t1 , · · · , tn ) | ∀1 ≤ i ≤ n. ti ∈ [Ei]∆ }
+
+(ω→f (E1 ,···,En ))∈ground(∆)
+
+[·]]∆ gives fixed denotations to ⊓, ⊔, ∼, 1 and 0. ⊓, ⊔ and ∼ are
+interpreted by [·]]∆ as set intersection, set union and set complement
+with respect to T (Σ). 1 denotes T (Σ) and 0 the empty set.
+Example 3. Let ∆ be that in example 2. We have
+[Nat]]∆ = {0, s(0), s(s(0)), · · ·}
+[Even]]∆ = {0, s(s(0)), s(s(s(s(0)))), · · ·}
+[Nat⊓∼Even]]∆ = {s(0), s(s(s(0))), s(s(s(s(s(0))))), · · ·}
+[List(Nat⊓∼Even)]]∆ = {cons(s(0), nil), cons(s(s(s(0))), nil), · · ·}
+The lemma 5 in the appendix states that every type expression
+denotes a regular term language, that is, a regular type.
+We extend [·]]∆ to sequences θ of type expressions as follows.
+def
+
+[ǫ]]∆ = {ǫ}
+def
+
+[hEi • θ′]∆ = [E]]∆ × [θ′]∆
+where ǫ is the empty sequence, • is the infix sequence concatenation
+operator, hEi is the sequence consisting of the type expression E
+and × is the Cartesian product operator. As a sequence of type
+expressions, ǫ can be thought of consisting of zero instance of 1. We
+use Λ to denote the sequence consisting of zero instance of 0 and
+define [Λ]]∆ = ∅.
+We shall call a sequence of type expressions simply a sequence.
+A sequence expression is an expression consisting of sequences of
+
+the same length and ⊓, ⊔ and ∼. The length of the sequences in a
+sequence expression θ is called the dimension of θ and is denoted by
+kθk. Let θ, θ1 and θ2 be sequence expressions of the same length.
+def
+
+[θ1 ⊓θ2]∆ = [θ1]∆ ∩ [θ2]∆
+def
+
+[θ1 ⊔θ2]∆ = [θ1]∆ ∪ [θ2]∆
+def
+
+[∼θ]]∆ = T (Σ) × · · · × T (Σ) −[[θ]]∆
+|
+
+{z
+
+kθk times
+
+}
+
+A conjunctive sequence expression is a sequence expression of the
+form γ1 ∧ · · · ∧ γm where γi for, 1 ≤ i ≤ m, are sequences.
+3
+
+Emptiness Algorithm
+
+This section presents an algorithm that decides if a type expression
+denotes the empty set with respect to a given set of type definitions.
+The algorithm can also be used to decide if (the denotation of) one
+type expression is included in (the denotation of) another because
+E1 is included in E2 iff E1 ⊓∼E2 is empty.
+We first introduce some terminology and notations. A type atom
+is a type expression of which the principal type constructor is not a
+set operator. A type literal is either a type atom or the complement
+of a type atom. A conjunctive type expression C is of the form ⊓i∈I li
+with li being a type literal. Let α be a type atom. F (α) defined below
+is the set of the principal function symbols of the terms in [α]]∆ .
+def
+
+F (α) = {f ∈ Σ | ∃ζ1 · · · ζk .((α → f (ζ1, · · · , ζk )) ∈ ground(∆))}
+Let f ∈ Σ. Define
+def
+
+Afα = {hα1 , · · · , αk i | (α → f (α1 , · · · , αk )) ∈ ground(∆)}
+We have [Afα]∆ = {ht1 , · · · , tk i | f (t1 , · · · , tk ) ∈ [α]]∆ }. Both F (α) and
+Afα are finite even though ground(∆)) is usually not finite.
+The algorithm repeatedly reduces the emptiness problem of a type
+expression to the emptiness problems of sequence expressions and
+then reduces the emptiness problem of a sequence expression to the
+emptiness problems of type expressions. Tabulation is used to break
+down any possible loop and to ensure termination. Let O be a type
+def
+expression or a sequence expression. Define empty(O) = ([[O]]∆ = ∅).
+
+3.1
+
+Two Reduction Rules
+
+We shall first sketch the two reduction rules and then add tabulation
+to form an algorithm. Initially the algorithm is to decide the validity
+of a formula of the form
+empty(E)
+(1)
+where E is a type expression.
+The first reduction rule rewrites a formula of
+the form (1) into a conjunction of formulae of the following form.
+Reduction Rule One.
+
+empty(σ)
+
+(2)
+
+where σ is a sequence expression where ∼ is applied to type expressions but not to any sequence expression.
+It is obvious that a type expression has a unique (modulo equivalence of denotation) disjunctive normal form. Let DNF(E) be the disjunctive normal form of E. empty(E) can written into ∧C∈DNF(E) empty(C).
+Each C is a conjunctive type expression. We assume that C contains
+at least one positive type literal. This doesn’t cause any loss of generality as [1⊓C]]∆ = [C]]∆ for any conjunctive type expression C. We
+also assume that C doesn’t contain repeated occurrences of the same
+type literal.
+Let C = ⊓1≤i≤m ωi ⊓ ⊓1≤j≤n ∼τj where ωi and τj are type atoms.
+def
+The set of positive type literals in C is denoted as pos(C) = {ωi | 1 ≤
+i ≤ m} while the set of complemented type atoms are denoted as
+def
+neg(C) = {τj | 1 ≤ j ≤ n}. lit(C) denotes the set of literals occurring in C. By lemma 3 in the appendix, empty(C) is equivalent
+to
+∀f ∈ ∩α∈pos(C) F (α).
+(3)
+empty((⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) ∼(⊔Afτ )))
+The intuition behind the equivalence is as follows. [C]]∆ is empty
+iff, for every function symbol f , the set of the sequences ht1 , · · · , tk i
+of terms such that f (t1 , · · · , tk ) ∈ [C]]∆ is empty. Only the function
+symbols in ∩α∈pos(C) F (α) need to be considered.
+We note the following two special cases of the formula (3).
+(a) If ∩α∈pos(C) F (α) = ∅ then the formula (3) is true because ∧∅ =
+true. In particular, F (0) = ∅. Thus, if 0 ∈ pos(C) then ∩α∈pos(C) F (α) =
+∅ and hence the formula (3) is true.
+
+(b) If Afτ = ∅ for some τ ∈ neg(C) then ⊔Afτ = h0, · · · , 0i and
+∼(⊔Afτ ) = h1, · · · , 1i. Thus, τ has no effect on the subformula
+for f when Afτ = ∅.
+In order to get rid of complement operators over sequence subexpressions, the complement operator in ∼(⊔Afτ ) is pushed inwards
+by the function push defined in the following.
+def
+
+push(∼(⊔i∈I γi )) = ⊓i∈I push(∼γi )
+def
+
+push(∼hE1 , E2 , · · · , Ek i) = ⊔1≤l≤k h 1, · · · , 1, ∼El , 1, · · · , 1 i
+def
+
+push(∼ǫ) = Λ
+
+|
+
+{z
+
+l−1
+
+}
+
+|
+
+{z
+
+k−l
+
+for k ≥ 1
+
+}
+
+It follows from De Morgan’s law and the definition of [·]]∆ that
+[push(∼(⊔Afτ ))]]∆ = [∼(⊔Afτ )]]∆ . Substituting push(∼(⊔Afτ )) for ∼(⊔Afτ )
+in the formula (3) gives rise to a formula of the form (2).
+The second reduction rule rewrites a formula
+of the form 2 to a conjunction of disjunctions of formulae of the
+form 1. Formula 2 is written into a disjunction of formulae of the
+form.
+empty(Γ )
+Reduction Rule Two.
+
+where Γ be a conjunctive sequence expression.
+In the case kΓ k = 0, by lemma 4 in the appendix, empty(Γ ) can
+be decided without further reduction. If Λ ∈ Γ then empty(Γ ) is true
+because [Λ]]∆ = ∅. Otherwise, empty(Γ ) is false because [Γ ]∆ = {ǫ}.
+In the case kΓ k =
+6 0, empty(Γ ) is equivalent to
+∨1≤j≤kΓ k empty(Γ↓j)
+def
+
+where, letting Γ = γ1 ⊓ · · · ⊓γk , Γ↓j = ⊓1≤i≤k γij with γij being the j th
+component of γi . Note that Γ↓j is a type expression and empty(Γ↓j)
+is of the form 1.
+3.2
+
+Algorithm
+
+The two reduction rules in the previous section form the core of the
+algorithm. However, they alone cannot be used as an algorithm as
+a formula empty(E) may reduce to a formula containing empty(E)
+
+as a sub-formula, leading to nontermination. Suppose Σ = {f (), a},
+Π = {Null} and ∆ = {Null → f (Null)}. Clearly, empty(Null) is
+true. However, by the first reduction rule, empty(Null) reduces to
+empty(hNulli) which then reduces to empty(Null) by the second
+reduction rule. This process will not terminate.
+The solution, inspired by [10], is to remember in a table a particular kind of formulae of which truth is being tested. When a formula
+of that kind is tested, the table is first looked up. If the formula is
+implied by any formula in the table, then it is determined as true.
+Otherwise, the formula is added into the table and then reduced by
+a reduction rule.
+The emptiness algorithm presented below remembers every conjunctive type expression of which emptiness is being tested. Thus
+the table is a set of conjunctive type expressions. Let C1 and C2 be
+def
+conjunctive type expressions. We define (C1  C2 ) = (lit(C1 ) ⊇
+lit(C2 )). Since Ci = ⊓l∈lit(Ci ) l, C1  C2 implies [C1]∆ ⊆ [C2]∆ and
+hence (C1  C2 ) ∧ empty(C2 ) implies empty(C1 ).
+Adding tabulation to the two reduction rules, we obtain the following algorithm for testing the emptiness of prescriptive regular
+types. Let
+BCf = (⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) push(∼(⊔Afτ ))).
+def
+
+etype(E) = etype(E, ∅)
+def
+
+etype(E, Ψ ) = ∀C ∈ DNF(E).etype conj(C, Ψ )
+
+(4)
+(5)
+
+def
+
+etype
+conj(C, Ψ ) =
+
+if pos(C) ∩ neg(C) 6= ∅,
+ true,
+true,
+if ∃C ′ ∈ Ψ.C  C ′ ,
+ ∀f ∈ ∩
+f
+otherwise.
+α∈pos(C) F(α).eseq(BC , Ψ ∪ {C}),
+def
+
+eseq(Θ, Ψ ) = ∀Γ ∈ DNF(Θ).eseq conj(Γ, Ψ )
+def
+
+eseq conj(Γ, Ψ ) =
+
+(
+
+true
+if kΓ k = 0 ∧ Λ ∈ Γ ,
+false
+if kΓ k = 0 ∧ Λ 6∈ Γ ,
+∃1 ≤ j ≤ kΓ k.etype(Γ↓j, Ψ )
+if kΓ k =
+6 0.
+
+(6)
+
+(7)
+(8)
+
+Equation 4 initialises the table to the empty set. Equations 5
+and 6 implement the first reduction rule while equations 7 and 8 implement the second reduction rule. etype(, ) and etype conj(, ) test
+the emptiness of an arbitrary type expression and that of a conjunctive type expression respectively. eseq(, ) tests emptiness of a
+
+sequence expression consisting of sequences and ⊓ and ⊔ operators
+while eseq conj(, ) tests the emptiness of a conjunctive sequence expression. The expression of which emptiness is to be tested is passed
+as the first argument to these functions. The table is passed as the
+second argument. It is used in etype conj(, ) to detect a conjunctive
+type expression of which emptiness is implied by the emptiness of
+a tabled conjunctive type expression. As we shall show later, this
+ensures the termination of the algorithm. Each of the four binary
+functions returns true iff the emptiness of the first argument is implied by the second argument and the set of type definitions.
+Tabling any other kind of expressions such as arbitrary type expressions can also ensure termination. However, tabling conjunctive
+type expressions makes it easier to detect the implication of the
+emptiness of one expression by that of another because lit(C) can
+be easily computed given a conjunctive type expression C. In an implementation, a conjunctive type expression C in the table can be
+represented as lit(C).
+The first two definitions for etype conj(C, Ψ ) in equation 6 terminates the algorithm when the emptiness of C can be decided by
+C and Ψ without using type definitions. The first definition also excludes from the table any conjunctive type expression that contains
+both a type atom and its complement.
+3.3
+
+Examples
+
+We now illustrate the algorithm with some examples.
+Example 4. Let type definitions be given as in example 2. The tree
+in figure 1 depicts the evaluation of etype(Nat⊓∼Even⊓∼Odd) by
+the algorithm. Nodes are labeled with function calls. We will identity
+a node with its label. Arcs from a node to its children are labeled
+with the number of the equation that is used to evaluate the node.
+Abbreviations used in the labels are defined in the legend to the
+right of the tree. Though [A]]∆ = [B]]∆ , A and B are syntactically
+different type expressions. The evaluation returns true, verifying
+[Nat⊓∼Even⊓∼Odd]]∆ = ∅. Consider etype conj(B, {A}). We have
+B  A as lit(A) = lit(B). Thus, by equation 6, etype conj(B, {A}) =
+true.
+
+etype(A)
+3
+etype(A, ∅)
+4
+etype conj(A, ∅)
+∧
+5
+5
+eseq(C, {A})
+eseq(ǫ⊓Λ, {A})
+6
+6
+eseq conj(ǫ⊓Λ, {A})
+eseq conj(C, {A})
+7
+7
+true
+etype(B, {A})
+4
+etype conj(B, {A})
+5
+true
+
+Legend:
+A = N at⊓∼Even⊓∼Odd
+B = N at⊓∼Odd⊓∼Even
+C = hN ati⊓h∼Oddi⊓h∼Eveni
+
+Fig. 1. Evaluation of etype(N at⊓∼Even⊓∼Odd))
+
+Example 5. Let type definitions be given as in example 2. The tree
+in figure 2 depicts the evaluation of etype(List(Even⊓∼Nat)) by the
+algorithm. The evaluation returns false, verifying [List(Even⊓∼Nat)]]∆ 6=
+∅. Indeed, [List(Even⊓∼Nat)]]∆ = {nil}. The rightmost node is not
+evaluated as its sibling returns false, which is enough to establish
+the falsity of their parent node.
+etype(A)
+(3)
+etype(A, ∅)
+(4)
+etype conj(A, ∅)
+∧
+(5)/nil
+(5)/cons(,)
+eseq(ǫ, {A})
+eseq(hB, Ai, {A})
+(6)
+eseq conj(ǫ, {A})
+(7)
+false
+
+Legend:
+A = List(Even⊓∼N at)
+B = Even⊓∼N at
+
+Fig. 2. Evaluation of etype(List(Even⊓∼N at))
+
+Example 6. The following is a simplified version of the type definitions that is used in [24] to show the incorrectness of the algorithm
+by Dart and Zobel for testing inclusion of one regular type in another [10].
+Let Π = {α, β, θ, σ, ω, ζ, η}, Σ = {a, b, g(), h(, )} and
+∆=
+
+(
+
+α → g(ω), β → g(θ) | g(σ), θ → a | h(θ, ζ), σ → b | h(σ, η),
+ω → a | b | h(ω, ζ) | h(ω, η), ζ → a,
+η→b
+
+)
+
+Let t = g(h(h(a, b), a)). t ∈ [α]]∆ and t 6∈ [β]]∆ , see example 3
+in [24] for more details. So, [α]]∆ 6⊆ [β]]∆ . This is verified by our
+algorithm as follows. Let Ψ1 = {α⊓∼β} and Ψ2 = Ψ1 ∪ {ω⊓∼θ⊓∼σ}.
+By applying equations 4, 5, 6, 7, 8 and 5 in that order, we have
+etype(α⊓∼β) = etype conj(ω⊓∼θ⊓∼σ, Ψ1 ). By equation 6, we have
+etype(α⊓∼β) = eseq(ǫ⊓Λ⊓ǫ, Ψ2 ) ∧ eseq(ǫ⊓ǫ⊓Λ, Ψ2 ) ∧ eseq(Θ, Ψ2)
+where Θ = (hω, ζi⊔hω, ηi)⊓(h∼θ, 1i⊔h1, ∼ζi)⊓(h∼σ, 1i⊔h1, ∼ηi). We
+choose not to simplify expressions such as ǫ⊓ǫ⊓∼Λ so as to make
+the example easy to follow. By applying equations 7 and 8, we
+have both eseq(ǫ⊓Λ⊓ǫ, Ψ2 ) = true and eseq(ǫ⊓ǫ⊓Λ, Ψ2 ) = true. So,
+etype(α⊓∼β) = eseq(Θ, Ψ2). Let Γ = hω, ζi⊓h∼θ, 1i⊓h1, ∼ηi. To
+show etype(α⊓∼β) = false, it suffices to show eseq conj(Γ, Ψ2 ) =
+false by equation 7 because Γ ∈ DNF(Θ) and etype(α⊓∼β) =
+eseq(Θ, Ψ2).
+Figure 3 depicts the evaluation of eseq conj(Γ, Ψ2). The node that
+is linked to its parent by a dashed line is not evaluated because one of
+its siblings returns false, which is sufficient to establish the falsity of
+its parent. It is clear from the figure that etype conj(Θ, Ψ2) = false
+and hence etype(α⊓∼β) = false.
+
+4
+
+Correctness
+
+This section addresses the correctness of the algorithm. We shall
+first show that tabulation ensures the termination of the algorithm
+because the table can only be of finite size. We then establish the
+partial correctness of the algorithm.
+
+etype conj(Γ, Ψ2 )
+∨
+7
+7
+etype(ζ⊓∼η, Ψ2 )
+etyp(ω⊓∼θ, Ψ2 )
+4
+4
+etyp conj(ω⊓∼θ, Ψ2 )
+etype conj(ζ⊓∼η, Ψ2 )
+∧ 5/b
+5/a
+5/h(,)
+5
+eseq(ǫ⊓Λ, Ψ3 )
+eseq(ǫ⊓ǫ, Ψ4 )
+eseq(ǫ⊓ǫ, Ψ3 )
+eseq(Θ1 , Ψ3 )
+6
+6
+6
+eseq conj(ǫ⊓Λ, Ψ3 )
+eseq conj(ǫ⊓ǫ, Ψ3 )
+eseq conj(ǫ⊓ǫ, Ψ4 )
+7
+7
+7
+true
+false
+false
+Legend:
+Θ1 = (hω, ζi⊔hω, ηi)⊓(h∼θ, 1i⊔h1, ∼ζi)
+Ψ3 = Ψ2 ∪ {ω⊓∼θ}
+Ψ4 = Ψ2 ∪ {ζ⊓∼η}
+Γ = hω, ζi⊓h∼θ, 1i⊓h1, ∼ηi
+
+Fig. 3. Evaluation of etype conj(Γ, Ψ2 )
+4.1
+
+Termination
+
+Given a type expression E, a top-level type atom in E is a type
+atom in E that is not a sub-term of any type atom in E. The
+set of top-level type atoms in E is denoted by TLA(E). For instance, letting E = ∼List(Nat)⊔T ree(Nat⊓∼Even), TLA(E) =
+{List(Nat), T ree(Nat⊓∼Even)}. We extend TLA(·) to sequences
+def S
+by TLA(hE1 , E2 , · · · , Ek i) = 1≤i≤k TLA(Ei ).
+Given a type expression E0 , the evaluation tree for etype(E0 ) contains nodes of the form etype(E, Ψ ), etype conj(C, Ψ ), eseq(Θ, Ψ )
+and eseq conj(Γ, Ψ ) in addition to the root that is etype(E0 ). Only
+nodes of the form etype conj(C, Ψ ) add conjunctive type expressions to the table. Other forms of nodes only pass the table around.
+Therefore, it suffices to show that the type atoms occurring in the
+first argument of the nodes are from a finite set because any conjunctive type expression added into the table is the first argument
+of a node of the form etype conj(C, Ψ ).
+The set RTA(E0 ) of type atoms relevant to a type expression E0
+is the smallest set of type atoms satisfying
+– TLA(E0 ) ⊆ RTA(E0 ), and
+– if τ is in RTA(E0 ) and τ → f (τ1 , τ2 , · · · , τk ) is in ground(∆) then
+TLA(τi ) ⊆ RTA(E0 ) for 1 ≤ i ≤ k.
+
+The height of τi is no more than that of τ for any τ → f (τ1 , τ2 , · · · , τk )
+in ground(∆). Thus, the height of any type atom in RTA(E0 ) is
+finite. There are only a finite number of type constructors in Π.
+Thus, RTA(E0 ) is of finite size. It follows by examining the algorithm
+that type atoms in the first argument of the nodes in the evaluation
+tree for etype(E0 ) are from RTA(E0 ) which is finite. Therefore, the
+algorithm terminates.
+4.2
+
+Partial Correctness
+
+The partial correctness of the algorithm is established by showing
+etype(E0 ) = true iff empty(E0 ). Let Ψ be a set of conjunctive type
+def
+expressions. Define ρΨ = ∧C∈Ψ empty(C). The following two lemmas
+form the core of our proof of the partial correctness of the algorithm.
+Lemma 1. Let Ψ be a set of conjunctive type expressions, E a type
+expression, C a conjunctive type expression, Θ a sequence expression
+and Γ a conjunctive sequence expression.
+(a)
+(b)
+(c)
+(d)
+
+If
+If
+If
+If
+
+ρΨ
+ρΨ
+ρΨ
+ρΨ
+
+|= empty(C)
+|= empty(E)
+|= empty(Γ )
+|= empty(Θ)
+
+then
+then
+then
+then
+
+etype conj(C, Ψ ) = true, and
+etype(E, Ψ ) = true, and
+etype(Γ, Ψ ) = true, and
+etype(Θ, Ψ ) = true.
+
+Proof. The proof is done by induction on the size of the complement
+of Ψ with respect to the set of all possible conjunctive type expressions
+in which type atoms are from RTA(E0 ) where E0 is a type expression.
+Basis. The complement is empty. Ψ contains all possible conjunctive type expressions in which type atoms are from RTA(E0 ). We
+have C ∈ Ψ and hence etype conj(C, Ψ ) = true by equation 6. Therefore, (a) holds. (b) follows from (a) and equation 5. (c) follows from
+(b), equation 8 and lemma 4 in the appendix, and (d) follows from
+(c) and equation 7.
+Induction. By lemma 3 in the appendix, ρΨ |= empty(C) implies ρΨ |= empty(BCf ) for any f ∈ ∩α∈pos(C) F (α). Thus, ρΨ∪{C} |=
+empty(BCf ). The complement of Ψ ∪ {C} is smaller than the complement of Ψ . By the induction hypothesis, we have eseq(BCf , Ψ ∪{C}) =
+true. By equation 6, etype conj(C, Ψ ) = true. Therefore, (a) holds.
+(b) follows from (a) and equation 5. (c) follows from (b), equation 8
+and lemma 4 in the appendix and (d) follows from (c) and equation 7.
+This completes the proof of the lemma.
+
+Lemma 1 establishes the completeness of etype(, ), etype conj(, ),
+eseq(, ) and eseq conj(, ) while the following lemma establishes their
+soundness.
+Lemma 2. Let Ψ be a set of conjunctive type expressions, E a type
+expression, C a conjunctive type expression, Θ a sequence expression
+and Γ a conjunctive sequence expression.
+(a)
+(b)
+(c)
+(d)
+
+ρΨ
+ρΨ
+ρΨ
+ρΨ
+
+|= empty(C)
+|= empty(E)
+|= empty(Γ )
+|= empty(Θ)
+
+if
+if
+if
+if
+
+etype conj(C, Ψ ) = true, and
+etype(E, Ψ ) = true, and
+etype(Γ, Ψ ) = true, and
+etype(Θ, Ψ ) = true.
+
+Proof. It suffices to prove (a) since (b),(c) and (d) follow from (a)
+as in lemma 1. The proof is done by induction on dp(C, Ψ ) the depth
+of the evaluation tree for etype conj(C, Ψ ).
+Basis. dp(C, Ψ ) = 1. etype conj(C, Ψ ) = true implies either (i)
+pos(C) ∩ neg(C) 6= ∅ or (ii) ∃C ′ ∈ Ψ.C  C ′ . In case (i), empty(C)
+is true and ρΨ |= empty(C). Consider case (ii). By the definition of
+ and ρΨ , we have etype conj(C, Ψ ) = true implies ρΨ |= empty(C).
+Induction. dp(C, Ψ ) > 1. Assume etype conj(C, Ψ ) = true and
+ρΨ |= ¬empty(C). By lemma 3, there is f ∈ ∩α∈pos(C) F (α) such
+that ρΨ |= ¬empty(BCf ). We have ρΨ∪{C} |= ¬empty(BCf ). dp(BCf , Ψ ∪
+{C}) < dp(C, Ψ ). By the induction hypothesis, we have etuple(BCf , Ψ ∪
+{C}) = false for otherwise, ρΨ∪{C} |= BCf . By equation 6, etype conj(C, Ψ ) =
+false which contradicts etype conj(C, Ψ ) = true. So, ρΨ |= empty(C)
+if etype conj(C, Ψ ) = true. This completes the induction and the
+proof of the lemma.
+
+The following theorem is a corollary of lemmas 1 and 2.
+Theorem 1. For any type expression E, etype(E) = true iff empty(E).
+Proof. By equation 4, etype(E) = etype(E, ∅). By lemma 1.(b) and
+lemma 2.(b), we have etype(E, ∅) = true iff ρ∅ |= empty(E). The
+result follows since ρ∅ = true.
+
+5
+
+Complexity
+
+We now address the issue of complexity of the algorithm. We only
+consider the worst-case time complexity of the algorithm. The time
+spent on evaluating etype(E0 ) for a given type expression E0 can be
+measured in terms of the number of nodes in the evaluation tree for
+etype(E0 ).
+The algorithm cycles through etype(, ), etype conj(, ), eseq(, ) and
+eseq conj(, ). Thus, children of a node of the form etype(E, Ψ ) can
+only be of the form etype conj(C, Ψ ), and so on.
+Let |S| be the number of elements in a given set S. The largest
+possible table in the evaluation of etype(E0 ) contains all the conjunctive type expressions of which type atoms are from RTA(E0 ).
+Therefore, the table can contain at most 2|RTA(E0 )| conjunctive type
+expressions. So, the height of the tree is bounded by O(2|RTA(E0 )| ).
+We now show that the branching factor of the tree is also bounded
+by O(2|RTA(E0 )| ). By equation 5, the number of children of etype(E, Ψ )
+is bounded by two to the power of the number of type atoms in E
+which is bounded by |RTA(E0 )| because E can only contain type
+atoms from RTA(E0 ). By equation 6, the number of children of
+etype conj(C, Ψ ) is bounded by |Σ|. The largest number of children of a node eseq(Θ, Ψ ) is bounded by two to the power of the
+number of sequences in Θ where Θ = BCf . For each τ ∈ neg(C),
+|push(∼(⊔Afτ ))| is O(arity(f )) and |C| < |RTA(E0 )|. Thus, the
+number of sequences in Θ is O(arity(f ) ∗ |RTA(E0 )|) and hence the
+number of children of eseq(Θ, Ψ ) is O(2|RTA(E0 )| ) since arity(f ) is a
+constant. By equation 8, the number of children of eseq conj(Γ, Ψ )
+is bounded by maxf ∈Σ arity(f ). Therefore, the branching factor of
+the tree is bounded by O(2|RTA(E0 )| ).
+The above discussion leads to the following conclusion.
+Proposition 1. The time complexity of the algorithm is O(2|RTA(E0 )| )).
+The fact that the algorithm is exponential in time is expected because the complexity coincides with the complexity of deciding the
+emptiness of any tree automaton constructed from the type expression and the type definitions. A deterministic frontier-to-root tree
+automaton recognising [E0]∆ will consist of 2|RTA(E0 )| states as observed in the proof of lemma 5. It is well-known that the decision
+
+of the emptiness of the language of a deterministic frontier-to-root
+tree automaton takes time polynomial in the number of the states
+of the tree automaton. Therefore, the worst-case complexity of the
+algorithm is the best we can expect from an algorithm for deciding
+the emptiness of regular types that contain set operators.
+6
+
+Conclusion
+
+We have presented an algorithm for deciding the emptiness of prescriptive regular types. Type expressions are constructed from type
+constructors and set operators. Type definitions prescribe the meaning of type expressions.
+The algorithm uses tabulation to ensure termination. Though the
+tabulation is inspired by Dart and Zobel [10], the decision problem
+we consider in this paper is more complex as type expressions may
+contain set operators. For that reason, the algorithm can also be
+used for inclusion and equivalence problems of regular types. The
+way we use tabulation leads to a correct algorithm for regular types
+while the Dart-Zobel algorithm has been proved incorrect for regular
+types [24] in general. To the best of our knowledge, our algorithm is
+the only correct algorithm for prescriptive regular types.
+In addition to correctness, our algorithm generalises the work of
+Dart and Zobel [10] in that type expressions can contain set operators and type definitions can be parameterised. Parameterised
+type definitions are more natural than monomorphic type definitions [12,26,32] while set operators makes type expressions concise.
+The combination of these two features allows more natural type declarations. For instance, the type of the logic program append can be
+declared or inferred as append(List(α), List(β), List(α⊔β)).
+The algorithm is exponential in time. This coincides with deciding the emptiness of the language recognised by a tree automaton
+constructed from the type expression and the type definitions. However, the algorithm avoids the construction of the tree automaton
+which cannot be constructed a priori when type definitions are parameterised.
+Another related field is set constraint solving [3,2,20,18,11]. However, set constraint solving methods are intended to infer descriptive
+types [28] rather than for testing the emptiness of a prescriptive
+type [28]. Therefore, they are useful in different settings from the al-
+
+gorithm presented in this paper. In addition, algorithms proposed for
+solving set constraints [3,4,2,1] are not applicable to the emptiness
+problem we considered in this paper. Take for example the constructor rule in [3,2] which states that emptiness of f (E1 , E2 , · · · , Em ) is
+equivalent to the emptiness of Ei for some 1 ≤ i ≤ m. However,
+empty(List(0)) is not equivalent to empty(0). The latter is true
+while the former is false since [List(0)]]∆ = {nil}. The constructor
+rule doesn’t apply because it deals with function symbols only but
+doesn’t take the type definitions into account.
+References
+1. A. Aiken, D. Kozen, M. Vardi, and E. Wimmers. The complexity of set constraints.
+In Proceedings of 1993 Computer Science Logic Conference, pages 1–17, 1992.
+2. A. Aiken and T.K. Lakshman. Directional type checking of logic programs. In
+B. Le Charlier, editor, Proceedings of the First International Static Analysis Symposium, pages 43–60. Springer-Verlag, 1994.
+3. A. Aiken and E. Wimmers. Solving systems of set constraints. In Proceedings of
+the Seventh IEEE Symposium on Logic in Computer Science, pages 329–340. The
+IEEE Computer Society Press, 1992.
+4. A. Aiken and E. Wimmers. Type inclusion constraints and type inference. In
+Proceedings of the 1993 Conference on Functional Programming Languages and
+Computer Architecture, pages 31–41, Copenhagen, Denmark, June 1993.
+5. C. Beierle. Type inferencing for polymorphic order-sorted logic programs. In
+L. Sterling, editor, Proceedings of the Twelfth International Conference on Logic
+Programming, pages 765–779. The MIT Press, 1995.
+6. L. Cardelli and P. Wegner. On understanding types, data abstraction, and polymorphism. ACM computing surveys, 17(4):471–522, 1985.
+7. M. Codish and V. Lagoon. Type dependencies for logic programs using aciunification. In Proceedings of the 1996 Israeli Symposium on Theory of Computing
+and Systems, pages 136–145. IEEE Press, June 1996.
+8. H. Comon, M. Dauchet, R. Gilleron, D. Lugiez, S. Tison, and M. Tommasi. Tree
+Automata Techniques and Applications. Draft, 1998.
+9. P.W. Dart and J. Zobel. Efficient run-time type checking of typed logic programs.
+Journal of Logic Programming, 14(1-2):31–69, 1992.
+10. P.W. Dart and J. Zobel. A regular type language for logic programs. In Frank
+Pfenning, editor, Types in Logic Programming, pages 157–189. The MIT Press,
+1992.
+11. P. Devienne, J-M. Talbot, and S. Tison. Co-definite set constraints with membership expressions. In J. Jaffar, editor, Proceedings of the 1998 Joint Conference and
+Symposium on Logic Programming, pages 25–39. The MIT Press, 1998.
+12. T. Fruhwirth, E. Shapiro, M.Y. Vardi, and E. Yardeni. Logic programs as types
+for logic programs. In Proceedings of Sixth Annual IEEE Symposium on Logic in
+Computer Science, pages 300–309. The IEEE Computer Society Press, 1991.
+13. J.P. Gallagher and D.A. de Waal. Fast and precise regular approximations of logic
+programs. In M. Bruynooghe, editor, Proceedings of the Eleventh International
+Conference on Logic Programming, pages 599–613. The MIT Press, 1994.
+
+14. F. Gécseg and M. Steinby. Tree Automata. Akadémiai Kiadó, 1984.
+15. F. Gécseg and M. Steinby. Tree languages. In G. Rozenberg and A. Salomma,
+editors, Handbook of Formal Languages, pages 1–68. Springer-Verlag, 1996.
+16. M. Hanus. Horn clause programs with polymorphic types: semantics and resolution.
+Theoretical Computer Science, 89(1):63–106, 1991.
+17. N. Heintze and J. Jaffar. A finite presentation theorem for approximating logic
+programs. In Proceedings of the seventh Annual ACM Symposium on Principles of
+Programming Languages, pages 197–209. The ACM Press, 1990.
+18. N. Heintze and J. Jaffar. A decision procedure for a class of set constraints. Technical Report CMU-CS-91-110, Carnegie-Mellon University, February 1991. (Later
+version of a paper in Proc. 5th IEEE Symposium on LICS).
+19. N. Heintze and J. Jaffar. Semantic types for logic programs. In Frank Pfenning,
+editor, Types in Logic Programming, pages 141–155. The MIT Press, 1992.
+20. N. Heintze and J. Jaffar. Set constraints and set-based analysis. In Alan Borning,
+editor, Principles and Practice of Constraint Programming, volume 874 of Lecture
+Notes in Computer Science. Springer, May 1994. (PPCP’94: Second International
+Workshop, Orcas Island, Seattle, USA).
+21. D. Jacobs. Type declarations as subtype constraints in logic programming. SIGPLAN Notices, 25(6):165–73, 1990.
+22. L. Lu. Type analysis of logic programs in the presence of type definitions. In
+Proceedings of the 1995 ACM SIGPLAN Symposium on Partial Evaluation and
+Semantics-Based program manipulation, pages 241–252. The ACM Press, 1995.
+23. L. Lu. A polymorphic type analysis in logic programs by abstract interpretation.
+Journal of Logic Programming, 36(1):1–54, 1998.
+24. L. Lu and J. Cleary. On Dart-Zobel algorithm for testing regular type inclusion.
+Technical report, Department of Computer Science, The University of Waikato,
+October 1998. http://xxx.lanl.gov/ps/cs/9810001.
+25. P. Mishra. Towards a theory of types in Prolog. In Proceedings of the IEEE international Symposium on Logic Programming, pages 289–298. The IEEE Computer
+Society Press, 1984.
+26. A. Mycroft and R.A. O’Keefe. A polymorphic type system for Prolog. Artificial
+Intelligence, 23:295–307, 1984.
+27. Frank Pfenning, editor. Types in logic programming. The MIT Press, Cambridge,
+Massachusetts, 1992.
+28. U.S. Reddy. Types for logic programs. In S. Debray and M. Hermenegildo, editors,
+Logic Programming. Proceedings of the 1990 North American Conference, pages
+836–40. The MIT Press, 1990.
+29. M. Soloman. Type definitions with parameters. In Conference Record of the Fifth
+ACM Symposium on Principles of Programming Languages, pages 31–38, 1978.
+30. J. Tiuryn. Type inference problems: A survey. In B. Roven, editor, Proceedings of
+the Fifteenth International Symposium on Mathematical Foundations of Computer
+Science, pages 105–120. Springer-Verlag, 1990.
+31. E. Yardeni, T. Fruehwirth, and E. Shapiro. Polymorphically typed logic programs.
+In K. Furukawa, editor, Logic Programming. Proceedings of the Eighth International
+Conference, pages 379–93. The MIT Press, 1991.
+32. E. Yardeni and E. Shapiro. A type system for logic programs. Journal of Logic
+Programming, 10(2):125–153, 1991.
+33. J. Zobel. Derivation of polymorphic types for Prolog programs. In J.-L. Lassez, editor, Logic Programming: Proceedings of the fourth international conference, pages
+817–838. The MIT Press, 1987.
+
+Appendix
+Lemma 3. Let C be a conjunctive type expression. empty(C) iff
+∀f ∈ ∩α∈pos(C) F (α).
+empty((⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) ∼(⊔Afτ )))
+Proof. Let t be a sequence of terms and f a function symbol. By
+the definition of [·]]∆ , f (t) ∈ [C]]∆ iff f ∈ ∩α∈pos(C) F (α) and t ∈
+[⊓ω∈pos(C) (⊔Afω ))]]∆ \ [(⊔τ ∈neg(C) (⊔Afτ ))]]∆ . t ∈ [⊓ω∈pos(C) (⊔Afω ))]]∆ \
+[(⊔τ ∈neg(C) (⊔Afτ ))]]∆ iff t ∈ [(⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) ∼(⊔Afτ ))]]∆ .
+Thus, empty(C) iff empty((⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) ∼(⊔Afτ ))) for
+each f ∈ ∩α∈pos(C) F (α).
+
+Lemma 4. Let Γ be a conjunctive sequence expression. Then
+empty(Γ ) iff ⊔1≤jkΓ kempty(Γ↓j)
+Proof. Let kΓ k = Tn and Γ = γ1 ⊓γ2 ⊓ · · · ⊓γm with γi = hγi,1 , γi,2, · · · , γi,n i.
+We have [Γ ]∆ = 1≤j≤m [γj]∆ . We have Γ↓j = γ1,j ⊓γ2,j ⊓ · · · ⊓γm,j .
+T
+∃1 ≤ j ≤ n.empty(Γ↓j) iff ∃1 ≤ j ≤ n. 1≤i≤m [γi,j]∆ = ∅ iff
+[Γ ]∆ = ∅ iff empty(Γ ).
+Lemma 5. [M]]∆ is a regular term language for any type expression
+M.
+Proof. The proof is done by constructing a regular term grammar
+for M [14]. We first consider the case M ∈ T (Π ∪ {1, 0}). Let
+R = hRTA(M), Σ, ∅, Υ, Mi with
+Υ = {(α → f (α1 , · · · , αk )) ∈ ground(∆) | α ∈ RTA(M)}
+R is a regular term grammar. It now suffices to prove that t ∈ [M]]∆
+iff M ⇒∗R t.
+– Sufficiency. Assume M ⇒∗R t. The proof is done by induction on
+derivation steps in M ⇒∗R t.
+• Basis. M ⇒R t. t must be a constant and M → t is in Υ
+which implies M → t is in ground(∆). By the definition of
+[·]]∆ . t ∈ [M]]∆ .
+
+(n−1)
+
+• Induction. Suppose M ⇒ f (M1 , · · · , Mk ) ⇒R
+t. Then
+ni
+t = f (t1 , · · · , tk ) and Mi ⇒R t with ni ≤ (n − 1). By the
+induction hypothesis, ti ∈ [Mi]∆ and hence t ∈ [M]]∆ by the
+definition of [·]]∆ .
+– Necessity. Assume t ∈ [M]]∆ . The proof is done by the height of
+t, denoted as height(t).
+• height(t) = 0 implies that t is a constant. t ∈ [M]]∆ implies
+that M → t is in ground(∆) and hence M → t is in Υ .
+Therefore, M ⇒R t.
+• Let height(t) = n. Then t = f (t1 , · · · , tk ). t ∈ [M]]∆ implies
+that (M → f (M1, · · · , Mk )) ∈ ground(∆) and ti ∈ [Mi]∆ .
+By the definition of Υ , we have (M → f (M1 , · · · , Mk )) ∈
+Υ . By the definition of RTA(·), we have Mi ∈ RTA(M).
+By the induction hypothesis, Mi ⇒∗R ti . Therefore, M ⇒R
+f (M1 , · · · , Mk ) ⇒∗R f (t1 , · · · , tk ) = t.
+Now consider the case M ∈ T (Π ∪ {⊓, ⊔, ∼, 1, 0}). We complete
+the proof by induction on the height of M.
+– height(M) = 0. Then M doesn’t contain set operator. We have
+already proved that [M]]∆ is a regular term language.
+– Now suppose height(M) = n. If M doesn’t contain set operator
+then the lemma has already been proved. If the principal type constructor is one of set operators then the result follows immediately
+as regular term languages are closed under union, intersection
+and complement operators [14,15,8]. It now suffices to prove the
+case M = c(M1 , · · · , Ml ) with c ∈ Π. Let N = c(X1 , · · · , Xl )
+where each Xj is a different new type constructor of arity 0.
+Let Π ′ = Π{X1, · · · , Xl }, Σ ′ = Σ ∪ {x1 , · · · , xl } and ∆′ = ∆ ∪
+{Xj → xj |1 ≤ j ≤ l}. [N ]∆′ is a regular term language on
+Σ ∪ {x1 , · · · , xl } because N doesn’t contain set operators. By the
+induction hypothesis, [Mj]∆ is a regular term language. By the
+definition of [·]]· , we have
+[M]]∆ = [N ]∆′ [x1 := [M1]∆ , · · · , xl := [Ml]∆ ]
+which is a regular term language [14,15,8]. S[y1 := Sy1 , · · · , ] is
+the set of terms each of which is obtained from a term in S by
+replacing each occurrence of yj with a (possibly different) term
+from Syj . This completes the induction and the proof.
+
+The proof also indicates that a non-deterministic frontier-to-root
+tree automaton that recognises [M]]∆ has |RTA(M)| states and that
+a deterministic frontier-to-root tree automaton that recognises [M]]∆
+has O(2|RTA(M)| ) states.
+
+
+
+Summary:
+This research paper covers the following topic: An Emptiness Algorithm for Regular Types with
+Set Operators
+
+arXiv:cs/9811015v1 [cs.LO] 11 Nov 1998
+
+Lunjin Lu and John G. Cleary
+Department of Computer Science
+University of Waikato
+Hamilton, New Zealand
+Phone: +64-838-4627/4378
+{lunjin,jcleary}@cs.waikato.ac.nz
+
+Abstract. An algorithm to decide the emptiness of a regular type expression with set operators given a set of parameterised type definitions
+is presented. The algorithm can also be used to decide the equivalence
+of two regular type expressions and the inclusion of one regular type expression in another. The algorithm strictly generalises previous work in
+that tuple distributivity is not assumed and set operators are permitted
+in type expressions.
+Keywords: type, emptiness, prescriptive type
+
+1
+
+Introduction
+
+Types play an important role in programming languages [6]. They
+make programs easier to understand and help detect errors. Types
+have been introduced into logic programming in the forms of type
+checking and inference [5,9,12,26,32] or type analysis [25,33,17,19,13,22,7,23]
+or typed languages [16,21,28,31]. Recent logic programming systems
+allow the programmer to declare types for predicates and type errors
+are then detected either at compile time or at run time. The reader
+is referred to [27] for more details on types in logic programming.
+A type is a possibly infinite set of ground terms with a finite
+representation. An integral part of any type system is its type language that specifies which sets of ground terms are types. To be
+useful, types should be closed under intersection, union and complement operations. The decision problems such as the emptiness of
+a type, inclusion of a type in another and equivalence of two types
+should be decidable. Regular term languages [14,8], called regular
+types, satisfy these conditions and have been used widely used as
+types [29,25,33,9,17,21,28,31,12,32,19,13,22,7,23].
+Most type systems use tuple distributive regular types which are
+strictly less powerful than regular types [29,25,33,17,21,28,31,12,32,19,13,22,7,23].
+
+Tuple distributive regular types are regular types closed under tuple
+distributive closure. Intuitively, the tuple distributive closure of a set
+of terms is the set of all terms constructed recursively by permuting
+each argument position among all terms that have the same function
+symbol [32].
+This paper gives an algorithm to decide if a type expression denotes an empty set of terms. The correctness of the algorithm is
+proved and its complexity is analysed. The algorithm works on prescriptive types [28]. By prescriptive types, we mean that the meaning of a type is determined by a given set of type definitions. We
+allow parametric and overloading polymorphism in type definitions.
+Prescriptive types are useful both in compilers and other program
+manipulation tools such as debuggers because they are easy to understand for programmers. Type expressions may contain set operators
+with their usual interpretations. Thus, the algorithm can be used to
+decide the equivalence of two type expressions and the inclusion of
+one type expression in another. The introduction of set operators
+into type expressions allows concise and intuitive representation of
+regular types.
+Though using regular term languages as types allow us to make
+use of theoretical results in the field of tree automata [14], algorithms
+for testing the emptiness of tree automata cannot be applied directly
+as type definitions may be parameterised. For instance, in order to
+decide the emptiness of a type expression given a set of type definitions, it would be necessary to construct a tree automaton from
+the type expression and the set of type definitions before an algorithm for determining the emptiness of an tree automaton can be
+used. When type definitions are parameterised, this would make it
+necessary to construct a different automaton each time the emptiness of a type expression is tested. Thus, an algorithm that works
+directly with type definitions is desirable as it avoids this repeated
+construction of automata.
+Attempts have been made in the past to find algorithms for regular types [25,12,32,33,31,10,9]. To our knowledge, Dart and Zobel’s
+work [10] is the only one to present decision algorithms for emptiness
+and inclusion problems for prescriptive regular types without the tuple distributive restriction. Unfortunately, their decision algorithm
+for the inclusion problem is incorrect for regular types in general.
+See [24] for a counterexample. Moreover, the type language of Dart
+
+and Zobel is less expressive than that considered in this paper since
+it doesn’t allow set operators and parameterised type definitions.
+Set constraint solving has also been used in type checking and
+type inference [3,2,20,18,11]. However, set constraint solving methods are intended to infer descriptive types [28] rather than for testing
+emptiness of prescriptive types [28]. Therefore, they are useful in different settings from the algorithm presented in this paper. Moreover,
+algorithms proposed for set constraint solving [3,4,2,1] are not applicable to the emptiness problem we considered in this paper as they
+don’t take type definitions into account.
+The remainder of this paper is organised as follows. Section 2
+describes our language of type expressions and type definitions. Section 3 presents our algorithm for testing if a type expression denotes
+an empty set of terms. Section 4 addresses the of the algorithm.
+Section 5 presents the complexity of the algorithm and section 6
+concludes the paper. Some lemmas are presented in the appendix.
+2
+
+Type Language
+
+Let Σ be a fixed ranked alphabet. Each symbol in Σ is called a
+function symbol and has a fixed arity. It is assumed that Σ contains
+at least one constant that is a function symbol of arity 0. The arity
+of a symbol f is denoted as arity(f ). Σ may be considered as the set
+of function symbols in a program. Let T (Φ) be the set of all terms
+over Φ. T (Σ) is the set of all possible values that a program variable
+can take. We shall use regular term languages over Σ as types.
+A type is represented by a ground term constructed from another
+ranked alphabet Π and {⊓, ⊔, ∼, 1, 0}, called type constructors. It is
+assumed that (Π ∪ {⊓, ⊔, ∼, 1, 0}) ∩ Σ = ∅. Thus, a type expression
+is a term in T (Π ∪ {⊓, ⊔, ∼, 1, 0}). The denotations of type constructors in Π are determined by type definitions whilst ⊓, ⊔, ∼, 1
+and 0 have fixed denotations that will be given soon.
+Several equivalent formalisms such as tree automata [14,8], regular term grammars [14,10,8] and regular unary logic programs [32]
+have been used to define regular types. We define types by type
+rules. A type rule is a production rule of the form c(ζ1 , · · · , ζm ) → τ
+where c ∈ Π, ζ1 , · · · , ζm are different type parameters and τ ∈
+T (Σ ∪ Π ∪ Ξm ) where Ξm = {ζ1 , · · · , ζm }. The restriction that every
+type parameter in the righthand side of a type rule must occur in
+
+the lefthand side of the type rule is often referred to as type preserving [30] and has been used in all the type definition formalisms.
+Note that overloading of function symbols is permitted as a function
+symbol can appear in the righthand sides of many type rules. We
+def S
+denote by ∆ the set of all type rules and define Ξ = c∈Π Ξarity(c) .
+hΠ, Σ, ∆i is a restricted form of context-free term grammar.
+Example 1. Let Σ = {0, s(), nil, cons(, )} and Π = {Nat, Even, List()}.
+∆ defines natural numbers, even numbers, and lists where
+
+
+ Nat
+
+
+
+
+→ 0 | s(Nat),
+
+∆ = Even → 0 | s(s(Even)),
+
+
+ List(ζ) → nil | cons(ζ, List(ζ)) 
+
+where, for instance, Nat → 0 | s(Nat) is an abbreviation of two rules
+Nat → 0 and Nat → s(Nat).
+∆ is called simplified if τ in each production rule c(ζ1 , · · · , ζm ) → τ
+is of the form f (τ1 , · · · , τn ) such that each τj , for 1 ≤ j ≤ n, is either
+in Ξm or of the form d(ζ1′ , · · · , ζk′ ) and ζ1′ , · · · , ζk′ ∈ Ξm . We shall
+assume that ∆ is simplified. There is no loss of generality to use
+a simplified set of type rules since every set of type rules can be
+simplified by introducing new type constructors and rewriting and
+adding type rules in the spirit of [10].
+Example 2. The following is the simplified version of the set of type
+rules in example 1. Σ = {0, s(), nil, cons(, )}, Π = {Nat, Even, Odd, List()}
+and
+∆=
+
+(
+
+Nat → 0 | s(Nat), Even → 0 | s(Odd),
+Odd → s(Even), List(ζ) → nil | cons(ζ, List(ζ))
+
+)
+
+A type valuation φ is a mapping from Ξ to T (Π ∪{⊓, ⊔, ∼, 1, 0}).
+The instance φ(R) of a production rule R under φ is obtained by replacing each occurrence of each type parameter ζ in R with φ(ζ).
+E.g., List(Nat⊓(∼Even)) → cons(Nat⊓(∼Even), List(Nat⊓(∼Even)))
+is the instance of List(ζ) → cons(ζ, List(ζ)) under a type valuation
+that maps ζ to Nat⊓(∼Even). Let
+def
+
+ground(∆) = {φ(R) | R ∈ ∆ ∧ φ ∈ (Ξ 7→ T (Π ∪ {⊓, ⊔, ∼, 1, 0}))}
+∪ {1 7→ f (1, · · · , 1) | f ∈ Σ}
+
+ground(∆) is the set of all ground instances of grammar rules in ∆
+plus rules of the form 1 → f (1, · · · , 1) for every f ∈ Σ.
+Given a set ∆ of type definitions, the type denoted by a type
+expression is determined by the following meaning function.
+def
+
+[1]]∆ = T (Σ)
+def
+
+[0]]∆ = ∅
+def
+
+[E1 ⊓E2]∆ = [E1]∆ ∩ [E2]∆
+def
+
+[E1 ⊔E2]∆ = [E1]∆ ∪ [E2]∆
+def
+
+[∼E]]∆ = T (Σ) − [E]]∆
+def
+
+[ω]]∆ =
+
+[
+
+{f (t1 , · · · , tn ) | ∀1 ≤ i ≤ n. ti ∈ [Ei]∆ }
+
+(ω→f (E1 ,···,En ))∈ground(∆)
+
+[·]]∆ gives fixed denotations to ⊓, ⊔, ∼, 1 and 0. ⊓, ⊔ and ∼ are
+interpreted by [·]]∆ as set intersection, set union and set complement
+with respect to T (Σ). 1 denotes T (Σ) and 0 the empty set.
+Example 3. Let ∆ be that in example 2. We have
+[Nat]]∆ = {0, s(0), s(s(0)), · · ·}
+[Even]]∆ = {0, s(s(0)), s(s(s(s(0)))), · · ·}
+[Nat⊓∼Even]]∆ = {s(0), s(s(s(0))), s(s(s(s(s(0))))), · · ·}
+[List(Nat⊓∼Even)]]∆ = {cons(s(0), nil), cons(s(s(s(0))), nil), · · ·}
+The lemma 5 in the appendix states that every type expression
+denotes a regular term language, that is, a regular type.
+We extend [·]]∆ to sequences θ of type expressions as follows.
+def
+
+[ǫ]]∆ = {ǫ}
+def
+
+[hEi • θ′]∆ = [E]]∆ × [θ′]∆
+where ǫ is the empty sequence, • is the infix sequence concatenation
+operator, hEi is the sequence consisting of the type expression E
+and × is the Cartesian product operator. As a sequence of type
+expressions, ǫ can be thought of consisting of zero instance of 1. We
+use Λ to denote the sequence consisting of zero instance of 0 and
+define [Λ]]∆ = ∅.
+We shall call a sequence of type expressions simply a sequence.
+A sequence expression is an expression consisting of sequences of
+
+the same length and ⊓, ⊔ and ∼. The length of the sequences in a
+sequence expression θ is called the dimension of θ and is denoted by
+kθk. Let θ, θ1 and θ2 be sequence expressions of the same length.
+def
+
+[θ1 ⊓θ2]∆ = [θ1]∆ ∩ [θ2]∆
+def
+
+[θ1 ⊔θ2]∆ = [θ1]∆ ∪ [θ2]∆
+def
+
+[∼θ]]∆ = T (Σ) × · · · × T (Σ) −[[θ]]∆
+|
+
+{z
+
+kθk times
+
+}
+
+A conjunctive sequence expression is a sequence expression of the
+form γ1 ∧ · · · ∧ γm where γi for, 1 ≤ i ≤ m, are sequences.
+3
+
+Emptiness Algorithm
+
+This section presents an algorithm that decides if a type expression
+denotes the empty set with respect to a given set of type definitions.
+The algorithm can also be used to decide if (the denotation of) one
+type expression is included in (the denotation of) another because
+E1 is included in E2 iff E1 ⊓∼E2 is empty.
+We first introduce some terminology and notations. A type atom
+is a type expression of which the principal type constructor is not a
+set operator. A type literal is either a type atom or the complement
+of a type atom. A conjunctive type expression C is of the form ⊓i∈I li
+with li being a type literal. Let α be a type atom. F (α) defined below
+is the set of the principal function symbols of the terms in [α]]∆ .
+def
+
+F (α) = {f ∈ Σ | ∃ζ1 · · · ζk .((α → f (ζ1, · · · , ζk )) ∈ ground(∆))}
+Let f ∈ Σ. Define
+def
+
+Afα = {hα1 , · · · , αk i | (α → f (α1 , · · · , αk )) ∈ ground(∆)}
+We have [Afα]∆ = {ht1 , · · · , tk i | f (t1 , · · · , tk ) ∈ [α]]∆ }. Both F (α) and
+Afα are finite even though ground(∆)) is usually not finite.
+The algorithm repeatedly reduces the emptiness problem of a type
+expression to the emptiness problems of sequence expressions and
+then reduces the emptiness problem of a sequence expression to the
+emptiness problems of type expressions. Tabulation is used to break
+down any possible loop and to ensure termination. Let O be a type
+def
+expression or a sequence expression. Define empty(O) = ([[O]]∆ = ∅).
+
+3.1
+
+Two Reduction Rules
+
+We shall first sketch the two reduction rules and then add tabulation
+to form an algorithm. Initially the algorithm is to decide the validity
+of a formula of the form
+empty(E)
+(1)
+where E is a type expression.
+The first reduction rule rewrites a formula of
+the form (1) into a conjunction of formulae of the following form.
+Reduction Rule One.
+
+empty(σ)
+
+(2)
+
+where σ is a sequence expression where ∼ is applied to type expressions but not to any sequence expression.
+It is obvious that a type expression has a unique (modulo equivalence of denotation) disjunctive normal form. Let DNF(E) be the disjunctive normal form of E. empty(E) can written into ∧C∈DNF(E) empty(C).
+Each C is a conjunctive type expression. We assume that C contains
+at least one positive type literal. This doesn’t cause any loss of generality as [1⊓C]]∆ = [C]]∆ for any conjunctive type expression C. We
+also assume that C doesn’t contain repeated occurrences of the same
+type literal.
+Let C = ⊓1≤i≤m ωi ⊓ ⊓1≤j≤n ∼τj where ωi and τj are type atoms.
+def
+The set of positive type literals in C is denoted as pos(C) = {ωi | 1 ≤
+i ≤ m} while the set of complemented type atoms are denoted as
+def
+neg(C) = {τj | 1 ≤ j ≤ n}. lit(C) denotes the set of literals occurring in C. By lemma 3 in the appendix, empty(C) is equivalent
+to
+∀f ∈ ∩α∈pos(C) F (α).
+(3)
+empty((⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) ∼(⊔Afτ )))
+The intuition behind the equivalence is as follows. [C]]∆ is empty
+iff, for every function symbol f , the set of the sequences ht1 , · · · , tk i
+of terms such that f (t1 , · · · , tk ) ∈ [C]]∆ is empty. Only the function
+symbols in ∩α∈pos(C) F (α) need to be considered.
+We note the following two special cases of the formula (3).
+(a) If ∩α∈pos(C) F (α) = ∅ then the formula (3) is true because ∧∅ =
+true. In particular, F (0) = ∅. Thus, if 0 ∈ pos(C) then ∩α∈pos(C) F (α) =
+∅ and hence the formula (3) is true.
+
+(b) If Afτ = ∅ for some τ ∈ neg(C) then ⊔Afτ = h0, · · · , 0i and
+∼(⊔Afτ ) = h1, · · · , 1i. Thus, τ has no effect on the subformula
+for f when Afτ = ∅.
+In order to get rid of complement operators over sequence subexpressions, the complement operator in ∼(⊔Afτ ) is pushed inwards
+by the function push defined in the following.
+def
+
+push(∼(⊔i∈I γi )) = ⊓i∈I push(∼γi )
+def
+
+push(∼hE1 , E2 , · · · , Ek i) = ⊔1≤l≤k h 1, · · · , 1, ∼El , 1, · · · , 1 i
+def
+
+push(∼ǫ) = Λ
+
+|
+
+{z
+
+l−1
+
+}
+
+|
+
+{z
+
+k−l
+
+for k ≥ 1
+
+}
+
+It follows from De Morgan’s law and the definition of [·]]∆ that
+[push(∼(⊔Afτ ))]]∆ = [∼(⊔Afτ )]]∆ . Substituting push(∼(⊔Afτ )) for ∼(⊔Afτ )
+in the formula (3) gives rise to a formula of the form (2).
+The second reduction rule rewrites a formula
+of the form 2 to a conjunction of disjunctions of formulae of the
+form 1. Formula 2 is written into a disjunction of formulae of the
+form.
+empty(Γ )
+Reduction Rule Two.
+
+where Γ be a conjunctive sequence expression.
+In the case kΓ k = 0, by lemma 4 in the appendix, empty(Γ ) can
+be decided without further reduction. If Λ ∈ Γ then empty(Γ ) is true
+because [Λ]]∆ = ∅. Otherwise, empty(Γ ) is false because [Γ ]∆ = {ǫ}.
+In the case kΓ k =
+6 0, empty(Γ ) is equivalent to
+∨1≤j≤kΓ k empty(Γ↓j)
+def
+
+where, letting Γ = γ1 ⊓ · · · ⊓γk , Γ↓j = ⊓1≤i≤k γij with γij being the j th
+component of γi . Note that Γ↓j is a type expression and empty(Γ↓j)
+is of the form 1.
+3.2
+
+Algorithm
+
+The two reduction rules in the previous section form the core of the
+algorithm. However, they alone cannot be used as an algorithm as
+a formula empty(E) may reduce to a formula containing empty(E)
+
+as a sub-formula, leading to nontermination. Suppose Σ = {f (), a},
+Π = {Null} and ∆ = {Null → f (Null)}. Clearly, empty(Null) is
+true. However, by the first reduction rule, empty(Null) reduces to
+empty(hNulli) which then reduces to empty(Null) by the second
+reduction rule. This process will not terminate.
+The solution, inspired by [10], is to remember in a table a particular kind of formulae of which truth is being tested. When a formula
+of that kind is tested, the table is first looked up. If the formula is
+implied by any formula in the table, then it is determined as true.
+Otherwise, the formula is added into the table and then reduced by
+a reduction rule.
+The emptiness algorithm presented below remembers every conjunctive type expression of which emptiness is being tested. Thus
+the table is a set of conjunctive type expressions. Let C1 and C2 be
+def
+conjunctive type expressions. We define (C1  C2 ) = (lit(C1 ) ⊇
+lit(C2 )). Since Ci = ⊓l∈lit(Ci ) l, C1  C2 implies [C1]∆ ⊆ [C2]∆ and
+hence (C1  C2 ) ∧ empty(C2 ) implies empty(C1 ).
+Adding tabulation to the two reduction rules, we obtain the following algorithm for testing the emptiness of prescriptive regular
+types. Let
+BCf = (⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) push(∼(⊔Afτ ))).
+def
+
+etype(E) = etype(E, ∅)
+def
+
+etype(E, Ψ ) = ∀C ∈ DNF(E).etype conj(C, Ψ )
+
+(4)
+(5)
+
+def
+
+etype
+conj(C, Ψ ) =
+
+if pos(C) ∩ neg(C) 6= ∅,
+ true,
+true,
+if ∃C ′ ∈ Ψ.C  C ′ ,
+ ∀f ∈ ∩
+f
+otherwise.
+α∈pos(C) F(α).eseq(BC , Ψ ∪ {C}),
+def
+
+eseq(Θ, Ψ ) = ∀Γ ∈ DNF(Θ).eseq conj(Γ, Ψ )
+def
+
+eseq conj(Γ, Ψ ) =
+
+(
+
+true
+if kΓ k = 0 ∧ Λ ∈ Γ ,
+false
+if kΓ k = 0 ∧ Λ 6∈ Γ ,
+∃1 ≤ j ≤ kΓ k.etype(Γ↓j, Ψ )
+if kΓ k =
+6 0.
+
+(6)
+
+(7)
+(8)
+
+Equation 4 initialises the table to the empty set. Equations 5
+and 6 implement the first reduction rule while equations 7 and 8 implement the second reduction rule. etype(, ) and etype conj(, ) test
+the emptiness of an arbitrary type expression and that of a conjunctive type expression respectively. eseq(, ) tests emptiness of a
+
+sequence expression consisting of sequences and ⊓ and ⊔ operators
+while eseq conj(, ) tests the emptiness of a conjunctive sequence expression. The expression of which emptiness is to be tested is passed
+as the first argument to these functions. The table is passed as the
+second argument. It is used in etype conj(, ) to detect a conjunctive
+type expression of which emptiness is implied by the emptiness of
+a tabled conjunctive type expression. As we shall show later, this
+ensures the termination of the algorithm. Each of the four binary
+functions returns true iff the emptiness of the first argument is implied by the second argument and the set of type definitions.
+Tabling any other kind of expressions such as arbitrary type expressions can also ensure termination. However, tabling conjunctive
+type expressions makes it easier to detect the implication of the
+emptiness of one expression by that of another because lit(C) can
+be easily computed given a conjunctive type expression C. In an implementation, a conjunctive type expression C in the table can be
+represented as lit(C).
+The first two definitions for etype conj(C, Ψ ) in equation 6 terminates the algorithm when the emptiness of C can be decided by
+C and Ψ without using type definitions. The first definition also excludes from the table any conjunctive type expression that contains
+both a type atom and its complement.
+3.3
+
+Examples
+
+We now illustrate the algorithm with some examples.
+Example 4. Let type definitions be given as in example 2. The tree
+in figure 1 depicts the evaluation of etype(Nat⊓∼Even⊓∼Odd) by
+the algorithm. Nodes are labeled with function calls. We will identity
+a node with its label. Arcs from a node to its children are labeled
+with the number of the equation that is used to evaluate the node.
+Abbreviations used in the labels are defined in the legend to the
+right of the tree. Though [A]]∆ = [B]]∆ , A and B are syntactically
+different type expressions. The evaluation returns true, verifying
+[Nat⊓∼Even⊓∼Odd]]∆ = ∅. Consider etype conj(B, {A}). We have
+B  A as lit(A) = lit(B). Thus, by equation 6, etype conj(B, {A}) =
+true.
+
+etype(A)
+3
+etype(A, ∅)
+4
+etype conj(A, ∅)
+∧
+5
+5
+eseq(C, {A})
+eseq(ǫ⊓Λ, {A})
+6
+6
+eseq conj(ǫ⊓Λ, {A})
+eseq conj(C, {A})
+7
+7
+true
+etype(B, {A})
+4
+etype conj(B, {A})
+5
+true
+
+Legend:
+A = N at⊓∼Even⊓∼Odd
+B = N at⊓∼Odd⊓∼Even
+C = hN ati⊓h∼Oddi⊓h∼Eveni
+
+Fig. 1. Evaluation of etype(N at⊓∼Even⊓∼Odd))
+
+Example 5. Let type definitions be given as in example 2. The tree
+in figure 2 depicts the evaluation of etype(List(Even⊓∼Nat)) by the
+algorithm. The evaluation returns false, verifying [List(Even⊓∼Nat)]]∆ 6=
+∅. Indeed, [List(Even⊓∼Nat)]]∆ = {nil}. The rightmost node is not
+evaluated as its sibling returns false, which is enough to establish
+the falsity of their parent node.
+etype(A)
+(3)
+etype(A, ∅)
+(4)
+etype conj(A, ∅)
+∧
+(5)/nil
+(5)/cons(,)
+eseq(ǫ, {A})
+eseq(hB, Ai, {A})
+(6)
+eseq conj(ǫ, {A})
+(7)
+false
+
+Legend:
+A = List(Even⊓∼N at)
+B = Even⊓∼N at
+
+Fig. 2. Evaluation of etype(List(Even⊓∼N at))
+
+Example 6. The following is a simplified version of the type definitions that is used in [24] to show the incorrectness of the algorithm
+by Dart and Zobel for testing inclusion of one regular type in another [10].
+Let Π = {α, β, θ, σ, ω, ζ, η}, Σ = {a, b, g(), h(, )} and
+∆=
+
+(
+
+α → g(ω), β → g(θ) | g(σ), θ → a | h(θ, ζ), σ → b | h(σ, η),
+ω → a | b | h(ω, ζ) | h(ω, η), ζ → a,
+η→b
+
+)
+
+Let t = g(h(h(a, b), a)). t ∈ [α]]∆ and t 6∈ [β]]∆ , see example 3
+in [24] for more details. So, [α]]∆ 6⊆ [β]]∆ . This is verified by our
+algorithm as follows. Let Ψ1 = {α⊓∼β} and Ψ2 = Ψ1 ∪ {ω⊓∼θ⊓∼σ}.
+By applying equations 4, 5, 6, 7, 8 and 5 in that order, we have
+etype(α⊓∼β) = etype conj(ω⊓∼θ⊓∼σ, Ψ1 ). By equation 6, we have
+etype(α⊓∼β) = eseq(ǫ⊓Λ⊓ǫ, Ψ2 ) ∧ eseq(ǫ⊓ǫ⊓Λ, Ψ2 ) ∧ eseq(Θ, Ψ2)
+where Θ = (hω, ζi⊔hω, ηi)⊓(h∼θ, 1i⊔h1, ∼ζi)⊓(h∼σ, 1i⊔h1, ∼ηi). We
+choose not to simplify expressions such as ǫ⊓ǫ⊓∼Λ so as to make
+the example easy to follow. By applying equations 7 and 8, we
+have both eseq(ǫ⊓Λ⊓ǫ, Ψ2 ) = true and eseq(ǫ⊓ǫ⊓Λ, Ψ2 ) = true. So,
+etype(α⊓∼β) = eseq(Θ, Ψ2). Let Γ = hω, ζi⊓h∼θ, 1i⊓h1, ∼ηi. To
+show etype(α⊓∼β) = false, it suffices to show eseq conj(Γ, Ψ2 ) =
+false by equation 7 because Γ ∈ DNF(Θ) and etype(α⊓∼β) =
+eseq(Θ, Ψ2).
+Figure 3 depicts the evaluation of eseq conj(Γ, Ψ2). The node that
+is linked to its parent by a dashed line is not evaluated because one of
+its siblings returns false, which is sufficient to establish the falsity of
+its parent. It is clear from the figure that etype conj(Θ, Ψ2) = false
+and hence etype(α⊓∼β) = false.
+
+4
+
+Correctness
+
+This section addresses the correctness of the algorithm. We shall
+first show that tabulation ensures the termination of the algorithm
+because the table can only be of finite size. We then establish the
+partial correctness of the algorithm.
+
+etype conj(Γ, Ψ2 )
+∨
+7
+7
+etype(ζ⊓∼η, Ψ2 )
+etyp(ω⊓∼θ, Ψ2 )
+4
+4
+etyp conj(ω⊓∼θ, Ψ2 )
+etype conj(ζ⊓∼η, Ψ2 )
+∧ 5/b
+5/a
+5/h(,)
+5
+eseq(ǫ⊓Λ, Ψ3 )
+eseq(ǫ⊓ǫ, Ψ4 )
+eseq(ǫ⊓ǫ, Ψ3 )
+eseq(Θ1 , Ψ3 )
+6
+6
+6
+eseq conj(ǫ⊓Λ, Ψ3 )
+eseq conj(ǫ⊓ǫ, Ψ3 )
+eseq conj(ǫ⊓ǫ, Ψ4 )
+7
+7
+7
+true
+false
+false
+Legend:
+Θ1 = (hω, ζi⊔hω, ηi)⊓(h∼θ, 1i⊔h1, ∼ζi)
+Ψ3 = Ψ2 ∪ {ω⊓∼θ}
+Ψ4 = Ψ2 ∪ {ζ⊓∼η}
+Γ = hω, ζi⊓h∼θ, 1i⊓h1, ∼ηi
+
+Fig. 3. Evaluation of etype conj(Γ, Ψ2 )
+4.1
+
+Termination
+
+Given a type expression E, a top-level type atom in E is a type
+atom in E that is not a sub-term of any type atom in E. The
+set of top-level type atoms in E is denoted by TLA(E). For instance, letting E = ∼List(Nat)⊔T ree(Nat⊓∼Even), TLA(E) =
+{List(Nat), T ree(Nat⊓∼Even)}. We extend TLA(·) to sequences
+def S
+by TLA(hE1 , E2 , · · · , Ek i) = 1≤i≤k TLA(Ei ).
+Given a type expression E0 , the evaluation tree for etype(E0 ) contains nodes of the form etype(E, Ψ ), etype conj(C, Ψ ), eseq(Θ, Ψ )
+and eseq conj(Γ, Ψ ) in addition to the root that is etype(E0 ). Only
+nodes of the form etype conj(C, Ψ ) add conjunctive type expressions to the table. Other forms of nodes only pass the table around.
+Therefore, it suffices to show that the type atoms occurring in the
+first argument of the nodes are from a finite set because any conjunctive type expression added into the table is the first argument
+of a node of the form etype conj(C, Ψ ).
+The set RTA(E0 ) of type atoms relevant to a type expression E0
+is the smallest set of type atoms satisfying
+– TLA(E0 ) ⊆ RTA(E0 ), and
+– if τ is in RTA(E0 ) and τ → f (τ1 , τ2 , · · · , τk ) is in ground(∆) then
+TLA(τi ) ⊆ RTA(E0 ) for 1 ≤ i ≤ k.
+
+The height of τi is no more than that of τ for any τ → f (τ1 , τ2 , · · · , τk )
+in ground(∆). Thus, the height of any type atom in RTA(E0 ) is
+finite. There are only a finite number of type constructors in Π.
+Thus, RTA(E0 ) is of finite size. It follows by examining the algorithm
+that type atoms in the first argument of the nodes in the evaluation
+tree for etype(E0 ) are from RTA(E0 ) which is finite. Therefore, the
+algorithm terminates.
+4.2
+
+Partial Correctness
+
+The partial correctness of the algorithm is established by showing
+etype(E0 ) = true iff empty(E0 ). Let Ψ be a set of conjunctive type
+def
+expressions. Define ρΨ = ∧C∈Ψ empty(C). The following two lemmas
+form the core of our proof of the partial correctness of the algorithm.
+Lemma 1. Let Ψ be a set of conjunctive type expressions, E a type
+expression, C a conjunctive type expression, Θ a sequence expression
+and Γ a conjunctive sequence expression.
+(a)
+(b)
+(c)
+(d)
+
+If
+If
+If
+If
+
+ρΨ
+ρΨ
+ρΨ
+ρΨ
+
+|= empty(C)
+|= empty(E)
+|= empty(Γ )
+|= empty(Θ)
+
+then
+then
+then
+then
+
+etype conj(C, Ψ ) = true, and
+etype(E, Ψ ) = true, and
+etype(Γ, Ψ ) = true, and
+etype(Θ, Ψ ) = true.
+
+Proof. The proof is done by induction on the size of the complement
+of Ψ with respect to the set of all possible conjunctive type expressions
+in which type atoms are from RTA(E0 ) where E0 is a type expression.
+Basis. The complement is empty. Ψ contains all possible conjunctive type expressions in which type atoms are from RTA(E0 ). We
+have C ∈ Ψ and hence etype conj(C, Ψ ) = true by equation 6. Therefore, (a) holds. (b) follows from (a) and equation 5. (c) follows from
+(b), equation 8 and lemma 4 in the appendix, and (d) follows from
+(c) and equation 7.
+Induction. By lemma 3 in the appendix, ρΨ |= empty(C) implies ρΨ |= empty(BCf ) for any f ∈ ∩α∈pos(C) F (α). Thus, ρΨ∪{C} |=
+empty(BCf ). The complement of Ψ ∪ {C} is smaller than the complement of Ψ . By the induction hypothesis, we have eseq(BCf , Ψ ∪{C}) =
+true. By equation 6, etype conj(C, Ψ ) = true. Therefore, (a) holds.
+(b) follows from (a) and equation 5. (c) follows from (b), equation 8
+and lemma 4 in the appendix and (d) follows from (c) and equation 7.
+This completes the proof of the lemma.
+
+Lemma 1 establishes the completeness of etype(, ), etype conj(, ),
+eseq(, ) and eseq conj(, ) while the following lemma establishes their
+soundness.
+Lemma 2. Let Ψ be a set of conjunctive type expressions, E a type
+expression, C a conjunctive type expression, Θ a sequence expression
+and Γ a conjunctive sequence expression.
+(a)
+(b)
+(c)
+(d)
+
+ρΨ
+ρΨ
+ρΨ
+ρΨ
+
+|= empty(C)
+|= empty(E)
+|= empty(Γ )
+|= empty(Θ)
+
+if
+if
+if
+if
+
+etype conj(C, Ψ ) = true, and
+etype(E, Ψ ) = true, and
+etype(Γ, Ψ ) = true, and
+etype(Θ, Ψ ) = true.
+
+Proof. It suffices to prove (a) since (b),(c) and (d) follow from (a)
+as in lemma 1. The proof is done by induction on dp(C, Ψ ) the depth
+of the evaluation tree for etype conj(C, Ψ ).
+Basis. dp(C, Ψ ) = 1. etype conj(C, Ψ ) = true implies either (i)
+pos(C) ∩ neg(C) 6= ∅ or (ii) ∃C ′ ∈ Ψ.C  C ′ . In case (i), empty(C)
+is true and ρΨ |= empty(C). Consider case (ii). By the definition of
+ and ρΨ , we have etype conj(C, Ψ ) = true implies ρΨ |= empty(C).
+Induction. dp(C, Ψ ) > 1. Assume etype conj(C, Ψ ) = true and
+ρΨ |= ¬empty(C). By lemma 3, there is f ∈ ∩α∈pos(C) F (α) such
+that ρΨ |= ¬empty(BCf ). We have ρΨ∪{C} |= ¬empty(BCf ). dp(BCf , Ψ ∪
+{C}) < dp(C, Ψ ). By the induction hypothesis, we have etuple(BCf , Ψ ∪
+{C}) = false for otherwise, ρΨ∪{C} |= BCf . By equation 6, etype conj(C, Ψ ) =
+false which contradicts etype conj(C, Ψ ) = true. So, ρΨ |= empty(C)
+if etype conj(C, Ψ ) = true. This completes the induction and the
+proof of the lemma.
+
+The following theorem is a corollary of lemmas 1 and 2.
+Theorem 1. For any type expression E, etype(E) = true iff empty(E).
+Proof. By equation 4, etype(E) = etype(E, ∅). By lemma 1.(b) and
+lemma 2.(b), we have etype(E, ∅) = true iff ρ∅ |= empty(E). The
+result follows since ρ∅ = true.
+
+5
+
+Complexity
+
+We now address the issue of complexity of the algorithm. We only
+consider the worst-case time complexity of the algorithm. The time
+spent on evaluating etype(E0 ) for a given type expression E0 can be
+measured in terms of the number of nodes in the evaluation tree for
+etype(E0 ).
+The algorithm cycles through etype(, ), etype conj(, ), eseq(, ) and
+eseq conj(, ). Thus, children of a node of the form etype(E, Ψ ) can
+only be of the form etype conj(C, Ψ ), and so on.
+Let |S| be the number of elements in a given set S. The largest
+possible table in the evaluation of etype(E0 ) contains all the conjunctive type expressions of which type atoms are from RTA(E0 ).
+Therefore, the table can contain at most 2|RTA(E0 )| conjunctive type
+expressions. So, the height of the tree is bounded by O(2|RTA(E0 )| ).
+We now show that the branching factor of the tree is also bounded
+by O(2|RTA(E0 )| ). By equation 5, the number of children of etype(E, Ψ )
+is bounded by two to the power of the number of type atoms in E
+which is bounded by |RTA(E0 )| because E can only contain type
+atoms from RTA(E0 ). By equation 6, the number of children of
+etype conj(C, Ψ ) is bounded by |Σ|. The largest number of children of a node eseq(Θ, Ψ ) is bounded by two to the power of the
+number of sequences in Θ where Θ = BCf . For each τ ∈ neg(C),
+|push(∼(⊔Afτ ))| is O(arity(f )) and |C| < |RTA(E0 )|. Thus, the
+number of sequences in Θ is O(arity(f ) ∗ |RTA(E0 )|) and hence the
+number of children of eseq(Θ, Ψ ) is O(2|RTA(E0 )| ) since arity(f ) is a
+constant. By equation 8, the number of children of eseq conj(Γ, Ψ )
+is bounded by maxf ∈Σ arity(f ). Therefore, the branching factor of
+the tree is bounded by O(2|RTA(E0 )| ).
+The above discussion leads to the following conclusion.
+Proposition 1. The time complexity of the algorithm is O(2|RTA(E0 )| )).
+The fact that the algorithm is exponential in time is expected because the complexity coincides with the complexity of deciding the
+emptiness of any tree automaton constructed from the type expression and the type definitions. A deterministic frontier-to-root tree
+automaton recognising [E0]∆ will consist of 2|RTA(E0 )| states as observed in the proof of lemma 5. It is well-known that the decision
+
+of the emptiness of the language of a deterministic frontier-to-root
+tree automaton takes time polynomial in the number of the states
+of the tree automaton. Therefore, the worst-case complexity of the
+algorithm is the best we can expect from an algorithm for deciding
+the emptiness of regular types that contain set operators.
+6
+
+Conclusion
+
+We have presented an algorithm for deciding the emptiness of prescriptive regular types. Type expressions are constructed from type
+constructors and set operators. Type definitions prescribe the meaning of type expressions.
+The algorithm uses tabulation to ensure termination. Though the
+tabulation is inspired by Dart and Zobel [10], the decision problem
+we consider in this paper is more complex as type expressions may
+contain set operators. For that reason, the algorithm can also be
+used for inclusion and equivalence problems of regular types. The
+way we use tabulation leads to a correct algorithm for regular types
+while the Dart-Zobel algorithm has been proved incorrect for regular
+types [24] in general. To the best of our knowledge, our algorithm is
+the only correct algorithm for prescriptive regular types.
+In addition to correctness, our algorithm generalises the work of
+Dart and Zobel [10] in that type expressions can contain set operators and type definitions can be parameterised. Parameterised
+type definitions are more natural than monomorphic type definitions [12,26,32] while set operators makes type expressions concise.
+The combination of these two features allows more natural type declarations. For instance, the type of the logic program append can be
+declared or inferred as append(List(α), List(β), List(α⊔β)).
+The algorithm is exponential in time. This coincides with deciding the emptiness of the language recognised by a tree automaton
+constructed from the type expression and the type definitions. However, the algorithm avoids the construction of the tree automaton
+which cannot be constructed a priori when type definitions are parameterised.
+Another related field is set constraint solving [3,2,20,18,11]. However, set constraint solving methods are intended to infer descriptive
+types [28] rather than for testing the emptiness of a prescriptive
+type [28]. Therefore, they are useful in different settings from the al-
+
+gorithm presented in this paper. In addition, algorithms proposed for
+solving set constraints [3,4,2,1] are not applicable to the emptiness
+problem we considered in this paper. Take for example the constructor rule in [3,2] which states that emptiness of f (E1 , E2 , · · · , Em ) is
+equivalent to the emptiness of Ei for some 1 ≤ i ≤ m. However,
+empty(List(0)) is not equivalent to empty(0). The latter is true
+while the former is false since [List(0)]]∆ = {nil}. The constructor
+rule doesn’t apply because it deals with function symbols only but
+doesn’t take the type definitions into account.
+References
+1. A. Aiken, D. Kozen, M. Vardi, and E. Wimmers. The complexity of set constraints.
+In Proceedings of 1993 Computer Science Logic Conference, pages 1–17, 1992.
+2. A. Aiken and T.K. Lakshman. Directional type checking of logic programs. In
+B. Le Charlier, editor, Proceedings of the First International Static Analysis Symposium, pages 43–60. Springer-Verlag, 1994.
+3. A. Aiken and E. Wimmers. Solving systems of set constraints. In Proceedings of
+the Seventh IEEE Symposium on Logic in Computer Science, pages 329–340. The
+IEEE Computer Society Press, 1992.
+4. A. Aiken and E. Wimmers. Type inclusion constraints and type inference. In
+Proceedings of the 1993 Conference on Functional Programming Languages and
+Computer Architecture, pages 31–41, Copenhagen, Denmark, June 1993.
+5. C. Beierle. Type inferencing for polymorphic order-sorted logic programs. In
+L. Sterling, editor, Proceedings of the Twelfth International Conference on Logic
+Programming, pages 765–779. The MIT Press, 1995.
+6. L. Cardelli and P. Wegner. On understanding types, data abstraction, and polymorphism. ACM computing surveys, 17(4):471–522, 1985.
+7. M. Codish and V. Lagoon. Type dependencies for logic programs using aciunification. In Proceedings of the 1996 Israeli Symposium on Theory of Computing
+and Systems, pages 136–145. IEEE Press, June 1996.
+8. H. Comon, M. Dauchet, R. Gilleron, D. Lugiez, S. Tison, and M. Tommasi. Tree
+Automata Techniques and Applications. Draft, 1998.
+9. P.W. Dart and J. Zobel. Efficient run-time type checking of typed logic programs.
+Journal of Logic Programming, 14(1-2):31–69, 1992.
+10. P.W. Dart and J. Zobel. A regular type language for logic programs. In Frank
+Pfenning, editor, Types in Logic Programming, pages 157–189. The MIT Press,
+1992.
+11. P. Devienne, J-M. Talbot, and S. Tison. Co-definite set constraints with membership expressions. In J. Jaffar, editor, Proceedings of the 1998 Joint Conference and
+Symposium on Logic Programming, pages 25–39. The MIT Press, 1998.
+12. T. Fruhwirth, E. Shapiro, M.Y. Vardi, and E. Yardeni. Logic programs as types
+for logic programs. In Proceedings of Sixth Annual IEEE Symposium on Logic in
+Computer Science, pages 300–309. The IEEE Computer Society Press, 1991.
+13. J.P. Gallagher and D.A. de Waal. Fast and precise regular approximations of logic
+programs. In M. Bruynooghe, editor, Proceedings of the Eleventh International
+Conference on Logic Programming, pages 599–613. The MIT Press, 1994.
+
+14. F. Gécseg and M. Steinby. Tree Automata. Akadémiai Kiadó, 1984.
+15. F. Gécseg and M. Steinby. Tree languages. In G. Rozenberg and A. Salomma,
+editors, Handbook of Formal Languages, pages 1–68. Springer-Verlag, 1996.
+16. M. Hanus. Horn clause programs with polymorphic types: semantics and resolution.
+Theoretical Computer Science, 89(1):63–106, 1991.
+17. N. Heintze and J. Jaffar. A finite presentation theorem for approximating logic
+programs. In Proceedings of the seventh Annual ACM Symposium on Principles of
+Programming Languages, pages 197–209. The ACM Press, 1990.
+18. N. Heintze and J. Jaffar. A decision procedure for a class of set constraints. Technical Report CMU-CS-91-110, Carnegie-Mellon University, February 1991. (Later
+version of a paper in Proc. 5th IEEE Symposium on LICS).
+19. N. Heintze and J. Jaffar. Semantic types for logic programs. In Frank Pfenning,
+editor, Types in Logic Programming, pages 141–155. The MIT Press, 1992.
+20. N. Heintze and J. Jaffar. Set constraints and set-based analysis. In Alan Borning,
+editor, Principles and Practice of Constraint Programming, volume 874 of Lecture
+Notes in Computer Science. Springer, May 1994. (PPCP’94: Second International
+Workshop, Orcas Island, Seattle, USA).
+21. D. Jacobs. Type declarations as subtype constraints in logic programming. SIGPLAN Notices, 25(6):165–73, 1990.
+22. L. Lu. Type analysis of logic programs in the presence of type definitions. In
+Proceedings of the 1995 ACM SIGPLAN Symposium on Partial Evaluation and
+Semantics-Based program manipulation, pages 241–252. The ACM Press, 1995.
+23. L. Lu. A polymorphic type analysis in logic programs by abstract interpretation.
+Journal of Logic Programming, 36(1):1–54, 1998.
+24. L. Lu and J. Cleary. On Dart-Zobel algorithm for testing regular type inclusion.
+Technical report, Department of Computer Science, The University of Waikato,
+October 1998. http://xxx.lanl.gov/ps/cs/9810001.
+25. P. Mishra. Towards a theory of types in Prolog. In Proceedings of the IEEE international Symposium on Logic Programming, pages 289–298. The IEEE Computer
+Society Press, 1984.
+26. A. Mycroft and R.A. O’Keefe. A polymorphic type system for Prolog. Artificial
+Intelligence, 23:295–307, 1984.
+27. Frank Pfenning, editor. Types in logic programming. The MIT Press, Cambridge,
+Massachusetts, 1992.
+28. U.S. Reddy. Types for logic programs. In S. Debray and M. Hermenegildo, editors,
+Logic Programming. Proceedings of the 1990 North American Conference, pages
+836–40. The MIT Press, 1990.
+29. M. Soloman. Type definitions with parameters. In Conference Record of the Fifth
+ACM Symposium on Principles of Programming Languages, pages 31–38, 1978.
+30. J. Tiuryn. Type inference problems: A survey. In B. Roven, editor, Proceedings of
+the Fifteenth International Symposium on Mathematical Foundations of Computer
+Science, pages 105–120. Springer-Verlag, 1990.
+31. E. Yardeni, T. Fruehwirth, and E. Shapiro. Polymorphically typed logic programs.
+In K. Furukawa, editor, Logic Programming. Proceedings of the Eighth International
+Conference, pages 379–93. The MIT Press, 1991.
+32. E. Yardeni and E. Shapiro. A type system for logic programs. Journal of Logic
+Programming, 10(2):125–153, 1991.
+33. J. Zobel. Derivation of polymorphic types for Prolog programs. In J.-L. Lassez, editor, Logic Programming: Proceedings of the fourth international conference, pages
+817–838. The MIT Press, 1987.
+
+Appendix
+Lemma 3. Let C be a conjunctive type expression. empty(C) iff
+∀f ∈ ∩α∈pos(C) F (α).
+empty((⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) ∼(⊔Afτ )))
+Proof. Let t be a sequence of terms and f a function symbol. By
+the definition of [·]]∆ , f (t) ∈ [C]]∆ iff f ∈ ∩α∈pos(C) F (α) and t ∈
+[⊓ω∈pos(C) (⊔Afω ))]]∆ \ [(⊔τ ∈neg(C) (⊔Afτ ))]]∆ . t ∈ [⊓ω∈pos(C) (⊔Afω ))]]∆ \
+[(⊔τ ∈neg(C) (⊔Afτ ))]]∆ iff t ∈ [(⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) ∼(⊔Afτ ))]]∆ .
+Thus, empty(C) iff empty((⊓ω∈pos(C) (⊔Afω ))⊓(⊓τ ∈neg(C) ∼(⊔Afτ ))) for
+each f ∈ ∩α∈pos(C) F (α).
+
+Lemma 4. Let Γ be a conjunctive sequence expression. Then
+empty(Γ ) iff ⊔1≤jkΓ kempty(Γ↓j)
+Proof. Let kΓ k = Tn and Γ = γ1 ⊓γ2 ⊓ · · · ⊓γm with γi = hγi,1 , γi,2, · · · , γi,n i.
+We have [Γ ]∆ = 1≤j≤m [γj]∆ . We have Γ↓j = γ1,j ⊓γ2,j ⊓ · · · ⊓γm,j .
+T
+∃1 ≤ j ≤ n.empty(Γ↓j) iff ∃1 ≤ j ≤ n. 1≤i≤m [γi,j]∆ = ∅ iff
+[Γ ]∆ = ∅ iff empty(Γ ).
+Lemma 5. [M]]∆ is a regular term language for any type expression
+M.
+Proof. The proof is done by constructing a regular term grammar
+for M [14]. We first consider the case M ∈ T (Π ∪ {1, 0}). Let
+R = hRTA(M), Σ, ∅, Υ, Mi with
+Υ = {(α → f (α1 , · · · , αk )) ∈ ground(∆) | α ∈ RTA(M)}
+R is a regular term grammar. It now suffices to prove that t ∈ [M]]∆
+iff M ⇒∗R t.
+– Sufficiency. Assume M ⇒∗R t. The proof is done by induction on
+derivation steps in M ⇒∗R t.
+• Basis. M ⇒R t. t must be a constant and M → t is in Υ
+which implies M → t is in ground(∆). By the definition of
+[·]]∆ . t ∈ [M]]∆ .
+
+(n−1)
+
+• Induction. Suppose M ⇒ f (M1 , · · · , Mk ) ⇒R
+t. Then
+ni
+t = f (t1 , · · · , tk ) and Mi ⇒R t with ni ≤ (n − 1). By the
+induction hypothesis, ti ∈ [Mi]∆ and hence t ∈ [M]]∆ by the
+definition of [·]]∆ .
+– Necessity. Assume t ∈ [M]]∆ . The proof is done by the height of
+t, denoted as height(t).
+• height(t) = 0 implies that t is a constant. t ∈ [M]]∆ implies
+that M → t is in ground(∆) and hence M → t is in Υ .
+Therefore, M ⇒R t.
+• Let height(t) = n. Then t = f (t1 , · · · , tk ). t ∈ [M]]∆ implies
+that (M → f (M1, · · · , Mk )) ∈ ground(∆) and ti ∈ [Mi]∆ .
+By the definition of Υ , we have (M → f (M1 , · · · , Mk )) ∈
+Υ . By the definition of RTA(·), we have Mi ∈ RTA(M).
+By the induction hypothesis, Mi ⇒∗R ti . Therefore, M ⇒R
+f (M1 , · · · , Mk ) ⇒∗R f (t1 , · · · , tk ) = t.
+Now consider the case M ∈ T (Π ∪ {⊓, ⊔, ∼, 1, 0}). We complete
+the proof by induction on the height of M.
+– height(M) = 0. Then M doesn’t contain set operator. We have
+already proved that [M]]∆ is a regular term language.
+– Now suppose height(M) = n. If M doesn’t contain set operator
+then the lemma has already been proved. If the principal type constructor is one of set operators then the result follows immediately
+as regular term languages are closed under union, intersection
+and complement operators [14,15,8]. It now suffices to prove the
+case M = c(M1 , · · · , Ml ) with c ∈ Π. Let N = c(X1 , · · · , Xl )
+where each Xj is a different new type constructor of arity 0.
+Let Π ′ = Π{X1, · · · , Xl }, Σ ′ = Σ ∪ {x1 , · · · , xl } and ∆′ = ∆ ∪
+{Xj → xj |1 ≤ j ≤ l}. [N ]∆′ is a regular term language on
+Σ ∪ {x1 , · · · , xl } because N doesn’t contain set operators. By the
+induction hypothesis, [Mj]∆ is a regular term language. By the
+definition of [·]]· , we have
+[M]]∆ = [N ]∆′ [x1 := [M1]∆ , · · · , xl := [Ml]∆ ]
+which is a regular term language [14,15,8]. S[y1 := Sy1 , · · · , ] is
+the set of terms each of which is obtained from a term in S by
+replacing each occurrence of yj with a (possibly different) term
+from Syj . This completes the induction and the proof.
+
+The proof also indicates that a non-deterministic frontier-to-root
+tree automaton that recognises [M]]∆ has |RTA(M)| states and that
+a deterministic frontier-to-root tree automaton that recognises [M]]∆
+has O(2|RTA(M)| ) states.
+
+
