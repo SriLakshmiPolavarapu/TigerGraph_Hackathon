@@ -1,0 +1,126 @@
+{
+  "llm_judge": {
+    "LLM-Only": {
+      "pipeline": "LLM-Only",
+      "pass_count": 10,
+      "total": 10,
+      "pass_rate": 100.0,
+      "grades": [
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "bonus": true
+    },
+    "Basic RAG": {
+      "pipeline": "Basic RAG",
+      "pass_count": 3,
+      "total": 10,
+      "pass_rate": 30.0,
+      "grades": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "PASS",
+        "PASS",
+        "FAIL",
+        "PASS",
+        "FAIL",
+        "FAIL"
+      ],
+      "bonus": false
+    },
+    "GraphRAG": {
+      "pipeline": "GraphRAG",
+      "pass_count": 1,
+      "total": 10,
+      "pass_rate": 10.0,
+      "grades": [
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "PASS",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL",
+        "FAIL"
+      ],
+      "bonus": false
+    }
+  },
+  "bertscore": {
+    "LLM-Only": {
+      "pipeline": "LLM-Only",
+      "avg_f1": 0.835,
+      "avg_precision": 0.7971,
+      "avg_recall": 0.8769,
+      "avg_rescaled_f1": 0.67,
+      "f1_scores": [
+        0.853,
+        0.8142,
+        0.8449,
+        0.8655,
+        0.8325,
+        0.8287,
+        0.8257,
+        0.8174,
+        0.8304,
+        0.8379
+      ],
+      "bonus_raw": false,
+      "bonus_rescaled": true
+    },
+    "Basic RAG": {
+      "pipeline": "Basic RAG",
+      "avg_f1": 0.8438,
+      "avg_precision": 0.8258,
+      "avg_recall": 0.8628,
+      "avg_rescaled_f1": 0.6875,
+      "f1_scores": [
+        0.8441,
+        0.8414,
+        0.8522,
+        0.8416,
+        0.8773,
+        0.8439,
+        0.8426,
+        0.8316,
+        0.8311,
+        0.8319
+      ],
+      "bonus_raw": false,
+      "bonus_rescaled": true
+    },
+    "GraphRAG": {
+      "pipeline": "GraphRAG",
+      "avg_f1": 0.8394,
+      "avg_precision": 0.8284,
+      "avg_recall": 0.8513,
+      "avg_rescaled_f1": 0.6789,
+      "f1_scores": [
+        0.8574,
+        0.8332,
+        0.8249,
+        0.8703,
+        0.8284,
+        0.8513,
+        0.8365,
+        0.8054,
+        0.8461,
+        0.8409
+      ],
+      "bonus_raw": false,
+      "bonus_rescaled": true
+    }
+  }
+}
