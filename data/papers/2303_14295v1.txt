@@ -1,0 +1,22 @@
+Title: Clustering Multivariate Time Series using Energy Distance
+
+Authors: Richard A. Davis, Leon Fernandes, Konstantinos Fokianos
+
+Published: 2023-03-24
+
+Categories: stat.ME
+
+Abstract:
+A novel methodology is proposed for clustering multivariate time series data using energy distance defined in Székely and Rizzo (2013). Specifically, a dissimilarity matrix is formed using the energy distance statistic to measure separation between the finite dimensional distributions for the component time series. Once the pairwise dissimilarity matrix is calculated, a hierarchical clustering method is then applied to obtain the dendrogram. This procedure is completely nonparametric as the dissimilarities between stationary distributions are directly calculated without making any model assumptions. In order to justify this procedure, asymptotic properties of the energy distance estimates are derived for general stationary and ergodic time series. The method is illustrated in a simulation study for various component time series that are either linear or nonlinear. Finally the methodology is applied to two examples; one involves GDP of selected countries and the other is population size of various states in the U.S.A. in the years 1900 -1999.
+
+Paper ID: 2303.14295v1
+
+Summary:
+This paper titled "Clustering Multivariate Time Series using Energy Distance" was authored by Richard A. Davis, Leon Fernandes, Konstantinos Fokianos and published on 2023-03-24.
+It falls under the categories: stat.ME.
+The research explores the following topic: A novel methodology is proposed for clustering multivariate time series data using energy distance defined in Székely and Rizzo (2013). Specifically, a dissimilarity matrix is formed using the energy distance statistic to measure separation between the finite dimensional distributions for the component time series. Once the pairwise dissimilarity matrix is calculated, a hierarchical clustering method is then applied to obtain the dendrogram. This procedure is completely nonparametric as the dissimilarities between stationary distributions are directly calculated without making any model assumptions. In order to justify this procedure, asymptotic properties of the energy distance estimates are derived for general stationary and ergodic time series. The method is illustrated in a simulation study for various component time series that are either linear or nonlinear. Finally the methodology is applied to two examples; one involves GDP of selected countries and the other is population size of various states in the U.S.A. in the years 1900 -1999.
+
+Links:
+  - https://arxiv.org/abs/2303.14295v1
+  - https://arxiv.org/pdf/2303.14295v1
+  - https://doi.org/10.1111/jtsa.12688

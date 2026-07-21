@@ -1,0 +1,21 @@
+Title: One-Shot Neural Architecture Search via Compressive Sensing
+
+Authors: Minsu Cho, Mohammadreza Soltani, Chinmay Hegde
+
+Published: 2019-06-07
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Neural Architecture Search remains a very challenging meta-learning problem. Several recent techniques based on parameter-sharing idea have focused on reducing the NAS running time by leveraging proxy models, leading to architectures with competitive performance compared to those with hand-crafted designs. In this paper, we propose an iterative technique for NAS, inspired by algorithms for learning low-degree sparse Boolean functions. We validate our approach on the DARTs search space (Liu et al., 2018b) and NAS-Bench-201 (Yang et al., 2020). In addition, we provide theoretical analysis via upper bounds on the number of validation error measurements needed for reliable learning, and include ablation studies to further in-depth understanding of our technique.
+
+Paper ID: 1906.02869v2
+
+Summary:
+This paper titled "One-Shot Neural Architecture Search via Compressive Sensing" was authored by Minsu Cho, Mohammadreza Soltani, Chinmay Hegde and published on 2019-06-07.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Neural Architecture Search remains a very challenging meta-learning problem. Several recent techniques based on parameter-sharing idea have focused on reducing the NAS running time by leveraging proxy models, leading to architectures with competitive performance compared to those with hand-crafted designs. In this paper, we propose an iterative technique for NAS, inspired by algorithms for learning low-degree sparse Boolean functions. We validate our approach on the DARTs search space (Liu et al., 2018b) and NAS-Bench-201 (Yang et al., 2020). In addition, we provide theoretical analysis via upper bounds on the number of validation error measurements needed for reliable learning, and include ablation studies to further in-depth understanding of our technique.
+
+Links:
+  - https://arxiv.org/abs/1906.02869v2
+  - https://arxiv.org/pdf/1906.02869v2

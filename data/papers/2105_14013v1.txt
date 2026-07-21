@@ -1,0 +1,21 @@
+Title: Feature extraction and evaluation for BioMedical Question Answering
+
+Authors: Ankit Shah, Srishti Singh, Shih-Yen Tao
+
+Published: 2021-05-28
+
+Categories: cs.CL
+
+Abstract:
+In this paper, we present our work on the BioASQ pipeline. The goal is to answer four types of questions: summary, yes/no, factoids, and list. Our goal is to empirically evaluate different modules involved: the feature extractor and the sentence selection block. We used our pipeline to test the effectiveness of each module for all kinds of question types and perform error analysis. We defined metrics that are useful for future research related to the BioASQ pipeline critical to improve the performance of the training pipeline.
+
+Paper ID: 2105.14013v1
+
+Summary:
+This paper titled "Feature extraction and evaluation for BioMedical Question Answering" was authored by Ankit Shah, Srishti Singh, Shih-Yen Tao and published on 2021-05-28.
+It falls under the categories: cs.CL.
+The research explores the following topic: In this paper, we present our work on the BioASQ pipeline. The goal is to answer four types of questions: summary, yes/no, factoids, and list. Our goal is to empirically evaluate different modules involved: the feature extractor and the sentence selection block. We used our pipeline to test the effectiveness of each module for all kinds of question types and perform error analysis. We defined metrics that are useful for future research related to the BioASQ pipeline critical to improve the performance of the training pipeline.
+
+Links:
+  - https://arxiv.org/abs/2105.14013v1
+  - https://arxiv.org/pdf/2105.14013v1

@@ -1,0 +1,21 @@
+Title: Evaluating Text-to-Image and Text-to-Video Synthesis with a Conditional Fréchet Distance
+
+Authors: Jaywon Koo, Jefferson Hernandez, Moayed Haji-Ali, Ziyan Yang, Vicente Ordonez
+
+Published: 2025-03-27
+
+Categories: cs.CV
+
+Abstract:
+Evaluating text-to-image and text-to-video models is challenging due to a fundamental disconnect: established metrics fail to jointly measure visual quality and semantic alignment with text, leading to a poor correlation with human judgments. To address this critical issue, we propose cFreD, a general metric based on a Conditional Fréchet Distance that unifies the assessment of visual fidelity and text-prompt consistency into a single score. Existing metrics such as Fréchet Inception Distance (FID) capture image quality but ignore text conditioning while alignment scores such as CLIPScore are insensitive to visual quality. Furthermore, learned preference models require constant retraining and are unlikely to generalize to novel architectures or out-of-distribution prompts. Through extensive experiments across multiple recently proposed text-to-image models and diverse prompt datasets, cFreD exhibits a higher correlation with human judgments compared to statistical metrics , including metrics trained with human preferences. Our findings validate cFreD as a robust, future-proof metric for the systematic evaluation of text conditioned models, standardizing benchmarking in this rapidly evolving field. We release our evaluation toolkit and benchmark.
+
+Paper ID: 2503.21721v2
+
+Summary:
+This paper titled "Evaluating Text-to-Image and Text-to-Video Synthesis with a Conditional Fréchet Distance" was authored by Jaywon Koo, Jefferson Hernandez, Moayed Haji-Ali, Ziyan Yang, Vicente Ordonez and published on 2025-03-27.
+It falls under the categories: cs.CV.
+The research explores the following topic: Evaluating text-to-image and text-to-video models is challenging due to a fundamental disconnect: established metrics fail to jointly measure visual quality and semantic alignment with text, leading to a poor correlation with human judgments. To address this critical issue, we propose cFreD, a general metric based on a Conditional Fréchet Distance that unifies the assessment of visual fidelity and text-prompt consistency into a single score. Existing metrics such as Fréchet Inception Distance (FID) capture image quality but ignore text conditioning while alignment scores such as CLIPScore are insensitive to visual quality. Furthermore, learned preference models require constant retraining and are unlikely to generalize to novel architectures or out-of-distribution prompts. Through extensive experiments across multiple recently proposed text-to-image models and diverse prompt datasets, cFreD exhibits a higher correlation with human judgments compared to statistical metrics , including metrics trained with human preferences. Our findings validate cFreD as a robust, future-proof metric for the systematic evaluation of text conditioned models, standardizing benchmarking in this rapidly evolving field. We release our evaluation toolkit and benchmark.
+
+Links:
+  - https://arxiv.org/abs/2503.21721v2
+  - https://arxiv.org/pdf/2503.21721v2

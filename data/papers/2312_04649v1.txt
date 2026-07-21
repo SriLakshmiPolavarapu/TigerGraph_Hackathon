@@ -1,0 +1,22 @@
+Title: PyThaiNLP: Thai Natural Language Processing in Python
+
+Authors: Wannaphong Phatthiyaphaibun, Korakot Chaovavanich, Charin Polpanumas, Arthit Suriyawongkul, Lalita Lowphansirikul, Pattarawat Chormai, Peerat Limkonchotiwat, Thanathip Suntorntip, Can Udomcharoenchaikit
+
+Published: 2023-12-07
+
+Categories: cs.CL
+
+Abstract:
+We present PyThaiNLP, a free and open-source natural language processing (NLP) library for Thai language implemented in Python. It provides a wide range of software, models, and datasets for Thai language. We first provide a brief historical context of tools for Thai language prior to the development of PyThaiNLP. We then outline the functionalities it provided as well as datasets and pre-trained language models. We later summarize its development milestones and discuss our experience during its development. We conclude by demonstrating how industrial and research communities utilize PyThaiNLP in their work. The library is freely available at https://github.com/pythainlp/pythainlp.
+
+Paper ID: 2312.04649v1
+
+Summary:
+This paper titled "PyThaiNLP: Thai Natural Language Processing in Python" was authored by Wannaphong Phatthiyaphaibun, Korakot Chaovavanich, Charin Polpanumas, Arthit Suriyawongkul, Lalita Lowphansirikul, Pattarawat Chormai, Peerat Limkonchotiwat, Thanathip Suntorntip, Can Udomcharoenchaikit and published on 2023-12-07.
+It falls under the categories: cs.CL.
+The research explores the following topic: We present PyThaiNLP, a free and open-source natural language processing (NLP) library for Thai language implemented in Python. It provides a wide range of software, models, and datasets for Thai language. We first provide a brief historical context of tools for Thai language prior to the development of PyThaiNLP. We then outline the functionalities it provided as well as datasets and pre-trained language models. We later summarize its development milestones and discuss our experience during its development. We conclude by demonstrating how industrial and research communities utilize PyThaiNLP in their work. The library is freely available at https://github.com/pythainlp/pythainlp.
+
+Links:
+  - https://arxiv.org/abs/2312.04649v1
+  - https://arxiv.org/pdf/2312.04649v1
+  - https://doi.org/10.18653/v1/2023.nlposs-1.4

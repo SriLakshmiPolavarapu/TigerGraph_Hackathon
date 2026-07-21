@@ -1,0 +1,22 @@
+Title: Retrospex: Language Agent Meets Offline Reinforcement Learning Critic
+
+Authors: Yufei Xiang, Yiqun Shen, Yeqin Zhang, Cam-Tu Nguyen
+
+Published: 2025-05-17
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Large Language Models (LLMs) possess extensive knowledge and commonsense reasoning capabilities, making them valuable for creating powerful agents. However, existing LLM agent frameworks have not fully utilized past experiences for improvement. This work introduces a new LLM-based agent framework called Retrospex, which addresses this challenge by analyzing past experiences in depth. Unlike previous approaches, Retrospex does not directly integrate experiences into the LLM's context. Instead, it combines the LLM's action likelihood with action values estimated by a Reinforcement Learning (RL) Critic, which is trained on past experiences through an offline ''retrospection'' process. Additionally, Retrospex employs a dynamic action rescoring mechanism that increases the importance of experience-based values for tasks that require more interaction with the environment. We evaluate Retrospex in ScienceWorld, ALFWorld and Webshop environments, demonstrating its advantages over strong, contemporary baselines.
+
+Paper ID: 2505.11807v2
+
+Summary:
+This paper titled "Retrospex: Language Agent Meets Offline Reinforcement Learning Critic" was authored by Yufei Xiang, Yiqun Shen, Yeqin Zhang, Cam-Tu Nguyen and published on 2025-05-17.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Large Language Models (LLMs) possess extensive knowledge and commonsense reasoning capabilities, making them valuable for creating powerful agents. However, existing LLM agent frameworks have not fully utilized past experiences for improvement. This work introduces a new LLM-based agent framework called Retrospex, which addresses this challenge by analyzing past experiences in depth. Unlike previous approaches, Retrospex does not directly integrate experiences into the LLM's context. Instead, it combines the LLM's action likelihood with action values estimated by a Reinforcement Learning (RL) Critic, which is trained on past experiences through an offline ''retrospection'' process. Additionally, Retrospex employs a dynamic action rescoring mechanism that increases the importance of experience-based values for tasks that require more interaction with the environment. We evaluate Retrospex in ScienceWorld, ALFWorld and Webshop environments, demonstrating its advantages over strong, contemporary baselines.
+
+Links:
+  - https://arxiv.org/abs/2505.11807v2
+  - https://arxiv.org/pdf/2505.11807v2
+  - https://doi.org/10.18653/v1/2024.emnlp-main.268

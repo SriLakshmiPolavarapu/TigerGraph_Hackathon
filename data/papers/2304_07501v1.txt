@@ -1,0 +1,40 @@
+Title: Transition Propagation Graph Neural Networks for Temporal Networks
+
+Authors: Tongya Zheng, Zunlei Feng, Tianli Zhang, Yunzhi Hao, Mingli Song, Xingen Wang, Xinyu Wang, Ji Zhao, Chun Chen
+
+Published: 2023-04-15
+
+Categories: cs.IR
+
+Abstract:
+Researchers of temporal networks (e.g., social networks and transaction networks) have been interested in mining dynamic patterns of nodes from their diverse interactions.
+  Inspired by recently powerful graph mining methods like skip-gram models and Graph Neural Networks (GNNs), existing approaches focus on generating temporal node embeddings sequentially with nodes' sequential interactions.
+  However, the sequential modeling of previous approaches cannot handle the transition structure between nodes' neighbors with limited memorization capacity.
+  Detailedly, an effective method for the transition structures is required to both model nodes' personalized patterns adaptively and capture node dynamics accordingly.
+  In this paper, we propose a method, namely Transition Propagation Graph Neural Networks (TIP-GNN), to tackle the challenges of encoding nodes' transition structures.
+  The proposed TIP-GNN focuses on the bilevel graph structure in temporal networks: besides the explicit interaction graph, a node's sequential interactions can also be constructed as a transition graph.
+  Based on the bilevel graph, TIP-GNN further encodes transition structures by multi-step transition propagation and distills information from neighborhoods by a bilevel graph convolution.
+  Experimental results over various temporal networks reveal the efficiency of our TIP-GNN, with at most 7.2\% improvements of accuracy on temporal link prediction.
+  Extensive ablation studies further verify the effectiveness and limitations of the transition propagation module.
+  Our code is available at \url{https://github.com/doujiang-zheng/TIP-GNN}.
+
+Paper ID: 2304.07501v1
+
+Summary:
+This paper titled "Transition Propagation Graph Neural Networks for Temporal Networks" was authored by Tongya Zheng, Zunlei Feng, Tianli Zhang, Yunzhi Hao, Mingli Song, Xingen Wang, Xinyu Wang, Ji Zhao, Chun Chen and published on 2023-04-15.
+It falls under the categories: cs.IR.
+The research explores the following topic: Researchers of temporal networks (e.g., social networks and transaction networks) have been interested in mining dynamic patterns of nodes from their diverse interactions.
+  Inspired by recently powerful graph mining methods like skip-gram models and Graph Neural Networks (GNNs), existing approaches focus on generating temporal node embeddings sequentially with nodes' sequential interactions.
+  However, the sequential modeling of previous approaches cannot handle the transition structure between nodes' neighbors with limited memorization capacity.
+  Detailedly, an effective method for the transition structures is required to both model nodes' personalized patterns adaptively and capture node dynamics accordingly.
+  In this paper, we propose a method, namely Transition Propagation Graph Neural Networks (TIP-GNN), to tackle the challenges of encoding nodes' transition structures.
+  The proposed TIP-GNN focuses on the bilevel graph structure in temporal networks: besides the explicit interaction graph, a node's sequential interactions can also be constructed as a transition graph.
+  Based on the bilevel graph, TIP-GNN further encodes transition structures by multi-step transition propagation and distills information from neighborhoods by a bilevel graph convolution.
+  Experimental results over various temporal networks reveal the efficiency of our TIP-GNN, with at most 7.2\% improvements of accuracy on temporal link prediction.
+  Extensive ablation studies further verify the effectiveness and limitations of the transition propagation module.
+  Our code is available at \url{https://github.com/doujiang-zheng/TIP-GNN}.
+
+Links:
+  - https://arxiv.org/abs/2304.07501v1
+  - https://arxiv.org/pdf/2304.07501v1
+  - https://doi.org/10.1109/TNNLS.2022.3220548

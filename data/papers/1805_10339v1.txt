@@ -1,0 +1,22 @@
+Title: Curriculum Learning for Speech Emotion Recognition from Crowdsourced Labels
+
+Authors: Reza Lotfian, Carlos Busso
+
+Published: 2018-05-25
+
+Categories: eess.AS, cs.SD
+
+Abstract:
+This study introduces a method to design a curriculum for machine-learning to maximize the efficiency during the training process of deep neural networks (DNNs) for speech emotion recognition. Previous studies in other machine-learning problems have shown the benefits of training a classifier following a curriculum where samples are gradually presented in increasing level of difficulty. For speech emotion recognition, the challenge is to establish a natural order of difficulty in the training set to create the curriculum. We address this problem by assuming that ambiguous samples for humans are also ambiguous for computers. Speech samples are often annotated by multiple evaluators to account for differences in emotion perception across individuals. While some sentences with clear emotional content are consistently annotated, sentences with more ambiguous emotional content present important disagreement between individual evaluations. We propose to use the disagreement between evaluators as a measure of difficulty for the classification task. We propose metrics that quantify the inter-evaluation agreement to define the curriculum for regression problems and binary and multi-class classification problems. The experimental results consistently show that relying on a curriculum based on agreement between human judgments leads to statistically significant improvements over baselines trained without a curriculum.
+
+Paper ID: 1805.10339v1
+
+Summary:
+This paper titled "Curriculum Learning for Speech Emotion Recognition from Crowdsourced Labels" was authored by Reza Lotfian, Carlos Busso and published on 2018-05-25.
+It falls under the categories: eess.AS, cs.SD.
+The research explores the following topic: This study introduces a method to design a curriculum for machine-learning to maximize the efficiency during the training process of deep neural networks (DNNs) for speech emotion recognition. Previous studies in other machine-learning problems have shown the benefits of training a classifier following a curriculum where samples are gradually presented in increasing level of difficulty. For speech emotion recognition, the challenge is to establish a natural order of difficulty in the training set to create the curriculum. We address this problem by assuming that ambiguous samples for humans are also ambiguous for computers. Speech samples are often annotated by multiple evaluators to account for differences in emotion perception across individuals. While some sentences with clear emotional content are consistently annotated, sentences with more ambiguous emotional content present important disagreement between individual evaluations. We propose to use the disagreement between evaluators as a measure of difficulty for the classification task. We propose metrics that quantify the inter-evaluation agreement to define the curriculum for regression problems and binary and multi-class classification problems. The experimental results consistently show that relying on a curriculum based on agreement between human judgments leads to statistically significant improvements over baselines trained without a curriculum.
+
+Links:
+  - https://arxiv.org/abs/1805.10339v1
+  - https://arxiv.org/pdf/1805.10339v1
+  - https://doi.org/10.1109/TASLP.2019.2898816

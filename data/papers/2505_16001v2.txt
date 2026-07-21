@@ -1,0 +1,22 @@
+Title: Image-to-Image Translation with Diffusion Transformers and CLIP-Based Image Conditioning
+
+Authors: Qiang Zhu, Kuan Lu, Menghao Huo, Yuxiao Li
+
+Published: 2025-05-21
+
+Categories: cs.CV
+
+Abstract:
+Image-to-image translation aims to learn a mapping between a source and a target domain, enabling tasks such as style transfer, appearance transformation, and domain adaptation. In this work, we explore a diffusion-based framework for image-to-image translation by adapting Diffusion Transformers (DiT), which combine the denoising capabilities of diffusion models with the global modeling power of transformers. To guide the translation process, we condition the model on image embeddings extracted from a pre-trained CLIP encoder, allowing for fine-grained and structurally consistent translations without relying on text or class labels. We incorporate both a CLIP similarity loss to enforce semantic consistency and an LPIPS perceptual loss to enhance visual fidelity during training. We validate our approach on two benchmark datasets: face2comics, which translates real human faces to comic-style illustrations, and edges2shoes, which translates edge maps to realistic shoe images. Experimental results demonstrate that DiT, combined with CLIP-based conditioning and perceptual similarity objectives, achieves high-quality, semantically faithful translations, offering a promising alternative to GAN-based models for paired image-to-image translation tasks.
+
+Paper ID: 2505.16001v2
+
+Summary:
+This paper titled "Image-to-Image Translation with Diffusion Transformers and CLIP-Based Image Conditioning" was authored by Qiang Zhu, Kuan Lu, Menghao Huo, Yuxiao Li and published on 2025-05-21.
+It falls under the categories: cs.CV.
+The research explores the following topic: Image-to-image translation aims to learn a mapping between a source and a target domain, enabling tasks such as style transfer, appearance transformation, and domain adaptation. In this work, we explore a diffusion-based framework for image-to-image translation by adapting Diffusion Transformers (DiT), which combine the denoising capabilities of diffusion models with the global modeling power of transformers. To guide the translation process, we condition the model on image embeddings extracted from a pre-trained CLIP encoder, allowing for fine-grained and structurally consistent translations without relying on text or class labels. We incorporate both a CLIP similarity loss to enforce semantic consistency and an LPIPS perceptual loss to enhance visual fidelity during training. We validate our approach on two benchmark datasets: face2comics, which translates real human faces to comic-style illustrations, and edges2shoes, which translates edge maps to realistic shoe images. Experimental results demonstrate that DiT, combined with CLIP-based conditioning and perceptual similarity objectives, achieves high-quality, semantically faithful translations, offering a promising alternative to GAN-based models for paired image-to-image translation tasks.
+
+Links:
+  - https://arxiv.org/abs/2505.16001v2
+  - https://arxiv.org/pdf/2505.16001v2
+  - https://doi.org/10.1109/CVIDL65390.2025.11085477

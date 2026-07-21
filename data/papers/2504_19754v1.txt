@@ -1,0 +1,21 @@
+Title: Reconstructing Context: Evaluating Advanced Chunking Strategies for Retrieval-Augmented Generation
+
+Authors: Carlo Merola, Jaspinder Singh
+
+Published: 2025-04-28
+
+Categories: cs.IR, cs.AI, cs.CL
+
+Abstract:
+Retrieval-augmented generation (RAG) has become a transformative approach for enhancing large language models (LLMs) by grounding their outputs in external knowledge sources. Yet, a critical question persists: how can vast volumes of external knowledge be managed effectively within the input constraints of LLMs? Traditional methods address this by chunking external documents into smaller, fixed-size segments. While this approach alleviates input limitations, it often fragments context, resulting in incomplete retrieval and diminished coherence in generation. To overcome these shortcomings, two advanced techniques, late chunking and contextual retrieval, have been introduced, both aiming to preserve global context. Despite their potential, their comparative strengths and limitations remain unclear. This study presents a rigorous analysis of late chunking and contextual retrieval, evaluating their effectiveness and efficiency in optimizing RAG systems. Our results indicate that contextual retrieval preserves semantic coherence more effectively but requires greater computational resources. In contrast, late chunking offers higher efficiency but tends to sacrifice relevance and completeness.
+
+Paper ID: 2504.19754v1
+
+Summary:
+This paper titled "Reconstructing Context: Evaluating Advanced Chunking Strategies for Retrieval-Augmented Generation" was authored by Carlo Merola, Jaspinder Singh and published on 2025-04-28.
+It falls under the categories: cs.IR, cs.AI, cs.CL.
+The research explores the following topic: Retrieval-augmented generation (RAG) has become a transformative approach for enhancing large language models (LLMs) by grounding their outputs in external knowledge sources. Yet, a critical question persists: how can vast volumes of external knowledge be managed effectively within the input constraints of LLMs? Traditional methods address this by chunking external documents into smaller, fixed-size segments. While this approach alleviates input limitations, it often fragments context, resulting in incomplete retrieval and diminished coherence in generation. To overcome these shortcomings, two advanced techniques, late chunking and contextual retrieval, have been introduced, both aiming to preserve global context. Despite their potential, their comparative strengths and limitations remain unclear. This study presents a rigorous analysis of late chunking and contextual retrieval, evaluating their effectiveness and efficiency in optimizing RAG systems. Our results indicate that contextual retrieval preserves semantic coherence more effectively but requires greater computational resources. In contrast, late chunking offers higher efficiency but tends to sacrifice relevance and completeness.
+
+Links:
+  - https://arxiv.org/abs/2504.19754v1
+  - https://arxiv.org/pdf/2504.19754v1

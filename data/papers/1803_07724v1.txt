@@ -1,0 +1,21 @@
+Title: Attention on Attention: Architectures for Visual Question Answering (VQA)
+
+Authors: Jasdeep Singh, Vincent Ying, Alex Nutkiewicz
+
+Published: 2018-03-21
+
+Categories: cs.CL, cs.AI, cs.CV
+
+Abstract:
+Visual Question Answering (VQA) is an increasingly popular topic in deep learning research, requiring coordination of natural language processing and computer vision modules into a single architecture. We build upon the model which placed first in the VQA Challenge by developing thirteen new attention mechanisms and introducing a simplified classifier. We performed 300 GPU hours of extensive hyperparameter and architecture searches and were able to achieve an evaluation score of 64.78%, outperforming the existing state-of-the-art single model's validation score of 63.15%.
+
+Paper ID: 1803.07724v1
+
+Summary:
+This paper titled "Attention on Attention: Architectures for Visual Question Answering (VQA)" was authored by Jasdeep Singh, Vincent Ying, Alex Nutkiewicz and published on 2018-03-21.
+It falls under the categories: cs.CL, cs.AI, cs.CV.
+The research explores the following topic: Visual Question Answering (VQA) is an increasingly popular topic in deep learning research, requiring coordination of natural language processing and computer vision modules into a single architecture. We build upon the model which placed first in the VQA Challenge by developing thirteen new attention mechanisms and introducing a simplified classifier. We performed 300 GPU hours of extensive hyperparameter and architecture searches and were able to achieve an evaluation score of 64.78%, outperforming the existing state-of-the-art single model's validation score of 63.15%.
+
+Links:
+  - https://arxiv.org/abs/1803.07724v1
+  - https://arxiv.org/pdf/1803.07724v1

@@ -1,0 +1,22 @@
+Title: Clinical information extraction for Low-resource languages with Few-shot learning using Pre-trained language models and Prompting
+
+Authors: Phillip Richter-Pechanski, Philipp Wiesenbach, Dominic M. Schwab, Christina Kiriakou, Nicolas Geis, Christoph Dieterich, Anette Frank
+
+Published: 2024-03-20
+
+Categories: cs.CL, cs.AI, cs.LG
+
+Abstract:
+Automatic extraction of medical information from clinical documents poses several challenges: high costs of required clinical expertise, limited interpretability of model predictions, restricted computational resources and privacy regulations. Recent advances in domain-adaptation and prompting methods showed promising results with minimal training data using lightweight masked language models, which are suited for well-established interpretability methods. We are first to present a systematic evaluation of these methods in a low-resource setting, by performing multi-class section classification on German doctor's letters. We conduct extensive class-wise evaluations supported by Shapley values, to validate the quality of our small training data set and to ensure the interpretability of model predictions. We demonstrate that a lightweight, domain-adapted pretrained model, prompted with just 20 shots, outperforms a traditional classification model by 30.5% accuracy. Our results serve as a process-oriented guideline for clinical information extraction projects working with low-resource.
+
+Paper ID: 2403.13369v2
+
+Summary:
+This paper titled "Clinical information extraction for Low-resource languages with Few-shot learning using Pre-trained language models and Prompting" was authored by Phillip Richter-Pechanski, Philipp Wiesenbach, Dominic M. Schwab, Christina Kiriakou, Nicolas Geis, Christoph Dieterich, Anette Frank and published on 2024-03-20.
+It falls under the categories: cs.CL, cs.AI, cs.LG.
+The research explores the following topic: Automatic extraction of medical information from clinical documents poses several challenges: high costs of required clinical expertise, limited interpretability of model predictions, restricted computational resources and privacy regulations. Recent advances in domain-adaptation and prompting methods showed promising results with minimal training data using lightweight masked language models, which are suited for well-established interpretability methods. We are first to present a systematic evaluation of these methods in a low-resource setting, by performing multi-class section classification on German doctor's letters. We conduct extensive class-wise evaluations supported by Shapley values, to validate the quality of our small training data set and to ensure the interpretability of model predictions. We demonstrate that a lightweight, domain-adapted pretrained model, prompted with just 20 shots, outperforms a traditional classification model by 30.5% accuracy. Our results serve as a process-oriented guideline for clinical information extraction projects working with low-resource.
+
+Links:
+  - https://arxiv.org/abs/2403.13369v2
+  - https://arxiv.org/pdf/2403.13369v2
+  - https://doi.org/10.1017/nlp.2024.52

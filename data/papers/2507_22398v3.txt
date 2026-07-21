@@ -1,0 +1,21 @@
+Title: On the Reliability of Vision-Language Models Under Adversarial Frequency-Domain Perturbations
+
+Authors: Jordan Vice, Naveed Akhtar, Yansong Gao, Richard Hartley, Ajmal Mian
+
+Published: 2025-07-30
+
+Categories: cs.CV
+
+Abstract:
+Vision-Language Models (VLMs) are increasingly used as perceptual modules for visual content reasoning, including through captioning and DeepFake detection. In this work, we expose a critical vulnerability of VLMs when exposed to subtle, structured perturbations in the frequency domain. Specifically, we highlight how these feature transformations undermine authenticity/DeepFake detection and automated image captioning tasks. We design targeted image transformations, operating in the frequency domain to systematically adjust VLM outputs when exposed to frequency-perturbed real and synthetic images. We demonstrate that the perturbation injection method generalizes across five state-of-the-art VLMs which includes different-parameter Qwen2/2.5 and BLIP models. Experimenting across ten real and generated image datasets reveals that VLM judgments are sensitive to frequency-based cues and may not wholly align with semantic content. Crucially, we show that visually-imperceptible spatial frequency transformations expose the fragility of VLMs deployed for automated image captioning and authenticity detection tasks. Our findings under realistic, black-box constraints challenge the reliability of VLMs, underscoring the need for robust multimodal perception systems.
+
+Paper ID: 2507.22398v3
+
+Summary:
+This paper titled "On the Reliability of Vision-Language Models Under Adversarial Frequency-Domain Perturbations" was authored by Jordan Vice, Naveed Akhtar, Yansong Gao, Richard Hartley, Ajmal Mian and published on 2025-07-30.
+It falls under the categories: cs.CV.
+The research explores the following topic: Vision-Language Models (VLMs) are increasingly used as perceptual modules for visual content reasoning, including through captioning and DeepFake detection. In this work, we expose a critical vulnerability of VLMs when exposed to subtle, structured perturbations in the frequency domain. Specifically, we highlight how these feature transformations undermine authenticity/DeepFake detection and automated image captioning tasks. We design targeted image transformations, operating in the frequency domain to systematically adjust VLM outputs when exposed to frequency-perturbed real and synthetic images. We demonstrate that the perturbation injection method generalizes across five state-of-the-art VLMs which includes different-parameter Qwen2/2.5 and BLIP models. Experimenting across ten real and generated image datasets reveals that VLM judgments are sensitive to frequency-based cues and may not wholly align with semantic content. Crucially, we show that visually-imperceptible spatial frequency transformations expose the fragility of VLMs deployed for automated image captioning and authenticity detection tasks. Our findings under realistic, black-box constraints challenge the reliability of VLMs, underscoring the need for robust multimodal perception systems.
+
+Links:
+  - https://arxiv.org/abs/2507.22398v3
+  - https://arxiv.org/pdf/2507.22398v3

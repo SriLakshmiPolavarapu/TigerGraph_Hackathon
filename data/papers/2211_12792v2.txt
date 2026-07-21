@@ -1,0 +1,22 @@
+Title: MECCH: Metapath Context Convolution-based Heterogeneous Graph Neural Networks
+
+Authors: Xinyu Fu, Irwin King
+
+Published: 2022-11-23
+
+Categories: cs.LG
+
+Abstract:
+Heterogeneous graph neural networks (HGNNs) were proposed for representation learning on structural data with multiple types of nodes and edges. To deal with the performance degradation issue when HGNNs become deep, researchers combine metapaths into HGNNs to associate nodes closely related in semantics but far apart in the graph. However, existing metapath-based models suffer from either information loss or high computation costs. To address these problems, we present a novel Metapath Context Convolution-based Heterogeneous Graph Neural Network (MECCH). MECCH leverages metapath contexts, a new kind of graph structure that facilitates lossless node information aggregation while avoiding any redundancy. Specifically, MECCH applies three novel components after feature preprocessing to extract comprehensive information from the input graph efficiently: (1) metapath context construction, (2) metapath context encoder, and (3) convolutional metapath fusion. Experiments on five real-world heterogeneous graph datasets for node classification and link prediction show that MECCH achieves superior prediction accuracy compared with state-of-the-art baselines with improved computational efficiency.
+
+Paper ID: 2211.12792v2
+
+Summary:
+This paper titled "MECCH: Metapath Context Convolution-based Heterogeneous Graph Neural Networks" was authored by Xinyu Fu, Irwin King and published on 2022-11-23.
+It falls under the categories: cs.LG.
+The research explores the following topic: Heterogeneous graph neural networks (HGNNs) were proposed for representation learning on structural data with multiple types of nodes and edges. To deal with the performance degradation issue when HGNNs become deep, researchers combine metapaths into HGNNs to associate nodes closely related in semantics but far apart in the graph. However, existing metapath-based models suffer from either information loss or high computation costs. To address these problems, we present a novel Metapath Context Convolution-based Heterogeneous Graph Neural Network (MECCH). MECCH leverages metapath contexts, a new kind of graph structure that facilitates lossless node information aggregation while avoiding any redundancy. Specifically, MECCH applies three novel components after feature preprocessing to extract comprehensive information from the input graph efficiently: (1) metapath context construction, (2) metapath context encoder, and (3) convolutional metapath fusion. Experiments on five real-world heterogeneous graph datasets for node classification and link prediction show that MECCH achieves superior prediction accuracy compared with state-of-the-art baselines with improved computational efficiency.
+
+Links:
+  - https://arxiv.org/abs/2211.12792v2
+  - https://arxiv.org/pdf/2211.12792v2
+  - https://doi.org/10.1016/j.neunet.2023.11.030

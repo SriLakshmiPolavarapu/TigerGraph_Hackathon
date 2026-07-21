@@ -1,0 +1,22 @@
+Title: Architectural Implications of Graph Neural Networks
+
+Authors: Zhihui Zhang, Jingwen Leng, Lingxiao Ma, Youshan Miao, Chao Li, Minyi Guo
+
+Published: 2020-09-02
+
+Categories: cs.AR, cs.LG, cs.PF
+
+Abstract:
+Graph neural networks (GNN) represent an emerging line of deep learning models that operate on graph structures. It is becoming more and more popular due to its high accuracy achieved in many graph-related tasks. However, GNN is not as well understood in the system and architecture community as its counterparts such as multi-layer perceptrons and convolutional neural networks. This work tries to introduce the GNN to our community. In contrast to prior work that only presents characterizations of GCNs, our work covers a large portion of the varieties for GNN workloads based on a general GNN description framework. By constructing the models on top of two widely-used libraries, we characterize the GNN computation at inference stage concerning general-purpose and application-specific architectures and hope our work can foster more system and architecture research for GNNs.
+
+Paper ID: 2009.00804v2
+
+Summary:
+This paper titled "Architectural Implications of Graph Neural Networks" was authored by Zhihui Zhang, Jingwen Leng, Lingxiao Ma, Youshan Miao, Chao Li, Minyi Guo and published on 2020-09-02.
+It falls under the categories: cs.AR, cs.LG, cs.PF.
+The research explores the following topic: Graph neural networks (GNN) represent an emerging line of deep learning models that operate on graph structures. It is becoming more and more popular due to its high accuracy achieved in many graph-related tasks. However, GNN is not as well understood in the system and architecture community as its counterparts such as multi-layer perceptrons and convolutional neural networks. This work tries to introduce the GNN to our community. In contrast to prior work that only presents characterizations of GCNs, our work covers a large portion of the varieties for GNN workloads based on a general GNN description framework. By constructing the models on top of two widely-used libraries, we characterize the GNN computation at inference stage concerning general-purpose and application-specific architectures and hope our work can foster more system and architecture research for GNNs.
+
+Links:
+  - https://arxiv.org/abs/2009.00804v2
+  - https://arxiv.org/pdf/2009.00804v2
+  - https://doi.org/10.1109/LCA.2020.2988991

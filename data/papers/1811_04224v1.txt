@@ -1,0 +1,21 @@
+Title: Reinforcement Learning Based Speech Enhancement for Robust Speech Recognition
+
+Authors: Yih-Liang Shen, Chao-Yuan Huang, Syu-Siang Wang, Yu Tsao, Hsin-Min Wang, Tai-Shih Chi
+
+Published: 2018-11-10
+
+Categories: eess.AS, cs.SD
+
+Abstract:
+Conventional deep neural network (DNN)-based speech enhancement (SE) approaches aim to minimize the mean square error (MSE) between enhanced speech and clean reference. The MSE-optimized model may not directly improve the performance of an automatic speech recognition (ASR) system. If the target is to minimize the recognition error, the recognition results should be used to design the objective function for optimizing the SE model. However, the structure of an ASR system, which consists of multiple units, such as acoustic and language models, is usually complex and not differentiable. In this study, we proposed to adopt the reinforcement learning algorithm to optimize the SE model based on the recognition results. We evaluated the propsoed SE system on the Mandarin Chinese broadcast news corpus (MATBN). Experimental results demonstrate that the proposed method can effectively improve the ASR results with a notable 12.40% and 19.23% error rate reductions for signal to noise ratio at 0 dB and 5 dB conditions, respectively.
+
+Paper ID: 1811.04224v1
+
+Summary:
+This paper titled "Reinforcement Learning Based Speech Enhancement for Robust Speech Recognition" was authored by Yih-Liang Shen, Chao-Yuan Huang, Syu-Siang Wang, Yu Tsao, Hsin-Min Wang, Tai-Shih Chi and published on 2018-11-10.
+It falls under the categories: eess.AS, cs.SD.
+The research explores the following topic: Conventional deep neural network (DNN)-based speech enhancement (SE) approaches aim to minimize the mean square error (MSE) between enhanced speech and clean reference. The MSE-optimized model may not directly improve the performance of an automatic speech recognition (ASR) system. If the target is to minimize the recognition error, the recognition results should be used to design the objective function for optimizing the SE model. However, the structure of an ASR system, which consists of multiple units, such as acoustic and language models, is usually complex and not differentiable. In this study, we proposed to adopt the reinforcement learning algorithm to optimize the SE model based on the recognition results. We evaluated the propsoed SE system on the Mandarin Chinese broadcast news corpus (MATBN). Experimental results demonstrate that the proposed method can effectively improve the ASR results with a notable 12.40% and 19.23% error rate reductions for signal to noise ratio at 0 dB and 5 dB conditions, respectively.
+
+Links:
+  - https://arxiv.org/abs/1811.04224v1
+  - https://arxiv.org/pdf/1811.04224v1

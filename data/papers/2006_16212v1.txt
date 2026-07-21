@@ -1,0 +1,21 @@
+Title: Towards the Study of Morphological Processing of the Tangkhul Language
+
+Authors: Mirinso Shadang, Navanath Saharia, Thoudam Doren Singh
+
+Published: 2020-06-29
+
+Categories: cs.CL
+
+Abstract:
+There is no or little work on natural language processing of Tangkhul language. The current work is a humble beginning of morphological processing of this language using an unsupervised approach. We use a small corpus collected from different sources of text books, short stories and articles of other topics. Based on the experiments carried out, the morpheme identification task using morphessor gives reasonable and interesting output despite using a small corpus.
+
+Paper ID: 2006.16212v1
+
+Summary:
+This paper titled "Towards the Study of Morphological Processing of the Tangkhul Language" was authored by Mirinso Shadang, Navanath Saharia, Thoudam Doren Singh and published on 2020-06-29.
+It falls under the categories: cs.CL.
+The research explores the following topic: There is no or little work on natural language processing of Tangkhul language. The current work is a humble beginning of morphological processing of this language using an unsupervised approach. We use a small corpus collected from different sources of text books, short stories and articles of other topics. Based on the experiments carried out, the morpheme identification task using morphessor gives reasonable and interesting output despite using a small corpus.
+
+Links:
+  - https://arxiv.org/abs/2006.16212v1
+  - https://arxiv.org/pdf/2006.16212v1

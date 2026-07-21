@@ -1,0 +1,21 @@
+Title: Offline Reinforcement Learning for Autonomous Driving with Safety and Exploration Enhancement
+
+Authors: Tianyu Shi, Dong Chen, Kaian Chen, Zhaojian Li
+
+Published: 2021-10-13
+
+Categories: cs.RO, eess.SY
+
+Abstract:
+Reinforcement learning (RL) is a powerful data-driven control method that has been largely explored in autonomous driving tasks. However, conventional RL approaches learn control policies through trial-and-error interactions with the environment and therefore may cause disastrous consequences such as collisions when testing in real-world traffic. Offline RL has recently emerged as a promising framework to learn effective policies from previously-collected, static datasets without the requirement of active interactions, making it especially appealing for autonomous driving applications. Despite promising, existing offline RL algorithms such as Batch-Constrained deep Q-learning (BCQ) generally lead to rather conservative policies with limited exploration efficiency. To address such issues, this paper presents an enhanced BCQ algorithm by employing a learnable parameter noise scheme in the perturbation model to increase the diversity of observed actions. In addition, a Lyapunov-based safety enhancement strategy is incorporated to constrain the explorable state space within a safe region. Experimental results in highway and parking traffic scenarios show that our approach outperforms the conventional RL method, as well as state-of-the-art offline RL algorithms.
+
+Paper ID: 2110.07067v2
+
+Summary:
+This paper titled "Offline Reinforcement Learning for Autonomous Driving with Safety and Exploration Enhancement" was authored by Tianyu Shi, Dong Chen, Kaian Chen, Zhaojian Li and published on 2021-10-13.
+It falls under the categories: cs.RO, eess.SY.
+The research explores the following topic: Reinforcement learning (RL) is a powerful data-driven control method that has been largely explored in autonomous driving tasks. However, conventional RL approaches learn control policies through trial-and-error interactions with the environment and therefore may cause disastrous consequences such as collisions when testing in real-world traffic. Offline RL has recently emerged as a promising framework to learn effective policies from previously-collected, static datasets without the requirement of active interactions, making it especially appealing for autonomous driving applications. Despite promising, existing offline RL algorithms such as Batch-Constrained deep Q-learning (BCQ) generally lead to rather conservative policies with limited exploration efficiency. To address such issues, this paper presents an enhanced BCQ algorithm by employing a learnable parameter noise scheme in the perturbation model to increase the diversity of observed actions. In addition, a Lyapunov-based safety enhancement strategy is incorporated to constrain the explorable state space within a safe region. Experimental results in highway and parking traffic scenarios show that our approach outperforms the conventional RL method, as well as state-of-the-art offline RL algorithms.
+
+Links:
+  - https://arxiv.org/abs/2110.07067v2
+  - https://arxiv.org/pdf/2110.07067v2

@@ -1,0 +1,1505 @@
+Title: arXiv paper 1000
+
+Categories: 5
+
+Abstract:
+Unique Perfect Phylogeny Characterizations via
+Uniquely Representable Chordal Graphs
+
+arXiv:1305.1375v2 [cs.DM] 8 May 2013
+
+Rob Gysel
+Department of Computer Science
+University of California, Davis
+1 Shields Avenue, Davis CA 95616, USA
+rsgysel@ucdavis.edu
+
+Abstract. The perfect phylogeny problem is a classic problem in computational biology, where we seek an unrooted phylogeny that is compatible with a set of qualitative characters. Such a tree exists precisely
+when an intersection graph associated with the character set, called the
+partition intersection graph, can be triangulated using a restricted set
+of fill edges. Semple and Steel used the partition intersection graph to
+characterize when a character set has a unique perfect phylogeny. Bordewich, Huber, and Semple showed how to use the partition intersection
+graph to find a maximum compatible set of characters. In this paper, we
+build on these results, characterizing when a unique perfect phylogeny
+exists for a subset of partial characters. Our characterization is stated in
+terms of minimal triangulations of the partition intersection graph that
+are uniquely representable, also known as ur-chordal graphs. Our characterization is motivated by the structure of ur-chordal graphs, and the
+fact that the block structure of minimal triangulations is mirrored in the
+graph that has been triangulated.
+
+1
+
+Introduction
+
+An X−tree is a pair Tx = (T , φ) where T is a tree and φ is a map from X to
+the nodes of T , such that every node of T with degree two or one is mapped to
+by φ. We will call the range of φ the labeled nodes of Tx , and these nodes are
+labeled by φ. The underlying tree of Tx is T . An X−tree is free if φ is a bijection
+to the leaves of T , and it is ternary if every internal node of T has degree three.
+Given A ⊆ X, we will use Tx (A) to denote the minimal subtree of T containing
+the nodes φ(A). Two subtrees Tx (A) and Tx (A0 ) of T intersect if they have one
+or more nodes in common, and if v is a common node of Tx (A) and Tx (A0 ) we
+say that Tx (A) and Tx (A0 ) intersect at v.
+A partial character for X is a partition χ = A1 |A2 | . . . |Ar of a subset X 0 ⊆ X.
+Each Ai is called a cell of χ. If Tx (A) and Tx (A0 ) do not intersect for every pair
+of distinct cells A and A0 of χ, then Tx displays χ. A perfect phylogeny for a set
+of partial characters C is an X−tree Tx that displays each character in C. When
+C has a perfect phylogeny, we also say that C is compatible. The perfect phylogeny
+problem (also called the character compatibility problem) is to determine if a set
+of partial characters is compatible.
+
+(ab, χ1 )
+
+d
+
+a
+u
+
+(ac, χ2 )
+
+(de, χ3 )
+
+(ab, χ3 ) (bde, χ2 )
+
+(cd, χ1 )
+
+v
+e
+
+b
+c
+(a) Tx
+
+(b) int(C)
+
+Fig. 1. An X−tree for X = {a, b, c, d, e} and a non-chordal partition intersection graph
+int(C). The characters C = {χ1 , χ2 , χ3 } are χ1 = ab|cd, χ2 = ac|bde, and χ3 = ab|de.
+Edges of int(C) are given by solid edges, and the dashed edge represents the fill edge
+required to obtain the triangulation int(C, Tx ) of int(C). Both χ1 and χ3 are displayed
+by Tx , but χ2 is not because Tx (ac) and Tx (bde) intersect at u and v. This intersection
+induces the dashed fill edge of int(C), which breaks χ2 . The edge uv is distinguished
+by χ1 .
+
+The perfect phylogeny problem reduces to a graph theoretical problem that
+we detail now. Given a set of characters C, one can construct the partition intersection graph int(C) as follows. The vertex set of int(C) is
+{(A, χ) | χ ∈ C and A is a cell of χ} ,
+and there is an edge between two vertices (A, χ) and (A0 , χ0 ) if and only if A
+and A0 have non-empty intersection. For a vertex (A, χ) of int(C), A is the cell
+of (A, χ) and χ is the character of (A, χ). Observe that if χ = A1 |A2 | . . . |Ar
+is a partial character, then every pair of distinct vertices (A, χ) and (A0 , χ) are
+non-adjacent in int(C).
+A graph is chordal if every cycle of length four or more has a chord, that is, an
+edge between vertices of the cycle that do not appear consecutively in the cycle.
+In general int(C) is not a chordal graph, and we are interested in adding edges to
+int(C) to obtain a chordal supergraph H of int(C) that is called a triangulation
+of int(C). The added edges are called fill edges. If no subset of the fill edges yields
+a triangulation of int(C), it is a minimal triangulation of int(C). When each fill
+edge is of the form (A, χ)(A0 , χ0 ) and χ 6= χ0 , the resulting triangulation is a
+proper triangulation of int(C). The following classic result reduces the question
+of determining compatibility to finding proper triangulations of the partition
+intersection graph. It was originally phrased in terms of proper triangulations,
+but from the definitions it follows that int(C) has a proper triangulation if and
+only if it has a proper minimal triangulation.
+Theorem 1. [6, 21, 26] Let C be a set of qualitative characters. Then C is
+compatible if and only if int(C) has a proper minimal triangulation.
+∼ T 0 , if there is a bijective
+Two X−trees Tx and Tx0 are isomorphic, writing Tx =
+x
+0
+map ψ : V (T ) → V (T ) that has the following properties:
+2
+
+1. it preserves labels, meaning that φ0 = ψ ◦ φ; and
+2. it is a graph isomorphism, that is, uv ∈ E(T ) if and only if ψ(u)ψ(v) ∈ E(T 0 ).
+A set of characters C defines a perfect phylogeny if it is the unique perfect
+phylogeny, up to isomorphism, for C. The unique perfect phylogeny problem is
+to determine if a set C of partial characters defines a perfect phylogeny. If Tx =
+(T , φ) displays χ and uv is an edge of T such that u is a node of Tx (A) and v is
+a node of Tx (A0 ) where A and A0 are distinct cells of χ, then uv is distinguished
+by χ. If every edge of Tx is distinguished by at least one character of C, then Tx
+is distinguished by C. The following characterization is due to Semple and Steel.
+Theorem 2. [24] Let C be a set of partial characters on X. Then C defines a
+perfect phylogeny if and only if the following conditions are satisfied:
+(a) int(C) has a unique proper minimal triangulation H; and
+(b) there is a free ternary perfect phylogeny for C and it is distinguished by C.
+Further, if Tx is the unique perfect phylogeny for C, then Tx is a free ternary
+X−tree distinguished by C, and int(C, Tx ) = H.
+This result is the impetus of our current work, and one of our main interests
+is to re-formulate condition (b) in terms of combinatorial structures that play a
+significant role in the study of chordal graphs and minimal triangulations.
+Chordal graphs are characterized by the existence of trees that represent the
+adjacency structure of the graph. Suppose G is a graph with vertices V (G) =
+{x1 , x2 , . . . , xn }. A tree representation of G consists of a tree T and subtrees
+T1 , T2 , . . . , Tn of T such that two trees Ti and Tj intersect if and only if xi and
+xj are adjacent. Here, the subtrees are in one-to-one correspondence with the
+vertex set of G, and this correspondence is made explicit by mapping each subtree
+Ti to the vertex xi of G. Observe that a node v of T defines a clique K(v) =
+{xi | v is a node of Ti } of G. Notationally, we will write a tree representation as
+an ordered pair Tr = (T , K) where K maps nodes of T to cliques of G satisfying
+the following properties:
+(Edge Coverage) a pair of vertices x and y of G are adjacent if and only if
+there is a node v of T such that x, y ∈ K(v); and
+(Convexity) for each vertex x of G, the set of nodes {v ∈ V (T ) | x ∈ K(v)}
+induces a subtree of T (i.e. a connected subgraph of T ).
+We will frequently refer to the convexity property throughout the paper. As
+with X−trees, we will call T the underlying tree of Tr . Often we will define a
+tree representation by only specifying the underlying tree T and a collection of
+subtrees of T , which together implicitly define K.
+Let T1 , T2 , . . . , Tk be a collection of subtrees of T . If each pair Ti , Tj of subtrees intersect at a node vij , then by the Helly property for subtrees of a tree [9],
+all of T1 , T2 , . . . , Tk intersect at a common node v. This property manifests itself
+as a statement about cliques of G and nodes of Tr in the following way: for
+any clique K of G, there is at least one node u of T such that K ⊆ K(u). In
+3
+
+particular, this is true when K is a maximal clique of G (i.e. no proper superset
+is also a clique), and therefore K(V (T )) contains the set of maximal cliques of
+G. If the maximal cliques of G are in one-to-one correspondence with the nodes
+of T via K, then Tr is a clique tree of G. See Figure 2 for an example.
+Theorem 3. [6, 8, 27] The following statements are equivalent.
+(a) G is a chordal graph.
+(b) G has a tree representation.
+(c) G has a clique tree.
+Observe that if Tr = (T , K) is a clique tree of G and uv is an edge of T ,
+then because K(u) and K(v) are both maximal cliques of G, there is a vertex
+x of G in K(u) − K(v). In general, a chordal graph has an exponential number
+of clique trees. An algorithm to enumerate clique trees, along with a formula to
+count them, appears in [16].
+We will often be analyzing a tree representation Tr = (T , K) of a triangulation
+H of int(C). Given a vertex (A, χ) of int(C), we will denote the subtree of T that
+it corresponds to by Tr (A, χ). Observe that v is a node of Tr (A, χ) if and only if
+(A, χ) ∈ K(v). Given a set of characters C on X and an X−tree Tx = (T , φ), a
+chordal graph int(C, Tx ) is given by adding an edge between two vertices (A1 , χ1 )
+and (A2 , χ2 ) if and only if Tx (A1 ) and Tx (A2 ) intersect. This construction, along
+with the fact that int(C, Tx ) is a triangulation of int(C), is well-known in the
+phylogenetics literature, and will be discussed in detail in Section 2.
+A chordal graph G is uniquely representable if it has a single clique tree, or
+ur-chordal for short. A ur-chordal graph is ternary if each internal node of its
+clique tree has degree three, and its leafage 1 is the number of leaves its clique
+tree has. Let H be a proper triangulation of int(C) and Tr = (T , K) be a clique
+tree of H. An edge uv of Tr is incontractable with respect to χ if there are distinct
+cells A and A0 of χ such that u ∈ Tr (A, χ) and v ∈ Tr (A0 , χ). We say that Tr is
+incontractable with respect to C if each edge is incontractable with respect to at
+least one χ ∈ C. Now we present our first main result.
+Theorem 4. Suppose C is a set of partial characters on X. Then C defines a
+perfect phylogeny if and only if the following conditions hold:
+(a) int(C) has a unique proper minimal triangulation H;
+(b) H is a ternary ur-chordal graph with leafage |X|; and
+(c) each edge of H’s unique clique tree is incontractable with respect to C.
+Further, if Tx is the perfect phylogeny defined by C, then Tx is a free ternary
+X−tree distinguished by C, and int(C, Tx ) = H.
+Let C be a set of partial characters on X and χ ∈ C. Suppose H is a triangulation of int(C) with fill edge (A, χ)(A0 , χ) where A and A0 are distinct cells of χ.
+1
+
+In general, the leafage of a chordal graph is the minimum number of leaves that a
+clique tree of the graph can have [19].
+
+4
+
+Then we say that (A, χ)(A0 , χ) breaks χ, and χ is a broken character of H. For
+a triangulation H of int(C), its displayed characters are the characters of C that
+are not broken characters of H. Bordewich, Huber, and Semple [3] proved that
+it is possible to find a maximum-sized compatible subset of C using the partition
+intersection graph.
+Theorem 5. Let C be a set of partial characters on X. Then C 0 is a maximumsized compatible subset of C if and only if there is a triangulation H of int(C)
+that has C 0 as its displayed characters, and any other triangulation of int(C) has
+at most |C 0 | displayed characters.
+A subset of partial characters C 0 ⊆ C is a maximal defining subset of C when
+C 0 defines a perfect phylogeny, and there is no compatible set C 00 such that
+C 0 ⊂ C 00 ⊂ C. Our second main result is the following.
+Theorem 6. Suppose C is a set of partial characters on X and C 0 ⊆ C. Then
+C 0 is a maximal defining subset of C if and only if the following conditions hold:
+(a) int(C) has a unique minimal triangulation H that has C 0 as its displayed
+characters, and no other minimal triangulation of int(C) has at least C 0 as
+its displayed character set;
+(b) H is a ternary ur-chordal graph with leafage |X|; and
+(c) each edge of H’s unique clique tree is incontractable with respect to C 0 .
+Further, if Tx is the perfect phylogeny defined by C 0 , then Tx is a free ternary
+X−tree distinguished by C 0 , and int(C, Tx ) = H.
+
+2
+
+Chordal Graph Preliminaries
+
+In this section, we detail known results on chordal graphs that are necessary for
+the remainder of the paper. Suppose G = (V, E) is a graph and S ⊆ V . Let G−S
+denote the graph obtained from G by removing S and all edges incident to at
+least one vertex in S. If there are vertices x and y of G that are connected in G
+but not in G − S, then S is an xy−separator, and if no proper subset of S has
+this property, it is a minimal xy−separator. When S is a minimal xy−separator
+for at least one pair of vertices x and y, it is a minimal separator. Minimality
+in this definition is relative; it is possible to have containment relationships
+between two minimal separators2 . The maximal connected subsets of G − S are
+the connected components of G − S. Let C be a connected component of G − S.
+The neighborhoood of C in G, denoted N (C), is the set of vertices of S that are
+adjacent to at least one vertex in C. If N (C) = S, then it is a full component of
+G−S. The following useful characterization of minimal separators is well-known,
+and left as an exercise in [9].
+2
+
+Dirac [7] called these sets relatively minimal cut-sets, which is perhaps more descriptive, but this term has stuck of the modern literature on chordal graphs and minimal
+triangulations.
+
+5
+
+K(v)
+
+v
+
+(b) Tr
+
+(a) G
+
+Fig. 2. A chordal graph G and clique tree Tr = (T , K) of G. There are three clique trees
+for G, one of which is obtained by removing the bottom-leftmost node and its incident
+edge, and then attaching it to v. The maximal clique map K is defined by the triangle
+drawn inside each node. Arrows indicate vertices that consist of the intersection of a
+neighboring node’s maximal clique, and each such intersection is a minimal separator
+by Theorem 7.
+
+Lemma 1. Let G = (V, E) be a graph, and S ⊆ V . Then S is a minimal
+separator if and only if G − S has two or more full components.
+A minimal separator has multiplicity k if G − S has k − 1 full components.
+Interestingly, clique trees contain detailed information about the minimal separators of the graph it represents, which will be useful for our proofs in later
+sections.
+Theorem 7. [16, 20] Suppose G = (V, E) is a chordal graph, Tr = (T , K) is a
+clique tree of G, and S ⊆ V . Then S is a minimal separator of G if and only if
+there is an edge uv of T such that S = K(u) ∩ K(v)3 . Further, the multiplicity
+of S is the number of edges of T with this property.
+We will not need all of the following characterizations of ur-chordal graphs,
+but we list them for completeness.
+Theorem 8. [14, 18] Let G be a chordal graph. Then the following statements
+are equivalent.
+a) G is uniquely representable.
+b) If S is a minimal separator of G, then there are exactly two maximal cliques
+K and K 0 of G such that S ⊆ K, K 0 .
+c) Each minimal separator of G has multiplicity one.
+3
+
+This theorem also implies that a minimal separator of a chordal graph is a clique.
+In fact, chordal graphs are characterized by having only clique minimal separators,
+which is one of the earliest results on chordal graphs [7].
+
+6
+
+d) There is no minimal separator of G that properly contains another minimal
+separator of G.
+e) The number of minimal separators of G is the number of maximal cliques of
+G minus one.
+Chordal graphs can be recognized in linear time [2], and the maximal cliques
+and minimal separators of a chordal graph may be computed in linear time [1].
+Using property e) of Theorem 8, this allows the recognition of ur-chordal graphs
+in linear time.
+
+3
+
+X−trees, Clique Trees, and Tree Representations
+
+In this section, we define two operations to facilitate the discussion between
+X−trees and tree representations, and prove or state results that will be useful in
+later sections. Both operations are commonly used in the literature (see [24,26]),
+but do not seem to be named as we will do here. The results in this section will
+be useful for proving our characterization for maximal defining subsets.
+Given a set of characters C on X and an X−tree Tx = (T , φ), construct the
+chordal graph int(C, Tx ) having:
+• vertex set identical to that of int(C); and
+• an edge between (A, χ) and (A0 , χ0 ) if and only if Tx (A) and Tx (A0 ) intersect.
+This graph has a tree representation Tr with underlying tree T and subtrees
+obtained by defining Tr (A, χ) = Tx (A) for each vertex (A, χ) of int(C). Therefore
+int(C) is chordal by Theorem 3. Each edge (A1 , χ1 )(A2 , χ2 ) of int(C) has cells
+A1 and A2 that share at least one member of X, say a, so Tx (A1 ) and Tx (A2 )
+intersect at φ(a). Therefore Tr (A1 , χ1 ) and Tr (A2 , χ2 ) intersect at φ(a) as well, so
+(A1 , χ1 )(A2 , χ2 ) is an edge of int(C, Tx ) by subtree intersection. Hence each edge
+of int(C) is also an edge of int(C, Tx ), so int(C, Tx ) is a triangulation of int(C).
+We will say that Tx derives the tree representation Tr = (T , K) of int(C, Tx ) and
+Tr is derived from Tx . In general, Tr is not a clique tree.
+Observation 1 Let C be a set of partial characters on X, Tx be an X−tree, and
+Tr be the tree representation induced by Tx . Then the underlying tree of Tr is
+the underlying tree of Tx , and for all χ ∈ C and cells A of χ, Tx (A) = Tr (A, χ).
+Further, int(C, Tx ) is a triangulation of int(C).
+Lemma 2. Let C be a set of partial characters on X, and Tx be an X−tree that
+displays C 0 ⊆ C. Suppose that each edge of Tx is distinguished by C 0 . Then the
+tree representation of int(C, Tx ) derived from Tx is a clique tree of int(C, Tx ).
+Proof. Let Tr = (T , K) be the tree representation of int(C, Tx ) derived from Tx .
+For the sake of contradiction, assume that Tr is not a clique tree, so that K is not
+a one-to-one map between the nodes of T and the maximal cliques of int(C, Tx ).
+Then there must be nodes u and v of T such that K(v) ⊆ K(u). Let v 0 be the
+7
+
+(ab, χ1 )
+(ac, χ2 )
+
+(cd, χ1 )
+(de, χ3 )
+
+(bde, χ2 )
+(ab, χ3 )
+
+Fig. 3. The tree representation Tr of int(C, Tx ) derived from Tx in Figure 1.a. The
+triangulation int(C, Tx ) of int(C) is depicted in Figure 1.b; note that any two subtrees
+of Tr intersect precisely when the corresponding vertices of int(C, Tx ) are adjacent.
+Observe that Tr is not a clique tree; for example, the two left-most nodes map to nonmaximal cliques. Additionally, there are two nodes that map to the maximal clique
+{(cd, χ1 ), (bde, χ2 ), (de, χ3 )}. Obtaining a clique tree from a tree representation is described in [8].
+
+closest node to v between u and v in T , allowing the possibility that v 0 = u. Note
+that each vertex in K(v) is also a vertex of K(v 0 ) by convexity, so K(v) ⊆ K(v 0 ).
+Now, vv 0 is distinguished by some χ ∈ C 0 , so there are distinct cells A and A0
+of χ such that v is a node of Tx (A) and v 0 is a node of Tx (A0 ). By Observation
+1, v is a node of Tr (A, χ), so (A, χ) ∈ K(v) and by containment (A, χ) ∈ K(v 0 ).
+Further, (A0 , χ) ∈ K(v 0 ), so (A, χ)(A0 , χ) is a fill edge of int(C, Tx ) and it breaks
+χ. This contradicts the assumption that Tx displays C 0 , so Tr must be a clique
+tree of int(C, Tx ).
+t
+u
+Lemma 3. Let C be a set of partial characters on X and Tx be an X−tree
+that displays C 0 ⊆ C. Suppose that Tx is free, ternary, and each edge of Tx is
+distinguished by C 0 . Then int(C, Tx ) is uniquely representable.
+Proof. To prove that int(C, Tx ) is uniquely representable, we use Theorem 8 and
+show that there are no containment relationships between the minimal separators
+of int(C, Tx ). Working towards a contradiction, assume that S ⊂ S 0 are minimal
+separators of int(C, Tx ), and let Tr = (T , K) be the tree representation derived
+from Tx . Then Tr is a clique tree by Lemma 2, and there are edges uv and
+u0 v 0 of T such that S = K(u) ∩ K(v) and S 0 = K(u0 ) ∩ K(v 0 ) by Theorem 7.
+Without loss of generality, assume that the path from v to v 0 does not contain
+either u or u0 (perhaps v = v 0 ). Let w be the node on this path adjacent to v
+if v 6= v 0 , otherwise let w = u0 . In either case, K(w) contains S: if w = u0 , then
+S ⊆ K(w). Otherwise, each (A, χ) in S is an element of both K(u) and K(u0 ),
+so (A, χ) ∈ K(w) by convexity, and S ⊆ K(w).
+To complete the proof, we will obtain a contradiction by showing that S
+has a vertex not in K(w). There is a character χ0 in C 0 that distinguishes wv,
+and distinct cells A0 and A00 of χ0 such that v is a node of Tx (A0 ) and w is a
+8
+
+node of Tx (A00 ). Now, v has at least two neighbors, and because Tx is ternary,
+v must have degree three. Also, v is not mapped to by φ because Tx is free,
+so in order for v to be a node of Tx (A0 ), there must be at least two nodes
+of Tx in φ(A0 ) that are not v, and the path between these two nodes must
+contain v. This path must also contain two of v’s neighbors, and neither of
+these vertices can be w, because w is not a node of Tx (A0 ). Thus u must be
+on this path, so it is a node of Tx (A0 ). Both K(u) and K(v) contain (A0 , χ0 ) by
+Observation 1, so it must be a vertex of S = K(u)∩K(v). Further, (A0 , χ0 ) ∈
+/ K(w)
+because w is not a node of Tx (A0 ) = Tr (A0 , χ0 ). This is impossible because we
+have shown that both (A0 , χ0 ) ∈ S − K(w) and S ⊆ K(w). Thus there are
+no containment relationships between the minimal separators of int(C, Tx ), and
+int(C, Tx ) is uniquely representable by Theorem 8.
+t
+u
+Lemma 4. [3] Let C be a set of partial characters on X, Tx an X−tree, and
+C 0 be the subset of C displayed by Tx . Then int(C, Tx ) is a triangulation of int(C)
+in which the displayed characters are C 0 .
+The previous three lemmas can be summarized as follows.
+Theorem 9. Let C be a set of partial characters on X and Tx be an X−tree
+that displays C 0 ⊆ C. Suppose that Tx is free, ternary, and each edge of Tx is
+distinguished by C 0 . Then int(C, Tx ) is a uniquely representable chordal graph,
+and the tree representation derived from Tx is its unique clique tree. Further, the
+displayed characters of int(C, Tx ) are exactly C 0 .
+Now suppose that Tr = (T , K) is a clique tree of a triangulation H of int(C),
+with the goal of defining an X−tree Tx . The discussion we provide here is standard, e.g. see [3,25]. Construct a map φ from X to T by defining, for each a ∈ X,
+φ(a) = v if and only if K(v) contains every vertex of int(C) whose cell contains
+a. These vertices form a clique because a is contained in each of their cells. Because we have only added fill edges to obtain H, this clique a subset of a maximal
+clique of H, and hence v exists. There may be more than one choice for v, each
+of which we call a candidate node for a. Let u be a leaf of T with neighbor w.
+Then K(u) is a maximal clique that contains a vertex (A, χ) of int(C) that is
+not found in K(w). By convexity, u is the only node of T whose corresponding
+maximal clique contains (A, χ). Each a0 ∈ A has u as its unique candidate node,
+and hence every leaf of T is a unique candidate node for at least one element of
+X. Thus each leaf of T must be labeled by φ. To finish constructing an X−tree,
+obtain T 0 by suppressing any unlabeled nodes of T that have degree two. The
+result is an X−tree Tx = (T 0 , φ), and we say that Tr induces Tx and Tx is induced
+by Tr . We emphasize that the underlying tree of Tx need not be the same as the
+underlying tree of Tr . Note that, because an element of X may have multiple
+candidate nodes, Tr may induce multiple X−trees. Next, we show that when
+H is a minimal triangulation, much of Tx ’s structure is described by Tr . The
+following lemma will be useful.
+Lemma 5. [17, 22] Let G be a graph and H be a minimal triangulation of G.
+If uv is a fill edge of H, then there is a minimal separator of H that contains
+both u and v.
+9
+
+ab
+
+c
+
+de
+(a) Tr0
+
+(b) Tx0
+
+Fig. 4. A clique tree Tr0 of int(C, Tx ) from Figure 1.b and an X−tree Tx0 induced by
+Tr0 . Note that int(C, Tx0 ) = int(C, Tx ), where Tx is the X−tree from Fig. 1.a.
+
+Though not stated in this form, the following lemma follows from the proof
+of Lemma 2.4 and the statement of Corollary 2.5 in [24].
+Lemma 6. Let H be a minimal triangulation of int(C), and suppose Tx is induced by a clique tree of H. Then H = int(C, Tx ).
+Lemma 7. Let H be a minimal triangulation of int(C), Tr = (T , K) be a clique
+tree of H, and suppose Tr induces Tx . Then the underlying tree of Tx is T .
+Proof. We have already seen that every leaf of T is the unique candidate node
+of some element of X. In addition to this, it was also shown in [13] that if u is a
+node of Tr of degree two, then u is the unique candidate node of some element
+of X. This was done by showing that K(u) contains either:
+1. a vertex (A1 , χ1 ) of int(C) that is not contained in K(w) for any other node
+w 6= u of T ; or
+2. an edge (A2 , χ2 )(A3 , χ3 ) of int(C), whose incident vertices have cells with
+non-empty intersection, and are not both contained in K(w) for any other
+node w 6= u of T .
+For completeness, we outline a proof here. Using convexity and the fact that
+u has degree two, it follows that either a unique vertex or unique pair of vertices
+are contained in K(u). It remains to show that (A2 , χ2 )(A3 , χ3 ) is actually an
+edge of int(C) (so A2 ∩ A3 is non-empty). If not, then by Lemma 5 there is a
+minimal separator S of H containing both (A2 , χ2 ) and (A3 , χ3 ). By Theorem
+7, there is an edge u1 u2 of T such that S = K(u1 ) ∩ K(u2 ). But this contradicts
+case 2, so it must be that (A2 , χ2 )(A3 , χ3 ) is an edge of int(C).
+In both cases, u is the unique candidate node of some element in X (this
+element is either a ∈ A1 or a ∈ A2 ∩ A3 ), so every degree two node of T is
+labeled by φ, and there are no nodes of T that need to be suppressed. Hence the
+underlying tree of Tx is T .
+t
+u
+10
+
+Lemma 8. Let H be a minimal triangulation of int(C), Tr = (T , K) be a clique
+tree of H, and suppose Tr induces Tx . Then for each vertex (A, χ) of int(C),
+Tx (A) = Tr (A, χ).
+Proof. Let (A, χ) be a vertex of int(C) and consider a node v of Tx (A). Either
+v = φ(a) for some a ∈ A or v lies between φ(a1 ) and φ(a2 ) for some a1 , a2 ∈ A.
+In the first case, (A, χ) ∈ K(v) because v is a candidate node for a. Similarly,
+in the second case, (A, χ) is an element of both K(φ(a1 )) and K(φ(a2 )), and
+therefore (A, χ) ∈ K(v) by convexity. In both cases v is a node of Tr (A, χ), so
+Tx (A) ⊆ Tr (A, χ).
+To finish proving equality, suppose that Tx (A) ⊂ Tr (A, χ). Define a tree
+representation Tr0 = (T 0 , K0 ) of a graph H 0 as follows: set T 0 = T , and define
+subtrees Tr0 (A0 , χ0 ) of T for each vertex (A0 , χ0 ) of int(C) as follows:
+1. Tr0 (A0 , χ0 ) = Tr (A0 , χ0 ) if (A0 , χ0 ) 6= (A, χ), and
+2. Tr0 (A0 , χ0 ) = Tx (A) if (A0 , χ0 ) = (A, χ).
+We have already seen that Tr0 (A0 , χ0 ) ⊆ Tr (A0 , χ0 ) for every vertex (A0 , χ0 ) of
+int(C), so the edge set of H 0 is a subset of the edge set of H. If (A1 , χ1 )(A2 , χ2 )
+is an edge of int(C), then A1 and A2 have at least one element a in common,
+and thus Tx (A1 ) and Tx (A2 ) intersect at φ(a). Further, Tx (A0 ) ⊆ Tr0 (A0 , χ0 ) for
+each vertex (A0 , χ0 ) of int(C), so Tr0 (A1 , χ1 ) and Tr0 (A2 , χ2 ) also intersect at φ(a).
+Therefore (A1 , χ1 )(A2 , χ2 ) is an edge of H 0 , and H 0 is chordal by Theorem 3, so
+it is a triangulation of int(C).
+To complete the proof, we show that H 0 must have an edge that does not
+exist in H. Because Tx (A) ⊂ Tr (A, χ), there is a node u of Tr (A, χ) − Tx (A) that
+is adjacent to a node w of Tx (A) = Tr0 (A, χ). By maximality, there is a vertex
+(A0 , χ0 ) ∈ K(u) − K(w), and because u is a node of Tr (A, χ), (A, χ) ∈ K(u).
+Therefore (A0 , χ0 )(A, χ) is an edge of H. The situation in H 0 is different: if
+(A0 , χ0 )(A, χ) is an edge of H 0 , then Tr0 (A, χ) and Tr0 (A0 , χ0 ) intersect at a node
+v 0 . But if v 0 is a node of Tr0 (A, χ), then w is on the path from v 0 to u, and by
+convexity this would imply that (A0 , χ0 ) ∈ K(w). Hence (A0 , χ0 )(A, χ) is not an
+edge of H 0 , so the edge set of H 0 is a proper subset of the edge set of H. This
+is impossible because H is a minimal triangulation of int(C), so it must be that
+Tx (A) = Tr (A, χ) for each vertex (A, χ) of int(C).
+t
+u
+Lemmas 6, 7, and 8 are summarized below.
+Theorem 10. Let H be a minimal triangulation of int(C), Tr be a clique tree of
+H, and suppose Tr induces Tx . Then the underlying tree of Tx is the underlying
+tree of Tr , and for each vertex (A, χ) of int(C), Tx (A) = Tr (A, χ). Further,
+H = int(C, Tx ).
+
+4
+
+Maximal Defining Subsets of Characters
+
+This section is devoted to the proof of Theorem 6. Its proof will follow mainly
+from Propositions 1 and 2. Recall that, for a graph H and a subset U of its
+11
+
+vertices, the graph H − U is obtained by removing the vertices in U and edges
+of H incident to one or more vertices of U .
+Lemma 9. Let C be a set of partial characters and C 0 ⊆ C. Suppose H 0 is a
+minimal triangulation of int(C 0 ), and let U be the vertices of int(C) that are not
+vertices of int(C 0 ). Then there is a minimal triangulation H of int(C) such that
+H0 = H − U .
+Proof. Let H 0 be a minimal triangulation of int(C 0 ) and H ∗ be the graph obtained by adding the following fill edges to int(C):
+1. the fill edges of H 0 ; and
+2. fill edges of the form (A, χ)(A0 , χ0 ) where (A, χ) is a vertex of U , and (A0 , χ0 )
+is any vertex of int(C).
+First we prove that H ∗ is chordal, and then we will use it to construct H, a
+minimal triangulation of int(C) such that H − U = H 0 .
+Let (A1 , χ1 ), (A2 , χ2 ), . . . , (Ak , χk ) be a cycle in H ∗ . If χi ∈ C 0 for all i =
+1, 2, . . . , k, then this cycle is also a cycle of H 0 , and therefore has a chord that is
+an edge of H 0 . Each edge of H 0 is also an edge of H ∗ , so this cycle has a chord
+in H ∗ . Otherwise, without loss of generality, χ1 ∈ C − C 0 and (A1 , χ1 ) ∈ U so
+either (A1 , χ1 )(A3 , χ3 ) is an edge of int(C) or is a fill edge of H ∗ of type 2. In
+either case, this cycle has a chord, so H ∗ is chordal.
+Now let H be any minimal triangulation of int(C) such that the edge set of
+H is a subset of the edge set of H ∗ . Every edge of H − U is either an edge of
+int(C 0 ) or is an edge of H 0 by the construction of H ∗ and H. Therefore the edge
+set of H − U is a subset of the edge set of H 0 . Further, H − U is chordal because
+any cycle of H − U is a cycle of H (i.e. chordality is inherited [23]), so it is a
+triangulation of int(C 0 ). By minimality of H 0 , it must be that the edge set of
+H − U is equal to the edge set of H 0 , so H 0 = H − U .
+t
+u
+Lemma 10. [12] see also [3] Let C be a set of partial characters on X and
+suppose that C 0 is a compatible subset of C. Then there is a minimal triangulation
+of int(C) whose displayed characters are at least C 0 .
+Though not stated in this form, the following lemma is a direct result of
+Lemma 5.1 in [3] and its proof.
+Lemma 11. Let C be a set of partial characters on X. Suppose H is a triangulation of int(C) with displayed characters C 0 . Then if Tx is induced by a clique
+tree of H, it is a perfect phylogeny for C 0 .
+Proposition 1. Let C be a set of partial characters on X and C 0 ⊆ C. Suppose
+that the following conditions hold:
+(i) int(C) has a unique minimal triangulation H that has C 0 as its displayed
+characters, and no other minimal triangulation of int(C) has at least C 0 as
+its displayed character set;
+(ii) H is a ternary ur-chordal graph with leafage |X|; and
+12
+
+(iii) each edge of H’s unique clique tree is incontractable with respect to C 0 .
+Then C 0 is a maximal defining subset of C.
+Proof. We begin by showing that C 0 has a unique perfect phylogeny using Theorem 2, and finish the proof showing that no superset of C 0 has a unique perfect
+phylogeny.
+Throughout the proof, H will denote the unique minimal triangulation of
+int(C) given by (i) whose displayed character set is C 0 . By Lemma 11, C 0 has a
+perfect phylogeny so it is compatible. There is a proper triangulation of int(C 0 )
+by Theorem 1, so int(C 0 ) has a proper minimal triangulation as well. To see that
+condition (a) of Theorem 2 holds, suppose that H10 and H20 are proper minimal
+triangulations of int(C 0 ) given by Theorem 1, and let U be the set of vertices of
+int(C) not in int(C 0 ). By Lemma 9, there are minimal triangulations H1 and H2
+of int(C) that satisfy H10 = H1 −U and H20 = H2 −U . The displayed characters of
+H1 and H2 must be at least C 0 , because any fill edge that breaks a character of C 0
+would also appear in H10 or H20 , and both H10 and H20 are proper triangulations
+of int(C 0 ). By (i), we have H1 = H = H2 . Therefore H10 = H − U = H20 , so
+condition (a) of Theorem 2 is satisfied with respect to C 0 .
+Now we show condition (b) of Theorem 2 holds. Let Tr be the unique clique
+tree of H given by (ii), and suppose Tx is the X−tree induced by Tr . Tx displays
+C 0 by Lemma 11, and by Theorem 10 the underlying tree T of Tr is also the
+underlying tree of Tx . Further, T is ternary and has |X| leaves by (ii), so Tx
+must be free and ternary. To see that Tx is distinguished by C 0 , consider an edge
+uv of T . By (iii) uv is incontractible with respect to C 0 , so there is a character
+χ ∈ C 0 and distinct cells A and A0 of χ such that u is a node of Tr (A, χ) and v is
+a node of Tr (A0 , χ). But Tx (A) = Tr (A, χ) and Tx (A0 ) = Tr (A0 , χ) by Theorem
+10, so χ distinguishes uv. Hence condition (b) of Theorem 2 also holds with
+respect to C 0 , so C 0 defines Tx .
+Last, we show that no proper superset of C 0 also defines an X−tree. If any
+superset C ∗ of C 0 was compatible, then by Lemma 10 some minimal triangulation
+of int(C) has at least C ∗ as its displayed character set. This would contradict (i),
+so no such superset can exist. This completes the proof.
+t
+u
+Lemma 12. Suppose C 0 is a maximal defining subset of C, and H, H 0 are minimal triangulations of int(C) with C 0 as its displayed character set. Then H = H 0 .
+Proof. Let Tx be an X−tree induced by a clique tree Tr of H and Tx0 be an
+X−tree induced by a clique tree Tr0 of H 0 . By Lemma 11, Tr and Tr0 are perfect
+phylogenies for C 0 , and because C 0 defines an X−tree it must be that Tx ∼
+= Tx0 via
+isomorphism ψ. Additionally, for each vertex (A, χ) of int(C) we have Tr (A, χ) =
+Tx (A) and Tr0 (A, χ) = Tx0 (A) by Theorem 10.
+To prove that H = H 0 , it suffices to show that their fill edge sets are the same.
+Suppose that (A1 , χ1 )(A2 , χ2 ) is a fill edge of H. By the edge coverage property
+of clique trees, Tr (A1 , χ1 ) and Tr (A2 , χ2 ) intersect at a node v of T . We will
+show that Tr0 (A1 , χ1 ) and Tr0 (A2 , χ2 ) intersect at ψ(v). If there is an a ∈ A1 such
+that φ(a) = v, then ψ(v) = φ0 (a) is a node of Tx0 (A1 ) = Tr0 (A1 , χ1 ). Otherwise
+13
+
+there are a1 , a2 ∈ A1 and v is an internal node on the path from φ(a1 ) = v1
+to φ(a2 ) = v2 . Because ψ is a graph isomorphism, ψ(v) is an internal node on
+the path from ψ(v1 ) to ψ(v2 ). Further, ψ(v1 ) and ψ(v2 ) are nodes of Tx0 (A1 ) =
+Tr0 (A1 , χ1 ), so ψ(v) is a node of Tr0 (A1 , χ1 ) as well. In both cases ψ(v) is a node
+of Tr0 (A1 , χ1 ), and a similar argument shows that ψ(v) is a node of Tr0 (A2 , χ2 ).
+Therefore Tr0 (A1 , χ1 ) and Tr0 (A2 , χ2 ) intersect at ψ(v), so (A1 , χ1 )(A2 , χ2 ) is a
+fill edge of H 0 , and the fill edge set of H is a subset of the fill edge set of H 0 . A
+symmetric argument shows that the fill edge set of H is a subset of the fill edge
+set of H 0 , so these fill edge sets must be equal, completing the proof.
+t
+u
+Proposition 2. Let C be a set of partial characters on X and C 0 be a maximal
+defining subset of C. Then the following conditions hold:
+(i) int(C) has a unique minimal triangulation H that has C 0 as its displayed
+characters, and no other minimal triangulation of int(C) has at least C 0 as
+its displayed character set;
+(ii) H is a ternary ur-chordal graph with leafage |X|; and
+(iii) each edge of H’s unique clique tree is incontractable with respect to C 0 .
+Further, if C 0 defines Tx , then int(C, Tx ) = H.
+Proof. To see that (i) holds, first observe that C 0 is compatible by definition.
+There is a minimal triangulation H1 of int(C) with at least C 0 as its displayed
+character set by Lemma 10. Because C 0 is a maximal defining subset of C, there
+is no C 0 ⊂ C ∗ ⊆ C that is compatible. By Lemma 11, the displayed characters of
+H1 are compatible, so this set must be exactly C 0 . This is true of any minimal
+triangulation of int(C) that has at least C 0 as its displayed characters. If H2 is
+such a minimal triangulation, then H1 = H2 by Lemma 12, so there is a unique
+minimal triangulation of int(C) that has at least C 0 as its displayed characters.
+We will refer to this unique minimal triangulation as H in the remainder of the
+proof.
+Now we show that (ii) holds. Let Tx be the X−tree induced by a clique tree
+of H. By Lemma 11, Tx is a perfect phylogeny for C 0 , and since C 0 is a maximal
+defining subset it must be that C 0 defines Tx . Recall that Tx is free, ternary,
+and distinguished by C 0 according to Theorem 2. By Theorem 9, int(C, Tx ) is urchordal. On the other hand, H = int(C, Tx ) by Theorem 10, so H is ur-chordal
+as well. By the same theorem, H’s unique clique tree has the same underlying
+tree as Tx . Since Tx is ternary, this clique tree must also be ternary, so H is a
+ternary ur-chordal graph. This proves statement (ii).
+Now consider condition (iii), and let uv be an edge of T . By Theorem 2
+the edge uv is distinguished by C 0 , so there is a character χ ∈ C 0 that has cells
+A 6= A0 and u is a node of Tx (A) and v is a node of Tx (A0 ). From Theorem 10 we
+see that Tx (A) = Tr (A, χ) and Tx (A0 ) = Tr (A0 , χ), so uv is incontractable with
+respect to C 0 . Hence Tr is incontractable with respect to C 0 .
+The remainder of the theorem was shown while proving (ii) holds.
+t
+u
+Proof of Theorem 6. Propositions 1 and 2 show that C 0 is a maximal defining
+subset of C if and only if conditions (a) – (c) hold. The fact that Tx is free,
+14
+
+ternary, and distinguished by C 0 follows by Theorem 2. Finally, int(C, Tx ) = H
+due to Proposition 2.
+t
+u
+Proof of Theorem 4. Use Theorem 6, taking C 0 = C.
+
+5
+
+t
+u
+
+Discussion
+
+We conclude with a brief discussion on the role minimal separators play in minimal triangulation theory [15], and how our characterization may contribute towards constructing an algorithm that sometimes finds a maximal defining subset
+of characters when one exists. Minimal triangulations have been characterized
+by their minimal separators, which happen to be minimal separators of the
+triangulated graph as well [17, 22]. Further, a minimal separator of a minimal
+triangulation has connected components (and full components) that are identical
+in the graph that has been triangulated [15].
+Bouchitté and Todinca [4, 5] used minimal separators and potential maximal cliques, the maximal cliques of minimal triangulations, to create a dynamic
+programming algorithm to solve the treewidth and minimum-fill problems in
+time polynomial in the number of minimal separators of a graph. This approach
+was extended to create a dynamic programming algorithm that solves a variety perfect phylogeny problems in [11], including the unique perfect phylogeny
+problem.
+Our results elucidate the structure of minimal separators of triangulations
+associated with maximal defining subsets of characters. This structure is retained in the partition intersection graph, and is closely related to the structure
+of potential maximal cliques, because the connected components obtained by
+removing the vertices in a potential maximal clique have neighborhoods that
+are minimal separators [4]. This may allow for the computation of a ternary
+ur-chordal minimal triangulation in time polynomial in the number of minimal
+separators of int(C) (or asserting that no ternary ur-chordal minimal triangulations exist), yielding a candidate subset C 0 of C that may be a maximal subset
+of characters. The number of minimal separators of int(C 0 ) is bounded by the
+number of minimal separators of int(C) (this is a specific example of a more
+general fact; see Corollary 4 in [5]). Therefore if it is computationally feasible to
+find C 0 due to int(C) having a small number of minimal separators, checking if
+C 0 defines a perfect phylogeny using the method from [11] may also be feasible.
+
+6
+
+Acknowledgements
+
+This research was partially supported by NSF grants IIS-0803564 and CCF1017580.
+15
+
+References
+1. Anne Berry and Romain Pogorelcnik. A simple algorithm to generate the minimal
+separators and the maximal cliques of a chordal graph. Information Processing
+Letters, 111(11):508–511, 2011.
+2. J.R.S. Blair and B.W. Peyton. An introduction to chordal graphs and clique
+trees. In J.A. George, J.R. Gilbert, and J.W-H. Liu, editors, Graph Theory and
+Sparse Matrix Computations, volume 56 of IMA Volumes in Mathematics and its
+Applications, pages 1–27. Springer–Verlag.
+3. M. Bordewich, K.T. Huber, and C. Semple. Identifying phylogenetic trees. Discrete
+Mathematics, 300(1–3):30–43, 2005.
+4. V. Bouchitté and I. Todinca. Treewidth and minimum fill-in: grouping the minimal
+separators. SIAM Journal on Computing, 31(1):212–232, 2001.
+5. V. Bouchitté and I. Todinca. Listing all potential maximal cliques of a graph.
+Theoretical Computer Science, 276(1-2):17–32, 2002.
+6. P. Buneman. A characterisation of rigid circuit graphs. Discrete Mathematics,
+9(3):205–212, 1974.
+7. G.A. Dirac. On rigid circuit graphs. Abhandlungen aus dem Mathematischen
+Seminar der Universität Hamburg, 25(1–2):71–76, 1961.
+8. F. Gavril. The intersection graphs of subtrees in trees are exactly the chordal
+graphs. Journal of Combinatorial Theory, 16(1):47–56, 1974.
+9. M.C. Golumbic. Algorithmic graph theory and perfect graphs. Elsevier Science,
+2nd edition edition, 2004.
+10. Dan Gusfield. The multi–state perfect phylogeny problem with missing and removable data: solutions via integer–programming and chordal graph theory. Journal
+of Computational Biology, 17(3):383–399, 2010.
+11. R. Gysel. Potential maximal clique algorithms for perfect phylogeny problems.
+Pre-print: arXiv, 1303.3931.
+12. R. Gysel and D. Gusfield. Extensions and improvements to the chordal graph
+approach to the multistate perfect phylogeny problem. IEEE/ACM Transactions
+on Computational Biology and Bioinformatics, 8(4):912–917, 2011.
+13. R. Gysel, F. Lam, and D. Gusfield. Constructing perfect phylogenies and proper
+triangulations for three–state characters. Algorithms for Molecular Biology, 7:26,
+2012.
+14. H. Hara and A. Takemura. Boundary cliques, clique trees and perfect sequences of
+maximal cliques of a chordal graph. Technical Report METR 2006-41, Department
+of Mathematical Informatics, University of Tokyo, 2006.
+15. P. Heggernes. Minimal triangulations of graphs: a survey. Discrete Mathematics,
+306(3):297–317, 2006.
+16. C. Ho and R.C.T. Lee. Counting clique trees and computing perfect elimination
+schemes in parallel. Information Processing Letters, 31(2):61–68, 1989.
+17. T. Kloks, D. Kratsch, and J. Spinrad. On treewidth and minimum fill-in of asteroidal triple-free graphs. Theoretical Computer Science, 175(2):309–335, 1997.
+18. P.S. Kumar and C.E.V. Madhavan. Clique tree generalization and new subclasses
+of chordal graphs. Discrete Applied Mathematics, 117(1–3):109–131, 2002.
+19. I.J. Lin, T.A. McKee, and D.B. West. The leafage of a chordal graph. Discussiones
+Mathematicae Graph Theory, 18:23–48, 1998.
+20. T.A. McKee and F.R. McMorris. Topics in Intersection Graph Theory. Number 2
+in SIAM Monographs on Discrete Mathematics and Applications. 1999.
+
+16
+
+21. C.A. Meacham. Theoretical and computational considerations of the compatibility
+of qualitative taxonomic characters. In J. Felsenstein, editor, Numerical Taxonomy,
+volume 1 of NATO ASI Series G, pages 304–314. Springer–Verlag, 1983.
+22. A. Parra and P. Scheffler. Characterizations and algorithmic applications of chordal
+graph embeddings. Discrete Applied Mathematics, 79(1–3):171–188, 1997.
+23. D.J. Rose. Triangulated graphs and the elimination process. Journal of Mathematical Analysis and Applications, 32(3):597–609, 1970.
+24. C. Semple and M. Steel. A characterization for a set of partial partitions to define
+an X -tree. Discrete Mathematics, 247(1–3):169–186, 2002.
+25. C. Semple and M. Steel. Phylogenetics. Oxford Lecture Series in Mathematics and
+Its Applications. Oxford University Press, 2003.
+26. M. Steel. The complexity of reconstructing trees from qualitative characters and
+subtrees. Journal of Classification, 9(1):91–116, 1992.
+27. J.R. Walter. Representations of chordal graphs as subtrees of a tree. Journal of
+Graph Theory, 2(3):265–267, 1978.
+
+17
+
+
+
+Summary:
+This research paper covers the following topic: Unique Perfect Phylogeny Characterizations via
+Uniquely Representable Chordal Graphs
+
+arXiv:1305.1375v2 [cs.DM] 8 May 2013
+
+Rob Gysel
+Department of Computer Science
+University of California, Davis
+1 Shields Avenue, Davis CA 95616, USA
+rsgysel@ucdavis.edu
+
+Abstract. The perfect phylogeny problem is a classic problem in computational biology, where we seek an unrooted phylogeny that is compatible with a set of qualitative characters. Such a tree exists precisely
+when an intersection graph associated with the character set, called the
+partition intersection graph, can be triangulated using a restricted set
+of fill edges. Semple and Steel used the partition intersection graph to
+characterize when a character set has a unique perfect phylogeny. Bordewich, Huber, and Semple showed how to use the partition intersection
+graph to find a maximum compatible set of characters. In this paper, we
+build on these results, characterizing when a unique perfect phylogeny
+exists for a subset of partial characters. Our characterization is stated in
+terms of minimal triangulations of the partition intersection graph that
+are uniquely representable, also known as ur-chordal graphs. Our characterization is motivated by the structure of ur-chordal graphs, and the
+fact that the block structure of minimal triangulations is mirrored in the
+graph that has been triangulated.
+
+1
+
+Introduction
+
+An X−tree is a pair Tx = (T , φ) where T is a tree and φ is a map from X to
+the nodes of T , such that every node of T with degree two or one is mapped to
+by φ. We will call the range of φ the labeled nodes of Tx , and these nodes are
+labeled by φ. The underlying tree of Tx is T . An X−tree is free if φ is a bijection
+to the leaves of T , and it is ternary if every internal node of T has degree three.
+Given A ⊆ X, we will use Tx (A) to denote the minimal subtree of T containing
+the nodes φ(A). Two subtrees Tx (A) and Tx (A0 ) of T intersect if they have one
+or more nodes in common, and if v is a common node of Tx (A) and Tx (A0 ) we
+say that Tx (A) and Tx (A0 ) intersect at v.
+A partial character for X is a partition χ = A1 |A2 | . . . |Ar of a subset X 0 ⊆ X.
+Each Ai is called a cell of χ. If Tx (A) and Tx (A0 ) do not intersect for every pair
+of distinct cells A and A0 of χ, then Tx displays χ. A perfect phylogeny for a set
+of partial characters C is an X−tree Tx that displays each character in C. When
+C has a perfect phylogeny, we also say that C is compatible. The perfect phylogeny
+problem (also called the character compatibility problem) is to determine if a set
+of partial characters is compatible.
+
+(ab, χ1 )
+
+d
+
+a
+u
+
+(ac, χ2 )
+
+(de, χ3 )
+
+(ab, χ3 ) (bde, χ2 )
+
+(cd, χ1 )
+
+v
+e
+
+b
+c
+(a) Tx
+
+(b) int(C)
+
+Fig. 1. An X−tree for X = {a, b, c, d, e} and a non-chordal partition intersection graph
+int(C). The characters C = {χ1 , χ2 , χ3 } are χ1 = ab|cd, χ2 = ac|bde, and χ3 = ab|de.
+Edges of int(C) are given by solid edges, and the dashed edge represents the fill edge
+required to obtain the triangulation int(C, Tx ) of int(C). Both χ1 and χ3 are displayed
+by Tx , but χ2 is not because Tx (ac) and Tx (bde) intersect at u and v. This intersection
+induces the dashed fill edge of int(C), which breaks χ2 . The edge uv is distinguished
+by χ1 .
+
+The perfect phylogeny problem reduces to a graph theoretical problem that
+we detail now. Given a set of characters C, one can construct the partition intersection graph int(C) as follows. The vertex set of int(C) is
+{(A, χ) | χ ∈ C and A is a cell of χ} ,
+and there is an edge between two vertices (A, χ) and (A0 , χ0 ) if and only if A
+and A0 have non-empty intersection. For a vertex (A, χ) of int(C), A is the cell
+of (A, χ) and χ is the character of (A, χ). Observe that if χ = A1 |A2 | . . . |Ar
+is a partial character, then every pair of distinct vertices (A, χ) and (A0 , χ) are
+non-adjacent in int(C).
+A graph is chordal if every cycle of length four or more has a chord, that is, an
+edge between vertices of the cycle that do not appear consecutively in the cycle.
+In general int(C) is not a chordal graph, and we are interested in adding edges to
+int(C) to obtain a chordal supergraph H of int(C) that is called a triangulation
+of int(C). The added edges are called fill edges. If no subset of the fill edges yields
+a triangulation of int(C), it is a minimal triangulation of int(C). When each fill
+edge is of the form (A, χ)(A0 , χ0 ) and χ 6= χ0 , the resulting triangulation is a
+proper triangulation of int(C). The following classic result reduces the question
+of determining compatibility to finding proper triangulations of the partition
+intersection graph. It was originally phrased in terms of proper triangulations,
+but from the definitions it follows that int(C) has a proper triangulation if and
+only if it has a proper minimal triangulation.
+Theorem 1. [6, 21, 26] Let C be a set of qualitative characters. Then C is
+compatible if and only if int(C) has a proper minimal triangulation.
+∼ T 0 , if there is a bijective
+Two X−trees Tx and Tx0 are isomorphic, writing Tx =
+x
+0
+map ψ : V (T ) → V (T ) that has the following properties:
+2
+
+1. it preserves labels, meaning that φ0 = ψ ◦ φ; and
+2. it is a graph isomorphism, that is, uv ∈ E(T ) if and only if ψ(u)ψ(v) ∈ E(T 0 ).
+A set of characters C defines a perfect phylogeny if it is the unique perfect
+phylogeny, up to isomorphism, for C. The unique perfect phylogeny problem is
+to determine if a set C of partial characters defines a perfect phylogeny. If Tx =
+(T , φ) displays χ and uv is an edge of T such that u is a node of Tx (A) and v is
+a node of Tx (A0 ) where A and A0 are distinct cells of χ, then uv is distinguished
+by χ. If every edge of Tx is distinguished by at least one character of C, then Tx
+is distinguished by C. The following characterization is due to Semple and Steel.
+Theorem 2. [24] Let C be a set of partial characters on X. Then C defines a
+perfect phylogeny if and only if the following conditions are satisfied:
+(a) int(C) has a unique proper minimal triangulation H; and
+(b) there is a free ternary perfect phylogeny for C and it is distinguished by C.
+Further, if Tx is the unique perfect phylogeny for C, then Tx is a free ternary
+X−tree distinguished by C, and int(C, Tx ) = H.
+This result is the impetus of our current work, and one of our main interests
+is to re-formulate condition (b) in terms of combinatorial structures that play a
+significant role in the study of chordal graphs and minimal triangulations.
+Chordal graphs are characterized by the existence of trees that represent the
+adjacency structure of the graph. Suppose G is a graph with vertices V (G) =
+{x1 , x2 , . . . , xn }. A tree representation of G consists of a tree T and subtrees
+T1 , T2 , . . . , Tn of T such that two trees Ti and Tj intersect if and only if xi and
+xj are adjacent. Here, the subtrees are in one-to-one correspondence with the
+vertex set of G, and this correspondence is made explicit by mapping each subtree
+Ti to the vertex xi of G. Observe that a node v of T defines a clique K(v) =
+{xi | v is a node of Ti } of G. Notationally, we will write a tree representation as
+an ordered pair Tr = (T , K) where K maps nodes of T to cliques of G satisfying
+the following properties:
+(Edge Coverage) a pair of vertices x and y of G are adjacent if and only if
+there is a node v of T such that x, y ∈ K(v); and
+(Convexity) for each vertex x of G, the set of nodes {v ∈ V (T ) | x ∈ K(v)}
+induces a subtree of T (i.e. a connected subgraph of T ).
+We will frequently refer to the convexity property throughout the paper. As
+with X−trees, we will call T the underlying tree of Tr . Often we will define a
+tree representation by only specifying the underlying tree T and a collection of
+subtrees of T , which together implicitly define K.
+Let T1 , T2 , . . . , Tk be a collection of subtrees of T . If each pair Ti , Tj of subtrees intersect at a node vij , then by the Helly property for subtrees of a tree [9],
+all of T1 , T2 , . . . , Tk intersect at a common node v. This property manifests itself
+as a statement about cliques of G and nodes of Tr in the following way: for
+any clique K of G, there is at least one node u of T such that K ⊆ K(u). In
+3
+
+particular, this is true when K is a maximal clique of G (i.e. no proper superset
+is also a clique), and therefore K(V (T )) contains the set of maximal cliques of
+G. If the maximal cliques of G are in one-to-one correspondence with the nodes
+of T via K, then Tr is a clique tree of G. See Figure 2 for an example.
+Theorem 3. [6, 8, 27] The following statements are equivalent.
+(a) G is a chordal graph.
+(b) G has a tree representation.
+(c) G has a clique tree.
+Observe that if Tr = (T , K) is a clique tree of G and uv is an edge of T ,
+then because K(u) and K(v) are both maximal cliques of G, there is a vertex
+x of G in K(u) − K(v). In general, a chordal graph has an exponential number
+of clique trees. An algorithm to enumerate clique trees, along with a formula to
+count them, appears in [16].
+We will often be analyzing a tree representation Tr = (T , K) of a triangulation
+H of int(C). Given a vertex (A, χ) of int(C), we will denote the subtree of T that
+it corresponds to by Tr (A, χ). Observe that v is a node of Tr (A, χ) if and only if
+(A, χ) ∈ K(v). Given a set of characters C on X and an X−tree Tx = (T , φ), a
+chordal graph int(C, Tx ) is given by adding an edge between two vertices (A1 , χ1 )
+and (A2 , χ2 ) if and only if Tx (A1 ) and Tx (A2 ) intersect. This construction, along
+with the fact that int(C, Tx ) is a triangulation of int(C), is well-known in the
+phylogenetics literature, and will be discussed in detail in Section 2.
+A chordal graph G is uniquely representable if it has a single clique tree, or
+ur-chordal for short. A ur-chordal graph is ternary if each internal node of its
+clique tree has degree three, and its leafage 1 is the number of leaves its clique
+tree has. Let H be a proper triangulation of int(C) and Tr = (T , K) be a clique
+tree of H. An edge uv of Tr is incontractable with respect to χ if there are distinct
+cells A and A0 of χ such that u ∈ Tr (A, χ) and v ∈ Tr (A0 , χ). We say that Tr is
+incontractable with respect to C if each edge is incontractable with respect to at
+least one χ ∈ C. Now we present our first main result.
+Theorem 4. Suppose C is a set of partial characters on X. Then C defines a
+perfect phylogeny if and only if the following conditions hold:
+(a) int(C) has a unique proper minimal triangulation H;
+(b) H is a ternary ur-chordal graph with leafage |X|; and
+(c) each edge of H’s unique clique tree is incontractable with respect to C.
+Further, if Tx is the perfect phylogeny defined by C, then Tx is a free ternary
+X−tree distinguished by C, and int(C, Tx ) = H.
+Let C be a set of partial characters on X and χ ∈ C. Suppose H is a triangulation of int(C) with fill edge (A, χ)(A0 , χ) where A and A0 are distinct cells of χ.
+1
+
+In general, the leafage of a chordal graph is the minimum number of leaves that a
+clique tree of the graph can have [19].
+
+4
+
+Then we say that (A, χ)(A0 , χ) breaks χ, and χ is a broken character of H. For
+a triangulation H of int(C), its displayed characters are the characters of C that
+are not broken characters of H. Bordewich, Huber, and Semple [3] proved that
+it is possible to find a maximum-sized compatible subset of C using the partition
+intersection graph.
+Theorem 5. Let C be a set of partial characters on X. Then C 0 is a maximumsized compatible subset of C if and only if there is a triangulation H of int(C)
+that has C 0 as its displayed characters, and any other triangulation of int(C) has
+at most |C 0 | displayed characters.
+A subset of partial characters C 0 ⊆ C is a maximal defining subset of C when
+C 0 defines a perfect phylogeny, and there is no compatible set C 00 such that
+C 0 ⊂ C 00 ⊂ C. Our second main result is the following.
+Theorem 6. Suppose C is a set of partial characters on X and C 0 ⊆ C. Then
+C 0 is a maximal defining subset of C if and only if the following conditions hold:
+(a) int(C) has a unique minimal triangulation H that has C 0 as its displayed
+characters, and no other minimal triangulation of int(C) has at least C 0 as
+its displayed character set;
+(b) H is a ternary ur-chordal graph with leafage |X|; and
+(c) each edge of H’s unique clique tree is incontractable with respect to C 0 .
+Further, if Tx is the perfect phylogeny defined by C 0 , then Tx is a free ternary
+X−tree distinguished by C 0 , and int(C, Tx ) = H.
+
+2
+
+Chordal Graph Preliminaries
+
+In this section, we detail known results on chordal graphs that are necessary for
+the remainder of the paper. Suppose G = (V, E) is a graph and S ⊆ V . Let G−S
+denote the graph obtained from G by removing S and all edges incident to at
+least one vertex in S. If there are vertices x and y of G that are connected in G
+but not in G − S, then S is an xy−separator, and if no proper subset of S has
+this property, it is a minimal xy−separator. When S is a minimal xy−separator
+for at least one pair of vertices x and y, it is a minimal separator. Minimality
+in this definition is relative; it is possible to have containment relationships
+between two minimal separators2 . The maximal connected subsets of G − S are
+the connected components of G − S. Let C be a connected component of G − S.
+The neighborhoood of C in G, denoted N (C), is the set of vertices of S that are
+adjacent to at least one vertex in C. If N (C) = S, then it is a full component of
+G−S. The following useful characterization of minimal separators is well-known,
+and left as an exercise in [9].
+2
+
+Dirac [7] called these sets relatively minimal cut-sets, which is perhaps more descriptive, but this term has stuck of the modern literature on chordal graphs and minimal
+triangulations.
+
+5
+
+K(v)
+
+v
+
+(b) Tr
+
+(a) G
+
+Fig. 2. A chordal graph G and clique tree Tr = (T , K) of G. There are three clique trees
+for G, one of which is obtained by removing the bottom-leftmost node and its incident
+edge, and then attaching it to v. The maximal clique map K is defined by the triangle
+drawn inside each node. Arrows indicate vertices that consist of the intersection of a
+neighboring node’s maximal clique, and each such intersection is a minimal separator
+by Theorem 7.
+
+Lemma 1. Let G = (V, E) be a graph, and S ⊆ V . Then S is a minimal
+separator if and only if G − S has two or more full components.
+A minimal separator has multiplicity k if G − S has k − 1 full components.
+Interestingly, clique trees contain detailed information about the minimal separators of the graph it represents, which will be useful for our proofs in later
+sections.
+Theorem 7. [16, 20] Suppose G = (V, E) is a chordal graph, Tr = (T , K) is a
+clique tree of G, and S ⊆ V . Then S is a minimal separator of G if and only if
+there is an edge uv of T such that S = K(u) ∩ K(v)3 . Further, the multiplicity
+of S is the number of edges of T with this property.
+We will not need all of the following characterizations of ur-chordal graphs,
+but we list them for completeness.
+Theorem 8. [14, 18] Let G be a chordal graph. Then the following statements
+are equivalent.
+a) G is uniquely representable.
+b) If S is a minimal separator of G, then there are exactly two maximal cliques
+K and K 0 of G such that S ⊆ K, K 0 .
+c) Each minimal separator of G has multiplicity one.
+3
+
+This theorem also implies that a minimal separator of a chordal graph is a clique.
+In fact, chordal graphs are characterized by having only clique minimal separators,
+which is one of the earliest results on chordal graphs [7].
+
+6
+
+d) There is no minimal separator of G that properly contains another minimal
+separator of G.
+e) The number of minimal separators of G is the number of maximal cliques of
+G minus one.
+Chordal graphs can be recognized in linear time [2], and the maximal cliques
+and minimal separators of a chordal graph may be computed in linear time [1].
+Using property e) of Theorem 8, this allows the recognition of ur-chordal graphs
+in linear time.
+
+3
+
+X−trees, Clique Trees, and Tree Representations
+
+In this section, we define two operations to facilitate the discussion between
+X−trees and tree representations, and prove or state results that will be useful in
+later sections. Both operations are commonly used in the literature (see [24,26]),
+but do not seem to be named as we will do here. The results in this section will
+be useful for proving our characterization for maximal defining subsets.
+Given a set of characters C on X and an X−tree Tx = (T , φ), construct the
+chordal graph int(C, Tx ) having:
+• vertex set identical to that of int(C); and
+• an edge between (A, χ) and (A0 , χ0 ) if and only if Tx (A) and Tx (A0 ) intersect.
+This graph has a tree representation Tr with underlying tree T and subtrees
+obtained by defining Tr (A, χ) = Tx (A) for each vertex (A, χ) of int(C). Therefore
+int(C) is chordal by Theorem 3. Each edge (A1 , χ1 )(A2 , χ2 ) of int(C) has cells
+A1 and A2 that share at least one member of X, say a, so Tx (A1 ) and Tx (A2 )
+intersect at φ(a). Therefore Tr (A1 , χ1 ) and Tr (A2 , χ2 ) intersect at φ(a) as well, so
+(A1 , χ1 )(A2 , χ2 ) is an edge of int(C, Tx ) by subtree intersection. Hence each edge
+of int(C) is also an edge of int(C, Tx ), so int(C, Tx ) is a triangulation of int(C).
+We will say that Tx derives the tree representation Tr = (T , K) of int(C, Tx ) and
+Tr is derived from Tx . In general, Tr is not a clique tree.
+Observation 1 Let C be a set of partial characters on X, Tx be an X−tree, and
+Tr be the tree representation induced by Tx . Then the underlying tree of Tr is
+the underlying tree of Tx , and for all χ ∈ C and cells A of χ, Tx (A) = Tr (A, χ).
+Further, int(C, Tx ) is a triangulation of int(C).
+Lemma 2. Let C be a set of partial characters on X, and Tx be an X−tree that
+displays C 0 ⊆ C. Suppose that each edge of Tx is distinguished by C 0 . Then the
+tree representation of int(C, Tx ) derived from Tx is a clique tree of int(C, Tx ).
+Proof. Let Tr = (T , K) be the tree representation of int(C, Tx ) derived from Tx .
+For the sake of contradiction, assume that Tr is not a clique tree, so that K is not
+a one-to-one map between the nodes of T and the maximal cliques of int(C, Tx ).
+Then there must be nodes u and v of T such that K(v) ⊆ K(u). Let v 0 be the
+7
+
+(ab, χ1 )
+(ac, χ2 )
+
+(cd, χ1 )
+(de, χ3 )
+
+(bde, χ2 )
+(ab, χ3 )
+
+Fig. 3. The tree representation Tr of int(C, Tx ) derived from Tx in Figure 1.a. The
+triangulation int(C, Tx ) of int(C) is depicted in Figure 1.b; note that any two subtrees
+of Tr intersect precisely when the corresponding vertices of int(C, Tx ) are adjacent.
+Observe that Tr is not a clique tree; for example, the two left-most nodes map to nonmaximal cliques. Additionally, there are two nodes that map to the maximal clique
+{(cd, χ1 ), (bde, χ2 ), (de, χ3 )}. Obtaining a clique tree from a tree representation is described in [8].
+
+closest node to v between u and v in T , allowing the possibility that v 0 = u. Note
+that each vertex in K(v) is also a vertex of K(v 0 ) by convexity, so K(v) ⊆ K(v 0 ).
+Now, vv 0 is distinguished by some χ ∈ C 0 , so there are distinct cells A and A0
+of χ such that v is a node of Tx (A) and v 0 is a node of Tx (A0 ). By Observation
+1, v is a node of Tr (A, χ), so (A, χ) ∈ K(v) and by containment (A, χ) ∈ K(v 0 ).
+Further, (A0 , χ) ∈ K(v 0 ), so (A, χ)(A0 , χ) is a fill edge of int(C, Tx ) and it breaks
+χ. This contradicts the assumption that Tx displays C 0 , so Tr must be a clique
+tree of int(C, Tx ).
+t
+u
+Lemma 3. Let C be a set of partial characters on X and Tx be an X−tree
+that displays C 0 ⊆ C. Suppose that Tx is free, ternary, and each edge of Tx is
+distinguished by C 0 . Then int(C, Tx ) is uniquely representable.
+Proof. To prove that int(C, Tx ) is uniquely representable, we use Theorem 8 and
+show that there are no containment relationships between the minimal separators
+of int(C, Tx ). Working towards a contradiction, assume that S ⊂ S 0 are minimal
+separators of int(C, Tx ), and let Tr = (T , K) be the tree representation derived
+from Tx . Then Tr is a clique tree by Lemma 2, and there are edges uv and
+u0 v 0 of T such that S = K(u) ∩ K(v) and S 0 = K(u0 ) ∩ K(v 0 ) by Theorem 7.
+Without loss of generality, assume that the path from v to v 0 does not contain
+either u or u0 (perhaps v = v 0 ). Let w be the node on this path adjacent to v
+if v 6= v 0 , otherwise let w = u0 . In either case, K(w) contains S: if w = u0 , then
+S ⊆ K(w). Otherwise, each (A, χ) in S is an element of both K(u) and K(u0 ),
+so (A, χ) ∈ K(w) by convexity, and S ⊆ K(w).
+To complete the proof, we will obtain a contradiction by showing that S
+has a vertex not in K(w). There is a character χ0 in C 0 that distinguishes wv,
+and distinct cells A0 and A00 of χ0 such that v is a node of Tx (A0 ) and w is a
+8
+
+node of Tx (A00 ). Now, v has at least two neighbors, and because Tx is ternary,
+v must have degree three. Also, v is not mapped to by φ because Tx is free,
+so in order for v to be a node of Tx (A0 ), there must be at least two nodes
+of Tx in φ(A0 ) that are not v, and the path between these two nodes must
+contain v. This path must also contain two of v’s neighbors, and neither of
+these vertices can be w, because w is not a node of Tx (A0 ). Thus u must be
+on this path, so it is a node of Tx (A0 ). Both K(u) and K(v) contain (A0 , χ0 ) by
+Observation 1, so it must be a vertex of S = K(u)∩K(v). Further, (A0 , χ0 ) ∈
+/ K(w)
+because w is not a node of Tx (A0 ) = Tr (A0 , χ0 ). This is impossible because we
+have shown that both (A0 , χ0 ) ∈ S − K(w) and S ⊆ K(w). Thus there are
+no containment relationships between the minimal separators of int(C, Tx ), and
+int(C, Tx ) is uniquely representable by Theorem 8.
+t
+u
+Lemma 4. [3] Let C be a set of partial characters on X, Tx an X−tree, and
+C 0 be the subset of C displayed by Tx . Then int(C, Tx ) is a triangulation of int(C)
+in which the displayed characters are C 0 .
+The previous three lemmas can be summarized as follows.
+Theorem 9. Let C be a set of partial characters on X and Tx be an X−tree
+that displays C 0 ⊆ C. Suppose that Tx is free, ternary, and each edge of Tx is
+distinguished by C 0 . Then int(C, Tx ) is a uniquely representable chordal graph,
+and the tree representation derived from Tx is its unique clique tree. Further, the
+displayed characters of int(C, Tx ) are exactly C 0 .
+Now suppose that Tr = (T , K) is a clique tree of a triangulation H of int(C),
+with the goal of defining an X−tree Tx . The discussion we provide here is standard, e.g. see [3,25]. Construct a map φ from X to T by defining, for each a ∈ X,
+φ(a) = v if and only if K(v) contains every vertex of int(C) whose cell contains
+a. These vertices form a clique because a is contained in each of their cells. Because we have only added fill edges to obtain H, this clique a subset of a maximal
+clique of H, and hence v exists. There may be more than one choice for v, each
+of which we call a candidate node for a. Let u be a leaf of T with neighbor w.
+Then K(u) is a maximal clique that contains a vertex (A, χ) of int(C) that is
+not found in K(w). By convexity, u is the only node of T whose corresponding
+maximal clique contains (A, χ). Each a0 ∈ A has u as its unique candidate node,
+and hence every leaf of T is a unique candidate node for at least one element of
+X. Thus each leaf of T must be labeled by φ. To finish constructing an X−tree,
+obtain T 0 by suppressing any unlabeled nodes of T that have degree two. The
+result is an X−tree Tx = (T 0 , φ), and we say that Tr induces Tx and Tx is induced
+by Tr . We emphasize that the underlying tree of Tx need not be the same as the
+underlying tree of Tr . Note that, because an element of X may have multiple
+candidate nodes, Tr may induce multiple X−trees. Next, we show that when
+H is a minimal triangulation, much of Tx ’s structure is described by Tr . The
+following lemma will be useful.
+Lemma 5. [17, 22] Let G be a graph and H be a minimal triangulation of G.
+If uv is a fill edge of H, then there is a minimal separator of H that contains
+both u and v.
+9
+
+ab
+
+c
+
+de
+(a) Tr0
+
+(b) Tx0
+
+Fig. 4. A clique tree Tr0 of int(C, Tx ) from Figure 1.b and an X−tree Tx0 induced by
+Tr0 . Note that int(C, Tx0 ) = int(C, Tx ), where Tx is the X−tree from Fig. 1.a.
+
+Though not stated in this form, the following lemma follows from the proof
+of Lemma 2.4 and the statement of Corollary 2.5 in [24].
+Lemma 6. Let H be a minimal triangulation of int(C), and suppose Tx is induced by a clique tree of H. Then H = int(C, Tx ).
+Lemma 7. Let H be a minimal triangulation of int(C), Tr = (T , K) be a clique
+tree of H, and suppose Tr induces Tx . Then the underlying tree of Tx is T .
+Proof. We have already seen that every leaf of T is the unique candidate node
+of some element of X. In addition to this, it was also shown in [13] that if u is a
+node of Tr of degree two, then u is the unique candidate node of some element
+of X. This was done by showing that K(u) contains either:
+1. a vertex (A1 , χ1 ) of int(C) that is not contained in K(w) for any other node
+w 6= u of T ; or
+2. an edge (A2 , χ2 )(A3 , χ3 ) of int(C), whose incident vertices have cells with
+non-empty intersection, and are not both contained in K(w) for any other
+node w 6= u of T .
+For completeness, we outline a proof here. Using convexity and the fact that
+u has degree two, it follows that either a unique vertex or unique pair of vertices
+are contained in K(u). It remains to show that (A2 , χ2 )(A3 , χ3 ) is actually an
+edge of int(C) (so A2 ∩ A3 is non-empty). If not, then by Lemma 5 there is a
+minimal separator S of H containing both (A2 , χ2 ) and (A3 , χ3 ). By Theorem
+7, there is an edge u1 u2 of T such that S = K(u1 ) ∩ K(u2 ). But this contradicts
+case 2, so it must be that (A2 , χ2 )(A3 , χ3 ) is an edge of int(C).
+In both cases, u is the unique candidate node of some element in X (this
+element is either a ∈ A1 or a ∈ A2 ∩ A3 ), so every degree two node of T is
+labeled by φ, and there are no nodes of T that need to be suppressed. Hence the
+underlying tree of Tx is T .
+t
+u
+10
+
+Lemma 8. Let H be a minimal triangulation of int(C), Tr = (T , K) be a clique
+tree of H, and suppose Tr induces Tx . Then for each vertex (A, χ) of int(C),
+Tx (A) = Tr (A, χ).
+Proof. Let (A, χ) be a vertex of int(C) and consider a node v of Tx (A). Either
+v = φ(a) for some a ∈ A or v lies between φ(a1 ) and φ(a2 ) for some a1 , a2 ∈ A.
+In the first case, (A, χ) ∈ K(v) because v is a candidate node for a. Similarly,
+in the second case, (A, χ) is an element of both K(φ(a1 )) and K(φ(a2 )), and
+therefore (A, χ) ∈ K(v) by convexity. In both cases v is a node of Tr (A, χ), so
+Tx (A) ⊆ Tr (A, χ).
+To finish proving equality, suppose that Tx (A) ⊂ Tr (A, χ). Define a tree
+representation Tr0 = (T 0 , K0 ) of a graph H 0 as follows: set T 0 = T , and define
+subtrees Tr0 (A0 , χ0 ) of T for each vertex (A0 , χ0 ) of int(C) as follows:
+1. Tr0 (A0 , χ0 ) = Tr (A0 , χ0 ) if (A0 , χ0 ) 6= (A, χ), and
+2. Tr0 (A0 , χ0 ) = Tx (A) if (A0 , χ0 ) = (A, χ).
+We have already seen that Tr0 (A0 , χ0 ) ⊆ Tr (A0 , χ0 ) for every vertex (A0 , χ0 ) of
+int(C), so the edge set of H 0 is a subset of the edge set of H. If (A1 , χ1 )(A2 , χ2 )
+is an edge of int(C), then A1 and A2 have at least one element a in common,
+and thus Tx (A1 ) and Tx (A2 ) intersect at φ(a). Further, Tx (A0 ) ⊆ Tr0 (A0 , χ0 ) for
+each vertex (A0 , χ0 ) of int(C), so Tr0 (A1 , χ1 ) and Tr0 (A2 , χ2 ) also intersect at φ(a).
+Therefore (A1 , χ1 )(A2 , χ2 ) is an edge of H 0 , and H 0 is chordal by Theorem 3, so
+it is a triangulation of int(C).
+To complete the proof, we show that H 0 must have an edge that does not
+exist in H. Because Tx (A) ⊂ Tr (A, χ), there is a node u of Tr (A, χ) − Tx (A) that
+is adjacent to a node w of Tx (A) = Tr0 (A, χ). By maximality, there is a vertex
+(A0 , χ0 ) ∈ K(u) − K(w), and because u is a node of Tr (A, χ), (A, χ) ∈ K(u).
+Therefore (A0 , χ0 )(A, χ) is an edge of H. The situation in H 0 is different: if
+(A0 , χ0 )(A, χ) is an edge of H 0 , then Tr0 (A, χ) and Tr0 (A0 , χ0 ) intersect at a node
+v 0 . But if v 0 is a node of Tr0 (A, χ), then w is on the path from v 0 to u, and by
+convexity this would imply that (A0 , χ0 ) ∈ K(w). Hence (A0 , χ0 )(A, χ) is not an
+edge of H 0 , so the edge set of H 0 is a proper subset of the edge set of H. This
+is impossible because H is a minimal triangulation of int(C), so it must be that
+Tx (A) = Tr (A, χ) for each vertex (A, χ) of int(C).
+t
+u
+Lemmas 6, 7, and 8 are summarized below.
+Theorem 10. Let H be a minimal triangulation of int(C), Tr be a clique tree of
+H, and suppose Tr induces Tx . Then the underlying tree of Tx is the underlying
+tree of Tr , and for each vertex (A, χ) of int(C), Tx (A) = Tr (A, χ). Further,
+H = int(C, Tx ).
+
+4
+
+Maximal Defining Subsets of Characters
+
+This section is devoted to the proof of Theorem 6. Its proof will follow mainly
+from Propositions 1 and 2. Recall that, for a graph H and a subset U of its
+11
+
+vertices, the graph H − U is obtained by removing the vertices in U and edges
+of H incident to one or more vertices of U .
+Lemma 9. Let C be a set of partial characters and C 0 ⊆ C. Suppose H 0 is a
+minimal triangulation of int(C 0 ), and let U be the vertices of int(C) that are not
+vertices of int(C 0 ). Then there is a minimal triangulation H of int(C) such that
+H0 = H − U .
+Proof. Let H 0 be a minimal triangulation of int(C 0 ) and H ∗ be the graph obtained by adding the following fill edges to int(C):
+1. the fill edges of H 0 ; and
+2. fill edges of the form (A, χ)(A0 , χ0 ) where (A, χ) is a vertex of U , and (A0 , χ0 )
+is any vertex of int(C).
+First we prove that H ∗ is chordal, and then we will use it to construct H, a
+minimal triangulation of int(C) such that H − U = H 0 .
+Let (A1 , χ1 ), (A2 , χ2 ), . . . , (Ak , χk ) be a cycle in H ∗ . If χi ∈ C 0 for all i =
+1, 2, . . . , k, then this cycle is also a cycle of H 0 , and therefore has a chord that is
+an edge of H 0 . Each edge of H 0 is also an edge of H ∗ , so this cycle has a chord
+in H ∗ . Otherwise, without loss of generality, χ1 ∈ C − C 0 and (A1 , χ1 ) ∈ U so
+either (A1 , χ1 )(A3 , χ3 ) is an edge of int(C) or is a fill edge of H ∗ of type 2. In
+either case, this cycle has a chord, so H ∗ is chordal.
+Now let H be any minimal triangulation of int(C) such that the edge set of
+H is a subset of the edge set of H ∗ . Every edge of H − U is either an edge of
+int(C 0 ) or is an edge of H 0 by the construction of H ∗ and H. Therefore the edge
+set of H − U is a subset of the edge set of H 0 . Further, H − U is chordal because
+any cycle of H − U is a cycle of H (i.e. chordality is inherited [23]), so it is a
+triangulation of int(C 0 ). By minimality of H 0 , it must be that the edge set of
+H − U is equal to the edge set of H 0 , so H 0 = H − U .
+t
+u
+Lemma 10. [12] see also [3] Let C be a set of partial characters on X and
+suppose that C 0 is a compatible subset of C. Then there is a minimal triangulation
+of int(C) whose displayed characters are at least C 0 .
+Though not stated in this form, the following lemma is a direct result of
+Lemma 5.1 in [3] and its proof.
+Lemma 11. Let C be a set of partial characters on X. Suppose H is a triangulation of int(C) with displayed characters C 0 . Then if Tx is induced by a clique
+tree of H, it is a perfect phylogeny for C 0 .
+Proposition 1. Let C be a set of partial characters on X and C 0 ⊆ C. Suppose
+that the following conditions hold:
+(i) int(C) has a unique minimal triangulation H that has C 0 as its displayed
+characters, and no other minimal triangulation of int(C) has at least C 0 as
+its displayed character set;
+(ii) H is a ternary ur-chordal graph with leafage |X|; and
+12
+
+(iii) each edge of H’s unique clique tree is incontractable with respect to C 0 .
+Then C 0 is a maximal defining subset of C.
+Proof. We begin by showing that C 0 has a unique perfect phylogeny using Theorem 2, and finish the proof showing that no superset of C 0 has a unique perfect
+phylogeny.
+Throughout the proof, H will denote the unique minimal triangulation of
+int(C) given by (i) whose displayed character set is C 0 . By Lemma 11, C 0 has a
+perfect phylogeny so it is compatible. There is a proper triangulation of int(C 0 )
+by Theorem 1, so int(C 0 ) has a proper minimal triangulation as well. To see that
+condition (a) of Theorem 2 holds, suppose that H10 and H20 are proper minimal
+triangulations of int(C 0 ) given by Theorem 1, and let U be the set of vertices of
+int(C) not in int(C 0 ). By Lemma 9, there are minimal triangulations H1 and H2
+of int(C) that satisfy H10 = H1 −U and H20 = H2 −U . The displayed characters of
+H1 and H2 must be at least C 0 , because any fill edge that breaks a character of C 0
+would also appear in H10 or H20 , and both H10 and H20 are proper triangulations
+of int(C 0 ). By (i), we have H1 = H = H2 . Therefore H10 = H − U = H20 , so
+condition (a) of Theorem 2 is satisfied with respect to C 0 .
+Now we show condition (b) of Theorem 2 holds. Let Tr be the unique clique
+tree of H given by (ii), and suppose Tx is the X−tree induced by Tr . Tx displays
+C 0 by Lemma 11, and by Theorem 10 the underlying tree T of Tr is also the
+underlying tree of Tx . Further, T is ternary and has |X| leaves by (ii), so Tx
+must be free and ternary. To see that Tx is distinguished by C 0 , consider an edge
+uv of T . By (iii) uv is incontractible with respect to C 0 , so there is a character
+χ ∈ C 0 and distinct cells A and A0 of χ such that u is a node of Tr (A, χ) and v is
+a node of Tr (A0 , χ). But Tx (A) = Tr (A, χ) and Tx (A0 ) = Tr (A0 , χ) by Theorem
+10, so χ distinguishes uv. Hence condition (b) of Theorem 2 also holds with
+respect to C 0 , so C 0 defines Tx .
+Last, we show that no proper superset of C 0 also defines an X−tree. If any
+superset C ∗ of C 0 was compatible, then by Lemma 10 some minimal triangulation
+of int(C) has at least C ∗ as its displayed character set. This would contradict (i),
+so no such superset can exist. This completes the proof.
+t
+u
+Lemma 12. Suppose C 0 is a maximal defining subset of C, and H, H 0 are minimal triangulations of int(C) with C 0 as its displayed character set. Then H = H 0 .
+Proof. Let Tx be an X−tree induced by a clique tree Tr of H and Tx0 be an
+X−tree induced by a clique tree Tr0 of H 0 . By Lemma 11, Tr and Tr0 are perfect
+phylogenies for C 0 , and because C 0 defines an X−tree it must be that Tx ∼
+= Tx0 via
+isomorphism ψ. Additionally, for each vertex (A, χ) of int(C) we have Tr (A, χ) =
+Tx (A) and Tr0 (A, χ) = Tx0 (A) by Theorem 10.
+To prove that H = H 0 , it suffices to show that their fill edge sets are the same.
+Suppose that (A1 , χ1 )(A2 , χ2 ) is a fill edge of H. By the edge coverage property
+of clique trees, Tr (A1 , χ1 ) and Tr (A2 , χ2 ) intersect at a node v of T . We will
+show that Tr0 (A1 , χ1 ) and Tr0 (A2 , χ2 ) intersect at ψ(v). If there is an a ∈ A1 such
+that φ(a) = v, then ψ(v) = φ0 (a) is a node of Tx0 (A1 ) = Tr0 (A1 , χ1 ). Otherwise
+13
+
+there are a1 , a2 ∈ A1 and v is an internal node on the path from φ(a1 ) = v1
+to φ(a2 ) = v2 . Because ψ is a graph isomorphism, ψ(v) is an internal node on
+the path from ψ(v1 ) to ψ(v2 ). Further, ψ(v1 ) and ψ(v2 ) are nodes of Tx0 (A1 ) =
+Tr0 (A1 , χ1 ), so ψ(v) is a node of Tr0 (A1 , χ1 ) as well. In both cases ψ(v) is a node
+of Tr0 (A1 , χ1 ), and a similar argument shows that ψ(v) is a node of Tr0 (A2 , χ2 ).
+Therefore Tr0 (A1 , χ1 ) and Tr0 (A2 , χ2 ) intersect at ψ(v), so (A1 , χ1 )(A2 , χ2 ) is a
+fill edge of H 0 , and the fill edge set of H is a subset of the fill edge set of H 0 . A
+symmetric argument shows that the fill edge set of H is a subset of the fill edge
+set of H 0 , so these fill edge sets must be equal, completing the proof.
+t
+u
+Proposition 2. Let C be a set of partial characters on X and C 0 be a maximal
+defining subset of C. Then the following conditions hold:
+(i) int(C) has a unique minimal triangulation H that has C 0 as its displayed
+characters, and no other minimal triangulation of int(C) has at least C 0 as
+its displayed character set;
+(ii) H is a ternary ur-chordal graph with leafage |X|; and
+(iii) each edge of H’s unique clique tree is incontractable with respect to C 0 .
+Further, if C 0 defines Tx , then int(C, Tx ) = H.
+Proof. To see that (i) holds, first observe that C 0 is compatible by definition.
+There is a minimal triangulation H1 of int(C) with at least C 0 as its displayed
+character set by Lemma 10. Because C 0 is a maximal defining subset of C, there
+is no C 0 ⊂ C ∗ ⊆ C that is compatible. By Lemma 11, the displayed characters of
+H1 are compatible, so this set must be exactly C 0 . This is true of any minimal
+triangulation of int(C) that has at least C 0 as its displayed characters. If H2 is
+such a minimal triangulation, then H1 = H2 by Lemma 12, so there is a unique
+minimal triangulation of int(C) that has at least C 0 as its displayed characters.
+We will refer to this unique minimal triangulation as H in the remainder of the
+proof.
+Now we show that (ii) holds. Let Tx be the X−tree induced by a clique tree
+of H. By Lemma 11, Tx is a perfect phylogeny for C 0 , and since C 0 is a maximal
+defining subset it must be that C 0 defines Tx . Recall that Tx is free, ternary,
+and distinguished by C 0 according to Theorem 2. By Theorem 9, int(C, Tx ) is urchordal. On the other hand, H = int(C, Tx ) by Theorem 10, so H is ur-chordal
+as well. By the same theorem, H’s unique clique tree has the same underlying
+tree as Tx . Since Tx is ternary, this clique tree must also be ternary, so H is a
+ternary ur-chordal graph. This proves statement (ii).
+Now consider condition (iii), and let uv be an edge of T . By Theorem 2
+the edge uv is distinguished by C 0 , so there is a character χ ∈ C 0 that has cells
+A 6= A0 and u is a node of Tx (A) and v is a node of Tx (A0 ). From Theorem 10 we
+see that Tx (A) = Tr (A, χ) and Tx (A0 ) = Tr (A0 , χ), so uv is incontractable with
+respect to C 0 . Hence Tr is incontractable with respect to C 0 .
+The remainder of the theorem was shown while proving (ii) holds.
+t
+u
+Proof of Theorem 6. Propositions 1 and 2 show that C 0 is a maximal defining
+subset of C if and only if conditions (a) – (c) hold. The fact that Tx is free,
+14
+
+ternary, and distinguished by C 0 follows by Theorem 2. Finally, int(C, Tx ) = H
+due to Proposition 2.
+t
+u
+Proof of Theorem 4. Use Theorem 6, taking C 0 = C.
+
+5
+
+t
+u
+
+Discussion
+
+We conclude with a brief discussion on the role minimal separators play in minimal triangulation theory [15], and how our characterization may contribute towards constructing an algorithm that sometimes finds a maximal defining subset
+of characters when one exists. Minimal triangulations have been characterized
+by their minimal separators, which happen to be minimal separators of the
+triangulated graph as well [17, 22]. Further, a minimal separator of a minimal
+triangulation has connected components (and full components) that are identical
+in the graph that has been triangulated [15].
+Bouchitté and Todinca [4, 5] used minimal separators and potential maximal cliques, the maximal cliques of minimal triangulations, to create a dynamic
+programming algorithm to solve the treewidth and minimum-fill problems in
+time polynomial in the number of minimal separators of a graph. This approach
+was extended to create a dynamic programming algorithm that solves a variety perfect phylogeny problems in [11], including the unique perfect phylogeny
+problem.
+Our results elucidate the structure of minimal separators of triangulations
+associated with maximal defining subsets of characters. This structure is retained in the partition intersection graph, and is closely related to the structure
+of potential maximal cliques, because the connected components obtained by
+removing the vertices in a potential maximal clique have neighborhoods that
+are minimal separators [4]. This may allow for the computation of a ternary
+ur-chordal minimal triangulation in time polynomial in the number of minimal
+separators of int(C) (or asserting that no ternary ur-chordal minimal triangulations exist), yielding a candidate subset C 0 of C that may be a maximal subset
+of characters. The number of minimal separators of int(C 0 ) is bounded by the
+number of minimal separators of int(C) (this is a specific example of a more
+general fact; see Corollary 4 in [5]). Therefore if it is computationally feasible to
+find C 0 due to int(C) having a small number of minimal separators, checking if
+C 0 defines a perfect phylogeny using the method from [11] may also be feasible.
+
+6
+
+Acknowledgements
+
+This research was partially supported by NSF grants IIS-0803564 and CCF1017580.
+15
+
+References
+1. Anne Berry and Romain Pogorelcnik. A simple algorithm to generate the minimal
+separators and the maximal cliques of a chordal graph. Information Processing
+Letters, 111(11):508–511, 2011.
+2. J.R.S. Blair and B.W. Peyton. An introduction to chordal graphs and clique
+trees. In J.A. George, J.R. Gilbert, and J.W-H. Liu, editors, Graph Theory and
+Sparse Matrix Computations, volume 56 of IMA Volumes in Mathematics and its
+Applications, pages 1–27. Springer–Verlag.
+3. M. Bordewich, K.T. Huber, and C. Semple. Identifying phylogenetic trees. Discrete
+Mathematics, 300(1–3):30–43, 2005.
+4. V. Bouchitté and I. Todinca. Treewidth and minimum fill-in: grouping the minimal
+separators. SIAM Journal on Computing, 31(1):212–232, 2001.
+5. V. Bouchitté and I. Todinca. Listing all potential maximal cliques of a graph.
+Theoretical Computer Science, 276(1-2):17–32, 2002.
+6. P. Buneman. A characterisation of rigid circuit graphs. Discrete Mathematics,
+9(3):205–212, 1974.
+7. G.A. Dirac. On rigid circuit graphs. Abhandlungen aus dem Mathematischen
+Seminar der Universität Hamburg, 25(1–2):71–76, 1961.
+8. F. Gavril. The intersection graphs of subtrees in trees are exactly the chordal
+graphs. Journal of Combinatorial Theory, 16(1):47–56, 1974.
+9. M.C. Golumbic. Algorithmic graph theory and perfect graphs. Elsevier Science,
+2nd edition edition, 2004.
+10. Dan Gusfield. The multi–state perfect phylogeny problem with missing and removable data: solutions via integer–programming and chordal graph theory. Journal
+of Computational Biology, 17(3):383–399, 2010.
+11. R. Gysel. Potential maximal clique algorithms for perfect phylogeny problems.
+Pre-print: arXiv, 1303.3931.
+12. R. Gysel and D. Gusfield. Extensions and improvements to the chordal graph
+approach to the multistate perfect phylogeny problem. IEEE/ACM Transactions
+on Computational Biology and Bioinformatics, 8(4):912–917, 2011.
+13. R. Gysel, F. Lam, and D. Gusfield. Constructing perfect phylogenies and proper
+triangulations for three–state characters. Algorithms for Molecular Biology, 7:26,
+2012.
+14. H. Hara and A. Takemura. Boundary cliques, clique trees and perfect sequences of
+maximal cliques of a chordal graph. Technical Report METR 2006-41, Department
+of Mathematical Informatics, University of Tokyo, 2006.
+15. P. Heggernes. Minimal triangulations of graphs: a survey. Discrete Mathematics,
+306(3):297–317, 2006.
+16. C. Ho and R.C.T. Lee. Counting clique trees and computing perfect elimination
+schemes in parallel. Information Processing Letters, 31(2):61–68, 1989.
+17. T. Kloks, D. Kratsch, and J. Spinrad. On treewidth and minimum fill-in of asteroidal triple-free graphs. Theoretical Computer Science, 175(2):309–335, 1997.
+18. P.S. Kumar and C.E.V. Madhavan. Clique tree generalization and new subclasses
+of chordal graphs. Discrete Applied Mathematics, 117(1–3):109–131, 2002.
+19. I.J. Lin, T.A. McKee, and D.B. West. The leafage of a chordal graph. Discussiones
+Mathematicae Graph Theory, 18:23–48, 1998.
+20. T.A. McKee and F.R. McMorris. Topics in Intersection Graph Theory. Number 2
+in SIAM Monographs on Discrete Mathematics and Applications. 1999.
+
+16
+
+21. C.A. Meacham. Theoretical and computational considerations of the compatibility
+of qualitative taxonomic characters. In J. Felsenstein, editor, Numerical Taxonomy,
+volume 1 of NATO ASI Series G, pages 304–314. Springer–Verlag, 1983.
+22. A. Parra and P. Scheffler. Characterizations and algorithmic applications of chordal
+graph embeddings. Discrete Applied Mathematics, 79(1–3):171–188, 1997.
+23. D.J. Rose. Triangulated graphs and the elimination process. Journal of Mathematical Analysis and Applications, 32(3):597–609, 1970.
+24. C. Semple and M. Steel. A characterization for a set of partial partitions to define
+an X -tree. Discrete Mathematics, 247(1–3):169–186, 2002.
+25. C. Semple and M. Steel. Phylogenetics. Oxford Lecture Series in Mathematics and
+Its Applications. Oxford University Press, 2003.
+26. M. Steel. The complexity of reconstructing trees from qualitative characters and
+subtrees. Journal of Classification, 9(1):91–116, 1992.
+27. J.R. Walter. Representations of chordal graphs as subtrees of a tree. Journal of
+Graph Theory, 2(3):265–267, 1978.
+
+17
+
+

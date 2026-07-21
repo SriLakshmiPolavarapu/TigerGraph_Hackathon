@@ -1,0 +1,21 @@
+Title: Commonality in Recommender Systems: Evaluating Recommender Systems to Enhance Cultural Citizenship
+
+Authors: Andres Ferraro, Gustavo Ferreira, Fernando Diaz, Georgina Born
+
+Published: 2023-02-22
+
+Categories: cs.IR
+
+Abstract:
+Recommender systems have become the dominant means of curating cultural content, significantly influencing individual cultural experience. Since recommender systems tend to optimize for personalized user experience, they can overlook impacts on cultural experience in the aggregate. After demonstrating that existing metrics do not center culture, we introduce a new metric, commonality, that measures the degree to which recommendations familiarize a given user population with specified categories of cultural content. We developed commonality through an interdisciplinary dialogue between researchers in computer science and the social sciences and humanities. With reference to principles underpinning public service media systems in democratic societies, we identify universality of address and content diversity in the service of strengthening cultural citizenship as particularly relevant goals for recommender systems delivering cultural content. We develop commonality as a measure of recommender system alignment with the promotion of content toward a shared cultural experience across a population of users. We empirically compare the performance of recommendation algorithms using commonality with existing metrics, demonstrating that commonality captures a novel property of system behavior complementary to existing metrics. Alongside existing fairness and diversity metrics, commonality contributes to a growing body of scholarship developing `public good' rationales for machine learning systems.
+
+Paper ID: 2302.11360v2
+
+Summary:
+This paper titled "Commonality in Recommender Systems: Evaluating Recommender Systems to Enhance Cultural Citizenship" was authored by Andres Ferraro, Gustavo Ferreira, Fernando Diaz, Georgina Born and published on 2023-02-22.
+It falls under the categories: cs.IR.
+The research explores the following topic: Recommender systems have become the dominant means of curating cultural content, significantly influencing individual cultural experience. Since recommender systems tend to optimize for personalized user experience, they can overlook impacts on cultural experience in the aggregate. After demonstrating that existing metrics do not center culture, we introduce a new metric, commonality, that measures the degree to which recommendations familiarize a given user population with specified categories of cultural content. We developed commonality through an interdisciplinary dialogue between researchers in computer science and the social sciences and humanities. With reference to principles underpinning public service media systems in democratic societies, we identify universality of address and content diversity in the service of strengthening cultural citizenship as particularly relevant goals for recommender systems delivering cultural content. We develop commonality as a measure of recommender system alignment with the promotion of content toward a shared cultural experience across a population of users. We empirically compare the performance of recommendation algorithms using commonality with existing metrics, demonstrating that commonality captures a novel property of system behavior complementary to existing metrics. Alongside existing fairness and diversity metrics, commonality contributes to a growing body of scholarship developing `public good' rationales for machine learning systems.
+
+Links:
+  - https://arxiv.org/abs/2302.11360v2
+  - https://arxiv.org/pdf/2302.11360v2

@@ -1,0 +1,21 @@
+Title: A Theoretical Analysis of Catastrophic Forgetting through the NTK Overlap Matrix
+
+Authors: Thang Doan, Mehdi Bennani, Bogdan Mazoure, Guillaume Rabusseau, Pierre Alquier
+
+Published: 2020-10-07
+
+Categories: cs.LG, cs.AI, stat.ML
+
+Abstract:
+Continual learning (CL) is a setting in which an agent has to learn from an incoming stream of data during its entire lifetime. Although major advances have been made in the field, one recurring problem which remains unsolved is that of Catastrophic Forgetting (CF). While the issue has been extensively studied empirically, little attention has been paid from a theoretical angle. In this paper, we show that the impact of CF increases as two tasks increasingly align. We introduce a measure of task similarity called the NTK overlap matrix which is at the core of CF. We analyze common projected gradient algorithms and demonstrate how they mitigate forgetting. Then, we propose a variant of Orthogonal Gradient Descent (OGD) which leverages structure of the data through Principal Component Analysis (PCA). Experiments support our theoretical findings and show how our method can help reduce CF on classical CL datasets.
+
+Paper ID: 2010.04003v2
+
+Summary:
+This paper titled "A Theoretical Analysis of Catastrophic Forgetting through the NTK Overlap Matrix" was authored by Thang Doan, Mehdi Bennani, Bogdan Mazoure, Guillaume Rabusseau, Pierre Alquier and published on 2020-10-07.
+It falls under the categories: cs.LG, cs.AI, stat.ML.
+The research explores the following topic: Continual learning (CL) is a setting in which an agent has to learn from an incoming stream of data during its entire lifetime. Although major advances have been made in the field, one recurring problem which remains unsolved is that of Catastrophic Forgetting (CF). While the issue has been extensively studied empirically, little attention has been paid from a theoretical angle. In this paper, we show that the impact of CF increases as two tasks increasingly align. We introduce a measure of task similarity called the NTK overlap matrix which is at the core of CF. We analyze common projected gradient algorithms and demonstrate how they mitigate forgetting. Then, we propose a variant of Orthogonal Gradient Descent (OGD) which leverages structure of the data through Principal Component Analysis (PCA). Experiments support our theoretical findings and show how our method can help reduce CF on classical CL datasets.
+
+Links:
+  - https://arxiv.org/abs/2010.04003v2
+  - https://arxiv.org/pdf/2010.04003v2

@@ -1,0 +1,21 @@
+Title: The Scientific Method in the Science of Machine Learning
+
+Authors: Jessica Zosa Forde, Michela Paganini
+
+Published: 2019-04-24
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+In the quest to align deep learning with the sciences to address calls for rigor, safety, and interpretability in machine learning systems, this contribution identifies key missing pieces: the stages of hypothesis formulation and testing, as well as statistical and systematic uncertainty estimation -- core tenets of the scientific method. This position paper discusses the ways in which contemporary science is conducted in other domains and identifies potentially useful practices. We present a case study from physics and describe how this field has promoted rigor through specific methodological practices, and provide recommendations on how machine learning researchers can adopt these practices into the research ecosystem. We argue that both domain-driven experiments and application-agnostic questions of the inner workings of fundamental building blocks of machine learning models ought to be examined with the tools of the scientific method, to ensure we not only understand effect, but also begin to understand cause, which is the raison d'être of science.
+
+Paper ID: 1904.10922v1
+
+Summary:
+This paper titled "The Scientific Method in the Science of Machine Learning" was authored by Jessica Zosa Forde, Michela Paganini and published on 2019-04-24.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: In the quest to align deep learning with the sciences to address calls for rigor, safety, and interpretability in machine learning systems, this contribution identifies key missing pieces: the stages of hypothesis formulation and testing, as well as statistical and systematic uncertainty estimation -- core tenets of the scientific method. This position paper discusses the ways in which contemporary science is conducted in other domains and identifies potentially useful practices. We present a case study from physics and describe how this field has promoted rigor through specific methodological practices, and provide recommendations on how machine learning researchers can adopt these practices into the research ecosystem. We argue that both domain-driven experiments and application-agnostic questions of the inner workings of fundamental building blocks of machine learning models ought to be examined with the tools of the scientific method, to ensure we not only understand effect, but also begin to understand cause, which is the raison d'être of science.
+
+Links:
+  - https://arxiv.org/abs/1904.10922v1
+  - https://arxiv.org/pdf/1904.10922v1

@@ -1,0 +1,21 @@
+Title: Towards Goal-oriented Prompt Engineering for Large Language Models: A Survey
+
+Authors: Haochen Li, Jonathan Leung, Zhiqi Shen
+
+Published: 2024-01-25
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Large Language Models (LLMs) have shown prominent performance in various downstream tasks and prompt engineering plays a pivotal role in optimizing LLMs' performance. This paper, not only as an overview of current prompt engineering methods, but also aims to highlight the limitation of designing prompts based on an anthropomorphic assumption that expects LLMs to think like humans. From our review of 50 representative studies, we demonstrate that a goal-oriented prompt formulation, which guides LLMs to follow established human logical thinking, significantly improves the performance of LLMs. Furthermore, We introduce a novel taxonomy that categorizes goal-oriented prompting methods into five interconnected stages and we demonstrate the broad applicability of our framework. With four future directions proposed, we hope to further emphasize the power and potential of goal-oriented prompt engineering in all fields.
+
+Paper ID: 2401.14043v3
+
+Summary:
+This paper titled "Towards Goal-oriented Prompt Engineering for Large Language Models: A Survey" was authored by Haochen Li, Jonathan Leung, Zhiqi Shen and published on 2024-01-25.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Large Language Models (LLMs) have shown prominent performance in various downstream tasks and prompt engineering plays a pivotal role in optimizing LLMs' performance. This paper, not only as an overview of current prompt engineering methods, but also aims to highlight the limitation of designing prompts based on an anthropomorphic assumption that expects LLMs to think like humans. From our review of 50 representative studies, we demonstrate that a goal-oriented prompt formulation, which guides LLMs to follow established human logical thinking, significantly improves the performance of LLMs. Furthermore, We introduce a novel taxonomy that categorizes goal-oriented prompting methods into five interconnected stages and we demonstrate the broad applicability of our framework. With four future directions proposed, we hope to further emphasize the power and potential of goal-oriented prompt engineering in all fields.
+
+Links:
+  - https://arxiv.org/abs/2401.14043v3
+  - https://arxiv.org/pdf/2401.14043v3

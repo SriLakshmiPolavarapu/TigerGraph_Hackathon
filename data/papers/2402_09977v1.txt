@@ -1,0 +1,22 @@
+Title: Fast Vocabulary Transfer for Language Model Compression
+
+Authors: Leonidas Gee, Andrea Zugarini, Leonardo Rigutini, Paolo Torroni
+
+Published: 2024-02-15
+
+Categories: cs.CL, cs.AI, cs.LG
+
+Abstract:
+Real-world business applications require a trade-off between language model performance and size. We propose a new method for model compression that relies on vocabulary transfer. We evaluate the method on various vertical domains and downstream tasks. Our results indicate that vocabulary transfer can be effectively used in combination with other compression techniques, yielding a significant reduction in model size and inference time while marginally compromising on performance.
+
+Paper ID: 2402.09977v1
+
+Summary:
+This paper titled "Fast Vocabulary Transfer for Language Model Compression" was authored by Leonidas Gee, Andrea Zugarini, Leonardo Rigutini, Paolo Torroni and published on 2024-02-15.
+It falls under the categories: cs.CL, cs.AI, cs.LG.
+The research explores the following topic: Real-world business applications require a trade-off between language model performance and size. We propose a new method for model compression that relies on vocabulary transfer. We evaluate the method on various vertical domains and downstream tasks. Our results indicate that vocabulary transfer can be effectively used in combination with other compression techniques, yielding a significant reduction in model size and inference time while marginally compromising on performance.
+
+Links:
+  - https://arxiv.org/abs/2402.09977v1
+  - https://arxiv.org/pdf/2402.09977v1
+  - https://doi.org/10.18653/v1/2022.emnlp-industry.41

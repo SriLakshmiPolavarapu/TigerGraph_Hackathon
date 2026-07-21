@@ -1,0 +1,21 @@
+Title: Towards Non-I.I.D. and Invisible Data with FedNAS: Federated Deep Learning via Neural Architecture Search
+
+Authors: Chaoyang He, Murali Annavaram, Salman Avestimehr
+
+Published: 2020-04-18
+
+Categories: cs.LG, cs.CV, cs.DC, cs.MA, stat.ML
+
+Abstract:
+Federated Learning (FL) has been proved to be an effective learning framework when data cannot be centralized due to privacy, communication costs, and regulatory restrictions. When training deep learning models under an FL setting, people employ the predefined model architecture discovered in the centralized environment. However, this predefined architecture may not be the optimal choice because it may not fit data with non-identical and independent distribution (non-IID). Thus, we advocate automating federated learning (AutoFL) to improve model accuracy and reduce the manual design effort. We specifically study AutoFL via Neural Architecture Search (NAS), which can automate the design process. We propose a Federated NAS (FedNAS) algorithm to help scattered workers collaboratively searching for a better architecture with higher accuracy. We also build a system based on FedNAS. Our experiments on non-IID dataset show that the architecture searched by FedNAS can outperform the manually predefined architecture.
+
+Paper ID: 2004.08546v4
+
+Summary:
+This paper titled "Towards Non-I.I.D. and Invisible Data with FedNAS: Federated Deep Learning via Neural Architecture Search" was authored by Chaoyang He, Murali Annavaram, Salman Avestimehr and published on 2020-04-18.
+It falls under the categories: cs.LG, cs.CV, cs.DC, cs.MA, stat.ML.
+The research explores the following topic: Federated Learning (FL) has been proved to be an effective learning framework when data cannot be centralized due to privacy, communication costs, and regulatory restrictions. When training deep learning models under an FL setting, people employ the predefined model architecture discovered in the centralized environment. However, this predefined architecture may not be the optimal choice because it may not fit data with non-identical and independent distribution (non-IID). Thus, we advocate automating federated learning (AutoFL) to improve model accuracy and reduce the manual design effort. We specifically study AutoFL via Neural Architecture Search (NAS), which can automate the design process. We propose a Federated NAS (FedNAS) algorithm to help scattered workers collaboratively searching for a better architecture with higher accuracy. We also build a system based on FedNAS. Our experiments on non-IID dataset show that the architecture searched by FedNAS can outperform the manually predefined architecture.
+
+Links:
+  - https://arxiv.org/abs/2004.08546v4
+  - https://arxiv.org/pdf/2004.08546v4

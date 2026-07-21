@@ -1,0 +1,21 @@
+Title: Modality-Inconsistent Continual Learning of Multimodal Large Language Models
+
+Authors: Weiguo Pian, Shijian Deng, Shentong Mo, Mingrui Liu, Yunhui Guo, Yapeng Tian
+
+Published: 2024-12-17
+
+Categories: cs.LG, cs.AI, cs.CL, cs.CV, cs.SD, eess.AS
+
+Abstract:
+In this paper, we introduce Modality-Inconsistent Continual Learning (MICL), a new continual learning scenario for Multimodal Large Language Models (MLLMs) that involves tasks with inconsistent modalities (image, audio, or video) and varying task types (captioning or question-answering). Unlike existing vision-only or modality-incremental settings, MICL combines modality and task type shifts, both of which drive catastrophic forgetting. To address these challenges, we propose MoInCL, which employs a Pseudo Targets Generation Module to mitigate forgetting caused by task type shifts in previously seen modalities. It also incorporates Instruction-based Knowledge Distillation to preserve the model's ability to handle previously learned modalities when new ones are introduced. We benchmark MICL using a total of six tasks and conduct experiments to validate the effectiveness of our MoInCL. The experimental results highlight the superiority of MoInCL, showing significant improvements over representative and state-of-the-art continual learning baselines.
+
+Paper ID: 2412.13050v2
+
+Summary:
+This paper titled "Modality-Inconsistent Continual Learning of Multimodal Large Language Models" was authored by Weiguo Pian, Shijian Deng, Shentong Mo, Mingrui Liu, Yunhui Guo, Yapeng Tian and published on 2024-12-17.
+It falls under the categories: cs.LG, cs.AI, cs.CL, cs.CV, cs.SD, eess.AS.
+The research explores the following topic: In this paper, we introduce Modality-Inconsistent Continual Learning (MICL), a new continual learning scenario for Multimodal Large Language Models (MLLMs) that involves tasks with inconsistent modalities (image, audio, or video) and varying task types (captioning or question-answering). Unlike existing vision-only or modality-incremental settings, MICL combines modality and task type shifts, both of which drive catastrophic forgetting. To address these challenges, we propose MoInCL, which employs a Pseudo Targets Generation Module to mitigate forgetting caused by task type shifts in previously seen modalities. It also incorporates Instruction-based Knowledge Distillation to preserve the model's ability to handle previously learned modalities when new ones are introduced. We benchmark MICL using a total of six tasks and conduct experiments to validate the effectiveness of our MoInCL. The experimental results highlight the superiority of MoInCL, showing significant improvements over representative and state-of-the-art continual learning baselines.
+
+Links:
+  - https://arxiv.org/abs/2412.13050v2
+  - https://arxiv.org/pdf/2412.13050v2

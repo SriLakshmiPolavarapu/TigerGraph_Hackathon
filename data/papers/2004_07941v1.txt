@@ -1,0 +1,21 @@
+Title: Continual Learning for Anomaly Detection in Surveillance Videos
+
+Authors: Keval Doshi, Yasin Yilmaz
+
+Published: 2020-04-15
+
+Categories: cs.CV, cs.LG, eess.IV, stat.ML
+
+Abstract:
+Anomaly detection in surveillance videos has been recently gaining attention. A challenging aspect of high-dimensional applications such as video surveillance is continual learning. While current state-of-the-art deep learning approaches perform well on existing public datasets, they fail to work in a continual learning framework due to computational and storage issues. Furthermore, online decision making is an important but mostly neglected factor in this domain. Motivated by these research gaps, we propose an online anomaly detection method for surveillance videos using transfer learning and continual learning, which in turn significantly reduces the training complexity and provides a mechanism for continually learning from recent data without suffering from catastrophic forgetting. Our proposed algorithm leverages the feature extraction power of neural network-based models for transfer learning, and the continual learning capability of statistical detection methods.
+
+Paper ID: 2004.07941v1
+
+Summary:
+This paper titled "Continual Learning for Anomaly Detection in Surveillance Videos" was authored by Keval Doshi, Yasin Yilmaz and published on 2020-04-15.
+It falls under the categories: cs.CV, cs.LG, eess.IV, stat.ML.
+The research explores the following topic: Anomaly detection in surveillance videos has been recently gaining attention. A challenging aspect of high-dimensional applications such as video surveillance is continual learning. While current state-of-the-art deep learning approaches perform well on existing public datasets, they fail to work in a continual learning framework due to computational and storage issues. Furthermore, online decision making is an important but mostly neglected factor in this domain. Motivated by these research gaps, we propose an online anomaly detection method for surveillance videos using transfer learning and continual learning, which in turn significantly reduces the training complexity and provides a mechanism for continually learning from recent data without suffering from catastrophic forgetting. Our proposed algorithm leverages the feature extraction power of neural network-based models for transfer learning, and the continual learning capability of statistical detection methods.
+
+Links:
+  - https://arxiv.org/abs/2004.07941v1
+  - https://arxiv.org/pdf/2004.07941v1

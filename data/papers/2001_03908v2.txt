@@ -1,0 +1,21 @@
+Title: Self-Driving like a Human driver instead of a Robocar: Personalized comfortable driving experience for autonomous vehicles
+
+Authors: Il Bae, Jaeyoung Moon, Junekyo Jhung, Ho Suk, Taewoo Kim, Hyungbin Park, Jaekwang Cha, Jinhyuk Kim, Dohyun Kim, Shiho Kim
+
+Published: 2020-01-12
+
+Categories: eess.SY, cs.RO
+
+Abstract:
+This paper issues an integrated control system of self-driving autonomous vehicles based on the personal driving preference to provide personalized comfortable driving experience to autonomous vehicle users. We propose an Occupant's Preference Metric (OPM) which is defining a preferred lateral and longitudinal acceleration region with maximum allowable jerk for users. Moreover, we propose a vehicle controller based on control parameters enabling integrated lateral and longitudinal control via preference-aware maneuvering of autonomous vehicles. The proposed system not only provides the criteria for the occupant's driving preference, but also provides a personalized autonomous self-driving style like a human driver instead of a Robocar. The simulation and experimental results demonstrated that the proposed system can maneuver the self-driving vehicle like a human driver by tracking the specified criterion of admissible acceleration and jerk.
+
+Paper ID: 2001.03908v2
+
+Summary:
+This paper titled "Self-Driving like a Human driver instead of a Robocar: Personalized comfortable driving experience for autonomous vehicles" was authored by Il Bae, Jaeyoung Moon, Junekyo Jhung, Ho Suk, Taewoo Kim, Hyungbin Park, Jaekwang Cha, Jinhyuk Kim, Dohyun Kim, Shiho Kim and published on 2020-01-12.
+It falls under the categories: eess.SY, cs.RO.
+The research explores the following topic: This paper issues an integrated control system of self-driving autonomous vehicles based on the personal driving preference to provide personalized comfortable driving experience to autonomous vehicle users. We propose an Occupant's Preference Metric (OPM) which is defining a preferred lateral and longitudinal acceleration region with maximum allowable jerk for users. Moreover, we propose a vehicle controller based on control parameters enabling integrated lateral and longitudinal control via preference-aware maneuvering of autonomous vehicles. The proposed system not only provides the criteria for the occupant's driving preference, but also provides a personalized autonomous self-driving style like a human driver instead of a Robocar. The simulation and experimental results demonstrated that the proposed system can maneuver the self-driving vehicle like a human driver by tracking the specified criterion of admissible acceleration and jerk.
+
+Links:
+  - https://arxiv.org/abs/2001.03908v2
+  - https://arxiv.org/pdf/2001.03908v2

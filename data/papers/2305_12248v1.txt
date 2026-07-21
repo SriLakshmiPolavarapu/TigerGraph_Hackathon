@@ -1,0 +1,21 @@
+Title: Brain encoding models based on multimodal transformers can transfer across language and vision
+
+Authors: Jerry Tang, Meng Du, Vy A. Vo, Vasudev Lal, Alexander G. Huth
+
+Published: 2023-05-20
+
+Categories: cs.CL, cs.CV
+
+Abstract:
+Encoding models have been used to assess how the human brain represents concepts in language and vision. While language and vision rely on similar concept representations, current encoding models are typically trained and tested on brain responses to each modality in isolation. Recent advances in multimodal pretraining have produced transformers that can extract aligned representations of concepts in language and vision. In this work, we used representations from multimodal transformers to train encoding models that can transfer across fMRI responses to stories and movies. We found that encoding models trained on brain responses to one modality can successfully predict brain responses to the other modality, particularly in cortical regions that represent conceptual meaning. Further analysis of these encoding models revealed shared semantic dimensions that underlie concept representations in language and vision. Comparing encoding models trained using representations from multimodal and unimodal transformers, we found that multimodal transformers learn more aligned representations of concepts in language and vision. Our results demonstrate how multimodal transformers can provide insights into the brain's capacity for multimodal processing.
+
+Paper ID: 2305.12248v1
+
+Summary:
+This paper titled "Brain encoding models based on multimodal transformers can transfer across language and vision" was authored by Jerry Tang, Meng Du, Vy A. Vo, Vasudev Lal, Alexander G. Huth and published on 2023-05-20.
+It falls under the categories: cs.CL, cs.CV.
+The research explores the following topic: Encoding models have been used to assess how the human brain represents concepts in language and vision. While language and vision rely on similar concept representations, current encoding models are typically trained and tested on brain responses to each modality in isolation. Recent advances in multimodal pretraining have produced transformers that can extract aligned representations of concepts in language and vision. In this work, we used representations from multimodal transformers to train encoding models that can transfer across fMRI responses to stories and movies. We found that encoding models trained on brain responses to one modality can successfully predict brain responses to the other modality, particularly in cortical regions that represent conceptual meaning. Further analysis of these encoding models revealed shared semantic dimensions that underlie concept representations in language and vision. Comparing encoding models trained using representations from multimodal and unimodal transformers, we found that multimodal transformers learn more aligned representations of concepts in language and vision. Our results demonstrate how multimodal transformers can provide insights into the brain's capacity for multimodal processing.
+
+Links:
+  - https://arxiv.org/abs/2305.12248v1
+  - https://arxiv.org/pdf/2305.12248v1

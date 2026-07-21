@@ -1,0 +1,21 @@
+Title: Graph topology inference benchmarks for machine learning
+
+Authors: Carlos Lassance, Vincent Gripon, Gonzalo Mateos
+
+Published: 2020-07-16
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Graphs are nowadays ubiquitous in the fields of signal processing and machine learning. As a tool used to express relationships between objects, graphs can be deployed to various ends: I) clustering of vertices, II) semi-supervised classification of vertices, III) supervised classification of graph signals, and IV) denoising of graph signals. However, in many practical cases graphs are not explicitly available and must therefore be inferred from data. Validation is a challenging endeavor that naturally depends on the downstream task for which the graph is learnt. Accordingly, it has often been difficult to compare the efficacy of different algorithms. In this work, we introduce several ease-to-use and publicly released benchmarks specifically designed to reveal the relative merits and limitations of graph inference methods. We also contrast some of the most prominent techniques in the literature.
+
+Paper ID: 2007.08216v1
+
+Summary:
+This paper titled "Graph topology inference benchmarks for machine learning" was authored by Carlos Lassance, Vincent Gripon, Gonzalo Mateos and published on 2020-07-16.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Graphs are nowadays ubiquitous in the fields of signal processing and machine learning. As a tool used to express relationships between objects, graphs can be deployed to various ends: I) clustering of vertices, II) semi-supervised classification of vertices, III) supervised classification of graph signals, and IV) denoising of graph signals. However, in many practical cases graphs are not explicitly available and must therefore be inferred from data. Validation is a challenging endeavor that naturally depends on the downstream task for which the graph is learnt. Accordingly, it has often been difficult to compare the efficacy of different algorithms. In this work, we introduce several ease-to-use and publicly released benchmarks specifically designed to reveal the relative merits and limitations of graph inference methods. We also contrast some of the most prominent techniques in the literature.
+
+Links:
+  - https://arxiv.org/abs/2007.08216v1
+  - https://arxiv.org/pdf/2007.08216v1

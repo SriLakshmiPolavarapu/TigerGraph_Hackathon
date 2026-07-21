@@ -1,0 +1,22 @@
+Title: Heterogeneous Mapping for Analog In-Memory Computing Accelerators: A Unified Workflow
+
+Authors: Corey Lammie
+
+Published: 2026-06-01
+
+Categories: cs.AR, cs.ET
+
+Abstract:
+Analog In-Memory Computing (AIMC) accelerators execute matrix-vector multiplications directly within memory arrays, reducing data movement and improving DNN inference efficiency. Their limited effective precision motivates heterogeneous architectures that combine analog compute tiles with digital processing units. This letter classifies existing methods for partitioning DNN workloads across these resources by mapping granularity, optimization strategy, and model support, and distills them into a unified four-stage workflow. To demonstrate the workflow on a model class not yet addressed by existing methods, we apply its first two stages to GPT-2, producing the first AIMC-specific precision sensitivity profile for a decoder-only transformer. Sensitivity is dominated by 4 of 49 projections, with the first decoder block's attention output dominating by an order of magnitude. This suggests that projection-level mapping and selective digital execution of early-block and output-facing projections are important for reliable decoder-transformer deployment on AIMC hardware.
+
+Paper ID: 2606.02672v1
+
+Summary:
+This paper titled "Heterogeneous Mapping for Analog In-Memory Computing Accelerators: A Unified Workflow" was authored by Corey Lammie and published on 2026-06-01.
+It falls under the categories: cs.AR, cs.ET.
+The research explores the following topic: Analog In-Memory Computing (AIMC) accelerators execute matrix-vector multiplications directly within memory arrays, reducing data movement and improving DNN inference efficiency. Their limited effective precision motivates heterogeneous architectures that combine analog compute tiles with digital processing units. This letter classifies existing methods for partitioning DNN workloads across these resources by mapping granularity, optimization strategy, and model support, and distills them into a unified four-stage workflow. To demonstrate the workflow on a model class not yet addressed by existing methods, we apply its first two stages to GPT-2, producing the first AIMC-specific precision sensitivity profile for a decoder-only transformer. Sensitivity is dominated by 4 of 49 projections, with the first decoder block's attention output dominating by an order of magnitude. This suggests that projection-level mapping and selective digital execution of early-block and output-facing projections are important for reliable decoder-transformer deployment on AIMC hardware.
+
+Links:
+  - https://arxiv.org/abs/2606.02672v1
+  - https://arxiv.org/pdf/2606.02672v1
+  - https://doi.org/10.1109/LCA.2026.3699929

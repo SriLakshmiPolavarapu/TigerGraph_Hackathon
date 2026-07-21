@@ -1,0 +1,9811 @@
+Title: arXiv paper 1036
+
+Categories: 10
+
+Abstract:
+arXiv:1502.07409v3 [math.ST] 16 Mar 2017
+
+Threshold estimation for stochastic processes with small noise
+Yasutaka Shimizu∗
+Department of Applied Mathematics, Waseda University
+March 16, 2017
+
+Abstract
+Consider a process satisfying a stochastic differential equation with unknown drift
+parameter, and suppose that discrete observations are given. It is known that a simple
+least squares estimator (LSE) can be consistent, but numerically unstable in the sense
+of large standard deviations under finite samples when the noise process has jumps.
+We propose a filter to cut large shocks from data, and construct the same LSE from
+data selected by the filter. The proposed estimator can be asymptotically equivalent to
+the usual LSE, whose asymptotic distribution strongly depends on the noise process.
+However, in numerical study, it looked asymptotically normal in an example where
+filter was choosen suitably, and the noise was a Lévy process. We will try to justify
+this phenomenon mathematically, under certain restricted assumptions.
+Key words: stochastic differential equation, semimartingale noise, small noise
+asymptotics, drift estimation, threshold estimator, mighty convergence.
+MSC2010: 62F12, 62M05; 60G52, 60J75
+
+1
+
+Introduction
+
+Let (Ω, F, (Ft )t≥0 , P) be a stochastic basis, on which an Rd -valued stochastic process X is
+defined via the stochastic integral equation
+Z t
+ǫ
+b(Xsǫ , θ0 ) ds + ǫ · Qǫt ,
+(1.1)
+Xt = x +
+0
+
+where x ∈ Rd , ǫ > 0, and θ0 is an unknown parameter that belongs to a parameter space
+Θ0 , which is an open bounded, convex subset of Rp ; we put Θ := Θ0 , the closure of Θ0 ; b
+is a measurable function on Rd × Θ; Qǫ is a stochastic process of the form
+e ǫ + rǫ B H
+Qǫt := Q
+t
+t
+
+e ǫ is a semimartingale, B H is a fractional Brownian motion with the Hurst paramwhere Q
+eter H ∈ (0, 1), and rǫ is a real number satisfying that rǫ → 0 (ǫ → 0). We also assume for
+∗
+
+E-mail: shimizu@waseda.jp
+
+1
+
+2
+
+Threshold estimation for small noise model
+
+e ǫ that Q
+e ǫ = 0 and supt∈[0,1] Q
+eǫt − Qt → 0 as ǫ → 0 with probability
+the semimartingale Q
+0
+one. Hence we have that
+sup |Qǫt − Qt | → 0 a.s.,
+
+t∈[0,1]
+
+ǫ → 0,
+
+(1.2)
+
+As is well known, B H is not a semimartingale and neither is Qǫ , but Qǫ converges
+uniformly to a semimartingale Q as ǫ → 0 almost surely.
+Moreover, we suppose that the Doob-Meyer decomposition of Q is given as follows.
+Qt = At + Mt
+
+(t ≥ 0),
+
+A0 = M0 = 0
+
+a.s.,
+
+(1.3)
+
+where A is a process with finite variation, and M is an Ft -local martingale. Some typical
+examples for Qǫ is given in Section 2.3. We suppose that the process X ǫ = (Xtǫ )t∈[0,1]
+is observed discretely in time: {Xtnk }nk=0 with tnk = k/n (the index ǫ is omitted in the
+notation), from [0, 1]-interval. We denote by ∆nk X := Xtnk − Xtnk−1 and ∆n := tnk − tnk−1 =
+1/n. Our interest is to estimate the value of the parameter θ0 from the discrete samples
+under that n → ∞ as well as ǫ → 0: small noise asymptotics.
+There are some practical advantages in small noise asymptotics:
+• Statistical point of view: the drift estimation by samples from a fixed finite time
+interval is justifiable under relatively mild conditions. Since we need to observe the
+process long time to achieve “good” estimation of the drift without small noise assumption, we usually assume the asymptotics that the terminal time of observations
+goes to infinity, under which some technical conditions such as “ergodicity” or “uniform moment conditions” for the process need to be assumed. By a suitable scaling
+technique, we can regard such a long-term model as a small noise model, approximately. Then there is no need for those conditions, which are sometimes difficult to
+check in practice; see remarks in Section 2.3.3 for details.
+• Computational point of view: approximation of functionals of the process as ǫ → 0
+is often available in relatively easy-to-calculate form as in, e.g., Yoshida [37] and
+Pavlyukevich [23] among others, which is well applied to finance and insurance; see
+Takahashi [32], Kunitomo and Takahashi [12], Takahashi and Yoshida [33], Uchida
+and Yoshida [36], Pavlyukevich [22] and references therein.
+That is why, using the small noise model is convenient to deal with both applications and
+statistical inference at the same time.
+Sampling problems for stochastic differential equations with small noise have been well
+studied by many authors in both theoretical and applied point of views. Some earlier works
+for small-diffusion models are found in the papers by Kutoyants [13, 14], Genon-Catalot
+[6] and Laredo [15], and they have been developed in some directions by several authors:
+e.g., martingale estimating functions are studied by Sørensen [30], efficient estimation
+is investigated by Sørensen and Uchida [31], Gloter and Sørensen [8]; see also Uchida
+[34, 35], and asymptotic expansion approach is initiated by Yoshida [37, 38], see also
+
+3
+
+Yasutaka Shimizu
+
+Uchida and Yoshida [36], among others. Although those works are due to diffusion noise,
+more general noise model are also considered recently. For example, Long [16] and Ma
+[18] investigate the drift estimation of a Lévy driven Ornstein-Uhlenbeck process; see also
+Long [17], and Long et al. [20] deal with the inference for non-linear drift under the small
+semimartingale noise. In our paper, we do not require that the noise is a semimartingale,
+but ‘approximately’ a semimartingale in the sense of (1.2).
+The goal of this paper is statistical inference for the drift of the process under the
+asymptotics that noise vanishes, which is the same motivation as in Long et al. [20],
+but it was seen in our numerical study that our estimator performed better than theirs
+under finite samples. Long et al. [20] consider the case where Qǫ ≡ L is a Lévy process
+(although it can be extended to a case of a semimartingale) independent of the dispersion
+parameter ǫ, and investigate the asymptotic behavior of the least squares-type estimator
+(LSE) defined by
+LSE
+θbn,ǫ
+:= arg min Ψn,ǫ (θ),
+θ∈Θ
+
+where
+
+Ψn,ǫ (θ) = ǫ−2 ∆−1
+n
+
+n
+X
+k=1
+
+|∆nk X − b(Xtnk−1 , θ) · ∆n |2
+
+(1.4)
+
+(1.5)
+
+LSE is ǫ−1 -consistent with the limit of
+They show that the minimum contrast estimator θbn,ǫ
+a Lévy functional as ǫ → 0 and n → ∞ with nǫ → ∞ under some mild conditions on the
+function b; see Theorems 4.1 and 4.2 in [20]. The asymptotic distribution generally has a
+fat-tail, that causes us unsatisfactory performance even if ǫ is small enough; see numerical
+results in [20], or Section 3 below. This would be due to ‘large’ shocks by the driving noise.
+It will be easy to imagine that a ‘large’ jump of Qǫ makes much impact to the direction of
+drift, and make the drift estimation unstable. Therefore, cutting such ‘large’ jumps could
+improve the performance. That is why, we consider the threshold-type estimator defined
+as follows:
+
+θbn,ǫ := arg min Φn,ǫ(θ),
+θ∈Θ
+
+where
+Φn,ǫ (θ) = ǫ
+
+−2
+
+∆−1
+n
+
+n
+X
+k=1
+
+|∆nk X − b(Xtnk−1 , θ) · ∆n |2 1{|∆nk X|≤δn,ǫ } ,
+
+(1.6)
+
+(1.7)
+
+δn,ǫ is a positive number, which is a threshold to eliminate ‘large’ shocks causing bias
+to drift estimation. That is, the indicator 1{|∆nk X|≤δn,ǫ } plays a role of a filter to split
+increments with ‘large’ and ‘small’ magnitude of shocks; see Shimizu [26], or Shimizu
+and Yoshida [29] for the fundamental idea of those filters. It would be intuitively clear
+LSE and θ
+bn,ǫ can be asymptotically equivalent. However, we
+that if δn,ǫ → ∞ then θbn,ǫ
+will show that the same thing holds true even if δn,ǫ → 0 by choosing the sequence δn,ǫ
+
+4
+
+Threshold estimation for small noise model
+
+carefully. Moreover we can see in numerical study that θbn,ǫ has much better finite-sample
+LSE . Furthermore, we will show the mighty convergence (the
+performance than that of θbn,ǫ
+convergence of moments) for u
+bn,ǫ := ǫ−1 (θbn,ǫ − θ0 ), which is a stronger result than those
+in [20]:
+Z
+E [f (b
+un,ǫ )] →
+
+Rp
+
+f (z) Lu (dz),
+
+as ǫ → 0 and n → ∞ for every continuous function f of at most polynomial growth, where
+Lu is the asymptotic distribution of u
+bn,ǫ .
+As is described above, the asymptotic distribution Lu is generally not normal unless
+the limiting process Q is a Wiener process. However, it is interesting to note that we
+sometimes encounter a phenomenon that u
+bn,ǫ seems asymptotically normal in numerical
+study. This may indicate that our filtered LSE could also be asymptotically normal
+if we choose δn,ǫ in a different way as previous, otherwise we may just observe it as
+an ‘approximate’ phenomenon possibly when some appropriate conditions are satisfied.
+Although a justification of this phenomena under the discrete sampling is still an open
+problem, we will add some discussion on these points in Section 4.
+The paper is organized as follows. In Section 2, we prepare notation and assumptions,
+and present the main results under discrete samples. In particular, Section 2.4 is devoted
+to investigating some technical conditions for Q. We will give some easy-to-check sufficient
+conditions for those when the noise Q is a Lévy process. In Section 3, we will show an
+advantage of our estimator compared with the usual LSE via numerical study, and we
+further observe the asymptotic distribution seems normal. Finally, we will try to give a
+theoretical explanation to those asymptotic phenomena in Section 4. All the proofs of
+main theorems are given in Section 5.
+
+2
+
+Main results
+
+2.1
+
+Notation and assumptions
+
+We use the following notation:
+• For a process Y = (Yt )t∈[0,1] , kY kLp = (E|Y1 |p )1/p (p > 0) and kY k∗ := supt∈[0,1] |Yt |.
+• Given a multilinear form M = {M (i1 ,...,iK ) : ik = 1, . . . , dk ; k = 1, . . . , K} ∈ Rd1 ⊗
+(i)
+· · · ⊗ RdK and vector uk = (uk )i≤dk ∈ Rdk , we write
+M[u1 , . . . , uK ] =
+
+d1
+X
+
+i1 =1
+
+···
+
+dK
+X
+
+(i )
+
+(i )
+
+M (i1 ,...,iK ) u1 1 . . . uKK .
+
+iK =1
+
+Note that the above form is well-defined when the jth dimension of M (the number
+of ij ) and that of uj are the same. When some of uk is missing in “M[u1 , . . . , uK ]”,
+the resulting form is regarded as a multilinear form again; e.g., M[u3 , . . . , uK ] ∈
+Rd1 ⊗ Rd2 . For example, when M is a vector M = (Mi )1≤i≤d , M[x] = M ⊤ x for
+
+5
+
+Yasutaka Shimizu
+
+f is a matrix M = (Mij )1≤i≤d ;1≤j≤d ,
+x ∈ Rd , which is the inner product, and when M
+1
+2
+f
+M[u, v] for u = (ui )1≤i≤d1 and v = (vi )1≤i≤d2 is the quadratic form u⊤ M v, and
+f = M v ∈ Rd1 or M[u]
+f
+M[v]
+= M ⊤ u ∈ Rd2 , among others. The correspondences
+of dimensions will be clear from the context. We also use the notation M[u⊗K ] :=
+M[u1 , . . . , uK ] when u1 = · · · = uK .
+• For a = (a1 , . . . , am )⊤ ∈ Rm , ∇a = (∂/∂a1 , . . . , ∂/∂am ). Moreover, we denote
+by ∇ka := ∇a ⊗ ∇ak−1 with ∇0a ≡ 1. That is, ∇ka forms a multilinear form, e.g.,
+∇2a = ∇⊤
+a ∇a in a matrix form.
+• For a multilinear form M, |M|2 denotes the sum of the squares of each element of
+M.
+• C is often used as a generic positive constant that may differ from line to line.
+Moreover, we write a . b if a ≤ Cb almost surely.
+• C k,l (Rd × Θ; Rq ) denotes the space of functions f (x, θ) : Rd × Θ → Rq that is k and l
+times differentiable with respect to x and θ, respectively. Moreover, C↑k,l (Rd × Θ; Rq )
+denotes a subclass of f ∈ C k,l (Rd × Θ; Rq ) that is of polynomial growth uniformly
+in θ ∈ Θ: supθ∈Θ |∇αx ∇βθ f (x, θ)| . (1 + |x|)C for any α ≤ k and β ≤ l.
+• For a function g(x, θ) : Rd × Θ → Rq , we write gk−1 (θ) := g(Xtnk−1 , θ). Moreover,
+denote by χk (θ) := ∆nk X − bk−1 (θ)∆n (∈ Rd ).
+• All the asymptotic symbol are described under n → ∞ and ǫ → 0 unless otherwise
+noted.
+Using the above notation, our estimating function given in (1.7) is rewritten as
+Φn,ǫ (θ) = ǫ−2 ∆−1
+n
+
+n
+X
+
+n
+I[χ⊗2
+k (θ)]1{|∆k X|≤δn,ǫ } ,
+
+k=1
+
+where I is the d × d identity matrix.
+We make the following assumptions on the model (1.1):
+A1 |b(x, θ) − b(y, θ)| . |x − y| for each x, y ∈ Rd and θ ∈ Θ.
+Under this assumption, the ordinary differential equation
+dXt0 = b(Xt0 , θ0 ) dt,
+
+X00 = x,
+
+has the unique solution X 0 = (Xt0 )t≥0 .
+A2 b ∈ C↑2,3 (Rd × Θ; Rd ).
+A3 θ 6= θ0 ⇔ b(Xt0 , θ) 6= b(Xt0 , θ0 ) for at least one value of t ∈ [0, 1].
+
+6
+
+Threshold estimation for small noise model
+
+A4 I(θ0 ) :=
+
+R1
+0
+
+∇θ b(Xt0 , θ0 )⊤ ∇θ b(Xt0 , θ0 ) dt (∈ Rp ⊗ Rp ) is positive definite,
+
+We further make the following conditions for the limiting process Q of Qǫ .
+Q1[γ] There exists some γ > 0 such that, for any k = 1, . . . , n,
+)
+(
+P
+
+sup
+
+n
+t∈(tn
+k−1 ,tk ]
+
+|Qt − Qtnk−1 | > ∆γn Ftnk−1
+
+= op (1).
+
+Q2[q] For q > R0 and processes A and M given in (1.3), the total variation of A, say
+1
+T V (A) := 0 |dAt |, and the quadratic variation [M, M ] satisfy that
+h
+i
+q/2
+E [T V (A)q ] + E [M, M ]1
+< ∞.
+Although the condition Q1 seems ad hoc, we can give some easy-to-check conditions
+in some important cases where, e.g., Q is a Lévy process satisfying Q2[q] for some q > 0;
+see Section 2.4 for details.
+
+2.2
+
+Asymptotic behavior of threshold-type estimators
+
+Theorem 1. Suppose A1–A3, Q1[γ], and that a sequence {δn,ǫ } satisfies that
+δn,ǫ ∆−1
+n → ∞,
+Then
+
+−1
+ǫ ∆γn δn,ǫ
+= O(1),
+
+nǫ → ∞.
+
+(2.1)
+
+P
+θbn,ǫ −→ θ0 .
+
+Remark 1. Condition (2.1) ensures a kind of “negligibility”:
+
+
+P |∆nk X| > δn,ǫ |Ftnk−1 → 0,
+
+LSE ; see (5.13) in the proof.
+which makes θbn,ǫ asymptotically equivalent to θbn,ǫ
+
+Theorem 2. Suppose the same assumptions as in Theorem 1, and further A4. Then
+Z 1
+P
+−1 b
+−1
+∇θ b(Xt0 , θ0 )[dQt ],
+ǫ (θn,ǫ − θ0 ) −→ ζ := I (θ0 )
+0
+
+where the square bracket [dQt ] is the quadratic form of dQt for the matrix ∇θ b(Xt0 , θ0 ) in
+this case; see Section 2.1.
+Theorem 3. Suppose the same assumptions as in Theorem 2, and that Q2[q] holds true
+for any q > 0. Then, it follows for every continuous function f : Rp → R, of polynomial
+growth that
+h 
+i
+E f ǫ−1 (θbn,ǫ − θ0 ) → E[f (ζ)],
+where ζ is given in Theorem 2.
+
+7
+
+Yasutaka Shimizu
+
+2.3
+2.3.1
+
+Examples and remarks
+α-stable noise
+
+Suppose d = 1, and that Qǫ = σB + ρǫ S, where ρǫ → ρ ∈ [0, ∞), σ ≥ 0 is a constant, B
+is a Brownian motion, and S is a standard α-stable process with stability index α ∈ (0, 2)
+and the skewness parameter β ∈ [−1, 1], which is denoted by Sα (1, β, 0); see, e.g., Cont
+and Tankov [4], page 94 for this notation. In this case, the limiting variable ζ in Theorem
+2 becomes
+ζ = I −1 (θ0 ) {σD2 · Z + ρDα · Sα (1, β, 0)} ,
+R
+1/α
+1
+where Dα = 0 {∂θ b(Xt0 , θ0 )}α dt
+and Z is a standard Gaussian variable. Hence if
+ρ = 0 then the estimator is asymptotically normal; see also Long et al. [20].
+2.3.2
+
+Markovian noise
+
+Let us consider the case where
+ǫ
+dQǫt = ǫ1 a(Xtǫ ) dWt + ǫ2 c(Xt−
+) dZt ,
+
+(2.2)
+
+where ǫj > 0 (j = 1, 2), a, c are some suitable functions, and Z is a pure jump Lévy
+process.
+• Case of ρǫ := ǫ2 /ǫ1 → 0: we can reparametrize as e
+ǫ := ǫ · ǫ1 to obtain that
+with
+
+e ǫt ,
+dXtǫ = b(Xtǫ , θ0 ) dt + e
+ǫ · dQ
+
+e ǫ = a(X ǫ ) dWt + ρǫ c(X ǫ ) dZt .
+dQ
+t
+t
+t−
+
+Then e
+ǫ−1 (θbn,ǫ − θ0 ) is asymptotically normal as in Sørensen and Uchida [31]. We
+can verify that
+Z t
+ǫ
+e
+a(Xs0 ) dWt a.s., ǫ → 0,
+Qt → Q :=
+0
+
+uniformly in t ∈ [0, 1] from the fact that the stochastic integrals are continuous
+with respect to the u.c.p. topology; see Theorem II.11 by Protter [24], and the
+uniform convergence of X ǫ → X 0 on compact sets; see Theorem IX.4.21 by Jacod
+and Shiryaev [10].
+• Case of ρǫ := ǫ2 /ǫ1 → ρ ∈ (0, ∞): we can use the same model as above, and the
+asymptotic distribution of e
+ǫ−1 (θbn,ǫ − θ0 ) is a convolution of stochastic integrals with
+respect to W and Z.
+
+8
+
+Threshold estimation for small noise model
+
+• Case of ρǫ := ǫ2 /ǫ1 → ∞: we can reparametrize as ǫ := ǫ · ǫ2 to obtain that
+ǫ
+
+dXtǫ = b(Xtǫ , θ0 ) dt + ǫ · dQt ,
+with
+
+ǫ
+
+ǫ
+ǫ
+dQt = ρ−1
+ǫ a(Xt ) dWt + c(Xt− ) dZt .
+
+Then the asymptotic distribution of ǫ−1 (θbn,ǫ − θ0 ) is written by a stochastic integral
+with respect to Z only.
+2.3.3
+
+Long-term observations
+
+Consider a ‘long-term’ discretely observed model:
+Z t
+b(Xv ) dv + Qt ,
+Xt = x +
+
+(2.3)
+
+0
+
+and X is observed at 0 = tn0 < t1n <, . . . , < tnn =: T for a fixed T > 0 ‘large enough’, where
+Q is an α-stable process: Q1 ∼ Sα (σ, β, 0) with index α ∈ (1, 2). To estimate the drift
+function b, we sometimes assume a parametric model b(x) = b(x, θ) and estimate θ under
+the assumption that T → ∞. However, in a standard theory of parametric inference, we
+usually need an “ergodicity” or uniform moment conditions such as supt>0 E|Xt |m < ∞
+for any m > 0, which are often restrictive conditions.
+Now, transform the model by v = T u, t = T s, and divide the both sides of (2.3) by T
+to obtain
+Z s
+1
+x
+b(T · Yu , θ) du + QT s , s ∈ [0, 1],
+Ys = +
+T
+T
+0
+where Ys = T −1 XT s . Since QT s =d T 1/α Qs by the self-similarity of stable processes, we
+can regard that Y is a (weak) solution to the following SDE:
+Z s
+x
+es,
+Ys = +
+b(T · Yu , θ) du + T 1/α−1 Q
+T
+0
+
+e s is also an α-stable process such that Q
+e 1 ∼ Sα (σ, β, 0). Suppose that ǫ := T 1/α−1
+where Q
+e
+is small enough for given T , and putting b(x, θ) = b(T x, θ) and x
+e = ǫα/(α−1) x, we can
+reformulate the model as
+Z s
+e
+e s , s ∈ [0, 1],
+Ys = x
+e+
+b(Yu , θ) du + ǫ · Q
+(2.4)
+0
+
+with ǫ > 0 small enough, and it is interpreted as a small noise SDE.
+Given a “non-ergodic” model as in (2.3) with long-term observations, we can reformulate it to a small noise model (2.4) with known constant ǫ = T 1/α−1 by plotting the data
+e = Y0 in the interval [0, 1]. Then, although e
+b
+{Ysnk := T −1 XT snk }nk=0 with snk = tnk /T and x
+depends on T , we can formally use a estimator of θ in e
+b under the small noise model that
+does not require any restrictive condition.
+
+9
+
+Yasutaka Shimizu
+
+2.4
+
+On conditions for Q
+
+Let us investigate some sufficient conditions to ensure Q1 and Q2 when Q is specified.
+An important
+case is when
+Q is a Lévy process such that the characteristic exponent:
+
+
+ψ(u) := log E exp(iu⊤ Q1 ) , is given by
+
+
+iu⊤ z
+ν(dz), u ∈ Rd ,
+(2.5)
+2
+1
++
+|z|
+d
+R
+R
+where b ∈ Rd , ν is the Lévy measure with ν({0}) = 0 and |z|≤1 |z|2 ν(dz) < ∞.
+As a simple case such that Q is a Wiener process, where b = 0, ν ≡ 0, it follows from
+the property of the stationary, independent increments that
+)
+)
+(
+(
+ψ(u) = ib⊤ u −
+
+P
+
+sup
+
+n
+t∈(tn
+k−1 ,tk ]
+
+σ2 ⊤
+u u+
+2
+
+Z
+
+
+
+eiu
+
+⊤z
+
+−1−
+
+|Wt − Wtnk−1 | > ∆γn Ftnk−1
+
+sup |Wt | > ∆γn
+
+=P
+
+t∈(0,∆n ]
+
+
+
+p
+= 2 1 − Φ(∆γn / ∆n ) → 0,
+
+for any γ ∈ (0, 1/2), where Φ is a standard normal distribution function; for the last
+equality, see, e.g., Doob [5], or Boukai [3].
+When Q is a stable process, we have the following result.
+Proposition 1. When Q is a symmetric α-stable process with α ∈ (1, 2). Then Q1[γ]
+holds true for any γ ∈ (0, α−1 ).
+Proof. Due to the maximal inequality (3.5) in Joulin [11], we have
+(
+)
+(
+)
+P
+
+sup
+
+n
+t∈(tn
+k−1 ,tk ]
+
+|Qt − Qtnk−1 | > ∆γn Ftnk−1
+
+=P
+
+sup |Qt | > ∆γn
+
+t∈(0,∆n ]
+
+
+= O ∆1−γα
+→0
+n
+
+as n → ∞.
+We can also present some sufficient conditions to Q1[γ] when a process Q is a more
+general Lévy process: let
+Z
+Z
+−2
+ν(dz) + x
+|z|2 ν(dz)
+h(x) :=
+|z|>x
+
++x
+
+−1
+
+|z|≤x
+
+b+
+
+Z
+
+|z|≤x
+
+z|z|2
+ν(dz) −
+1 + |z|2
+
+Z
+
+|z|>x
+
+z
+ν(dz) .
+1 + |z|2
+
+Proposition 2. Suppose that Q is a Lévy process with characteristic (2.5), and that there
+exists a constant
+
+
+η
+β := inf η > 0 : lim sup x h(x) = 0 .
+(2.6)
+x→0
+
+10
+
+Threshold estimation for small noise model
+
+Then the condition Q1[γ] holds true for any γ ∈ (0, γ0 ), where
+γ0 =
+
+
+
+β −1
+(σ = 0)
+.
+(β ∨ 2)−1 (σ =
+6 0)
+
+We interpret that 1/0 = ∞.
+Proof. Let Qt = σWt + Zt , where W is a Wiener process and Z is a pure jump Lévy
+process with characteristic
+
+
+Z
+i
+⊤
+log E exp(iu Z1 ) = ib u +
+h
+
+⊤
+
+Rd
+
+iu⊤ z
+
+e
+
+iu⊤ z
+−1−
+1 + |z|2
+
+
+
+ν(dz),
+
+u ∈ Rd .
+
+By the independent, stationary increments property for Lévy process Q, we see that
+(
+)
+Rn := P
+.P
+
+sup
+
+(
+
+n
+t∈(tn
+k−1 ,tk ]
+
+|Qt − Qtnk−1 | > ∆γn Ftnk−1
+)
+
+sup |σWt | > ∆γn /2
+
+t∈(0,∆n ]
+
++P
+
+(
+
+)
+
+sup |Zt | > ∆γn /2
+
+t∈(0,∆n ]
+
+(1)
+
+=: Rn(1) + Rn(2) .
+
+(1)
+
+Note that Rn → 0 for any γ ∈ (0, 1/2) if σ 6= 0, and that Rn ≡ 0 if σ = 0. Moreover,
+according to Pruitt [25], (3.2), it follows that
+(2)
+
+Rt
+
+. ∆n h(∆γn /2) = (2xn )1/γ h(xn ),
+
+xn := ∆γn /2.
+
+(2)
+
+Hence, if 1/γ > β, equivalently γ ∈ (0, β −1 ), then Rn → 0 by the definition of β ≥ 0.
+Then the result follows.
+Corollary 1. Suppose that
+given by
+
+R
+
+|z|≤1 |z|ν(dz)
+
+σ2 ⊤
+u u+
+ψ(u) =
+2
+
+< ∞, and that the Lévy characteristic ψ is
+Z
+
+(eiu
+
+Rd
+
+⊤z
+
+− 1) ν(dz).
+
+R
+z
+Note that b − |z|>x 1+|z|
+2 ν(dz) = 0 in the expression (2.5). Then β in Proposition 2, (2.6)
+is consistent with the Blumenthal-Getoor index:
+)
+(
+Z
+β = inf
+
+η>0:
+
+|z|≤1
+
+|z|η ν(dz) < ∞
+
+≤ 1.
+
+Proof. Note that, under the assumption, we have
+h(x) =
+
+Z
+
+ν(dz) + x
+|z|>x
+
+−2
+
+Z
+
+2
+
+|z|≤x
+
+|z| ν(dz) + x
+
+−1
+
+Z
+
+|z|≤x
+
+z|z|2
+ν(dz) .
+1 + |z|2
+
+11
+
+Yasutaka Shimizu
+
+Let β0 be the Blumenthal-Getoor index:
+(
+β0 = inf
+
+η ∈ [0, 2] :
+
+Z
+
+)
+
+η
+
+|z|≤1
+
+|z| ν(dz) < ∞ .
+
+Then we easily see by the direct computation that, for any ǫ > 0
+lim xβ0 +ǫ h(x) = 0,
+
+lim inf xβ0 −ǫ h(x) = ∞.
+
+x→0
+
+x→0
+
+Indeed, for x ∈ (0, 1), we have
+|x
+
+β0 +ǫ
+
+Z
+
+β0 +ǫ
+
+h(x)| ≤ |x|
+
+ν(dz) +
+
++ |x|
+Z
+
+≤ |x|ǫ
+
+|z|≤1
+
+ν(dz)
+
+|z|>1
+
+x<|z|≤1
+
+β0 +ǫ−2
+
+Z
+
+Z
+
+2
+
+|z|≤x
+
+|z| ν(dz) + |x|
+
+|z|β0 ν(dz) + xβ0 +ǫ
+
+ǫ
+
+Z
+
+|z|>1
+
+Z
+
+|z|3
+ν(dz)
+2
+|z|≤x 1 + |z|
+Z
+|z|β0 ν(dz)
+ν(dz) + |x|ǫ
+
+β0 +ǫ−1
+
+|z|≤x
+
+= O(|x| ) → 0.
+The other condition: lim inf xβ0 −ǫ h(x) = ∞ is easier since
+x→0
+
+x
+
+β0 −ǫ
+
+h(x) > x
+
+β0 −ǫ−2
+
+Z
+
+2
+
+|z|≤x
+
+|z| ν(dz) ≥ x
+
+−ǫ
+
+Z
+
+|z|≤x
+
+|z|β0 ν(dz) → ∞,
+
+as x → 0. Hence we get β0 = β.
+The condition Q2 can be reduced to moment conditions for the Lévy measure.
+Proposition 3. Suppose that Q is a Lévy process with characteristic (2.5). Then the
+condition Q2[q] holds true if
+Z
+|z|q ν(dz) < ∞.
+|z|>1
+
+Proof. The Lévy process Q has the following Lévy-Ito decomposition:
+Z tZ
+Z tZ
+e (ds, dz) +
+z N (ds, dz)
+zN
+Qt = at + bWt +
+0
+
+|z|≤1
+
+0
+
+|z|>1
+
+where a and b are some constants, W is a Wiener process, N is a Poisson random measure,
+e (ds, dz) = N (ds, dz) − ν(dz)ds. Then the decomposition (1.3) is given by
+and N
+Z tZ
+Z tZ
+e (ds, dz).
+zN
+z N (ds, dz), Mt = bWt +
+At = at +
+0
+
+|z|>1
+
+0
+
+|z|≤1
+
+12
+
+Threshold estimation for small noise model
+
+and it follows from the Burkholder-Davis-Gundy inequality that
+q
+
+Z
+
+q
+
+E[T V (A) ] . |a| + E
+.1+E
+
+Z
+
+0
+
+0
+
+1Z
+
+q
+
+|z|>1
+
+1Z
+
+|z| N (ds, dz)
+q
+
+|z|>1
+
+e (ds, dz) +
+|z| N
+
+Z
+
+|z|>1
+
+|z|q ν(dz).
+
+According to the argument as in Bichteler and Jacod [2]; see also the proofs of lemma 4.1
+and Proposition 3.1 by Shimizu and Yoshida [29], we see that
+E
+
+Z
+
+0
+
+1Z
+
+q
+|z|>1
+
+Hence
+
+e (ds, dz)
+|z| N
+q
+
+E[T V (A) ] .
+
+Z
+
+|z|>1
+
+.
+
+Z
+
+|z|>1
+
+|z|q ν(dz).
+
+|z|q ν(dz) < ∞.
+
+By the similar argument, it is easy to see by Hölder’s inequality that, for any m > 1,
+E|[M, M ]|q/2
+
+1/m
+
+≤ E|[M, M ]|mq/2
+.1+
+
+Z
+
+|z|≤1
+
+!1/m
+
+|z|mq/2 ν(dz)
+
+< ∞,
+
+if we take mq/2 ≥ 2. This completes the proof.
+
+3
+3.1
+
+Numerical study
+2-dim model
+
+We consider the following 2-dimensional Lévy driven SDE:
+b(x, θ) =
+
+q
+
+θ1 +
+
+x21
+
++
+
+x22 , − p
+
+θ 2 x2
+1 + x21 + x22
+
+!⊤
+
+,
+
+Qt =
+
+
+
+
+Vtκ,ξ + Bt
+,
+Stα
+
+(3.1)
+
+where B is a standard Brownian motion, S α is a standard symmetric α-stable process
+Sα (1, 0, 0), and V κ,ξ is a variance gamma process with Lévy density
+pV (z) =
+
+κ −ξ|z|
+e
+,
+|z|
+
+z ∈ R, κ, ξ > 0,
+
+which is obtained by Brownian subordination with a gamma process Gt ∼ Γ(shape =
+ct, scale = 1/λ) (c, λ > 0) as follows:
+√
+2κ
+λ2
+κ,ξ
+, ξ=
+Vt = σWGt (σ > 0), κ =
+c
+σ
+
+13
+
+Yasutaka Shimizu
+
+where W is the standard Brownian motion independent of G; see, e.g., Cont and Tankov
+[4] for details. Assume that W, S α and V κ,ξ are independent of each other.
+In the sequel, we set values of parameters as
+(1)
+
+(2)
+
+(X0 , X0 ) = (1, 1),
+
+(θ1 , θ2 ) = (2, 1),
+
+(κ, ξ, α) = (5, 3, 3/2).
+
+A sample path is given in Figure 5. Then both X (1) and X (2) are unbounded variation
+jump-processes with finite activity of jumps for X (1) and infinite for X (2) . We will compare
+our threshold-type estimator to the LSE by Long et al. [20].
+
+3.2
+
+LSE and threshold estimator
+
+LSE , θ
+bLSE ) is a solution to
+Note that the LSE θbLSE = (θb1,n,ǫ
+2,n,ǫ
+n
+X
+k=1
+
+r
+
+LSE
+θb2,n,ǫ
+=−
+
+= 1;
+
+LSE + (X (1) )2 + (X (2) )2
+θb1,n,ǫ
+tn
+tn
+k−1
+
+k−1
+
+n
+
+and that our estimator θb = (θb1,n,ǫ , θb2,n,ǫ ) is a solution to
+k=1
+
+r
+
+(∆nk X (2) )Xt(2)
+n
+
+k=1
+
+∆nk X (1)
+
+n
+X
+
+Pn
+
+∆nk X (1)
+
+(1)
+(2)
+θb1,n,ε + (Xtn )2 + (Xtn )2
+k−1
+
+k=1
+
+θb2,n,ǫ = −
+
+n
+
+Pn
+−1
+
+k−1
+(2)
+
+(1)
+
+1+(Xtn
+
+k−1
+
+)2 +(Xtn
+
+)2
+
+k−1
+
+(2)
+
+(Xtn
+
+)2
+
+.
+
+k−1
+
+k=1 1+(X (1) )2 +(X (2) )2
+tn
+tn
+k−1
+
+k−1
+
+n
+
+1X
+1{|∆nk X|≤δn,ǫ }
+n
+k=1
+
+(∆nk X (2) )Xt(2)
+n
+r
+
+k−1
+(2)
+
+(1)
+
+1+(Xtn
+
+Pn
+−1
+
+1{|∆nk X|≤δn,ǫ } =
+
+k−1
+
+Pn
+
+r
+
+k−1
+
+)2 +(Xtn
+
+)2
+
+1{|∆nk X|≤δn,ǫ }
+
+k−1
+
+(2)
+
+(Xtn
+
+)2
+
+.
+
+k−1
+
+k=1 1+(X (1) )2 +(X (2) )2 1{|∆n
+k X|≤δn,ǫ }
+tn
+tn
+k−1
+
+k−1
+
+In the simulations, we tried n = 1000, 3000, 5000 and ǫ = (0.4, 0.3, 0.05). The results
+for the LSE given in (1.4) are in Table 1, and those for the threshold-type estimator in
+(1.6) are in 2 and 3, in which the threshold δn,ǫ = ǫ/5 and ǫ/10 are used, respectively. The
+simulations are iterated 10000 times, and mean and standard deviation (s.d.) of estimators
+are given in those tables. In Table 2 and 3, the values of nδn,ǫ are also included.
+
+3.3
+
+Discussion
+
+From numerical results, we can observe that the threshold-type estimator improves the
+accuracy of estimation in the sense of the standard deviation compared with the usual
+LSE by Long et al. [20]. Especially, the improvement for θ2 is more drastic than that for
+
+14
+
+Threshold estimation for small noise model
+
+θ1 . This would be because θ2 is the mean-reverting parameter for X (2) , a stable process
+which has much more frequent and larger jumps than those of X (1) . In order to make the
+estimation of θ1 more accurate, we need to make ǫ smaller rather than n larger.
+We should note that the case where (n, ǫ, δn,ǫ ) = (1000, 0.05, ǫ/10) causes a large bias,
+the reason of which would be that the asymptotic theory does not work well because
+nδn,ǫ = 5 is ‘small’ although it should be large enough in the theory. From many simulations omitted here, we see that, at least, “nδn,ǫ ≥ 10” would be needed for estimation
+with ‘small’ bias; see also, e.g., the case where (n, ǫ, δn,ǫ ) = (1000, 0.05, ǫ/5), which returns
+better estimation.
+Although there remains a problem to choose δn,ǫ in practice, we can use the method
+proposed by Shimizu [27] if the parameters in noise process is known or estimable.
+Finally, we observe normal QQ-plots for normalized estimators ǫ−1 (θb1,n,ǫ − θ1 ) and
+−1
+ǫ (θb2,n,ǫ − θ2 ) in the case where n = 5000, ǫ = 0.1 and δ = ǫ/5; see Figures 3 and 4.
+According to the results, the estimators with δ = ǫ/5 seem asymptotically normal although
+Theorem 2 does not necessarily say that. For your reference, see Figures 1 and 2 that are
+the normal QQ-plots for the LSE without filter proposed by Long et al. [20]. The figures
+show that the usual LSE’s are not necessarily asymptotically normal as the theory saying.
+Therefore, the asymptotic normality-like phenomena would be due to the filter effects.
+We could understand those results intuitively as follows: cutting large jumps from a
+process with infinite activity jumps, the remaining small jumps will behave as a Brownian
+motion. For example, suppose that the driving noise Q is a Lévy process of infinite activity
+jumps with the Lévy measure ν, and put
+Z tZ
+(δ)
+e (ds, dz), δ > 0,
+zN
+Qt :=
+0
+
+|z|≤δ
+
+e is a compensated Poisson random measure as given in the proof of Proposition
+where N
+R
+3. Then, according to Asmussen and Rosinski [1], it follows for σ 2 (δ) := |z|≤δ |z|2 ν(dz)
+that
+D
+
+σ(δ)−1 Q(δ) −→ B,
+in D[0, 1]-space equipped with the sup-norm under a certain assumption, where B is a
+standard Brownian motion. Therefore, by an appropriate norming of estimator, the limit
+in Theorem 2 might be an integral with respect to the process that is close to a Brownian
+motion. This consideration indicates that the LSE with filter can be “approximately”
+asymptotically normal by letting δn,ǫ converge to zero in a suitable rate, which is a great
+advantage when we would like to make confidence intervals or do statistical testing.
+In the next subsection, we shall try to understand this phenomenon theoretically.
+
+4
+
+Could a filtered LSE be asymptotically normal?
+
+In this section, we assume that Qǫ ≡ Q is a Lévy process with Lévy measure ν. We
+consider the following two cases for Q with characteristic (2.5):
+
+15
+
+Yasutaka Shimizu
+
+• Finite activity case:
+
+Z
+
+• Infinite activity case:
+
+|z|≤1
+
+ν(dz) < ∞ and σ 2 > 0;
+
+Z
+
+|z|≤1
+
+ν(dz) = ∞ (possibly, σ 2 = 0).
+
+The former case, it would be possible to show the asymptotic normality of the filtered LSE
+n
+by separating the
+R increments ∆k X’s with or without jumps as in Shimizu and Yoshida [29].
+However, when |z|≤1 ν(dz) = ∞, it is known that the filter 1{|∆nk X|≤δn,ǫ } is not enough to
+separate ∆nk X’s with or without jumps; see Shimizu [26], Lemma 3.3 and some remarks
+on that. In this section, we shall consider the following ad hoc situation to understand
+why the filtered LSE looks like asymptotically normal.
+[Assumption] All the jumps of Q are observed.
+Under this assumption, the following contrast function does make sense.
+e n,ǫ,δ (θ) = ǫ−2 ∆−1
+Φ
+n
+
+where δ > 0 is a constant, and
+kQǫ k∗k =
+
+n
+X
+k=1
+
+|∆nk X − b(Xtnk−1 , θ) · ∆n |2 1{k∆Qǫ k∗ ≤δ} ,
+
+sup
+t∈(tk ,tk+1 ]
+
+k
+
+|∆Qǫt |,
+
+∆Qǫt = ǫ · (Qt − Qt− ).
+
+Under our assumption, we can specify if 1{k∆Qǫ k∗ ≤δ} = 1 or 0, and we can define the
+k
+estimator of θ as the minimum contrast estimator:
+e n,ǫ,δ (θ).
+θen,ǫ,δ = arg min Φ
+θ∈Θ
+
+Hereafter, we further use the following notation:
+• For a κ > 0,
+
+2
+
+σ (κ) :=
+
+Z
+
+2
+
+|z|≤κ
+
+|z| ν(dz);
+
+λ(κ) :=
+
+Z
+
+ν(dz),
+
+|z|>κ
+
+where ν is a Lévy measure of Q.
+
+• All the asymptotic symbols are used under δ, ǫ → 0 and n → ∞.
+
+4.1
+
+Finite activity case
+
+Suppose that
+
+Z
+
+|z|≤1
+
+ν(dz) < ∞ and σ 2 > 0, which implies that Q is written as
+Qt = σWt +
+
+Nt
+X
+i=1
+
+Yi ,
+
+(4.1)
+
+R
+where N is a Poisson process with intensity λ := R ν(dz) and {Yi }i=1,2,... is an i.i.d.
+sequence with distribution λ−1 ν. In this special case, we have the following result by
+taking δn,ǫ ↓ 0 faster than the speed of ǫ that is a “magnitude of jumps”.
+
+16
+
+Threshold estimation for small noise model
+
+Theorem 4. Suppose that Q is given by (4.1), and that A1–A4 hold true. Moreover,
+suppose that
+δ/ǫ → 0.
+Then
+ǫ
+
+−1
+
+P
+(θen,ǫ,δ − θ0 ) −→ I −1 (θ0 )
+
+Hence θen,ǫ,δ is asymptotically normal.
+
+4.2
+
+Z
+
+(4.2)
+1
+
+0
+
+∇θ b(Xt0 , θ0 )[dWt ],
+
+Infinite activity case
+
+R
+Theorem 5. Let Qǫ ≡ Q be a Lévy process with |z|<1 ν(dz) = ∞, and suppose A1–A4,
+Q1[γ], and that Q2[q] holds true for any q > 0. Moreover suppose that
+λ(δ/ǫ)
+→ c ∈ (0, 1),
+n log n
+
+nǫ∆γn → 0,
+
+(4.3)
+
+and that there exists a constant ρ ∈ (0, 1) such that
+σ ρ (δ/ǫ) log n → ∞;
+nǫ · σ(δ/ǫ) → ∞.
+
+(4.4)
+(4.5)
+
+Furthermore, suppose for each κ > 0 that
+σ (κσ(δ/ǫ) ∧ δ/ǫ) ∼ σ(δ/ǫ),
+
+(4.6)
+
+Then there exists a d-dimensional Brownian motion B, independent of X0 = x, such that
+the following weak convergence holds true:
+Z 1
+
+
+D
+−1 e
+−1
+∇θ b(Xt0 , θ0 ) [dBt ] ,
+(σ(δ/ǫ)ǫ)
+θn,ǫ,δ − θ0 −→ I (θ0 )
+0
+
+Hence θen,ǫ,δ is asymptotically normal.
+
+We shall give a concrete example that satisfies the above situation.
+
+Remark 2. The assumption (4.6) is to approximate a component of compensated small
+jumps by a Wiener process; see Theorem 2 by Asmussen and Rosinski [1]. According to
+Proposition 2.1 in [1], a simple condition that
+(δ/ǫ)−1 σ(δ/ǫ) → ∞
+
+(4.7)
+
+is sufficient for (4.6). Moreover, note that (4.6) requires a high jump-activity, which
+excludes cases where Q is a compound Poison process or a gamma process; see some
+Examples 2.2–2.4 in [1]. Therefore it is assumed in (4.4) that
+λ(δ/ǫ) → ∞
+
+(δ → 0).
+
+17
+
+Yasutaka Shimizu
+
+Remark 3. Although this is the result under an ideal situation that all the jumps are
+observable, we can imagine that such a phenomenon ‘approximately’ occurs in simulations
+presented in Figures 3 and 4. That is, when ∆n and δn,ǫ are sufficiently ‘small’, a filter
+1{|∆nk X|≤δn,ǫ } can successfully cut jumps whose sizes are larger than δn,ǫ . However, it would
+be hard to show the similar result when the observations are completely discrete as in our
+original setting because the filter 1{|∆nk X|≤δn,ǫ } can not exactly exclude an increment that
+includes the jumps whose sizes are larger than δn,ǫ ; see also Shimizu [26] about the filter
+in infinite activity cases. The complete analysis in the discretely observed cases would be
+an important work in the future.
+
+ǫ = 0.4
+LSE
+θb1,n,ǫ
+(s.d.)
+LSE
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.54872
+(2.4370)
+1.72415
+(3.5426)
+
+n = 3000
+2.53364
+(2.4489)
+1.79755
+(4.2814)
+
+n = 5000
+2.78911
+(2.5602)
+1.78645
+(2.9579)
+
+True
+2.0
+
+ǫ = 0.3
+LSE
+θb1,n,ǫ
+(s.d.)
+LSE
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.31618
+(1.8248)
+1.50664
+(2.8685)
+
+n = 3000
+2.29381
+(1.7926)
+1.5275
+(2.7667)
+
+n = 5000
+2.34757
+(1.7429)
+1.53632
+(2.8160)
+
+True
+2.0
+
+ǫ = 0.05
+LSE
+θb1,n,ǫ
+(s.d.)
+LSE
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.00599
+(0.2951)
+1.05963
+(1.3026)
+
+n = 3000
+2.01071
+(0.2913)
+1.04438
+(0.6773)
+
+n = 5000
+2.01002
+(0.2938)
+1.06135
+(0.7344)
+
+True
+2.0
+
+1.0
+
+1.0
+
+1.0
+
+Table 1: These are results for the LSE (without filter) based on Long et al. [20]. We
+find that the standard deviation (s.d.) are large, especially, for θb2,n,ǫ , which implies an
+unstability of estimation. We would like to improve the stability by using a ‘filter’.
+
+5
+5.1
+
+Proofs
+Preliminary lemmas
+
+We shall first establish some preliminary lemmas to show the main theorems later.
+
+18
+
+Threshold estimation for small noise model
+
+Normal Q−Q Plot
+
+10
+−10
+
+0
+
+Sample Quantiles
+
+20
+10
+
+−30
+
+−20
+
+−10
+
+−20
+
+0
+
+Sample Quantiles
+
+30
+
+20
+
+40
+
+30
+
+Normal Q−Q Plot
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+−4
+
+−2
+
+Theoretical Quantiles
+
+0
+
+2
+
+4
+
+Theoretical Quantiles
+
+LSE
+Figure 1: Normal QQ-plots for θ[
+1,n,ǫ . Left: ǫ = 0.1, Right: ǫ = 0.05. The results show
+that the right tail is especially heavier than that of normal distribution.
+
+Normal Q−Q Plot
+
+−100
+
+Sample Quantiles
+
+−250
+
+−300
+
+−200
+
+−50
+−100
+−200
+
+−150
+
+Sample Quantiles
+
+0
+
+0
+
+50
+
+100
+
+Normal Q−Q Plot
+
+−4
+
+−2
+
+0
+Theoretical Quantiles
+
+2
+
+4
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+Theoretical Quantiles
+
+LSE
+Figure 2: Normal QQ-plots for θ[
+2,n,ǫ . Left: ǫ = 0.1, Right: ǫ = 0.05. The results show
+that the both of tails are heavier than those of normal distribution.
+
+19
+
+Yasutaka Shimizu
+
+ǫ = 0.4
+θb1,n,ǫ
+
+n = 1000
+2.46071
+(2.1968)
+1.14289
+(0.8721)
+
+n = 3000
+2.45564
+(2.1777)
+1.15283
+(0.88426)
+
+n = 5000
+2.43215
+(2.1860)
+1.16222
+(0.8856)
+
+True
+2.0
+
+ǫ = 0.3
+θb1,n,ǫ
+(s.d.)
+θb2,n,ǫ
+
+n = 1000
+2.25007
+(1.6149)
+1.08105
+(0.6498)
+
+n = 3000
+2.25972
+(1.6121)
+1.1047
+(0.6489)
+
+n = 5000
+2.25829
+(1.6249)
+1.09448
+(0.6563)
+
+True
+2.0
+
+ǫ = 0.05
+θb1,n,ǫ
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.00619
+(0.2623)
+0.98972
+(0.10098)
+
+n = 3000
+2.00827
+(0.2594)
+0.99936
+(0.1031)
+
+n = 5000
+2.00681
+(0.2652)
+1.00039
+(0.1037)
+
+True
+2.0
+
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+(s.d.)
+
+1.0
+
+1.0
+
+1.0
+
+Table 2: Results with filter: δn,ǫ = ǫ/5. Compared with the LSE, the improvement for
+s.d. of θb2,n,ǫ is drastic although the one for θb1,n,ǫ is less. To make the estimation of θ1
+accurate, we need to make ǫ smaller. The values of (nδn,ǫ , δn,ǫ ǫ−1 n1/4 ) seems enough to
+meet the asymptotic conditions such that they must tend to (∞, 0).
+
+20
+
+Threshold estimation for small noise model
+
+ǫ = 0.4
+θb1,n,ǫ
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.10973
+(2.0587)
+1.06597
+(0.6997)
+
+n = 3000
+2.24022
+(2.1736)
+1.10031
+(0.7226)
+
+n = 5000
+2.46723
+(2.2064)
+1.10585
+(0.7352)
+
+True
+2.0
+
+ǫ = 0.3
+θb1,n,ǫ
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+1.92432
+(1.4600)
+1.02419
+(0.5216)
+
+n = 3000
+2.25282
+(1.6221)
+1.05871
+(0.5453)
+
+n = 5000
+2.24733
+(1.6021)
+1.05869
+(0.5349)
+
+True
+2.0
+
+ǫ = 0.05
+θb1,n,ǫ
+
+n = 1000
+0.78959
+(0.2165)
+0.84069
+(0.0754)
+
+n = 3000
+2.00133
+(0.2628)
+0.98834
+(0.0853)
+
+n = 5000
+2.00864
+(0.2653)
+0.99450
+(0.0865)
+
+True
+2.0
+
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+1.0
+
+1.0
+
+1.0
+
+Table 3: Results with filter: δn,ǫ = ǫ/10. The s.d. for θb2,n,ǫ is smaller than those with
+δn,ǫ /5 as well as those for θb1,n,ǫ . However, we should be careful by observing the case of
+(n, ǫ) = (1000, 0.05), where both estimators are negatively biased. This would be because
+nδn,ǫ = 5 is too small to meet the corresponding asymptotic condition: nδn,ǫ → ∞.
+
+21
+
+Yasutaka Shimizu
+
+Normal Q−Q Plot
+
+0
+
+Sample Quantiles
+
+−20
+
+−10
+
+−10
+
+0
+
+Sample Quantiles
+
+10
+
+10
+
+20
+
+20
+
+Normal Q−Q Plot
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+−4
+
+−2
+
+Theoretical Quantiles
+
+Figure 3: Normal QQ-plots for
+as ǫ = 0.05, the distribution of
+
+0
+
+2
+
+4
+
+Theoretical Quantiles
+
+θb1,n,ǫ. Left: ǫ = 0.1, Right: ǫ = 0.05. When ǫ is small such
+θb1,n,ǫ seems almost Gaussian.
+Normal Q−Q Plot
+
+0
+
+Sample Quantiles
+
+0
+
+−5
+
+−5
+
+Sample Quantiles
+
+5
+
+5
+
+Normal Q−Q Plot
+
+−4
+
+−2
+
+0
+Theoretical Quantiles
+
+2
+
+4
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+Theoretical Quantiles
+
+Figure 4: Normal QQ-plots for θb2,n,ǫ. Left: ǫ = 0.1, Right: ǫ = 0.05. When ǫ is small such
+as ǫ = 0.05, the distribution of θb1,n,ǫ seems almost Gaussian.
+
+22
+
+0.8
+0.4
+
+0.6
+
+X2
+
+1.0
+
+1.2
+
+1.0
+
+1.5
+
+X1
+
+2.0
+
+Threshold estimation for small noise model
+
+0.0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+Time
+
+Figure 5: A sample path of Model (3.1) with (θ1 , θ2 , κ, ξ, α) = (2, 1, 5, 3, 3/2) and ε = 0.4.
+
+To evaluate functions of discrete samples, we use the following notation as in Long et
+al. [20]:
+• Discretized process: Ytn,ǫ := X⌊nt⌋/n for t ≥ 0 and n ∈ N, where ⌊x⌋ stands for the
+integer part of x ∈ R.
+• Since Q is a semimartingale, we can consider the Doob-Meyer decomposition: Q =
+A + M , where A is a process with finite variation, and M is an Ft -local martingale
+with A0 = M0 = 0 a.s.
+• A stopping time for localization: for m ∈ N,
+n,ǫ
+τm
+= inf{t ≥ 0 : |Xt0 | ∧ |Ytn,ǫ | ≥ m} ∧ Tm ,
+Rt
+where Tm := inf{t ≥ 0 : [M, M ]t ∧ 0 |dAs | ≥ m}. As a convention, inf ∅ = ∞.
+Hence, note that limm→∞ Tm = ∞ almost surely.
+
+Lemma 1. Under A1, it holds that
+Y n,ǫ − X 0
+
+P
+
+∗
+
+−→ 0.
+
+In addition, suppose Q2[q] for some q > 0. Then it holds that
+
+
+
+ n,ǫ
+1
+0 q
+q
+E Y −X ∗ =O
++ǫ .
+nq
+
+(5.1)
+
+(5.2)
+
+23
+
+Yasutaka Shimizu
+
+Proof. From (1.2), it follows for ǫ small enough that
+kQǫ k∗ . kQk∗ + 1.
+
+(5.3)
+
+Hence we can take the same argument as in the proof of Lemma 3.1, (3.1) by Long et al.
+[20] to obtain that
+P
+
+X − X0
+
+∗
+
+. ǫkQǫ k∗ . ǫ(kQk∗ + 1) −→ 0,
+
+(5.4)
+
+since kQk∗ is bounded in probability. Hence the fact that ⌊nt⌋/n → t as n → ∞ yields
+that
+Y n,ǫ − X 0
+
+∗
+
+P
+
+≤ kY n,ǫ − Xk∗ + X − X 0
+
+∗
+
+−→ 0.
+
+This is the proof of (5.1).
+Moreover, note that
+E
+
+
+
+Y
+
+n,ǫ
+
+q
+− X0 ∗
+
+.E
+.E
+
+"
+
+"
+
+sup X⌊nt⌋/n − Xt
+
+t∈[0,1]
+
+sup
+t∈[0,1]
+
++ ǫq E
+
+"
+
+Z
+
+q
+
+#
+
++E
+
+⌊nt⌋/n
+
+b(Xs , θ0 ) ds
+
+t
+
+sup Qǫ⌊nt⌋/n − Qǫt
+
+t∈[0,1]
+
+q
+
+#
+
+
+
+q#
+
+X − X0
+
++E
+
+
+
+q
+∗
+
+X − X0
+
+q
+.
+∗
+
+Noticing the linear growthness of the function b: |b(x, θ)| . 1 + |x|, and the inequalities
+(5.3) and (5.4), we have that
+"
+q#
+Z ⌊nt⌋/n
+
+ n,ǫ
+0 q
+E Y − X ∗ . E sup
+(1 + kXk∗ ) ds
+t∈[0,1]
+
+t
+
+
+q
++ E X − X0 ∗
+
+
+nt − ⌊nt⌋ q
+E [(1 + kXk∗ )q ] + ǫq (1 + E [kQkq∗ ])
+. sup
+n
+t∈[0,1]
+
+
+i
+
+h
+nt − ⌊nt⌋ q
++ ǫq 1 + EkAkq∗ + ǫq E [M, M ]q/2
+. sup
+n
+t∈[0,1]
+
+
+1
+q
+=O
++ǫ ,
+nq
++ǫ
+
+q
+
+E [kQkq∗ ]
+
+under Q2[q]. We used the Burkholder-Davis-Gundy inequality in the last inequality. This
+completes the proof.
+Form (5.2) and (5.4) in the above proof, the following corollary is obvious.
+
+24
+
+Threshold estimation for small noise model
+
+Corollary 2. Suppose A1 and Q2[q] for some q > 0. Then it holds that
+q 
+
+< ∞.
+sup E ǫ−1 kX − X 0 k∗
+
+(5.5)
+
+ǫ>0
+
+In addition, if (nǫ)−1 = O(1), then
+
+sup E
+n∈N,ǫ>0
+
+
+
+ǫ−1 kY n,ǫ − X 0 k∗
+
+q 
+
+< ∞.
+
+(5.6)
+
+Lemma 2. Under A1, it follows that
+lim τ n,ǫ
+m→∞ m
+
+=∞
+
+a.s.,
+
+uniformly in n ∈ N and ǫ ∈ [0, 1].
+Proof. Noticing (5.3), we have by the same argument as in the proof of Lemma 3.2 by
+Long et al. [20] that
+!
+√
+2
+n,ǫ
+sup |Yt | ≤ 2 |x| + sup |Qs | + t eCt < ∞ a.s.
+n∈N,ǫ>0
+
+s∈[0,t]
+
+for any t > 0. Therefore we have the consequence.
+Lemma 3. Let g ∈ C↑1,1 (Rd × Θ; R). Suppose A1, A2, Q1[γ], and that
+δn,ǫ ∆−1
+n → ∞,
+
+−1
+ǫ ∆γn δn,ǫ
+= O(1),
+
+nǫ → ∞.
+
+Then, we have
+n
+
+1X
+P
+gk−1 (θ)1{|∆nk X|≤δn,ǫ } −→
+n
+k=1
+
+Z
+
+1
+0
+
+g(Xt0 , θ) dt,
+
+uniformly in θ ∈ Θ. In addition, suppose that Q2[q] holds for some q > 0, then
+!q #
+"
+Z 1
+n
+1X
+0
+−1
+< ∞.
+gk−1 (θ)1{|∆nk X|≤δn,ǫ } −
+g(Xt , θ) dt
+sup E
+ǫ sup
+n∈N,ǫ>0
+θ∈Θ n
+0
+k=1
+
+Proof. Since |g(x)| . (1 + |x|)C , we have that
+Z 1
+n
+1X
+g(Xt0 , θ) dt
+gk−1 (θ)1{|∆nk X|≤δn,ǫ } −
+n
+θ∈Θ
+0
+k=1
+Z
+n
+n
+1
+1X
+1X
+0
+g(Xt , θ) dt +
+gk−1 (θ) −
+(1 + |Xtnk−1 |)C 1{|∆nk X|>δn,ǫ }
+. sup
+n
+θ∈Θ n
+0
+sup
+
+k=1
+
+k=1
+
+(5.7)
+
+(5.8)
+
+25
+
+Yasutaka Shimizu
+
+= sup
+θ∈Θ
+
+Z
+
+0
+
+n
+
+1
+
+g(Ytn,ǫ ) − g(Xt0 , θ) dt +
+
+1X
+(1 + |Xtnk−1 |)C 1{|∆nk X|>δn,ǫ } .
+n
+k=1
+
+For the first term on the right-hand side of the inequality, it holds that
+Z 1
+
+sup
+g(Ytn,ǫ ) − g(Xt0 , θ) dt
+θ∈Θ
+
+0
+
+≤ sup
+
+.
+
+Z
+
+θ∈Θ 0
+Z 1
+
+0
+
+∇x g(Xs0 + u(Ysn,ǫ − Xs0 ), θ) · Ysn,ǫ − Xs0 duds
+
+1 + |Xs0 | + |Ysn,ǫ |C
+
+0
+
+.
+
+1Z 1
+
+(5.9)
+
+
+
+Ysn,ǫ − Xs0 ds
+!C
+
+1 + sup |Xt0 | + sup |Xt0 |
+t∈[0,1]
+
+t∈[0,1]
+
+P
+
+sup Ytn,ǫ − Xt0 −→ 0,
+
+(5.10)
+
+t∈[0,1]
+
+by Lemma 1, (5.1). Hence the proof ends if we show the second term tends to zero in
+probability. Let
+1
+ξk,n,ǫ(θ) := (1 + |Xtnk−1 |)C 1{|∆nk X|>δn,ǫ } .
+n
+We show that
+n
+i
+h
+X
+P
+(5.11)
+E ξk,n,ǫ(θ)|Ftnk−1 −→ 0;
+k=1
+
+n
+X
+k=1
+
+i
+h
+P
+E |ξk,n,ǫ(θ)|2 |Ftnk−1 −→ 0.
+
+(5.12)
+
+P
+P
+which implies that nk=1 ξk,n,ǫ(θ) −→ 0 for each θ ∈ Θ from Lemma 9 by Genon-Catalot
+and Jacod [7]. First, we show that (5.11). Note that
+n
+X
+k=1
+
+h
+
+E ξk,n,ǫ(θ)|Ftnk−1
+
+Since it follows that n
+show that
+
+Pn
+−1
+
+i
+
+
+
+1X
+=
+(1 + |Xtnk−1 |)C P |∆nk X| > δn,ǫ |Ftnk−1
+n
+n
+
+k=1
+
++ |Xtnk−1 |)C = Op (1) by Lemma 3.3 in [20], it suffices to
+
+
+P |∆nk X| > δn,ǫ |Ftnk−1 = op (1),
+
+k=1 (1
+
+for any k = 1, . . . , n. Note that it holds that
+sup
+n
+t∈(tn
+k−1 ,tk ]
+
+|Xt − Xtnk−1 | . ∆n (1 + kXk∗ ) + ǫ
+
+sup
+n
+t∈(tn
+k−1 ,tk ]
+
+|Qǫt |.
+
+Hence it follows from Q1[γ] and the assumption on δn,ǫ that, for n large enough,
+!
+
+
+δn,ǫ
+n
+sup |Qt − Qtnk−1 | >
+P |∆k X| > δn,ǫ |Ftnk−1 ≤ P
+Ftnk−1
+n]
+2ǫ
+,t
+t∈(tn
+k−1 k
+
+26
+
+Threshold estimation for small noise model
+
+
+
+δn,ǫ
+Ftn
++ P (1 + kXk∗ ) >
+2∆n k−1
+≤P
+
+sup
+n
+t∈(tn
+k−1 ,tk ]
+
+
+
+|Qt − Qtnk−1 | & ∆γn Ftnk−1
+
+
+
++ P (1 + kXk∗ ) & ∆−1
+n δn,ǫ Ftn
+k−1
+
+!
+
+= op (1),
+
+(5.13)
+
+since kXk∗ is bounded in probability. This is the proof of (5.11). The proof of (5.12)
+is similar to above, which ends the proof of (5.7). The proof of (5.8) is easy from the
+estimates (5.10) and Corollary 2 since we are assuming that nǫ → ∞, so we omit the
+details. Then the proof is completed.
+The next lemma is a version of the Toeplitz lemma; see also, e.g., Shimizu [28]. We
+need this result in the proof of the next Lemma 5.
+P
+Lemma 4. Let {ank }nk=1 be a positive bounded sequence, and put bn := nk=1 ank . Suppose
+that a sequence {xnk }nk=1 satisfies the following conditions:
+sup |xnk | < ∞
+
+for each fixed k;
+
+(5.14)
+
+|xnk − x| = 0
+
+(5.15)
+
+n∈N
+
+lim
+
+sup
+
+m→∞ k,n: m≤k≤n
+
+P
+
+Then, for any sequence An with An ∼ b−1
+n , An
+
+for some x ∈ R;
+ani xni → x as n → ∞.
+
+Lemma 5. Let g ∈ C↑1,1 (Rd × Θ; Rd ). Under A1, it holds that
+n
+X
+k=1
+
+P
+
+gk−1 (θ)[∆nk Qǫ ] −→
+
+Z
+
+1
+
+0
+
+g(Xt0 , θ) [dQt ].
+
+Proof. Since we are assuming the uniform convergence (1.2), we have that
+n
+X
+k=1
+
+gk−1 (θ)[∆nk Qǫ ] −
+
+n
+X
+
+=
+
+k=1
+n
+X
+
+≤
+
+k=1
+
++
+=:
+
+Z
+
+Z
+
+1
+0
+
+g(Xt0 , θ) [dQt ]
+
+gk−1 (θ)[∆nk Qǫ − ∆nk Q] +
+gk−1 (θ)[∆nk Qǫ − ∆nk Q] +
+1
+
+Z
+
+0
+
+Z
+
+1
+
+1
+0
+
+g(Ytn,ǫ , θ) − g(Xt0 , θ) [|dAt |]
+
+g(Ytn,ǫ , θ) − g(Xt0 , θ) [dMt ]
+
+0
+(1)
+(2)
+In,ǫ + In,ǫ
+
+(3)
++ In,ǫ
+.
+
+g(Ytn,ǫ , θ) − g(Xt0 , θ) [dQt ]
+
+27
+
+Yasutaka Shimizu
+
+(1)
+
+As for In,ǫ , we suppose d = 1 for simplicity of notation. Putting ank := gk (θ) − gk−1 (θ)
+and xnk := Qǫtk − Qtk (since ǫ depends on n), we have that
+(1)
+In,ǫ
+=
+
+n n
+o
+X
+gk (θ)[Qǫtk − Qtk ] − gk−1 (θ)[Qǫtk−1 − Qtk−1 ]
+k=1
+n
+X
+
+−
+=
+
+k=1
+
+{gk (θ) − gk−1 (θ)} [Qǫtk − Qtk ]
+
+g(X1ǫ )[Qǫ1
+
+− Q1 ] −
+
+n
+X
+k=1
+
+ank · xnk .
+
+Now,
+that g(X1ǫ )[Qǫ1 − Q1 ] → 0 a.s. by the assumption (1.2). Moreover, the sum
+Pn itnis clear
+n
+k=1 ak · xk also converges to zero with probability one by using Lemma 4. Indeed, the
+convergence (5.14) is clear from (1.2), and that
+lim
+
+sup
+
+k→∞ j,n: k≤j≤n
+
+|xnj | . lim kQǫ − Qk∗ = 0
+ǫ→0
+
+a.s.
+
+Moreover, as ǫ → 0,
+bn =
+
+n
+X
+k=1
+
+ank =
+
+n
+X
+k=1
+
+[gk (θ) − gk−1 (θ)] → g(X10 , θ) − g(X00 , θ) < ∞ a.s.
+
+P
+Hence we see by the above Toeplitz lemma that nk=1 ank · xnk → 0 with probability one.
+(1)
+Therefore we have that In,ǫ → 0 with probability one.
+(2)
+As for In,ǫ , it follows from Lemma 1, (5.1) that
+P
+
+(2)
+In,ǫ
+. (1 + sup |Xt0 | + sup |Xt |)C sup Ytn,ǫ − Xt0 −→ 0.
+t∈[0,1]
+
+t∈[0,1]
+
+t∈[0,1]
+
+(3)
+
+As for In,ǫ , using Markov’s, and the Burkholder-Davis-Gundy inequalities, we have for
+any η > 0 that
+Z 1
+
+
+n,ǫ
+(3)
+n,ǫ
+0
+n,ǫ
+P(|In,ǫ | > η) ≤ P(τm < 1) + P
+g(Yt , θ) − g(Xt , θ) 1{t≤τm } [dMt ] > η/2
+0
+Z 1
+
+n,ǫ
+−1
+n,ǫ [dMt ]
+≤ P(τm < 1) + 2η E
+g(Ytn,ǫ , θ) − g(Xt0 , θ) 1{t≤τm
+}
+n,ǫ
+. P(τm
+< 1) + η −1 E
+
+Z
+
+0
+
+1
+
+0
+
+2
+
+n,ǫ d[M, M ]t
+g(Ytn,ǫ , θ) − g(Xt0 , θ) 1{t≤τm
+}
+
+1/2
+
+.
+
+n,ǫ
+From the definition of τm
+, the integrand in the last term is bounded in n and ǫ. Hence,
+taking the limit n → ∞ and ǫ → 0, we see from the dominated convergence theorem that
+(3)
+P(|In,ǫ | > η) → 0, which completes the proof.
+
+28
+
+Threshold estimation for small noise model
+
+Lemma 6. Let g ∈ C↑1,1 (Rd × Θ; Rd ). Assume A1, A2, Q1[γ], and that
+δn,ǫ ∆−1
+n → ∞,
+
+−1
+ǫ ∆γn δn,ǫ
+= O(1),
+
+nǫ → ∞.
+
+Then we have
+n
+X
+k=1
+
+P
+
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|≤δn,ǫ } −→ 0,
+
+uniformly in θ ∈ Θ. In addition, assume Q2[q] for any q > p = dim(Θ). Then
+"
+!q #
+n
+X
+E
+ǫ−1 sup
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|≤δn,ǫ }
+< ∞.
+
+(5.16)
+
+(5.17)
+
+θ∈Θ k=1
+
+Proof. The proof of (5.16) is similar to the one of Lemma 3.5 by Long et al. [20] with a
+slight extension to semimartingale version; see also Remark 4.3 in [20]. It is clear from
+their proof that the indicator 1{|∆nk X|≤δn,ǫ } is not essential to the proof. So it is omitted.
+As for (5.17), we note that
+ǫ
+
+−1
+
+sup
+
+n
+X
+
+θ∈Θ k=1
+
+=ǫ
+
+−1
+
+≤ ǫ−1
+
+sup
+
+n Z
+X
+
+θ∈Θ k=1
+Z 1
+
+1
+0
+
+g(Ysn,ǫ , θ) [b(Xs , θ0 ) − b(Ysn,ǫ , θ0 ) + ǫ · dQǫt ] ds · 1{|∆nk X|≤δn,ǫ }
+
+sup |g(Ysn,ǫ , θ) [b(Xs , θ0 ) − b(Ysn,ǫ , θ0 )]| ds
+
+0 θ∈Θ
+Z 1
+
++ sup
+=:
+
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|≤δn,ǫ }
+
+g(Ysn,ǫ , θ)[dQǫt
+
+θ∈Θ 0
+(1)
+(2)
+In,ǫ + In,ǫ
+
+− dQt ] + sup
+θ∈Θ
+
+(3)
++ In,ǫ
+.
+
+Z
+
+1
+0
+
+g(Ysn,ǫ , θ)[dQt ]
+
+By the assumption A1 and the condition for g, we have
+Z 1
+(1)
+−1
+In,ǫ . ǫ
+(1 + |Ysn,ǫ |)λ |Xs − Ysn,ǫ | ds
+0
+
+
+
+. 1 + kY n,ǫ − X 0 kλ∗ + kX 0 kλ∗ ǫ−1 kX − X 0 k + ǫ−1 kX 0 − Y n,ǫ k
+
+Hence, under the assumption that nǫ → ∞, Corollary 2 yields that
+(1) q
+E|In,ǫ
+| < ∞.
+(2)
+
+P
+
+We have already shown that In,ǫ −→ 0 in the proof of Lemma 5. Hence the proof ends
+(3)
+
+P
+
+if we show that In,ǫ −→ 0. Noticing that a bounded convex set Θ admits the following
+Sobolev inequality;
+sup |u(θ)| . ku(θ)kLq (Θ) + k∇θ u(θ)kLq (Θ) ,
+θ∈Θ
+
+29
+
+Yasutaka Shimizu
+
+for q > p = dim(Θ), we see for any q > p that
+Z 1
+Z 1
+(3)
+(1 + |Ysn,ǫ , θ|)λ · |dAs | + sup
+g(Ysn,ǫ , θ)[dM ]
+In,ǫ
+≤
+θ∈Θ
+
+0
+
+0
+
+Z
+
+
+n,ǫ
+0 λ
+0 λ
+. 1 + kY − X k∗ + kX k∗ T V (A) +
+
+Θ
+
+Z
+
+0
+
+1
+
+q
+
+g(Ysn,ǫ , θ)[dM ǫ ]
+
+dθ
+
+Then, by using the Burkholder-Davis-Gundy inequality, we have
+Z 1
+
+i Z
+h
+q
+(3) q
+E
+g(Ysn,ǫ , θ)[dM ]
+T
+V
+(A)
++
+E|In,ǫ
+| . E 1 + kY n,ǫ − X 0 kλq
+∗
+0
+q Θ
+i
+h
+n,ǫ
+0 λ
+0 λ
+. 1 + E 1 + kY − X k∗ + kX k∗ |[M, M ]1 |q/2 < ∞,
+
+1/q
+
+.
+
+q
+
+dθ
+
+under Q2[q] for any q > p. This completes the proof of (5.17).
+
+Lemma 7. Let g ∈ C↑1,1 (Rd × Θ; Rd ). Assume A1, A2, Q1[γ], and that
+δn,ǫ ∆−1
+n → ∞,
+
+−1
+ǫ ∆γn δn,ǫ
+= O(1),
+
+nǫ → ∞.
+
+Then we have
+n
+X
+
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|>δn,ǫ } = op (ǫ),
+
+k=1
+
+for each θ ∈ Θ.
+Proof. Using ∆nk X =
+ǫ−1
+
+n
+X
+
+R tnk
+
+tn
+k−1
+
+b(Xt , θ0 ) dt + ǫ∆nk Qǫ , we have that
+
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|>δn,ǫ }
+
+k=1
+
+=
+
+n
+X
+
+k=1
+n
+X
+
++
+=:
+
+ǫ
+
+−1
+
+Z
+
+tn
+k
+
+tn
+k−1
+
+gk−1 (θ)[b(Xt , θ0 ) − bk−1 (θ0 )] dt · 1{|∆nk X|>δn,ǫ }
+
+gk−1 (θ)[∆nk Qǫ ] · 1{|∆nk X|>δn,ǫ }
+
+k=1
+(1)
+Hn,ǫ
+(θ)
+
+(2)
++ Hn,ǫ
+(θ).
+
+(1)
+
+As for Hn,ǫ , we easily find it converges to zero in probability as nǫ → ∞ by the same
+(1)
+argument as for Hn,ǫ in Lemma 3.6 by Long et al. [20].
+(2)
+As for Hn,ǫ , it follows from Lemma 3 and 5 that
+(2)
+Hn,ǫ
+(θ) =
+
+n
+X
+k=1
+
+gk−1 (θ)[∆nk Qǫ ] −
+
+n
+X
+k=1
+
+P
+
+gk−1 (θ)[∆nk Qǫ ]1{|∆nk X|≤δn,ǫ } −→ 0,
+
+for each θ ∈ Θ. Hence the proof is completed.
+
+30
+
+Threshold estimation for small noise model
+
+5.2
+
+Proof of Theorem 1
+
+LSE given in (1.4). Let
+We shall show that θbn,ǫ is asymptotically equivalent to θbn,ǫ
+
+e n,ǫ(θ) := ǫ2 (Ψn,ǫ(θ) − Ψn,ǫ (θ0 )) ,
+Ψ
+e n,ǫ (θ) := ǫ2 (Φn,ǫ (θ) − Φn,ǫ(θ0 )) .
+Φ
+
+LSE and θ
+bn,ǫ are respectively
+where Ψn,ǫ and Φn,ǫ are given in (1.5) and (1.7). Then θbn,ǫ
+minimum contrast estimators for contrast functions Ψn,ǫ and Φn,ǫ .
+By the same argument as in the proof of Theorem 2.1 with Remark 4.3 by Long et al.
+[20], all we need to show is
+P
+
+e n,ǫ (θ) − F (θ0 )| −→ 0,
+sup |Φ
+θ∈Θ
+
+where F (θ) :=
+
+R1
+0
+
+P
+
+e n,ǫ (θ)−F (θ0 )| −→ 0, Therefore,
+|b(Xt0 , θ)−b(Xt0 , θ0 )|2 dt. Since supθ∈Θ |Ψ
+
+e n,ǫ(θ) − F (θ0 ) ≤ sup Φ
+e n,ǫ (θ) − Ψ
+e n,ǫ (θ) + sup Ψ
+e n,ǫ (θ) − F (θ0 )
+sup Φ
+θ∈Θ
+
+θ∈Θ
+
+θ∈Θ
+
+= sup n
+θ∈Θ
+
+k=1
+n
+X
+
+|χk (θ)|2 1{|∆nk X|>δn,ǫ } + op (1)
+
+(bk−1 (θ) − bk−1 (θ0 ))[χk (θ0 )]1{|∆nk X|>δn,ǫ }
+θ∈Θ k=1
+n
+1X
+|bk−1 (θ) − bk−1 (θ0 )|2 1{|∆nk X|>δn,ǫ } + op (1)
+sup
+θ∈Θ n k=1
+
+. sup
++
+
+n
+X
+
+The last first and second terms converges to zero in probability by Lemmas 3 and 6. This
+completes the proof.
+
+5.3
+
+Proof of Theorem 2
+
+We use the following notation:
+• Gn,ǫ (θ) = 2−1 ∇θ Φn,ǫ(θ) ∈ Rp ;
+
+
+• Kn,ǫ (θ) = ∇θ Gn,ǫ (θ) = ∇2θ Φn,ǫ (θ) ∈ Rp ⊗ Rp ;
+
+• K(θ) =
+
+R1
+0
+
+∇2θ b(Xt0 , θ)[b(Xt0 , θ0 ) − b(Xt0 , θ)] dt − I(θ0 ) ∈ Rp ⊗ Rp .
+
+Then it follows by Taylor’s formula that, for some ρ ∈ (0, 1),
+Z
+
+0
+
+1
+
+
+
+
+
+Kn,ǫ θ0 + u(θbn,ǫ − θ0 ) du · ǫ−1 θbn,ǫ − θ0 = ǫ−1 Gn,ǫ (θbn,ǫ ) − ǫ−1 Gn,ǫ (θ0 ) .
+
+31
+
+Yasutaka Shimizu
+
+Let us show that
+P
+
+ǫ−1 Gn,ǫ (θ0 ) −→
+
+Z
+
+1
+
+0
+
+∇θ b(Xt0 , θ0 ) [dQt ];
+
+(5.18)
+
+P
+
+sup |Kn,ǫ (θ) − K(θ)| −→ 0.
+
+(5.19)
+
+θ∈Θ
+
+Then the result follows by the same argument as in the proof of Theorem 2.2 by Long et
+al. [20]; see also Uchida [35].
+As for (5.18): it follows that
+ǫ−1 Gn,ǫ (θ0 ) = ǫ−1
+
+n
+X
+k=1
+
+= ǫ−1
+
+n
+X
+k=1
+
+=ǫ
+
+−1
+
+−ǫ
+
+n
+X
+
+∇θ bk−1 (θ0 )[χk (θ0 )]1{|∆nk X|≤δn,ǫ }
+∇θ bk−1 (θ0 )[χk (θ0 )] − ǫ−1
+∇θ bk−1 (θ0 )
+
+k=1
+n
+X
+−1
+k=1
+
+"Z
+
+tn
+k
+
+tn
+k−1
+
+n
+X
+k=1
+
+∇θ bk−1 (θ0 )[χk (θ0 )]1{|∆nk X|>δn,ǫ }
+#
+
+{b(Xt , θ0 ) − bk−1 (θ0 )} dt +
+
+n
+X
+k=1
+
+∇θ bk−1 (θ0 )[∆nk Q]
+
+∇θ bk−1 (θ0 )[χk (θ0 )]1{|∆nk X|>δn,ǫ }
+
+Then we can show that the last first term converges to zero in probability by the same
+(1)
+evaluation as for Hn,ǫ (θ0 ) in the proof of Lemma 3.6 in [20], the second term converges to
+R1
+0
+0 ∇θ b(Xt , θ0 )[dQt ] in probability by Lemma 5, and that the third term goes to zero in
+probability by Lemma 7. Similarly, as for (5.19), it follows that
+Kn,ǫ (θ) =
+=
+
+n
+X
+
+k=1
+n
+X
+k=1
+
++
+
+n
+
+∇2θ bk−1 (θ)[χk (θ)]1{|∆nk X|≤δn,ǫ } −
+
+1X
+∇θ bk−1 (θ)⊤ ∇θ bk−1 (θ)1{|∆nk X|≤δn,ǫ }
+n
+k=1
+
+∇2θ bk−1 (θ)[χk (θ0 )]1{|∆nk X|≤δn,ǫ }
+n
+
+1X 2
+∇θ bk−1 (θ)[bk−1 (θ0 ) − bk−1 (θ)]1{|∆nk X|≤δn,ǫ }
+n
+k=1
+
+n
+1X
+∇θ bk−1 (θ)⊤ ∇θ bk−1 (θ)1{|∆nk X|≤δn,ǫ } ,
+−
+n
+k=1
+
+ij
+cf. the expression of Kn,ǫ
+(θ) in the proof of Lemma 3.7 by Long et al. [20]. Hence Lemmas
+3 and 6 yield (5.19). Using the facts (5.18) and (5.19), and the consistency result: Theorem
+1, we can show that
+
+
+ǫ−1 θbn,ǫ − θ0 ∼p −K −1 (θ0 ) · ǫ−1 Gn,ǫ (θ0 ), n → ∞, ǫ → 0,
+
+by completely the same argument as in the proof of Theorem 2.2 by Long et al. [20].
+Therefore, the proof is completed.
+
+32
+
+5.4
+
+Threshold estimation for small noise model
+
+Proof of Theorem 3
+
+P
+Denote by u
+b := ǫ−1 (θbn,ǫ − θ0 ). Since u
+b −→ ζ from Theorem 2, the proof ends if we show
+that u
+b is Lp -bounded: supn,ǫ E|b
+u|p < ∞ for any p > 0. For this proof, let Un,ǫ (θ0 ) =
+p
+{u ∈ R : θ0 + ǫu ∈ Θ0 }, and define random fields Zn,ǫ : Un,ǫ (θ0 ) → R+ by
+
+Zn,ǫ(u) = exp {−Φn,ǫ(θ0 + ǫu) + Φn,ǫ (θ0 )} ,
+
+u ∈ Un,ǫ (θ0 ).
+
+Then, since θ0 ∈ Θ0 , we see that
+Zn,ǫ (b
+u) ≥
+
+sup
+u∈Un,ǫ (θ0 )
+
+Zn,ǫ (u) ≥ Zn,ǫ (0) = 1.
+
+(5.20)
+
+Setting Vn,ǫ (r) := Un,ǫ (θ0 ) ∩ {u ∈ Rp : |u| ≥ r}, we consider the following condition for
+the random fields Zn,ǫ : for every L > 0 and r > 0,
+!
+P
+
+sup
+
+u∈Vn,ǫ (r)
+
+. r −L ,
+
+Zn,ǫ (u) ≥ e−r
+
+(5.21)
+
+which is called the polynomial type large deviation inequality (PLDI), and is investigated
+by Yoshida [39] in details. If this PLDI holds true then, for any L > p,
+Z ∞
+p
+r p−1 P (|b
+u| ≥ r) dr
+sup E|b
+u| = sup p
+n∈N,ǫ>0
+
+n∈N,ǫ>0
+
+≤
+.
+
+sup p
+
+0
+
+Z
+
+n∈N,ǫ>0
+0
+Z ∞
+p−1
+
+r
+
+0
+
+∞
+
+r p−1
+
+(
+
+1∧P
+
+sup
+u∈Vn,ǫ (r)
+
+!)
+
+Zn,ǫ (u) ≥ 1
+
+dr
+
+(1 ∧ r −L ) dr < ∞,
+
+here we used (5.20) in the first inequality. Therefore the proof ends if we show (5.21), some
+sufficient conditions for which are found in the paper by Yoshida [39]. Here we shall verify
+the conditions [A1′′ ], [A4′ ], [A6], [B1] and [B2] given in Theorem 3, (c) in [39]. See also
+Ogihara and Yoshida [21] or Masuda [19] for simplified descriptions for those conditions.
+Applying Taylor’s formula with the notation Gn,ǫ (θ), Kn,ǫ (θ) and K(θ) given in the
+proof of Theorem 2, we have
+log Zn,ǫ (u) = −Φn,ǫ (θ0 + ǫu) + Φn,ǫ(θ0 )
+= −ǫGn,ǫ (θ0 )[u] −
+
+ǫ2
+{−K(θ0 )} [u⊗2 ] + Rn,ǫ (u),
+2
+
+where
+Z
+
+1
+
+
+(s − 1) K(θ0 )[u⊗2 ] − Kn,ǫ (θ0 + s · ǫu)[u⊗2 ] ds
+0
+Z 1
+Z 1
+ǫ2
+⊗2
+3
+{Kn,ǫ (θ0 ) − K(θ0 )} [u ] − ǫ
+∇θ Kn,ǫ (θ0 + ts · ǫu)[u⊗3 ] dtds.
+(s − 1)
+=
+2
+0
+0
+
+Rn,ǫ (u) = ǫ
+
+2
+
+33
+
+Yasutaka Shimizu
+
+This means that Zn,ǫ could be Partially Locally Asymptotically Quadratic (PLAQ), which
+is a starting point of [39]. According to Theorem 3, (c) in [39], if we take some “tuning
+parameters” given in [A4′ ] in [39] such as β1 ≈ 1/2, ρ1 , ρ2 , β, β2 ≈ 0, then the PLDI
+(5.21) holds true if the following [A1′′ ], [A6], [B1] and [B2] are satisfied; we use the same
+conditioning numbers as in [39] to make those correspondences clear.
+[A1′′ ] For every q > 0,
+sup E
+n∈N,ǫ>0
+
+
+
+2
+
+ǫ sup
+θ∈Θ
+
+∇3θ Φn,ǫ (θ)
+
+q 
+
+< ∞.
+
+Moreover, for given L > 0 and any δ > 0 small enough,
+h
+L−δ i
+sup E ǫ−1 |Kn,ǫ (θ0 ) − K(θ0 )|
+< ∞.
+
+(5.22)
+
+(5.23)
+
+n∈N,ǫ>0
+
+[A6] For any δ > 0 small enough,
+i
+h
+sup E |ǫGn,ǫ (θ0 )|L+δ < ∞;
+
+(5.24)
+
+n∈N,ǫ>0
+
+
+L+δ 
+
+−1 e
+Φn,ǫ (θ) − F (θ)
+sup E sup ǫ
+< ∞,
+
+n∈N,ǫ>0
+
+e n,ǫ and F (θ) =
+where Φ
+1.
+
+R1
+0
+
+(5.25)
+
+θ∈Θ
+
+|b(Xt0 , θ)−b(Xt0 , θ0 )|2 dt are given in the proof of Theorem
+
+[B1] The matrix −K(θ0 ) (= I(θ0 )) is deterministic and positive definite.
+[B2] There exists a deterministic positive number χ such that
+− {F (θ) − F (θ0 )} ≤ −χ|θ − θ0 |2 .
+(Note that the notational correspondence between [39] and ours is: aT = ǫ; bT = ǫ−2 ;
+HT = −Φn,ǫ ; Y = −F and Γ = −K).
+Now we can easily check that the conditions (5.22) and (5.24) are true by Lemma 6,
+(5.17), and that (5.23) and (5.25) are also true by Lemma 3, (5.8). Moreover the conditions
+[B1] and [B2] are clear from the assumptions A1 and A4, respectively, the proof ends if
+we show (5.22)–(5.25). Hence the proof is completed.
+
+5.5
+
+Proof of Theorem 4
+
+First, we shall show the consistency:
+P
+θen,ǫ,δ −→ θ0 .
+
+34
+
+Threshold estimation for small noise model
+
+Since we suppose that the jumps are specified, the following “negligibility” is obtained:
+)
+(
+P (k∆Qǫ k∗k > δ) = 1 − P
+
+|∆Qt | ≤ δ/ǫ
+
+sup
+
+n
+t∈(tn
+k−1 ,tk ]
+
+= 1 − e−λ(δ/ǫ)∆n → 0
+
+(5.26)
+
+since λ(δ/ǫ)∆n → 0. Then we have the following lemma, which is the same type of results
+as Lemmas 3 and 6.
+Lemma 8. Let g ∈ C↑1,1 (Rd × Θ; R). Suppose A1, A2, and that
+δ/ǫ → 0.
+Then, we have
+n
+
+1X
+P
+gk−1 (θ)1{k∆Qǫ k∗ ≤δ} −→
+k
+n
+k=1
+n
+X
+k=1
+
+Z
+
+1
+
+0
+
+g(Xt0 , θ) dt,
+
+P
+
+gk−1 (θ)[χk (θ0 )]1{k∆Qǫ k∗ ≤δ} −→ 0,
+k
+
+uniformly in θ ∈ Θ.
+The proof of this lemma is an obvious modification of the proofs of Lemmas 3 and 6
+using the negligibility condition (5.26). Then by the same argument as in the proof of
+Theorem 1, the consistency follows.
+Next, note that, as in the proof of Theorem 2,
+Z 1
+
+
+
+
+Kn,ǫ,δ θ0 + u(θen,ǫ,δ − θ0 ) du · θen,ǫ,δ − θ0 = Gn,ǫ,δ (θbn,ǫ ) − Gn,ǫ,δ (θ0 ) .
+0
+
+where
+
+e n,ǫ,δ (θ); Kn,ǫ,δ (θ) = ∇θ Gn,ǫ,δ (θ);
+Gn,ǫ,δ (θ) = 2−1 ∇θ Φ
+Z 1
+∇2θ b(Xt0 , θ)[b(Xt0 , θ0 ) − b(Xt0 , θ)] dt − I(θ0 ).
+K(θ) =
+0
+
+If we show that
+ǫ
+
+−1
+
+P
+
+Gn,ǫ,δ (θ0 ) −→
+
+Z
+
+0
+
+1
+
+∇θ b(Xt0 , θ0 ) [dWt ] ,
+
+then we obtain the consequence because the convergence
+P
+
+sup |Kn,ǫ,δ (θ) − K(θ)| −→ 0
+θ∈Θ
+
+(5.27)
+
+35
+
+Yasutaka Shimizu
+
+holds true due to Lemma 8 and the same argument as in the proof of Lemma 3.7 in [20].
+Note that
+#
+"Z n
+n
+tk
+X
+{b(Xs , θ0 ) − bk−1 (θ0 )} dt 1{k∆Qǫ k∗ ≤δ}
+∇θ bk−1 (θ0 )
+ǫ−1 Gn,ǫ,δ (θ0 ) = ǫ−1
+k=1
+
+n
+X
+
++
+
+k=1
+
+n
+X
+
++
+=:
+
+k=1
+(1)
+In,ǫ,δ
+
+
+∇θ bk−1 (θ0 ) 
+
+k
+
+tn
+k−1
+
+
+
+
+
+Nt n
+
+k
+X
+
+i=Ntn
+
+k−1
+
++1
+
+
+Yi 1{|Yi |≤δ} 
+
+∇θ bk−1 (θ0 ) [∆nk W ] 1{k∆Qǫ k∗ ≤δ}
+k
+
+(3)
+
+(2)
+
++ In,ǫ,δ + In,ǫ,δ .
+(1)
+
+(1)
+
+Note that In,ǫ,δ → 0 by the same argument as in the proof of Lemma 3.6, Hn,ǫ (θ0 ) in [20]
+by the assumption (4.5). Moreover, it is easy to see that
+E
+
+(2)
+In,ǫ,δ
+
+n
+
+λδ X
+=
+E|∇θ bk−1 (θ0 )| → 0.
+nǫ
+k=1
+
+Furthermore, note that
+(3)
+
+In,ǫ,δ =
+
+n
+X
+k=1
+
+∇θ bk−1 (θ0 ) [∆nk W ] −
+
+n
+X
+k=1
+
+∇θ bk−1 (θ0 ) [∆nk W ] 1{k∆Qǫ k∗ >δ}
+k
+
+Now, observe a measurability that
+
+
+
+{ω ∈ Ω : k∆Qk∗k ≤ δ} ∈ σ N (tnk−1 , s], [−δ, δ] : s ∈ (tnk−1 , tnk ] ,
+
+which is independent of ∆nk W and Xtnk−1 . Therefore,
+E
+
+≤
+≤
+
+n
+X
+
+∇θ bk−1 (θ0 ) [∆nk W ] 1{k∆Qǫ k∗ >δ}
+
+k=1
+n
+X
+k=1
+
+n
+X
+k=1
+
+k
+
+E |∇θ bk−1 (θ0 ) [∆nk W ]| P (k∆Qǫ k∗k > δ)
+E
+
+Z
+
+tn
+k
+tn
+k−1
+
+
+trace ∇θ b⊗2
+(θ
+)
+dt
+0
+k−1
+
+!1/2
+
+
+
+1 − e−λ(δ/ǫ)∆n → 0
+
+from (5.26). As a result, Lemma (5) yields that
+Z 1
+P
+(3)
+∇θ b(Xt0 , θ0 ) [dWt ] .
+In,ǫ,δ −→
+0
+
+This completes the proof of (5.27).
+
+36
+
+5.6
+
+Threshold estimation for small noise model
+
+Proof of Theorem 5
+
+Note that, under the asymptotic conditions, it follows that
+P (k∆Qǫ k∗k ≤ δ) = e−λ(δ/ǫ)∆n → 0;
+
+P (k∆Qǫ k∗k > δ) → 1,
+
+(5.28)
+
+which is a different situation in the previous theorem.
+Under this setting, we can show the following lemma.
+Lemma 9. Let g ∈ C↑1,1 (Rd × Θ; R). Suppose A1, A2, Q1[γ], and that
+λ(δ/ǫ)
+→ c ∈ (0, 1),
+n log n
+
+nǫ∆γn → 0.
+
+Then it follows that, for ηn := e−λ(δ/ǫ)∆n ,
+Z 1
+n
+1 X
+P
+g(Xt0 , θ) dt,
+gk−1 (θ)1{k∆Qǫ k∗ ≤δ} −→
+k
+nηn
+0
+
+(5.29)
+
+k=1
+
+n
+1 X
+P
+gk−1 (θ)[χk (θ0 )]1{k∆Qǫ k∗ ≤δ} −→ 0,
+k
+ηn
+
+(5.30)
+
+k=1
+
+uniformly in θ ∈ Θ.
+Proof of Lemma 9.
+As for (5.29): note that
+Z 1
+n
+1 X
+P
+sup
+g(Xt0 , θ) dt
+gk−1 (θ)1{k∆Qǫ k∗ ≤δ} −→
+k
+θ∈Θ nηn
+0
+k=1
+
+n
+n
+1X
+1 X
+gk−1 (θ)1{k∆Qǫ k∗ ≤δ} −
+gk−1 (θ)
+k
+n
+θ∈Θ nηn k=1
+k=1
+Z 1
+n
+X
+1
++ sup
+g(Xt0 , θ) dt .
+gk−1 (θ) −
+θ∈Θ n
+0
+
+≤ sup
+
+k=1
+
+and the second term on the right-hand side of the inequality converges to zero
+P in probability
+from Lemma 3.3 by Long et al. [20]. The last first term is rewritten as nk=1 ξkn (θ) with
+
+
+1
+1
+n
+−1 .
+1
+ξk (θ) = gk−1 (θ)
+ǫ ∗
+n
+ηn {k∆Q kk ≤δ}
+Then we immediately see that, since Ftnk−1 and k∆Qǫ kk are independent each other,
+n
+X
+k=1
+
+E[ξkn (θ)|Ftnk−1 ]
+
+n
+
+
+1X
+=
+gk−1 (θ) ηn−1 P (k∆Qǫ k∗k ≤ δ) − 1 = 0.
+n
+k=1
+
+37
+
+Yasutaka Shimizu
+
+Moreover
+n
+X
+k=1
+
+E[|ξkn (θ)|2 |Ftnk−1 ]
+
+n
+2
+1 X 2
+1
+1{k∆Qǫ k∗ ≤δ} − 1
+= 2
+gk−1 (θ)E
+k
+n
+ηn
+k=1
+
+
+
+
+1
+1
+P
+= Op
+−→ 0,
+= Op
+nηn
+e(1−c2 ) log n
+
+P
+P
+by the assumption. Hence we have that nk=1 ξkn (θ) −→ 0 for every θ ∈ Θ from Lemma 9
+by Genon-Catalot and Jacod [7].
+PTo prove the uniformity of convergence, we have to show the tightness of the sequence
+{ nk=1 ξkn (·)}n . We shall use Theorem 20 in Appendix 1 by Ibragimov and Has’minskii
+[9], that is, we shall show that, for some H > 0 and any N ∈ N,
+E
+
+n
+X
+
+2N
+
+ξkn (θ)
+
+< H;
+
+(5.31)
+
+≤ H|θ1 − θ2 |2N
+
+(5.32)
+
+k=1
+
+E
+
+n
+X
+
+[ξkn (θ1 )
+
+k=1
+
+−
+
+2N
+
+ξkn (θ2 )]
+
+As for (5.31): using the independent property of Xtnk−1 and k∆Qǫ kk , we have that
+E
+
+n
+X
+
+2N
+
+ξkn (θ)
+
+k=1
+
+n
+X
+
+"
+
+"
+
+2N
+1
+|Ftnk−1
+1{k∆Qǫ k∗ ≤δ} − 1
+=
+E |gk−1 (θ)| E
+k
+ηn
+k=1
+#
+"
+
+n 
+1 X
+1
+2N
++1
+.E
+sup |g(Xt )|
+n2N
+ηn2N −1
+θ∈Θ,t∈[0,1]
+k=1
+
+
+
+
+1
+−(1−c)
+=O
+→ 0.
+=
+O
+n
+(nηn )2N −1
+2N
+
+##
+
+Therefore it is bounded. Inequality (5.32) is similarly proved since g ∈ C↑1,1 (Rd × Θ; R).
+Hence (5.29) is proved.
+Finally we shall show (5.30). Note that
+n
+1 X
+gk−1 (θ)[χk (θ0 )]1{k∆Qǫ k∗ ≤δ}
+k
+θ∈Θ ηn k=1
+n Z n
+1 X tk
+sup |gk−1 (θ) [b(Xs , θ0 ) − bk−1 (θ0 )]| ds · 1{k∆Qǫ k∗ ≤δ}
+≤
+k
+ηn
+θ∈Θ
+tn
+k−1
+
+sup
+
++
+=:
+
+k=1
+n
+X
+
+ǫ
+ηn
+
+sup |gk−1 (θ) [∆nk Q]| 1{k∆Qǫ k∗ ≤δ}
+
+k=1 θ∈Θ
+Jn(1) + Jn(2) .
+
+k
+
+38
+
+Threshold estimation for small noise model
+
+(1)
+
+As for Jn : it follows from the assumption A1 that, for Y n,ǫ given in Lemma 1,
+n Z n
+1 X tk
+sup |g(Ysn,ǫ ) [b(Xs , θ0 ) − b(Ysn,ǫ , θ0 )]| ds · 1{k∆Qǫ k∗ ≤δ}
+k
+n
+ηn
+k=1 tk−1 θ∈Θ
+!C
+n
+1 X
+sup |Xt − Ytn,ǫ |1{k∆Qǫ k∗ ≤δ}
+. 1 + sup |Xt |
+·
+k
+n
+n
+nη
+n
+t∈[0,1]
+k=1 t∈(tk−1 ,tk ]
+!C
+n
+ 1 X
+· kX − X 0 k∗ + kX 0 − Y n,ǫ k∗ ·
+. 1 + sup |Xt |
+1{k∆Qǫ k∗ ≤δ}
+k
+nηn
+
+|Jn(1) | =
+
+t∈[0,1]
+
+k=1
+
+Since
+E
+
+n
+1 X
+1{k∆Qǫ k∗ ≤δ} = 1
+k
+nηn
+k=1
+
+⇒
+
+n
+1 X
+1{k∆Qǫ k∗ ≤δ} = Op (1),
+k
+nηn
+
+and Lemma 1 we have that
+
+(5.33)
+
+k=1
+
+P
+
+|Jn(1) | −→ 0.
+
+(2)
+
+As for Jn : it follows for some C > 0 that
+|Jn(2) | .
+
+sup
+
+(1 + |Xt |)C ·
+
+θ∈Θ,t∈[0,1]
+
+≤ Op
+
+!
+
+n
+nǫ X 1
+·
+sup |Qs − Qtnk−1 |1{k∆Qǫ k∗ ≤δ}
+k
+ηn
+n s∈(tnk−1 ,tnk ]
+k=1
+
+nǫ sup |Qs | ,
+s∈(0,∆n ]
+
+since sups∈(tn ,tn ] |Qs − Qtnk−1 | ∼d sups∈(0,∆n ] |Qs | and (5.33). Moreover, noticing under
+k−1 k
+Q1[γ] that
+sup |Qs | = op (∆γn ),
+s∈(0,∆n ]
+
+we obtain that
+Jn(2) = Op (nǫ∆γn ) → 0.
+This completes the proof of (5.30).
+
+
+
+Now, putting
+Ψn,ǫ (θ) :=
+
+ǫ2 ηn−1
+
+
+
+e n,ǫ,δ (θ) − Ψ
+e n,ǫ,δ (θ0 ) ;
+Ψ
+
+F (θ) :=
+
+Z
+
+1
+0
+
+and using Lemma 9, we can easily show that
+
+P
+
+sup Ψn,ǫ (θ) − F (θ) −→ 0.
+θ∈Θ
+
+|b(Xt0 , θ) − b(Xt0 , θ0 )|2 dt,
+
+39
+
+Yasutaka Shimizu
+
+P
+This and the identifiability condition A3 yield the consistency: θen,ǫ,δ −→ θ0 .
+Suppose that the Lévy process Q is of the form
+Z tZ
+Z tZ
+e
+z N (dt, dz),
+z N (dt, dz) +
+Qt = at + cWt +
+0
+
+0
+
+|z|≤1
+
+|z|>1
+
+where a ∈ Rd , c ≥ 0, W is a d-dimensional Wiener process, N is a Poisson random measure
+e (dt, dz) = N (dt, dz) − ν(dz)dt, and note that, for any
+associated with jumps of Q, and N
+δ > 0,
+Z Z
+Z Z
+t
+
+Qt = αδ/ǫ t + Wt +
+
+0
+
+R
+where aδ/ǫ = a − δ/ǫ<|z|≤1 z ν(dz).
+Hereafter, we put
+
+|z|≤δ/ǫ
+
+e (dt, dz) +
+zN
+
+t
+
+z N (dt, dz),
+
+0
+
+|z|>δ/ǫ
+
+ζ := δ/ǫ.
+
+Using the same notation as in the previous theorem, the proof ends if we show that
+Z 1
+D
+∇θ b(Xt0 , θ0 ) [dBt ] .
+(5.34)
+(σ(ζ)ǫ)−1 Gn,ǫ,δ (θ0 ) −→
+0
+
+Note that
+(σ(ζ)ǫ)−1 Gn,ǫ,δ (θ0 ) = (σ(ζ)ǫ)
+
+n
+X
+−1
+
++ σ −1 (ζ)
++σ
+=:
+
+−1
+
+(1)
+In,ǫ,δ
+
+(ζ)
+
+k=1
+n
+X
+
+∇θ bk−1 (θ0 )
+
+"Z
+
+tn
+k
+tn
+k−1
+
+#
+
+{b(Xs , θ0 ) − bk−1 (θ0 )} dt 1{k∆Qǫ k∗ ≤δ}
+k
+
+
+
+∇θ bk−1 (θ0 ) aδ ∆n + ∆nk W 1{k∆Qǫ k∗ ≤δ}
+
+k=1
+n
+X
+
+k=1
+(2)
++ In,ǫ,δ
+
+k
+
+∇θ bk−1 (θ0 )
+
+"Z
+
+tn
+k
+
+tn
+k−1
+
+Z
+
+|z|≤ζ
+
+(3)
+
++ In,ǫ,δ .
+
+#
+
+e (dt, dz)
+zN
+
+(2)
+
+As for In,ǫ,δ : Since 1{k∆Qǫ k∗ ≤δ} is independent of ∆nk W and Xtnk−1 , we have that
+k
+n
+
+(2)
+
+E In,ǫ,δ ≤ σ −1 (ζ)
+
+1X
+E |∇θ bk−1 (θ0 )aδ | P (k∆Qk∗k ≤ ζ)
+n
+
++ σ −1 (ζ)
+
+k=1
+n
+X
+k=1
+
+≤σ
+
+−1
+
+
+
+(ζ)
+
+=O σ
+
+n
+X
+k=1
+
+−1
+
+
+
+E ∇θ bk−1 (θ0 ) ∆nk W P (k∆Qk∗k ≤ δ)
+
+E
+
+Z
+
+tn
+k
+
+tn
+k−1
+
+trace
+
+
+(ζ)e−λ(ζ)∆n .
+
+
+
+∇θ b⊗2
+k−1 (θ0 )
+
+dt
+
+!1/2
+
+P (k∆Qk∗k ≤ ζ)
+
+40
+
+Threshold estimation for small noise model
+
+The last equality is due to (5.28). Therefore we have
+
+!−1 
+∞
+k
+X
+(∆n λ(ζ))
+(2)
+.
+E In,ǫ,δ = O  σ(ζ)
+k!
+
+(5.35)
+
+k=0
+
+For an integer M such that 1/M ≤ ρ, we see that,
+
+M
+σ(ζ)(∆n λ(ζ))M = σ 1/M (ζ)∆n λ(ζ)
+≥ (σ ρ (ζ)∆n λ(ζ))M → ∞
+
+(5.36)
+
+due to the the condition (4.4). Hence we have
+(2)
+
+E In,ǫ,δ → 0.
+(1)
+
+(1)
+
+As for In,ǫ,δ : By the same argument as in the proof of Lemma 3.6, Hn,ǫ (θ0 ) in [20], we
+can obtain the following inequality:
+(1)
+
+|In,ǫ,δ | .
+
+n
+
+1 1X
+|∇θ bk−1 (θ0 )| · |bk−1 (θ0 )|
+nǫσ(ζ) n
++
+
+i=1
+n
+X
+
+1
+nσ(ζ)
+
+i=1
+
+|∇θ bk−1 (θ0 )|
+
+sup
+n
+s∈(tn
+k−1 ,tk ]
+
+|Qt − Qtnk−1 |1{k∆Qǫ k∗ ≤δ}
+k
+
+(2)
+
+Using the same estimates for Jn
+
+in the proof of Lemma 9, we have that
+
+
+
+
+1
+(1)
++ op σ −1 (ζ)e−λ(ζ)∆n ,
+|In,ǫ,δ | = Op
+nǫσ(ζ)
+(1)
+
+P
+
+Then, by the same estimates as for (5.35) and (5.36) above, we see that |In,ǫ,δ | −→ 0.
+(3)
+
+As for In,ǫ,δ : Let
+
+Lδt
+
+:= σ
+
+−1
+
+(ζ)
+
+Z tZ
+0
+
+|z|≤δ
+
+e (dt, dz).
+zN
+
+Thanks to Theorem 2 by Asmussen and Rosinski [1], it follows under the assumption (4.6)
+that there exists a Wiener process B, independent of W , such that
+D
+
+Lζ −→ B
+
+in D[0, 1],
+
+as δ → 0. Moreover, since kY n,ǫ − X 0 k∗ a.s. by Lemma (1), we have a joint convergence
+
+
+D
+Lζ , Y n,ǫ −→ (B, X 0 ) in D[0, 1].
+
+as ǫ, δ → 0 and n → ∞. Hence it follows from Theorem 5.16 by Jacod and Shiryaev [10]
+that
+n
+i Z 1
+h
+X
+(3)
+n ζ
+∇θ b (Ytn,ǫ , θ0 ) dLζt
+∇θ bk−1 (θ0 ) ∆k L =
+In,ǫ,δ =
+k=1
+
+0
+
+41
+
+Yasutaka Shimizu
+
+D
+
+−→
+
+Z
+
+1
+0
+
+∇θ b(Xt0 , θ0 ) dBt
+
+This completes the proof of (5.34), and the statement is proved.
+
+Acknowledgement
+The author would like to thank the anonymous referees for their valuable suggestions and
+proposals that significantly improve this manuscript. This research has been partially
+supported by JSPS KAKENHI Grant-in-Aid for Scientific Research (C), Grant Number
+JP15K05009.
+
+References
+[1] Asmussen, S. and Rosinski, J. (2001). Approximations of small jumps of Lévy processes with a view towards simulation, J. Appl. Prob., 38, 482–493.
+[2] Bichteler, K. and Jacod, J. (1986) Calcul de Malliavin pour les diffusions avec sauts:
+existence d’une densite dans le cas unidimensionnel. Lecture Notes in Math, 132–157.
+Springer-Verlag, Berlin.
+[3] Boukai, B. (1990). An explicit expression for the distribution of the supremum of
+Brownian motion with a change point. Comm. Statist. Theory Methods, 19, (1), 31–
+40.
+[4] Cont, R. and Tankov, P. (2004). Financial modelling with jump processes. Chapman
+& Hall/CRC, Boca Raton, FL.
+[5] Doob, J. L. (1949). Heuristic approach to the Kolmogorov-Sminorv Theorems. Ann.
+Math. Statistics, 20, 393–403.
+[6] Genon-Catalot, V. (1990). Maximum contrast estimation for diffusion processes from
+discrete observations, Statistics, 21. 99–116.
+[7] Genon-Catalot, V. and Jacod, J. (1993). On the estimation of the diffusion coefficient
+for multidimensional diffusion process, Ann. Inst. Henri Poincaré Prob. Statist. 29,
+119–151.
+[8] Gloter, A. and Sørensen, M. (2009). Estimation for stochastic differential equations
+with a small diffusion coefficient, Stochastic Process. Appl., 119, 679–699.
+[9] Ibragimov, I. A. and Has’minskii, R. Z. (1981) Statistical Estimation, Springer-Verlag,
+Berlin.
+
+42
+
+Threshold estimation for small noise model
+
+[10] Jacod, J. and Shiryaev, A. N. (2003). Limit theorems for stochastic processes. Second
+edition. Springer-Verlag, Berlin.
+[11] Joulin, A. (2007). On maximal inequalities for stable stochastic integrals. Potential
+Anal., 26, (1), 57–78.
+[12] Kunitomo, N. and Takahashi, A. (2001). The asymptotic expansion approach to the
+valuation of interest rate contingent claims. Math. Finance, 11, 117–151.
+[13] Kutoyants, Yu. A. (1984). Parameter estimation for stochastic processes. Heldermann,
+Berlin.
+[14] Kutoyants, Yu. A. (1994). Identification of dynamical systems with small noise.
+Kluwer, Dordrecht.
+[15] Laredo, C.F. (1990). A sufficient condition for asymptotic sufficiency of incomplete
+observations of a diffusion process, Ann. Statist., 18, 1158–1171.
+[16] Long, H. (2009) Least squares estimator for discretely observed Ornstein-Uhlenbeck
+processes with small Lévy noises, Statist. Prob. Letters, 79, 2076–2085.
+[17] Long, H. (2010). Parameter estimation for a class of stochastic differential equations
+driven by small stable noises from discrete observations, Acta Mathematica Scientia,
+30B, 645–663.
+[18] Ma, C. (2010). A note on “Least squares estimator for discretely observed OrnsteinUhlenbeck processes with small Lévy noises”, Statist. Prob. Letters, 80, 1528–1531.
+[19] Masuda, H. (2013). Convergence of Gaussian quasi-likelihood random fields for ergodic Levy driven SDE observed at high frequency. The Annals of Statistics, 41,
+1593–1641.
+[20] Long, H; Shimizu, Y. and Sun, W. (2013). Least squares estimators for discretely
+observed stochastic processes driven by small Lévy noises. J. Multivariate Analysis,
+116, 422–439.
+[21] T. Ogihara, N. Yoshida, Quasi-likelihood analysis for the stochastic differential equation with jumps. Stat. Inference Stoch. Process., 14, 189–229.
+[22] Pavlyukevich, I. (2008). Ruin probabilities of small noise jump-diffusions with heavy
+tails. Appl. Stoch. Models Bus. Ind. 24, (1), 65–82.
+[23] Pavlyukevich, I. (2011). First exit times of solutions of stochastic differential equations
+driven by multiplicative Lévy noise with heavy tails. Stoch. Dyn., 11, (2–3), 495–519.
+[24] Protter, P. E. (2004). Stochastic integration and differential equations. Second edition.
+Springer-Verlag, Berlin.
+
+Yasutaka Shimizu
+
+43
+
+[25] Pruitt, W. E. (1981). The growth of random walks and Lévy processes. Ann. Probability, 9, (6), 948–956.
+[26] Shimizu, Y. (2006). M-estimation for discretely observed ergodic diffusion processes
+with infinitely many jumps. Statist. Infer. Stochastic Proc., 9, (2), 179–225.
+[27] Shimizu, Y. (2010). Threshold selection in jump-discriminant filter for discretely observed jump processes. Statist. Methods and Appl., 19, (3), 355–378.
+[28] Shimizu, Y. (2012). Local asymptotic mixed normality for discretely observed nonrecurrent Ornstein-Uhlenbeck processes, Ann. Inst. Statist. Math., 64, (1), 193-211.
+[29] Shimizu, Y. and Yoshida, N. (2006) Estimation of parameters for diffusion processes
+with jumps from discrete observations. Statist. Infer. Stochastic Proc., 9, (3), 227–
+277.
+[30] Sørensen, M. (2000). Small dispersion asymptotics for diffusion martingale estimating
+functions, Preprint No. 2000-2, Department of Statistics and Operation Research,
+University of Copenhagen, Copenhagen.
+[31] Sørensen, M. and Uchida, M. (2003). Small diffusion asymptotics for discretely sampled stochastic differential equations, Bernoulli, 9, (6), 1051–1069.
+[32] Takahashi, A. (1999). An asymptotic expansion approach to pricing contingent claims.
+Asia-Pacific Financial Markets, 6. 115–151.
+[33] Takahashi, A. and Yoshida, N. (2004). An asymptotic expansion scheme for optimal
+investment problems. Stat. Inference Stoch. Process., 7, 153–188.
+[34] Uchida, M. Estimation for discretely observed small diffusions based on approximate
+martingale estimating functions, Scand. J. Statist. 31 (2004) 553-566.
+[35] Uchida, M. (2008). Approximate martingale estimating functions for stochastic differential equations with small noises. Stochastic Process. Appl., 118, 1706–1721.
+[36] Uchida, M. and Yoshida, N. (2004). Asymptotic expansion for small diffusions applied
+to option pricing. Stat. Inference Stoch. Process., 7, 189–223.
+[37] Yoshida, N. (1992). Asymptotic expansion of maximum likelihood estimators for small
+diffusions via the theory of Malliavin-Watanabe. Probab. Theory Relat. Fields, 92,
+275–311.
+[38] Yoshida, N. Asymptotic expansion for statistics related to small diffusions. J. Japan
+Statist. Soc., 22, 139–159.
+[39] Yoshida, N. (2011). Polynomial type large deviation inequalities and quasi-likelihood
+analysis for stochastic differential equations. Ann. Inst. Statist. Math., 63, (3), 431–
+479
+
+
+
+Summary:
+This research paper covers the following topic: arXiv:1502.07409v3 [math.ST] 16 Mar 2017
+
+Threshold estimation for stochastic processes with small noise
+Yasutaka Shimizu∗
+Department of Applied Mathematics, Waseda University
+March 16, 2017
+
+Abstract
+Consider a process satisfying a stochastic differential equation with unknown drift
+parameter, and suppose that discrete observations are given. It is known that a simple
+least squares estimator (LSE) can be consistent, but numerically unstable in the sense
+of large standard deviations under finite samples when the noise process has jumps.
+We propose a filter to cut large shocks from data, and construct the same LSE from
+data selected by the filter. The proposed estimator can be asymptotically equivalent to
+the usual LSE, whose asymptotic distribution strongly depends on the noise process.
+However, in numerical study, it looked asymptotically normal in an example where
+filter was choosen suitably, and the noise was a Lévy process. We will try to justify
+this phenomenon mathematically, under certain restricted assumptions.
+Key words: stochastic differential equation, semimartingale noise, small noise
+asymptotics, drift estimation, threshold estimator, mighty convergence.
+MSC2010: 62F12, 62M05; 60G52, 60J75
+
+1
+
+Introduction
+
+Let (Ω, F, (Ft )t≥0 , P) be a stochastic basis, on which an Rd -valued stochastic process X is
+defined via the stochastic integral equation
+Z t
+ǫ
+b(Xsǫ , θ0 ) ds + ǫ · Qǫt ,
+(1.1)
+Xt = x +
+0
+
+where x ∈ Rd , ǫ > 0, and θ0 is an unknown parameter that belongs to a parameter space
+Θ0 , which is an open bounded, convex subset of Rp ; we put Θ := Θ0 , the closure of Θ0 ; b
+is a measurable function on Rd × Θ; Qǫ is a stochastic process of the form
+e ǫ + rǫ B H
+Qǫt := Q
+t
+t
+
+e ǫ is a semimartingale, B H is a fractional Brownian motion with the Hurst paramwhere Q
+eter H ∈ (0, 1), and rǫ is a real number satisfying that rǫ → 0 (ǫ → 0). We also assume for
+∗
+
+E-mail: shimizu@waseda.jp
+
+1
+
+2
+
+Threshold estimation for small noise model
+
+e ǫ that Q
+e ǫ = 0 and supt∈[0,1] Q
+eǫt − Qt → 0 as ǫ → 0 with probability
+the semimartingale Q
+0
+one. Hence we have that
+sup |Qǫt − Qt | → 0 a.s.,
+
+t∈[0,1]
+
+ǫ → 0,
+
+(1.2)
+
+As is well known, B H is not a semimartingale and neither is Qǫ , but Qǫ converges
+uniformly to a semimartingale Q as ǫ → 0 almost surely.
+Moreover, we suppose that the Doob-Meyer decomposition of Q is given as follows.
+Qt = At + Mt
+
+(t ≥ 0),
+
+A0 = M0 = 0
+
+a.s.,
+
+(1.3)
+
+where A is a process with finite variation, and M is an Ft -local martingale. Some typical
+examples for Qǫ is given in Section 2.3. We suppose that the process X ǫ = (Xtǫ )t∈[0,1]
+is observed discretely in time: {Xtnk }nk=0 with tnk = k/n (the index ǫ is omitted in the
+notation), from [0, 1]-interval. We denote by ∆nk X := Xtnk − Xtnk−1 and ∆n := tnk − tnk−1 =
+1/n. Our interest is to estimate the value of the parameter θ0 from the discrete samples
+under that n → ∞ as well as ǫ → 0: small noise asymptotics.
+There are some practical advantages in small noise asymptotics:
+• Statistical point of view: the drift estimation by samples from a fixed finite time
+interval is justifiable under relatively mild conditions. Since we need to observe the
+process long time to achieve “good” estimation of the drift without small noise assumption, we usually assume the asymptotics that the terminal time of observations
+goes to infinity, under which some technical conditions such as “ergodicity” or “uniform moment conditions” for the process need to be assumed. By a suitable scaling
+technique, we can regard such a long-term model as a small noise model, approximately. Then there is no need for those conditions, which are sometimes difficult to
+check in practice; see remarks in Section 2.3.3 for details.
+• Computational point of view: approximation of functionals of the process as ǫ → 0
+is often available in relatively easy-to-calculate form as in, e.g., Yoshida [37] and
+Pavlyukevich [23] among others, which is well applied to finance and insurance; see
+Takahashi [32], Kunitomo and Takahashi [12], Takahashi and Yoshida [33], Uchida
+and Yoshida [36], Pavlyukevich [22] and references therein.
+That is why, using the small noise model is convenient to deal with both applications and
+statistical inference at the same time.
+Sampling problems for stochastic differential equations with small noise have been well
+studied by many authors in both theoretical and applied point of views. Some earlier works
+for small-diffusion models are found in the papers by Kutoyants [13, 14], Genon-Catalot
+[6] and Laredo [15], and they have been developed in some directions by several authors:
+e.g., martingale estimating functions are studied by Sørensen [30], efficient estimation
+is investigated by Sørensen and Uchida [31], Gloter and Sørensen [8]; see also Uchida
+[34, 35], and asymptotic expansion approach is initiated by Yoshida [37, 38], see also
+
+3
+
+Yasutaka Shimizu
+
+Uchida and Yoshida [36], among others. Although those works are due to diffusion noise,
+more general noise model are also considered recently. For example, Long [16] and Ma
+[18] investigate the drift estimation of a Lévy driven Ornstein-Uhlenbeck process; see also
+Long [17], and Long et al. [20] deal with the inference for non-linear drift under the small
+semimartingale noise. In our paper, we do not require that the noise is a semimartingale,
+but ‘approximately’ a semimartingale in the sense of (1.2).
+The goal of this paper is statistical inference for the drift of the process under the
+asymptotics that noise vanishes, which is the same motivation as in Long et al. [20],
+but it was seen in our numerical study that our estimator performed better than theirs
+under finite samples. Long et al. [20] consider the case where Qǫ ≡ L is a Lévy process
+(although it can be extended to a case of a semimartingale) independent of the dispersion
+parameter ǫ, and investigate the asymptotic behavior of the least squares-type estimator
+(LSE) defined by
+LSE
+θbn,ǫ
+:= arg min Ψn,ǫ (θ),
+θ∈Θ
+
+where
+
+Ψn,ǫ (θ) = ǫ−2 ∆−1
+n
+
+n
+X
+k=1
+
+|∆nk X − b(Xtnk−1 , θ) · ∆n |2
+
+(1.4)
+
+(1.5)
+
+LSE is ǫ−1 -consistent with the limit of
+They show that the minimum contrast estimator θbn,ǫ
+a Lévy functional as ǫ → 0 and n → ∞ with nǫ → ∞ under some mild conditions on the
+function b; see Theorems 4.1 and 4.2 in [20]. The asymptotic distribution generally has a
+fat-tail, that causes us unsatisfactory performance even if ǫ is small enough; see numerical
+results in [20], or Section 3 below. This would be due to ‘large’ shocks by the driving noise.
+It will be easy to imagine that a ‘large’ jump of Qǫ makes much impact to the direction of
+drift, and make the drift estimation unstable. Therefore, cutting such ‘large’ jumps could
+improve the performance. That is why, we consider the threshold-type estimator defined
+as follows:
+
+θbn,ǫ := arg min Φn,ǫ(θ),
+θ∈Θ
+
+where
+Φn,ǫ (θ) = ǫ
+
+−2
+
+∆−1
+n
+
+n
+X
+k=1
+
+|∆nk X − b(Xtnk−1 , θ) · ∆n |2 1{|∆nk X|≤δn,ǫ } ,
+
+(1.6)
+
+(1.7)
+
+δn,ǫ is a positive number, which is a threshold to eliminate ‘large’ shocks causing bias
+to drift estimation. That is, the indicator 1{|∆nk X|≤δn,ǫ } plays a role of a filter to split
+increments with ‘large’ and ‘small’ magnitude of shocks; see Shimizu [26], or Shimizu
+and Yoshida [29] for the fundamental idea of those filters. It would be intuitively clear
+LSE and θ
+bn,ǫ can be asymptotically equivalent. However, we
+that if δn,ǫ → ∞ then θbn,ǫ
+will show that the same thing holds true even if δn,ǫ → 0 by choosing the sequence δn,ǫ
+
+4
+
+Threshold estimation for small noise model
+
+carefully. Moreover we can see in numerical study that θbn,ǫ has much better finite-sample
+LSE . Furthermore, we will show the mighty convergence (the
+performance than that of θbn,ǫ
+convergence of moments) for u
+bn,ǫ := ǫ−1 (θbn,ǫ − θ0 ), which is a stronger result than those
+in [20]:
+Z
+E [f (b
+un,ǫ )] →
+
+Rp
+
+f (z) Lu (dz),
+
+as ǫ → 0 and n → ∞ for every continuous function f of at most polynomial growth, where
+Lu is the asymptotic distribution of u
+bn,ǫ .
+As is described above, the asymptotic distribution Lu is generally not normal unless
+the limiting process Q is a Wiener process. However, it is interesting to note that we
+sometimes encounter a phenomenon that u
+bn,ǫ seems asymptotically normal in numerical
+study. This may indicate that our filtered LSE could also be asymptotically normal
+if we choose δn,ǫ in a different way as previous, otherwise we may just observe it as
+an ‘approximate’ phenomenon possibly when some appropriate conditions are satisfied.
+Although a justification of this phenomena under the discrete sampling is still an open
+problem, we will add some discussion on these points in Section 4.
+The paper is organized as follows. In Section 2, we prepare notation and assumptions,
+and present the main results under discrete samples. In particular, Section 2.4 is devoted
+to investigating some technical conditions for Q. We will give some easy-to-check sufficient
+conditions for those when the noise Q is a Lévy process. In Section 3, we will show an
+advantage of our estimator compared with the usual LSE via numerical study, and we
+further observe the asymptotic distribution seems normal. Finally, we will try to give a
+theoretical explanation to those asymptotic phenomena in Section 4. All the proofs of
+main theorems are given in Section 5.
+
+2
+
+Main results
+
+2.1
+
+Notation and assumptions
+
+We use the following notation:
+• For a process Y = (Yt )t∈[0,1] , kY kLp = (E|Y1 |p )1/p (p > 0) and kY k∗ := supt∈[0,1] |Yt |.
+• Given a multilinear form M = {M (i1 ,...,iK ) : ik = 1, . . . , dk ; k = 1, . . . , K} ∈ Rd1 ⊗
+(i)
+· · · ⊗ RdK and vector uk = (uk )i≤dk ∈ Rdk , we write
+M[u1 , . . . , uK ] =
+
+d1
+X
+
+i1 =1
+
+···
+
+dK
+X
+
+(i )
+
+(i )
+
+M (i1 ,...,iK ) u1 1 . . . uKK .
+
+iK =1
+
+Note that the above form is well-defined when the jth dimension of M (the number
+of ij ) and that of uj are the same. When some of uk is missing in “M[u1 , . . . , uK ]”,
+the resulting form is regarded as a multilinear form again; e.g., M[u3 , . . . , uK ] ∈
+Rd1 ⊗ Rd2 . For example, when M is a vector M = (Mi )1≤i≤d , M[x] = M ⊤ x for
+
+5
+
+Yasutaka Shimizu
+
+f is a matrix M = (Mij )1≤i≤d ;1≤j≤d ,
+x ∈ Rd , which is the inner product, and when M
+1
+2
+f
+M[u, v] for u = (ui )1≤i≤d1 and v = (vi )1≤i≤d2 is the quadratic form u⊤ M v, and
+f = M v ∈ Rd1 or M[u]
+f
+M[v]
+= M ⊤ u ∈ Rd2 , among others. The correspondences
+of dimensions will be clear from the context. We also use the notation M[u⊗K ] :=
+M[u1 , . . . , uK ] when u1 = · · · = uK .
+• For a = (a1 , . . . , am )⊤ ∈ Rm , ∇a = (∂/∂a1 , . . . , ∂/∂am ). Moreover, we denote
+by ∇ka := ∇a ⊗ ∇ak−1 with ∇0a ≡ 1. That is, ∇ka forms a multilinear form, e.g.,
+∇2a = ∇⊤
+a ∇a in a matrix form.
+• For a multilinear form M, |M|2 denotes the sum of the squares of each element of
+M.
+• C is often used as a generic positive constant that may differ from line to line.
+Moreover, we write a . b if a ≤ Cb almost surely.
+• C k,l (Rd × Θ; Rq ) denotes the space of functions f (x, θ) : Rd × Θ → Rq that is k and l
+times differentiable with respect to x and θ, respectively. Moreover, C↑k,l (Rd × Θ; Rq )
+denotes a subclass of f ∈ C k,l (Rd × Θ; Rq ) that is of polynomial growth uniformly
+in θ ∈ Θ: supθ∈Θ |∇αx ∇βθ f (x, θ)| . (1 + |x|)C for any α ≤ k and β ≤ l.
+• For a function g(x, θ) : Rd × Θ → Rq , we write gk−1 (θ) := g(Xtnk−1 , θ). Moreover,
+denote by χk (θ) := ∆nk X − bk−1 (θ)∆n (∈ Rd ).
+• All the asymptotic symbol are described under n → ∞ and ǫ → 0 unless otherwise
+noted.
+Using the above notation, our estimating function given in (1.7) is rewritten as
+Φn,ǫ (θ) = ǫ−2 ∆−1
+n
+
+n
+X
+
+n
+I[χ⊗2
+k (θ)]1{|∆k X|≤δn,ǫ } ,
+
+k=1
+
+where I is the d × d identity matrix.
+We make the following assumptions on the model (1.1):
+A1 |b(x, θ) − b(y, θ)| . |x − y| for each x, y ∈ Rd and θ ∈ Θ.
+Under this assumption, the ordinary differential equation
+dXt0 = b(Xt0 , θ0 ) dt,
+
+X00 = x,
+
+has the unique solution X 0 = (Xt0 )t≥0 .
+A2 b ∈ C↑2,3 (Rd × Θ; Rd ).
+A3 θ 6= θ0 ⇔ b(Xt0 , θ) 6= b(Xt0 , θ0 ) for at least one value of t ∈ [0, 1].
+
+6
+
+Threshold estimation for small noise model
+
+A4 I(θ0 ) :=
+
+R1
+0
+
+∇θ b(Xt0 , θ0 )⊤ ∇θ b(Xt0 , θ0 ) dt (∈ Rp ⊗ Rp ) is positive definite,
+
+We further make the following conditions for the limiting process Q of Qǫ .
+Q1[γ] There exists some γ > 0 such that, for any k = 1, . . . , n,
+)
+(
+P
+
+sup
+
+n
+t∈(tn
+k−1 ,tk ]
+
+|Qt − Qtnk−1 | > ∆γn Ftnk−1
+
+= op (1).
+
+Q2[q] For q > R0 and processes A and M given in (1.3), the total variation of A, say
+1
+T V (A) := 0 |dAt |, and the quadratic variation [M, M ] satisfy that
+h
+i
+q/2
+E [T V (A)q ] + E [M, M ]1
+< ∞.
+Although the condition Q1 seems ad hoc, we can give some easy-to-check conditions
+in some important cases where, e.g., Q is a Lévy process satisfying Q2[q] for some q > 0;
+see Section 2.4 for details.
+
+2.2
+
+Asymptotic behavior of threshold-type estimators
+
+Theorem 1. Suppose A1–A3, Q1[γ], and that a sequence {δn,ǫ } satisfies that
+δn,ǫ ∆−1
+n → ∞,
+Then
+
+−1
+ǫ ∆γn δn,ǫ
+= O(1),
+
+nǫ → ∞.
+
+(2.1)
+
+P
+θbn,ǫ −→ θ0 .
+
+Remark 1. Condition (2.1) ensures a kind of “negligibility”:
+
+
+P |∆nk X| > δn,ǫ |Ftnk−1 → 0,
+
+LSE ; see (5.13) in the proof.
+which makes θbn,ǫ asymptotically equivalent to θbn,ǫ
+
+Theorem 2. Suppose the same assumptions as in Theorem 1, and further A4. Then
+Z 1
+P
+−1 b
+−1
+∇θ b(Xt0 , θ0 )[dQt ],
+ǫ (θn,ǫ − θ0 ) −→ ζ := I (θ0 )
+0
+
+where the square bracket [dQt ] is the quadratic form of dQt for the matrix ∇θ b(Xt0 , θ0 ) in
+this case; see Section 2.1.
+Theorem 3. Suppose the same assumptions as in Theorem 2, and that Q2[q] holds true
+for any q > 0. Then, it follows for every continuous function f : Rp → R, of polynomial
+growth that
+h 
+i
+E f ǫ−1 (θbn,ǫ − θ0 ) → E[f (ζ)],
+where ζ is given in Theorem 2.
+
+7
+
+Yasutaka Shimizu
+
+2.3
+2.3.1
+
+Examples and remarks
+α-stable noise
+
+Suppose d = 1, and that Qǫ = σB + ρǫ S, where ρǫ → ρ ∈ [0, ∞), σ ≥ 0 is a constant, B
+is a Brownian motion, and S is a standard α-stable process with stability index α ∈ (0, 2)
+and the skewness parameter β ∈ [−1, 1], which is denoted by Sα (1, β, 0); see, e.g., Cont
+and Tankov [4], page 94 for this notation. In this case, the limiting variable ζ in Theorem
+2 becomes
+ζ = I −1 (θ0 ) {σD2 · Z + ρDα · Sα (1, β, 0)} ,
+R
+1/α
+1
+where Dα = 0 {∂θ b(Xt0 , θ0 )}α dt
+and Z is a standard Gaussian variable. Hence if
+ρ = 0 then the estimator is asymptotically normal; see also Long et al. [20].
+2.3.2
+
+Markovian noise
+
+Let us consider the case where
+ǫ
+dQǫt = ǫ1 a(Xtǫ ) dWt + ǫ2 c(Xt−
+) dZt ,
+
+(2.2)
+
+where ǫj > 0 (j = 1, 2), a, c are some suitable functions, and Z is a pure jump Lévy
+process.
+• Case of ρǫ := ǫ2 /ǫ1 → 0: we can reparametrize as e
+ǫ := ǫ · ǫ1 to obtain that
+with
+
+e ǫt ,
+dXtǫ = b(Xtǫ , θ0 ) dt + e
+ǫ · dQ
+
+e ǫ = a(X ǫ ) dWt + ρǫ c(X ǫ ) dZt .
+dQ
+t
+t
+t−
+
+Then e
+ǫ−1 (θbn,ǫ − θ0 ) is asymptotically normal as in Sørensen and Uchida [31]. We
+can verify that
+Z t
+ǫ
+e
+a(Xs0 ) dWt a.s., ǫ → 0,
+Qt → Q :=
+0
+
+uniformly in t ∈ [0, 1] from the fact that the stochastic integrals are continuous
+with respect to the u.c.p. topology; see Theorem II.11 by Protter [24], and the
+uniform convergence of X ǫ → X 0 on compact sets; see Theorem IX.4.21 by Jacod
+and Shiryaev [10].
+• Case of ρǫ := ǫ2 /ǫ1 → ρ ∈ (0, ∞): we can use the same model as above, and the
+asymptotic distribution of e
+ǫ−1 (θbn,ǫ − θ0 ) is a convolution of stochastic integrals with
+respect to W and Z.
+
+8
+
+Threshold estimation for small noise model
+
+• Case of ρǫ := ǫ2 /ǫ1 → ∞: we can reparametrize as ǫ := ǫ · ǫ2 to obtain that
+ǫ
+
+dXtǫ = b(Xtǫ , θ0 ) dt + ǫ · dQt ,
+with
+
+ǫ
+
+ǫ
+ǫ
+dQt = ρ−1
+ǫ a(Xt ) dWt + c(Xt− ) dZt .
+
+Then the asymptotic distribution of ǫ−1 (θbn,ǫ − θ0 ) is written by a stochastic integral
+with respect to Z only.
+2.3.3
+
+Long-term observations
+
+Consider a ‘long-term’ discretely observed model:
+Z t
+b(Xv ) dv + Qt ,
+Xt = x +
+
+(2.3)
+
+0
+
+and X is observed at 0 = tn0 < t1n <, . . . , < tnn =: T for a fixed T > 0 ‘large enough’, where
+Q is an α-stable process: Q1 ∼ Sα (σ, β, 0) with index α ∈ (1, 2). To estimate the drift
+function b, we sometimes assume a parametric model b(x) = b(x, θ) and estimate θ under
+the assumption that T → ∞. However, in a standard theory of parametric inference, we
+usually need an “ergodicity” or uniform moment conditions such as supt>0 E|Xt |m < ∞
+for any m > 0, which are often restrictive conditions.
+Now, transform the model by v = T u, t = T s, and divide the both sides of (2.3) by T
+to obtain
+Z s
+1
+x
+b(T · Yu , θ) du + QT s , s ∈ [0, 1],
+Ys = +
+T
+T
+0
+where Ys = T −1 XT s . Since QT s =d T 1/α Qs by the self-similarity of stable processes, we
+can regard that Y is a (weak) solution to the following SDE:
+Z s
+x
+es,
+Ys = +
+b(T · Yu , θ) du + T 1/α−1 Q
+T
+0
+
+e s is also an α-stable process such that Q
+e 1 ∼ Sα (σ, β, 0). Suppose that ǫ := T 1/α−1
+where Q
+e
+is small enough for given T , and putting b(x, θ) = b(T x, θ) and x
+e = ǫα/(α−1) x, we can
+reformulate the model as
+Z s
+e
+e s , s ∈ [0, 1],
+Ys = x
+e+
+b(Yu , θ) du + ǫ · Q
+(2.4)
+0
+
+with ǫ > 0 small enough, and it is interpreted as a small noise SDE.
+Given a “non-ergodic” model as in (2.3) with long-term observations, we can reformulate it to a small noise model (2.4) with known constant ǫ = T 1/α−1 by plotting the data
+e = Y0 in the interval [0, 1]. Then, although e
+b
+{Ysnk := T −1 XT snk }nk=0 with snk = tnk /T and x
+depends on T , we can formally use a estimator of θ in e
+b under the small noise model that
+does not require any restrictive condition.
+
+9
+
+Yasutaka Shimizu
+
+2.4
+
+On conditions for Q
+
+Let us investigate some sufficient conditions to ensure Q1 and Q2 when Q is specified.
+An important
+case is when
+Q is a Lévy process such that the characteristic exponent:
+
+
+ψ(u) := log E exp(iu⊤ Q1 ) , is given by
+
+
+iu⊤ z
+ν(dz), u ∈ Rd ,
+(2.5)
+2
+1
++
+|z|
+d
+R
+R
+where b ∈ Rd , ν is the Lévy measure with ν({0}) = 0 and |z|≤1 |z|2 ν(dz) < ∞.
+As a simple case such that Q is a Wiener process, where b = 0, ν ≡ 0, it follows from
+the property of the stationary, independent increments that
+)
+)
+(
+(
+ψ(u) = ib⊤ u −
+
+P
+
+sup
+
+n
+t∈(tn
+k−1 ,tk ]
+
+σ2 ⊤
+u u+
+2
+
+Z
+
+
+
+eiu
+
+⊤z
+
+−1−
+
+|Wt − Wtnk−1 | > ∆γn Ftnk−1
+
+sup |Wt | > ∆γn
+
+=P
+
+t∈(0,∆n ]
+
+
+
+p
+= 2 1 − Φ(∆γn / ∆n ) → 0,
+
+for any γ ∈ (0, 1/2), where Φ is a standard normal distribution function; for the last
+equality, see, e.g., Doob [5], or Boukai [3].
+When Q is a stable process, we have the following result.
+Proposition 1. When Q is a symmetric α-stable process with α ∈ (1, 2). Then Q1[γ]
+holds true for any γ ∈ (0, α−1 ).
+Proof. Due to the maximal inequality (3.5) in Joulin [11], we have
+(
+)
+(
+)
+P
+
+sup
+
+n
+t∈(tn
+k−1 ,tk ]
+
+|Qt − Qtnk−1 | > ∆γn Ftnk−1
+
+=P
+
+sup |Qt | > ∆γn
+
+t∈(0,∆n ]
+
+
+= O ∆1−γα
+→0
+n
+
+as n → ∞.
+We can also present some sufficient conditions to Q1[γ] when a process Q is a more
+general Lévy process: let
+Z
+Z
+−2
+ν(dz) + x
+|z|2 ν(dz)
+h(x) :=
+|z|>x
+
++x
+
+−1
+
+|z|≤x
+
+b+
+
+Z
+
+|z|≤x
+
+z|z|2
+ν(dz) −
+1 + |z|2
+
+Z
+
+|z|>x
+
+z
+ν(dz) .
+1 + |z|2
+
+Proposition 2. Suppose that Q is a Lévy process with characteristic (2.5), and that there
+exists a constant
+
+
+η
+β := inf η > 0 : lim sup x h(x) = 0 .
+(2.6)
+x→0
+
+10
+
+Threshold estimation for small noise model
+
+Then the condition Q1[γ] holds true for any γ ∈ (0, γ0 ), where
+γ0 =
+
+
+
+β −1
+(σ = 0)
+.
+(β ∨ 2)−1 (σ =
+6 0)
+
+We interpret that 1/0 = ∞.
+Proof. Let Qt = σWt + Zt , where W is a Wiener process and Z is a pure jump Lévy
+process with characteristic
+
+
+Z
+i
+⊤
+log E exp(iu Z1 ) = ib u +
+h
+
+⊤
+
+Rd
+
+iu⊤ z
+
+e
+
+iu⊤ z
+−1−
+1 + |z|2
+
+
+
+ν(dz),
+
+u ∈ Rd .
+
+By the independent, stationary increments property for Lévy process Q, we see that
+(
+)
+Rn := P
+.P
+
+sup
+
+(
+
+n
+t∈(tn
+k−1 ,tk ]
+
+|Qt − Qtnk−1 | > ∆γn Ftnk−1
+)
+
+sup |σWt | > ∆γn /2
+
+t∈(0,∆n ]
+
++P
+
+(
+
+)
+
+sup |Zt | > ∆γn /2
+
+t∈(0,∆n ]
+
+(1)
+
+=: Rn(1) + Rn(2) .
+
+(1)
+
+Note that Rn → 0 for any γ ∈ (0, 1/2) if σ 6= 0, and that Rn ≡ 0 if σ = 0. Moreover,
+according to Pruitt [25], (3.2), it follows that
+(2)
+
+Rt
+
+. ∆n h(∆γn /2) = (2xn )1/γ h(xn ),
+
+xn := ∆γn /2.
+
+(2)
+
+Hence, if 1/γ > β, equivalently γ ∈ (0, β −1 ), then Rn → 0 by the definition of β ≥ 0.
+Then the result follows.
+Corollary 1. Suppose that
+given by
+
+R
+
+|z|≤1 |z|ν(dz)
+
+σ2 ⊤
+u u+
+ψ(u) =
+2
+
+< ∞, and that the Lévy characteristic ψ is
+Z
+
+(eiu
+
+Rd
+
+⊤z
+
+− 1) ν(dz).
+
+R
+z
+Note that b − |z|>x 1+|z|
+2 ν(dz) = 0 in the expression (2.5). Then β in Proposition 2, (2.6)
+is consistent with the Blumenthal-Getoor index:
+)
+(
+Z
+β = inf
+
+η>0:
+
+|z|≤1
+
+|z|η ν(dz) < ∞
+
+≤ 1.
+
+Proof. Note that, under the assumption, we have
+h(x) =
+
+Z
+
+ν(dz) + x
+|z|>x
+
+−2
+
+Z
+
+2
+
+|z|≤x
+
+|z| ν(dz) + x
+
+−1
+
+Z
+
+|z|≤x
+
+z|z|2
+ν(dz) .
+1 + |z|2
+
+11
+
+Yasutaka Shimizu
+
+Let β0 be the Blumenthal-Getoor index:
+(
+β0 = inf
+
+η ∈ [0, 2] :
+
+Z
+
+)
+
+η
+
+|z|≤1
+
+|z| ν(dz) < ∞ .
+
+Then we easily see by the direct computation that, for any ǫ > 0
+lim xβ0 +ǫ h(x) = 0,
+
+lim inf xβ0 −ǫ h(x) = ∞.
+
+x→0
+
+x→0
+
+Indeed, for x ∈ (0, 1), we have
+|x
+
+β0 +ǫ
+
+Z
+
+β0 +ǫ
+
+h(x)| ≤ |x|
+
+ν(dz) +
+
++ |x|
+Z
+
+≤ |x|ǫ
+
+|z|≤1
+
+ν(dz)
+
+|z|>1
+
+x<|z|≤1
+
+β0 +ǫ−2
+
+Z
+
+Z
+
+2
+
+|z|≤x
+
+|z| ν(dz) + |x|
+
+|z|β0 ν(dz) + xβ0 +ǫ
+
+ǫ
+
+Z
+
+|z|>1
+
+Z
+
+|z|3
+ν(dz)
+2
+|z|≤x 1 + |z|
+Z
+|z|β0 ν(dz)
+ν(dz) + |x|ǫ
+
+β0 +ǫ−1
+
+|z|≤x
+
+= O(|x| ) → 0.
+The other condition: lim inf xβ0 −ǫ h(x) = ∞ is easier since
+x→0
+
+x
+
+β0 −ǫ
+
+h(x) > x
+
+β0 −ǫ−2
+
+Z
+
+2
+
+|z|≤x
+
+|z| ν(dz) ≥ x
+
+−ǫ
+
+Z
+
+|z|≤x
+
+|z|β0 ν(dz) → ∞,
+
+as x → 0. Hence we get β0 = β.
+The condition Q2 can be reduced to moment conditions for the Lévy measure.
+Proposition 3. Suppose that Q is a Lévy process with characteristic (2.5). Then the
+condition Q2[q] holds true if
+Z
+|z|q ν(dz) < ∞.
+|z|>1
+
+Proof. The Lévy process Q has the following Lévy-Ito decomposition:
+Z tZ
+Z tZ
+e (ds, dz) +
+z N (ds, dz)
+zN
+Qt = at + bWt +
+0
+
+|z|≤1
+
+0
+
+|z|>1
+
+where a and b are some constants, W is a Wiener process, N is a Poisson random measure,
+e (ds, dz) = N (ds, dz) − ν(dz)ds. Then the decomposition (1.3) is given by
+and N
+Z tZ
+Z tZ
+e (ds, dz).
+zN
+z N (ds, dz), Mt = bWt +
+At = at +
+0
+
+|z|>1
+
+0
+
+|z|≤1
+
+12
+
+Threshold estimation for small noise model
+
+and it follows from the Burkholder-Davis-Gundy inequality that
+q
+
+Z
+
+q
+
+E[T V (A) ] . |a| + E
+.1+E
+
+Z
+
+0
+
+0
+
+1Z
+
+q
+
+|z|>1
+
+1Z
+
+|z| N (ds, dz)
+q
+
+|z|>1
+
+e (ds, dz) +
+|z| N
+
+Z
+
+|z|>1
+
+|z|q ν(dz).
+
+According to the argument as in Bichteler and Jacod [2]; see also the proofs of lemma 4.1
+and Proposition 3.1 by Shimizu and Yoshida [29], we see that
+E
+
+Z
+
+0
+
+1Z
+
+q
+|z|>1
+
+Hence
+
+e (ds, dz)
+|z| N
+q
+
+E[T V (A) ] .
+
+Z
+
+|z|>1
+
+.
+
+Z
+
+|z|>1
+
+|z|q ν(dz).
+
+|z|q ν(dz) < ∞.
+
+By the similar argument, it is easy to see by Hölder’s inequality that, for any m > 1,
+E|[M, M ]|q/2
+
+1/m
+
+≤ E|[M, M ]|mq/2
+.1+
+
+Z
+
+|z|≤1
+
+!1/m
+
+|z|mq/2 ν(dz)
+
+< ∞,
+
+if we take mq/2 ≥ 2. This completes the proof.
+
+3
+3.1
+
+Numerical study
+2-dim model
+
+We consider the following 2-dimensional Lévy driven SDE:
+b(x, θ) =
+
+q
+
+θ1 +
+
+x21
+
++
+
+x22 , − p
+
+θ 2 x2
+1 + x21 + x22
+
+!⊤
+
+,
+
+Qt =
+
+
+
+
+Vtκ,ξ + Bt
+,
+Stα
+
+(3.1)
+
+where B is a standard Brownian motion, S α is a standard symmetric α-stable process
+Sα (1, 0, 0), and V κ,ξ is a variance gamma process with Lévy density
+pV (z) =
+
+κ −ξ|z|
+e
+,
+|z|
+
+z ∈ R, κ, ξ > 0,
+
+which is obtained by Brownian subordination with a gamma process Gt ∼ Γ(shape =
+ct, scale = 1/λ) (c, λ > 0) as follows:
+√
+2κ
+λ2
+κ,ξ
+, ξ=
+Vt = σWGt (σ > 0), κ =
+c
+σ
+
+13
+
+Yasutaka Shimizu
+
+where W is the standard Brownian motion independent of G; see, e.g., Cont and Tankov
+[4] for details. Assume that W, S α and V κ,ξ are independent of each other.
+In the sequel, we set values of parameters as
+(1)
+
+(2)
+
+(X0 , X0 ) = (1, 1),
+
+(θ1 , θ2 ) = (2, 1),
+
+(κ, ξ, α) = (5, 3, 3/2).
+
+A sample path is given in Figure 5. Then both X (1) and X (2) are unbounded variation
+jump-processes with finite activity of jumps for X (1) and infinite for X (2) . We will compare
+our threshold-type estimator to the LSE by Long et al. [20].
+
+3.2
+
+LSE and threshold estimator
+
+LSE , θ
+bLSE ) is a solution to
+Note that the LSE θbLSE = (θb1,n,ǫ
+2,n,ǫ
+n
+X
+k=1
+
+r
+
+LSE
+θb2,n,ǫ
+=−
+
+= 1;
+
+LSE + (X (1) )2 + (X (2) )2
+θb1,n,ǫ
+tn
+tn
+k−1
+
+k−1
+
+n
+
+and that our estimator θb = (θb1,n,ǫ , θb2,n,ǫ ) is a solution to
+k=1
+
+r
+
+(∆nk X (2) )Xt(2)
+n
+
+k=1
+
+∆nk X (1)
+
+n
+X
+
+Pn
+
+∆nk X (1)
+
+(1)
+(2)
+θb1,n,ε + (Xtn )2 + (Xtn )2
+k−1
+
+k=1
+
+θb2,n,ǫ = −
+
+n
+
+Pn
+−1
+
+k−1
+(2)
+
+(1)
+
+1+(Xtn
+
+k−1
+
+)2 +(Xtn
+
+)2
+
+k−1
+
+(2)
+
+(Xtn
+
+)2
+
+.
+
+k−1
+
+k=1 1+(X (1) )2 +(X (2) )2
+tn
+tn
+k−1
+
+k−1
+
+n
+
+1X
+1{|∆nk X|≤δn,ǫ }
+n
+k=1
+
+(∆nk X (2) )Xt(2)
+n
+r
+
+k−1
+(2)
+
+(1)
+
+1+(Xtn
+
+Pn
+−1
+
+1{|∆nk X|≤δn,ǫ } =
+
+k−1
+
+Pn
+
+r
+
+k−1
+
+)2 +(Xtn
+
+)2
+
+1{|∆nk X|≤δn,ǫ }
+
+k−1
+
+(2)
+
+(Xtn
+
+)2
+
+.
+
+k−1
+
+k=1 1+(X (1) )2 +(X (2) )2 1{|∆n
+k X|≤δn,ǫ }
+tn
+tn
+k−1
+
+k−1
+
+In the simulations, we tried n = 1000, 3000, 5000 and ǫ = (0.4, 0.3, 0.05). The results
+for the LSE given in (1.4) are in Table 1, and those for the threshold-type estimator in
+(1.6) are in 2 and 3, in which the threshold δn,ǫ = ǫ/5 and ǫ/10 are used, respectively. The
+simulations are iterated 10000 times, and mean and standard deviation (s.d.) of estimators
+are given in those tables. In Table 2 and 3, the values of nδn,ǫ are also included.
+
+3.3
+
+Discussion
+
+From numerical results, we can observe that the threshold-type estimator improves the
+accuracy of estimation in the sense of the standard deviation compared with the usual
+LSE by Long et al. [20]. Especially, the improvement for θ2 is more drastic than that for
+
+14
+
+Threshold estimation for small noise model
+
+θ1 . This would be because θ2 is the mean-reverting parameter for X (2) , a stable process
+which has much more frequent and larger jumps than those of X (1) . In order to make the
+estimation of θ1 more accurate, we need to make ǫ smaller rather than n larger.
+We should note that the case where (n, ǫ, δn,ǫ ) = (1000, 0.05, ǫ/10) causes a large bias,
+the reason of which would be that the asymptotic theory does not work well because
+nδn,ǫ = 5 is ‘small’ although it should be large enough in the theory. From many simulations omitted here, we see that, at least, “nδn,ǫ ≥ 10” would be needed for estimation
+with ‘small’ bias; see also, e.g., the case where (n, ǫ, δn,ǫ ) = (1000, 0.05, ǫ/5), which returns
+better estimation.
+Although there remains a problem to choose δn,ǫ in practice, we can use the method
+proposed by Shimizu [27] if the parameters in noise process is known or estimable.
+Finally, we observe normal QQ-plots for normalized estimators ǫ−1 (θb1,n,ǫ − θ1 ) and
+−1
+ǫ (θb2,n,ǫ − θ2 ) in the case where n = 5000, ǫ = 0.1 and δ = ǫ/5; see Figures 3 and 4.
+According to the results, the estimators with δ = ǫ/5 seem asymptotically normal although
+Theorem 2 does not necessarily say that. For your reference, see Figures 1 and 2 that are
+the normal QQ-plots for the LSE without filter proposed by Long et al. [20]. The figures
+show that the usual LSE’s are not necessarily asymptotically normal as the theory saying.
+Therefore, the asymptotic normality-like phenomena would be due to the filter effects.
+We could understand those results intuitively as follows: cutting large jumps from a
+process with infinite activity jumps, the remaining small jumps will behave as a Brownian
+motion. For example, suppose that the driving noise Q is a Lévy process of infinite activity
+jumps with the Lévy measure ν, and put
+Z tZ
+(δ)
+e (ds, dz), δ > 0,
+zN
+Qt :=
+0
+
+|z|≤δ
+
+e is a compensated Poisson random measure as given in the proof of Proposition
+where N
+R
+3. Then, according to Asmussen and Rosinski [1], it follows for σ 2 (δ) := |z|≤δ |z|2 ν(dz)
+that
+D
+
+σ(δ)−1 Q(δ) −→ B,
+in D[0, 1]-space equipped with the sup-norm under a certain assumption, where B is a
+standard Brownian motion. Therefore, by an appropriate norming of estimator, the limit
+in Theorem 2 might be an integral with respect to the process that is close to a Brownian
+motion. This consideration indicates that the LSE with filter can be “approximately”
+asymptotically normal by letting δn,ǫ converge to zero in a suitable rate, which is a great
+advantage when we would like to make confidence intervals or do statistical testing.
+In the next subsection, we shall try to understand this phenomenon theoretically.
+
+4
+
+Could a filtered LSE be asymptotically normal?
+
+In this section, we assume that Qǫ ≡ Q is a Lévy process with Lévy measure ν. We
+consider the following two cases for Q with characteristic (2.5):
+
+15
+
+Yasutaka Shimizu
+
+• Finite activity case:
+
+Z
+
+• Infinite activity case:
+
+|z|≤1
+
+ν(dz) < ∞ and σ 2 > 0;
+
+Z
+
+|z|≤1
+
+ν(dz) = ∞ (possibly, σ 2 = 0).
+
+The former case, it would be possible to show the asymptotic normality of the filtered LSE
+n
+by separating the
+R increments ∆k X’s with or without jumps as in Shimizu and Yoshida [29].
+However, when |z|≤1 ν(dz) = ∞, it is known that the filter 1{|∆nk X|≤δn,ǫ } is not enough to
+separate ∆nk X’s with or without jumps; see Shimizu [26], Lemma 3.3 and some remarks
+on that. In this section, we shall consider the following ad hoc situation to understand
+why the filtered LSE looks like asymptotically normal.
+[Assumption] All the jumps of Q are observed.
+Under this assumption, the following contrast function does make sense.
+e n,ǫ,δ (θ) = ǫ−2 ∆−1
+Φ
+n
+
+where δ > 0 is a constant, and
+kQǫ k∗k =
+
+n
+X
+k=1
+
+|∆nk X − b(Xtnk−1 , θ) · ∆n |2 1{k∆Qǫ k∗ ≤δ} ,
+
+sup
+t∈(tk ,tk+1 ]
+
+k
+
+|∆Qǫt |,
+
+∆Qǫt = ǫ · (Qt − Qt− ).
+
+Under our assumption, we can specify if 1{k∆Qǫ k∗ ≤δ} = 1 or 0, and we can define the
+k
+estimator of θ as the minimum contrast estimator:
+e n,ǫ,δ (θ).
+θen,ǫ,δ = arg min Φ
+θ∈Θ
+
+Hereafter, we further use the following notation:
+• For a κ > 0,
+
+2
+
+σ (κ) :=
+
+Z
+
+2
+
+|z|≤κ
+
+|z| ν(dz);
+
+λ(κ) :=
+
+Z
+
+ν(dz),
+
+|z|>κ
+
+where ν is a Lévy measure of Q.
+
+• All the asymptotic symbols are used under δ, ǫ → 0 and n → ∞.
+
+4.1
+
+Finite activity case
+
+Suppose that
+
+Z
+
+|z|≤1
+
+ν(dz) < ∞ and σ 2 > 0, which implies that Q is written as
+Qt = σWt +
+
+Nt
+X
+i=1
+
+Yi ,
+
+(4.1)
+
+R
+where N is a Poisson process with intensity λ := R ν(dz) and {Yi }i=1,2,... is an i.i.d.
+sequence with distribution λ−1 ν. In this special case, we have the following result by
+taking δn,ǫ ↓ 0 faster than the speed of ǫ that is a “magnitude of jumps”.
+
+16
+
+Threshold estimation for small noise model
+
+Theorem 4. Suppose that Q is given by (4.1), and that A1–A4 hold true. Moreover,
+suppose that
+δ/ǫ → 0.
+Then
+ǫ
+
+−1
+
+P
+(θen,ǫ,δ − θ0 ) −→ I −1 (θ0 )
+
+Hence θen,ǫ,δ is asymptotically normal.
+
+4.2
+
+Z
+
+(4.2)
+1
+
+0
+
+∇θ b(Xt0 , θ0 )[dWt ],
+
+Infinite activity case
+
+R
+Theorem 5. Let Qǫ ≡ Q be a Lévy process with |z|<1 ν(dz) = ∞, and suppose A1–A4,
+Q1[γ], and that Q2[q] holds true for any q > 0. Moreover suppose that
+λ(δ/ǫ)
+→ c ∈ (0, 1),
+n log n
+
+nǫ∆γn → 0,
+
+(4.3)
+
+and that there exists a constant ρ ∈ (0, 1) such that
+σ ρ (δ/ǫ) log n → ∞;
+nǫ · σ(δ/ǫ) → ∞.
+
+(4.4)
+(4.5)
+
+Furthermore, suppose for each κ > 0 that
+σ (κσ(δ/ǫ) ∧ δ/ǫ) ∼ σ(δ/ǫ),
+
+(4.6)
+
+Then there exists a d-dimensional Brownian motion B, independent of X0 = x, such that
+the following weak convergence holds true:
+Z 1
+
+
+D
+−1 e
+−1
+∇θ b(Xt0 , θ0 ) [dBt ] ,
+(σ(δ/ǫ)ǫ)
+θn,ǫ,δ − θ0 −→ I (θ0 )
+0
+
+Hence θen,ǫ,δ is asymptotically normal.
+
+We shall give a concrete example that satisfies the above situation.
+
+Remark 2. The assumption (4.6) is to approximate a component of compensated small
+jumps by a Wiener process; see Theorem 2 by Asmussen and Rosinski [1]. According to
+Proposition 2.1 in [1], a simple condition that
+(δ/ǫ)−1 σ(δ/ǫ) → ∞
+
+(4.7)
+
+is sufficient for (4.6). Moreover, note that (4.6) requires a high jump-activity, which
+excludes cases where Q is a compound Poison process or a gamma process; see some
+Examples 2.2–2.4 in [1]. Therefore it is assumed in (4.4) that
+λ(δ/ǫ) → ∞
+
+(δ → 0).
+
+17
+
+Yasutaka Shimizu
+
+Remark 3. Although this is the result under an ideal situation that all the jumps are
+observable, we can imagine that such a phenomenon ‘approximately’ occurs in simulations
+presented in Figures 3 and 4. That is, when ∆n and δn,ǫ are sufficiently ‘small’, a filter
+1{|∆nk X|≤δn,ǫ } can successfully cut jumps whose sizes are larger than δn,ǫ . However, it would
+be hard to show the similar result when the observations are completely discrete as in our
+original setting because the filter 1{|∆nk X|≤δn,ǫ } can not exactly exclude an increment that
+includes the jumps whose sizes are larger than δn,ǫ ; see also Shimizu [26] about the filter
+in infinite activity cases. The complete analysis in the discretely observed cases would be
+an important work in the future.
+
+ǫ = 0.4
+LSE
+θb1,n,ǫ
+(s.d.)
+LSE
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.54872
+(2.4370)
+1.72415
+(3.5426)
+
+n = 3000
+2.53364
+(2.4489)
+1.79755
+(4.2814)
+
+n = 5000
+2.78911
+(2.5602)
+1.78645
+(2.9579)
+
+True
+2.0
+
+ǫ = 0.3
+LSE
+θb1,n,ǫ
+(s.d.)
+LSE
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.31618
+(1.8248)
+1.50664
+(2.8685)
+
+n = 3000
+2.29381
+(1.7926)
+1.5275
+(2.7667)
+
+n = 5000
+2.34757
+(1.7429)
+1.53632
+(2.8160)
+
+True
+2.0
+
+ǫ = 0.05
+LSE
+θb1,n,ǫ
+(s.d.)
+LSE
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.00599
+(0.2951)
+1.05963
+(1.3026)
+
+n = 3000
+2.01071
+(0.2913)
+1.04438
+(0.6773)
+
+n = 5000
+2.01002
+(0.2938)
+1.06135
+(0.7344)
+
+True
+2.0
+
+1.0
+
+1.0
+
+1.0
+
+Table 1: These are results for the LSE (without filter) based on Long et al. [20]. We
+find that the standard deviation (s.d.) are large, especially, for θb2,n,ǫ , which implies an
+unstability of estimation. We would like to improve the stability by using a ‘filter’.
+
+5
+5.1
+
+Proofs
+Preliminary lemmas
+
+We shall first establish some preliminary lemmas to show the main theorems later.
+
+18
+
+Threshold estimation for small noise model
+
+Normal Q−Q Plot
+
+10
+−10
+
+0
+
+Sample Quantiles
+
+20
+10
+
+−30
+
+−20
+
+−10
+
+−20
+
+0
+
+Sample Quantiles
+
+30
+
+20
+
+40
+
+30
+
+Normal Q−Q Plot
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+−4
+
+−2
+
+Theoretical Quantiles
+
+0
+
+2
+
+4
+
+Theoretical Quantiles
+
+LSE
+Figure 1: Normal QQ-plots for θ[
+1,n,ǫ . Left: ǫ = 0.1, Right: ǫ = 0.05. The results show
+that the right tail is especially heavier than that of normal distribution.
+
+Normal Q−Q Plot
+
+−100
+
+Sample Quantiles
+
+−250
+
+−300
+
+−200
+
+−50
+−100
+−200
+
+−150
+
+Sample Quantiles
+
+0
+
+0
+
+50
+
+100
+
+Normal Q−Q Plot
+
+−4
+
+−2
+
+0
+Theoretical Quantiles
+
+2
+
+4
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+Theoretical Quantiles
+
+LSE
+Figure 2: Normal QQ-plots for θ[
+2,n,ǫ . Left: ǫ = 0.1, Right: ǫ = 0.05. The results show
+that the both of tails are heavier than those of normal distribution.
+
+19
+
+Yasutaka Shimizu
+
+ǫ = 0.4
+θb1,n,ǫ
+
+n = 1000
+2.46071
+(2.1968)
+1.14289
+(0.8721)
+
+n = 3000
+2.45564
+(2.1777)
+1.15283
+(0.88426)
+
+n = 5000
+2.43215
+(2.1860)
+1.16222
+(0.8856)
+
+True
+2.0
+
+ǫ = 0.3
+θb1,n,ǫ
+(s.d.)
+θb2,n,ǫ
+
+n = 1000
+2.25007
+(1.6149)
+1.08105
+(0.6498)
+
+n = 3000
+2.25972
+(1.6121)
+1.1047
+(0.6489)
+
+n = 5000
+2.25829
+(1.6249)
+1.09448
+(0.6563)
+
+True
+2.0
+
+ǫ = 0.05
+θb1,n,ǫ
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.00619
+(0.2623)
+0.98972
+(0.10098)
+
+n = 3000
+2.00827
+(0.2594)
+0.99936
+(0.1031)
+
+n = 5000
+2.00681
+(0.2652)
+1.00039
+(0.1037)
+
+True
+2.0
+
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+(s.d.)
+
+1.0
+
+1.0
+
+1.0
+
+Table 2: Results with filter: δn,ǫ = ǫ/5. Compared with the LSE, the improvement for
+s.d. of θb2,n,ǫ is drastic although the one for θb1,n,ǫ is less. To make the estimation of θ1
+accurate, we need to make ǫ smaller. The values of (nδn,ǫ , δn,ǫ ǫ−1 n1/4 ) seems enough to
+meet the asymptotic conditions such that they must tend to (∞, 0).
+
+20
+
+Threshold estimation for small noise model
+
+ǫ = 0.4
+θb1,n,ǫ
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+2.10973
+(2.0587)
+1.06597
+(0.6997)
+
+n = 3000
+2.24022
+(2.1736)
+1.10031
+(0.7226)
+
+n = 5000
+2.46723
+(2.2064)
+1.10585
+(0.7352)
+
+True
+2.0
+
+ǫ = 0.3
+θb1,n,ǫ
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+n = 1000
+1.92432
+(1.4600)
+1.02419
+(0.5216)
+
+n = 3000
+2.25282
+(1.6221)
+1.05871
+(0.5453)
+
+n = 5000
+2.24733
+(1.6021)
+1.05869
+(0.5349)
+
+True
+2.0
+
+ǫ = 0.05
+θb1,n,ǫ
+
+n = 1000
+0.78959
+(0.2165)
+0.84069
+(0.0754)
+
+n = 3000
+2.00133
+(0.2628)
+0.98834
+(0.0853)
+
+n = 5000
+2.00864
+(0.2653)
+0.99450
+(0.0865)
+
+True
+2.0
+
+(s.d.)
+θb2,n,ǫ
+(s.d.)
+
+1.0
+
+1.0
+
+1.0
+
+Table 3: Results with filter: δn,ǫ = ǫ/10. The s.d. for θb2,n,ǫ is smaller than those with
+δn,ǫ /5 as well as those for θb1,n,ǫ . However, we should be careful by observing the case of
+(n, ǫ) = (1000, 0.05), where both estimators are negatively biased. This would be because
+nδn,ǫ = 5 is too small to meet the corresponding asymptotic condition: nδn,ǫ → ∞.
+
+21
+
+Yasutaka Shimizu
+
+Normal Q−Q Plot
+
+0
+
+Sample Quantiles
+
+−20
+
+−10
+
+−10
+
+0
+
+Sample Quantiles
+
+10
+
+10
+
+20
+
+20
+
+Normal Q−Q Plot
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+−4
+
+−2
+
+Theoretical Quantiles
+
+Figure 3: Normal QQ-plots for
+as ǫ = 0.05, the distribution of
+
+0
+
+2
+
+4
+
+Theoretical Quantiles
+
+θb1,n,ǫ. Left: ǫ = 0.1, Right: ǫ = 0.05. When ǫ is small such
+θb1,n,ǫ seems almost Gaussian.
+Normal Q−Q Plot
+
+0
+
+Sample Quantiles
+
+0
+
+−5
+
+−5
+
+Sample Quantiles
+
+5
+
+5
+
+Normal Q−Q Plot
+
+−4
+
+−2
+
+0
+Theoretical Quantiles
+
+2
+
+4
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+Theoretical Quantiles
+
+Figure 4: Normal QQ-plots for θb2,n,ǫ. Left: ǫ = 0.1, Right: ǫ = 0.05. When ǫ is small such
+as ǫ = 0.05, the distribution of θb1,n,ǫ seems almost Gaussian.
+
+22
+
+0.8
+0.4
+
+0.6
+
+X2
+
+1.0
+
+1.2
+
+1.0
+
+1.5
+
+X1
+
+2.0
+
+Threshold estimation for small noise model
+
+0.0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+Time
+
+Figure 5: A sample path of Model (3.1) with (θ1 , θ2 , κ, ξ, α) = (2, 1, 5, 3, 3/2) and ε = 0.4.
+
+To evaluate functions of discrete samples, we use the following notation as in Long et
+al. [20]:
+• Discretized process: Ytn,ǫ := X⌊nt⌋/n for t ≥ 0 and n ∈ N, where ⌊x⌋ stands for the
+integer part of x ∈ R.
+• Since Q is a semimartingale, we can consider the Doob-Meyer decomposition: Q =
+A + M , where A is a process with finite variation, and M is an Ft -local martingale
+with A0 = M0 = 0 a.s.
+• A stopping time for localization: for m ∈ N,
+n,ǫ
+τm
+= inf{t ≥ 0 : |Xt0 | ∧ |Ytn,ǫ | ≥ m} ∧ Tm ,
+Rt
+where Tm := inf{t ≥ 0 : [M, M ]t ∧ 0 |dAs | ≥ m}. As a convention, inf ∅ = ∞.
+Hence, note that limm→∞ Tm = ∞ almost surely.
+
+Lemma 1. Under A1, it holds that
+Y n,ǫ − X 0
+
+P
+
+∗
+
+−→ 0.
+
+In addition, suppose Q2[q] for some q > 0. Then it holds that
+
+
+
+ n,ǫ
+1
+0 q
+q
+E Y −X ∗ =O
++ǫ .
+nq
+
+(5.1)
+
+(5.2)
+
+23
+
+Yasutaka Shimizu
+
+Proof. From (1.2), it follows for ǫ small enough that
+kQǫ k∗ . kQk∗ + 1.
+
+(5.3)
+
+Hence we can take the same argument as in the proof of Lemma 3.1, (3.1) by Long et al.
+[20] to obtain that
+P
+
+X − X0
+
+∗
+
+. ǫkQǫ k∗ . ǫ(kQk∗ + 1) −→ 0,
+
+(5.4)
+
+since kQk∗ is bounded in probability. Hence the fact that ⌊nt⌋/n → t as n → ∞ yields
+that
+Y n,ǫ − X 0
+
+∗
+
+P
+
+≤ kY n,ǫ − Xk∗ + X − X 0
+
+∗
+
+−→ 0.
+
+This is the proof of (5.1).
+Moreover, note that
+E
+
+
+
+Y
+
+n,ǫ
+
+q
+− X0 ∗
+
+.E
+.E
+
+"
+
+"
+
+sup X⌊nt⌋/n − Xt
+
+t∈[0,1]
+
+sup
+t∈[0,1]
+
++ ǫq E
+
+"
+
+Z
+
+q
+
+#
+
++E
+
+⌊nt⌋/n
+
+b(Xs , θ0 ) ds
+
+t
+
+sup Qǫ⌊nt⌋/n − Qǫt
+
+t∈[0,1]
+
+q
+
+#
+
+
+
+q#
+
+X − X0
+
++E
+
+
+
+q
+∗
+
+X − X0
+
+q
+.
+∗
+
+Noticing the linear growthness of the function b: |b(x, θ)| . 1 + |x|, and the inequalities
+(5.3) and (5.4), we have that
+"
+q#
+Z ⌊nt⌋/n
+
+ n,ǫ
+0 q
+E Y − X ∗ . E sup
+(1 + kXk∗ ) ds
+t∈[0,1]
+
+t
+
+
+q
++ E X − X0 ∗
+
+
+nt − ⌊nt⌋ q
+E [(1 + kXk∗ )q ] + ǫq (1 + E [kQkq∗ ])
+. sup
+n
+t∈[0,1]
+
+
+i
+
+h
+nt − ⌊nt⌋ q
++ ǫq 1 + EkAkq∗ + ǫq E [M, M ]q/2
+. sup
+n
+t∈[0,1]
+
+
+1
+q
+=O
++ǫ ,
+nq
++ǫ
+
+q
+
+E [kQkq∗ ]
+
+under Q2[q]. We used the Burkholder-Davis-Gundy inequality in the last inequality. This
+completes the proof.
+Form (5.2) and (5.4) in the above proof, the following corollary is obvious.
+
+24
+
+Threshold estimation for small noise model
+
+Corollary 2. Suppose A1 and Q2[q] for some q > 0. Then it holds that
+q 
+
+< ∞.
+sup E ǫ−1 kX − X 0 k∗
+
+(5.5)
+
+ǫ>0
+
+In addition, if (nǫ)−1 = O(1), then
+
+sup E
+n∈N,ǫ>0
+
+
+
+ǫ−1 kY n,ǫ − X 0 k∗
+
+q 
+
+< ∞.
+
+(5.6)
+
+Lemma 2. Under A1, it follows that
+lim τ n,ǫ
+m→∞ m
+
+=∞
+
+a.s.,
+
+uniformly in n ∈ N and ǫ ∈ [0, 1].
+Proof. Noticing (5.3), we have by the same argument as in the proof of Lemma 3.2 by
+Long et al. [20] that
+!
+√
+2
+n,ǫ
+sup |Yt | ≤ 2 |x| + sup |Qs | + t eCt < ∞ a.s.
+n∈N,ǫ>0
+
+s∈[0,t]
+
+for any t > 0. Therefore we have the consequence.
+Lemma 3. Let g ∈ C↑1,1 (Rd × Θ; R). Suppose A1, A2, Q1[γ], and that
+δn,ǫ ∆−1
+n → ∞,
+
+−1
+ǫ ∆γn δn,ǫ
+= O(1),
+
+nǫ → ∞.
+
+Then, we have
+n
+
+1X
+P
+gk−1 (θ)1{|∆nk X|≤δn,ǫ } −→
+n
+k=1
+
+Z
+
+1
+0
+
+g(Xt0 , θ) dt,
+
+uniformly in θ ∈ Θ. In addition, suppose that Q2[q] holds for some q > 0, then
+!q #
+"
+Z 1
+n
+1X
+0
+−1
+< ∞.
+gk−1 (θ)1{|∆nk X|≤δn,ǫ } −
+g(Xt , θ) dt
+sup E
+ǫ sup
+n∈N,ǫ>0
+θ∈Θ n
+0
+k=1
+
+Proof. Since |g(x)| . (1 + |x|)C , we have that
+Z 1
+n
+1X
+g(Xt0 , θ) dt
+gk−1 (θ)1{|∆nk X|≤δn,ǫ } −
+n
+θ∈Θ
+0
+k=1
+Z
+n
+n
+1
+1X
+1X
+0
+g(Xt , θ) dt +
+gk−1 (θ) −
+(1 + |Xtnk−1 |)C 1{|∆nk X|>δn,ǫ }
+. sup
+n
+θ∈Θ n
+0
+sup
+
+k=1
+
+k=1
+
+(5.7)
+
+(5.8)
+
+25
+
+Yasutaka Shimizu
+
+= sup
+θ∈Θ
+
+Z
+
+0
+
+n
+
+1
+
+g(Ytn,ǫ ) − g(Xt0 , θ) dt +
+
+1X
+(1 + |Xtnk−1 |)C 1{|∆nk X|>δn,ǫ } .
+n
+k=1
+
+For the first term on the right-hand side of the inequality, it holds that
+Z 1
+
+sup
+g(Ytn,ǫ ) − g(Xt0 , θ) dt
+θ∈Θ
+
+0
+
+≤ sup
+
+.
+
+Z
+
+θ∈Θ 0
+Z 1
+
+0
+
+∇x g(Xs0 + u(Ysn,ǫ − Xs0 ), θ) · Ysn,ǫ − Xs0 duds
+
+1 + |Xs0 | + |Ysn,ǫ |C
+
+0
+
+.
+
+1Z 1
+
+(5.9)
+
+
+
+Ysn,ǫ − Xs0 ds
+!C
+
+1 + sup |Xt0 | + sup |Xt0 |
+t∈[0,1]
+
+t∈[0,1]
+
+P
+
+sup Ytn,ǫ − Xt0 −→ 0,
+
+(5.10)
+
+t∈[0,1]
+
+by Lemma 1, (5.1). Hence the proof ends if we show the second term tends to zero in
+probability. Let
+1
+ξk,n,ǫ(θ) := (1 + |Xtnk−1 |)C 1{|∆nk X|>δn,ǫ } .
+n
+We show that
+n
+i
+h
+X
+P
+(5.11)
+E ξk,n,ǫ(θ)|Ftnk−1 −→ 0;
+k=1
+
+n
+X
+k=1
+
+i
+h
+P
+E |ξk,n,ǫ(θ)|2 |Ftnk−1 −→ 0.
+
+(5.12)
+
+P
+P
+which implies that nk=1 ξk,n,ǫ(θ) −→ 0 for each θ ∈ Θ from Lemma 9 by Genon-Catalot
+and Jacod [7]. First, we show that (5.11). Note that
+n
+X
+k=1
+
+h
+
+E ξk,n,ǫ(θ)|Ftnk−1
+
+Since it follows that n
+show that
+
+Pn
+−1
+
+i
+
+
+
+1X
+=
+(1 + |Xtnk−1 |)C P |∆nk X| > δn,ǫ |Ftnk−1
+n
+n
+
+k=1
+
++ |Xtnk−1 |)C = Op (1) by Lemma 3.3 in [20], it suffices to
+
+
+P |∆nk X| > δn,ǫ |Ftnk−1 = op (1),
+
+k=1 (1
+
+for any k = 1, . . . , n. Note that it holds that
+sup
+n
+t∈(tn
+k−1 ,tk ]
+
+|Xt − Xtnk−1 | . ∆n (1 + kXk∗ ) + ǫ
+
+sup
+n
+t∈(tn
+k−1 ,tk ]
+
+|Qǫt |.
+
+Hence it follows from Q1[γ] and the assumption on δn,ǫ that, for n large enough,
+!
+
+
+δn,ǫ
+n
+sup |Qt − Qtnk−1 | >
+P |∆k X| > δn,ǫ |Ftnk−1 ≤ P
+Ftnk−1
+n]
+2ǫ
+,t
+t∈(tn
+k−1 k
+
+26
+
+Threshold estimation for small noise model
+
+
+
+δn,ǫ
+Ftn
++ P (1 + kXk∗ ) >
+2∆n k−1
+≤P
+
+sup
+n
+t∈(tn
+k−1 ,tk ]
+
+
+
+|Qt − Qtnk−1 | & ∆γn Ftnk−1
+
+
+
++ P (1 + kXk∗ ) & ∆−1
+n δn,ǫ Ftn
+k−1
+
+!
+
+= op (1),
+
+(5.13)
+
+since kXk∗ is bounded in probability. This is the proof of (5.11). The proof of (5.12)
+is similar to above, which ends the proof of (5.7). The proof of (5.8) is easy from the
+estimates (5.10) and Corollary 2 since we are assuming that nǫ → ∞, so we omit the
+details. Then the proof is completed.
+The next lemma is a version of the Toeplitz lemma; see also, e.g., Shimizu [28]. We
+need this result in the proof of the next Lemma 5.
+P
+Lemma 4. Let {ank }nk=1 be a positive bounded sequence, and put bn := nk=1 ank . Suppose
+that a sequence {xnk }nk=1 satisfies the following conditions:
+sup |xnk | < ∞
+
+for each fixed k;
+
+(5.14)
+
+|xnk − x| = 0
+
+(5.15)
+
+n∈N
+
+lim
+
+sup
+
+m→∞ k,n: m≤k≤n
+
+P
+
+Then, for any sequence An with An ∼ b−1
+n , An
+
+for some x ∈ R;
+ani xni → x as n → ∞.
+
+Lemma 5. Let g ∈ C↑1,1 (Rd × Θ; Rd ). Under A1, it holds that
+n
+X
+k=1
+
+P
+
+gk−1 (θ)[∆nk Qǫ ] −→
+
+Z
+
+1
+
+0
+
+g(Xt0 , θ) [dQt ].
+
+Proof. Since we are assuming the uniform convergence (1.2), we have that
+n
+X
+k=1
+
+gk−1 (θ)[∆nk Qǫ ] −
+
+n
+X
+
+=
+
+k=1
+n
+X
+
+≤
+
+k=1
+
++
+=:
+
+Z
+
+Z
+
+1
+0
+
+g(Xt0 , θ) [dQt ]
+
+gk−1 (θ)[∆nk Qǫ − ∆nk Q] +
+gk−1 (θ)[∆nk Qǫ − ∆nk Q] +
+1
+
+Z
+
+0
+
+Z
+
+1
+
+1
+0
+
+g(Ytn,ǫ , θ) − g(Xt0 , θ) [|dAt |]
+
+g(Ytn,ǫ , θ) − g(Xt0 , θ) [dMt ]
+
+0
+(1)
+(2)
+In,ǫ + In,ǫ
+
+(3)
++ In,ǫ
+.
+
+g(Ytn,ǫ , θ) − g(Xt0 , θ) [dQt ]
+
+27
+
+Yasutaka Shimizu
+
+(1)
+
+As for In,ǫ , we suppose d = 1 for simplicity of notation. Putting ank := gk (θ) − gk−1 (θ)
+and xnk := Qǫtk − Qtk (since ǫ depends on n), we have that
+(1)
+In,ǫ
+=
+
+n n
+o
+X
+gk (θ)[Qǫtk − Qtk ] − gk−1 (θ)[Qǫtk−1 − Qtk−1 ]
+k=1
+n
+X
+
+−
+=
+
+k=1
+
+{gk (θ) − gk−1 (θ)} [Qǫtk − Qtk ]
+
+g(X1ǫ )[Qǫ1
+
+− Q1 ] −
+
+n
+X
+k=1
+
+ank · xnk .
+
+Now,
+that g(X1ǫ )[Qǫ1 − Q1 ] → 0 a.s. by the assumption (1.2). Moreover, the sum
+Pn itnis clear
+n
+k=1 ak · xk also converges to zero with probability one by using Lemma 4. Indeed, the
+convergence (5.14) is clear from (1.2), and that
+lim
+
+sup
+
+k→∞ j,n: k≤j≤n
+
+|xnj | . lim kQǫ − Qk∗ = 0
+ǫ→0
+
+a.s.
+
+Moreover, as ǫ → 0,
+bn =
+
+n
+X
+k=1
+
+ank =
+
+n
+X
+k=1
+
+[gk (θ) − gk−1 (θ)] → g(X10 , θ) − g(X00 , θ) < ∞ a.s.
+
+P
+Hence we see by the above Toeplitz lemma that nk=1 ank · xnk → 0 with probability one.
+(1)
+Therefore we have that In,ǫ → 0 with probability one.
+(2)
+As for In,ǫ , it follows from Lemma 1, (5.1) that
+P
+
+(2)
+In,ǫ
+. (1 + sup |Xt0 | + sup |Xt |)C sup Ytn,ǫ − Xt0 −→ 0.
+t∈[0,1]
+
+t∈[0,1]
+
+t∈[0,1]
+
+(3)
+
+As for In,ǫ , using Markov’s, and the Burkholder-Davis-Gundy inequalities, we have for
+any η > 0 that
+Z 1
+
+
+n,ǫ
+(3)
+n,ǫ
+0
+n,ǫ
+P(|In,ǫ | > η) ≤ P(τm < 1) + P
+g(Yt , θ) − g(Xt , θ) 1{t≤τm } [dMt ] > η/2
+0
+Z 1
+
+n,ǫ
+−1
+n,ǫ [dMt ]
+≤ P(τm < 1) + 2η E
+g(Ytn,ǫ , θ) − g(Xt0 , θ) 1{t≤τm
+}
+n,ǫ
+. P(τm
+< 1) + η −1 E
+
+Z
+
+0
+
+1
+
+0
+
+2
+
+n,ǫ d[M, M ]t
+g(Ytn,ǫ , θ) − g(Xt0 , θ) 1{t≤τm
+}
+
+1/2
+
+.
+
+n,ǫ
+From the definition of τm
+, the integrand in the last term is bounded in n and ǫ. Hence,
+taking the limit n → ∞ and ǫ → 0, we see from the dominated convergence theorem that
+(3)
+P(|In,ǫ | > η) → 0, which completes the proof.
+
+28
+
+Threshold estimation for small noise model
+
+Lemma 6. Let g ∈ C↑1,1 (Rd × Θ; Rd ). Assume A1, A2, Q1[γ], and that
+δn,ǫ ∆−1
+n → ∞,
+
+−1
+ǫ ∆γn δn,ǫ
+= O(1),
+
+nǫ → ∞.
+
+Then we have
+n
+X
+k=1
+
+P
+
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|≤δn,ǫ } −→ 0,
+
+uniformly in θ ∈ Θ. In addition, assume Q2[q] for any q > p = dim(Θ). Then
+"
+!q #
+n
+X
+E
+ǫ−1 sup
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|≤δn,ǫ }
+< ∞.
+
+(5.16)
+
+(5.17)
+
+θ∈Θ k=1
+
+Proof. The proof of (5.16) is similar to the one of Lemma 3.5 by Long et al. [20] with a
+slight extension to semimartingale version; see also Remark 4.3 in [20]. It is clear from
+their proof that the indicator 1{|∆nk X|≤δn,ǫ } is not essential to the proof. So it is omitted.
+As for (5.17), we note that
+ǫ
+
+−1
+
+sup
+
+n
+X
+
+θ∈Θ k=1
+
+=ǫ
+
+−1
+
+≤ ǫ−1
+
+sup
+
+n Z
+X
+
+θ∈Θ k=1
+Z 1
+
+1
+0
+
+g(Ysn,ǫ , θ) [b(Xs , θ0 ) − b(Ysn,ǫ , θ0 ) + ǫ · dQǫt ] ds · 1{|∆nk X|≤δn,ǫ }
+
+sup |g(Ysn,ǫ , θ) [b(Xs , θ0 ) − b(Ysn,ǫ , θ0 )]| ds
+
+0 θ∈Θ
+Z 1
+
++ sup
+=:
+
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|≤δn,ǫ }
+
+g(Ysn,ǫ , θ)[dQǫt
+
+θ∈Θ 0
+(1)
+(2)
+In,ǫ + In,ǫ
+
+− dQt ] + sup
+θ∈Θ
+
+(3)
++ In,ǫ
+.
+
+Z
+
+1
+0
+
+g(Ysn,ǫ , θ)[dQt ]
+
+By the assumption A1 and the condition for g, we have
+Z 1
+(1)
+−1
+In,ǫ . ǫ
+(1 + |Ysn,ǫ |)λ |Xs − Ysn,ǫ | ds
+0
+
+
+
+. 1 + kY n,ǫ − X 0 kλ∗ + kX 0 kλ∗ ǫ−1 kX − X 0 k + ǫ−1 kX 0 − Y n,ǫ k
+
+Hence, under the assumption that nǫ → ∞, Corollary 2 yields that
+(1) q
+E|In,ǫ
+| < ∞.
+(2)
+
+P
+
+We have already shown that In,ǫ −→ 0 in the proof of Lemma 5. Hence the proof ends
+(3)
+
+P
+
+if we show that In,ǫ −→ 0. Noticing that a bounded convex set Θ admits the following
+Sobolev inequality;
+sup |u(θ)| . ku(θ)kLq (Θ) + k∇θ u(θ)kLq (Θ) ,
+θ∈Θ
+
+29
+
+Yasutaka Shimizu
+
+for q > p = dim(Θ), we see for any q > p that
+Z 1
+Z 1
+(3)
+(1 + |Ysn,ǫ , θ|)λ · |dAs | + sup
+g(Ysn,ǫ , θ)[dM ]
+In,ǫ
+≤
+θ∈Θ
+
+0
+
+0
+
+Z
+
+
+n,ǫ
+0 λ
+0 λ
+. 1 + kY − X k∗ + kX k∗ T V (A) +
+
+Θ
+
+Z
+
+0
+
+1
+
+q
+
+g(Ysn,ǫ , θ)[dM ǫ ]
+
+dθ
+
+Then, by using the Burkholder-Davis-Gundy inequality, we have
+Z 1
+
+i Z
+h
+q
+(3) q
+E
+g(Ysn,ǫ , θ)[dM ]
+T
+V
+(A)
++
+E|In,ǫ
+| . E 1 + kY n,ǫ − X 0 kλq
+∗
+0
+q Θ
+i
+h
+n,ǫ
+0 λ
+0 λ
+. 1 + E 1 + kY − X k∗ + kX k∗ |[M, M ]1 |q/2 < ∞,
+
+1/q
+
+.
+
+q
+
+dθ
+
+under Q2[q] for any q > p. This completes the proof of (5.17).
+
+Lemma 7. Let g ∈ C↑1,1 (Rd × Θ; Rd ). Assume A1, A2, Q1[γ], and that
+δn,ǫ ∆−1
+n → ∞,
+
+−1
+ǫ ∆γn δn,ǫ
+= O(1),
+
+nǫ → ∞.
+
+Then we have
+n
+X
+
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|>δn,ǫ } = op (ǫ),
+
+k=1
+
+for each θ ∈ Θ.
+Proof. Using ∆nk X =
+ǫ−1
+
+n
+X
+
+R tnk
+
+tn
+k−1
+
+b(Xt , θ0 ) dt + ǫ∆nk Qǫ , we have that
+
+gk−1 (θ)[χk (θ0 )]1{|∆nk X|>δn,ǫ }
+
+k=1
+
+=
+
+n
+X
+
+k=1
+n
+X
+
++
+=:
+
+ǫ
+
+−1
+
+Z
+
+tn
+k
+
+tn
+k−1
+
+gk−1 (θ)[b(Xt , θ0 ) − bk−1 (θ0 )] dt · 1{|∆nk X|>δn,ǫ }
+
+gk−1 (θ)[∆nk Qǫ ] · 1{|∆nk X|>δn,ǫ }
+
+k=1
+(1)
+Hn,ǫ
+(θ)
+
+(2)
++ Hn,ǫ
+(θ).
+
+(1)
+
+As for Hn,ǫ , we easily find it converges to zero in probability as nǫ → ∞ by the same
+(1)
+argument as for Hn,ǫ in Lemma 3.6 by Long et al. [20].
+(2)
+As for Hn,ǫ , it follows from Lemma 3 and 5 that
+(2)
+Hn,ǫ
+(θ) =
+
+n
+X
+k=1
+
+gk−1 (θ)[∆nk Qǫ ] −
+
+n
+X
+k=1
+
+P
+
+gk−1 (θ)[∆nk Qǫ ]1{|∆nk X|≤δn,ǫ } −→ 0,
+
+for each θ ∈ Θ. Hence the proof is completed.
+
+30
+
+Threshold estimation for small noise model
+
+5.2
+
+Proof of Theorem 1
+
+LSE given in (1.4). Let
+We shall show that θbn,ǫ is asymptotically equivalent to θbn,ǫ
+
+e n,ǫ(θ) := ǫ2 (Ψn,ǫ(θ) − Ψn,ǫ (θ0 )) ,
+Ψ
+e n,ǫ (θ) := ǫ2 (Φn,ǫ (θ) − Φn,ǫ(θ0 )) .
+Φ
+
+LSE and θ
+bn,ǫ are respectively
+where Ψn,ǫ and Φn,ǫ are given in (1.5) and (1.7). Then θbn,ǫ
+minimum contrast estimators for contrast functions Ψn,ǫ and Φn,ǫ .
+By the same argument as in the proof of Theorem 2.1 with Remark 4.3 by Long et al.
+[20], all we need to show is
+P
+
+e n,ǫ (θ) − F (θ0 )| −→ 0,
+sup |Φ
+θ∈Θ
+
+where F (θ) :=
+
+R1
+0
+
+P
+
+e n,ǫ (θ)−F (θ0 )| −→ 0, Therefore,
+|b(Xt0 , θ)−b(Xt0 , θ0 )|2 dt. Since supθ∈Θ |Ψ
+
+e n,ǫ(θ) − F (θ0 ) ≤ sup Φ
+e n,ǫ (θ) − Ψ
+e n,ǫ (θ) + sup Ψ
+e n,ǫ (θ) − F (θ0 )
+sup Φ
+θ∈Θ
+
+θ∈Θ
+
+θ∈Θ
+
+= sup n
+θ∈Θ
+
+k=1
+n
+X
+
+|χk (θ)|2 1{|∆nk X|>δn,ǫ } + op (1)
+
+(bk−1 (θ) − bk−1 (θ0 ))[χk (θ0 )]1{|∆nk X|>δn,ǫ }
+θ∈Θ k=1
+n
+1X
+|bk−1 (θ) − bk−1 (θ0 )|2 1{|∆nk X|>δn,ǫ } + op (1)
+sup
+θ∈Θ n k=1
+
+. sup
++
+
+n
+X
+
+The last first and second terms converges to zero in probability by Lemmas 3 and 6. This
+completes the proof.
+
+5.3
+
+Proof of Theorem 2
+
+We use the following notation:
+• Gn,ǫ (θ) = 2−1 ∇θ Φn,ǫ(θ) ∈ Rp ;
+
+
+• Kn,ǫ (θ) = ∇θ Gn,ǫ (θ) = ∇2θ Φn,ǫ (θ) ∈ Rp ⊗ Rp ;
+
+• K(θ) =
+
+R1
+0
+
+∇2θ b(Xt0 , θ)[b(Xt0 , θ0 ) − b(Xt0 , θ)] dt − I(θ0 ) ∈ Rp ⊗ Rp .
+
+Then it follows by Taylor’s formula that, for some ρ ∈ (0, 1),
+Z
+
+0
+
+1
+
+
+
+
+
+Kn,ǫ θ0 + u(θbn,ǫ − θ0 ) du · ǫ−1 θbn,ǫ − θ0 = ǫ−1 Gn,ǫ (θbn,ǫ ) − ǫ−1 Gn,ǫ (θ0 ) .
+
+31
+
+Yasutaka Shimizu
+
+Let us show that
+P
+
+ǫ−1 Gn,ǫ (θ0 ) −→
+
+Z
+
+1
+
+0
+
+∇θ b(Xt0 , θ0 ) [dQt ];
+
+(5.18)
+
+P
+
+sup |Kn,ǫ (θ) − K(θ)| −→ 0.
+
+(5.19)
+
+θ∈Θ
+
+Then the result follows by the same argument as in the proof of Theorem 2.2 by Long et
+al. [20]; see also Uchida [35].
+As for (5.18): it follows that
+ǫ−1 Gn,ǫ (θ0 ) = ǫ−1
+
+n
+X
+k=1
+
+= ǫ−1
+
+n
+X
+k=1
+
+=ǫ
+
+−1
+
+−ǫ
+
+n
+X
+
+∇θ bk−1 (θ0 )[χk (θ0 )]1{|∆nk X|≤δn,ǫ }
+∇θ bk−1 (θ0 )[χk (θ0 )] − ǫ−1
+∇θ bk−1 (θ0 )
+
+k=1
+n
+X
+−1
+k=1
+
+"Z
+
+tn
+k
+
+tn
+k−1
+
+n
+X
+k=1
+
+∇θ bk−1 (θ0 )[χk (θ0 )]1{|∆nk X|>δn,ǫ }
+#
+
+{b(Xt , θ0 ) − bk−1 (θ0 )} dt +
+
+n
+X
+k=1
+
+∇θ bk−1 (θ0 )[∆nk Q]
+
+∇θ bk−1 (θ0 )[χk (θ0 )]1{|∆nk X|>δn,ǫ }
+
+Then we can show that the last first term converges to zero in probability by the same
+(1)
+evaluation as for Hn,ǫ (θ0 ) in the proof of Lemma 3.6 in [20], the second term converges to
+R1
+0
+0 ∇θ b(Xt , θ0 )[dQt ] in probability by Lemma 5, and that the third term goes to zero in
+probability by Lemma 7. Similarly, as for (5.19), it follows that
+Kn,ǫ (θ) =
+=
+
+n
+X
+
+k=1
+n
+X
+k=1
+
++
+
+n
+
+∇2θ bk−1 (θ)[χk (θ)]1{|∆nk X|≤δn,ǫ } −
+
+1X
+∇θ bk−1 (θ)⊤ ∇θ bk−1 (θ)1{|∆nk X|≤δn,ǫ }
+n
+k=1
+
+∇2θ bk−1 (θ)[χk (θ0 )]1{|∆nk X|≤δn,ǫ }
+n
+
+1X 2
+∇θ bk−1 (θ)[bk−1 (θ0 ) − bk−1 (θ)]1{|∆nk X|≤δn,ǫ }
+n
+k=1
+
+n
+1X
+∇θ bk−1 (θ)⊤ ∇θ bk−1 (θ)1{|∆nk X|≤δn,ǫ } ,
+−
+n
+k=1
+
+ij
+cf. the expression of Kn,ǫ
+(θ) in the proof of Lemma 3.7 by Long et al. [20]. Hence Lemmas
+3 and 6 yield (5.19). Using the facts (5.18) and (5.19), and the consistency result: Theorem
+1, we can show that
+
+
+ǫ−1 θbn,ǫ − θ0 ∼p −K −1 (θ0 ) · ǫ−1 Gn,ǫ (θ0 ), n → ∞, ǫ → 0,
+
+by completely the same argument as in the proof of Theorem 2.2 by Long et al. [20].
+Therefore, the proof is completed.
+
+32
+
+5.4
+
+Threshold estimation for small noise model
+
+Proof of Theorem 3
+
+P
+Denote by u
+b := ǫ−1 (θbn,ǫ − θ0 ). Since u
+b −→ ζ from Theorem 2, the proof ends if we show
+that u
+b is Lp -bounded: supn,ǫ E|b
+u|p < ∞ for any p > 0. For this proof, let Un,ǫ (θ0 ) =
+p
+{u ∈ R : θ0 + ǫu ∈ Θ0 }, and define random fields Zn,ǫ : Un,ǫ (θ0 ) → R+ by
+
+Zn,ǫ(u) = exp {−Φn,ǫ(θ0 + ǫu) + Φn,ǫ (θ0 )} ,
+
+u ∈ Un,ǫ (θ0 ).
+
+Then, since θ0 ∈ Θ0 , we see that
+Zn,ǫ (b
+u) ≥
+
+sup
+u∈Un,ǫ (θ0 )
+
+Zn,ǫ (u) ≥ Zn,ǫ (0) = 1.
+
+(5.20)
+
+Setting Vn,ǫ (r) := Un,ǫ (θ0 ) ∩ {u ∈ Rp : |u| ≥ r}, we consider the following condition for
+the random fields Zn,ǫ : for every L > 0 and r > 0,
+!
+P
+
+sup
+
+u∈Vn,ǫ (r)
+
+. r −L ,
+
+Zn,ǫ (u) ≥ e−r
+
+(5.21)
+
+which is called the polynomial type large deviation inequality (PLDI), and is investigated
+by Yoshida [39] in details. If this PLDI holds true then, for any L > p,
+Z ∞
+p
+r p−1 P (|b
+u| ≥ r) dr
+sup E|b
+u| = sup p
+n∈N,ǫ>0
+
+n∈N,ǫ>0
+
+≤
+.
+
+sup p
+
+0
+
+Z
+
+n∈N,ǫ>0
+0
+Z ∞
+p−1
+
+r
+
+0
+
+∞
+
+r p−1
+
+(
+
+1∧P
+
+sup
+u∈Vn,ǫ (r)
+
+!)
+
+Zn,ǫ (u) ≥ 1
+
+dr
+
+(1 ∧ r −L ) dr < ∞,
+
+here we used (5.20) in the first inequality. Therefore the proof ends if we show (5.21), some
+sufficient conditions for which are found in the paper by Yoshida [39]. Here we shall verify
+the conditions [A1′′ ], [A4′ ], [A6], [B1] and [B2] given in Theorem 3, (c) in [39]. See also
+Ogihara and Yoshida [21] or Masuda [19] for simplified descriptions for those conditions.
+Applying Taylor’s formula with the notation Gn,ǫ (θ), Kn,ǫ (θ) and K(θ) given in the
+proof of Theorem 2, we have
+log Zn,ǫ (u) = −Φn,ǫ (θ0 + ǫu) + Φn,ǫ(θ0 )
+= −ǫGn,ǫ (θ0 )[u] −
+
+ǫ2
+{−K(θ0 )} [u⊗2 ] + Rn,ǫ (u),
+2
+
+where
+Z
+
+1
+
+
+(s − 1) K(θ0 )[u⊗2 ] − Kn,ǫ (θ0 + s · ǫu)[u⊗2 ] ds
+0
+Z 1
+Z 1
+ǫ2
+⊗2
+3
+{Kn,ǫ (θ0 ) − K(θ0 )} [u ] − ǫ
+∇θ Kn,ǫ (θ0 + ts · ǫu)[u⊗3 ] dtds.
+(s − 1)
+=
+2
+0
+0
+
+Rn,ǫ (u) = ǫ
+
+2
+
+33
+
+Yasutaka Shimizu
+
+This means that Zn,ǫ could be Partially Locally Asymptotically Quadratic (PLAQ), which
+is a starting point of [39]. According to Theorem 3, (c) in [39], if we take some “tuning
+parameters” given in [A4′ ] in [39] such as β1 ≈ 1/2, ρ1 , ρ2 , β, β2 ≈ 0, then the PLDI
+(5.21) holds true if the following [A1′′ ], [A6], [B1] and [B2] are satisfied; we use the same
+conditioning numbers as in [39] to make those correspondences clear.
+[A1′′ ] For every q > 0,
+sup E
+n∈N,ǫ>0
+
+
+
+2
+
+ǫ sup
+θ∈Θ
+
+∇3θ Φn,ǫ (θ)
+
+q 
+
+< ∞.
+
+Moreover, for given L > 0 and any δ > 0 small enough,
+h
+L−δ i
+sup E ǫ−1 |Kn,ǫ (θ0 ) − K(θ0 )|
+< ∞.
+
+(5.22)
+
+(5.23)
+
+n∈N,ǫ>0
+
+[A6] For any δ > 0 small enough,
+i
+h
+sup E |ǫGn,ǫ (θ0 )|L+δ < ∞;
+
+(5.24)
+
+n∈N,ǫ>0
+
+
+L+δ 
+
+−1 e
+Φn,ǫ (θ) − F (θ)
+sup E sup ǫ
+< ∞,
+
+n∈N,ǫ>0
+
+e n,ǫ and F (θ) =
+where Φ
+1.
+
+R1
+0
+
+(5.25)
+
+θ∈Θ
+
+|b(Xt0 , θ)−b(Xt0 , θ0 )|2 dt are given in the proof of Theorem
+
+[B1] The matrix −K(θ0 ) (= I(θ0 )) is deterministic and positive definite.
+[B2] There exists a deterministic positive number χ such that
+− {F (θ) − F (θ0 )} ≤ −χ|θ − θ0 |2 .
+(Note that the notational correspondence between [39] and ours is: aT = ǫ; bT = ǫ−2 ;
+HT = −Φn,ǫ ; Y = −F and Γ = −K).
+Now we can easily check that the conditions (5.22) and (5.24) are true by Lemma 6,
+(5.17), and that (5.23) and (5.25) are also true by Lemma 3, (5.8). Moreover the conditions
+[B1] and [B2] are clear from the assumptions A1 and A4, respectively, the proof ends if
+we show (5.22)–(5.25). Hence the proof is completed.
+
+5.5
+
+Proof of Theorem 4
+
+First, we shall show the consistency:
+P
+θen,ǫ,δ −→ θ0 .
+
+34
+
+Threshold estimation for small noise model
+
+Since we suppose that the jumps are specified, the following “negligibility” is obtained:
+)
+(
+P (k∆Qǫ k∗k > δ) = 1 − P
+
+|∆Qt | ≤ δ/ǫ
+
+sup
+
+n
+t∈(tn
+k−1 ,tk ]
+
+= 1 − e−λ(δ/ǫ)∆n → 0
+
+(5.26)
+
+since λ(δ/ǫ)∆n → 0. Then we have the following lemma, which is the same type of results
+as Lemmas 3 and 6.
+Lemma 8. Let g ∈ C↑1,1 (Rd × Θ; R). Suppose A1, A2, and that
+δ/ǫ → 0.
+Then, we have
+n
+
+1X
+P
+gk−1 (θ)1{k∆Qǫ k∗ ≤δ} −→
+k
+n
+k=1
+n
+X
+k=1
+
+Z
+
+1
+
+0
+
+g(Xt0 , θ) dt,
+
+P
+
+gk−1 (θ)[χk (θ0 )]1{k∆Qǫ k∗ ≤δ} −→ 0,
+k
+
+uniformly in θ ∈ Θ.
+The proof of this lemma is an obvious modification of the proofs of Lemmas 3 and 6
+using the negligibility condition (5.26). Then by the same argument as in the proof of
+Theorem 1, the consistency follows.
+Next, note that, as in the proof of Theorem 2,
+Z 1
+
+
+
+
+Kn,ǫ,δ θ0 + u(θen,ǫ,δ − θ0 ) du · θen,ǫ,δ − θ0 = Gn,ǫ,δ (θbn,ǫ ) − Gn,ǫ,δ (θ0 ) .
+0
+
+where
+
+e n,ǫ,δ (θ); Kn,ǫ,δ (θ) = ∇θ Gn,ǫ,δ (θ);
+Gn,ǫ,δ (θ) = 2−1 ∇θ Φ
+Z 1
+∇2θ b(Xt0 , θ)[b(Xt0 , θ0 ) − b(Xt0 , θ)] dt − I(θ0 ).
+K(θ) =
+0
+
+If we show that
+ǫ
+
+−1
+
+P
+
+Gn,ǫ,δ (θ0 ) −→
+
+Z
+
+0
+
+1
+
+∇θ b(Xt0 , θ0 ) [dWt ] ,
+
+then we obtain the consequence because the convergence
+P
+
+sup |Kn,ǫ,δ (θ) − K(θ)| −→ 0
+θ∈Θ
+
+(5.27)
+
+35
+
+Yasutaka Shimizu
+
+holds true due to Lemma 8 and the same argument as in the proof of Lemma 3.7 in [20].
+Note that
+#
+"Z n
+n
+tk
+X
+{b(Xs , θ0 ) − bk−1 (θ0 )} dt 1{k∆Qǫ k∗ ≤δ}
+∇θ bk−1 (θ0 )
+ǫ−1 Gn,ǫ,δ (θ0 ) = ǫ−1
+k=1
+
+n
+X
+
++
+
+k=1
+
+n
+X
+
++
+=:
+
+k=1
+(1)
+In,ǫ,δ
+
+
+∇θ bk−1 (θ0 ) 
+
+k
+
+tn
+k−1
+
+
+
+
+
+Nt n
+
+k
+X
+
+i=Ntn
+
+k−1
+
++1
+
+
+Yi 1{|Yi |≤δ} 
+
+∇θ bk−1 (θ0 ) [∆nk W ] 1{k∆Qǫ k∗ ≤δ}
+k
+
+(3)
+
+(2)
+
++ In,ǫ,δ + In,ǫ,δ .
+(1)
+
+(1)
+
+Note that In,ǫ,δ → 0 by the same argument as in the proof of Lemma 3.6, Hn,ǫ (θ0 ) in [20]
+by the assumption (4.5). Moreover, it is easy to see that
+E
+
+(2)
+In,ǫ,δ
+
+n
+
+λδ X
+=
+E|∇θ bk−1 (θ0 )| → 0.
+nǫ
+k=1
+
+Furthermore, note that
+(3)
+
+In,ǫ,δ =
+
+n
+X
+k=1
+
+∇θ bk−1 (θ0 ) [∆nk W ] −
+
+n
+X
+k=1
+
+∇θ bk−1 (θ0 ) [∆nk W ] 1{k∆Qǫ k∗ >δ}
+k
+
+Now, observe a measurability that
+
+
+
+{ω ∈ Ω : k∆Qk∗k ≤ δ} ∈ σ N (tnk−1 , s], [−δ, δ] : s ∈ (tnk−1 , tnk ] ,
+
+which is independent of ∆nk W and Xtnk−1 . Therefore,
+E
+
+≤
+≤
+
+n
+X
+
+∇θ bk−1 (θ0 ) [∆nk W ] 1{k∆Qǫ k∗ >δ}
+
+k=1
+n
+X
+k=1
+
+n
+X
+k=1
+
+k
+
+E |∇θ bk−1 (θ0 ) [∆nk W ]| P (k∆Qǫ k∗k > δ)
+E
+
+Z
+
+tn
+k
+tn
+k−1
+
+
+trace ∇θ b⊗2
+(θ
+)
+dt
+0
+k−1
+
+!1/2
+
+
+
+1 − e−λ(δ/ǫ)∆n → 0
+
+from (5.26). As a result, Lemma (5) yields that
+Z 1
+P
+(3)
+∇θ b(Xt0 , θ0 ) [dWt ] .
+In,ǫ,δ −→
+0
+
+This completes the proof of (5.27).
+
+36
+
+5.6
+
+Threshold estimation for small noise model
+
+Proof of Theorem 5
+
+Note that, under the asymptotic conditions, it follows that
+P (k∆Qǫ k∗k ≤ δ) = e−λ(δ/ǫ)∆n → 0;
+
+P (k∆Qǫ k∗k > δ) → 1,
+
+(5.28)
+
+which is a different situation in the previous theorem.
+Under this setting, we can show the following lemma.
+Lemma 9. Let g ∈ C↑1,1 (Rd × Θ; R). Suppose A1, A2, Q1[γ], and that
+λ(δ/ǫ)
+→ c ∈ (0, 1),
+n log n
+
+nǫ∆γn → 0.
+
+Then it follows that, for ηn := e−λ(δ/ǫ)∆n ,
+Z 1
+n
+1 X
+P
+g(Xt0 , θ) dt,
+gk−1 (θ)1{k∆Qǫ k∗ ≤δ} −→
+k
+nηn
+0
+
+(5.29)
+
+k=1
+
+n
+1 X
+P
+gk−1 (θ)[χk (θ0 )]1{k∆Qǫ k∗ ≤δ} −→ 0,
+k
+ηn
+
+(5.30)
+
+k=1
+
+uniformly in θ ∈ Θ.
+Proof of Lemma 9.
+As for (5.29): note that
+Z 1
+n
+1 X
+P
+sup
+g(Xt0 , θ) dt
+gk−1 (θ)1{k∆Qǫ k∗ ≤δ} −→
+k
+θ∈Θ nηn
+0
+k=1
+
+n
+n
+1X
+1 X
+gk−1 (θ)1{k∆Qǫ k∗ ≤δ} −
+gk−1 (θ)
+k
+n
+θ∈Θ nηn k=1
+k=1
+Z 1
+n
+X
+1
++ sup
+g(Xt0 , θ) dt .
+gk−1 (θ) −
+θ∈Θ n
+0
+
+≤ sup
+
+k=1
+
+and the second term on the right-hand side of the inequality converges to zero
+P in probability
+from Lemma 3.3 by Long et al. [20]. The last first term is rewritten as nk=1 ξkn (θ) with
+
+
+1
+1
+n
+−1 .
+1
+ξk (θ) = gk−1 (θ)
+ǫ ∗
+n
+ηn {k∆Q kk ≤δ}
+Then we immediately see that, since Ftnk−1 and k∆Qǫ kk are independent each other,
+n
+X
+k=1
+
+E[ξkn (θ)|Ftnk−1 ]
+
+n
+
+
+1X
+=
+gk−1 (θ) ηn−1 P (k∆Qǫ k∗k ≤ δ) − 1 = 0.
+n
+k=1
+
+37
+
+Yasutaka Shimizu
+
+Moreover
+n
+X
+k=1
+
+E[|ξkn (θ)|2 |Ftnk−1 ]
+
+n
+2
+1 X 2
+1
+1{k∆Qǫ k∗ ≤δ} − 1
+= 2
+gk−1 (θ)E
+k
+n
+ηn
+k=1
+
+
+
+
+1
+1
+P
+= Op
+−→ 0,
+= Op
+nηn
+e(1−c2 ) log n
+
+P
+P
+by the assumption. Hence we have that nk=1 ξkn (θ) −→ 0 for every θ ∈ Θ from Lemma 9
+by Genon-Catalot and Jacod [7].
+PTo prove the uniformity of convergence, we have to show the tightness of the sequence
+{ nk=1 ξkn (·)}n . We shall use Theorem 20 in Appendix 1 by Ibragimov and Has’minskii
+[9], that is, we shall show that, for some H > 0 and any N ∈ N,
+E
+
+n
+X
+
+2N
+
+ξkn (θ)
+
+< H;
+
+(5.31)
+
+≤ H|θ1 − θ2 |2N
+
+(5.32)
+
+k=1
+
+E
+
+n
+X
+
+[ξkn (θ1 )
+
+k=1
+
+−
+
+2N
+
+ξkn (θ2 )]
+
+As for (5.31): using the independent property of Xtnk−1 and k∆Qǫ kk , we have that
+E
+
+n
+X
+
+2N
+
+ξkn (θ)
+
+k=1
+
+n
+X
+
+"
+
+"
+
+2N
+1
+|Ftnk−1
+1{k∆Qǫ k∗ ≤δ} − 1
+=
+E |gk−1 (θ)| E
+k
+ηn
+k=1
+#
+"
+
+n 
+1 X
+1
+2N
++1
+.E
+sup |g(Xt )|
+n2N
+ηn2N −1
+θ∈Θ,t∈[0,1]
+k=1
+
+
+
+
+1
+−(1−c)
+=O
+→ 0.
+=
+O
+n
+(nηn )2N −1
+2N
+
+##
+
+Therefore it is bounded. Inequality (5.32) is similarly proved since g ∈ C↑1,1 (Rd × Θ; R).
+Hence (5.29) is proved.
+Finally we shall show (5.30). Note that
+n
+1 X
+gk−1 (θ)[χk (θ0 )]1{k∆Qǫ k∗ ≤δ}
+k
+θ∈Θ ηn k=1
+n Z n
+1 X tk
+sup |gk−1 (θ) [b(Xs , θ0 ) − bk−1 (θ0 )]| ds · 1{k∆Qǫ k∗ ≤δ}
+≤
+k
+ηn
+θ∈Θ
+tn
+k−1
+
+sup
+
++
+=:
+
+k=1
+n
+X
+
+ǫ
+ηn
+
+sup |gk−1 (θ) [∆nk Q]| 1{k∆Qǫ k∗ ≤δ}
+
+k=1 θ∈Θ
+Jn(1) + Jn(2) .
+
+k
+
+38
+
+Threshold estimation for small noise model
+
+(1)
+
+As for Jn : it follows from the assumption A1 that, for Y n,ǫ given in Lemma 1,
+n Z n
+1 X tk
+sup |g(Ysn,ǫ ) [b(Xs , θ0 ) − b(Ysn,ǫ , θ0 )]| ds · 1{k∆Qǫ k∗ ≤δ}
+k
+n
+ηn
+k=1 tk−1 θ∈Θ
+!C
+n
+1 X
+sup |Xt − Ytn,ǫ |1{k∆Qǫ k∗ ≤δ}
+. 1 + sup |Xt |
+·
+k
+n
+n
+nη
+n
+t∈[0,1]
+k=1 t∈(tk−1 ,tk ]
+!C
+n
+ 1 X
+· kX − X 0 k∗ + kX 0 − Y n,ǫ k∗ ·
+. 1 + sup |Xt |
+1{k∆Qǫ k∗ ≤δ}
+k
+nηn
+
+|Jn(1) | =
+
+t∈[0,1]
+
+k=1
+
+Since
+E
+
+n
+1 X
+1{k∆Qǫ k∗ ≤δ} = 1
+k
+nηn
+k=1
+
+⇒
+
+n
+1 X
+1{k∆Qǫ k∗ ≤δ} = Op (1),
+k
+nηn
+
+and Lemma 1 we have that
+
+(5.33)
+
+k=1
+
+P
+
+|Jn(1) | −→ 0.
+
+(2)
+
+As for Jn : it follows for some C > 0 that
+|Jn(2) | .
+
+sup
+
+(1 + |Xt |)C ·
+
+θ∈Θ,t∈[0,1]
+
+≤ Op
+
+!
+
+n
+nǫ X 1
+·
+sup |Qs − Qtnk−1 |1{k∆Qǫ k∗ ≤δ}
+k
+ηn
+n s∈(tnk−1 ,tnk ]
+k=1
+
+nǫ sup |Qs | ,
+s∈(0,∆n ]
+
+since sups∈(tn ,tn ] |Qs − Qtnk−1 | ∼d sups∈(0,∆n ] |Qs | and (5.33). Moreover, noticing under
+k−1 k
+Q1[γ] that
+sup |Qs | = op (∆γn ),
+s∈(0,∆n ]
+
+we obtain that
+Jn(2) = Op (nǫ∆γn ) → 0.
+This completes the proof of (5.30).
+
+
+
+Now, putting
+Ψn,ǫ (θ) :=
+
+ǫ2 ηn−1
+
+
+
+e n,ǫ,δ (θ) − Ψ
+e n,ǫ,δ (θ0 ) ;
+Ψ
+
+F (θ) :=
+
+Z
+
+1
+0
+
+and using Lemma 9, we can easily show that
+
+P
+
+sup Ψn,ǫ (θ) − F (θ) −→ 0.
+θ∈Θ
+
+|b(Xt0 , θ) − b(Xt0 , θ0 )|2 dt,
+
+39
+
+Yasutaka Shimizu
+
+P
+This and the identifiability condition A3 yield the consistency: θen,ǫ,δ −→ θ0 .
+Suppose that the Lévy process Q is of the form
+Z tZ
+Z tZ
+e
+z N (dt, dz),
+z N (dt, dz) +
+Qt = at + cWt +
+0
+
+0
+
+|z|≤1
+
+|z|>1
+
+where a ∈ Rd , c ≥ 0, W is a d-dimensional Wiener process, N is a Poisson random measure
+e (dt, dz) = N (dt, dz) − ν(dz)dt, and note that, for any
+associated with jumps of Q, and N
+δ > 0,
+Z Z
+Z Z
+t
+
+Qt = αδ/ǫ t + Wt +
+
+0
+
+R
+where aδ/ǫ = a − δ/ǫ<|z|≤1 z ν(dz).
+Hereafter, we put
+
+|z|≤δ/ǫ
+
+e (dt, dz) +
+zN
+
+t
+
+z N (dt, dz),
+
+0
+
+|z|>δ/ǫ
+
+ζ := δ/ǫ.
+
+Using the same notation as in the previous theorem, the proof ends if we show that
+Z 1
+D
+∇θ b(Xt0 , θ0 ) [dBt ] .
+(5.34)
+(σ(ζ)ǫ)−1 Gn,ǫ,δ (θ0 ) −→
+0
+
+Note that
+(σ(ζ)ǫ)−1 Gn,ǫ,δ (θ0 ) = (σ(ζ)ǫ)
+
+n
+X
+−1
+
++ σ −1 (ζ)
++σ
+=:
+
+−1
+
+(1)
+In,ǫ,δ
+
+(ζ)
+
+k=1
+n
+X
+
+∇θ bk−1 (θ0 )
+
+"Z
+
+tn
+k
+tn
+k−1
+
+#
+
+{b(Xs , θ0 ) − bk−1 (θ0 )} dt 1{k∆Qǫ k∗ ≤δ}
+k
+
+
+
+∇θ bk−1 (θ0 ) aδ ∆n + ∆nk W 1{k∆Qǫ k∗ ≤δ}
+
+k=1
+n
+X
+
+k=1
+(2)
++ In,ǫ,δ
+
+k
+
+∇θ bk−1 (θ0 )
+
+"Z
+
+tn
+k
+
+tn
+k−1
+
+Z
+
+|z|≤ζ
+
+(3)
+
++ In,ǫ,δ .
+
+#
+
+e (dt, dz)
+zN
+
+(2)
+
+As for In,ǫ,δ : Since 1{k∆Qǫ k∗ ≤δ} is independent of ∆nk W and Xtnk−1 , we have that
+k
+n
+
+(2)
+
+E In,ǫ,δ ≤ σ −1 (ζ)
+
+1X
+E |∇θ bk−1 (θ0 )aδ | P (k∆Qk∗k ≤ ζ)
+n
+
++ σ −1 (ζ)
+
+k=1
+n
+X
+k=1
+
+≤σ
+
+−1
+
+
+
+(ζ)
+
+=O σ
+
+n
+X
+k=1
+
+−1
+
+
+
+E ∇θ bk−1 (θ0 ) ∆nk W P (k∆Qk∗k ≤ δ)
+
+E
+
+Z
+
+tn
+k
+
+tn
+k−1
+
+trace
+
+
+(ζ)e−λ(ζ)∆n .
+
+
+
+∇θ b⊗2
+k−1 (θ0 )
+
+dt
+
+!1/2
+
+P (k∆Qk∗k ≤ ζ)
+
+40
+
+Threshold estimation for small noise model
+
+The last equality is due to (5.28). Therefore we have
+
+!−1 
+∞
+k
+X
+(∆n λ(ζ))
+(2)
+.
+E In,ǫ,δ = O  σ(ζ)
+k!
+
+(5.35)
+
+k=0
+
+For an integer M such that 1/M ≤ ρ, we see that,
+
+M
+σ(ζ)(∆n λ(ζ))M = σ 1/M (ζ)∆n λ(ζ)
+≥ (σ ρ (ζ)∆n λ(ζ))M → ∞
+
+(5.36)
+
+due to the the condition (4.4). Hence we have
+(2)
+
+E In,ǫ,δ → 0.
+(1)
+
+(1)
+
+As for In,ǫ,δ : By the same argument as in the proof of Lemma 3.6, Hn,ǫ (θ0 ) in [20], we
+can obtain the following inequality:
+(1)
+
+|In,ǫ,δ | .
+
+n
+
+1 1X
+|∇θ bk−1 (θ0 )| · |bk−1 (θ0 )|
+nǫσ(ζ) n
++
+
+i=1
+n
+X
+
+1
+nσ(ζ)
+
+i=1
+
+|∇θ bk−1 (θ0 )|
+
+sup
+n
+s∈(tn
+k−1 ,tk ]
+
+|Qt − Qtnk−1 |1{k∆Qǫ k∗ ≤δ}
+k
+
+(2)
+
+Using the same estimates for Jn
+
+in the proof of Lemma 9, we have that
+
+
+
+
+1
+(1)
++ op σ −1 (ζ)e−λ(ζ)∆n ,
+|In,ǫ,δ | = Op
+nǫσ(ζ)
+(1)
+
+P
+
+Then, by the same estimates as for (5.35) and (5.36) above, we see that |In,ǫ,δ | −→ 0.
+(3)
+
+As for In,ǫ,δ : Let
+
+Lδt
+
+:= σ
+
+−1
+
+(ζ)
+
+Z tZ
+0
+
+|z|≤δ
+
+e (dt, dz).
+zN
+
+Thanks to Theorem 2 by Asmussen and Rosinski [1], it follows under the assumption (4.6)
+that there exists a Wiener process B, independent of W , such that
+D
+
+Lζ −→ B
+
+in D[0, 1],
+
+as δ → 0. Moreover, since kY n,ǫ − X 0 k∗ a.s. by Lemma (1), we have a joint convergence
+
+
+D
+Lζ , Y n,ǫ −→ (B, X 0 ) in D[0, 1].
+
+as ǫ, δ → 0 and n → ∞. Hence it follows from Theorem 5.16 by Jacod and Shiryaev [10]
+that
+n
+i Z 1
+h
+X
+(3)
+n ζ
+∇θ b (Ytn,ǫ , θ0 ) dLζt
+∇θ bk−1 (θ0 ) ∆k L =
+In,ǫ,δ =
+k=1
+
+0
+
+41
+
+Yasutaka Shimizu
+
+D
+
+−→
+
+Z
+
+1
+0
+
+∇θ b(Xt0 , θ0 ) dBt
+
+This completes the proof of (5.34), and the statement is proved.
+
+Acknowledgement
+The author would like to thank the anonymous referees for their valuable suggestions and
+proposals that significantly improve this manuscript. This research has been partially
+supported by JSPS KAKENHI Grant-in-Aid for Scientific Research (C), Grant Number
+JP15K05009.
+
+References
+[1] Asmussen, S. and Rosinski, J. (2001). Approximations of small jumps of Lévy processes with a view towards simulation, J. Appl. Prob., 38, 482–493.
+[2] Bichteler, K. and Jacod, J. (1986) Calcul de Malliavin pour les diffusions avec sauts:
+existence d’une densite dans le cas unidimensionnel. Lecture Notes in Math, 132–157.
+Springer-Verlag, Berlin.
+[3] Boukai, B. (1990). An explicit expression for the distribution of the supremum of
+Brownian motion with a change point. Comm. Statist. Theory Methods, 19, (1), 31–
+40.
+[4] Cont, R. and Tankov, P. (2004). Financial modelling with jump processes. Chapman
+& Hall/CRC, Boca Raton, FL.
+[5] Doob, J. L. (1949). Heuristic approach to the Kolmogorov-Sminorv Theorems. Ann.
+Math. Statistics, 20, 393–403.
+[6] Genon-Catalot, V. (1990). Maximum contrast estimation for diffusion processes from
+discrete observations, Statistics, 21. 99–116.
+[7] Genon-Catalot, V. and Jacod, J. (1993). On the estimation of the diffusion coefficient
+for multidimensional diffusion process, Ann. Inst. Henri Poincaré Prob. Statist. 29,
+119–151.
+[8] Gloter, A. and Sørensen, M. (2009). Estimation for stochastic differential equations
+with a small diffusion coefficient, Stochastic Process. Appl., 119, 679–699.
+[9] Ibragimov, I. A. and Has’minskii, R. Z. (1981) Statistical Estimation, Springer-Verlag,
+Berlin.
+
+42
+
+Threshold estimation for small noise model
+
+[10] Jacod, J. and Shiryaev, A. N. (2003). Limit theorems for stochastic processes. Second
+edition. Springer-Verlag, Berlin.
+[11] Joulin, A. (2007). On maximal inequalities for stable stochastic integrals. Potential
+Anal., 26, (1), 57–78.
+[12] Kunitomo, N. and Takahashi, A. (2001). The asymptotic expansion approach to the
+valuation of interest rate contingent claims. Math. Finance, 11, 117–151.
+[13] Kutoyants, Yu. A. (1984). Parameter estimation for stochastic processes. Heldermann,
+Berlin.
+[14] Kutoyants, Yu. A. (1994). Identification of dynamical systems with small noise.
+Kluwer, Dordrecht.
+[15] Laredo, C.F. (1990). A sufficient condition for asymptotic sufficiency of incomplete
+observations of a diffusion process, Ann. Statist., 18, 1158–1171.
+[16] Long, H. (2009) Least squares estimator for discretely observed Ornstein-Uhlenbeck
+processes with small Lévy noises, Statist. Prob. Letters, 79, 2076–2085.
+[17] Long, H. (2010). Parameter estimation for a class of stochastic differential equations
+driven by small stable noises from discrete observations, Acta Mathematica Scientia,
+30B, 645–663.
+[18] Ma, C. (2010). A note on “Least squares estimator for discretely observed OrnsteinUhlenbeck processes with small Lévy noises”, Statist. Prob. Letters, 80, 1528–1531.
+[19] Masuda, H. (2013). Convergence of Gaussian quasi-likelihood random fields for ergodic Levy driven SDE observed at high frequency. The Annals of Statistics, 41,
+1593–1641.
+[20] Long, H; Shimizu, Y. and Sun, W. (2013). Least squares estimators for discretely
+observed stochastic processes driven by small Lévy noises. J. Multivariate Analysis,
+116, 422–439.
+[21] T. Ogihara, N. Yoshida, Quasi-likelihood analysis for the stochastic differential equation with jumps. Stat. Inference Stoch. Process., 14, 189–229.
+[22] Pavlyukevich, I. (2008). Ruin probabilities of small noise jump-diffusions with heavy
+tails. Appl. Stoch. Models Bus. Ind. 24, (1), 65–82.
+[23] Pavlyukevich, I. (2011). First exit times of solutions of stochastic differential equations
+driven by multiplicative Lévy noise with heavy tails. Stoch. Dyn., 11, (2–3), 495–519.
+[24] Protter, P. E. (2004). Stochastic integration and differential equations. Second edition.
+Springer-Verlag, Berlin.
+
+Yasutaka Shimizu
+
+43
+
+[25] Pruitt, W. E. (1981). The growth of random walks and Lévy processes. Ann. Probability, 9, (6), 948–956.
+[26] Shimizu, Y. (2006). M-estimation for discretely observed ergodic diffusion processes
+with infinitely many jumps. Statist. Infer. Stochastic Proc., 9, (2), 179–225.
+[27] Shimizu, Y. (2010). Threshold selection in jump-discriminant filter for discretely observed jump processes. Statist. Methods and Appl., 19, (3), 355–378.
+[28] Shimizu, Y. (2012). Local asymptotic mixed normality for discretely observed nonrecurrent Ornstein-Uhlenbeck processes, Ann. Inst. Statist. Math., 64, (1), 193-211.
+[29] Shimizu, Y. and Yoshida, N. (2006) Estimation of parameters for diffusion processes
+with jumps from discrete observations. Statist. Infer. Stochastic Proc., 9, (3), 227–
+277.
+[30] Sørensen, M. (2000). Small dispersion asymptotics for diffusion martingale estimating
+functions, Preprint No. 2000-2, Department of Statistics and Operation Research,
+University of Copenhagen, Copenhagen.
+[31] Sørensen, M. and Uchida, M. (2003). Small diffusion asymptotics for discretely sampled stochastic differential equations, Bernoulli, 9, (6), 1051–1069.
+[32] Takahashi, A. (1999). An asymptotic expansion approach to pricing contingent claims.
+Asia-Pacific Financial Markets, 6. 115–151.
+[33] Takahashi, A. and Yoshida, N. (2004). An asymptotic expansion scheme for optimal
+investment problems. Stat. Inference Stoch. Process., 7, 153–188.
+[34] Uchida, M. Estimation for discretely observed small diffusions based on approximate
+martingale estimating functions, Scand. J. Statist. 31 (2004) 553-566.
+[35] Uchida, M. (2008). Approximate martingale estimating functions for stochastic differential equations with small noises. Stochastic Process. Appl., 118, 1706–1721.
+[36] Uchida, M. and Yoshida, N. (2004). Asymptotic expansion for small diffusions applied
+to option pricing. Stat. Inference Stoch. Process., 7, 189–223.
+[37] Yoshida, N. (1992). Asymptotic expansion of maximum likelihood estimators for small
+diffusions via the theory of Malliavin-Watanabe. Probab. Theory Relat. Fields, 92,
+275–311.
+[38] Yoshida, N. Asymptotic expansion for statistics related to small diffusions. J. Japan
+Statist. Soc., 22, 139–159.
+[39] Yoshida, N. (2011). Polynomial type large deviation inequalities and quasi-likelihood
+analysis for stochastic differential equations. Ann. Inst. Statist. Math., 63, (3), 431–
+479
+
+

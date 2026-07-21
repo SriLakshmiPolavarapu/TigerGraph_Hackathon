@@ -1,0 +1,21 @@
+Title: Behavioral and Representational Evidence of Binomial Ordering Preferences in Large Language Models
+
+Authors: Zhiqing Yang, Yilun Liu, Yunpu Ma, Volker Tresp, Hinrich Schütze
+
+Published: 2026-06-19
+
+Categories: cs.CL, cs.LG
+
+Abstract:
+Large language models (LLMs) can readily reproduce conventional expressions, yet their ability to model gradient frequency distributions remains underexplored. We investigate this using linguistic binomials, such as men and women, where both word permutations are grammatically valid but exhibit distinct, cross-linguistic variations in conventionality. We formalize binomial ordering as a distributional alignment problem, and construct a multilingual dataset of 600 binomial pairs across 8 languages. With categorical and distributional metrics, we measure and compare the corpus-derived preferences with model-induced ordering probabilities of 6 open-weight LLMs. While models often behaviorally recover the dominant corpus-preferred order, particularly for strongly conventionalized pairs, they align less well with the exact corpus preference distributions. This suggests that apparent directional order overstates how faithfully LLMs capture the statistical nuances of language use. Sparse probing verifies that the concept of preference strength is partially encoded among middle-to-late layers, and steering along probe-derived directions alters model-induced ordering distributions, demonstrating that the statistical behavioral preference of LLMs can be mechanistically measured and manipulated via internal representations.
+
+Paper ID: 2606.21645v1
+
+Summary:
+This paper titled "Behavioral and Representational Evidence of Binomial Ordering Preferences in Large Language Models" was authored by Zhiqing Yang, Yilun Liu, Yunpu Ma, Volker Tresp, Hinrich Schütze and published on 2026-06-19.
+It falls under the categories: cs.CL, cs.LG.
+The research explores the following topic: Large language models (LLMs) can readily reproduce conventional expressions, yet their ability to model gradient frequency distributions remains underexplored. We investigate this using linguistic binomials, such as men and women, where both word permutations are grammatically valid but exhibit distinct, cross-linguistic variations in conventionality. We formalize binomial ordering as a distributional alignment problem, and construct a multilingual dataset of 600 binomial pairs across 8 languages. With categorical and distributional metrics, we measure and compare the corpus-derived preferences with model-induced ordering probabilities of 6 open-weight LLMs. While models often behaviorally recover the dominant corpus-preferred order, particularly for strongly conventionalized pairs, they align less well with the exact corpus preference distributions. This suggests that apparent directional order overstates how faithfully LLMs capture the statistical nuances of language use. Sparse probing verifies that the concept of preference strength is partially encoded among middle-to-late layers, and steering along probe-derived directions alters model-induced ordering distributions, demonstrating that the statistical behavioral preference of LLMs can be mechanistically measured and manipulated via internal representations.
+
+Links:
+  - https://arxiv.org/abs/2606.21645v1
+  - https://arxiv.org/pdf/2606.21645v1

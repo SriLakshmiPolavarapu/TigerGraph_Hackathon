@@ -1,0 +1,21 @@
+Title: Emissions and Performance Trade-off Between Small and Large Language Models
+
+Authors: Anandita Garg, Uma Gaba, Deepan Muthirayan, Anish Roy Chowdhury
+
+Published: 2025-12-21
+
+Categories: cs.CL, cs.AI, cs.CY, cs.LG
+
+Abstract:
+The advent of Large Language Models (LLMs) has raised concerns about their enormous carbon footprint, starting with energy-intensive training and continuing through repeated inference. This study investigates the potential of using fine-tuned Small Language Models (SLMs) as a sustainable alternative for predefined tasks. Here, we present a comparative analysis of the performance-emissions trade-off between LLMs and fine-tuned SLMs across selected tasks under Natural Language Processing, Reasoning and Programming. Our results show that in four out of the six selected tasks, SLMs maintained comparable performances for a significant reduction in carbon emissions during inference. Our findings demonstrate the viability of smaller models in mitigating the environmental impact of resource-heavy LLMs, thus advancing towards sustainable, green AI.
+
+Paper ID: 2601.08844v1
+
+Summary:
+This paper titled "Emissions and Performance Trade-off Between Small and Large Language Models" was authored by Anandita Garg, Uma Gaba, Deepan Muthirayan, Anish Roy Chowdhury and published on 2025-12-21.
+It falls under the categories: cs.CL, cs.AI, cs.CY, cs.LG.
+The research explores the following topic: The advent of Large Language Models (LLMs) has raised concerns about their enormous carbon footprint, starting with energy-intensive training and continuing through repeated inference. This study investigates the potential of using fine-tuned Small Language Models (SLMs) as a sustainable alternative for predefined tasks. Here, we present a comparative analysis of the performance-emissions trade-off between LLMs and fine-tuned SLMs across selected tasks under Natural Language Processing, Reasoning and Programming. Our results show that in four out of the six selected tasks, SLMs maintained comparable performances for a significant reduction in carbon emissions during inference. Our findings demonstrate the viability of smaller models in mitigating the environmental impact of resource-heavy LLMs, thus advancing towards sustainable, green AI.
+
+Links:
+  - https://arxiv.org/abs/2601.08844v1
+  - https://arxiv.org/pdf/2601.08844v1

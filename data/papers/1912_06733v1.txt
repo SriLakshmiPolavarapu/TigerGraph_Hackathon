@@ -1,0 +1,21 @@
+Title: Private Federated Learning with Domain Adaptation
+
+Authors: Daniel Peterson, Pallika Kanani, Virendra J. Marathe
+
+Published: 2019-12-13
+
+Categories: cs.LG, cs.CR, stat.ML
+
+Abstract:
+Federated Learning (FL) is a distributed machine learning (ML) paradigm that enables multiple parties to jointly re-train a shared model without sharing their data with any other parties, offering advantages in both scale and privacy. We propose a framework to augment this collaborative model-building with per-user domain adaptation. We show that this technique improves model accuracy for all users, using both real and synthetic data, and that this improvement is much more pronounced when differential privacy bounds are imposed on the FL model.
+
+Paper ID: 1912.06733v1
+
+Summary:
+This paper titled "Private Federated Learning with Domain Adaptation" was authored by Daniel Peterson, Pallika Kanani, Virendra J. Marathe and published on 2019-12-13.
+It falls under the categories: cs.LG, cs.CR, stat.ML.
+The research explores the following topic: Federated Learning (FL) is a distributed machine learning (ML) paradigm that enables multiple parties to jointly re-train a shared model without sharing their data with any other parties, offering advantages in both scale and privacy. We propose a framework to augment this collaborative model-building with per-user domain adaptation. We show that this technique improves model accuracy for all users, using both real and synthetic data, and that this improvement is much more pronounced when differential privacy bounds are imposed on the FL model.
+
+Links:
+  - https://arxiv.org/abs/1912.06733v1
+  - https://arxiv.org/pdf/1912.06733v1

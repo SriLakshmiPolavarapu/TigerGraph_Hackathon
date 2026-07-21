@@ -1,0 +1,21 @@
+Title: k-hop Graph Neural Networks
+
+Authors: Giannis Nikolentzos, George Dasoulas, Michalis Vazirgiannis
+
+Published: 2019-07-13
+
+Categories: stat.ML, cs.LG
+
+Abstract:
+Graph neural networks (GNNs) have emerged recently as a powerful architecture for learning node and graph representations. Standard GNNs have the same expressive power as the Weisfeiler-Leman test of graph isomorphism in terms of distinguishing non-isomorphic graphs. However, it was recently shown that this test cannot identify fundamental graph properties such as connectivity and triangle freeness. We show that GNNs also suffer from the same limitation. To address this limitation, we propose a more expressive architecture, k-hop GNNs, which updates a node's representation by aggregating information not only from its direct neighbors, but from its k-hop neighborhood. We show that the proposed architecture can identify fundamental graph properties. We evaluate the proposed architecture on standard node classification and graph classification datasets. Our experimental evaluation confirms our theoretical findings since the proposed model achieves performance better or comparable to standard GNNs and to state-of-the-art algorithms.
+
+Paper ID: 1907.06051v2
+
+Summary:
+This paper titled "k-hop Graph Neural Networks" was authored by Giannis Nikolentzos, George Dasoulas, Michalis Vazirgiannis and published on 2019-07-13.
+It falls under the categories: stat.ML, cs.LG.
+The research explores the following topic: Graph neural networks (GNNs) have emerged recently as a powerful architecture for learning node and graph representations. Standard GNNs have the same expressive power as the Weisfeiler-Leman test of graph isomorphism in terms of distinguishing non-isomorphic graphs. However, it was recently shown that this test cannot identify fundamental graph properties such as connectivity and triangle freeness. We show that GNNs also suffer from the same limitation. To address this limitation, we propose a more expressive architecture, k-hop GNNs, which updates a node's representation by aggregating information not only from its direct neighbors, but from its k-hop neighborhood. We show that the proposed architecture can identify fundamental graph properties. We evaluate the proposed architecture on standard node classification and graph classification datasets. Our experimental evaluation confirms our theoretical findings since the proposed model achieves performance better or comparable to standard GNNs and to state-of-the-art algorithms.
+
+Links:
+  - https://arxiv.org/abs/1907.06051v2
+  - https://arxiv.org/pdf/1907.06051v2

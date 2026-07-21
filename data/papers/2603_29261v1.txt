@@ -1,0 +1,26 @@
+Title: Monodense Deep Neural Model for Determining Item Price Elasticity
+
+Authors: Lakshya Garg, Sai Yaswanth, Deep Narayan Mishra, Karthik Kumaran, Anupriya Sharma, Mayank Uniyal
+
+Published: 2026-03-31
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+Item Price Elasticity is used to quantify the responsiveness of consumer demand to changes in item prices, enabling businesses to create pricing strategies and optimize revenue management. Sectors such as store retail, e-commerce, and consumer goods rely on elasticity information derived from historical sales and pricing data. This elasticity provides an understanding of purchasing behavior across different items, consumer discount sensitivity, and demand elastic departments. This information is particularly valuable for competitive markets and resource-constrained businesses decision making which aims to maximize profitability and market share. Price elasticity also uncovers historical shifts in consumer responsiveness over time. In this paper, we model item-level price elasticity using large-scale transactional datasets, by proposing a novel elasticity estimation framework which has the capability to work in an absence of treatment control setting. We test this framework by using Machine learning based algorithms listed below, including our newly proposed Monodense deep neural network.
+  (1) Monodense-DL network -- Hybrid neural network architecture combining embedding, dense, and Monodense layers (2) DML -- Double machine learning setting using regression models (3) LGBM -- Light Gradient Boosting Model
+  We evaluate our model on multi-category retail data spanning millions of transactions using a back testing framework. Experimental results demonstrate the superiority of our proposed neural network model within the framework compared to other prevalent ML based methods listed above.
+
+Paper ID: 2603.29261v1
+
+Summary:
+This paper titled "Monodense Deep Neural Model for Determining Item Price Elasticity" was authored by Lakshya Garg, Sai Yaswanth, Deep Narayan Mishra, Karthik Kumaran, Anupriya Sharma, Mayank Uniyal and published on 2026-03-31.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: Item Price Elasticity is used to quantify the responsiveness of consumer demand to changes in item prices, enabling businesses to create pricing strategies and optimize revenue management. Sectors such as store retail, e-commerce, and consumer goods rely on elasticity information derived from historical sales and pricing data. This elasticity provides an understanding of purchasing behavior across different items, consumer discount sensitivity, and demand elastic departments. This information is particularly valuable for competitive markets and resource-constrained businesses decision making which aims to maximize profitability and market share. Price elasticity also uncovers historical shifts in consumer responsiveness over time. In this paper, we model item-level price elasticity using large-scale transactional datasets, by proposing a novel elasticity estimation framework which has the capability to work in an absence of treatment control setting. We test this framework by using Machine learning based algorithms listed below, including our newly proposed Monodense deep neural network.
+  (1) Monodense-DL network -- Hybrid neural network architecture combining embedding, dense, and Monodense layers (2) DML -- Double machine learning setting using regression models (3) LGBM -- Light Gradient Boosting Model
+  We evaluate our model on multi-category retail data spanning millions of transactions using a back testing framework. Experimental results demonstrate the superiority of our proposed neural network model within the framework compared to other prevalent ML based methods listed above.
+
+Links:
+  - https://arxiv.org/abs/2603.29261v1
+  - https://arxiv.org/pdf/2603.29261v1
+  - https://doi.org/10.1109/AAIML67890.2026.11498150

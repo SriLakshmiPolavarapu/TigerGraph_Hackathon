@@ -1,0 +1,21 @@
+Title: Fast Processing of Large Graph Applications Using Asynchronous Architecture
+
+Authors: Michel A. Kinsy, Rashmi S. Agrawal, Hien D. Nguyen
+
+Published: 2017-06-29
+
+Categories: cs.AR
+
+Abstract:
+Graph algorithms and techniques are increasingly being used in scientific and commercial applications to express relations and explore large data sets. Although conventional or commodity computer architectures, like CPU or GPU, can compute fairly well dense graph algorithms, they are often inadequate in processing large sparse graph applications. Memory access patterns, memory bandwidth requirements and on-chip network communications in these applications do not fit in the conventional program execution flow. In this work, we propose and design a new architecture for fast processing of large graph applications. To leverage the lack of the spatial and temporal localities in these applications and to support scalable computational models, we design the architecture around two key concepts. (1) The architecture is a multicore processor of independently clocked processing elements. These elements communicate in a self-timed manner and use handshaking to perform synchronization, communication, and sequencing of operations. By being asynchronous, the operating speed at each processing element is determined by actual local latencies rather than global worst-case latencies. We create a specialized ISA to support these operations. (2) The application compilation and mapping process uses a graph clustering algorithm to optimize parallel computing of graph operations and load balancing. Through the clustering process, we make scalability an inherent property of the architecture where task-to-element mapping can be done at the graph node level or at node cluster level. A prototyped version of the architecture outperforms a comparable CPU by 10~20x across all benchmarks and provides 2~5x better power efficiency when compared to a GPU.
+
+Paper ID: 1706.09953v1
+
+Summary:
+This paper titled "Fast Processing of Large Graph Applications Using Asynchronous Architecture" was authored by Michel A. Kinsy, Rashmi S. Agrawal, Hien D. Nguyen and published on 2017-06-29.
+It falls under the categories: cs.AR.
+The research explores the following topic: Graph algorithms and techniques are increasingly being used in scientific and commercial applications to express relations and explore large data sets. Although conventional or commodity computer architectures, like CPU or GPU, can compute fairly well dense graph algorithms, they are often inadequate in processing large sparse graph applications. Memory access patterns, memory bandwidth requirements and on-chip network communications in these applications do not fit in the conventional program execution flow. In this work, we propose and design a new architecture for fast processing of large graph applications. To leverage the lack of the spatial and temporal localities in these applications and to support scalable computational models, we design the architecture around two key concepts. (1) The architecture is a multicore processor of independently clocked processing elements. These elements communicate in a self-timed manner and use handshaking to perform synchronization, communication, and sequencing of operations. By being asynchronous, the operating speed at each processing element is determined by actual local latencies rather than global worst-case latencies. We create a specialized ISA to support these operations. (2) The application compilation and mapping process uses a graph clustering algorithm to optimize parallel computing of graph operations and load balancing. Through the clustering process, we make scalability an inherent property of the architecture where task-to-element mapping can be done at the graph node level or at node cluster level. A prototyped version of the architecture outperforms a comparable CPU by 10~20x across all benchmarks and provides 2~5x better power efficiency when compared to a GPU.
+
+Links:
+  - https://arxiv.org/abs/1706.09953v1
+  - https://arxiv.org/pdf/1706.09953v1

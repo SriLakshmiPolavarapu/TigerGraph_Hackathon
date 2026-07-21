@@ -1,0 +1,21 @@
+Title: What Constitutes Good Contrastive Learning in Time-Series Forecasting?
+
+Authors: Chiyu Zhang, Qi Yan, Lili Meng, Tristan Sylvain
+
+Published: 2023-06-21
+
+Categories: cs.LG
+
+Abstract:
+In recent years, the introduction of self-supervised contrastive learning (SSCL) has demonstrated remarkable improvements in representation learning across various domains, including natural language processing and computer vision. By leveraging the inherent benefits of self-supervision, SSCL enables the pre-training of representation models using vast amounts of unlabeled data. Despite these advances, there remains a significant gap in understanding the impact of different SSCL strategies on time series forecasting performance, as well as the specific benefits that SSCL can bring. This paper aims to address these gaps by conducting a comprehensive analysis of the effectiveness of various training variables, including different SSCL algorithms, learning strategies, model architectures, and their interplay. Additionally, to gain deeper insights into the improvements brought about by SSCL in the context of time-series forecasting, a qualitative analysis of the empirical receptive field is performed. Through our experiments, we demonstrate that the end-to-end training of a Transformer model using the Mean Squared Error (MSE) loss and SSCL emerges as the most effective approach in time series forecasting. Notably, the incorporation of the contrastive objective enables the model to prioritize more pertinent information for forecasting, such as scale and periodic relationships. These findings contribute to a better understanding of the benefits of SSCL in time series forecasting and provide valuable insights for future research in this area. Our codes are available at https://github.com/chiyuzhang94/contrastive_learning_time-series_e2e.
+
+Paper ID: 2306.12086v2
+
+Summary:
+This paper titled "What Constitutes Good Contrastive Learning in Time-Series Forecasting?" was authored by Chiyu Zhang, Qi Yan, Lili Meng, Tristan Sylvain and published on 2023-06-21.
+It falls under the categories: cs.LG.
+The research explores the following topic: In recent years, the introduction of self-supervised contrastive learning (SSCL) has demonstrated remarkable improvements in representation learning across various domains, including natural language processing and computer vision. By leveraging the inherent benefits of self-supervision, SSCL enables the pre-training of representation models using vast amounts of unlabeled data. Despite these advances, there remains a significant gap in understanding the impact of different SSCL strategies on time series forecasting performance, as well as the specific benefits that SSCL can bring. This paper aims to address these gaps by conducting a comprehensive analysis of the effectiveness of various training variables, including different SSCL algorithms, learning strategies, model architectures, and their interplay. Additionally, to gain deeper insights into the improvements brought about by SSCL in the context of time-series forecasting, a qualitative analysis of the empirical receptive field is performed. Through our experiments, we demonstrate that the end-to-end training of a Transformer model using the Mean Squared Error (MSE) loss and SSCL emerges as the most effective approach in time series forecasting. Notably, the incorporation of the contrastive objective enables the model to prioritize more pertinent information for forecasting, such as scale and periodic relationships. These findings contribute to a better understanding of the benefits of SSCL in time series forecasting and provide valuable insights for future research in this area. Our codes are available at https://github.com/chiyuzhang94/contrastive_learning_time-series_e2e.
+
+Links:
+  - https://arxiv.org/abs/2306.12086v2
+  - https://arxiv.org/pdf/2306.12086v2

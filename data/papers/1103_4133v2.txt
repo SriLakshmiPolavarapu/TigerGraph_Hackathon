@@ -1,0 +1,22 @@
+Title: An ER-based Framework for Declarative Web Programming
+
+Authors: Michael Hanus, Sven Koschnicke
+
+Published: 2011-03-21
+
+Categories: cs.PL
+
+Abstract:
+We describe a framework to support the implementation of web-based systems intended to manipulate data stored in relational databases. Since the conceptual model of a relational database is often specified as an entity-relationship (ER) model, we propose to use the ER model to generate a complete implementation in the declarative programming language Curry. This implementation contains operations to create and manipulate entities of the data model, supports authentication, authorization, session handling, and the composition of individual operations to user processes. Furthermore, the implementation ensures the consistency of the database w.r.t. the data dependencies specified in the ER model, i.e., updates initiated by the user cannot lead to an inconsistent state of the database. In order to generate a high-level declarative implementation that can be easily adapted to individual customer requirements, the framework exploits previous works on declarative database programming and web user interface construction in Curry.
+
+Paper ID: 1103.4133v2
+
+Summary:
+This paper titled "An ER-based Framework for Declarative Web Programming" was authored by Michael Hanus, Sven Koschnicke and published on 2011-03-21.
+It falls under the categories: cs.PL.
+The research explores the following topic: We describe a framework to support the implementation of web-based systems intended to manipulate data stored in relational databases. Since the conceptual model of a relational database is often specified as an entity-relationship (ER) model, we propose to use the ER model to generate a complete implementation in the declarative programming language Curry. This implementation contains operations to create and manipulate entities of the data model, supports authentication, authorization, session handling, and the composition of individual operations to user processes. Furthermore, the implementation ensures the consistency of the database w.r.t. the data dependencies specified in the ER model, i.e., updates initiated by the user cannot lead to an inconsistent state of the database. In order to generate a high-level declarative implementation that can be easily adapted to individual customer requirements, the framework exploits previous works on declarative database programming and web user interface construction in Curry.
+
+Links:
+  - https://arxiv.org/abs/1103.4133v2
+  - https://arxiv.org/pdf/1103.4133v2
+  - https://doi.org/10.1017/S1471068412000385

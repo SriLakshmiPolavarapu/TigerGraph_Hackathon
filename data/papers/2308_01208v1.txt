@@ -1,0 +1,22 @@
+Title: Adaptive Collaborative Filtering with Personalized Time Decay Functions for Financial Product Recommendation
+
+Authors: Ashraf Ghiye, Baptiste Barreau, Laurent Carlier, Michalis Vazirgiannis
+
+Published: 2023-08-01
+
+Categories: cs.IR, cs.LG, q-fin.CP, stat.ML
+
+Abstract:
+Classical recommender systems often assume that historical data are stationary and fail to account for the dynamic nature of user preferences, limiting their ability to provide reliable recommendations in time-sensitive settings. This assumption is particularly problematic in finance, where financial products exhibit continuous changes in valuations, leading to frequent shifts in client interests. These evolving interests, summarized in the past client-product interactions, see their utility fade over time with a degree that might differ from one client to another. To address this challenge, we propose a time-dependent collaborative filtering algorithm that can adaptively discount distant client-product interactions using personalized decay functions. Our approach is designed to handle the non-stationarity of financial data and produce reliable recommendations by modeling the dynamic collaborative signals between clients and products. We evaluate our method using a proprietary dataset from BNP Paribas and demonstrate significant improvements over state-of-the-art benchmarks from relevant literature. Our findings emphasize the importance of incorporating time explicitly in the model to enhance the accuracy of financial product recommendation.
+
+Paper ID: 2308.01208v1
+
+Summary:
+This paper titled "Adaptive Collaborative Filtering with Personalized Time Decay Functions for Financial Product Recommendation" was authored by Ashraf Ghiye, Baptiste Barreau, Laurent Carlier, Michalis Vazirgiannis and published on 2023-08-01.
+It falls under the categories: cs.IR, cs.LG, q-fin.CP, stat.ML.
+The research explores the following topic: Classical recommender systems often assume that historical data are stationary and fail to account for the dynamic nature of user preferences, limiting their ability to provide reliable recommendations in time-sensitive settings. This assumption is particularly problematic in finance, where financial products exhibit continuous changes in valuations, leading to frequent shifts in client interests. These evolving interests, summarized in the past client-product interactions, see their utility fade over time with a degree that might differ from one client to another. To address this challenge, we propose a time-dependent collaborative filtering algorithm that can adaptively discount distant client-product interactions using personalized decay functions. Our approach is designed to handle the non-stationarity of financial data and produce reliable recommendations by modeling the dynamic collaborative signals between clients and products. We evaluate our method using a proprietary dataset from BNP Paribas and demonstrate significant improvements over state-of-the-art benchmarks from relevant literature. Our findings emphasize the importance of incorporating time explicitly in the model to enhance the accuracy of financial product recommendation.
+
+Links:
+  - https://arxiv.org/abs/2308.01208v1
+  - https://arxiv.org/pdf/2308.01208v1
+  - https://doi.org/10.1145/3604915.3608832

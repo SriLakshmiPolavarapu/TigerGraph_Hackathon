@@ -1,0 +1,21 @@
+Title: Workshop on Autonomous Driving at CVPR 2021: Technical Report for Streaming Perception Challenge
+
+Authors: Songyang Zhang, Lin Song, Songtao Liu, Zheng Ge, Zeming Li, Xuming He, Jian Sun
+
+Published: 2021-07-27
+
+Categories: cs.CV, cs.AI
+
+Abstract:
+In this report, we introduce our real-time 2D object detection system for the realistic autonomous driving scenario. Our detector is built on a newly designed YOLO model, called YOLOX. On the Argoverse-HD dataset, our system achieves 41.0 streaming AP, which surpassed second place by 7.8/6.1 on detection-only track/fully track, respectively. Moreover, equipped with TensorRT, our model achieves the 30FPS inference speed with a high-resolution input size (e.g., 1440-2304). Code and models will be available at https://github.com/Megvii-BaseDetection/YOLOX
+
+Paper ID: 2108.04230v1
+
+Summary:
+This paper titled "Workshop on Autonomous Driving at CVPR 2021: Technical Report for Streaming Perception Challenge" was authored by Songyang Zhang, Lin Song, Songtao Liu, Zheng Ge, Zeming Li, Xuming He, Jian Sun and published on 2021-07-27.
+It falls under the categories: cs.CV, cs.AI.
+The research explores the following topic: In this report, we introduce our real-time 2D object detection system for the realistic autonomous driving scenario. Our detector is built on a newly designed YOLO model, called YOLOX. On the Argoverse-HD dataset, our system achieves 41.0 streaming AP, which surpassed second place by 7.8/6.1 on detection-only track/fully track, respectively. Moreover, equipped with TensorRT, our model achieves the 30FPS inference speed with a high-resolution input size (e.g., 1440-2304). Code and models will be available at https://github.com/Megvii-BaseDetection/YOLOX
+
+Links:
+  - https://arxiv.org/abs/2108.04230v1
+  - https://arxiv.org/pdf/2108.04230v1

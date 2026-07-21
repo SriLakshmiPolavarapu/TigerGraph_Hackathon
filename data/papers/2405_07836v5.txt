@@ -1,0 +1,21 @@
+Title: Forecasting with Hyper-Trees
+
+Authors: Alexander März, Kashif Rasul
+
+Published: 2024-05-13
+
+Categories: cs.LG, stat.ME
+
+Abstract:
+We introduce Hyper-Trees as a novel framework for modeling time series data using gradient boosted trees. Unlike conventional tree-based approaches that forecast time series directly, Hyper-Trees learn the parameters of a target time series model, such as ARIMA or Exponential Smoothing, as functions of features. These parameters are then used by the target model to generate the final forecasts. Our framework combines the effectiveness of decision trees on tabular data with classical forecasting models, thereby inducing a time series inductive bias into tree-based models. To resolve the scaling limitations of boosted trees when estimating a high-dimensional set of target model parameters, we combine decision trees and neural networks within a unified framework. In this hybrid approach, the trees generate informative representations from the input features, which a shallow network then uses as input to learn the parameters of a time series model. With our research, we explore the effectiveness of Hyper-Trees across a range of forecasting tasks and extend tree-based modeling beyond its conventional use in time series analysis.
+
+Paper ID: 2405.07836v5
+
+Summary:
+This paper titled "Forecasting with Hyper-Trees" was authored by Alexander März, Kashif Rasul and published on 2024-05-13.
+It falls under the categories: cs.LG, stat.ME.
+The research explores the following topic: We introduce Hyper-Trees as a novel framework for modeling time series data using gradient boosted trees. Unlike conventional tree-based approaches that forecast time series directly, Hyper-Trees learn the parameters of a target time series model, such as ARIMA or Exponential Smoothing, as functions of features. These parameters are then used by the target model to generate the final forecasts. Our framework combines the effectiveness of decision trees on tabular data with classical forecasting models, thereby inducing a time series inductive bias into tree-based models. To resolve the scaling limitations of boosted trees when estimating a high-dimensional set of target model parameters, we combine decision trees and neural networks within a unified framework. In this hybrid approach, the trees generate informative representations from the input features, which a shallow network then uses as input to learn the parameters of a time series model. With our research, we explore the effectiveness of Hyper-Trees across a range of forecasting tasks and extend tree-based modeling beyond its conventional use in time series analysis.
+
+Links:
+  - https://arxiv.org/abs/2405.07836v5
+  - https://arxiv.org/pdf/2405.07836v5

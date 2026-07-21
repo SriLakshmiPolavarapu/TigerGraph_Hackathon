@@ -1,0 +1,21 @@
+Title: Re-conceptualising the Language Game Paradigm in the Framework of Multi-Agent Reinforcement Learning
+
+Authors: Paul Van Eecke, Katrien Beuls
+
+Published: 2020-04-09
+
+Categories: cs.AI, cs.CL, cs.LG, cs.MA
+
+Abstract:
+In this paper, we formulate the challenge of re-conceptualising the language game experimental paradigm in the framework of multi-agent reinforcement learning (MARL). If successful, future language game experiments will benefit from the rapid and promising methodological advances in the MARL community, while future MARL experiments on learning emergent communication will benefit from the insights and results gained from language game experiments. We strongly believe that this cross-pollination has the potential to lead to major breakthroughs in the modelling of how human-like languages can emerge and evolve in multi-agent systems.
+
+Paper ID: 2004.04722v1
+
+Summary:
+This paper titled "Re-conceptualising the Language Game Paradigm in the Framework of Multi-Agent Reinforcement Learning" was authored by Paul Van Eecke, Katrien Beuls and published on 2020-04-09.
+It falls under the categories: cs.AI, cs.CL, cs.LG, cs.MA.
+The research explores the following topic: In this paper, we formulate the challenge of re-conceptualising the language game experimental paradigm in the framework of multi-agent reinforcement learning (MARL). If successful, future language game experiments will benefit from the rapid and promising methodological advances in the MARL community, while future MARL experiments on learning emergent communication will benefit from the insights and results gained from language game experiments. We strongly believe that this cross-pollination has the potential to lead to major breakthroughs in the modelling of how human-like languages can emerge and evolve in multi-agent systems.
+
+Links:
+  - https://arxiv.org/abs/2004.04722v1
+  - https://arxiv.org/pdf/2004.04722v1

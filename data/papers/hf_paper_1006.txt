@@ -1,0 +1,3381 @@
+Title: arXiv paper 1006
+
+Categories: 0
+
+Abstract:
+arXiv:1701.01393v5 [math.AC] 24 Aug 2017
+
+On the n-th row of the graded Betti table of an
+n-dimensional toric variety
+Alexander Lemmens
+
+Abstract
+We prove an explicit formula for the first non-zero entry in the n-th
+row of the graded Betti table of an n-dimensional projective toric variety
+associated to a normal polytope with at least one interior lattice point.
+This applies to Veronese embeddings of Pn . We also prove an explicit
+formula for the entire n-th row when the interior of the polytope is onedimensional. All results are valid over an arbitrary field k.
+
+Index terms— syzygies, toric varieties, lattice polytopes, Koszul cohomology
+
+Contents
+1 Introduction
+
+1
+
+2 Toric varieties and graded Betti tables
+
+4
+
+3 Combinatorial proof
+
+8
+
+1
+
+Introduction
+
+Let k be a field. In this article we study syzygies of projectively embedded
+toric varieties X/k. More precisely, we give explicit formulas in terms of the
+combinatorics of the defining polytope for certain graded Betti numbers, which
+appear in the minimal free resolution of the homogeneous coordinate ring of
+X as a graded module, obtained by repeatedly taking syzygies. These Betti
+numbers are typically gathered in the graded Betti table:
+0
+1
+2
+3
+..
+.
+
+0
+1
+1
+0
+0 κ1,1
+0 κ1,2
+0 κ1,3
+..
+..
+.
+.
+
+2
+0
+
+3
+0
+
+4
+0
+
+κ2,1
+κ2,2
+κ2,3
+..
+.
+
+κ3,1
+κ3,2
+κ3,3
+..
+.
+
+κ4,1
+κ4,2
+κ4,3
+..
+.
+
+...
+...
+...
+...
+...
+
+Here κp,q is the number of degree p + q summands of the p-th module in
+the resolution. One alternatively defines κp,q as the dimension of the Koszul
+1 The
+final
+publication
+is
+http://dx.doi.org/10.1007/s10801-017-0786-y
+
+available
+
+1
+
+at
+
+springer
+
+via
+
+cohomology space Kp,q (X, O(1)). The graded Betti table is expected to contain
+a wealth of geometric information and is the subject of several important open
+problems and conjectures. But the vast part of it is poorly understood.
+For a number of entries an explicit formula in terms of the defining lattice
+polytope was known before. Examples of this can be found in [3, 11]. But for
+this paper the most relevant result is that of Schenck, who proved [16] that for
+projective toric surfaces coming from a lattice polygon with b lattice boundary
+points κp,2 = 0 for all p ≤ b − 3. Hering proved in [11, Theorem IV.20] using
+a theorem of Gallego-Purnaprajna [9, Theorem 1.3] that the next entry κb−2,2
+is not zero. Both results were already known in the case this polygon is equal
+to the triangle with vertices (0, d), (d, 0), (0, 0). This polygon gives the d-fold
+Veronese embedding of the projective plane, for which Loose [12] proved that
+the number of zeroes in the quadratic strand equals 3d−3 (not counting κ0,2 = 0
+as a zero). This result was independently rediscovered by Ottaviani and Paoletti
+[14], and they generalized this to the following conjecture:
+Conjecture 1. For the d-fold Veronese embedding of n-dimensional projective
+space κp,q = 0 whenever p ≤ 3d − 3 and q ≥ 2.
+This is known as property Np with p = 3d − 3. For d > n this is generalized
+by the following conjecture [7, p. 643, Conjecture 7.6] which the authors already
+proved for q = n:
+Conjecture 2. If we take a minimal free resolution of the line bundle OPn (b)
+on the Veronese embedding of Pn of degree d with d ≥ b + n + 1 then κp,q = 0
+for all 1 ≤ q ≤ n and
+
+ 
+
+d+q
+d−b−1
+p<
+−
+− q.
+q
+q
+Syzygies of Veronese embeddings are still an active area of research [2, 6, 10,
+15, 13]. For a short introduction to syzygies and to toric varieties we refer the
+reader to the next section.
+We will not prove this conjecture, but we will prove an explicit formula for
+κ(d+n)−(d−b−1)−n,n which is the first non-zero entry on the n-th row. We also
+n
+n
+prove a formula for the first non-zero entry in the n-th row of the Betti table
+of any projectively normal toric variety of dimension n, if this row is not zero.
+Note that the n-th row is the last non-zero row if it is not zero. We will work
+over an arbitrary field k. For a convex lattice polytope ∆ we denote by ∆(1)
+the convex hull of the lattice points in the topological interior of ∆.
+
+∆(1)
+
+We are now ready to formulate our main result:
+2
+
+Theorem 3. Let X be a toric variety coming from an n-dimensional normal
+polytope ∆ ⊆ Rn . Let ∆(1) be the interior polytope of ∆. Let S = ∆ ∩ Zn ,
+T = ∆(1) ∩ Zn and N = #S, N (1) = #T .
+• If p < N − N (1) − n then κp,n = 0.
+
+(1)
+−2
+• If ∆(1) is not 1-dimensional then κN −N (1) −n,n = t+N
+where t is the
+N (1) −1
+number of translations of T that are contained in S. (If N (1) = 0 then
+κN −N (1) −n,n = 0.)
+
+N −ℓ
+• If ∆(1) is 1-dimensional then ∀p ≥ 0: κp+N −N (1) −n,n = (p + 1) N (1)
+−p−1
+where ℓ is the number of lines parallel to ∆(1) that are not disjoint with
+S.
+The first statement actually follows from Green’s linear syzygy theorem [8,
+Theorem 7.1] combined with Koszul duality. The second statement already appeared for n = 2 as a conjectural formula in [3], where more information on
+Koszul cohomology of toric surfaces can be found. Recall that κp,q = 0 whenever q > n, and note that if ∆(1) = ∅ then κp,q = 0 whenever q ≥ n as follows
+from [11, Proposition IV.5 p. 17-18].
+Theorem 4. In the context of conjecture 2 the first non-zero entry on the n-th
+row equals
+
+ b+2n+1
+
++ d−b−1
+−2
+n
+n
+
+κ(d+n)−(d−b−1)−n,n =
+.
+d−b−1
+n
+d
+−1
+n
+These two theorems will be proved at the end of section 2 using results from
+section 3.
+
+Corollary 5. For toric surfaces coming from polygons of lattice width two, we
+know the entire Betti table explicitly.
+
+
+
+
+
+
+N −3
+N −1
+N −3
+κp,2 = max(p−N +N (1) +3, 0)
+, κp,1 = κp−1,2 +p
+−2A
+p
+p+1
+p−1
+where A = N/2 + N (1) /2 − 1 is the area of ∆. Of course κ0,0 = 1 and everything
+else is zero.
+The second formula comes from [3, lemma 1.3], the first follows directly from
+our theorem 3.
+Using [4, Theorem 1.3] one can deduce the following formula for the graded
+Betti table of the canonical model of a tetragonal curve in a toric surface:
+
+
+
+ X
+2
+g−3
+g−3
+max(p − bi − 1, 0)
+,
+κg−p−2,1 = κp,2 = (g − p − 2)
++
+p
+p−2
+i=1
+where b1 , b2 are the tetragonal invariants introduced by Schreyer in [17, p. 127],
+and g is the genus. Actually this formula is true for all tetragonal curves as
+follows from the explicit minimal free graded resolution in Schreyer’s article.
+
+3
+
+We include this explicit formula because it is not easy to find in the literature.
+In section 2 we explain toric varieties, syzygies, Koszul cohomology and we
+prove these theorems using results from section 3. We use Koszul duality [1, p.
+21] which expresses Betti numbers on the n-th row in terms of Betti numbers
+on the first row of the Betti table of the Serre dual line bundle.
+The core of the article is section 3 where we construct an explicit basis for
+the last non-zero entry
+L on the first row of the graded Betti table of any graded
+module of the form q≥0 H 0 (qL + M ) for line bunldes L, M with H 0 (M ) = 0,
+H 0 (L) 6= 0, H 0 (L + M ) 6= 0 on any normal projective toric variety. This comes
+down to constructing a basis of the kernel of the map
+p
+^
+
+H 0 (L) ⊗ H 0 (L + M ) →
+
+p−1
+^
+
+H 0 (L) ⊗ H 0 (2L + M )
+
+with p = dim H 0 (L + M )− 1. Theorems 3 and 4 can then be proved from results
+from section 3, namely theorem 9 (which actually also follows from Green’s linear
+syzygy theorem [8, Theorem 7.1]), corollary 21 and theorem 22.
+Acknowledgements
+This article is part of my Ph.D thesis which is funded by the Research Foundation Flanders (FWO). It was my colleagues Wouter Castryck and Filip Cools
+who noticed patterns in Betti tables of certain toric surfaces, which motivated
+me to find an explicit basis. I am also grateful to the referee for carefully reading
+my article and making many useful suggestions. I also want to thank Milena
+Hering for bringing the article [7] to my attention.
+
+2
+
+Toric varieties and graded Betti tables
+
+Projectively normal toric varieties
+We work over an arbitrary field k. By lattice points we mean points of Zn .
+Projective toric varieties are built out of polytopes ∆ ⊆ Rn that are the convex
+hull of a finite set of lattice points. This works as follows. Suppose ∆ is ndimensional and let P1 , . . . , PN∆ be a list of all lattice points of ∆, we define an
+embedding
+φ∆ : (A1 \{0})n → PN∆ −1 : (λ1 , . . . , λn ) 7→
+
+n
+Y
+
+i=1
+
+P
+
+λi 1,i : . . . :
+
+n
+Y
+
+i=1
+
+PN∆ ,i
+
+λi
+
+
+
+,
+
+where Pj,i is the i-th coordinate of Pj . Let X∆ be the closure of the image of
+φ∆ . If it happens that a∆ ∩ Zn + b∆ ∩ Zn = (a + b)∆ ∩ Zn for all positive
+integers a, b, then the polytope is called normal. In this case the projective toric
+variety corresponding to ∆ is just X∆ and it is projectively normal.
+Example.
+The d-fold Veronese embedding of projective space is given by a polytope of the
+following form:
+∆ = {(x1 , . . . , xn ) ∈ (R≥0 )n |x1 + . . . + xn ≤ d}
+4
+
+This gives the Veronese embedding of Pn into PN −1 where N = #∆ ∩ Zn =
+n+d
+d . For instance if n = 2 and d = 2 we get the embedding
+A1 \{0} × A1 \{0} → P5 : (x, y) 7→ (x2 : xy : x : y 2 : y : 1).
+
+The monomials x2 , xy, x, y 2 , y, 1 correspond to the lattice points of the triangle
+∆ with vertices (2, 0), (0, 2), (0, 0).
+y2
+y
+
+xy
+
+1
+
+x
+
+x2
+
+When taking the Zariski closure of the image this corresponds to the standard
+Veronese embedding
+P2 → P5 : (x : y : z) 7→ (x2 : xy : xz : y 2 : yz : z 2 ).
+If ∆ is not normal then one can still take integer multiples q∆, q ≥ 1, which
+will be normal for sufficiently large q. One can then associate to ∆ the toric
+variety Xq∆ where q is large enough so that q∆ is normal. This variety does not
+depend on q (but its embedding does). However for simplicity we will restrict
+to the case when ∆ is normal. The homogeneous coordinate ring of X∆ is given
+by
+M
+M
+Vq∆ =
+H 0 (X, qL),
+q≥0
+
+q≥0
+
+where by Vq∆ we mean the vector space spanned by the monomials (possibly
+with negative exponents) xi11 . . . xinn corresponding to lattice points (i1 , . . . , in ) ∈
+q∆. By L we mean the very ample line bundle coming from the embedding into
+projective space.
+
+Graded Betti tables
+Given any projective variety X with homogeneous coordinate ring R =
+H 0 (X, qL) we can consider the graded Tor modules
+ToriS ∗ H 0 (X,L) (R, k).
+
+L
+
+q≥0
+
+Note that R is a graded module over the symmetric algebra S ∗ H 0 (X, L). These
+graded Tor modules can be computed either by taking a graded free resolution
+of R (syzygies) or by taking a graded free resolution of k (Koszul cohomology).
+We will mainly work with the latter. The graded Betti table is a table of nonnegative integers κp,q , in the p-th column and the q-th row, where p, q ≥ 0. They
+are defined as the dimension over k of the degree p+q part of TorpS ∗ H 0 (X,L) (R, k).
+In general the table has the following shape:
+0
+1
+2
+3
+..
+.
+
+0
+1
+1
+0
+0 κ1,1
+0 κ1,2
+0 κ1,3
+..
+..
+.
+.
+
+2
+0
+
+3
+0
+
+4
+0
+
+κ2,1
+κ2,2
+κ2,3
+..
+.
+
+κ3,1
+κ3,2
+κ3,3
+..
+.
+
+κ4,1
+κ4,2
+κ4,3
+..
+.
+
+5
+
+...
+...
+...
+...
+...
+
+Example.
+When ∆ is the convex hull of (2, 0), (0, 2), (0, 0) we have the minimal graded
+free resolution of R:
+d
+
+d
+
+d
+
+d
+
+1
+2
+3
+0
+S ∗ V∆∩Z2 −→
+F1 −→
+F2 −→
+0 −→ F3 −→
+R.
+
+Here V∆∩Z2 is the vector space spanned by the monomials x2 , xy, x, y 2 , y, 1 corresponding to the lattice points of ∆. The symmetric algebra S ∗ V∆∩Z2 is the
+polynomial ring in 6 variables x(2,0) , x(1,1) , x(1,0) , x(0,2) , x(0,1) , x(0,0) and is the
+homogeneous coordinate ring of P5 . The image of d0 corresponds to the ideal
+cutting out the Veronese surface. This ideal is generated by six elements:
+x(2,0) x(0,2) − x2(1,1) ,
+
+x(0,2) x(0,0) − x2(0,1) ,
+
+x(2,0) x(0,0) − x2(1,0) ,
+
+x(2,0) x(0,1) − x(1,0) x(1,1) , x(1,0) x(0,2) − x(0,1) x(1,1) , x(1,1) x(0,0) − x(1,0) x(0,1) .
+These constitute a minimal set of generators of the ideal. So F1 is a free graded
+module of rank six over the polynomial ring S ∗ V∆∩Z2 where the basis elements
+all have degree two and are mapped by d0 to the generators of the ideal. This
+makes sure that d0 is a degree-preserving morphism of modules. This means
+that κ1,1 = 6.
+The image of d1 consists of the relations between these generators, called syzygies. It turns out that there is a minimal generating set of eight syzygies of
+degree 3, so that F2 is a rank 8 graded free module where the basis elements
+have degree 3. So κ2,1 = 8. It turns out that F3 has rank 3 where the basis
+elements have degree 4. This gives the graded Betti table:
+0 1
+0 1 0
+1 0 6
+2 0 0
+.. .. ..
+. . .
+
+2
+0
+8
+0
+..
+.
+
+3
+0
+3
+0
+..
+.
+
+4
+0
+0
+0
+..
+.
+
+...
+...
+...
+...
+
+Note that κ0,0 = 1 because the polynomial ring S ∗ V∆∩Z2 is a free module of
+rank one over itself with the monomial 1 as a generator.
+
+Koszul cohomology
+Let L, N be line bundles on a complete variety
+S ∗ V = S ∗ H 0 (X, L) be
+L X. Let
+0
+0
+the symmetric algebra over H (X, L), then
+q≥0 H (X, qL + N ) is a graded
+module over S ∗ V . We define the Koszul cohomology space Kp,q (X, N, L) as the
+homology of the following sequence:
+p+1
+^
+
+δp+1
+
+V ⊗ H 0 (X, (q − 1)L + N ) −→
+δp
+
+−→
+
+p
+^
+
+V ⊗ H 0 (X, qL + N )
+
+p−1
+^
+
+V ⊗ H 0 (X, (q + 1)L + N )
+
+Pp
+where δp (v1 ∧ . . . ∧ vp ⊗ w) = i=1 (−1)i v1 ∧ . . . ∧ vˆi ∧ . . . ∧ vp ⊗ (vi w). The
+vˆi indicates that vi is removed from the wedge product. When N = 0 we
+write Kp,q (X, L) = Kp,q (X, 0, L). We denote the dimension of Kp,q (X, N, L)
+6
+
+(resp. Xp,q (X, L)) by κp,q (X, N, L) (resp. κp,q (X, L)). If L is the very ample
+line bundle coming from a projective embedding this agrees with our earlier
+definition of κp,q using syzygies.
+Example.
+For our Veronese example with n = d = 2 we will construct an explicit element
+of the cohomology space K2,1 (X, L):
+y 2 ∧ xy ⊗ xz − y 2 ∧ yz ⊗ x2 + xy ∧ yz ⊗ yx ∈
+
+2
+^
+
+V∆ ⊗ V∆ ,
+
+which is in the kernel of δ2 , so it defines an element of K2,1 (X, L).
+We now turn to the proof of theorem 1 and corollary 2. To any n-dimensional
+convex lattice polytope ∆ ⊆ Rn one can associate the inner normal fan Σ [5,
+p. 321] whose rays ρ are in one-to-one correspondence with the facets of ∆ and
+the torus-invariant
+prime divisors Dρ . In general for any torus-invariant divisor
+P
+D = ρ aρ Dρ the vector space H 0 (X, D) has a basis that naturally corresponds
+to {P ∈ Zn |∀ρ ∈ Σ(1) : hP, ρi ≥ −aρ } where Σ(1) is the set of rays of the
+fan Σ. Multiplication of these global sections corresponds to coordinatewise
+addition of lattice points. The divisor whose global sections correspond to ∆
+gives the very ample line bundle of our embedding into projective space. Note
+that in this setting nothing changes when extending the field k. In the next
+proof we assume k algebraically closed. We also use in the following proof
+that taking the pull-back of a line bundle through a birational morphism of
+projective normal
+varieties preserves global
+P
+P sections. We will also use the fact
+that adding ρ∈Σ(1) −Dρ to a divisor ρ aρ Dρ amounts to taking the interior
+of the corresponding polytope (∗).
+Proof of theorem 3 using results from the next section. This will rely on Koszul
+duality which requires smoothness, so letP
+X ′ → X be a toric resolution of singularities as in [5, p. 515-519] and let K = ρ∈Σ′ (1) −Dρ be the canonical divisor
+of X ′ . Let L be the line bundle on X coming from its projective embedding.
+The pull-back of L to X ′ (which we also denote by L) is globally generated on
+X ′ and hence nef. By Demazure vanishing [5, p. 410] H i (X ′ , qL) = 0, ∀i, q ≥ 1.
+By Koszul duality [1, p. 21] we have
+κN −1−n−p,n (X, L) = κN −1−n−p,n (X ′ , L) = κp,1 (X ′ , K, L), ∀p ≥ 0.
+The first equality follows because H 0 (X, qL) = H 0 (X ′ , qL), ∀q ≥ 0 as taking
+the pull-back of L through X ′ → X preserves global sections. We claim that
+κp,1 (X ′ , K, L) is the dimension of the kernel of the following map:
+δ:
+
+p
+^
+
+VS ⊗ VT →
+
+p−1
+^
+
+VS ⊗ V(2∆)(1) ∩Zn
+
+where by VS (resp. VT ) we mean a vector space with S (resp. T ) as a basis.
+This is because H 0 (X ′ , K) = 0 and H 0 (X ′ , L+K) corresponds to T = ∆(1) ∩ Zn
+Vp−1
+VS ⊗VS+T .
+which we know by (∗). Note that the image of δ is contained in
+Now all the results of the theorem follow from theorem 9, corollary 21 and
+theorem 22, except when p = 0 and N (1) = 1, but then δ = 0 and the result is
+easy. For the case where ∆(1) is one-dimensional, note that ℓ (as in theorem 3)
+equals N − #X, with X as in theorem 22.
+7
+
+By the same duality as in the proof of theorem 3 it follows that κp,q = 0
+whenever q > n.
+Proof of theorem 4. Denote by κp,q (b; d) the dimension of the Kuszul cohomology of the graded module
+M
+H 0 (OPn (b + id)),
+i≥0
+
+Let N =
+
+
+n+d
+n
+
+be the number of lattice points in dΣ where
+Σ = {(x1 , . . . , xn ) ∈ R≥0 |x1 + . . . + xn ≤ d}
+
+is the standard simplex of dimension n. As in the proof of theorem 3 we have
+duality:
+κp,n (b; d) = κN −n−p−1,1 (−b − n − 1; d).
+Strictly speaking, we cannot apply theorem [1, p. 21], but the proof obviously
+generalizes and the vanishing condition will be satisfied because H 1 , . . . , H n−1
+of any line bundle on Pn will vanish. This κN −n−p−1,1 (−b − n − 1; d) is the
+dimension of the kernel of
+N −n−p−1
+^
+
+S⊗T →
+
+N −n−p−2
+^
+
+S ⊗ S + T,
+
+where T = (d − b − n − 1)Σ ∩ Zn and S = dΣ ∩ Zn so that X = (b + n + 1)Σ ∩ Zn.
+Applying theorem 9 we find that κp,n (b; d) = 0 whenever N − n − p − 1 ≥ #T =
+
+
+
+d−b−1
+, or equivalently p < n+d
+− d−b−1
+− n. The formula for κp,n (b; d)
+n
+n
+n
+
+
+d−b−1
+when p = n+d
+−
+−
+n
+follows
+from
+corollary
+21.
+n
+n
+
+3
+
+Combinatorial proof
+
+In this section we do not require our polytopes to be normal. From now on instead of working with spaces of monomials VS , VT etcetera, we replace monomials xi11 . . . xinn by the corresponding lattice point (i1 , . . . , in ). Let S and T ⊆ Zn
+with T finite, let p ≥ 0. We abusively write S (resp. T ) for a vector space with
+S (resp. T ) as a basis. We are interested in the kernel of the following map:
+δ:
+
+p
+^
+
+P1 ∧ . . . ∧ Pp ⊗ Q 7−→
+
+S⊗T →
+p
+X
+
+p−1
+^
+
+S ⊗ (S + T ) :
+
+(−1)i P1 ∧ . . . ∧ P̂i ∧ . . . ∧ Pp ⊗ (Q + Pi ),
+
+i=1
+
+where
+in Zn .
+
+V−1
+
+of a vector space is zero. By Q+Pi we mean coordinate-wise addition
+
+Definition
+6. Let S and T be finite subsets of Zn and p ≥ 0 an integer. If
+Vp
+S⊗T then x can be uniquely written (up to order) as a linear combination
+x∈
+(with non-zero coefficients) of expressions of the form P1 ∧ . . . ∧ Pp ⊗ Q with
+P1 , . . . , Pp ∈ S, Q ∈ T and P1 > . . . > Pp for some total order on S. We define
+the support of x, denoted supp(x), as the convex hull of the set of points Pi
+occurring in the wedge part of the terms of x.
+8
+
+Definition 7. A lattice pre-order on Zn is a reflexive transitive relation ≤
+on Zn such that ∀P1 , P2 ∈ Zn : P1 ≤ P2 or P2 ≤ P1 and ∀P1 , P2 , P3 ∈ Zn : if
+P1 ≤ P2 then P1 +P3 ≤ P2 +P3 . We call ≤ a lattice order if it is anti-symmetric.
+One way to obtain a lattice pre-order is to take a linear map L : Rn → R
+and set P1 ≤ P2 if L(P1 ) ≤ L(P2 ). If the coefficients defining L are linearly
+independent over Q then it defines a lattice order. We write P1 < P2 if P1 ≤
+P2 and not P2 ≤ P1 , and we write P1 ∼ P2 if P1 ≤ P2 and P2 ≤ P1 . In
+the proof of the following lemma we will use the property that for any points
+P, PM , Q, Q′ ∈ Zn and any pre-order on Zn , if P ≤ PM and Q ≤ Q′ then either
+P + Q < PM + Q′ or PM ∼ P and Q′ ∼ Q.
+Lemma 8. Let S and T be finite subsets of Zn , p ≥ 1. Let x ∈ ker δ be non-zero
+with δ as above. Let ≤ be a lattice pre-order such that supp(x) has a unique
+maximum PM . Let S ′ = supp(x)\{PM } and T ′ the set of non-maximal points
+Vp−2 ′
+Vp−1 ′
+S ⊗(S ′ +T ′) be defined analogously
+S ⊗T ′ →
+Q ∈ T . Finally, let δ ′ :
+′
+to δ. Then there exists a non-zero y ∈ ker δ such that
+x = PM ∧ y + terms not containing PM in the ∧ part.
+Proof. Write
+X
+λi PM ∧ P2,i ∧ . . . ∧ Pp,i ⊗ Qi + terms not containing PM in the ∧ part,
+x=
+i
+
+without any redundant terms. Then define
+X
+λi P2,i ∧ . . . ∧ Pp,i ⊗ Qi .
+y=
+i
+
+All we have to prove now is that y ∈ ker(δ ′ ). It is clear that supp(y) ∩ Zn ⊆
+S ′ . Let us prove that every Qi in this expression is in T ′ . We know that
+Qi ∈ T . If it is not in T ′ then it is maximal. But then, applying δ, the term
+−P2,i ∧. . .∧Pp,i ⊗ (PM + Qi ) of δ(x) has nothing to cancel against, contradicting
+the fact that δ(x) = 0. The reason that it has nothing to cancel against is that
+all terms in δ(x) end with ⊗(P + Q) with P ≤ PM and Q ≤ Qi so that
+P + Q < PM + Qi unless P ∼ PM , and Q ∼ Qi . As PM is the unique maximum
+of supp(x) P ∼ PM implies P = PM . But if Q 6= Qi and P = PM then we
+still have P + Q 6= PM + Qi , so that we have only one term of δ(x) ending on
+⊗(PM + Qi ), which has nothing to cancel against.
+So y is in the domain of δ ′ . We now prove that δ ′ (y) = 0:
+0 = δ(x) = −PM ∧ δ ′ (y) + terms not containing PM in the ∧ part.
+
+Because terms of PM ∧ δ ′ (y) cannot cancel against terms without PM in the ∧
+part, δ ′ (y) must be zero.
+Example.
+Our Veronese example of n = d = 2 becomes S = T = {(2, 0), (1, 1), (1, 0),
+V2
+S⊗S
+(0, 2), (0, 1), (0, 0)} and in the new notation the explicit cochain in
+becomes
+x = (0, 2) ∧ (1, 1) ⊗ (1, 0) − (0, 2) ∧ (0, 1) ⊗ (2, 0) + (1, 1) ∧ (0, 1) ⊗ (1, 1).
+9
+
+If we take the pre-order coming from the linear map L(x1 , x2 ) = x2 then PM =
+(0, 2) is the unique maximum of supp(x) = {(0, 2), (1, 1), (0, 1)} and the lemma
+gives y = (1, 1)⊗(1, 0)−(0, 1)⊗(2, 0). Indeed, x = (0, 2)∧y+(1, 1)∧(0, 1)⊗(1, 1)
+and the last term does not have (0, 2) in the wedge part.
+x2
+2
+
+x2
+
+PM
+
+2
+supp(x)
+
+1
+
+1
+
+S
+
+T′
+1
+
+2
+
+x1
+
+1
+
+Theorem 9. Notation as above. Suppose #T ≤ p, then δ :
+Vp−1
+S ⊗ (S + T ) is injective.
+
+2
+Vp
+
+x1
+S⊗T →
+
+Proof. By induction on p. The case p = 0 is trivial as the domain of δ is zero
+(because T = ∅).
+Let p ≥ 1, and take a non-zero element x of the kernel. Let ≤ be a lattice order.
+Now apply the construction of lemma 8 to obtain S ′ and T ′ and a non-zero
+y ∈ ker δ ′ . Since #T ′ < #T , we have #T ′ ≤ p − 1. Applying the induction
+hypothesis we get a contradiction.
+Note that this also follows fromL
+Green’s Linear syzygy theorem [8,L
+Theorem 7.1]
+applied to the graded module q≥0 qS + T over the graded ring q≥0 qS. We
+give this direct proof because we rely on the same technique later.
+We now want to construct elements of the kernel of δ when p = #T − 1. To
+this end we do the following construction: let X = {P ∈ Zn |P +QT ⊆ S} and
+consider the elements of X as variables. To any monomial A = P ∈X P aP of
+degree p with variables in X we will associate an element xA of the kernel of δ.
+Let P1 , . . . , Pp be a list of points in X such that each point P occurs aP
+times in the list. Let Q1 , . . . , Qp+1 be a list of all points of T . Now we define
+xA =
+
+Y 1 X
+sgn(σ)(P1 + Qσ(1) ) ∧ . . . ∧ (Pp + Qσ(p) ) ⊗ Qσ(p+1) .
+aP !
+P
+
+σ∈Sp+1
+
+Up to sign, this will be independent of the choice of lists P1 , . . . , Pp and
+Q1 , . . . , Qp+1 .
+Lemma 10. The xA we just constructed has integer coefficients and is in the
+kernel of δ.
+Proof. Consider permutations σ, σ ′ ∈ Sp+1 as in the previous definition such
+that σ({i|Pi = P }) = σ ′ ({i|Pi = P }) for all P ∈ X. We claim that the terms
+in xA corresponding to σ and σ ′ will be equal. This is because in the wedge
+product the only thing that changes is the order, and the change in sign caused
+by changing the order is compensated by the change in sgn(σ).
+′
+Now the number of bijections σQ
+with the property that σ({i|Pi = P }) =
+′
+σ ({i|Pi = P }), ∀P is equal to P aP !, hence the expression will have integer coefficients.
+We now prove that xA is in the kernel of δ. Obviously the sums Pi + Qσ(i) are
+10
+
+all in S. We claim that when applying δ everything cancels. Let C be the set
+of all ordered pairs (σ, i) where σ ∈ Sp+1 and i ∈ {1, . . . , p}. Then
+Y
+
+aP ! δ(xA )
+P
+
+=
+
+X
+
+(−1)i sgn(σ)(P1 + Qσ(1) ) ∧ . . . ∧ (Pi \
++ Qσ(i) ) ∧ . . . ∧ (Pp + Qσ(p) ))
+
+(σ,i)∈C
+
+⊗ (Qσ(p+1) + Qσ(i) + Pi ).
+We now partition C into (unordered) pairs: (σ, i) and (σ ′ , i′ ) belong to the same
+pair if either they are equal or the following conditions are met:
+• i = i′
+• σ(j) = σ ′ (j), for all j ∈
+/ {i, p + 1}
+• σ(i) = σ ′ (p + 1) and σ ′ (i) = σ(p + 1).
+These conditions imply that σ ′−1 ◦ σ is a transposition, and hence has sign -1.
+One now easily sees that pairs in C yield terms that cancel.
+Example.
+Suppose S = {(2, 0), (1, 1), (1, 0), (0, 2), (0, 1), (0, 0)} and T = {(1, 0), (0, 1), (0, 0)}
+and p = 2. Then X = {(1, 0), (0, 1), (0, 0)}. Take for example the monomial
+A = (1, 0)(0, 1). If we take the lists (1, 0), (0, 1) and (1, 0), (0, 1), (0, 0) we get:
+xA =(1, 0) ∧ (1, 1) ⊗ (0, 1) − (1, 0) ∧ (0, 2) ⊗ (1, 0) + (2, 0) ∧ (0, 2) ⊗ (0, 0)
+−(2, 0) ∧ (0, 1) ⊗ (0, 1) + (1, 1) ∧ (0, 1) ⊗ (1, 0) − (1, 1) ∧ (1, 1) ⊗ (0, 0).
+Of course the last term is zero. Note that each term is of the form P ∧ Q ⊗
+((2, 2) − P − Q) where P belongs to the lower right blue triangle and Q to the
+upper left one.
+
+(0,2)
+S
+
+(0,1)
+
+(0,1) (1,1)
+
+T
+(0,0) (1,0) (2,0)
+
+(0,0)
+
+(1,0)
+
+Example.
+Suppose S = {(0, 0), (1, 0), (2, 0), (3, 0), (0, 1), (1, 1), (2, 1), (3, 1)} and T =
+{(0, 0), (1, 0), (0, 1), (1, 1)} so that X = {(0, 0), (1, 0), (2, 0)}, p = 3 and consider
+the monomial A = (0, 0)2 (2, 0), then we get
+xA = − (0, 0) ∧ (1, 0) ∧ (3, 1) ⊗ (0, 1) + (0, 0) ∧ (1, 0) ∧ (2, 1) ⊗ (1, 1)
+− (0, 0) ∧ (1, 1) ∧ (2, 1) ⊗ (1, 0) + (0, 0) ∧ (1, 1) ∧ (3, 0) ⊗ (0, 1)
+− (0, 0) ∧ (0, 1) ∧ (3, 0) ⊗ (1, 1) + (0, 0) ∧ (0, 1) ∧ (3, 1) ⊗ (1, 0)
+− (1, 0) ∧ (0, 1) ∧ (3, 1) ⊗ (0, 0) + (1, 0) ∧ (0, 1) ∧ (2, 0) ⊗ (1, 1)
+− (1, 0) ∧ (1, 1) ∧ (2, 0) ⊗ (0, 1) + (1, 0) ∧ (1, 1) ∧ (2, 1) ⊗ (0, 0)
+− (0, 1) ∧ (1, 1) ∧ (3, 0) ⊗ (0, 0) + (0, 1) ∧ (1, 1) ∧ (2, 0) ⊗ (1, 0)
+11
+
+In this case the first two wedge factors in each term are from the left blue square
+and the third wedge factor is from the right blue square. In the definition there
+are 24 terms but each term occurs twice and we divide by two so only twelve
+terms are left.
+S
+(0,1)
+
+(1,1)
+
+(0,1) (1,1) (2,1) (3,1)
+T
+(0,0) (1,0) (2,0) (3,0)
+
+(0,0)
+
+(1,0)
+
+Q
+One way to get rid of the factor P a1P ! is to only sum over one element of
+each equivalence class, where two permutations σ, σ ′ are equivalent if σ ′ ({i|Pi =
+P }) = σ ′ ({i|Pi = P }) for all P ∈ X. So the construction works over any field.
+Proposition 11. The xA for distinct monomials A are linearly independent
+and the support of any linear combination of them is the convex hull of the
+union of the supp(xA ) occurring with non-zero coefficient.
+Proof. By induction on p. In the case p = 0 there is only one monomial namely
+the constant monomial 1. The corresponding xA is ∧(∅) ⊗ Q where Q is the
+unique
+point of T . So the statement is obvious. So suppose p ≥ 1. Let x =
+P
+λ
+x
+j
+A
+j with the Aj distinct. We have to prove that
+j
+
+[
+supp(xAj ) 6= ∅.
+supp(x) = conv
+j
+
+To prove this equality, it is enough to prove that every linear map L : Rn → R
+attains the same maximum on both sides of the equation. It is enough to show
+this when L|Zn is injective (as these L are dense). Given such an L, let ≤ be
+the order it induces on Zn . Let QM be the maximum of T for this order and
+PM ∈ X the greatest point occurring as a variable in some monomial Aj . We
+will prove that PM + QM is the maximum of both sides of the equation, proving
+that L attains the same maximum on both, and that both sides are non-empty.
+Obviously nothing greater than PM + QM can possibly occur in any supp(xAj ).
+We have
+X
+X
+λj xAj .
+λj xAj +
+x=
+j
+PM |Aj
+
+j
+PM does not occur in Aj
+
+For any Aj containing PM we define Bj as the monomial Aj /PM of degree
+p − 1. Using T ′ = T \{QM } we can associate to any Bj an element xBj so
+that xAj = ±(PM + QM ) ∧ xBj plus terms where everything in the ∧ part is
+smaller than PM + QM . By induction xBj 6= 0 so PM + QM is the maximum of
+supp(xAj ). Finally
+X
+± λj xBj + terms without PM + QM in the ∧ part.
+x = (PM + QM ) ∧
+j
+PM |Aj
+
+By induction the linear combination of the xBj is not zero so PM + QM is the
+maximum of supp(x).
+12
+
+So far, we have studied the kernel of the map
+δ:
+
+p
+^
+
+P1 ∧ . . . ∧ Pp ⊗ Q 7−→
+
+S⊗T →
+p
+X
+
+p−1
+^
+
+S ⊗ (S + T ) :
+
+(−1)i P1 ∧ . . . ∧ P̂i ∧ . . . ∧ Pp ⊗ (Q + Pi ).
+
+i=1
+
+We now introduce the following maps
+δi : S ⊗p ⊗ T → S ⊗(p−1) ⊗ (S + T ) :
+P1 ⊗ . . . ⊗ Pp ⊗ Q 7→ P1 ⊗ . . . ⊗ P̂i ⊗ . . . ⊗ Pp ⊗ (Pi + Q).
+This time we look at the intersection
+of the kernels of the δi . If p = 0 there is
+T
+nothing to intersect so we put 0i=1 ker δi = T .
+We introduce this new machinery because it helps us prove our main result.
+Example. Let S = T = {(1, 1), (1, 0), (0, 1), (0, 0)} then
+x =(1, 0) ⊗ (0, 1) ⊗ (0, 0) − (1, 0) ⊗ (0, 0) ⊗ (0, 1)
+−(0, 0) ⊗ (0, 1) ⊗ (1, 0) + (0, 0) ⊗ (0, 0) ⊗ (1, 1)
+is in ker δ1 ∩ ker δ2 .
+Proposition 12. There is an injective map
+ι:
+
+p
+^
+
+S ⊗ T → S ⊗p ⊗ T : P1 ∧ . . . ∧ Pp ⊗ Q 7→
+
+X
+
+sgn(σ)Pσ(1) ⊗ . . . ⊗ Pσ(p) ⊗ Q
+
+σ∈Sp
+
+and ι(ker δ) ⊆
+
+Tp
+
+i=1
+
+ker δi
+
+Proof. Note that the definition of ι does not depend on any choices. It is injective
+as cancellation is impossible. Let us prove the last assertion. We define
+g:
+
+p−1
+^
+
+S ⊗ (S + T ) → S ⊗(p−1) ⊗ (S + T )
+
+analogously to T
+ι. If we can prove that δi ◦ ι = (−1)i g ◦ δ for all i then it follows
+that ι(ker δ) ⊆ i ker δi . Let x = P1 ∧ . . . ∧ Pp ⊗ Q, we compute
+X
+[
+δi (ι(x)) =
+sgn(σ)Pσ(1) ⊗ . . . ⊗ P
+σ(i) ⊗ . . . ⊗ Pσ(p) ⊗ (Pσ(i) + Q)
+σ∈Sp
+
+g(δ(x)) =
+
+p
+X
+X
+
+(−1)j sgn(τ )Pτ ′ (1) ⊗ . . . ⊗ Pτ ′ (p−1) ⊗ (Pj + Q),
+
+j=1 τ ∈Sp−1
+
+where τ ′ = (j j + 1 . . . p) ◦ τ . Here (j j + 1 . . . p) maps every number from j
+up to p − 1 to itself plus one and everything smaller than j to itself, and p is
+mapped to j. For every τ ∈ Sp−1 we formally put τ (p) = p so that Sp−1 ⊆ Sp .
+There is a bijection from Sp to {1, . . . , p} × Sp−1 mapping σ to (j, τ ) where
+σ ◦ (i i + 1 . . . p) = (j j + 1 . . . p) ◦ τ.
+Note that sgn(σ)(−1)p−i = sgn(τ )(−1)p−j . Using this bijection one sees that
+δi (ι(x)) = (−1)i g(δ(x)). This proves that δi ◦ ι = (−1)i g ◦ δ and hence that
+ι(ker δ) ⊆ ker δi .
+13
+
+For anyT
+sequence P1 , . . . , Pp of points in X = {P |P + T ⊆ S} one defines an
+p
+element of i=1 ker δi :
+X
+xP1 ,...,Pp :=
+sgn(σ)(P1 + Qσ(1) ) ⊗ . . . ⊗ (Pp + Qσ(p) ) ⊗ Qσ(p+1)
+σ∈Sp+1
+
+where Q1 , . . . , Qp+1 is a list of all the points of T . Whenever we use this notation
+we assume that #T = p + 1. Just as the xT
+A are intended to be a basis of ker δ,
+p
+the xP1 ,...,Pp are intended to be a basis of i=1 ker δi .
+
+Lemma 13. Consider the right group action of Sp on the set of sequences
+P1 , . . . , Pp ∈ X by permutation. So P1 , . . . , Pp · σ = Pσ(1) , . . . , Pσ(p) . For a
+given such sequence let A be the monomial P1 . . . Pp , then
+X
+xPσ(1) ,...,Pσ(p) .
+ι(xA ) =
+σ̄∈Stab(P1 ,...,Pp )\Sp
+
+(We sum over the right cosets of the stabilizer.)
+Proof. It is enough to prove this equality in characteristic zero. We have
+Y
+ι(xA )
+aP !
+P
+
+ X
+
+=ι
+sgn(σ)(P1 + Qσ(1) ) ∧ . . . ∧ (Pp + Qσ(p) ) ⊗ Qσ(p+1)
+σ∈Sp+1
+
+=
+
+X
+
+X
+
+sgn(σ ◦ τ )(Pτ (1) + Qσ(τ (1)) ) ⊗ . . . ⊗ (Pτ (p) + Qσ(τ (p)) ) ⊗ Qσ(p+1)
+
+τ ∈Sp σ∈Sp+1
+
+=
+
+X
+
+X
+
+sgn(σ ′ )(Pτ (1) + Qσ′ (1) ) ⊗ . . . ⊗ (Pτ (p) + Qσ′ (p) ) ⊗ Qσ′ (p+1)
+
+τ ∈Sp σ′ ∈Sp+1
+
+=
+
+X
+
+xPτ (1) ,...,Pτ (p)
+
+τ ∈Sp
+
+=
+
+Y
+P
+
+aP !
+
+X
+
+xPτ (1) ,...,Pτ (p)
+
+τ̄ ∈Stab(P1 ,...,Pp )\Sp
+
+The last equality follows because theQorder of the stabilizer is
+result follows by removing the factor P aP !.
+
+Q
+
+P
+
+aP !. The
+
+ι(ker δ) is generated by
+Lemma 14. The span of the xP1 ,...,Pp intersected with T
+p
+the ι(xA ). In particular if the xP1 ,...,Pp are a basis of i=1 ker δi then the xA
+are a basis of ker δ.
+
+Proof. We have a right group action of Sp on S ⊗p ⊗ T , restricting to one on
+T
+p
+i=1 ker δi : any σ ∈ Sp maps P1 ⊗ . . . ⊗ Pp ⊗ Q to sgn(σ)Pσ(1) ⊗ . . . ⊗ Pσ(p) ⊗ Q.
+Clearly any element of ι(ker δ) is fixed by this action. The action of Sp on the
+set of sequences P1 , . . . , Pp in X from the previous lemma is compatible with
+the action on S ⊗p ⊗ T in the sense that xP1 ,...,Pp · σ = xPσ(1) ,...,Pσ(p) . Choose an
+element Rj = P1,j , . . . , Pp,j out of each orbit of the action on sequences.
+Consider an element x of ι(ker δ) that is a linear combination of the xP1 ,...,Pp .
+We prove that it is generated by the ι(xA ). Write it as a linear combination of
+the xP1 ,...,Pp :
+X
+X
+λj,σ̄ xPσ(1),j ,...,Pσ(p),j .
+x=
+j
+
+σ̄∈Stab(Rj )\Sp
+
+14
+
+Applying the action on S ⊗p ⊗ T to this expression permutes the λj,σ̄ , for each
+j. Since x is fixed by the action of Sp and the xP1 ,...,Pp are linearly independent
+(by lemma 18 below), λj,σ̄ doesn’t depend on σ. So x is a linear combination of
+the
+X
+xPσ(1),j ,...,Pσ(p),j = ι(xA ),
+σ̄∈Stab(Rj )\Sp
+
+where A = P1,j . . . Pp,j . Note that we used the previous lemma in the last
+equality. This proves the first assertion. The second assertion follows from the
+first, the injectivity of ι and proposition 11.
+Vp
+Having established a connection between the
+S ⊗T context and the S ⊗p ⊗
+T context, we now focus on the latter.
+Tp
+Definition 15. For any x ∈ i=1 ker δi and i ∈ {1, . . . , p} we define suppi (x)
+to be the convex hull of the set of lattice points occurring in the i-th factor of
+some term of x.
+The following lemma is analogous to lemma 8.
+T
+Lemma 16. Let x ∈ pi=1 ker δi and let ≤ be a lattice pre-order on Zn . Fix an
+i and suppose P ∈ suppi (x) is strictly greater than any other point of suppi (x).
+′
+Let T ′ be the set of non-maximal points in T . Let δ1′ , . . . , δp−1
+: S ⊗(p−1) ⊗ T ′ →
+S ⊗(p−2) ⊗ (S + T ′ ) be defined analogously to δ1 , . . . , δp . Write
+X
+λj P1,j ⊗. . .⊗P (place i)⊗. . .⊗Pp,j ⊗Qj +terms not having P at place i
+x=
+j
+
+y=
+
+X
+
+λj P1,j ⊗ . . . ⊗ Pp,j ⊗ Qj (with P removed from place i).
+
+j
+
+Then y ∈
+
+Tp−1
+j=1
+
+ker δj′ .
+
+We omit the proof since it is analogous to that of lemma 8.
+Example. Let S = T = {(1, 1), (1, 0), (0, 1), (0, 0)} then
+x =(1, 0) ⊗ (0, 1) ⊗ (0, 0) − (1, 0) ⊗ (0, 0) ⊗ (0, 1)
+−(0, 0) ⊗ (0, 1) ⊗ (1, 0) + (0, 0) ⊗ (0, 0) ⊗ (1, 1)
+is in ker δ1 ∩ ker δ2 . If we take the order coming from the linear map L(x1 , x2 ) =
+x2 then PM = (0, 1) is the unique maximum of supp2 (x) = {(0, 1), (0, 0)}.
+Applying the lemma with i = 2 we get y = (1, 0) ⊗ (0, 0) − (0, 0) ⊗ (1, 0).
+x2
+
+x2
+
+PM
+
+supp2 (x)
+
+S
+supp1 (x)
+
+Lemma 17. If p ≥ #T then
+
+S
+x1
+
+x1
+Tp
+
+i=1
+
+ker δi = 0.
+
+Again the proof is analogous to that of theorem 9.
+15
+
+LemmaP
+18. Let δi : S ⊗p ⊗T → S ⊗(p−1) ⊗(S+T ) be the usual maps, p = #T −1.
+combination with non-zero coefficients then
+Let x = j λj xP1,j ,...,Pp,j be a linear
+S
+suppi (x) is the convex hull of j suppi (xP1,j ,...,Pp,j ). In particular the xP1 ,...,Pp
+are linearly independent.
+One can prove this with the same technique as proposition 11.
+Lemma 19. Let ∆ be a lattice polytope of dimension at least two with p + 1
+lattice points and let δi T
+: (Zn )⊗p ⊗ (∆ ∩ Zn ) → (Zn )⊗(p−1) ⊗ Zn be the usual
+p
+maps. Then for all x ∈ i=1 ker δi \{0} and i ∈ {1, . . . , p} we have
+∆ − ∆ ⊆ suppi (x) − suppi (x).
+
+Note that the lemma can fail if ∆ is one-dimensional. If n = 1, ∆ = [0, 2]
+and x = v0 ⊗v0 ⊗v2 −v0 ⊗v1 ⊗v1 −v1 ⊗v0 ⊗v1 +v1 ⊗v1 ⊗v0 then supp1 (x) = [0, 1]
+and the conclusion of the lemma fails.
+Proof. We prove this
+Tpby induction on p. We can suppose i = 1 without loss of
+generality. Let x ∈ i=1 ker δi \{0} and take v ∈ (∆ − ∆)\(supp1 (x) − supp1 (x))
+with integer coordinates. Let P1 , P2 ∈ ∆∩Zn with P2 −P1 = v. Using a unimodular transformation we can suppose P1 = (0, 0, . . . , 0) and P2 = v = (d, 0, . . . , 0)
+for some d > 0.
+Case 1: ∆\[P1 , P2 ] contains more than one lattice point.
+Take a linear map L : Rn → R that does not attain a maximum at P1 or
+P2 on ∆. We take L to attain its maximum on supp2 (x) at only one point.
+This induces a lattice pre-order ≤.
+Tp−1We apply lemma 16 for place 2 to obtain S ′ , T ′ and a non-zero y ∈ j=1 ker(δj′ ) with supp1 (y) ⊆ supp1 (x), so
+[P1 , P2 ] − [P1 , P2 ] * supp1 (y) − supp1 (y). If #T ′ = p we get a contradiction
+with the induction hypothesis and if #T ′ < p we get a contradiction with lemma
+17. We needed the fact that ∆\[P1 , P2 ] contains more than one lattice point
+to ensure that T ′ is of dimension at least two, so we can apply the induction
+hypothesis.
+Case 2: ∆\[P1 , P2 ] contains only one lattice point.
+We can suppose this lattice point is (0, −1, 0, . . . , 0). Note that p = #T −
+1 = d + 1. Define L1 , L2 : Zn → Z as follows: L1 ((x1 , x2 , . . .)) = −x1 ,
+L2 ((x1 , x2 , . . .)) = x1 −dx2 . We claim that L1 (resp. L2 ) attains its maximum on
+supp1 (x) at more than one lattice point of supp1 (x). Indeed, applying lemma 16
+with L1 (resp. L2 ) and place 1 we get T ′ = {(1, 0, 0, . . . , 0), . . . , (d, 0, 0, . . . , 0)}
+(resp. {(0, 0, . . . , 0), . . . , (d − 1, 0, 0, . . . , 0)}). In each case the y we obtain leads
+to a contradiction with lemma 17, unless L1 (resp. L2 ) does not attain its maximum on supp1 (x) at a unique point of supp1 (x) (in which case we cannot apply
+lemma 16). Therefore L1 (resp. L2 ) attains its maximum at more than one
+lattice point of supp1 (x).
+Case 2a: n = 2.
+Let (x1 , y1 ) and (x1 , y1 + 1) be points of supp1 (x) on which L1 reaches its maximum and let (x2 , y2 ) and (x2 + d, y2 + 1) be points of supp1 (x) on which L2
+reaches its maximum. We know by maximality that x2 ≥ x1 and L2 ((x1 , y1 )) ≤
+L2 ((x2 , y2 )). If y2 ≤ y1 then [(x2 , y2 + 1), (x2 + d, y2 + 1)] ⊆ supp1 (x) and
+similarly if y2 ≥ y1 then [(x1 , y1 + 1), (x1 + d, y1 + 1)] ⊆ supp1 (x). In any case
+we get a contradiction with the fact that v = (d, 0) ∈
+/ supp1 (x) − supp1 (x).
+
+16
+
+(x1 , y1 + 1)
+∇L1
+
+(x1 , y1 )
+(x2 + d, y2 + 1)
+(x2 , y2 )
+
+∇L2
+
+Case 2b: n ≥ 3.
+Let π : Zn → Zn−2 bePthe projection that deletes the first two coordinates. So
+π(∆) = 0. Now δ1 = P ∈Zn−2 δP where δP maps Q1 ⊗ . . . ⊗ Qp ⊗ Q to
+Q2 ⊗ . . . ⊗ Qp ⊗ (Q + Q1 ) if π(Q1 ) = P and to zero otherwise.
+
+As π(Q + Q1 ) = π(Q) + π(Q1 ) = P , there can’t be any cancellation between
+δP (x) for different P . Therefore δP (x) = 0 for all P ∈ Zn−2 .
+For any P ∈ Zn−2 and Q0 ∈ π −1 (0) we define a linear automorphism
+αP,Q0 : (Zn )⊗p ⊗ T −→ (Zn )⊗p ⊗ T
+(
+(Q1 + Q0 ) ⊗ . . . ⊗ Qp ⊗ Q
+: Q1 ⊗ . . . ⊗ Qp ⊗ Q 7→
+Q1 ⊗ . . . ⊗ Qp ⊗ Q
+
+if π(Q1 ) = P
+else.
+
+(Recall that by Zn (resp. T ) we mean the vector space with Zn (resp. T ) as a
+basis. So we define the linear map on basis elements and linearly extend them
+over the base field.) For any P, P ′ ∈ Zn−2 and Q0 we define
+α′P,P ′ ,Q0 : (Zn )⊗(p−1) ⊗ T −→ (Zn )⊗(p−1) ⊗ T
+(
+Q1 ⊗ . . . ⊗ Qp−1 ⊗ (Q + Q0 ) if P = P ′
+: Q1 ⊗ . . . ⊗ Qp−1 ⊗ Q 7→
+Q1 ⊗ . . . ⊗ Qp−1 ⊗ Q
+else.
+Then α′P,P ′ ,Q0 ◦ δP ′ = δP ′ ◦ αP,Q0 , from which it follows that αP,Q0 (x) is in
+ker(δP ′ ) for all P ′ ∈ Zn−2 and Q0 ∈ π −1 (0). So αP,Q0 (x) ∈ ker δ1 and if we
+define
+α′′P,Q0 : (Zn )⊗p−1 ⊗ T −→ (Zn )⊗p−1 ⊗ T
+(
+(Q1 + Q0 ) ⊗ . . . ⊗ Qp−1 ⊗ Q
+: Q1 ⊗ . . . ⊗ Qp−1 ⊗ Q 7→
+Q1 ⊗ . . . ⊗ Qp−1 ⊗ Q
+
+if π(Q1 ) = P
+else,
+
+then α′′P,Q0 ◦ δi = δi ◦ αP,Q0 for all i = 2, . . . , p. Therefore αP,Q0 (x) ∈
+
+Tp
+
+i=1
+
+ker δi .
+
+suppP (αP,Q (x))
+0
+
+suppP (x)
+
+supp1 (αP,Q0 (x))
+
+supp1 (x)
+
+For any P ∈ Zn−2 we define suppP (x) as the convex hull of all points
+in π −1 (P ) that occur in the first factor of some term of x. Of course this
+is at most two-dimensional. If we can prove that whenever this support is
+17
+
+non-empty it contains more than 1 point where L1 (resp. L2 ) attains its maximum, then we can perform the same reasoning as in case 2a on suppP (x)
+to obtain a contradiction. If we choose a Q0 with L1 (Q0 ) (resp. L2 (Q0 ))
+high enough, then L1 (resp. L2 ) will attain its maximum on supp1 (αP,Q0 (x))
+only at points of suppP (αP,Q0 (x)). This means that there are at least two
+points of suppP (αP,Q0 (x)) where L1 (resp. L2 ) attains its maximum. Since
+suppP (αP,Q0 (x)) = Q0 + suppP (x) the same is true for suppP (x), so we are
+done.
+Theorem 20. If S = ∆′ ∩ Zn , T = ∆ ∩ Zn and p = #T − 1 with ∆, ∆′
+convex and ∆ a bounded lattice polytope of dimension greater than one,
+Tpthen the
+expressions xP1 ,...,Pp with Pi ∈ X := {P |P + T ⊆ S} are a basis of i=1 ker δi
+and hence the xA for monomials A of degree p with variables in X are a basis
+of ker δ.
+Proof. Let H be the set of all bounded convex lattice polytopes in Zn that are
+either of dimension greater than one or have just two lattice points. By lemma
+14 we only have to prove
+Tpthe first statement. In fact we only have to prove that
+the xP1 ,...,Pp generate i=1 ker δi by lemma 18. We prove it for all ∆ ∈ H by
+induction on p = #∆ ∩ Zn − 1.
+Suppose first p = 1, then T has just two points and we have to show that
+the kernel of δ1 : S ⊗ T → S + T is generated by expressions of the form
+(P + Q1 ) ⊗ Q2 − (P + Q2 ) ⊗ Q1 where T = {Q1 , Q2 } and P ∈ X. Consider
+the map f : S × T → S + T of sets given by addition of lattice points, then
+every point P ′ of S + T is reached by at most two elements of S × T namely
+(P + Q1 , Q2 ) and (P + Q2 , Q1 ) with P = P ′ − Q1 − Q2 . We can write S ⊗ T as
+the direct sum of the linear span of each f −1 (P ) with P ∈ S + T . The kernel of
+δ1 is the direct sum of the kernels of δ1 restricted to each span of f −1 (P ). The
+result easily follows.
+Now for the induction step suppose p ≥ 2. Let QM be any extreme point of ∆
+such that conv(∆ ∩ Zn \{QM }) ∈ H. Using some unimodular transformations
+one can squeeze ∆ into (R≥0 )n in such a way that QM = (xM , 0, . . . , 0) and all
+other points of ∆ have first coordinate smaller than xM . We can also make sure
+that the smallest first coordinate in ∆ is zero.
+(One can do all this as follows: first one chooses a linear form L : Zn → Z
+that attains its maximum on ∆ only at QM . One can choose L with integer coefficients with no prime factors that they all share. One then chooses
+∼
+=
+a unimodular transformation U1 : Zn → Zn whose first component is L.
+Then U1 (QM ) has its first coordinate greater than that of any other point
+of U1 (∆). Next one chooses a unimodular transformation U2 of the form
+(x1 , . . . , xn ) 7→ (x1 , x2 − a2 x1 , . . . , xn − an x1 ) with a2 , . . . , an large enough so
+that all the other coordinates of U2 (U1 (QM )) are smaller than those of the
+other points of U2 (U1 (∆)). Finally one uses a translation to map U2 (U1 (QM ))
+to (xM , 0, . . . , 0) where xM is the greatest first coordinate on U2 (U1 (∆)) minus
+the smallest.)
+Claim: It is enough to prove the statement in the case where ∆′ = Rn .
+Suppose it is true for ∆′ = Rn , we prove it for arbitrary ∆′ . If x ∈
+Proof.
+Tp
+ker
+δi then it is a linear combination of some xP1 ,...,Pp . By lemma 18 their
+i=1
+supports are contained in the supports of x, hence in ∆′ .
+Henceforth we assume ∆′ = Rn . We put the lexicographical ordering on (Z≥0 )n ,
+18
+
+meaning (x1 , . . . , xn ) < (x′1 , . . . , x′n ) if for the smallest i with xi 6= x′i we have
+xi < x′i .
+Tp
+So suppose there exists an x ∈ i=1 ker δi that is not a linear combination of
+the xP1 ,...,Pp . We can translate the first factor so that supp1 (x) ⊆ (R≥0 )n . We
+take x so that the lexicographic maximum of supp1 (x) is minimal. (We can do
+this because there are no lexicographic infinite descents in (Z≥0 )n .) We will
+′
+find a contradiction. Let PM
+be the maximum of supp1 (x) and e its first coorn
+dinate. Let Qm ∈ ∆ ∩ Z be some point with first coordinate zero. By lemma
+19 QM − Qm ∈ ∆ − ∆ ⊆ supp1 (x) − supp1 (x). It follows that e ≥ xM . So
+′
+PM := PM
+− QM ∈ (R≥0 )n because its first coordinate e − xM is ≥ 0 and all
+′
+the other coordinates are equal to those of PM
+.
+x2
+
+x2
+′
+PM
+
+supp1 (x)
+
+Qm
+e
+
+∆
+QM
+xM
+
+x1
+
+x1
+
+T
+n ⊗(p−1)
+′
+′
+⊗
+We now apply lemma 16 to x to obtain y ∈ p−1
+i=1 ker δi where δi : (Z )
+′
+n ⊗(p−2)
+n
+′
+T → (Z )
+⊗ Z are the usual maps and where T = T \{QM }. This y
+satisfies
+′
+′
+x = PM
+⊗ y plus terms whose first factor is < PM
+.
+By induction
+y=
+
+X
+
+λj yP1,j ,...,Pp−1,j , for some Pi,j ∈ Zn .
+
+j
+
+Using the fact that xPM ,P1,j ,...,Pp−1,j = (PM + QM ) ⊗ yP1,j ,...,Pp−1,j plus terms
+′
+′
+whose first factor is smaller than PM + QM = PM
+we see that PM
+is the
+′
+maximum of supp1 (x ) where
+X
+λj xPM ,P1,j ,...,Pp−1,j .
+x′ =
+j
+
+′
+In x − x′ the terms with PM
+cancel so the maximum of supp1 (x − x′ ) is smaller
+′
+than PM , contradicting the minimal choice of x. (The fact that PM ∈ (R≥0 )n
+is important because it ensures that supp1 (x − x′ ) ⊆ (R≥0 )n .)
+The last assertion of the theorem follows from lemma 14.
+
+Corollary 21. Let ∆ and ∆′ be convex lattice polytopes with ∆ of dimension
+greater than 1 and T = ∆ ∩ Zn , S = ∆′ ∩ Zn and p = #T − 1. If
+δ:
+
+p
+^
+
+S⊗T →
+
+p−1
+^
+
+S ⊗ (S + T )
+
+is the usual map then the dimension of ker δ is
+S}.
+
+p+#X−1
+p
+
+
+
+where X = {P |P +T ⊆
+
+This follows
+because the number of degree p monomials with variables in X
+
+is p+#X−1
+.
+We
+end with the case when ∆ is 1-dimensional. This time the
+p
+formula works for all p.
+19
+
+Theorem 22. Let ∆ = conv((0, 0, . . . , 0), (d, 0, . . . , 0)) with d ≥ 0 and let
+∆′ ⊆ Zn a bounded convex lattice polygon, then for all p ≤ d + 1 the dimension of the kernel of the usual map δ is (d − p + 1) #X
+where X =
+p
+n
+′
+{P |P + {(0, . . . , 0), (1, 0, . . . , 0)} ⊆ S}, S = ∆ ∩ Z .
+
+Proof. Let T = ∆ ∩ Zn . Put a lattice order ≤ on Zn such that (1, 0, . . . , 0) >
+(0, . . . , 0). Let I = {(0, 0, . . . , 0), (1, 0, . . . , 0)}. For any P1 < . . . < Pp in X and
+Q ∈ T with first coordinate in {p, . . . , d} we define
+X
+(1)
+(−1)i1 +...+ip (P1 + i1 ) ∧ . . . ∧ (Pp + ip ) ⊗ (Q − i1 − . . . − ip ),
+i1 ,...,ip ∈I
+
+where we abusively write (−1)i1 +...+ip for the power of −1 whose exponent is
+the first coordinate of i1 + . . . + ip . These expressions are in the kernel of δ. We
+will prove that they are a basis of the kernel which proves the theorem because
+there are exactly (d − p + 1) #X
+of these. We will do so by induction on #S.
+p
+The case where p = 0 is easy as the domain and kernel of δ are both just T
+and have the points in T as a basis. So suppose p ≥ 1 and let x ∈ ker δ, we
+will show that it is a linear combination of expressions like (1). Let PM be
+the maximum of S. If PM ∈
+/ supp(x) we apply the induction hypothesis to
+S ′ = S\{PM } and we are done. So assume PM ∈ supp(x), then by lemma 8
+we can
+x = PM ∧ y plus terms not containing PM in the ∧ part. Here
+Vp write
+S ′ ⊗ T ′ where T ′ = {(0, 0, . . . , 0), . . . , (d − 1, 0, . . . , 0)}. Note also that
+y∈
+PM − (1, 0, . . . , 0) ∈ S as otherwise the terms in δ(x) where PM is removed from
+the ∧ would have nothing to cancel against. This is because these would be the
+only terms of δ(x) where the point after the ⊗ agrees with PM in all but the
+first coordinate. Applying the induction hypothesis to y we get
+X
+X
+λj
+(−1)i1 +...+ip−1
+y=
+j
+
+i1 ,...,ip−1 ∈I
+
+(P1,j + i1 ) ∧ . . . ∧ (Pp−1,j + ip−1 ) ⊗ (Qj − i1 − . . . − ip−1 ).
+
+Therefore x can be written as (−1)p x′ plus terms not containing PM in the ∧
+part where
+X
+X
+λj
+(−1)i1 +...+ip
+x′ =
+j
+
+i1 ,...,ip ∈I
+
+(P1,j + i1 ) ∧ . . . ∧ (Pp−1,j + ip−1 ) ∧ (PM − (1, 0, . . . , 0) + ip )
+⊗ (Qj + (1, 0, . . . , 0) − i1 − . . . − ip ).
+
+So we can apply the induction hypothesis to x − (−1)p x′ to conclude that x is
+a linear combination of expressions like (1).
+Finally, we show linear independence of the expressions, P
+again by induction
+on #S. the case p = 0 is again trivial, let p ≥ 1. Let
+i λi xi be a linear
+combination of our expressions that yields zero. Each xi containing PM in its
+support can be written as PM ∧yi plus terms not containing PM . Then up to sign
+yi is an expression like (1) but with p − 1 instead of p and with the set S\{PM }
+in stead of S. By the induction hypothesis the yi are linearly independent.
+But then it follows that PM cannot occur at all in the wedge part of any xi ,
+otherwise the linear combination could not yield zero. And then one again
+applies the induction hypothesis with S\{PM } to obtain a contradiction.
+20
+
+References
+[1] Marian Aprodu and Jan Nagel, Koszul cohomology and algebraic geometry, University Lecture Series 52, American Mathematical Society, 125 pp.
+(2010)
+[2] Winfried Bruns, Aldo Conca, Tim Römer, Koszul homology and syzygies of
+Veronese subalgebras, Mathematische Annalen 351(4), pp. 761-779 (2011)
+[3] Wouter Castryck, Filip Cools, Jeroen Demeyer, Alexander Lemmens, Computing graded Betti tables of toric surfaces, preprint
+[4] Wouter Castryck, Filip Cools, Alexander Lemmens, Canonical syzygies of
+smooth curves in toric surfaces, preprint
+[5] David Cox, John Little and Hal Schenck, Toric varieties, Graduate Studies
+in Mathematics 124, American Mathematical Society (2011)
+[6] Lawrence Ein, Daniel Erman, Robert Lazarsfeld, A quick proof of nonvanishing for asymptotic syzygies, Algebraic Geometry 3(2), pp. 211-222
+(2016)
+[7] Lawrence Ein, Robert Lazarsfeld, Asymptotic Syzygies of Algebraic Varieties, Inventiones Mathematicae 190, pp. 603-646 (2012)
+[8] David Eisenbud, The geometry of syzygies. A second course in commutative algebra and algebraic geometry, Graduate Texts in Mathematics 229,
+Springer-Verlag, New York (2005)
+[9] Francisco J. Gallego and Bangere P. Purnaprajna, Some results on rational surfaces and Fano varieties, Journal für die Reine und Angewandte
+Mathematik 538, pp. 25-55 (2001)
+[10] Ornella Greco and Ivan Martino, Syzygies of the Veronese modules, Communications in Algebra 44(9), pp. 3890-3906
+[11] Milena Hering, Syzygies of toric varieties, Ph.D. thesis, University of Michigan (2006)
+[12] Frank Loose, On the graded Betti numbers of plane algebraic curves,
+Manuscripta Mathematica 64(4), pp. 503-514 (1989)
+[13] Elena Rubei, A result on resolutions of Veronese embeddings, Annali
+dell’Università di Ferrara Sezione VII. Scienze Matematiche 50, pp. 151-165
+(2004)
+[14] Giorgio Ottaviani, Raffaela Paoletti, Syzygies of Veronese embeddings,
+Compositio Mathematica 125(1), pp. 31-37 (2001)
+[15] Euisung Park, On syzygies of Veronese embedding of arbitrary projective
+varieties, Journal of Algebra 322(1), pp. 108-121 (2009)
+[16] Hal Schenck, Lattice polygons and Green’s theorem, Proceedings of the
+American Mathematical Society 132(12), pp. 3509-3512 (2004)
+[17] Frank-Olaf Schreyer, Syzygies of canonical curves and special linear series,
+Mathematische Annalen 275, pp. 105-138 (1986)
+
+21
+
+
+
+Summary:
+This research paper covers the following topic: arXiv:1701.01393v5 [math.AC] 24 Aug 2017
+
+On the n-th row of the graded Betti table of an
+n-dimensional toric variety
+Alexander Lemmens
+
+Abstract
+We prove an explicit formula for the first non-zero entry in the n-th
+row of the graded Betti table of an n-dimensional projective toric variety
+associated to a normal polytope with at least one interior lattice point.
+This applies to Veronese embeddings of Pn . We also prove an explicit
+formula for the entire n-th row when the interior of the polytope is onedimensional. All results are valid over an arbitrary field k.
+
+Index terms— syzygies, toric varieties, lattice polytopes, Koszul cohomology
+
+Contents
+1 Introduction
+
+1
+
+2 Toric varieties and graded Betti tables
+
+4
+
+3 Combinatorial proof
+
+8
+
+1
+
+Introduction
+
+Let k be a field. In this article we study syzygies of projectively embedded
+toric varieties X/k. More precisely, we give explicit formulas in terms of the
+combinatorics of the defining polytope for certain graded Betti numbers, which
+appear in the minimal free resolution of the homogeneous coordinate ring of
+X as a graded module, obtained by repeatedly taking syzygies. These Betti
+numbers are typically gathered in the graded Betti table:
+0
+1
+2
+3
+..
+.
+
+0
+1
+1
+0
+0 κ1,1
+0 κ1,2
+0 κ1,3
+..
+..
+.
+.
+
+2
+0
+
+3
+0
+
+4
+0
+
+κ2,1
+κ2,2
+κ2,3
+..
+.
+
+κ3,1
+κ3,2
+κ3,3
+..
+.
+
+κ4,1
+κ4,2
+κ4,3
+..
+.
+
+...
+...
+...
+...
+...
+
+Here κp,q is the number of degree p + q summands of the p-th module in
+the resolution. One alternatively defines κp,q as the dimension of the Koszul
+1 The
+final
+publication
+is
+http://dx.doi.org/10.1007/s10801-017-0786-y
+
+available
+
+1
+
+at
+
+springer
+
+via
+
+cohomology space Kp,q (X, O(1)). The graded Betti table is expected to contain
+a wealth of geometric information and is the subject of several important open
+problems and conjectures. But the vast part of it is poorly understood.
+For a number of entries an explicit formula in terms of the defining lattice
+polytope was known before. Examples of this can be found in [3, 11]. But for
+this paper the most relevant result is that of Schenck, who proved [16] that for
+projective toric surfaces coming from a lattice polygon with b lattice boundary
+points κp,2 = 0 for all p ≤ b − 3. Hering proved in [11, Theorem IV.20] using
+a theorem of Gallego-Purnaprajna [9, Theorem 1.3] that the next entry κb−2,2
+is not zero. Both results were already known in the case this polygon is equal
+to the triangle with vertices (0, d), (d, 0), (0, 0). This polygon gives the d-fold
+Veronese embedding of the projective plane, for which Loose [12] proved that
+the number of zeroes in the quadratic strand equals 3d−3 (not counting κ0,2 = 0
+as a zero). This result was independently rediscovered by Ottaviani and Paoletti
+[14], and they generalized this to the following conjecture:
+Conjecture 1. For the d-fold Veronese embedding of n-dimensional projective
+space κp,q = 0 whenever p ≤ 3d − 3 and q ≥ 2.
+This is known as property Np with p = 3d − 3. For d > n this is generalized
+by the following conjecture [7, p. 643, Conjecture 7.6] which the authors already
+proved for q = n:
+Conjecture 2. If we take a minimal free resolution of the line bundle OPn (b)
+on the Veronese embedding of Pn of degree d with d ≥ b + n + 1 then κp,q = 0
+for all 1 ≤ q ≤ n and
+
+ 
+
+d+q
+d−b−1
+p<
+−
+− q.
+q
+q
+Syzygies of Veronese embeddings are still an active area of research [2, 6, 10,
+15, 13]. For a short introduction to syzygies and to toric varieties we refer the
+reader to the next section.
+We will not prove this conjecture, but we will prove an explicit formula for
+κ(d+n)−(d−b−1)−n,n which is the first non-zero entry on the n-th row. We also
+n
+n
+prove a formula for the first non-zero entry in the n-th row of the Betti table
+of any projectively normal toric variety of dimension n, if this row is not zero.
+Note that the n-th row is the last non-zero row if it is not zero. We will work
+over an arbitrary field k. For a convex lattice polytope ∆ we denote by ∆(1)
+the convex hull of the lattice points in the topological interior of ∆.
+
+∆(1)
+
+We are now ready to formulate our main result:
+2
+
+Theorem 3. Let X be a toric variety coming from an n-dimensional normal
+polytope ∆ ⊆ Rn . Let ∆(1) be the interior polytope of ∆. Let S = ∆ ∩ Zn ,
+T = ∆(1) ∩ Zn and N = #S, N (1) = #T .
+• If p < N − N (1) − n then κp,n = 0.
+
+(1)
+−2
+• If ∆(1) is not 1-dimensional then κN −N (1) −n,n = t+N
+where t is the
+N (1) −1
+number of translations of T that are contained in S. (If N (1) = 0 then
+κN −N (1) −n,n = 0.)
+
+N −ℓ
+• If ∆(1) is 1-dimensional then ∀p ≥ 0: κp+N −N (1) −n,n = (p + 1) N (1)
+−p−1
+where ℓ is the number of lines parallel to ∆(1) that are not disjoint with
+S.
+The first statement actually follows from Green’s linear syzygy theorem [8,
+Theorem 7.1] combined with Koszul duality. The second statement already appeared for n = 2 as a conjectural formula in [3], where more information on
+Koszul cohomology of toric surfaces can be found. Recall that κp,q = 0 whenever q > n, and note that if ∆(1) = ∅ then κp,q = 0 whenever q ≥ n as follows
+from [11, Proposition IV.5 p. 17-18].
+Theorem 4. In the context of conjecture 2 the first non-zero entry on the n-th
+row equals
+
+ b+2n+1
+
++ d−b−1
+−2
+n
+n
+
+κ(d+n)−(d−b−1)−n,n =
+.
+d−b−1
+n
+d
+−1
+n
+These two theorems will be proved at the end of section 2 using results from
+section 3.
+
+Corollary 5. For toric surfaces coming from polygons of lattice width two, we
+know the entire Betti table explicitly.
+
+
+
+
+
+
+N −3
+N −1
+N −3
+κp,2 = max(p−N +N (1) +3, 0)
+, κp,1 = κp−1,2 +p
+−2A
+p
+p+1
+p−1
+where A = N/2 + N (1) /2 − 1 is the area of ∆. Of course κ0,0 = 1 and everything
+else is zero.
+The second formula comes from [3, lemma 1.3], the first follows directly from
+our theorem 3.
+Using [4, Theorem 1.3] one can deduce the following formula for the graded
+Betti table of the canonical model of a tetragonal curve in a toric surface:
+
+
+
+ X
+2
+g−3
+g−3
+max(p − bi − 1, 0)
+,
+κg−p−2,1 = κp,2 = (g − p − 2)
++
+p
+p−2
+i=1
+where b1 , b2 are the tetragonal invariants introduced by Schreyer in [17, p. 127],
+and g is the genus. Actually this formula is true for all tetragonal curves as
+follows from the explicit minimal free graded resolution in Schreyer’s article.
+
+3
+
+We include this explicit formula because it is not easy to find in the literature.
+In section 2 we explain toric varieties, syzygies, Koszul cohomology and we
+prove these theorems using results from section 3. We use Koszul duality [1, p.
+21] which expresses Betti numbers on the n-th row in terms of Betti numbers
+on the first row of the Betti table of the Serre dual line bundle.
+The core of the article is section 3 where we construct an explicit basis for
+the last non-zero entry
+L on the first row of the graded Betti table of any graded
+module of the form q≥0 H 0 (qL + M ) for line bunldes L, M with H 0 (M ) = 0,
+H 0 (L) 6= 0, H 0 (L + M ) 6= 0 on any normal projective toric variety. This comes
+down to constructing a basis of the kernel of the map
+p
+^
+
+H 0 (L) ⊗ H 0 (L + M ) →
+
+p−1
+^
+
+H 0 (L) ⊗ H 0 (2L + M )
+
+with p = dim H 0 (L + M )− 1. Theorems 3 and 4 can then be proved from results
+from section 3, namely theorem 9 (which actually also follows from Green’s linear
+syzygy theorem [8, Theorem 7.1]), corollary 21 and theorem 22.
+Acknowledgements
+This article is part of my Ph.D thesis which is funded by the Research Foundation Flanders (FWO). It was my colleagues Wouter Castryck and Filip Cools
+who noticed patterns in Betti tables of certain toric surfaces, which motivated
+me to find an explicit basis. I am also grateful to the referee for carefully reading
+my article and making many useful suggestions. I also want to thank Milena
+Hering for bringing the article [7] to my attention.
+
+2
+
+Toric varieties and graded Betti tables
+
+Projectively normal toric varieties
+We work over an arbitrary field k. By lattice points we mean points of Zn .
+Projective toric varieties are built out of polytopes ∆ ⊆ Rn that are the convex
+hull of a finite set of lattice points. This works as follows. Suppose ∆ is ndimensional and let P1 , . . . , PN∆ be a list of all lattice points of ∆, we define an
+embedding
+φ∆ : (A1 \{0})n → PN∆ −1 : (λ1 , . . . , λn ) 7→
+
+n
+Y
+
+i=1
+
+P
+
+λi 1,i : . . . :
+
+n
+Y
+
+i=1
+
+PN∆ ,i
+
+λi
+
+
+
+,
+
+where Pj,i is the i-th coordinate of Pj . Let X∆ be the closure of the image of
+φ∆ . If it happens that a∆ ∩ Zn + b∆ ∩ Zn = (a + b)∆ ∩ Zn for all positive
+integers a, b, then the polytope is called normal. In this case the projective toric
+variety corresponding to ∆ is just X∆ and it is projectively normal.
+Example.
+The d-fold Veronese embedding of projective space is given by a polytope of the
+following form:
+∆ = {(x1 , . . . , xn ) ∈ (R≥0 )n |x1 + . . . + xn ≤ d}
+4
+
+This gives the Veronese embedding of Pn into PN −1 where N = #∆ ∩ Zn =
+n+d
+d . For instance if n = 2 and d = 2 we get the embedding
+A1 \{0} × A1 \{0} → P5 : (x, y) 7→ (x2 : xy : x : y 2 : y : 1).
+
+The monomials x2 , xy, x, y 2 , y, 1 correspond to the lattice points of the triangle
+∆ with vertices (2, 0), (0, 2), (0, 0).
+y2
+y
+
+xy
+
+1
+
+x
+
+x2
+
+When taking the Zariski closure of the image this corresponds to the standard
+Veronese embedding
+P2 → P5 : (x : y : z) 7→ (x2 : xy : xz : y 2 : yz : z 2 ).
+If ∆ is not normal then one can still take integer multiples q∆, q ≥ 1, which
+will be normal for sufficiently large q. One can then associate to ∆ the toric
+variety Xq∆ where q is large enough so that q∆ is normal. This variety does not
+depend on q (but its embedding does). However for simplicity we will restrict
+to the case when ∆ is normal. The homogeneous coordinate ring of X∆ is given
+by
+M
+M
+Vq∆ =
+H 0 (X, qL),
+q≥0
+
+q≥0
+
+where by Vq∆ we mean the vector space spanned by the monomials (possibly
+with negative exponents) xi11 . . . xinn corresponding to lattice points (i1 , . . . , in ) ∈
+q∆. By L we mean the very ample line bundle coming from the embedding into
+projective space.
+
+Graded Betti tables
+Given any projective variety X with homogeneous coordinate ring R =
+H 0 (X, qL) we can consider the graded Tor modules
+ToriS ∗ H 0 (X,L) (R, k).
+
+L
+
+q≥0
+
+Note that R is a graded module over the symmetric algebra S ∗ H 0 (X, L). These
+graded Tor modules can be computed either by taking a graded free resolution
+of R (syzygies) or by taking a graded free resolution of k (Koszul cohomology).
+We will mainly work with the latter. The graded Betti table is a table of nonnegative integers κp,q , in the p-th column and the q-th row, where p, q ≥ 0. They
+are defined as the dimension over k of the degree p+q part of TorpS ∗ H 0 (X,L) (R, k).
+In general the table has the following shape:
+0
+1
+2
+3
+..
+.
+
+0
+1
+1
+0
+0 κ1,1
+0 κ1,2
+0 κ1,3
+..
+..
+.
+.
+
+2
+0
+
+3
+0
+
+4
+0
+
+κ2,1
+κ2,2
+κ2,3
+..
+.
+
+κ3,1
+κ3,2
+κ3,3
+..
+.
+
+κ4,1
+κ4,2
+κ4,3
+..
+.
+
+5
+
+...
+...
+...
+...
+...
+
+Example.
+When ∆ is the convex hull of (2, 0), (0, 2), (0, 0) we have the minimal graded
+free resolution of R:
+d
+
+d
+
+d
+
+d
+
+1
+2
+3
+0
+S ∗ V∆∩Z2 −→
+F1 −→
+F2 −→
+0 −→ F3 −→
+R.
+
+Here V∆∩Z2 is the vector space spanned by the monomials x2 , xy, x, y 2 , y, 1 corresponding to the lattice points of ∆. The symmetric algebra S ∗ V∆∩Z2 is the
+polynomial ring in 6 variables x(2,0) , x(1,1) , x(1,0) , x(0,2) , x(0,1) , x(0,0) and is the
+homogeneous coordinate ring of P5 . The image of d0 corresponds to the ideal
+cutting out the Veronese surface. This ideal is generated by six elements:
+x(2,0) x(0,2) − x2(1,1) ,
+
+x(0,2) x(0,0) − x2(0,1) ,
+
+x(2,0) x(0,0) − x2(1,0) ,
+
+x(2,0) x(0,1) − x(1,0) x(1,1) , x(1,0) x(0,2) − x(0,1) x(1,1) , x(1,1) x(0,0) − x(1,0) x(0,1) .
+These constitute a minimal set of generators of the ideal. So F1 is a free graded
+module of rank six over the polynomial ring S ∗ V∆∩Z2 where the basis elements
+all have degree two and are mapped by d0 to the generators of the ideal. This
+makes sure that d0 is a degree-preserving morphism of modules. This means
+that κ1,1 = 6.
+The image of d1 consists of the relations between these generators, called syzygies. It turns out that there is a minimal generating set of eight syzygies of
+degree 3, so that F2 is a rank 8 graded free module where the basis elements
+have degree 3. So κ2,1 = 8. It turns out that F3 has rank 3 where the basis
+elements have degree 4. This gives the graded Betti table:
+0 1
+0 1 0
+1 0 6
+2 0 0
+.. .. ..
+. . .
+
+2
+0
+8
+0
+..
+.
+
+3
+0
+3
+0
+..
+.
+
+4
+0
+0
+0
+..
+.
+
+...
+...
+...
+...
+
+Note that κ0,0 = 1 because the polynomial ring S ∗ V∆∩Z2 is a free module of
+rank one over itself with the monomial 1 as a generator.
+
+Koszul cohomology
+Let L, N be line bundles on a complete variety
+S ∗ V = S ∗ H 0 (X, L) be
+L X. Let
+0
+0
+the symmetric algebra over H (X, L), then
+q≥0 H (X, qL + N ) is a graded
+module over S ∗ V . We define the Koszul cohomology space Kp,q (X, N, L) as the
+homology of the following sequence:
+p+1
+^
+
+δp+1
+
+V ⊗ H 0 (X, (q − 1)L + N ) −→
+δp
+
+−→
+
+p
+^
+
+V ⊗ H 0 (X, qL + N )
+
+p−1
+^
+
+V ⊗ H 0 (X, (q + 1)L + N )
+
+Pp
+where δp (v1 ∧ . . . ∧ vp ⊗ w) = i=1 (−1)i v1 ∧ . . . ∧ vˆi ∧ . . . ∧ vp ⊗ (vi w). The
+vˆi indicates that vi is removed from the wedge product. When N = 0 we
+write Kp,q (X, L) = Kp,q (X, 0, L). We denote the dimension of Kp,q (X, N, L)
+6
+
+(resp. Xp,q (X, L)) by κp,q (X, N, L) (resp. κp,q (X, L)). If L is the very ample
+line bundle coming from a projective embedding this agrees with our earlier
+definition of κp,q using syzygies.
+Example.
+For our Veronese example with n = d = 2 we will construct an explicit element
+of the cohomology space K2,1 (X, L):
+y 2 ∧ xy ⊗ xz − y 2 ∧ yz ⊗ x2 + xy ∧ yz ⊗ yx ∈
+
+2
+^
+
+V∆ ⊗ V∆ ,
+
+which is in the kernel of δ2 , so it defines an element of K2,1 (X, L).
+We now turn to the proof of theorem 1 and corollary 2. To any n-dimensional
+convex lattice polytope ∆ ⊆ Rn one can associate the inner normal fan Σ [5,
+p. 321] whose rays ρ are in one-to-one correspondence with the facets of ∆ and
+the torus-invariant
+prime divisors Dρ . In general for any torus-invariant divisor
+P
+D = ρ aρ Dρ the vector space H 0 (X, D) has a basis that naturally corresponds
+to {P ∈ Zn |∀ρ ∈ Σ(1) : hP, ρi ≥ −aρ } where Σ(1) is the set of rays of the
+fan Σ. Multiplication of these global sections corresponds to coordinatewise
+addition of lattice points. The divisor whose global sections correspond to ∆
+gives the very ample line bundle of our embedding into projective space. Note
+that in this setting nothing changes when extending the field k. In the next
+proof we assume k algebraically closed. We also use in the following proof
+that taking the pull-back of a line bundle through a birational morphism of
+projective normal
+varieties preserves global
+P
+P sections. We will also use the fact
+that adding ρ∈Σ(1) −Dρ to a divisor ρ aρ Dρ amounts to taking the interior
+of the corresponding polytope (∗).
+Proof of theorem 3 using results from the next section. This will rely on Koszul
+duality which requires smoothness, so letP
+X ′ → X be a toric resolution of singularities as in [5, p. 515-519] and let K = ρ∈Σ′ (1) −Dρ be the canonical divisor
+of X ′ . Let L be the line bundle on X coming from its projective embedding.
+The pull-back of L to X ′ (which we also denote by L) is globally generated on
+X ′ and hence nef. By Demazure vanishing [5, p. 410] H i (X ′ , qL) = 0, ∀i, q ≥ 1.
+By Koszul duality [1, p. 21] we have
+κN −1−n−p,n (X, L) = κN −1−n−p,n (X ′ , L) = κp,1 (X ′ , K, L), ∀p ≥ 0.
+The first equality follows because H 0 (X, qL) = H 0 (X ′ , qL), ∀q ≥ 0 as taking
+the pull-back of L through X ′ → X preserves global sections. We claim that
+κp,1 (X ′ , K, L) is the dimension of the kernel of the following map:
+δ:
+
+p
+^
+
+VS ⊗ VT →
+
+p−1
+^
+
+VS ⊗ V(2∆)(1) ∩Zn
+
+where by VS (resp. VT ) we mean a vector space with S (resp. T ) as a basis.
+This is because H 0 (X ′ , K) = 0 and H 0 (X ′ , L+K) corresponds to T = ∆(1) ∩ Zn
+Vp−1
+VS ⊗VS+T .
+which we know by (∗). Note that the image of δ is contained in
+Now all the results of the theorem follow from theorem 9, corollary 21 and
+theorem 22, except when p = 0 and N (1) = 1, but then δ = 0 and the result is
+easy. For the case where ∆(1) is one-dimensional, note that ℓ (as in theorem 3)
+equals N − #X, with X as in theorem 22.
+7
+
+By the same duality as in the proof of theorem 3 it follows that κp,q = 0
+whenever q > n.
+Proof of theorem 4. Denote by κp,q (b; d) the dimension of the Kuszul cohomology of the graded module
+M
+H 0 (OPn (b + id)),
+i≥0
+
+Let N =
+
+
+n+d
+n
+
+be the number of lattice points in dΣ where
+Σ = {(x1 , . . . , xn ) ∈ R≥0 |x1 + . . . + xn ≤ d}
+
+is the standard simplex of dimension n. As in the proof of theorem 3 we have
+duality:
+κp,n (b; d) = κN −n−p−1,1 (−b − n − 1; d).
+Strictly speaking, we cannot apply theorem [1, p. 21], but the proof obviously
+generalizes and the vanishing condition will be satisfied because H 1 , . . . , H n−1
+of any line bundle on Pn will vanish. This κN −n−p−1,1 (−b − n − 1; d) is the
+dimension of the kernel of
+N −n−p−1
+^
+
+S⊗T →
+
+N −n−p−2
+^
+
+S ⊗ S + T,
+
+where T = (d − b − n − 1)Σ ∩ Zn and S = dΣ ∩ Zn so that X = (b + n + 1)Σ ∩ Zn.
+Applying theorem 9 we find that κp,n (b; d) = 0 whenever N − n − p − 1 ≥ #T =
+
+
+
+d−b−1
+, or equivalently p < n+d
+− d−b−1
+− n. The formula for κp,n (b; d)
+n
+n
+n
+
+
+d−b−1
+when p = n+d
+−
+−
+n
+follows
+from
+corollary
+21.
+n
+n
+
+3
+
+Combinatorial proof
+
+In this section we do not require our polytopes to be normal. From now on instead of working with spaces of monomials VS , VT etcetera, we replace monomials xi11 . . . xinn by the corresponding lattice point (i1 , . . . , in ). Let S and T ⊆ Zn
+with T finite, let p ≥ 0. We abusively write S (resp. T ) for a vector space with
+S (resp. T ) as a basis. We are interested in the kernel of the following map:
+δ:
+
+p
+^
+
+P1 ∧ . . . ∧ Pp ⊗ Q 7−→
+
+S⊗T →
+p
+X
+
+p−1
+^
+
+S ⊗ (S + T ) :
+
+(−1)i P1 ∧ . . . ∧ P̂i ∧ . . . ∧ Pp ⊗ (Q + Pi ),
+
+i=1
+
+where
+in Zn .
+
+V−1
+
+of a vector space is zero. By Q+Pi we mean coordinate-wise addition
+
+Definition
+6. Let S and T be finite subsets of Zn and p ≥ 0 an integer. If
+Vp
+S⊗T then x can be uniquely written (up to order) as a linear combination
+x∈
+(with non-zero coefficients) of expressions of the form P1 ∧ . . . ∧ Pp ⊗ Q with
+P1 , . . . , Pp ∈ S, Q ∈ T and P1 > . . . > Pp for some total order on S. We define
+the support of x, denoted supp(x), as the convex hull of the set of points Pi
+occurring in the wedge part of the terms of x.
+8
+
+Definition 7. A lattice pre-order on Zn is a reflexive transitive relation ≤
+on Zn such that ∀P1 , P2 ∈ Zn : P1 ≤ P2 or P2 ≤ P1 and ∀P1 , P2 , P3 ∈ Zn : if
+P1 ≤ P2 then P1 +P3 ≤ P2 +P3 . We call ≤ a lattice order if it is anti-symmetric.
+One way to obtain a lattice pre-order is to take a linear map L : Rn → R
+and set P1 ≤ P2 if L(P1 ) ≤ L(P2 ). If the coefficients defining L are linearly
+independent over Q then it defines a lattice order. We write P1 < P2 if P1 ≤
+P2 and not P2 ≤ P1 , and we write P1 ∼ P2 if P1 ≤ P2 and P2 ≤ P1 . In
+the proof of the following lemma we will use the property that for any points
+P, PM , Q, Q′ ∈ Zn and any pre-order on Zn , if P ≤ PM and Q ≤ Q′ then either
+P + Q < PM + Q′ or PM ∼ P and Q′ ∼ Q.
+Lemma 8. Let S and T be finite subsets of Zn , p ≥ 1. Let x ∈ ker δ be non-zero
+with δ as above. Let ≤ be a lattice pre-order such that supp(x) has a unique
+maximum PM . Let S ′ = supp(x)\{PM } and T ′ the set of non-maximal points
+Vp−2 ′
+Vp−1 ′
+S ⊗(S ′ +T ′) be defined analogously
+S ⊗T ′ →
+Q ∈ T . Finally, let δ ′ :
+′
+to δ. Then there exists a non-zero y ∈ ker δ such that
+x = PM ∧ y + terms not containing PM in the ∧ part.
+Proof. Write
+X
+λi PM ∧ P2,i ∧ . . . ∧ Pp,i ⊗ Qi + terms not containing PM in the ∧ part,
+x=
+i
+
+without any redundant terms. Then define
+X
+λi P2,i ∧ . . . ∧ Pp,i ⊗ Qi .
+y=
+i
+
+All we have to prove now is that y ∈ ker(δ ′ ). It is clear that supp(y) ∩ Zn ⊆
+S ′ . Let us prove that every Qi in this expression is in T ′ . We know that
+Qi ∈ T . If it is not in T ′ then it is maximal. But then, applying δ, the term
+−P2,i ∧. . .∧Pp,i ⊗ (PM + Qi ) of δ(x) has nothing to cancel against, contradicting
+the fact that δ(x) = 0. The reason that it has nothing to cancel against is that
+all terms in δ(x) end with ⊗(P + Q) with P ≤ PM and Q ≤ Qi so that
+P + Q < PM + Qi unless P ∼ PM , and Q ∼ Qi . As PM is the unique maximum
+of supp(x) P ∼ PM implies P = PM . But if Q 6= Qi and P = PM then we
+still have P + Q 6= PM + Qi , so that we have only one term of δ(x) ending on
+⊗(PM + Qi ), which has nothing to cancel against.
+So y is in the domain of δ ′ . We now prove that δ ′ (y) = 0:
+0 = δ(x) = −PM ∧ δ ′ (y) + terms not containing PM in the ∧ part.
+
+Because terms of PM ∧ δ ′ (y) cannot cancel against terms without PM in the ∧
+part, δ ′ (y) must be zero.
+Example.
+Our Veronese example of n = d = 2 becomes S = T = {(2, 0), (1, 1), (1, 0),
+V2
+S⊗S
+(0, 2), (0, 1), (0, 0)} and in the new notation the explicit cochain in
+becomes
+x = (0, 2) ∧ (1, 1) ⊗ (1, 0) − (0, 2) ∧ (0, 1) ⊗ (2, 0) + (1, 1) ∧ (0, 1) ⊗ (1, 1).
+9
+
+If we take the pre-order coming from the linear map L(x1 , x2 ) = x2 then PM =
+(0, 2) is the unique maximum of supp(x) = {(0, 2), (1, 1), (0, 1)} and the lemma
+gives y = (1, 1)⊗(1, 0)−(0, 1)⊗(2, 0). Indeed, x = (0, 2)∧y+(1, 1)∧(0, 1)⊗(1, 1)
+and the last term does not have (0, 2) in the wedge part.
+x2
+2
+
+x2
+
+PM
+
+2
+supp(x)
+
+1
+
+1
+
+S
+
+T′
+1
+
+2
+
+x1
+
+1
+
+Theorem 9. Notation as above. Suppose #T ≤ p, then δ :
+Vp−1
+S ⊗ (S + T ) is injective.
+
+2
+Vp
+
+x1
+S⊗T →
+
+Proof. By induction on p. The case p = 0 is trivial as the domain of δ is zero
+(because T = ∅).
+Let p ≥ 1, and take a non-zero element x of the kernel. Let ≤ be a lattice order.
+Now apply the construction of lemma 8 to obtain S ′ and T ′ and a non-zero
+y ∈ ker δ ′ . Since #T ′ < #T , we have #T ′ ≤ p − 1. Applying the induction
+hypothesis we get a contradiction.
+Note that this also follows fromL
+Green’s Linear syzygy theorem [8,L
+Theorem 7.1]
+applied to the graded module q≥0 qS + T over the graded ring q≥0 qS. We
+give this direct proof because we rely on the same technique later.
+We now want to construct elements of the kernel of δ when p = #T − 1. To
+this end we do the following construction: let X = {P ∈ Zn |P +QT ⊆ S} and
+consider the elements of X as variables. To any monomial A = P ∈X P aP of
+degree p with variables in X we will associate an element xA of the kernel of δ.
+Let P1 , . . . , Pp be a list of points in X such that each point P occurs aP
+times in the list. Let Q1 , . . . , Qp+1 be a list of all points of T . Now we define
+xA =
+
+Y 1 X
+sgn(σ)(P1 + Qσ(1) ) ∧ . . . ∧ (Pp + Qσ(p) ) ⊗ Qσ(p+1) .
+aP !
+P
+
+σ∈Sp+1
+
+Up to sign, this will be independent of the choice of lists P1 , . . . , Pp and
+Q1 , . . . , Qp+1 .
+Lemma 10. The xA we just constructed has integer coefficients and is in the
+kernel of δ.
+Proof. Consider permutations σ, σ ′ ∈ Sp+1 as in the previous definition such
+that σ({i|Pi = P }) = σ ′ ({i|Pi = P }) for all P ∈ X. We claim that the terms
+in xA corresponding to σ and σ ′ will be equal. This is because in the wedge
+product the only thing that changes is the order, and the change in sign caused
+by changing the order is compensated by the change in sgn(σ).
+′
+Now the number of bijections σQ
+with the property that σ({i|Pi = P }) =
+′
+σ ({i|Pi = P }), ∀P is equal to P aP !, hence the expression will have integer coefficients.
+We now prove that xA is in the kernel of δ. Obviously the sums Pi + Qσ(i) are
+10
+
+all in S. We claim that when applying δ everything cancels. Let C be the set
+of all ordered pairs (σ, i) where σ ∈ Sp+1 and i ∈ {1, . . . , p}. Then
+Y
+
+aP ! δ(xA )
+P
+
+=
+
+X
+
+(−1)i sgn(σ)(P1 + Qσ(1) ) ∧ . . . ∧ (Pi \
++ Qσ(i) ) ∧ . . . ∧ (Pp + Qσ(p) ))
+
+(σ,i)∈C
+
+⊗ (Qσ(p+1) + Qσ(i) + Pi ).
+We now partition C into (unordered) pairs: (σ, i) and (σ ′ , i′ ) belong to the same
+pair if either they are equal or the following conditions are met:
+• i = i′
+• σ(j) = σ ′ (j), for all j ∈
+/ {i, p + 1}
+• σ(i) = σ ′ (p + 1) and σ ′ (i) = σ(p + 1).
+These conditions imply that σ ′−1 ◦ σ is a transposition, and hence has sign -1.
+One now easily sees that pairs in C yield terms that cancel.
+Example.
+Suppose S = {(2, 0), (1, 1), (1, 0), (0, 2), (0, 1), (0, 0)} and T = {(1, 0), (0, 1), (0, 0)}
+and p = 2. Then X = {(1, 0), (0, 1), (0, 0)}. Take for example the monomial
+A = (1, 0)(0, 1). If we take the lists (1, 0), (0, 1) and (1, 0), (0, 1), (0, 0) we get:
+xA =(1, 0) ∧ (1, 1) ⊗ (0, 1) − (1, 0) ∧ (0, 2) ⊗ (1, 0) + (2, 0) ∧ (0, 2) ⊗ (0, 0)
+−(2, 0) ∧ (0, 1) ⊗ (0, 1) + (1, 1) ∧ (0, 1) ⊗ (1, 0) − (1, 1) ∧ (1, 1) ⊗ (0, 0).
+Of course the last term is zero. Note that each term is of the form P ∧ Q ⊗
+((2, 2) − P − Q) where P belongs to the lower right blue triangle and Q to the
+upper left one.
+
+(0,2)
+S
+
+(0,1)
+
+(0,1) (1,1)
+
+T
+(0,0) (1,0) (2,0)
+
+(0,0)
+
+(1,0)
+
+Example.
+Suppose S = {(0, 0), (1, 0), (2, 0), (3, 0), (0, 1), (1, 1), (2, 1), (3, 1)} and T =
+{(0, 0), (1, 0), (0, 1), (1, 1)} so that X = {(0, 0), (1, 0), (2, 0)}, p = 3 and consider
+the monomial A = (0, 0)2 (2, 0), then we get
+xA = − (0, 0) ∧ (1, 0) ∧ (3, 1) ⊗ (0, 1) + (0, 0) ∧ (1, 0) ∧ (2, 1) ⊗ (1, 1)
+− (0, 0) ∧ (1, 1) ∧ (2, 1) ⊗ (1, 0) + (0, 0) ∧ (1, 1) ∧ (3, 0) ⊗ (0, 1)
+− (0, 0) ∧ (0, 1) ∧ (3, 0) ⊗ (1, 1) + (0, 0) ∧ (0, 1) ∧ (3, 1) ⊗ (1, 0)
+− (1, 0) ∧ (0, 1) ∧ (3, 1) ⊗ (0, 0) + (1, 0) ∧ (0, 1) ∧ (2, 0) ⊗ (1, 1)
+− (1, 0) ∧ (1, 1) ∧ (2, 0) ⊗ (0, 1) + (1, 0) ∧ (1, 1) ∧ (2, 1) ⊗ (0, 0)
+− (0, 1) ∧ (1, 1) ∧ (3, 0) ⊗ (0, 0) + (0, 1) ∧ (1, 1) ∧ (2, 0) ⊗ (1, 0)
+11
+
+In this case the first two wedge factors in each term are from the left blue square
+and the third wedge factor is from the right blue square. In the definition there
+are 24 terms but each term occurs twice and we divide by two so only twelve
+terms are left.
+S
+(0,1)
+
+(1,1)
+
+(0,1) (1,1) (2,1) (3,1)
+T
+(0,0) (1,0) (2,0) (3,0)
+
+(0,0)
+
+(1,0)
+
+Q
+One way to get rid of the factor P a1P ! is to only sum over one element of
+each equivalence class, where two permutations σ, σ ′ are equivalent if σ ′ ({i|Pi =
+P }) = σ ′ ({i|Pi = P }) for all P ∈ X. So the construction works over any field.
+Proposition 11. The xA for distinct monomials A are linearly independent
+and the support of any linear combination of them is the convex hull of the
+union of the supp(xA ) occurring with non-zero coefficient.
+Proof. By induction on p. In the case p = 0 there is only one monomial namely
+the constant monomial 1. The corresponding xA is ∧(∅) ⊗ Q where Q is the
+unique
+point of T . So the statement is obvious. So suppose p ≥ 1. Let x =
+P
+λ
+x
+j
+A
+j with the Aj distinct. We have to prove that
+j
+
+[
+supp(xAj ) 6= ∅.
+supp(x) = conv
+j
+
+To prove this equality, it is enough to prove that every linear map L : Rn → R
+attains the same maximum on both sides of the equation. It is enough to show
+this when L|Zn is injective (as these L are dense). Given such an L, let ≤ be
+the order it induces on Zn . Let QM be the maximum of T for this order and
+PM ∈ X the greatest point occurring as a variable in some monomial Aj . We
+will prove that PM + QM is the maximum of both sides of the equation, proving
+that L attains the same maximum on both, and that both sides are non-empty.
+Obviously nothing greater than PM + QM can possibly occur in any supp(xAj ).
+We have
+X
+X
+λj xAj .
+λj xAj +
+x=
+j
+PM |Aj
+
+j
+PM does not occur in Aj
+
+For any Aj containing PM we define Bj as the monomial Aj /PM of degree
+p − 1. Using T ′ = T \{QM } we can associate to any Bj an element xBj so
+that xAj = ±(PM + QM ) ∧ xBj plus terms where everything in the ∧ part is
+smaller than PM + QM . By induction xBj 6= 0 so PM + QM is the maximum of
+supp(xAj ). Finally
+X
+± λj xBj + terms without PM + QM in the ∧ part.
+x = (PM + QM ) ∧
+j
+PM |Aj
+
+By induction the linear combination of the xBj is not zero so PM + QM is the
+maximum of supp(x).
+12
+
+So far, we have studied the kernel of the map
+δ:
+
+p
+^
+
+P1 ∧ . . . ∧ Pp ⊗ Q 7−→
+
+S⊗T →
+p
+X
+
+p−1
+^
+
+S ⊗ (S + T ) :
+
+(−1)i P1 ∧ . . . ∧ P̂i ∧ . . . ∧ Pp ⊗ (Q + Pi ).
+
+i=1
+
+We now introduce the following maps
+δi : S ⊗p ⊗ T → S ⊗(p−1) ⊗ (S + T ) :
+P1 ⊗ . . . ⊗ Pp ⊗ Q 7→ P1 ⊗ . . . ⊗ P̂i ⊗ . . . ⊗ Pp ⊗ (Pi + Q).
+This time we look at the intersection
+of the kernels of the δi . If p = 0 there is
+T
+nothing to intersect so we put 0i=1 ker δi = T .
+We introduce this new machinery because it helps us prove our main result.
+Example. Let S = T = {(1, 1), (1, 0), (0, 1), (0, 0)} then
+x =(1, 0) ⊗ (0, 1) ⊗ (0, 0) − (1, 0) ⊗ (0, 0) ⊗ (0, 1)
+−(0, 0) ⊗ (0, 1) ⊗ (1, 0) + (0, 0) ⊗ (0, 0) ⊗ (1, 1)
+is in ker δ1 ∩ ker δ2 .
+Proposition 12. There is an injective map
+ι:
+
+p
+^
+
+S ⊗ T → S ⊗p ⊗ T : P1 ∧ . . . ∧ Pp ⊗ Q 7→
+
+X
+
+sgn(σ)Pσ(1) ⊗ . . . ⊗ Pσ(p) ⊗ Q
+
+σ∈Sp
+
+and ι(ker δ) ⊆
+
+Tp
+
+i=1
+
+ker δi
+
+Proof. Note that the definition of ι does not depend on any choices. It is injective
+as cancellation is impossible. Let us prove the last assertion. We define
+g:
+
+p−1
+^
+
+S ⊗ (S + T ) → S ⊗(p−1) ⊗ (S + T )
+
+analogously to T
+ι. If we can prove that δi ◦ ι = (−1)i g ◦ δ for all i then it follows
+that ι(ker δ) ⊆ i ker δi . Let x = P1 ∧ . . . ∧ Pp ⊗ Q, we compute
+X
+[
+δi (ι(x)) =
+sgn(σ)Pσ(1) ⊗ . . . ⊗ P
+σ(i) ⊗ . . . ⊗ Pσ(p) ⊗ (Pσ(i) + Q)
+σ∈Sp
+
+g(δ(x)) =
+
+p
+X
+X
+
+(−1)j sgn(τ )Pτ ′ (1) ⊗ . . . ⊗ Pτ ′ (p−1) ⊗ (Pj + Q),
+
+j=1 τ ∈Sp−1
+
+where τ ′ = (j j + 1 . . . p) ◦ τ . Here (j j + 1 . . . p) maps every number from j
+up to p − 1 to itself plus one and everything smaller than j to itself, and p is
+mapped to j. For every τ ∈ Sp−1 we formally put τ (p) = p so that Sp−1 ⊆ Sp .
+There is a bijection from Sp to {1, . . . , p} × Sp−1 mapping σ to (j, τ ) where
+σ ◦ (i i + 1 . . . p) = (j j + 1 . . . p) ◦ τ.
+Note that sgn(σ)(−1)p−i = sgn(τ )(−1)p−j . Using this bijection one sees that
+δi (ι(x)) = (−1)i g(δ(x)). This proves that δi ◦ ι = (−1)i g ◦ δ and hence that
+ι(ker δ) ⊆ ker δi .
+13
+
+For anyT
+sequence P1 , . . . , Pp of points in X = {P |P + T ⊆ S} one defines an
+p
+element of i=1 ker δi :
+X
+xP1 ,...,Pp :=
+sgn(σ)(P1 + Qσ(1) ) ⊗ . . . ⊗ (Pp + Qσ(p) ) ⊗ Qσ(p+1)
+σ∈Sp+1
+
+where Q1 , . . . , Qp+1 is a list of all the points of T . Whenever we use this notation
+we assume that #T = p + 1. Just as the xT
+A are intended to be a basis of ker δ,
+p
+the xP1 ,...,Pp are intended to be a basis of i=1 ker δi .
+
+Lemma 13. Consider the right group action of Sp on the set of sequences
+P1 , . . . , Pp ∈ X by permutation. So P1 , . . . , Pp · σ = Pσ(1) , . . . , Pσ(p) . For a
+given such sequence let A be the monomial P1 . . . Pp , then
+X
+xPσ(1) ,...,Pσ(p) .
+ι(xA ) =
+σ̄∈Stab(P1 ,...,Pp )\Sp
+
+(We sum over the right cosets of the stabilizer.)
+Proof. It is enough to prove this equality in characteristic zero. We have
+Y
+ι(xA )
+aP !
+P
+
+ X
+
+=ι
+sgn(σ)(P1 + Qσ(1) ) ∧ . . . ∧ (Pp + Qσ(p) ) ⊗ Qσ(p+1)
+σ∈Sp+1
+
+=
+
+X
+
+X
+
+sgn(σ ◦ τ )(Pτ (1) + Qσ(τ (1)) ) ⊗ . . . ⊗ (Pτ (p) + Qσ(τ (p)) ) ⊗ Qσ(p+1)
+
+τ ∈Sp σ∈Sp+1
+
+=
+
+X
+
+X
+
+sgn(σ ′ )(Pτ (1) + Qσ′ (1) ) ⊗ . . . ⊗ (Pτ (p) + Qσ′ (p) ) ⊗ Qσ′ (p+1)
+
+τ ∈Sp σ′ ∈Sp+1
+
+=
+
+X
+
+xPτ (1) ,...,Pτ (p)
+
+τ ∈Sp
+
+=
+
+Y
+P
+
+aP !
+
+X
+
+xPτ (1) ,...,Pτ (p)
+
+τ̄ ∈Stab(P1 ,...,Pp )\Sp
+
+The last equality follows because theQorder of the stabilizer is
+result follows by removing the factor P aP !.
+
+Q
+
+P
+
+aP !. The
+
+ι(ker δ) is generated by
+Lemma 14. The span of the xP1 ,...,Pp intersected with T
+p
+the ι(xA ). In particular if the xP1 ,...,Pp are a basis of i=1 ker δi then the xA
+are a basis of ker δ.
+
+Proof. We have a right group action of Sp on S ⊗p ⊗ T , restricting to one on
+T
+p
+i=1 ker δi : any σ ∈ Sp maps P1 ⊗ . . . ⊗ Pp ⊗ Q to sgn(σ)Pσ(1) ⊗ . . . ⊗ Pσ(p) ⊗ Q.
+Clearly any element of ι(ker δ) is fixed by this action. The action of Sp on the
+set of sequences P1 , . . . , Pp in X from the previous lemma is compatible with
+the action on S ⊗p ⊗ T in the sense that xP1 ,...,Pp · σ = xPσ(1) ,...,Pσ(p) . Choose an
+element Rj = P1,j , . . . , Pp,j out of each orbit of the action on sequences.
+Consider an element x of ι(ker δ) that is a linear combination of the xP1 ,...,Pp .
+We prove that it is generated by the ι(xA ). Write it as a linear combination of
+the xP1 ,...,Pp :
+X
+X
+λj,σ̄ xPσ(1),j ,...,Pσ(p),j .
+x=
+j
+
+σ̄∈Stab(Rj )\Sp
+
+14
+
+Applying the action on S ⊗p ⊗ T to this expression permutes the λj,σ̄ , for each
+j. Since x is fixed by the action of Sp and the xP1 ,...,Pp are linearly independent
+(by lemma 18 below), λj,σ̄ doesn’t depend on σ. So x is a linear combination of
+the
+X
+xPσ(1),j ,...,Pσ(p),j = ι(xA ),
+σ̄∈Stab(Rj )\Sp
+
+where A = P1,j . . . Pp,j . Note that we used the previous lemma in the last
+equality. This proves the first assertion. The second assertion follows from the
+first, the injectivity of ι and proposition 11.
+Vp
+Having established a connection between the
+S ⊗T context and the S ⊗p ⊗
+T context, we now focus on the latter.
+Tp
+Definition 15. For any x ∈ i=1 ker δi and i ∈ {1, . . . , p} we define suppi (x)
+to be the convex hull of the set of lattice points occurring in the i-th factor of
+some term of x.
+The following lemma is analogous to lemma 8.
+T
+Lemma 16. Let x ∈ pi=1 ker δi and let ≤ be a lattice pre-order on Zn . Fix an
+i and suppose P ∈ suppi (x) is strictly greater than any other point of suppi (x).
+′
+Let T ′ be the set of non-maximal points in T . Let δ1′ , . . . , δp−1
+: S ⊗(p−1) ⊗ T ′ →
+S ⊗(p−2) ⊗ (S + T ′ ) be defined analogously to δ1 , . . . , δp . Write
+X
+λj P1,j ⊗. . .⊗P (place i)⊗. . .⊗Pp,j ⊗Qj +terms not having P at place i
+x=
+j
+
+y=
+
+X
+
+λj P1,j ⊗ . . . ⊗ Pp,j ⊗ Qj (with P removed from place i).
+
+j
+
+Then y ∈
+
+Tp−1
+j=1
+
+ker δj′ .
+
+We omit the proof since it is analogous to that of lemma 8.
+Example. Let S = T = {(1, 1), (1, 0), (0, 1), (0, 0)} then
+x =(1, 0) ⊗ (0, 1) ⊗ (0, 0) − (1, 0) ⊗ (0, 0) ⊗ (0, 1)
+−(0, 0) ⊗ (0, 1) ⊗ (1, 0) + (0, 0) ⊗ (0, 0) ⊗ (1, 1)
+is in ker δ1 ∩ ker δ2 . If we take the order coming from the linear map L(x1 , x2 ) =
+x2 then PM = (0, 1) is the unique maximum of supp2 (x) = {(0, 1), (0, 0)}.
+Applying the lemma with i = 2 we get y = (1, 0) ⊗ (0, 0) − (0, 0) ⊗ (1, 0).
+x2
+
+x2
+
+PM
+
+supp2 (x)
+
+S
+supp1 (x)
+
+Lemma 17. If p ≥ #T then
+
+S
+x1
+
+x1
+Tp
+
+i=1
+
+ker δi = 0.
+
+Again the proof is analogous to that of theorem 9.
+15
+
+LemmaP
+18. Let δi : S ⊗p ⊗T → S ⊗(p−1) ⊗(S+T ) be the usual maps, p = #T −1.
+combination with non-zero coefficients then
+Let x = j λj xP1,j ,...,Pp,j be a linear
+S
+suppi (x) is the convex hull of j suppi (xP1,j ,...,Pp,j ). In particular the xP1 ,...,Pp
+are linearly independent.
+One can prove this with the same technique as proposition 11.
+Lemma 19. Let ∆ be a lattice polytope of dimension at least two with p + 1
+lattice points and let δi T
+: (Zn )⊗p ⊗ (∆ ∩ Zn ) → (Zn )⊗(p−1) ⊗ Zn be the usual
+p
+maps. Then for all x ∈ i=1 ker δi \{0} and i ∈ {1, . . . , p} we have
+∆ − ∆ ⊆ suppi (x) − suppi (x).
+
+Note that the lemma can fail if ∆ is one-dimensional. If n = 1, ∆ = [0, 2]
+and x = v0 ⊗v0 ⊗v2 −v0 ⊗v1 ⊗v1 −v1 ⊗v0 ⊗v1 +v1 ⊗v1 ⊗v0 then supp1 (x) = [0, 1]
+and the conclusion of the lemma fails.
+Proof. We prove this
+Tpby induction on p. We can suppose i = 1 without loss of
+generality. Let x ∈ i=1 ker δi \{0} and take v ∈ (∆ − ∆)\(supp1 (x) − supp1 (x))
+with integer coordinates. Let P1 , P2 ∈ ∆∩Zn with P2 −P1 = v. Using a unimodular transformation we can suppose P1 = (0, 0, . . . , 0) and P2 = v = (d, 0, . . . , 0)
+for some d > 0.
+Case 1: ∆\[P1 , P2 ] contains more than one lattice point.
+Take a linear map L : Rn → R that does not attain a maximum at P1 or
+P2 on ∆. We take L to attain its maximum on supp2 (x) at only one point.
+This induces a lattice pre-order ≤.
+Tp−1We apply lemma 16 for place 2 to obtain S ′ , T ′ and a non-zero y ∈ j=1 ker(δj′ ) with supp1 (y) ⊆ supp1 (x), so
+[P1 , P2 ] − [P1 , P2 ] * supp1 (y) − supp1 (y). If #T ′ = p we get a contradiction
+with the induction hypothesis and if #T ′ < p we get a contradiction with lemma
+17. We needed the fact that ∆\[P1 , P2 ] contains more than one lattice point
+to ensure that T ′ is of dimension at least two, so we can apply the induction
+hypothesis.
+Case 2: ∆\[P1 , P2 ] contains only one lattice point.
+We can suppose this lattice point is (0, −1, 0, . . . , 0). Note that p = #T −
+1 = d + 1. Define L1 , L2 : Zn → Z as follows: L1 ((x1 , x2 , . . .)) = −x1 ,
+L2 ((x1 , x2 , . . .)) = x1 −dx2 . We claim that L1 (resp. L2 ) attains its maximum on
+supp1 (x) at more than one lattice point of supp1 (x). Indeed, applying lemma 16
+with L1 (resp. L2 ) and place 1 we get T ′ = {(1, 0, 0, . . . , 0), . . . , (d, 0, 0, . . . , 0)}
+(resp. {(0, 0, . . . , 0), . . . , (d − 1, 0, 0, . . . , 0)}). In each case the y we obtain leads
+to a contradiction with lemma 17, unless L1 (resp. L2 ) does not attain its maximum on supp1 (x) at a unique point of supp1 (x) (in which case we cannot apply
+lemma 16). Therefore L1 (resp. L2 ) attains its maximum at more than one
+lattice point of supp1 (x).
+Case 2a: n = 2.
+Let (x1 , y1 ) and (x1 , y1 + 1) be points of supp1 (x) on which L1 reaches its maximum and let (x2 , y2 ) and (x2 + d, y2 + 1) be points of supp1 (x) on which L2
+reaches its maximum. We know by maximality that x2 ≥ x1 and L2 ((x1 , y1 )) ≤
+L2 ((x2 , y2 )). If y2 ≤ y1 then [(x2 , y2 + 1), (x2 + d, y2 + 1)] ⊆ supp1 (x) and
+similarly if y2 ≥ y1 then [(x1 , y1 + 1), (x1 + d, y1 + 1)] ⊆ supp1 (x). In any case
+we get a contradiction with the fact that v = (d, 0) ∈
+/ supp1 (x) − supp1 (x).
+
+16
+
+(x1 , y1 + 1)
+∇L1
+
+(x1 , y1 )
+(x2 + d, y2 + 1)
+(x2 , y2 )
+
+∇L2
+
+Case 2b: n ≥ 3.
+Let π : Zn → Zn−2 bePthe projection that deletes the first two coordinates. So
+π(∆) = 0. Now δ1 = P ∈Zn−2 δP where δP maps Q1 ⊗ . . . ⊗ Qp ⊗ Q to
+Q2 ⊗ . . . ⊗ Qp ⊗ (Q + Q1 ) if π(Q1 ) = P and to zero otherwise.
+
+As π(Q + Q1 ) = π(Q) + π(Q1 ) = P , there can’t be any cancellation between
+δP (x) for different P . Therefore δP (x) = 0 for all P ∈ Zn−2 .
+For any P ∈ Zn−2 and Q0 ∈ π −1 (0) we define a linear automorphism
+αP,Q0 : (Zn )⊗p ⊗ T −→ (Zn )⊗p ⊗ T
+(
+(Q1 + Q0 ) ⊗ . . . ⊗ Qp ⊗ Q
+: Q1 ⊗ . . . ⊗ Qp ⊗ Q 7→
+Q1 ⊗ . . . ⊗ Qp ⊗ Q
+
+if π(Q1 ) = P
+else.
+
+(Recall that by Zn (resp. T ) we mean the vector space with Zn (resp. T ) as a
+basis. So we define the linear map on basis elements and linearly extend them
+over the base field.) For any P, P ′ ∈ Zn−2 and Q0 we define
+α′P,P ′ ,Q0 : (Zn )⊗(p−1) ⊗ T −→ (Zn )⊗(p−1) ⊗ T
+(
+Q1 ⊗ . . . ⊗ Qp−1 ⊗ (Q + Q0 ) if P = P ′
+: Q1 ⊗ . . . ⊗ Qp−1 ⊗ Q 7→
+Q1 ⊗ . . . ⊗ Qp−1 ⊗ Q
+else.
+Then α′P,P ′ ,Q0 ◦ δP ′ = δP ′ ◦ αP,Q0 , from which it follows that αP,Q0 (x) is in
+ker(δP ′ ) for all P ′ ∈ Zn−2 and Q0 ∈ π −1 (0). So αP,Q0 (x) ∈ ker δ1 and if we
+define
+α′′P,Q0 : (Zn )⊗p−1 ⊗ T −→ (Zn )⊗p−1 ⊗ T
+(
+(Q1 + Q0 ) ⊗ . . . ⊗ Qp−1 ⊗ Q
+: Q1 ⊗ . . . ⊗ Qp−1 ⊗ Q 7→
+Q1 ⊗ . . . ⊗ Qp−1 ⊗ Q
+
+if π(Q1 ) = P
+else,
+
+then α′′P,Q0 ◦ δi = δi ◦ αP,Q0 for all i = 2, . . . , p. Therefore αP,Q0 (x) ∈
+
+Tp
+
+i=1
+
+ker δi .
+
+suppP (αP,Q (x))
+0
+
+suppP (x)
+
+supp1 (αP,Q0 (x))
+
+supp1 (x)
+
+For any P ∈ Zn−2 we define suppP (x) as the convex hull of all points
+in π −1 (P ) that occur in the first factor of some term of x. Of course this
+is at most two-dimensional. If we can prove that whenever this support is
+17
+
+non-empty it contains more than 1 point where L1 (resp. L2 ) attains its maximum, then we can perform the same reasoning as in case 2a on suppP (x)
+to obtain a contradiction. If we choose a Q0 with L1 (Q0 ) (resp. L2 (Q0 ))
+high enough, then L1 (resp. L2 ) will attain its maximum on supp1 (αP,Q0 (x))
+only at points of suppP (αP,Q0 (x)). This means that there are at least two
+points of suppP (αP,Q0 (x)) where L1 (resp. L2 ) attains its maximum. Since
+suppP (αP,Q0 (x)) = Q0 + suppP (x) the same is true for suppP (x), so we are
+done.
+Theorem 20. If S = ∆′ ∩ Zn , T = ∆ ∩ Zn and p = #T − 1 with ∆, ∆′
+convex and ∆ a bounded lattice polytope of dimension greater than one,
+Tpthen the
+expressions xP1 ,...,Pp with Pi ∈ X := {P |P + T ⊆ S} are a basis of i=1 ker δi
+and hence the xA for monomials A of degree p with variables in X are a basis
+of ker δ.
+Proof. Let H be the set of all bounded convex lattice polytopes in Zn that are
+either of dimension greater than one or have just two lattice points. By lemma
+14 we only have to prove
+Tpthe first statement. In fact we only have to prove that
+the xP1 ,...,Pp generate i=1 ker δi by lemma 18. We prove it for all ∆ ∈ H by
+induction on p = #∆ ∩ Zn − 1.
+Suppose first p = 1, then T has just two points and we have to show that
+the kernel of δ1 : S ⊗ T → S + T is generated by expressions of the form
+(P + Q1 ) ⊗ Q2 − (P + Q2 ) ⊗ Q1 where T = {Q1 , Q2 } and P ∈ X. Consider
+the map f : S × T → S + T of sets given by addition of lattice points, then
+every point P ′ of S + T is reached by at most two elements of S × T namely
+(P + Q1 , Q2 ) and (P + Q2 , Q1 ) with P = P ′ − Q1 − Q2 . We can write S ⊗ T as
+the direct sum of the linear span of each f −1 (P ) with P ∈ S + T . The kernel of
+δ1 is the direct sum of the kernels of δ1 restricted to each span of f −1 (P ). The
+result easily follows.
+Now for the induction step suppose p ≥ 2. Let QM be any extreme point of ∆
+such that conv(∆ ∩ Zn \{QM }) ∈ H. Using some unimodular transformations
+one can squeeze ∆ into (R≥0 )n in such a way that QM = (xM , 0, . . . , 0) and all
+other points of ∆ have first coordinate smaller than xM . We can also make sure
+that the smallest first coordinate in ∆ is zero.
+(One can do all this as follows: first one chooses a linear form L : Zn → Z
+that attains its maximum on ∆ only at QM . One can choose L with integer coefficients with no prime factors that they all share. One then chooses
+∼
+=
+a unimodular transformation U1 : Zn → Zn whose first component is L.
+Then U1 (QM ) has its first coordinate greater than that of any other point
+of U1 (∆). Next one chooses a unimodular transformation U2 of the form
+(x1 , . . . , xn ) 7→ (x1 , x2 − a2 x1 , . . . , xn − an x1 ) with a2 , . . . , an large enough so
+that all the other coordinates of U2 (U1 (QM )) are smaller than those of the
+other points of U2 (U1 (∆)). Finally one uses a translation to map U2 (U1 (QM ))
+to (xM , 0, . . . , 0) where xM is the greatest first coordinate on U2 (U1 (∆)) minus
+the smallest.)
+Claim: It is enough to prove the statement in the case where ∆′ = Rn .
+Suppose it is true for ∆′ = Rn , we prove it for arbitrary ∆′ . If x ∈
+Proof.
+Tp
+ker
+δi then it is a linear combination of some xP1 ,...,Pp . By lemma 18 their
+i=1
+supports are contained in the supports of x, hence in ∆′ .
+Henceforth we assume ∆′ = Rn . We put the lexicographical ordering on (Z≥0 )n ,
+18
+
+meaning (x1 , . . . , xn ) < (x′1 , . . . , x′n ) if for the smallest i with xi 6= x′i we have
+xi < x′i .
+Tp
+So suppose there exists an x ∈ i=1 ker δi that is not a linear combination of
+the xP1 ,...,Pp . We can translate the first factor so that supp1 (x) ⊆ (R≥0 )n . We
+take x so that the lexicographic maximum of supp1 (x) is minimal. (We can do
+this because there are no lexicographic infinite descents in (Z≥0 )n .) We will
+′
+find a contradiction. Let PM
+be the maximum of supp1 (x) and e its first coorn
+dinate. Let Qm ∈ ∆ ∩ Z be some point with first coordinate zero. By lemma
+19 QM − Qm ∈ ∆ − ∆ ⊆ supp1 (x) − supp1 (x). It follows that e ≥ xM . So
+′
+PM := PM
+− QM ∈ (R≥0 )n because its first coordinate e − xM is ≥ 0 and all
+′
+the other coordinates are equal to those of PM
+.
+x2
+
+x2
+′
+PM
+
+supp1 (x)
+
+Qm
+e
+
+∆
+QM
+xM
+
+x1
+
+x1
+
+T
+n ⊗(p−1)
+′
+′
+⊗
+We now apply lemma 16 to x to obtain y ∈ p−1
+i=1 ker δi where δi : (Z )
+′
+n ⊗(p−2)
+n
+′
+T → (Z )
+⊗ Z are the usual maps and where T = T \{QM }. This y
+satisfies
+′
+′
+x = PM
+⊗ y plus terms whose first factor is < PM
+.
+By induction
+y=
+
+X
+
+λj yP1,j ,...,Pp−1,j , for some Pi,j ∈ Zn .
+
+j
+
+Using the fact that xPM ,P1,j ,...,Pp−1,j = (PM + QM ) ⊗ yP1,j ,...,Pp−1,j plus terms
+′
+′
+whose first factor is smaller than PM + QM = PM
+we see that PM
+is the
+′
+maximum of supp1 (x ) where
+X
+λj xPM ,P1,j ,...,Pp−1,j .
+x′ =
+j
+
+′
+In x − x′ the terms with PM
+cancel so the maximum of supp1 (x − x′ ) is smaller
+′
+than PM , contradicting the minimal choice of x. (The fact that PM ∈ (R≥0 )n
+is important because it ensures that supp1 (x − x′ ) ⊆ (R≥0 )n .)
+The last assertion of the theorem follows from lemma 14.
+
+Corollary 21. Let ∆ and ∆′ be convex lattice polytopes with ∆ of dimension
+greater than 1 and T = ∆ ∩ Zn , S = ∆′ ∩ Zn and p = #T − 1. If
+δ:
+
+p
+^
+
+S⊗T →
+
+p−1
+^
+
+S ⊗ (S + T )
+
+is the usual map then the dimension of ker δ is
+S}.
+
+p+#X−1
+p
+
+
+
+where X = {P |P +T ⊆
+
+This follows
+because the number of degree p monomials with variables in X
+
+is p+#X−1
+.
+We
+end with the case when ∆ is 1-dimensional. This time the
+p
+formula works for all p.
+19
+
+Theorem 22. Let ∆ = conv((0, 0, . . . , 0), (d, 0, . . . , 0)) with d ≥ 0 and let
+∆′ ⊆ Zn a bounded convex lattice polygon, then for all p ≤ d + 1 the dimension of the kernel of the usual map δ is (d − p + 1) #X
+where X =
+p
+n
+′
+{P |P + {(0, . . . , 0), (1, 0, . . . , 0)} ⊆ S}, S = ∆ ∩ Z .
+
+Proof. Let T = ∆ ∩ Zn . Put a lattice order ≤ on Zn such that (1, 0, . . . , 0) >
+(0, . . . , 0). Let I = {(0, 0, . . . , 0), (1, 0, . . . , 0)}. For any P1 < . . . < Pp in X and
+Q ∈ T with first coordinate in {p, . . . , d} we define
+X
+(1)
+(−1)i1 +...+ip (P1 + i1 ) ∧ . . . ∧ (Pp + ip ) ⊗ (Q − i1 − . . . − ip ),
+i1 ,...,ip ∈I
+
+where we abusively write (−1)i1 +...+ip for the power of −1 whose exponent is
+the first coordinate of i1 + . . . + ip . These expressions are in the kernel of δ. We
+will prove that they are a basis of the kernel which proves the theorem because
+there are exactly (d − p + 1) #X
+of these. We will do so by induction on #S.
+p
+The case where p = 0 is easy as the domain and kernel of δ are both just T
+and have the points in T as a basis. So suppose p ≥ 1 and let x ∈ ker δ, we
+will show that it is a linear combination of expressions like (1). Let PM be
+the maximum of S. If PM ∈
+/ supp(x) we apply the induction hypothesis to
+S ′ = S\{PM } and we are done. So assume PM ∈ supp(x), then by lemma 8
+we can
+x = PM ∧ y plus terms not containing PM in the ∧ part. Here
+Vp write
+S ′ ⊗ T ′ where T ′ = {(0, 0, . . . , 0), . . . , (d − 1, 0, . . . , 0)}. Note also that
+y∈
+PM − (1, 0, . . . , 0) ∈ S as otherwise the terms in δ(x) where PM is removed from
+the ∧ would have nothing to cancel against. This is because these would be the
+only terms of δ(x) where the point after the ⊗ agrees with PM in all but the
+first coordinate. Applying the induction hypothesis to y we get
+X
+X
+λj
+(−1)i1 +...+ip−1
+y=
+j
+
+i1 ,...,ip−1 ∈I
+
+(P1,j + i1 ) ∧ . . . ∧ (Pp−1,j + ip−1 ) ⊗ (Qj − i1 − . . . − ip−1 ).
+
+Therefore x can be written as (−1)p x′ plus terms not containing PM in the ∧
+part where
+X
+X
+λj
+(−1)i1 +...+ip
+x′ =
+j
+
+i1 ,...,ip ∈I
+
+(P1,j + i1 ) ∧ . . . ∧ (Pp−1,j + ip−1 ) ∧ (PM − (1, 0, . . . , 0) + ip )
+⊗ (Qj + (1, 0, . . . , 0) − i1 − . . . − ip ).
+
+So we can apply the induction hypothesis to x − (−1)p x′ to conclude that x is
+a linear combination of expressions like (1).
+Finally, we show linear independence of the expressions, P
+again by induction
+on #S. the case p = 0 is again trivial, let p ≥ 1. Let
+i λi xi be a linear
+combination of our expressions that yields zero. Each xi containing PM in its
+support can be written as PM ∧yi plus terms not containing PM . Then up to sign
+yi is an expression like (1) but with p − 1 instead of p and with the set S\{PM }
+in stead of S. By the induction hypothesis the yi are linearly independent.
+But then it follows that PM cannot occur at all in the wedge part of any xi ,
+otherwise the linear combination could not yield zero. And then one again
+applies the induction hypothesis with S\{PM } to obtain a contradiction.
+20
+
+References
+[1] Marian Aprodu and Jan Nagel, Koszul cohomology and algebraic geometry, University Lecture Series 52, American Mathematical Society, 125 pp.
+(2010)
+[2] Winfried Bruns, Aldo Conca, Tim Römer, Koszul homology and syzygies of
+Veronese subalgebras, Mathematische Annalen 351(4), pp. 761-779 (2011)
+[3] Wouter Castryck, Filip Cools, Jeroen Demeyer, Alexander Lemmens, Computing graded Betti tables of toric surfaces, preprint
+[4] Wouter Castryck, Filip Cools, Alexander Lemmens, Canonical syzygies of
+smooth curves in toric surfaces, preprint
+[5] David Cox, John Little and Hal Schenck, Toric varieties, Graduate Studies
+in Mathematics 124, American Mathematical Society (2011)
+[6] Lawrence Ein, Daniel Erman, Robert Lazarsfeld, A quick proof of nonvanishing for asymptotic syzygies, Algebraic Geometry 3(2), pp. 211-222
+(2016)
+[7] Lawrence Ein, Robert Lazarsfeld, Asymptotic Syzygies of Algebraic Varieties, Inventiones Mathematicae 190, pp. 603-646 (2012)
+[8] David Eisenbud, The geometry of syzygies. A second course in commutative algebra and algebraic geometry, Graduate Texts in Mathematics 229,
+Springer-Verlag, New York (2005)
+[9] Francisco J. Gallego and Bangere P. Purnaprajna, Some results on rational surfaces and Fano varieties, Journal für die Reine und Angewandte
+Mathematik 538, pp. 25-55 (2001)
+[10] Ornella Greco and Ivan Martino, Syzygies of the Veronese modules, Communications in Algebra 44(9), pp. 3890-3906
+[11] Milena Hering, Syzygies of toric varieties, Ph.D. thesis, University of Michigan (2006)
+[12] Frank Loose, On the graded Betti numbers of plane algebraic curves,
+Manuscripta Mathematica 64(4), pp. 503-514 (1989)
+[13] Elena Rubei, A result on resolutions of Veronese embeddings, Annali
+dell’Università di Ferrara Sezione VII. Scienze Matematiche 50, pp. 151-165
+(2004)
+[14] Giorgio Ottaviani, Raffaela Paoletti, Syzygies of Veronese embeddings,
+Compositio Mathematica 125(1), pp. 31-37 (2001)
+[15] Euisung Park, On syzygies of Veronese embedding of arbitrary projective
+varieties, Journal of Algebra 322(1), pp. 108-121 (2009)
+[16] Hal Schenck, Lattice polygons and Green’s theorem, Proceedings of the
+American Mathematical Society 132(12), pp. 3509-3512 (2004)
+[17] Frank-Olaf Schreyer, Syzygies of canonical curves and special linear series,
+Mathematische Annalen 275, pp. 105-138 (1986)
+
+21
+
+

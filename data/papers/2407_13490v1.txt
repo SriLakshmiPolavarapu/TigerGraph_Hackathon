@@ -1,0 +1,22 @@
+Title: Combining Constraint Programming Reasoning with Large Language Model Predictions
+
+Authors: Florian Régin, Elisabetta De Maria, Alexandre Bonlarron
+
+Published: 2024-07-18
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Constraint Programming (CP) and Machine Learning (ML) face challenges in text generation due to CP's struggle with implementing "meaning'' and ML's difficulty with structural constraints. This paper proposes a solution by combining both approaches and embedding a Large Language Model (LLM) in CP. The LLM handles word generation and meaning, while CP manages structural constraints. This approach builds on GenCP, an improved version of On-the-fly Constraint Programming Search (OTFS) using LLM-generated domains. Compared to Beam Search (BS), a standard NLP method, this combined approach (GenCP with LLM) is faster and produces better results, ensuring all constraints are satisfied. This fusion of CP and ML presents new possibilities for enhancing text generation under constraints.
+
+Paper ID: 2407.13490v1
+
+Summary:
+This paper titled "Combining Constraint Programming Reasoning with Large Language Model Predictions" was authored by Florian Régin, Elisabetta De Maria, Alexandre Bonlarron and published on 2024-07-18.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Constraint Programming (CP) and Machine Learning (ML) face challenges in text generation due to CP's struggle with implementing "meaning'' and ML's difficulty with structural constraints. This paper proposes a solution by combining both approaches and embedding a Large Language Model (LLM) in CP. The LLM handles word generation and meaning, while CP manages structural constraints. This approach builds on GenCP, an improved version of On-the-fly Constraint Programming Search (OTFS) using LLM-generated domains. Compared to Beam Search (BS), a standard NLP method, this combined approach (GenCP with LLM) is faster and produces better results, ensuring all constraints are satisfied. This fusion of CP and ML presents new possibilities for enhancing text generation under constraints.
+
+Links:
+  - https://arxiv.org/abs/2407.13490v1
+  - https://arxiv.org/pdf/2407.13490v1
+  - https://doi.org/10.4230/LIPIcs.CP.2024.25

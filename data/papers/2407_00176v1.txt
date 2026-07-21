@@ -1,0 +1,21 @@
+Title: The impact of model size on catastrophic forgetting in Online Continual Learning
+
+Authors: Eunhae Lee
+
+Published: 2024-06-28
+
+Categories: cs.LG, cs.CV
+
+Abstract:
+This study investigates the impact of model size on Online Continual Learning performance, with a focus on catastrophic forgetting. Employing ResNet architectures of varying sizes, the research examines how network depth and width affect model performance in class-incremental learning using the SplitCIFAR-10 dataset. Key findings reveal that larger models do not guarantee better Continual Learning performance; in fact, they often struggle more in adapting to new tasks, particularly in online settings. These results challenge the notion that larger models inherently mitigate catastrophic forgetting, highlighting the nuanced relationship between model size and Continual Learning efficacy. This study contributes to a deeper understanding of model scalability and its practical implications in Continual Learning scenarios.
+
+Paper ID: 2407.00176v1
+
+Summary:
+This paper titled "The impact of model size on catastrophic forgetting in Online Continual Learning" was authored by Eunhae Lee and published on 2024-06-28.
+It falls under the categories: cs.LG, cs.CV.
+The research explores the following topic: This study investigates the impact of model size on Online Continual Learning performance, with a focus on catastrophic forgetting. Employing ResNet architectures of varying sizes, the research examines how network depth and width affect model performance in class-incremental learning using the SplitCIFAR-10 dataset. Key findings reveal that larger models do not guarantee better Continual Learning performance; in fact, they often struggle more in adapting to new tasks, particularly in online settings. These results challenge the notion that larger models inherently mitigate catastrophic forgetting, highlighting the nuanced relationship between model size and Continual Learning efficacy. This study contributes to a deeper understanding of model scalability and its practical implications in Continual Learning scenarios.
+
+Links:
+  - https://arxiv.org/abs/2407.00176v1
+  - https://arxiv.org/pdf/2407.00176v1

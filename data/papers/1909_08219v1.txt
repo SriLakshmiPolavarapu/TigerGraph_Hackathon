@@ -1,0 +1,21 @@
+Title: Performance of Recommender Systems: Based on Content Navigator and Collaborative Filtering
+
+Authors: Keum Gang Cha, Soo-Ryeon Lee, Jung-Woo Lee, Seung Bin Baik
+
+Published: 2019-09-18
+
+Categories: cs.CY, cs.SI
+
+Abstract:
+In the world of big data, many people find it difficult to access the information they need quickly and accurately. In order to overcome this, research on the system that recommends information accurately to users is continuously conducted. Collaborative Filtering is one of the famous algorithms among the most used in the industry. However, collaborative filtering is difficult to use in online systems because user recommendation is highly volatile in recommendation quality and requires computation using large matrices. To overcome this problem, this paper proposes a method similar to database queries and a clustering method (Contents Navigator) originating from a complex network.
+
+Paper ID: 1909.08219v1
+
+Summary:
+This paper titled "Performance of Recommender Systems: Based on Content Navigator and Collaborative Filtering" was authored by Keum Gang Cha, Soo-Ryeon Lee, Jung-Woo Lee, Seung Bin Baik and published on 2019-09-18.
+It falls under the categories: cs.CY, cs.SI.
+The research explores the following topic: In the world of big data, many people find it difficult to access the information they need quickly and accurately. In order to overcome this, research on the system that recommends information accurately to users is continuously conducted. Collaborative Filtering is one of the famous algorithms among the most used in the industry. However, collaborative filtering is difficult to use in online systems because user recommendation is highly volatile in recommendation quality and requires computation using large matrices. To overcome this problem, this paper proposes a method similar to database queries and a clustering method (Contents Navigator) originating from a complex network.
+
+Links:
+  - https://arxiv.org/abs/1909.08219v1
+  - https://arxiv.org/pdf/1909.08219v1

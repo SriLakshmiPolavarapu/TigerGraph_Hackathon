@@ -1,0 +1,21 @@
+Title: Optimizing Age of Information in Vehicular Edge Computing with Federated Graph Neural Network Multi-Agent Reinforcement Learning
+
+Authors: Wenhua Wang, Qiong Wu, Pingyi Fan, Nan Cheng, Wen Chen, Jiangzhou Wang, Khaled B. Letaief
+
+Published: 2024-07-01
+
+Categories: cs.LG, cs.DC, cs.MA, cs.NI
+
+Abstract:
+With the rapid development of intelligent vehicles and Intelligent Transport Systems (ITS), the sensors such as cameras and LiDAR installed on intelligent vehicles provides higher capacity of executing computation-intensive and delay-sensitive tasks, thereby raising deployment costs. To address this issue, Vehicular Edge Computing (VEC) has been proposed to process data through Road Side Units (RSUs) to support real-time applications. This paper focuses on the Age of Information (AoI) as a key metric for data freshness and explores task offloading issues for vehicles under RSU communication resource constraints. We adopt a Multi-agent Deep Reinforcement Learning (MADRL) approach, allowing vehicles to autonomously make optimal data offloading decisions. However, MADRL poses risks of vehicle information leakage during communication learning and centralized training. To mitigate this, we employ a Federated Learning (FL) framework that shares model parameters instead of raw data to protect the privacy of vehicle users. Building on this, we propose an innovative distributed federated learning framework combining Graph Neural Networks (GNN), named Federated Graph Neural Network Multi-Agent Reinforcement Learning (FGNN-MADRL), to optimize AoI across the system. For the first time, road scenarios are constructed as graph data structures, and a GNN-based federated learning framework is proposed, effectively combining distributed and centralized federated aggregation. Furthermore, we propose a new MADRL algorithm that simplifies decision making and enhances offloading efficiency, further reducing the decision complexity. Simulation results demonstrate the superiority of our proposed approach to other methods through simulations.
+
+Paper ID: 2407.02342v1
+
+Summary:
+This paper titled "Optimizing Age of Information in Vehicular Edge Computing with Federated Graph Neural Network Multi-Agent Reinforcement Learning" was authored by Wenhua Wang, Qiong Wu, Pingyi Fan, Nan Cheng, Wen Chen, Jiangzhou Wang, Khaled B. Letaief and published on 2024-07-01.
+It falls under the categories: cs.LG, cs.DC, cs.MA, cs.NI.
+The research explores the following topic: With the rapid development of intelligent vehicles and Intelligent Transport Systems (ITS), the sensors such as cameras and LiDAR installed on intelligent vehicles provides higher capacity of executing computation-intensive and delay-sensitive tasks, thereby raising deployment costs. To address this issue, Vehicular Edge Computing (VEC) has been proposed to process data through Road Side Units (RSUs) to support real-time applications. This paper focuses on the Age of Information (AoI) as a key metric for data freshness and explores task offloading issues for vehicles under RSU communication resource constraints. We adopt a Multi-agent Deep Reinforcement Learning (MADRL) approach, allowing vehicles to autonomously make optimal data offloading decisions. However, MADRL poses risks of vehicle information leakage during communication learning and centralized training. To mitigate this, we employ a Federated Learning (FL) framework that shares model parameters instead of raw data to protect the privacy of vehicle users. Building on this, we propose an innovative distributed federated learning framework combining Graph Neural Networks (GNN), named Federated Graph Neural Network Multi-Agent Reinforcement Learning (FGNN-MADRL), to optimize AoI across the system. For the first time, road scenarios are constructed as graph data structures, and a GNN-based federated learning framework is proposed, effectively combining distributed and centralized federated aggregation. Furthermore, we propose a new MADRL algorithm that simplifies decision making and enhances offloading efficiency, further reducing the decision complexity. Simulation results demonstrate the superiority of our proposed approach to other methods through simulations.
+
+Links:
+  - https://arxiv.org/abs/2407.02342v1
+  - https://arxiv.org/pdf/2407.02342v1

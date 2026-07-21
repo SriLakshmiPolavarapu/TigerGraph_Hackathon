@@ -1,0 +1,21 @@
+Title: Multi-Agent Training for Pommerman: Curriculum Learning and Population-based Self-Play Approach
+
+Authors: Nhat-Minh Huynh, Hoang-Giang Cao, I-Chen Wu
+
+Published: 2024-06-30
+
+Categories: cs.MA, cs.AI
+
+Abstract:
+Pommerman is a multi-agent environment that has received considerable attention from researchers in recent years. This environment is an ideal benchmark for multi-agent training, providing a battleground for two teams with communication capabilities among allied agents. Pommerman presents significant challenges for model-free reinforcement learning due to delayed action effects, sparse rewards, and false positives, where opponent players can lose due to their own mistakes. This study introduces a system designed to train multi-agent systems to play Pommerman using a combination of curriculum learning and population-based self-play. We also tackle two challenging problems when deploying the multi-agent training system for competitive games: sparse reward and suitable matchmaking mechanism. Specifically, we propose an adaptive annealing factor based on agents' performance to adjust the dense exploration reward during training dynamically. Additionally, we implement a matchmaking mechanism utilizing the Elo rating system to pair agents effectively. Our experimental results demonstrate that our trained agent can outperform top learning agents without requiring communication among allied agents.
+
+Paper ID: 2407.00662v2
+
+Summary:
+This paper titled "Multi-Agent Training for Pommerman: Curriculum Learning and Population-based Self-Play Approach" was authored by Nhat-Minh Huynh, Hoang-Giang Cao, I-Chen Wu and published on 2024-06-30.
+It falls under the categories: cs.MA, cs.AI.
+The research explores the following topic: Pommerman is a multi-agent environment that has received considerable attention from researchers in recent years. This environment is an ideal benchmark for multi-agent training, providing a battleground for two teams with communication capabilities among allied agents. Pommerman presents significant challenges for model-free reinforcement learning due to delayed action effects, sparse rewards, and false positives, where opponent players can lose due to their own mistakes. This study introduces a system designed to train multi-agent systems to play Pommerman using a combination of curriculum learning and population-based self-play. We also tackle two challenging problems when deploying the multi-agent training system for competitive games: sparse reward and suitable matchmaking mechanism. Specifically, we propose an adaptive annealing factor based on agents' performance to adjust the dense exploration reward during training dynamically. Additionally, we implement a matchmaking mechanism utilizing the Elo rating system to pair agents effectively. Our experimental results demonstrate that our trained agent can outperform top learning agents without requiring communication among allied agents.
+
+Links:
+  - https://arxiv.org/abs/2407.00662v2
+  - https://arxiv.org/pdf/2407.00662v2

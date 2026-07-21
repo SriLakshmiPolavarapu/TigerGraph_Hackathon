@@ -1,0 +1,21 @@
+Title: Deploying Large Language Models With Retrieval Augmented Generation
+
+Authors: Sonal Prabhune, Donald J. Berndt
+
+Published: 2024-11-07
+
+Categories: cs.IR, cs.CL
+
+Abstract:
+Knowing that the generative capabilities of large language models (LLM) are sometimes hampered by tendencies to hallucinate or create non-factual responses, researchers have increasingly focused on methods to ground generated outputs in factual data. Retrieval Augmented Generation (RAG) has emerged as a key approach for integrating knowledge from data sources outside of the LLM's training set, including proprietary and up-to-date information. While many research papers explore various RAG strategies, their true efficacy is tested in real-world applications with actual data. The journey from conceiving an idea to actualizing it in the real world is a lengthy process. We present insights from the development and field-testing of a pilot project that integrates LLMs with RAG for information retrieval. Additionally, we examine the impacts on the information value chain, encompassing people, processes, and technology. Our aim is to identify the opportunities and challenges of implementing this emerging technology, particularly within the context of behavioral research in the information systems (IS) field. The contributions of this work include the development of best practices and recommendations for adopting this promising technology while ensuring compliance with industry regulations through a proposed AI governance model.
+
+Paper ID: 2411.11895v1
+
+Summary:
+This paper titled "Deploying Large Language Models With Retrieval Augmented Generation" was authored by Sonal Prabhune, Donald J. Berndt and published on 2024-11-07.
+It falls under the categories: cs.IR, cs.CL.
+The research explores the following topic: Knowing that the generative capabilities of large language models (LLM) are sometimes hampered by tendencies to hallucinate or create non-factual responses, researchers have increasingly focused on methods to ground generated outputs in factual data. Retrieval Augmented Generation (RAG) has emerged as a key approach for integrating knowledge from data sources outside of the LLM's training set, including proprietary and up-to-date information. While many research papers explore various RAG strategies, their true efficacy is tested in real-world applications with actual data. The journey from conceiving an idea to actualizing it in the real world is a lengthy process. We present insights from the development and field-testing of a pilot project that integrates LLMs with RAG for information retrieval. Additionally, we examine the impacts on the information value chain, encompassing people, processes, and technology. Our aim is to identify the opportunities and challenges of implementing this emerging technology, particularly within the context of behavioral research in the information systems (IS) field. The contributions of this work include the development of best practices and recommendations for adopting this promising technology while ensuring compliance with industry regulations through a proposed AI governance model.
+
+Links:
+  - https://arxiv.org/abs/2411.11895v1
+  - https://arxiv.org/pdf/2411.11895v1

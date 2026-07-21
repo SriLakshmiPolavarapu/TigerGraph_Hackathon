@@ -1,0 +1,21 @@
+Title: Classifying German Language Proficiency Levels Using Large Language Models
+
+Authors: Elias-Leander Ahlers, Witold Brunsmann, Malte Schilling
+
+Published: 2025-12-06
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Assessing language proficiency is essential for education, as it enables instruction tailored to learners needs. This paper investigates the use of Large Language Models (LLMs) for automatically classifying German texts according to the Common European Framework of Reference for Languages (CEFR) into different proficiency levels. To support robust training and evaluation, we construct a diverse dataset by combining multiple existing CEFR-annotated corpora with synthetic data. We then evaluate prompt-engineering strategies, fine-tuning of a LLaMA-3-8B-Instruct model and a probing-based approach that utilizes the internal neural state of the LLM for classification. Our results show a consistent performance improvement over prior methods, highlighting the potential of LLMs for reliable and scalable CEFR classification.
+
+Paper ID: 2512.06483v1
+
+Summary:
+This paper titled "Classifying German Language Proficiency Levels Using Large Language Models" was authored by Elias-Leander Ahlers, Witold Brunsmann, Malte Schilling and published on 2025-12-06.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Assessing language proficiency is essential for education, as it enables instruction tailored to learners needs. This paper investigates the use of Large Language Models (LLMs) for automatically classifying German texts according to the Common European Framework of Reference for Languages (CEFR) into different proficiency levels. To support robust training and evaluation, we construct a diverse dataset by combining multiple existing CEFR-annotated corpora with synthetic data. We then evaluate prompt-engineering strategies, fine-tuning of a LLaMA-3-8B-Instruct model and a probing-based approach that utilizes the internal neural state of the LLM for classification. Our results show a consistent performance improvement over prior methods, highlighting the potential of LLMs for reliable and scalable CEFR classification.
+
+Links:
+  - https://arxiv.org/abs/2512.06483v1
+  - https://arxiv.org/pdf/2512.06483v1

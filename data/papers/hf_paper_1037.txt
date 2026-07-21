@@ -1,0 +1,2893 @@
+Title: arXiv paper 1037
+
+Categories: 8
+
+Abstract:
+Approximating Partition Functions in Constant Time
+
+arXiv:1711.01655v2 [cs.LG] 20 Feb 2018
+
+Vishesh Jain∗
+
+Frederic Koehler†
+
+Elchanan Mossel‡
+
+Abstract
+We study approximations of the partition function of dense graphical models. Partition
+functions of graphical models play a fundamental role is statistical physics, in statistics and in
+machine learning. Two of the main methods for approximating the partition function are Markov
+Chain Monte Carlo and Variational Methods. An impressive body of work in mathematics,
+physics and theoretical computer science provides conditions under which Markov Chain Monte
+Carlo methods converge in polynomial time. These methods often lead to polynomial time
+approximation algorithms for the partition function in cases where the underlying model exhibits
+correlation decay. There are very few theoretical guarantees for the performance of variational
+methods. One exception is recent results by Risteski (2016) who considered dense graphical
+models and showed that using variational methods, it is possible to find an O(ǫn) additive
+2
+approximation to the log partition function in time nO(1/ǫ ) even in a regime where correlation
+decay does not hold.
+We show that under essentially the same conditions, an O(ǫn) additive approximation of the
+log partition function can be found in constant time, independent of n. In particular, our results
+cover dense Ising and Potts models as well as dense graphical models with k-wise interaction.
+They also apply for low threshold rank models.
+To the best of our knowledge, our results are the first to give a constant time approximation
+to log partition functions and the first to use the algorithmic regularity lemma for estimating
+partition functions. As an application of our results we derive a constant time algorithm for
+approximating the magnetization of Ising and Potts model on dense graphs.
+
+∗
+
+Massachusetts Institute of Technology. Department of Mathematics. Email: visheshj@mit.edu
+Massachusetts Institute of Technology. Department of Mathematics. Email: fkoehler@mit.edu
+‡
+Massachusetts Institute of Technology. Department of Mathematics and IDSS. Supported by ONR grant N0001416-1-2227 and NSF CCF-1665252 and DMS-1737944. Email: elmos@mit.edu
+†
+
+1
+
+Introduction
+
+One of the major algorithmic tasks in the areas of Markov Chain Monte Carlo, in statistical inference
+and in machine learning is approximating partition functions of graphical models. The partition
+function or the approximate partition function are used in computing marginals and posteriors - two
+of the basic inference tasks in graphical models. Moreover, there is an intimate connection between
+computing the partition function and Markov Chain Monte Carlo methods. In particular, Jerrum
+and Sinclair [20] showed that it is possible to approximate the partition function for “self-reducible”
+models for which a rapidly mixing Markov chain exists. On the other hand, for such models, a
+(1 + ε) approximation of the partition function results in a rapidly mixing chain. Some key results
+in the theory of MCMC provide conditions for the existence of a rapidly mixing chains and therefore
+allow for efficient approximations of the partition functions e.g. [12, 13, 14] and follow up work.
+A different line of work is based on the fact that the measure associated to any graphical model
+can be characterized by a variational problem. Thus, approximating the partition function can
+be achieved by solving optimization problems (e.g. [4], [21], [22]). Until recently, there were very
+few general guarantees for the performance of variational methods. One exception is results by
+Risteski [18] who showed that using variational methods, it is possible to find an O(ε||J~||1 ) additive
+2
+approximation to the log partition function of dense graphical models in time n1/ε , even in an
+interesting regime where correlation decay does not hold. Here, ||J~||1 denotes the total weight of all
+interactions of the graph so that we are guaranteed an a priori upper bound on the log partition
+~ 1 ).
+function being O(n + ||J||
+Following Risteski [18], we consider dense graphical models and show that it is possible to find
+an O(ε||J~||1 ) additive approximation to the log partition function in (randomized) constant time.
+Thus our main result stated informally is:
+Theorem 1.1. For dense graphical models, it possible to compute the log partition function with
+additive error O(ε||J~||1 ) in time that depends only on ε and the density parameter.
+We note that the approximation guarantee in Theorem 1.1 is rather weak. For most inference
+tasks, one is interested in good approximation of the partition function itself and our results (like
+those of [18]) only provide an approximation of the partition function within a exp(±ǫn) multiplicative factor. Such an approximation is not useful for most inference and marginalization tasks. We
+note however that
+• It is easy to see that in constant time, it is impossible to get a sub-exponential approximation
+of the partition function (see Theorem 2.12 for a formal statement).
+• There are features of graphical models that are reflected by the log partition function. In
+particular, we show in Theorem 2.11 how to utilize our results to obtain an ε-approximation
+for the magnetization per-site for Ising models in constant time. Similar statements hold for
+other dense graphical models as well. The exact statement of Theorem 2.11 provides the
+magnetization for a model that has parameters close to the model we are interested in. We
+show that this is necessary as in constant time, it is impossible to break symmetry between
+phases.
+We note that our results hold for very general Markov random fields. On the other hand, even
+in the case of ferromagnetic Ising models, only polynomial time guarantees have been previously
+provided (see [13] and recent work [3, 15]).
+We also note that our results can be thought as generalizing classical results about the approximability of Max-Cut and similar problems on dense graphs – in fact, the Max-Cut problem is just
+1
+
+the special case of computing the log partition function of an antiferromagnetic Ising model (i.e. all
+~ 1→∞
+non-zero entries of J are negative) on a graph with equal edge weights in the limit as kJk
+(so that the entropy term becomes negligible). Note that in this case, the log-partition function
+is Ω(kJ~k1 ) (consider choosing the Xi according to independent Rademacher random variables) so
+~ 1 -additive approximation actually gives a PTAS. The first PTAS for Max-Cut on dense
+that an ǫkJk
+2
+graphs was given by Arora, Karger and Karpinski [2] but ran in time O(nÕ(1/ǫ ) ); this was improved
+2
+to O(2Õ(1/ǫ ) by Frieze and Kannan in [7] using their weak regularity lemma, and remains essentially
+the fastest runtime known (our algorithm matches this runtime). More recent works [1, 17] have
+shown that the sample complexity of the problem – the number of entries of the adjacency matrix
+which need to be probed – is only O(1/ǫ4 ). In our case, determining the correct sample complexity
+remains an interesting open problem (see Section 2.4). It is also interesting to note that in the
+optimization case, algorithms based on regularity and algorithms based on convex programming
+hierarchies (see [5, 23]) have the same dependence on ǫ (but not n) – our result and [18] also have
+the same dependence on ǫ and ∆, showing that this phenomena extends to counting-type problems
+2
+as well, and suggesting that it will be difficult to beat a runtime of 2Õ(1/ǫ ∆) .
+
+2
+
+Overview of results
+
+2.1
+
+Notation and definitions
+
+We will consider Ising models where the spins are ±1 valued. The interactions can be both ferromagnetic and anti-ferromagnetic and of varying strengths. For simplicity, we primarily restrict
+ourselves to the case where there are no external fields, though it will be clear that our methods
+extend to that case as well (Remark 2.8).
+Definition 2.1. An Ising model is a probability distribution on the discrete cube {±1}n of the
+form
+X
+1
+1
+Pr[X = x] = exp(
+Ji,j xi xj ) = exp(xT Jx)
+Z
+Z
+i,j
+
+where the collection {Ji,j }i,j∈{1,...,n}
+are the
+Pnentries of an arbitrary real, symmetric matrix. The
+P
+exp(
+normalizing constant Z =
+n
+i,j=1 Ji,j xi xj ) is called the partition function of the
+x∈{±1}
+Ising model.
+We will often need to consider an m × n matrix M as an mn-dimensional vector (exactly how
+we arrange the mn entries of M in a single vector will not matter). When we do so, we will denote
+~ for clarity.
+the resulting vector by M
+Definition 2.2. For a vector v = (v1 , . . . , vn ) ∈ Rn and p ∈ [1, ∞), the Lp norm of v, denoted by
+||v||p , is defined by ||v||p := [|v1 |p + · · · + |vn |p ]1/p . We also define ||v||∞ := maxi∈{1,...,n} |vi |.
+~ , these vector norms will give rise to matrix norms which
+By viewing a matrix M as a vector M
+we will use in the sequel. The cases p = 1, 2, ∞ will be of particular importance to us.
+Another matrix norm that we will need arises from viewing an m × n matrix as a linear operator
+from Rn to Rm via matrix multiplication.
+Definition 2.3. For an m × n matrix M , we define ||M ||∞7→1 := supx∈Rn ,||x||∞≤1 ||M x||1 .
+Following [18], we will focus on ∆-dense Ising models.
+Definition 2.4. An Ising model is ∆-dense if ∆||J~||∞ ≤
+2
+
+~ 1
+||J||
+.
+n2
+
+From a combinatorial perspective ∆-dense models are a generalization of dense graph models.
+From a statistical physics perspective, they generalize complete graph models such as the CurieWeiss model and the SK model [19].
+Our main results will provide algorithms which run in constant time. In order to provide such
+guarantees on problems with unbounded input size, we will work under the usual assumptions on
+the computational model for sub-linear algorithms (as in e.g. [1, 8, 11]). Thus, we can probe matrix
+entry A(i, j) in O(1) time. Also note that by the standard Chernoff bounds, it follows that for any
+set of vertices V for which we can test membership in O(1) time, we can also estimate |V |/n to
+additive error ǫ w.h.p. in constant time using Õ(1/ǫ2 ) samples. This approximation will always
+suffice for us; so, for the sake of clarity in exposition, we will henceforth ignore this technical detail
+and just assume that we have access to |V |/n (as in e.g. [8]).
+
+2.2
+
+Main results
+
+Our main theorem for ∆-dense Ising models is:
+Theorem 2.5. There exists a universal constant C such that for any ǫ, δ > 0, and for any ∆-dense
+2
+2
+Ising model J on n nodes with n ≥ 2C/ǫ ∆ there is an algorithm running in time 2Õ(1/ǫ ∆) log(1/δ)
+which computes an ǫ(n + kJ~k1 ) additive approximation to log Z with probability at least 1 − δ.
+Our methods extend in a straightforward manner to higher order Markov random fields on
+general finite alphabets as well. We will review the definitions in Section 7.1. For simplicity, we
+only state the result for the case of binary k-uniform Markov random fields.
+Theorem 2.6. Fix k ≥ 3. There exists a universal constant C such that√ for any ǫ, δ > 0, and for any
+C(ǫ ∆)2−2k there is an algorithm
+∆-dense binary k-uniform
+√ 2−2kMarkov random field J on n with n ≥ 2
+running in time 2Õ(ǫ ∆)
+log(1/δ) which computes an ǫ(kJ~k1 +n) additive approximation to log Z
+with probability at least 1 − δ.
+In the previous theorem, it is possible to improve the dependence on ǫ at the expense of introducing a factor of nk in the running time. We have:
+Theorem 2.7. Fix k ≥ 3. There exists a universal constant C such that for any ǫ, δ > 0, and for
+2
+any ∆-dense binary k-uniform Markov random field J on n with n ≥ 2C/ǫ ∆ there is an algorithm
+2
+~ 1 +n) additive approximation to log Z
+running in time 2Õ(1/ǫ ∆) log(1/δ)nk which computes an ǫ(kJk
+with probability at least 1 − δ.
+Remark 2.8. Although for simplicity, we stated Theorem 2.6 and Theorem 2.7 only for k-uniform
+∆-dense Markov random fields, it is immediately seen that the results extend to general ∆-dense
+Markov random fields of order K by simply applying Theorem 7.5 or Theorem 7.6 to each J (k) ,
+k ∈ [K]. Again, see Section 7.1 for definitions. In particular, this directly handles dense Ising
+models with external fields.
+~ 1 . If kJ~k1 ≤ ηn, then
+Remark 2.9. The error term in Theorem 2.5 has two terms n and kJk
+T
+| log exp(x Jx)| = O(ηn) and therefore, log Z = n(log 2 + O(η)). Similar statements hold for the
+other theorems as well. Thus, in interesting applications of the theorem, we may assume WLOG
+that the dominant term is kJ~k1 (by dominant here, we mean it is at least a small fraction of the
+other term).
+As in [18], we are also able to handle the case of Ising models whose interaction matrices have
+low threshold ranks, although not in constant time. Again, for simplicity, we only record the result
+for regular low threshold rank models. Definitions will be presented in Section 7.2. Following
+Remark 2.9, we assume J ′ ≥ 1.
+3
+
+Theorem 2.10. There exists a universal constant C such that for any ǫ > 0, and for any regular
+2
+Ising model J on n nodes with n ≥ 2Ct/ǫ (here, t is the ǫ/2 sum-of-squares rank of the model)
+2
+~ 1
+and J ′ ≥ 1, there is an algorithm running in time 2Õ(t/ǫ ) + poly(n, t, 1ǫ ) which computes an ǫkJk
+additive approximation to log Z.
+
+2.3
+
+Approximating the expected total magnetization
+
+P
+P
+Given an Ising model Pr[X = x] = Z1 exp{ i,j Ji,j xi xj + i hi xi }, one of the most fundamental
+questions one can ask about it is how many spins are +1 and −1 in expectation. In the case of
+the ferromagnetic Ising model (Ji,j ≥ 0 for all i, j), this corresponds to how strongly the system
+P is
+magnetized. Accordingly, we define the (expected total) magnetization of an Ising model by E[ i xi ],
+where the expectation is with respect to the Ising distribution on {±1}n . Perhaps surprisingly, our
+results easily show that for dense Ising models, one can obtain, in some sense, an approximation to
+the expected magnetization in constant time. More precisely, we have:
+Theorem 2.11. Consider a ∆-dense Ising Model
+Pr[X = x] :=
+
+X
+X
+1
+exp{
+Ji,j xi xj +
+hi xi },
+Z
+i,j
+
+i
+
+Let
+Pr[X = x] :=
+h
+
+∆||J~||∞ ≤
+
+||J~||1
+,
+n2
+
+∆||h||∞ ≤
+
+||~h||1
+n
+
+X
+X
+1
+exp{
+Ji,j xi xj +
+(hi + h)xi }
+Z
+i,j
+
+i
+
+and let mh denote the expected total magnetization for Prh . Then, for any ǫ > 0, we can find in
+~ 1 ) additive approximation to mh , for some
+constant time (depending only on ǫ and ∆), an ǫ(n + kJk
+h with |h| < ε.
+Proof. It is well known that one can express the moments of spin systems in termsPof derivatives
+of the log partition function. In particular, for the Ising model Pr[X = x] = Z1 exp{ i,j Ji,j xi xj +
+P
+P
+1
+Pi hi xi }, consider the family of perturbed Ising models defined by Prh [X = x] = Zh exp{ i,j Ji,j xi xj +
+i (hi + h)xi }. Then, for any h0 , we have
+
+
+1 ∂ 
+∂ log Zh
+(h0 ) =
+∂h
+Zh0 ∂h
+
+X
+
+x∈{±1}n
+
+=
+
+X
+
+x∈{±1}n
+
+
+
+
+X
+X
+exp{
+Ji,j xi xj +
+(hi + h)xi }
+i,j
+
+i
+
+
+!
+X
+X
+X
+1 
+exp{
+Ji,j xi xj +
+(hi + h0 )xi }
+xi
+Zh 0
+i,j
+
+i
+
+i
+
+X
+= E h0 [
+xi ]
+i
+
+where E h0 denotes the expectation with respect to the Ising distribution perturbed by h0 . In
+Zh
+particular, ∂ log
+∂h (0) equals the expected total magnetization of the Ising model we started out
+
+4
+
+with. Moreover, since by Jensen’s inequality,
+
+
+!
+2
+X
+X
+X
+X
+1 
+∂
+∂ log Zh
+(h0 ) =
+|h=h0
+exp{
+Ji,j xi xj +
+(hi + h0 )xi }
+xi
+∂h2
+∂h
+Z
+h
+0
+i,j
+i
+i
+x∈{±1}n
+X
+X
+= E h0 [(
+xi )2 ] − (E h0 [
+xi ])2
+i
+
+i
+
+≥0
+
+we see that log Z is convex in h; in particular, for any h0 ∈ R and any δ > 0, we have
+log Z(h0 ) − log Z(h0 − δ)
+∂ log Z
+log Z(h0 + δ) − log Z(h0 )
+≤
+(h0 ) ≤
+δ
+∂h
+δ
+Finally,
+P
+• By the mean
+/RHS of the equation above are given by E h′ [ i xi ]
+P value theorem, the LHS
+and E h′′ [ i xi ], where h0 − δ < h′ < h0 < h′′ < h0 + δ.
+• By setting ǫ = δ2 in Theorem 2.5 and Remark 2.8, we can evaluate the LHS and RHS up to
+the desired error in constant time
+
+We remark that:
+• Unfortunately, it is impossible to approximate in constant time the magnetization at the
+specified value of the external fields. For example, consider an Ising model on 4n vertices,
+where Ji,j = C for some large C if i, j ≤ 2n and Ji,j = 0 otherwise. Let hi = 1 if i ∈ [2n+1, 3n]
+and hi = −1 if i ∈ [3n + 1, 4n]. We set all the other hi to 0 except that we set hI = X, where
+I is uniformly chosen in [1, 2n] and X is uniformly chosen in {0, ±1}. Note that this is a dense
+Ising model as per our definition. Note also that on the nodes [1, 2n] we have the Ising model
+on the complete graph with one (random) node having external field.
+It is easy to see that if X = 0, the magnetization is 0. The fact that C is a large constant
+implies that conditioning on one vertex taking the value ± results in a dramatic change in
+magnetization on the vertices [1, 2n]. In particular, the magnetization is of order n if X = +1
+and is of order −n if X = −1. It thus follows that we need Ω(n) queries in order to determine
+the magnetization in this case. We note that this example
+corresponds to a phase transition
+P
+– in particular, for every ǫ > 0, if h′ > ǫ then E h′ [ i xi ] = Ω(n) for all values of X and I.
+See ([6]) for general references for the Ising model on the complete graph.
+• The results for computing the magnetization readily extend to other models. For example, for
+Potts models, we can compute for each color the expected number of nodes of that color (up to
+error ǫkJ~k1 and for an ǫ close external field). Similarly, it is easy to check we can compute
+Pother
+statistics at this accuracy. For instance, for the Ising model, we can approximate E[ ai xi ]
+if nηkak∞ ≤ kak1 for some η > 0.
+
+2.4
+
+Tightness of our results
+
+As mentioned in the introduction, our results are qualitatively tight. We now make this precise by
+proving the following information-theoretic lower bound on the accuracy of constant-time algorithms
+for additively approximating log Z:
+5
+
+Theorem 2.12. Fix ǫ, ∆ ∈ (0, 1/4). For any (possibly randomized) algorithm A which probes at
+1
+entries of J before returning an estimate to log Z, there exists a ∆-dense input
+most k := 8ǫ∆
+instance J such that A makes error at least ǫkJ~k1 /4 with probability at least 1/4.
+Proof. We prove the claim by reduction to a hypothesis testing problem. Specifically, we show that
+′ with log-partition functions that are at
+there exist two different dense Ising models JM and JM
+′ k /2-far apart (where kJ
+~M k > kJ~′ k) such that no algorithm which makes only k probes
+least ǫkJ~M
+1
+M
+can distinguish between the two with probability greater than 3/4. This immediately implies that
+for any algorithm A to estimate log Z and for at least one of the two inputs, A must make error at
+′ k /4 with probability at least 1/4 when given this input — otherwise we could use the
+least ǫkJ~M
+1
+output of A to distinguish the two models with better than 3/4 probability by checking which log Z
+the output is closer to.
+Let n be an instance size to be taken sufficiently large, and consider two ∆-dense ferromagnetic
+Ising models defined as follows:
+
+• JM , for which the underlying graph is the complete graph on n vertices, ǫ∆ n2 many of the
+n
+are
+edges are randomly selected to have weight M
+∆ , and the remaining (1 − ǫ∆) 2 many edges
+
+n M
+n
+M
+~
+~
+assigned weight M . Note that since ||JM ||∞ = ∆ and ||JM ||1 = ǫ∆ 2 ∆ + (1 − ǫ∆) 2 M =
+(1 + ǫ(1 − ∆))M n2 , this model is indeed ∆-dense for n sufficiently large.
+′ , for which the underlying graph is the complete graph on n vertices and all edges have
+• JM
+weight M .
+
+′ respectively. It is easily seen that
+We denote the partition functions of these models by ZM and ZM
+
+
+~M ||1
+log Z ′
+= (1 + ǫ(1 − ∆)) n2 ≥ (1 + 3ǫ/4) n2 , and that limM →∞ M M =
+limM →∞ logMZM = limM →∞ ||JM
+′ ~ ||
+
+
+||JM
+1
+′ =
+limM →∞ M
+= n2 . Therefore, for M sufficiently large, log ZM ≥ (1 + ǫ/2)M n2 and log ZM
+
+
+′ | ≥ (ǫ/2)M n = (ǫ/2)kJ
+~′ M k1 .
+M n2 , so | log ZM − log ZM
+2
+′
+′ with probability greater
+Now, we show that no algorithm A can distinguish between JM and JM
+′ on our input J to algorithm
+than 3/4 with only k probes. We fix a 50/50 split between JM and JM
+′
+′
+A . Since the randomized algorithm A can be viewed as a mixture over deterministic algorithms,
+there must exist a deterministic algorithm A′′ with success probability in distinguishing JM from
+′ at least as large as A′ . Let (u , v ) be the first edge queried by A′′ , let (u , v ) be the next edge
+JM
+1 1
+2 2
+queried assuming Ju1 v1 = M , and define (u3 , v3 ), . . . , (uk , vk ) similarly (without loss of generality,
+the algorithm uses all k of its available queries). Let E be the event that Ju1 ,v1 , . . . , Juk ,vk are all
+′ we see Pr(E|J = J ′ ) ≥
+equal to M . Event E always happens under JM , and when the input is JM
+M
+ǫ∆n(n−1)/2
+≥ 1 − 2kǫ∆ for n > 4k. Thus the total variation distance between the observed
+1 − k n(n−1)/2−k
+′ is at most 2kǫ∆, so by the Neyman-Pearson Lemma we know A′′
+distribution under JM and JM
+1
+fails with probability at least (1/2)(1 − 2kǫ∆). Therefore for k ≤ 4ǫ∆
+we see that A′′ fails with
+probability at least 1/4 which proves the result.
+2
+
+Note that on the input instances given in this theorem, our algorithm will use at most 2Õ(1/ǫ ∆)
+~ 1 approximation for both models with probability ≥ 0.99. Finding the
+queries to output an ǫkJk
+optimal dependence of the running time on the parameters ǫ, ∆ remains an interesting open problem.
+
+2.5
+
+Outline of the techniques
+
+To illustrate the main reason for the intractability of the (log) P
+partition function of an Ising model,
+we consider the ferromagnetic case where Pr[X = x] = Z1 exp{ i,j Ji,j xi xj }, Ji,j ≥ 0. In this case,
+6
+
+it is clear that a given magnetized state x, where almost all of the spins are either +1 or −1, is more
+likely than a given unmagnetized state y, where the spins are almost evenly split between +1 and
+n
+, we see
+−1. However, since the number of states with exactly αn spins equal to +1 is simply αn
+that the total number of strongly magnetized states is exponentially smaller than the total number
+of unmagnetized states. Therefore, while any given unmagnetized state is less likely than any given
+magnetized state, it may very well be the case that the total probability of the system being in an
+unmagnetized state is greater than that of the system being in a magnetized state.
+In this paper, we present an approach to dealing with this tradeoff in dense Ising models
+(Theorem 2.5) based on the algorithmic regularity lemma of Frieze and Kannan (Theorem 3.3).
+Roughly speaking, this lemma allows us to efficiently partition the underlying (weighted) graph
+into a small number of blocks in a manner such that “cut-like” quantities associated to the graph
+approximately depend only on the numbers of edges between various blocks. In Lemma 4.1, we
+show that the log partition function fits into this framework. A similar statement for MAX-CUT
+(which may be viewed as the limiting case of our model when only antiferromagnetic interactions
+are allowed and ||J~||∞ tends to infinity) was first obtained in [7].
+The key point in the regularity lemma is that the number of blocks depends only on the desired
+quality of approximation, and not of the size of the underlying graph. Together with the previous
+statement, this shows (Lemma 4.2) that one can approximately rewrite the sum computing the
+partition function in terms of only polynomially many nonnegative summands, as opposed to the
+exponentially many nonnegative summands we started out with. This provides a way to resolve the
+entropy-energy tradeoff – the log of the largest summand of this much smaller sum approximates
+the log of the partition function well (Lemma 5.1).
+The preceding discussion reduces the problem of estimating the log partition function to an
+optimization problem, although a very different one from [18]. However, as stated, it is not a
+problem we can solve in constant time. In Lemma 5.2, we show how to “granulate” the parameters
+to reduce the problem to constant size, and then our Algorithm 1 solves this problem efficiently
+via convex programming. The proofs of Theorem 2.6, Theorem 2.7 and Theorem 2.10 follow a
+similar outline, with the application of Theorem 3.3 replaced by Theorem 7.5, Theorem 7.6 and
+Theorem 7.9 respectively.
+
+3
+
+Preliminaries
+
+In the case of the dense Ising model, our reduction to a problem that can be solved in constant time
+will be based on the algorithmic weak regularity lemma of Frieze and Kannan [8]. Before stating it,
+we introduce some terminology. Throughout this section, we will deal with m × n matrices whose
+entries we will index by [m] × [n], where [k] = {1, . . . , k}.
+Definition 3.1. Given S ⊆ [m], T ⊆ [n] and d ∈ R, we define the [m] × [n] Cut Matrix C =
+CU T (S, T, d) by
+(
+d if (i, j) ∈ S × T
+C(i, j) =
+0 otherwise
+Definition 3.2. A Cut Decomposition expresses a matrix J as
+J = D (1) + · · · + D (s) + W
+where D (i) = CU T (Ri , Ci , di ) for all t = 1, . . . , s. We say that such a cut decomposition has
+width s, coefficient length (d21 + · · · + d2s )1/2 and error ||W ||∞7→1 .
+7
+
+We are now ready to state the algorithmic weak regularity lemma of Frieze and Kannan.
+2
+
+Theorem 3.3. [8] Let J be an arbitrary real matrix, and let ǫ, δ > 0. Then, in time 2Õ(1/ǫ ) /δ2 , we
+can,
+≥ 1 − δ, find a cut decomposition of width O(ǫ−2 ), coefficient length at most
+√ with probability
+√
+~ 2 / mn and error at most 4ǫ√mn||J||
+~ 2.
+27||J||
+
+4
+
+Reducing the number of summands using weak regularity
+
+The next lemma shows that for the purpose of additively approximating the
+function,
+Plog partition
+(1)
+(s)
+′
+T
+(1)
+we may as well work with the matrix D + · · · + D . We define Z := x exp(x (D + · · · +
+D (s) )x).
+Lemma 4.1. Let J be the matrix of interaction strengths of a ∆-dense Ising model. For ǫ, δ > 0,
+let J = D (1) + · · · + D (s) + W be a cut decomposition of J as in Theorem 3.3.Then, for Z and Z ′
+as above, we have | log Z − log Z ′ | ≤ √4ǫ∆ ||J~||1 .
+Proof. Note that for any x ∈ {±1}n , we have
+X
+X
+XX
+X X
+|
+Ji,j xi xj −
+(D (1) + · · · + D (s) )i,j xi xj | = |
+(
+Wi,j xj )xi | ≤ |
+|
+Wi,j xj |
+i,j
+
+i,j
+
+i
+
+j
+
+i
+
+j
+
+~ 2
+≤ ||W ||∞7→1 ≤ 4ǫn||J||
+
+Therefore, for any x ∈ {±1}n , we have
+
+
+
+X
+X
+exp(
+Ji,j xi xj ) ∈ exp  (D (1) + · · · + D (s) )i,j xi xj ) ± 4ǫn||J~||2  .
+i,j
+
+i,j
+
+Taking first the sum of these inequalities over all x ∈ {±1}n and then the log, we get
+
+
+
+
+X
+log Z ∈ log
+exp xT (D (1) + · · · + D (s) )x ± 4ǫn||J~||2 
+x∈{±1}n
+
+Finally, noting that ||J~||22 =
+
+P
+
+i,j
+
+|Ji,j |2 ≤ ||J~||∞ ||J~||1 ≤
+
+~ 2
+||J||
+1
+,
+∆n2
+
+and the proof follows.
+
+Recall that for each i ∈ [s], D (i) = CU T (Ri , Ci , di ) is a cut matrix between vertex sets Ri and
+Ci . We pass to a common refinement of all of the Ri ’s and Ci ’s. This gives at most r ≤ 22s disjoint
+sets V1 , . . . , Vr such that that every one of the Ri ’s and Ci ’s is a union of these “atoms” Va . In terms
+of these Va ’s, we can define another approximation Z ′′ to the partition function:
+!
+r
+s
+X
+X
+X
+|Va |H(ya /|Va |)
+r ′ (y)i c′ (y)i di +
+Z ′′ :=
+exp
+y
+
+a=1
+
+i=1
+
+P
+where
+y ranges over all elements of [|V1 |] × · · · × [|Vr |], r ′ (y)i := a : Va ⊆Ri (2ya − |Va |), c′ (y)i :=
+P
+a : Va ⊆Ci (2ya − |Va |) and H(p) := −p log p − (1 − p) log(1 − p) is the binary entropy function. Note
+that r ′ (y)i represents the net spin in Ri , and similarly for c′ (y)i . The next lemma shows that for
+approximating log Z ′ , it suffices to obtain an approximation to log Z ′′ . Combined with Lemma 4.1,
+we therefore see that approximating log Z ′′ is sufficient for approximating log Z.
+8
+
+Lemma 4.2. For Z ′ and Z ′′ as above, we have | log Z ′ − log Z ′′ | = O(22s log n).
+P
+P
+P
+Proof. First,
+observe that xT D (i)
+x = di a∈Ri ,b∈Ci xa xb = di ( a∈Ri xa )( b∈Ci xb ). Thus, letting
+P
+P
+ri′ (x) := a∈Ri xa and c′i (x) := b∈Ci xb , we see that that
+Z′ =
+
+X
+x
+
+exp(xT (D (1) + · · · + D (s) )x) =
+
+X
+
+exp
+
+x
+
+X
+
+ri′ (x)c′i (x)di
+
+i
+
+!
+
+.
+
+Re-expressing the summation in terms of the possible values that ri′ (x) and c′i (x) can take, we get
+that
+!
+X
+X
+X
+′
+′ ′
+Z =
+ri ci di
+exp
+1.
+r ′ ,c′
+
+x
+r ′ (x)=r ′
+′
+c (x)=c′
+
+i
+
+where r ′ ranges over all elements of [|R1 |] × · · · × [|Rs |], r ′ := (r1′ , . . . , rs′ ), r ′ (x) := (r1′ (x), . . . , rs′ (x))
+and similarly for c′ and c′ (x). Next, since
+Y |Va |
+X
+X
+1=
+ya
+n
+a
+x∈{±1}
+r ′ (x)=r ′
+c′ (x)=c′
+
+it follows that Z ′ =
+
+P
+
+y
+
+y∈[|V1 |]×···×[|Vr |]
+r ′ (y)=r ′
+c′ (y)=c′
+|Va |
+ya .
+
+Q
+P
+exp ( i r ′ (y)i c′ (y)i di ) a
+
+
+n
+log
+αn
+
+
+
+Finally, we apply Stirling’s formula
+
+= nH(α) + O(log n).
+
+to get the desired result.
+
+5
+
+Approximating the reduced sum in constant time using convex
+programming
+
+So far, we have seen how the problem of estimating the log partition function can be reduced to
+the problem of approximating log Z ′′ . The next simple lemma reduces the estimation of log Z ′′ to
+an optimization problem.
+P
+P
+Lemma 5.1. Let y ∗ := arg maxy exp ( i ri′ (y)c′i (y)di + a |Va |H(ya /|Va |)). Then,
+!
+X
+X
+′′
+′ ∗ ′ ∗
+∗
+log Z −
+ri (y )ci (y )di +
+|Va |H(ya /|Va |) ≤ 22s log n.
+i
+
+a
+
+2s
+
+Proof. This follows immediately by noting that Z ′′ , which is a sum of at most n2 many nonnegative
+2s
+summands, is at least as large as its largest summand, and no larger than n2 times its largest
+summand.
+The following lemma shows that for estimating the contribution of the term corresponding to
+some vector y, it suffices to know the components of y up to some constant precision. This reduces
+the optimization problem to one of constant size.
+
+9
+
+Lemma 5.2. Let J denote the matrix of interaction strengths of a ∆-dense Ising model, and let
+J = D 1 + · · · + D s + W√denote a cut decomposition as in Theorem 3.3. Then, given ri , ri′ , ci , c′i for
+∆
+i ∈ [s] and some γ ≤ 4ǫ√27s
+such that ri , ci , ri′ , c′i ≤ n, |ri − ri′ | ≤ γn and |ci − c′i | ≤ γn for all i, we
+P
+~ 1 /2.
+get that i di |ri′ c′i − ri ci | ≤ ǫ||J||
+Proof. From Theorem 3.3, we know that for all i ∈ [s], |di | ≤
+|c′i ||ri′ − ri | + |ri ||c′i − ci | ≤ 2γn2 , it follows that
+X
+i
+
+di |ri′ c′i
+
+− ri ci | ≤
+
+X
+i
+
+√
+
+~
+27||
+√J||1 .
+n2 ∆
+
+Since |ri′ c′i − ri ci | ≤
+
+√
+27||J~||1
+εk|J~||1
+√
+di 2γn ≤
+2γs ≤
+2
+∆
+2
+
+which completes the proof.
+We now present Algorithm 1 which approximates the log of the largest summand in Z ′′ by
+iterating over all possible proportions of up-spins in each block Ri , Ci . For each proportion, it
+approximately solves the following convex program Cr,c (where γ is as before, λ is a parameter to
+be specified, and va := |Va |/n):
+X
+max
+va H(za /va )
+a
+
+s.t.
+
+0 ≤ za
+≤ va
+X
+za ≤ rt + γ
+rt ≤
+a:Va ⊂Rt
+
+ct ≤
+
+X
+
+a:Va ⊂Ct
+
+za ≤ ct + γ.
+
+The infeasibility of this program means that our “guess” for the proportion of up-spins in the
+various Ri , Ci is not combinatorially possible (recall that there may be significant overlap between
+the various Ri , Ci . On the other hand, if this program is feasible, then we actually obtain an
+approximate maximum entropy configuration with roughly the prescribed number of up-spins in
+Ri , Ci , i ∈ [n]. Calculating the contribution to Z ′′ of such a configuration, and maximizing this
+contribution over all iterations gives a good approximation1 to the maximum summand of Z ′′ , and
+hence to Z ′′ . This is the content of the next lemma.
+~ 1 + λn + O(22s log n) additive approximation to
+Lemma 5.3. The √output of Algorithm 1 is an ǫ||J||
+2s
+4
+27s2
+log Z ′′ when n ≥ √∆ǫ .
+Proof. By Lemma 5.1, it suffices to prove the claim with log Z ′′ replaced by
+X
+X
+ri′ (y ∗ )c′i (y ∗ )di +
+|Va |H(ya∗ /|Va |).
+a
+
+i
+
+where y ∗ is defined as in the statement of Lemma 5.1. Let r, c correspond to the “cell” which y ∗ /n
+falls into, i.e. the values of r, c such that for the corresponding r ′ , c′ , we have r ′ ≤ r ′ (y ∗ ),c′ ≤ c′ (y ∗ ),
+A slightly better approximation to log Z ′′ can be found by estimating the discrete sum over each region by an
+integral (using Lemma 5.4 to bound the error), and approximating this integral via the hit-and-run random walk of
+[16]. However, this algorithm is slower than Algorithm 1, and it turns out the gain in accuracy is negligible for our
+application.
+1
+
+10
+
+Algorithm 1 Convex programming method to estimate log partition unction
+Let S = {0, γ, 2γ, . . . , ⌊1/γ⌋γ}.
+M ← 0.
+for r ∈ S s , c ∈ S s do
+Either find a λ-approximate solution to, or verify infeasibility of, Cr,c . (e.g. by ellipsoid
+method [10])
+if Cr,c is feasible then
+Let Hr,c denote the λ-approximate maximum value of Cr,c .
+c′i = 2nci − |Ci |.
+Let ri′ = 2nri − |R
+Pi | and
+Let Mr,c = exp ( i ri′ c′i di + nHr,c ).
+M ← max(M, Mr,c ).
+end if
+end for
+return log M
+|r ′ − r ′ (y ∗ )| ≤ γn and |c′ − c′ (y ∗ )| ≤ γn. Since Hr,c is the result of solving Cr,c up to λ additive
+error and since y ∗ /n is in the feasible region of the convex program by definition, it follows that
+X
+X
+va H(za /va ) − λn ≥
+|Va |H(ya∗ /|Va |) − λn
+nHr,c ≥ n sup
+z
+
+a
+
+a
+
+where z ranges over the feasible region for Cr,c . Combining this with Lemma 5.2 gives
+X
+X
+ri′ (y ∗ )c′i (y ∗ )di +
+|Va |H(ya∗ /|Va |) − log Mr,c
+a
+
+i
+
+≤
+≤
+
+X
+i
+
+X
+i
+
+di (ri′ (y ∗ )i c′i (y ∗ ) − ri′ c′i ) +
+′
+
+∗
+
+′
+
+∗
+
+di |r (y )c (y ) −
+
+ri′ c′i |
+
+X
+a
+
+|Va |H(ya∗ /|Va |) − nHr,c
+
++ λn ≤ ǫ||J~||1 /2 + λn.
+
+On the other hand, we know that M = Mr,c for some r, c. Let z denote the point at which the λapproximate optimum to the convex program Cr,c was attained. Define ya to be ⌈za n⌉ if za n ≤ |Va |/2
+and to be ⌊za n⌋ otherwise. Similar to the inequality above, we get
+X
+X
+log Mr,c −
+ri′ (y ∗ )c′i (y ∗ )di +
+|Va |H(ya∗ /|Va |)
+a
+
+i
+
+≤ log Mr,c −
+
+=
+
+X
+a
+
+X
+i
+
+ri′ (y)c′i (y)di −
+
+X
+a
+
+|Va |H(ya /|Va |)
+
+{|Va |H(za n/|Va |) − |Va |H(ya /|Va |} +
+
+≤ 22s log 5 +
+
+X
+i
+
+ri′ c′i di −
+
+X
+
+X
+i
+
+ri′ (zn)c′i (zn)di +
+
+ri′ c′i di −
+X
+i
+
+i
+
+X
+i
+
+ri′ (zn)c′i (zn)di −
+
+X
+X
+ǫ||J~||1
+≤ 22s log 5 +
+ri′ (zn)c′i (zn)di −
+ri′ (y)c′i (y)di
++
+2
+i
+
+ri′ (y)c′i (y)di
+X
+
+ri′ (y)c′i (y)di
+
+i
+
+i
+
+where r ′ and c′ are as defined in Algorithm 1 in terms of r and c, in the second inequality, we
+have used Lemma 5.4 and the triangle inequality, and in the last line, we have used Lemma 5.2.
+11
+
+√
+
+~
+
+J||
+√ 1 by
+To bound the last term, since |ya − za n| ≤ 1 for all a by definition, and since |di | ≤ n27||
+2 ∆
+Theorem 3.3, we get
+X
+X
+X
+X
+|
+ri′ (zn)c′i (zn)di −
+r ′ (y)i c′ (y)i di | ≤
+|di ||ri′ (y)||c′i (y) − c′i (zn)| +
+|di ||c′i (zn)||ri′ (y) − ri′ (zn)|
+i
+
+i
+
+i
+
+≤
+
+i
+
+X
+
+≤2
+
+i
+
+|di ||Ri ||
+
+X
+i
+
+2| +
+
+a : Va ⊆Ci
+
+2s
+
+|di |n2
+
+X
+
+≤
+
+√
+
+X
+i
+
+|di ||Ci ||
+
+~ 1 22s+1 s
+27||J||
+√
+n ∆
+
+X
+
+2|
+
+a : Va ⊆Ci
+
+~ 1
+ǫ||J||
+≤
+2
+provided that n ≥
+
+√
+4s √2722s
+,
+∆ǫ
+
+which finishes the proof.
+
+Lemma 5.4. Let n be a natural number, and let 0 ≤ z ≤ n. Let y = ⌈z⌉ if z ≤ n/2 and y = ⌊z⌋ if
+z > n/2. Then, nH(y/n) ≥ nH(z/n) − log(5).
+Proof. Observe that if both y, z ≤ n/2 or both y, z ≥ n/2 then this is immediate, since entropy is
+concave and maximized at 1/2, thereby implying that H(y/n) > H(z/n). In the remaining case,
+y/n and z/n are on opposite sides of 1/2. By the definition of y, we know that |y/n − z/n| ≤ 1/n,
+and hence, by the Mean Value Theorem, n|H(y/n)−H(z/n)| = n|H ′ (x/n)(y/n−z/n)| ≤ |H ′ (x/n)|
+for some x with |x/n − 1/2| ≤ 1/n. Thus, if n ≥ 3 we have x/n ∈ [1/6, 5/6] so that |H ′ (x/n)| =
+| log((x/n)/(1 − x/n))| ≤ log 5. If n ≤ 2, then we already have nH(z/n) − nH(y/n) ≤ nH(z/n) ≤
+2 log 2 < log 5.
+
+6
+
+Putting it all Together
+
+We are now ready to prove Theorem 2.5.
+Proof. (Theorem 2.5) First, we show how to get such an algorithm with constant success probability
+(i.e. 7/8). We will then boost it to the desired probability of success using the standard median
+technique. The constant success algorithm is just Algorithm 1 applied√to the weakly regular partition
+generated by Theorem 3.3 with regularity parameter some ǫ′ = O(ǫ ∆).
+For the correctness of this algorithm, note that if M is the output of Algorithm 1, then
+| log M − log Z| ≤ | log Z − log Z ′ | + | log Z ′ − log Z ′′ | + | log M − log Z ′′ |
+~ 1 /4 + O(22s log n) + ǫkJk
+~ 1 /4 + λn + O(22s ).
+≤ ǫkJk
+where the first bound is by Lemma 4.1, the second bound is by Lemma 4.2, and the last bound is
+by Lemma 5.3.
+~ 1 /4 + λn ≤ ǫ(kJ~k1 + n)
+ǫkJ~k1 /4 + O(22s log n) + ǫkJk
+when we take λ = ǫ/2 and n sufficiently large. The runtime of computing a weakly regular partition
+2
+2
+with success probability 7/8 in Theorem 3.3 is 2Õ(1/ǫ ∆) . The runtime of Algorithm 1 is 2Õ(1/ǫ ∆)
+2
+as there are 2Õ(1/ǫ ∆) many points in |S|, and solving each convex program Cr,c up to λ-error (as
+2
+2
+well as deciding feasibility) can be done in time poly(2Õ(1/ǫ ∆) , log(1/λ), log(1/γ)) = 2Õ(1/ǫ ∆) by
+standard guarantees for the ellipsoid method [10].
+12
+
+Finally, to boost our success probability to 1 − δ, we use the standard median trick, which is to
+repeat the algorithm O(log(1/δ)) times independently and take the median of these outputs – that
+this works is easily proven by the standard Chernoff bounds.
+
+7
+7.1
+
+Extensions
+General Markov random fields
+
+For simplicity, we will restrict ourselves to Markov random fields over a binary alphabet. It is
+readily seen that the same techniques extend to Markov random fields over general finite alphabets
+as well.
+Definition 7.1. A binary Markov random field of order K is a probability distribution on the
+discrete cube {±1}n of the form
+K
+X
+1
+Pr[X = x] = exp(
+Z
+
+n
+X
+
+(k)
+
+Ji1 ...ik xi1 . . . xik )
+
+k=1 i1 ,...,ik =1
+
+(k)
+
+where for each k, {Ji1 ,...,ik }i1 ,...,ik ∈[n] is an arbitrary collection of real numbers. Note that the sum
+P
+(k)
+(k) (x, . . . , x), where J (k) is a k-multilinear map or
+i1 ,...,ik Ji1 ,...,ik xi1 . . . xik may also be viewed as J
+(k)
+
+k-tensor with J (k) (ei1 , . . . , eik ) = Ji1 ,...,ik . Here, ej denotes the j th standard basis vector of Rn and we
+P
+P
+(k) (x, . . . , x))
+view {±1}n as a subset of Rn . The normalizing constant Z = x∈{±1}n exp( K
+k=1 J
+is called the partition function of the Markov random field. Moreover, if all entries of all J (i) ,
+i ∈ [K]\k vanish, then we say that the Markov random field is k-uniform.
+Definition 7.2. A binary Markov random field of order K is ∆-dense if ∆||J~(k) ||∞ ≤
+all k.
+
+||J ~(k) ||1
+nk
+
+for
+
+As indicated earlier, our approach for general Markov random fields mirrors our approach for the
+Ising model. This is essentially because one has a similar algorithmic regularity lemma for general
+k-dimensional matrices.
+Definition 7.3. A k-dimensional matrix M on X1 × · · · × Xk is a map M : X1 × · · · × Xk → R.
+Definition 7.4. For Si ⊆ Xi , i = 1, . . . , k and a real number d, we define the k-dimensional matrix
+(
+d e = (x1 , . . . , xk ) ∈ S1 × · · · × Sk
+CU T (S1 , . . . , Sk ; d)(e) =
+0 otherwise
+Theorem 7.5. [8] Suppose J is an arbitrary k-dimensional matrix on X1 × · · · × Xk , where we
+assume that k ≥ 3 is fixed. Let N := |X1 | × · · · × |Xk | and let ǫ, δ ∈ (0, 1]. Then, in time
+2
+O(kO(1) ǫ−O(log2 k) 2Õ(1/ǫ ) δ−2 ), we can, with probability at least 1 − δ, find a cut decomposition of
+√
+√
+√ k
+width O(ǫ2−2k ), coefficient length at most 27 ||J~||2 / N and error at most ǫ2k N ||J~||2 .
+As in the k = 2 case, the error of the cut decomposition refers to ||J −(D (1) +· · ·+D (s) )||∞7→1 :=
+sup||x||∞≤1 ||J − (D (1) + · · · + D (s) )||1 , where we view a k-dimensional matrix M as a linear operator
+P
+from (Rn )k−1 → Rn via the formula [M (x1 , . . . , xk−1 )]i := j1 ,...,jk−1 Mj1 ...jk−1 i x1,j1 . . . xk−1,jk−1 .
+13
+
+Given this theorem, the proof proceeds exactly as before – the same argument as Lemma 4.1
+k ǫ||J||
+~ 1
+shows that we can replace J by D (1) + · · · + D (s) (possibly incurring an additive error of 2 √
+),
+∆
+and once we have made this replacement, a similar optimization scheme as before lets us deduce
+Theorem 2.6. The proof of Theorem 2.7 is identical, the only difference being that we can obtain a
+cut decomposition of smaller width using the following theorem.
+Theorem 7.6. [1] Let J be a an arbitrary k-dimensional matrix on X1 × · · · × Xk , where we assume
+2
+that k ≥ 3 is fixed. Let N := |X1 | × · · · × |Xk | and let ǫ > 0. Then, in time 2O(1/ǫ ) O(N ) and with
+probability at √
+least 0.99, we can find a cut
+decomposition width at most 4/ǫ2 , coefficient length at
+√
+most 2||J~||2 /ǫ N and error at most ǫ2k N ||J~||2 .
+
+7.2
+
+Ising models with low threshold rank
+
+As in [18], we can also consider Ising models of low threshold rank. For simplicity, we consider only
+the regular case, noting that our results generalise with appropriate modifications to the non-regular
+case as well.
+P
+′
+Definition 7.7. A regular weighted Ising model is one for which
+j |Ji,j | = J for all i. The
+normalized adjacency matrix of a regular Ising model is the matrix with entries Ji,j /J ′ . We will
+denote this matrix by JD .
+Definition
+P7.8. The δ-sum-of squares threshold rank of a regular Ising model is defined to be
+tδ (JD ) := i:|λi |>δ λ2i , where λ1 , . . . , λn denote the eigenvalues of JD .
+
+Note that since all eigenvalues of JD have absolute value at most 1, our criterion for low threshold rank is more general than defining tδ (JD ) to be the number of eigenvalues of JD with absolute
+value strictly greater than δ.
+
+Our definition
+of tδ (JD ) differs slightly from the definition in [18]. There, the author defined
+P
+tδ (JD ) := i : |µi |>δ 1, where µ1 , . . . , µn denote the eigenvalues of the matrix abs(JD ) defined by
+abs(JD )i,j = |(JD )i,j |. His definition and our definition are related via the standard linear algebra
+P
+~ D )k2 , it follows that Pn λ2 = Pn µ2 .
+fact that ni=1 λ2i = ||J~D ||22 ; since ||J~D ||22 = ||abs(J
+2
+i=1 i
+i=1 i
+The same linear algebra fact shows that the low δ-sum-of-squares rank setting strictly generalises the ∆-dense setting: for any regular, ∆-dense Ising model and for any δ > 0, we have
+||J1~||21
+1
+′
+~
+tδ (JD ) ≤ ||J~D ||22 = J1′2 ||J~||22 ≤ J1′2 ∆n
+2 = ∆ , where we have used that ||J ||1 = nJ in the regular
+case.
+Our methods extend straightforwardly to the low sum-of-squares threshold rank setting due to
+the following algorithmic regularity lemma of Gharan and Trevisan.
+Theorem 7.9. [9] Let J be the matrix of interaction strengths of a regular Ising model, let ǫ > 0
+and let t := tǫ/2 (JD ). Then, in time poly(n, t, 1ǫ ), we can find a cut decomposition of width at most
+√
+16t/ǫ2 , |di | ≤ t and error at most 4ǫ||J~||1 .
+~ 1
+||J||
+
+Recall that in the case of the ∆-dense Ising model, the bounds
+on the cut decomposition we
+√
+27
+−2
+actually used were that the width is O(ǫ ), each |di | is at most √∆n2 ||J~||1 , and the error is at most
+~ 1 , which are quite similar since ||J~1 || = J ′ n. Hence, by exactly the same analysis as for the
+√4ǫ ||J||
+∆
+
+∆-dense case, we can conclude Theorem 2.10. We omit further details.
+
+14
+
+8
+
+Acknowledgements
+
+We thank David Gamarnik for insightful comments, Andrej Risteski for helpful discussions related
+to his work [18], and Yufei Zhao for introducing us to reference [1].
+
+References
+[1] Noga Alon, Fernandez de la Vega, Ravi Kannan, and Marek Karpinski. Random sampling and
+approximation of MAX-CSPs. J. Comput. System Sci., 67:212–243, 2003.
+[2] Sanjeev Arora, David Karger, and Marek Karpinski. Polynomial time approximation schemes
+for dense instances of np-hard problems. In Proceedings of the Twenty-seventh Annual ACM
+Symposium on Theory of Computing, STOC ’95, pages 284–293, New York, NY, USA, 1995.
+ACM.
+[3] Alexander Barvinok. Combinatorics and complexity of partition functions. Algorithms and
+Combinatorics, 30, 2017.
+[4] David M. Blei, Alp Kucukelbir, and Jon D. McAuliffe. Variational inference: A review for
+statisticians. arXiv preprint arXiv:1601.00670, 2016.
+[5] Wenceslas Fernandez de la Vega and Claire Kenyon-Mathieu. Linear programming relaxations
+of maxcut. In Proceedings of the eighteenth annual ACM-SIAM symposium on Discrete algorithms, pages 53–61. Society for Industrial and Applied Mathematics, 2007.
+[6] Richard S. Ellis. Entropy, large deviations, and statistical mechanics. Springer, 2007.
+[7] Alan Frieze and Ravi Kannan. The regularity lemma and approximation schemes for dense
+problems. Proceedings of the 37th Annual IEEE Symposium on Foundations of Computer
+Science, pages 12–20, 1996.
+[8] Alan Frieze and Ravi Kannan. Quick approximation to matrices and applications. Combinatorica, 19(2):175–220, 1999.
+[9] Shayan Oveis Gharan and Luca Trevisan. A new regularity lemma and faster approximation algorithms for low threshold rank graphs. In Approximation, Randomization, and Combinatorial
+Optimization. Algorithms and Techniques, pages 303–316. Springer, 2013.
+[10] Martin Grötschel, László Lovász, and Alexander Schrijver. Geometric algorithms and combinatorial optimization, volume 2. Springer Science & Business Media, 2012.
+[11] Piotr Indyk. Sublinear time algorithms for metric space problems. In Proceedings of the thirtyfirst annual ACM symposium on Theory of computing, pages 428–434. ACM, 1999.
+[12] M. Jerrum and A. Sinclair. Approximating the permanent. SIAM J. Comput., 18(6):1149–1178,
+1989.
+[13] M. Jerrum and A. Sinclair. Polynomial-time approximation algorithms for ising model (extended abstract). In Automata, Languages and Programming, pages 462–475, 1990.
+[14] M. Jerrum, A. Sinclair, and E. Vigoda. A polynomial-time approximation algorithm for the
+permanent of a matrix with non-negative entries. Journal of the ACM, 51(4):671-697, 2004.,
+51(4):671–697, 2004.
+15
+
+[15] Jingcheng Liu, Alistair Sinclair, and Piyush Srivastava. The ising partition function: Zeros and
+deterministic approximation. In FOCS, 2017.
+[16] László Lovász and Santosh Vempala. Fast algorithms for logconcave functions: Sampling,
+rounding, integration and optimization. In Foundations of Computer Science, 2006. FOCS’06.
+47th Annual IEEE Symposium on, pages 57–68. IEEE, 2006.
+[17] Claire Mathieu and Warren Schudy. Yet another algorithm for dense max cut: Go greedy. In
+Proceedings of the Nineteenth Annual ACM-SIAM Symposium on Discrete Algorithms, SODA
+’08, pages 176–182, Philadelphia, PA, USA, 2008. Society for Industrial and Applied Mathematics.
+[18] Andrej Risteski. How to calculate partition functions using convex programming hierarchies:
+provable bounds for variational methods. In COLT, 2016.
+[19] David Sherrington and Scott Kirkpatrick. Solvable model of a spin-glass. Physical review
+letters, 35(26):1792, 1975.
+[20] Alistair Sinclair and Mark Jerrum. Approximate counting, uniform generation and rapidly
+mixing markov chains. Information and Computation, 82(1):93–133, 1989.
+[21] Martin J. Wainwright and Michael I. Jordan. Graphical models, exponential families, and
+variational inference. Foundations and Trends in Machine Learning, 1(1-2):1–305, 2008.
+[22] Jonathan S. Yedidia, William T. Freeman, and Yair Weiss. Understanding belief propagation
+and its generalizations. 2003.
+[23] Yuichi Yoshida and Yuan Zhou. Approximation schemes via sherali-adams hierarchy for dense
+constraint satisfaction problems and assignment problems. In Proceedings of the 5th conference
+on Innovations in theoretical computer science, pages 423–438. ACM, 2014.
+
+16
+
+This figure "frog.jpg" is available in "jpg" format from:
+http://arxiv.org/ps/1711.01655v2
+
+
+
+Summary:
+This research paper covers the following topic: Approximating Partition Functions in Constant Time
+
+arXiv:1711.01655v2 [cs.LG] 20 Feb 2018
+
+Vishesh Jain∗
+
+Frederic Koehler†
+
+Elchanan Mossel‡
+
+Abstract
+We study approximations of the partition function of dense graphical models. Partition
+functions of graphical models play a fundamental role is statistical physics, in statistics and in
+machine learning. Two of the main methods for approximating the partition function are Markov
+Chain Monte Carlo and Variational Methods. An impressive body of work in mathematics,
+physics and theoretical computer science provides conditions under which Markov Chain Monte
+Carlo methods converge in polynomial time. These methods often lead to polynomial time
+approximation algorithms for the partition function in cases where the underlying model exhibits
+correlation decay. There are very few theoretical guarantees for the performance of variational
+methods. One exception is recent results by Risteski (2016) who considered dense graphical
+models and showed that using variational methods, it is possible to find an O(ǫn) additive
+2
+approximation to the log partition function in time nO(1/ǫ ) even in a regime where correlation
+decay does not hold.
+We show that under essentially the same conditions, an O(ǫn) additive approximation of the
+log partition function can be found in constant time, independent of n. In particular, our results
+cover dense Ising and Potts models as well as dense graphical models with k-wise interaction.
+They also apply for low threshold rank models.
+To the best of our knowledge, our results are the first to give a constant time approximation
+to log partition functions and the first to use the algorithmic regularity lemma for estimating
+partition functions. As an application of our results we derive a constant time algorithm for
+approximating the magnetization of Ising and Potts model on dense graphs.
+
+∗
+
+Massachusetts Institute of Technology. Department of Mathematics. Email: visheshj@mit.edu
+Massachusetts Institute of Technology. Department of Mathematics. Email: fkoehler@mit.edu
+‡
+Massachusetts Institute of Technology. Department of Mathematics and IDSS. Supported by ONR grant N0001416-1-2227 and NSF CCF-1665252 and DMS-1737944. Email: elmos@mit.edu
+†
+
+1
+
+Introduction
+
+One of the major algorithmic tasks in the areas of Markov Chain Monte Carlo, in statistical inference
+and in machine learning is approximating partition functions of graphical models. The partition
+function or the approximate partition function are used in computing marginals and posteriors - two
+of the basic inference tasks in graphical models. Moreover, there is an intimate connection between
+computing the partition function and Markov Chain Monte Carlo methods. In particular, Jerrum
+and Sinclair [20] showed that it is possible to approximate the partition function for “self-reducible”
+models for which a rapidly mixing Markov chain exists. On the other hand, for such models, a
+(1 + ε) approximation of the partition function results in a rapidly mixing chain. Some key results
+in the theory of MCMC provide conditions for the existence of a rapidly mixing chains and therefore
+allow for efficient approximations of the partition functions e.g. [12, 13, 14] and follow up work.
+A different line of work is based on the fact that the measure associated to any graphical model
+can be characterized by a variational problem. Thus, approximating the partition function can
+be achieved by solving optimization problems (e.g. [4], [21], [22]). Until recently, there were very
+few general guarantees for the performance of variational methods. One exception is results by
+Risteski [18] who showed that using variational methods, it is possible to find an O(ε||J~||1 ) additive
+2
+approximation to the log partition function of dense graphical models in time n1/ε , even in an
+interesting regime where correlation decay does not hold. Here, ||J~||1 denotes the total weight of all
+interactions of the graph so that we are guaranteed an a priori upper bound on the log partition
+~ 1 ).
+function being O(n + ||J||
+Following Risteski [18], we consider dense graphical models and show that it is possible to find
+an O(ε||J~||1 ) additive approximation to the log partition function in (randomized) constant time.
+Thus our main result stated informally is:
+Theorem 1.1. For dense graphical models, it possible to compute the log partition function with
+additive error O(ε||J~||1 ) in time that depends only on ε and the density parameter.
+We note that the approximation guarantee in Theorem 1.1 is rather weak. For most inference
+tasks, one is interested in good approximation of the partition function itself and our results (like
+those of [18]) only provide an approximation of the partition function within a exp(±ǫn) multiplicative factor. Such an approximation is not useful for most inference and marginalization tasks. We
+note however that
+• It is easy to see that in constant time, it is impossible to get a sub-exponential approximation
+of the partition function (see Theorem 2.12 for a formal statement).
+• There are features of graphical models that are reflected by the log partition function. In
+particular, we show in Theorem 2.11 how to utilize our results to obtain an ε-approximation
+for the magnetization per-site for Ising models in constant time. Similar statements hold for
+other dense graphical models as well. The exact statement of Theorem 2.11 provides the
+magnetization for a model that has parameters close to the model we are interested in. We
+show that this is necessary as in constant time, it is impossible to break symmetry between
+phases.
+We note that our results hold for very general Markov random fields. On the other hand, even
+in the case of ferromagnetic Ising models, only polynomial time guarantees have been previously
+provided (see [13] and recent work [3, 15]).
+We also note that our results can be thought as generalizing classical results about the approximability of Max-Cut and similar problems on dense graphs – in fact, the Max-Cut problem is just
+1
+
+the special case of computing the log partition function of an antiferromagnetic Ising model (i.e. all
+~ 1→∞
+non-zero entries of J are negative) on a graph with equal edge weights in the limit as kJk
+(so that the entropy term becomes negligible). Note that in this case, the log-partition function
+is Ω(kJ~k1 ) (consider choosing the Xi according to independent Rademacher random variables) so
+~ 1 -additive approximation actually gives a PTAS. The first PTAS for Max-Cut on dense
+that an ǫkJk
+2
+graphs was given by Arora, Karger and Karpinski [2] but ran in time O(nÕ(1/ǫ ) ); this was improved
+2
+to O(2Õ(1/ǫ ) by Frieze and Kannan in [7] using their weak regularity lemma, and remains essentially
+the fastest runtime known (our algorithm matches this runtime). More recent works [1, 17] have
+shown that the sample complexity of the problem – the number of entries of the adjacency matrix
+which need to be probed – is only O(1/ǫ4 ). In our case, determining the correct sample complexity
+remains an interesting open problem (see Section 2.4). It is also interesting to note that in the
+optimization case, algorithms based on regularity and algorithms based on convex programming
+hierarchies (see [5, 23]) have the same dependence on ǫ (but not n) – our result and [18] also have
+the same dependence on ǫ and ∆, showing that this phenomena extends to counting-type problems
+2
+as well, and suggesting that it will be difficult to beat a runtime of 2Õ(1/ǫ ∆) .
+
+2
+
+Overview of results
+
+2.1
+
+Notation and definitions
+
+We will consider Ising models where the spins are ±1 valued. The interactions can be both ferromagnetic and anti-ferromagnetic and of varying strengths. For simplicity, we primarily restrict
+ourselves to the case where there are no external fields, though it will be clear that our methods
+extend to that case as well (Remark 2.8).
+Definition 2.1. An Ising model is a probability distribution on the discrete cube {±1}n of the
+form
+X
+1
+1
+Pr[X = x] = exp(
+Ji,j xi xj ) = exp(xT Jx)
+Z
+Z
+i,j
+
+where the collection {Ji,j }i,j∈{1,...,n}
+are the
+Pnentries of an arbitrary real, symmetric matrix. The
+P
+exp(
+normalizing constant Z =
+n
+i,j=1 Ji,j xi xj ) is called the partition function of the
+x∈{±1}
+Ising model.
+We will often need to consider an m × n matrix M as an mn-dimensional vector (exactly how
+we arrange the mn entries of M in a single vector will not matter). When we do so, we will denote
+~ for clarity.
+the resulting vector by M
+Definition 2.2. For a vector v = (v1 , . . . , vn ) ∈ Rn and p ∈ [1, ∞), the Lp norm of v, denoted by
+||v||p , is defined by ||v||p := [|v1 |p + · · · + |vn |p ]1/p . We also define ||v||∞ := maxi∈{1,...,n} |vi |.
+~ , these vector norms will give rise to matrix norms which
+By viewing a matrix M as a vector M
+we will use in the sequel. The cases p = 1, 2, ∞ will be of particular importance to us.
+Another matrix norm that we will need arises from viewing an m × n matrix as a linear operator
+from Rn to Rm via matrix multiplication.
+Definition 2.3. For an m × n matrix M , we define ||M ||∞7→1 := supx∈Rn ,||x||∞≤1 ||M x||1 .
+Following [18], we will focus on ∆-dense Ising models.
+Definition 2.4. An Ising model is ∆-dense if ∆||J~||∞ ≤
+2
+
+~ 1
+||J||
+.
+n2
+
+From a combinatorial perspective ∆-dense models are a generalization of dense graph models.
+From a statistical physics perspective, they generalize complete graph models such as the CurieWeiss model and the SK model [19].
+Our main results will provide algorithms which run in constant time. In order to provide such
+guarantees on problems with unbounded input size, we will work under the usual assumptions on
+the computational model for sub-linear algorithms (as in e.g. [1, 8, 11]). Thus, we can probe matrix
+entry A(i, j) in O(1) time. Also note that by the standard Chernoff bounds, it follows that for any
+set of vertices V for which we can test membership in O(1) time, we can also estimate |V |/n to
+additive error ǫ w.h.p. in constant time using Õ(1/ǫ2 ) samples. This approximation will always
+suffice for us; so, for the sake of clarity in exposition, we will henceforth ignore this technical detail
+and just assume that we have access to |V |/n (as in e.g. [8]).
+
+2.2
+
+Main results
+
+Our main theorem for ∆-dense Ising models is:
+Theorem 2.5. There exists a universal constant C such that for any ǫ, δ > 0, and for any ∆-dense
+2
+2
+Ising model J on n nodes with n ≥ 2C/ǫ ∆ there is an algorithm running in time 2Õ(1/ǫ ∆) log(1/δ)
+which computes an ǫ(n + kJ~k1 ) additive approximation to log Z with probability at least 1 − δ.
+Our methods extend in a straightforward manner to higher order Markov random fields on
+general finite alphabets as well. We will review the definitions in Section 7.1. For simplicity, we
+only state the result for the case of binary k-uniform Markov random fields.
+Theorem 2.6. Fix k ≥ 3. There exists a universal constant C such that√ for any ǫ, δ > 0, and for any
+C(ǫ ∆)2−2k there is an algorithm
+∆-dense binary k-uniform
+√ 2−2kMarkov random field J on n with n ≥ 2
+running in time 2Õ(ǫ ∆)
+log(1/δ) which computes an ǫ(kJ~k1 +n) additive approximation to log Z
+with probability at least 1 − δ.
+In the previous theorem, it is possible to improve the dependence on ǫ at the expense of introducing a factor of nk in the running time. We have:
+Theorem 2.7. Fix k ≥ 3. There exists a universal constant C such that for any ǫ, δ > 0, and for
+2
+any ∆-dense binary k-uniform Markov random field J on n with n ≥ 2C/ǫ ∆ there is an algorithm
+2
+~ 1 +n) additive approximation to log Z
+running in time 2Õ(1/ǫ ∆) log(1/δ)nk which computes an ǫ(kJk
+with probability at least 1 − δ.
+Remark 2.8. Although for simplicity, we stated Theorem 2.6 and Theorem 2.7 only for k-uniform
+∆-dense Markov random fields, it is immediately seen that the results extend to general ∆-dense
+Markov random fields of order K by simply applying Theorem 7.5 or Theorem 7.6 to each J (k) ,
+k ∈ [K]. Again, see Section 7.1 for definitions. In particular, this directly handles dense Ising
+models with external fields.
+~ 1 . If kJ~k1 ≤ ηn, then
+Remark 2.9. The error term in Theorem 2.5 has two terms n and kJk
+T
+| log exp(x Jx)| = O(ηn) and therefore, log Z = n(log 2 + O(η)). Similar statements hold for the
+other theorems as well. Thus, in interesting applications of the theorem, we may assume WLOG
+that the dominant term is kJ~k1 (by dominant here, we mean it is at least a small fraction of the
+other term).
+As in [18], we are also able to handle the case of Ising models whose interaction matrices have
+low threshold ranks, although not in constant time. Again, for simplicity, we only record the result
+for regular low threshold rank models. Definitions will be presented in Section 7.2. Following
+Remark 2.9, we assume J ′ ≥ 1.
+3
+
+Theorem 2.10. There exists a universal constant C such that for any ǫ > 0, and for any regular
+2
+Ising model J on n nodes with n ≥ 2Ct/ǫ (here, t is the ǫ/2 sum-of-squares rank of the model)
+2
+~ 1
+and J ′ ≥ 1, there is an algorithm running in time 2Õ(t/ǫ ) + poly(n, t, 1ǫ ) which computes an ǫkJk
+additive approximation to log Z.
+
+2.3
+
+Approximating the expected total magnetization
+
+P
+P
+Given an Ising model Pr[X = x] = Z1 exp{ i,j Ji,j xi xj + i hi xi }, one of the most fundamental
+questions one can ask about it is how many spins are +1 and −1 in expectation. In the case of
+the ferromagnetic Ising model (Ji,j ≥ 0 for all i, j), this corresponds to how strongly the system
+P is
+magnetized. Accordingly, we define the (expected total) magnetization of an Ising model by E[ i xi ],
+where the expectation is with respect to the Ising distribution on {±1}n . Perhaps surprisingly, our
+results easily show that for dense Ising models, one can obtain, in some sense, an approximation to
+the expected magnetization in constant time. More precisely, we have:
+Theorem 2.11. Consider a ∆-dense Ising Model
+Pr[X = x] :=
+
+X
+X
+1
+exp{
+Ji,j xi xj +
+hi xi },
+Z
+i,j
+
+i
+
+Let
+Pr[X = x] :=
+h
+
+∆||J~||∞ ≤
+
+||J~||1
+,
+n2
+
+∆||h||∞ ≤
+
+||~h||1
+n
+
+X
+X
+1
+exp{
+Ji,j xi xj +
+(hi + h)xi }
+Z
+i,j
+
+i
+
+and let mh denote the expected total magnetization for Prh . Then, for any ǫ > 0, we can find in
+~ 1 ) additive approximation to mh , for some
+constant time (depending only on ǫ and ∆), an ǫ(n + kJk
+h with |h| < ε.
+Proof. It is well known that one can express the moments of spin systems in termsPof derivatives
+of the log partition function. In particular, for the Ising model Pr[X = x] = Z1 exp{ i,j Ji,j xi xj +
+P
+P
+1
+Pi hi xi }, consider the family of perturbed Ising models defined by Prh [X = x] = Zh exp{ i,j Ji,j xi xj +
+i (hi + h)xi }. Then, for any h0 , we have
+
+
+1 ∂ 
+∂ log Zh
+(h0 ) =
+∂h
+Zh0 ∂h
+
+X
+
+x∈{±1}n
+
+=
+
+X
+
+x∈{±1}n
+
+
+
+
+X
+X
+exp{
+Ji,j xi xj +
+(hi + h)xi }
+i,j
+
+i
+
+
+!
+X
+X
+X
+1 
+exp{
+Ji,j xi xj +
+(hi + h0 )xi }
+xi
+Zh 0
+i,j
+
+i
+
+i
+
+X
+= E h0 [
+xi ]
+i
+
+where E h0 denotes the expectation with respect to the Ising distribution perturbed by h0 . In
+Zh
+particular, ∂ log
+∂h (0) equals the expected total magnetization of the Ising model we started out
+
+4
+
+with. Moreover, since by Jensen’s inequality,
+
+
+!
+2
+X
+X
+X
+X
+1 
+∂
+∂ log Zh
+(h0 ) =
+|h=h0
+exp{
+Ji,j xi xj +
+(hi + h0 )xi }
+xi
+∂h2
+∂h
+Z
+h
+0
+i,j
+i
+i
+x∈{±1}n
+X
+X
+= E h0 [(
+xi )2 ] − (E h0 [
+xi ])2
+i
+
+i
+
+≥0
+
+we see that log Z is convex in h; in particular, for any h0 ∈ R and any δ > 0, we have
+log Z(h0 ) − log Z(h0 − δ)
+∂ log Z
+log Z(h0 + δ) − log Z(h0 )
+≤
+(h0 ) ≤
+δ
+∂h
+δ
+Finally,
+P
+• By the mean
+/RHS of the equation above are given by E h′ [ i xi ]
+P value theorem, the LHS
+and E h′′ [ i xi ], where h0 − δ < h′ < h0 < h′′ < h0 + δ.
+• By setting ǫ = δ2 in Theorem 2.5 and Remark 2.8, we can evaluate the LHS and RHS up to
+the desired error in constant time
+
+We remark that:
+• Unfortunately, it is impossible to approximate in constant time the magnetization at the
+specified value of the external fields. For example, consider an Ising model on 4n vertices,
+where Ji,j = C for some large C if i, j ≤ 2n and Ji,j = 0 otherwise. Let hi = 1 if i ∈ [2n+1, 3n]
+and hi = −1 if i ∈ [3n + 1, 4n]. We set all the other hi to 0 except that we set hI = X, where
+I is uniformly chosen in [1, 2n] and X is uniformly chosen in {0, ±1}. Note that this is a dense
+Ising model as per our definition. Note also that on the nodes [1, 2n] we have the Ising model
+on the complete graph with one (random) node having external field.
+It is easy to see that if X = 0, the magnetization is 0. The fact that C is a large constant
+implies that conditioning on one vertex taking the value ± results in a dramatic change in
+magnetization on the vertices [1, 2n]. In particular, the magnetization is of order n if X = +1
+and is of order −n if X = −1. It thus follows that we need Ω(n) queries in order to determine
+the magnetization in this case. We note that this example
+corresponds to a phase transition
+P
+– in particular, for every ǫ > 0, if h′ > ǫ then E h′ [ i xi ] = Ω(n) for all values of X and I.
+See ([6]) for general references for the Ising model on the complete graph.
+• The results for computing the magnetization readily extend to other models. For example, for
+Potts models, we can compute for each color the expected number of nodes of that color (up to
+error ǫkJ~k1 and for an ǫ close external field). Similarly, it is easy to check we can compute
+Pother
+statistics at this accuracy. For instance, for the Ising model, we can approximate E[ ai xi ]
+if nηkak∞ ≤ kak1 for some η > 0.
+
+2.4
+
+Tightness of our results
+
+As mentioned in the introduction, our results are qualitatively tight. We now make this precise by
+proving the following information-theoretic lower bound on the accuracy of constant-time algorithms
+for additively approximating log Z:
+5
+
+Theorem 2.12. Fix ǫ, ∆ ∈ (0, 1/4). For any (possibly randomized) algorithm A which probes at
+1
+entries of J before returning an estimate to log Z, there exists a ∆-dense input
+most k := 8ǫ∆
+instance J such that A makes error at least ǫkJ~k1 /4 with probability at least 1/4.
+Proof. We prove the claim by reduction to a hypothesis testing problem. Specifically, we show that
+′ with log-partition functions that are at
+there exist two different dense Ising models JM and JM
+′ k /2-far apart (where kJ
+~M k > kJ~′ k) such that no algorithm which makes only k probes
+least ǫkJ~M
+1
+M
+can distinguish between the two with probability greater than 3/4. This immediately implies that
+for any algorithm A to estimate log Z and for at least one of the two inputs, A must make error at
+′ k /4 with probability at least 1/4 when given this input — otherwise we could use the
+least ǫkJ~M
+1
+output of A to distinguish the two models with better than 3/4 probability by checking which log Z
+the output is closer to.
+Let n be an instance size to be taken sufficiently large, and consider two ∆-dense ferromagnetic
+Ising models defined as follows:
+
+• JM , for which the underlying graph is the complete graph on n vertices, ǫ∆ n2 many of the
+n
+are
+edges are randomly selected to have weight M
+∆ , and the remaining (1 − ǫ∆) 2 many edges
+
+n M
+n
+M
+~
+~
+assigned weight M . Note that since ||JM ||∞ = ∆ and ||JM ||1 = ǫ∆ 2 ∆ + (1 − ǫ∆) 2 M =
+(1 + ǫ(1 − ∆))M n2 , this model is indeed ∆-dense for n sufficiently large.
+′ , for which the underlying graph is the complete graph on n vertices and all edges have
+• JM
+weight M .
+
+′ respectively. It is easily seen that
+We denote the partition functions of these models by ZM and ZM
+
+
+~M ||1
+log Z ′
+= (1 + ǫ(1 − ∆)) n2 ≥ (1 + 3ǫ/4) n2 , and that limM →∞ M M =
+limM →∞ logMZM = limM →∞ ||JM
+′ ~ ||
+
+
+||JM
+1
+′ =
+limM →∞ M
+= n2 . Therefore, for M sufficiently large, log ZM ≥ (1 + ǫ/2)M n2 and log ZM
+
+
+′ | ≥ (ǫ/2)M n = (ǫ/2)kJ
+~′ M k1 .
+M n2 , so | log ZM − log ZM
+2
+′
+′ with probability greater
+Now, we show that no algorithm A can distinguish between JM and JM
+′ on our input J to algorithm
+than 3/4 with only k probes. We fix a 50/50 split between JM and JM
+′
+′
+A . Since the randomized algorithm A can be viewed as a mixture over deterministic algorithms,
+there must exist a deterministic algorithm A′′ with success probability in distinguishing JM from
+′ at least as large as A′ . Let (u , v ) be the first edge queried by A′′ , let (u , v ) be the next edge
+JM
+1 1
+2 2
+queried assuming Ju1 v1 = M , and define (u3 , v3 ), . . . , (uk , vk ) similarly (without loss of generality,
+the algorithm uses all k of its available queries). Let E be the event that Ju1 ,v1 , . . . , Juk ,vk are all
+′ we see Pr(E|J = J ′ ) ≥
+equal to M . Event E always happens under JM , and when the input is JM
+M
+ǫ∆n(n−1)/2
+≥ 1 − 2kǫ∆ for n > 4k. Thus the total variation distance between the observed
+1 − k n(n−1)/2−k
+′ is at most 2kǫ∆, so by the Neyman-Pearson Lemma we know A′′
+distribution under JM and JM
+1
+fails with probability at least (1/2)(1 − 2kǫ∆). Therefore for k ≤ 4ǫ∆
+we see that A′′ fails with
+probability at least 1/4 which proves the result.
+2
+
+Note that on the input instances given in this theorem, our algorithm will use at most 2Õ(1/ǫ ∆)
+~ 1 approximation for both models with probability ≥ 0.99. Finding the
+queries to output an ǫkJk
+optimal dependence of the running time on the parameters ǫ, ∆ remains an interesting open problem.
+
+2.5
+
+Outline of the techniques
+
+To illustrate the main reason for the intractability of the (log) P
+partition function of an Ising model,
+we consider the ferromagnetic case where Pr[X = x] = Z1 exp{ i,j Ji,j xi xj }, Ji,j ≥ 0. In this case,
+6
+
+it is clear that a given magnetized state x, where almost all of the spins are either +1 or −1, is more
+likely than a given unmagnetized state y, where the spins are almost evenly split between +1 and
+n
+, we see
+−1. However, since the number of states with exactly αn spins equal to +1 is simply αn
+that the total number of strongly magnetized states is exponentially smaller than the total number
+of unmagnetized states. Therefore, while any given unmagnetized state is less likely than any given
+magnetized state, it may very well be the case that the total probability of the system being in an
+unmagnetized state is greater than that of the system being in a magnetized state.
+In this paper, we present an approach to dealing with this tradeoff in dense Ising models
+(Theorem 2.5) based on the algorithmic regularity lemma of Frieze and Kannan (Theorem 3.3).
+Roughly speaking, this lemma allows us to efficiently partition the underlying (weighted) graph
+into a small number of blocks in a manner such that “cut-like” quantities associated to the graph
+approximately depend only on the numbers of edges between various blocks. In Lemma 4.1, we
+show that the log partition function fits into this framework. A similar statement for MAX-CUT
+(which may be viewed as the limiting case of our model when only antiferromagnetic interactions
+are allowed and ||J~||∞ tends to infinity) was first obtained in [7].
+The key point in the regularity lemma is that the number of blocks depends only on the desired
+quality of approximation, and not of the size of the underlying graph. Together with the previous
+statement, this shows (Lemma 4.2) that one can approximately rewrite the sum computing the
+partition function in terms of only polynomially many nonnegative summands, as opposed to the
+exponentially many nonnegative summands we started out with. This provides a way to resolve the
+entropy-energy tradeoff – the log of the largest summand of this much smaller sum approximates
+the log of the partition function well (Lemma 5.1).
+The preceding discussion reduces the problem of estimating the log partition function to an
+optimization problem, although a very different one from [18]. However, as stated, it is not a
+problem we can solve in constant time. In Lemma 5.2, we show how to “granulate” the parameters
+to reduce the problem to constant size, and then our Algorithm 1 solves this problem efficiently
+via convex programming. The proofs of Theorem 2.6, Theorem 2.7 and Theorem 2.10 follow a
+similar outline, with the application of Theorem 3.3 replaced by Theorem 7.5, Theorem 7.6 and
+Theorem 7.9 respectively.
+
+3
+
+Preliminaries
+
+In the case of the dense Ising model, our reduction to a problem that can be solved in constant time
+will be based on the algorithmic weak regularity lemma of Frieze and Kannan [8]. Before stating it,
+we introduce some terminology. Throughout this section, we will deal with m × n matrices whose
+entries we will index by [m] × [n], where [k] = {1, . . . , k}.
+Definition 3.1. Given S ⊆ [m], T ⊆ [n] and d ∈ R, we define the [m] × [n] Cut Matrix C =
+CU T (S, T, d) by
+(
+d if (i, j) ∈ S × T
+C(i, j) =
+0 otherwise
+Definition 3.2. A Cut Decomposition expresses a matrix J as
+J = D (1) + · · · + D (s) + W
+where D (i) = CU T (Ri , Ci , di ) for all t = 1, . . . , s. We say that such a cut decomposition has
+width s, coefficient length (d21 + · · · + d2s )1/2 and error ||W ||∞7→1 .
+7
+
+We are now ready to state the algorithmic weak regularity lemma of Frieze and Kannan.
+2
+
+Theorem 3.3. [8] Let J be an arbitrary real matrix, and let ǫ, δ > 0. Then, in time 2Õ(1/ǫ ) /δ2 , we
+can,
+≥ 1 − δ, find a cut decomposition of width O(ǫ−2 ), coefficient length at most
+√ with probability
+√
+~ 2 / mn and error at most 4ǫ√mn||J||
+~ 2.
+27||J||
+
+4
+
+Reducing the number of summands using weak regularity
+
+The next lemma shows that for the purpose of additively approximating the
+function,
+Plog partition
+(1)
+(s)
+′
+T
+(1)
+we may as well work with the matrix D + · · · + D . We define Z := x exp(x (D + · · · +
+D (s) )x).
+Lemma 4.1. Let J be the matrix of interaction strengths of a ∆-dense Ising model. For ǫ, δ > 0,
+let J = D (1) + · · · + D (s) + W be a cut decomposition of J as in Theorem 3.3.Then, for Z and Z ′
+as above, we have | log Z − log Z ′ | ≤ √4ǫ∆ ||J~||1 .
+Proof. Note that for any x ∈ {±1}n , we have
+X
+X
+XX
+X X
+|
+Ji,j xi xj −
+(D (1) + · · · + D (s) )i,j xi xj | = |
+(
+Wi,j xj )xi | ≤ |
+|
+Wi,j xj |
+i,j
+
+i,j
+
+i
+
+j
+
+i
+
+j
+
+~ 2
+≤ ||W ||∞7→1 ≤ 4ǫn||J||
+
+Therefore, for any x ∈ {±1}n , we have
+
+
+
+X
+X
+exp(
+Ji,j xi xj ) ∈ exp  (D (1) + · · · + D (s) )i,j xi xj ) ± 4ǫn||J~||2  .
+i,j
+
+i,j
+
+Taking first the sum of these inequalities over all x ∈ {±1}n and then the log, we get
+
+
+
+
+X
+log Z ∈ log
+exp xT (D (1) + · · · + D (s) )x ± 4ǫn||J~||2 
+x∈{±1}n
+
+Finally, noting that ||J~||22 =
+
+P
+
+i,j
+
+|Ji,j |2 ≤ ||J~||∞ ||J~||1 ≤
+
+~ 2
+||J||
+1
+,
+∆n2
+
+and the proof follows.
+
+Recall that for each i ∈ [s], D (i) = CU T (Ri , Ci , di ) is a cut matrix between vertex sets Ri and
+Ci . We pass to a common refinement of all of the Ri ’s and Ci ’s. This gives at most r ≤ 22s disjoint
+sets V1 , . . . , Vr such that that every one of the Ri ’s and Ci ’s is a union of these “atoms” Va . In terms
+of these Va ’s, we can define another approximation Z ′′ to the partition function:
+!
+r
+s
+X
+X
+X
+|Va |H(ya /|Va |)
+r ′ (y)i c′ (y)i di +
+Z ′′ :=
+exp
+y
+
+a=1
+
+i=1
+
+P
+where
+y ranges over all elements of [|V1 |] × · · · × [|Vr |], r ′ (y)i := a : Va ⊆Ri (2ya − |Va |), c′ (y)i :=
+P
+a : Va ⊆Ci (2ya − |Va |) and H(p) := −p log p − (1 − p) log(1 − p) is the binary entropy function. Note
+that r ′ (y)i represents the net spin in Ri , and similarly for c′ (y)i . The next lemma shows that for
+approximating log Z ′ , it suffices to obtain an approximation to log Z ′′ . Combined with Lemma 4.1,
+we therefore see that approximating log Z ′′ is sufficient for approximating log Z.
+8
+
+Lemma 4.2. For Z ′ and Z ′′ as above, we have | log Z ′ − log Z ′′ | = O(22s log n).
+P
+P
+P
+Proof. First,
+observe that xT D (i)
+x = di a∈Ri ,b∈Ci xa xb = di ( a∈Ri xa )( b∈Ci xb ). Thus, letting
+P
+P
+ri′ (x) := a∈Ri xa and c′i (x) := b∈Ci xb , we see that that
+Z′ =
+
+X
+x
+
+exp(xT (D (1) + · · · + D (s) )x) =
+
+X
+
+exp
+
+x
+
+X
+
+ri′ (x)c′i (x)di
+
+i
+
+!
+
+.
+
+Re-expressing the summation in terms of the possible values that ri′ (x) and c′i (x) can take, we get
+that
+!
+X
+X
+X
+′
+′ ′
+Z =
+ri ci di
+exp
+1.
+r ′ ,c′
+
+x
+r ′ (x)=r ′
+′
+c (x)=c′
+
+i
+
+where r ′ ranges over all elements of [|R1 |] × · · · × [|Rs |], r ′ := (r1′ , . . . , rs′ ), r ′ (x) := (r1′ (x), . . . , rs′ (x))
+and similarly for c′ and c′ (x). Next, since
+Y |Va |
+X
+X
+1=
+ya
+n
+a
+x∈{±1}
+r ′ (x)=r ′
+c′ (x)=c′
+
+it follows that Z ′ =
+
+P
+
+y
+
+y∈[|V1 |]×···×[|Vr |]
+r ′ (y)=r ′
+c′ (y)=c′
+|Va |
+ya .
+
+Q
+P
+exp ( i r ′ (y)i c′ (y)i di ) a
+
+
+n
+log
+αn
+
+
+
+Finally, we apply Stirling’s formula
+
+= nH(α) + O(log n).
+
+to get the desired result.
+
+5
+
+Approximating the reduced sum in constant time using convex
+programming
+
+So far, we have seen how the problem of estimating the log partition function can be reduced to
+the problem of approximating log Z ′′ . The next simple lemma reduces the estimation of log Z ′′ to
+an optimization problem.
+P
+P
+Lemma 5.1. Let y ∗ := arg maxy exp ( i ri′ (y)c′i (y)di + a |Va |H(ya /|Va |)). Then,
+!
+X
+X
+′′
+′ ∗ ′ ∗
+∗
+log Z −
+ri (y )ci (y )di +
+|Va |H(ya /|Va |) ≤ 22s log n.
+i
+
+a
+
+2s
+
+Proof. This follows immediately by noting that Z ′′ , which is a sum of at most n2 many nonnegative
+2s
+summands, is at least as large as its largest summand, and no larger than n2 times its largest
+summand.
+The following lemma shows that for estimating the contribution of the term corresponding to
+some vector y, it suffices to know the components of y up to some constant precision. This reduces
+the optimization problem to one of constant size.
+
+9
+
+Lemma 5.2. Let J denote the matrix of interaction strengths of a ∆-dense Ising model, and let
+J = D 1 + · · · + D s + W√denote a cut decomposition as in Theorem 3.3. Then, given ri , ri′ , ci , c′i for
+∆
+i ∈ [s] and some γ ≤ 4ǫ√27s
+such that ri , ci , ri′ , c′i ≤ n, |ri − ri′ | ≤ γn and |ci − c′i | ≤ γn for all i, we
+P
+~ 1 /2.
+get that i di |ri′ c′i − ri ci | ≤ ǫ||J||
+Proof. From Theorem 3.3, we know that for all i ∈ [s], |di | ≤
+|c′i ||ri′ − ri | + |ri ||c′i − ci | ≤ 2γn2 , it follows that
+X
+i
+
+di |ri′ c′i
+
+− ri ci | ≤
+
+X
+i
+
+√
+
+~
+27||
+√J||1 .
+n2 ∆
+
+Since |ri′ c′i − ri ci | ≤
+
+√
+27||J~||1
+εk|J~||1
+√
+di 2γn ≤
+2γs ≤
+2
+∆
+2
+
+which completes the proof.
+We now present Algorithm 1 which approximates the log of the largest summand in Z ′′ by
+iterating over all possible proportions of up-spins in each block Ri , Ci . For each proportion, it
+approximately solves the following convex program Cr,c (where γ is as before, λ is a parameter to
+be specified, and va := |Va |/n):
+X
+max
+va H(za /va )
+a
+
+s.t.
+
+0 ≤ za
+≤ va
+X
+za ≤ rt + γ
+rt ≤
+a:Va ⊂Rt
+
+ct ≤
+
+X
+
+a:Va ⊂Ct
+
+za ≤ ct + γ.
+
+The infeasibility of this program means that our “guess” for the proportion of up-spins in the
+various Ri , Ci is not combinatorially possible (recall that there may be significant overlap between
+the various Ri , Ci . On the other hand, if this program is feasible, then we actually obtain an
+approximate maximum entropy configuration with roughly the prescribed number of up-spins in
+Ri , Ci , i ∈ [n]. Calculating the contribution to Z ′′ of such a configuration, and maximizing this
+contribution over all iterations gives a good approximation1 to the maximum summand of Z ′′ , and
+hence to Z ′′ . This is the content of the next lemma.
+~ 1 + λn + O(22s log n) additive approximation to
+Lemma 5.3. The √output of Algorithm 1 is an ǫ||J||
+2s
+4
+27s2
+log Z ′′ when n ≥ √∆ǫ .
+Proof. By Lemma 5.1, it suffices to prove the claim with log Z ′′ replaced by
+X
+X
+ri′ (y ∗ )c′i (y ∗ )di +
+|Va |H(ya∗ /|Va |).
+a
+
+i
+
+where y ∗ is defined as in the statement of Lemma 5.1. Let r, c correspond to the “cell” which y ∗ /n
+falls into, i.e. the values of r, c such that for the corresponding r ′ , c′ , we have r ′ ≤ r ′ (y ∗ ),c′ ≤ c′ (y ∗ ),
+A slightly better approximation to log Z ′′ can be found by estimating the discrete sum over each region by an
+integral (using Lemma 5.4 to bound the error), and approximating this integral via the hit-and-run random walk of
+[16]. However, this algorithm is slower than Algorithm 1, and it turns out the gain in accuracy is negligible for our
+application.
+1
+
+10
+
+Algorithm 1 Convex programming method to estimate log partition unction
+Let S = {0, γ, 2γ, . . . , ⌊1/γ⌋γ}.
+M ← 0.
+for r ∈ S s , c ∈ S s do
+Either find a λ-approximate solution to, or verify infeasibility of, Cr,c . (e.g. by ellipsoid
+method [10])
+if Cr,c is feasible then
+Let Hr,c denote the λ-approximate maximum value of Cr,c .
+c′i = 2nci − |Ci |.
+Let ri′ = 2nri − |R
+Pi | and
+Let Mr,c = exp ( i ri′ c′i di + nHr,c ).
+M ← max(M, Mr,c ).
+end if
+end for
+return log M
+|r ′ − r ′ (y ∗ )| ≤ γn and |c′ − c′ (y ∗ )| ≤ γn. Since Hr,c is the result of solving Cr,c up to λ additive
+error and since y ∗ /n is in the feasible region of the convex program by definition, it follows that
+X
+X
+va H(za /va ) − λn ≥
+|Va |H(ya∗ /|Va |) − λn
+nHr,c ≥ n sup
+z
+
+a
+
+a
+
+where z ranges over the feasible region for Cr,c . Combining this with Lemma 5.2 gives
+X
+X
+ri′ (y ∗ )c′i (y ∗ )di +
+|Va |H(ya∗ /|Va |) − log Mr,c
+a
+
+i
+
+≤
+≤
+
+X
+i
+
+X
+i
+
+di (ri′ (y ∗ )i c′i (y ∗ ) − ri′ c′i ) +
+′
+
+∗
+
+′
+
+∗
+
+di |r (y )c (y ) −
+
+ri′ c′i |
+
+X
+a
+
+|Va |H(ya∗ /|Va |) − nHr,c
+
++ λn ≤ ǫ||J~||1 /2 + λn.
+
+On the other hand, we know that M = Mr,c for some r, c. Let z denote the point at which the λapproximate optimum to the convex program Cr,c was attained. Define ya to be ⌈za n⌉ if za n ≤ |Va |/2
+and to be ⌊za n⌋ otherwise. Similar to the inequality above, we get
+X
+X
+log Mr,c −
+ri′ (y ∗ )c′i (y ∗ )di +
+|Va |H(ya∗ /|Va |)
+a
+
+i
+
+≤ log Mr,c −
+
+=
+
+X
+a
+
+X
+i
+
+ri′ (y)c′i (y)di −
+
+X
+a
+
+|Va |H(ya /|Va |)
+
+{|Va |H(za n/|Va |) − |Va |H(ya /|Va |} +
+
+≤ 22s log 5 +
+
+X
+i
+
+ri′ c′i di −
+
+X
+
+X
+i
+
+ri′ (zn)c′i (zn)di +
+
+ri′ c′i di −
+X
+i
+
+i
+
+X
+i
+
+ri′ (zn)c′i (zn)di −
+
+X
+X
+ǫ||J~||1
+≤ 22s log 5 +
+ri′ (zn)c′i (zn)di −
+ri′ (y)c′i (y)di
++
+2
+i
+
+ri′ (y)c′i (y)di
+X
+
+ri′ (y)c′i (y)di
+
+i
+
+i
+
+where r ′ and c′ are as defined in Algorithm 1 in terms of r and c, in the second inequality, we
+have used Lemma 5.4 and the triangle inequality, and in the last line, we have used Lemma 5.2.
+11
+
+√
+
+~
+
+J||
+√ 1 by
+To bound the last term, since |ya − za n| ≤ 1 for all a by definition, and since |di | ≤ n27||
+2 ∆
+Theorem 3.3, we get
+X
+X
+X
+X
+|
+ri′ (zn)c′i (zn)di −
+r ′ (y)i c′ (y)i di | ≤
+|di ||ri′ (y)||c′i (y) − c′i (zn)| +
+|di ||c′i (zn)||ri′ (y) − ri′ (zn)|
+i
+
+i
+
+i
+
+≤
+
+i
+
+X
+
+≤2
+
+i
+
+|di ||Ri ||
+
+X
+i
+
+2| +
+
+a : Va ⊆Ci
+
+2s
+
+|di |n2
+
+X
+
+≤
+
+√
+
+X
+i
+
+|di ||Ci ||
+
+~ 1 22s+1 s
+27||J||
+√
+n ∆
+
+X
+
+2|
+
+a : Va ⊆Ci
+
+~ 1
+ǫ||J||
+≤
+2
+provided that n ≥
+
+√
+4s √2722s
+,
+∆ǫ
+
+which finishes the proof.
+
+Lemma 5.4. Let n be a natural number, and let 0 ≤ z ≤ n. Let y = ⌈z⌉ if z ≤ n/2 and y = ⌊z⌋ if
+z > n/2. Then, nH(y/n) ≥ nH(z/n) − log(5).
+Proof. Observe that if both y, z ≤ n/2 or both y, z ≥ n/2 then this is immediate, since entropy is
+concave and maximized at 1/2, thereby implying that H(y/n) > H(z/n). In the remaining case,
+y/n and z/n are on opposite sides of 1/2. By the definition of y, we know that |y/n − z/n| ≤ 1/n,
+and hence, by the Mean Value Theorem, n|H(y/n)−H(z/n)| = n|H ′ (x/n)(y/n−z/n)| ≤ |H ′ (x/n)|
+for some x with |x/n − 1/2| ≤ 1/n. Thus, if n ≥ 3 we have x/n ∈ [1/6, 5/6] so that |H ′ (x/n)| =
+| log((x/n)/(1 − x/n))| ≤ log 5. If n ≤ 2, then we already have nH(z/n) − nH(y/n) ≤ nH(z/n) ≤
+2 log 2 < log 5.
+
+6
+
+Putting it all Together
+
+We are now ready to prove Theorem 2.5.
+Proof. (Theorem 2.5) First, we show how to get such an algorithm with constant success probability
+(i.e. 7/8). We will then boost it to the desired probability of success using the standard median
+technique. The constant success algorithm is just Algorithm 1 applied√to the weakly regular partition
+generated by Theorem 3.3 with regularity parameter some ǫ′ = O(ǫ ∆).
+For the correctness of this algorithm, note that if M is the output of Algorithm 1, then
+| log M − log Z| ≤ | log Z − log Z ′ | + | log Z ′ − log Z ′′ | + | log M − log Z ′′ |
+~ 1 /4 + O(22s log n) + ǫkJk
+~ 1 /4 + λn + O(22s ).
+≤ ǫkJk
+where the first bound is by Lemma 4.1, the second bound is by Lemma 4.2, and the last bound is
+by Lemma 5.3.
+~ 1 /4 + λn ≤ ǫ(kJ~k1 + n)
+ǫkJ~k1 /4 + O(22s log n) + ǫkJk
+when we take λ = ǫ/2 and n sufficiently large. The runtime of computing a weakly regular partition
+2
+2
+with success probability 7/8 in Theorem 3.3 is 2Õ(1/ǫ ∆) . The runtime of Algorithm 1 is 2Õ(1/ǫ ∆)
+2
+as there are 2Õ(1/ǫ ∆) many points in |S|, and solving each convex program Cr,c up to λ-error (as
+2
+2
+well as deciding feasibility) can be done in time poly(2Õ(1/ǫ ∆) , log(1/λ), log(1/γ)) = 2Õ(1/ǫ ∆) by
+standard guarantees for the ellipsoid method [10].
+12
+
+Finally, to boost our success probability to 1 − δ, we use the standard median trick, which is to
+repeat the algorithm O(log(1/δ)) times independently and take the median of these outputs – that
+this works is easily proven by the standard Chernoff bounds.
+
+7
+7.1
+
+Extensions
+General Markov random fields
+
+For simplicity, we will restrict ourselves to Markov random fields over a binary alphabet. It is
+readily seen that the same techniques extend to Markov random fields over general finite alphabets
+as well.
+Definition 7.1. A binary Markov random field of order K is a probability distribution on the
+discrete cube {±1}n of the form
+K
+X
+1
+Pr[X = x] = exp(
+Z
+
+n
+X
+
+(k)
+
+Ji1 ...ik xi1 . . . xik )
+
+k=1 i1 ,...,ik =1
+
+(k)
+
+where for each k, {Ji1 ,...,ik }i1 ,...,ik ∈[n] is an arbitrary collection of real numbers. Note that the sum
+P
+(k)
+(k) (x, . . . , x), where J (k) is a k-multilinear map or
+i1 ,...,ik Ji1 ,...,ik xi1 . . . xik may also be viewed as J
+(k)
+
+k-tensor with J (k) (ei1 , . . . , eik ) = Ji1 ,...,ik . Here, ej denotes the j th standard basis vector of Rn and we
+P
+P
+(k) (x, . . . , x))
+view {±1}n as a subset of Rn . The normalizing constant Z = x∈{±1}n exp( K
+k=1 J
+is called the partition function of the Markov random field. Moreover, if all entries of all J (i) ,
+i ∈ [K]\k vanish, then we say that the Markov random field is k-uniform.
+Definition 7.2. A binary Markov random field of order K is ∆-dense if ∆||J~(k) ||∞ ≤
+all k.
+
+||J ~(k) ||1
+nk
+
+for
+
+As indicated earlier, our approach for general Markov random fields mirrors our approach for the
+Ising model. This is essentially because one has a similar algorithmic regularity lemma for general
+k-dimensional matrices.
+Definition 7.3. A k-dimensional matrix M on X1 × · · · × Xk is a map M : X1 × · · · × Xk → R.
+Definition 7.4. For Si ⊆ Xi , i = 1, . . . , k and a real number d, we define the k-dimensional matrix
+(
+d e = (x1 , . . . , xk ) ∈ S1 × · · · × Sk
+CU T (S1 , . . . , Sk ; d)(e) =
+0 otherwise
+Theorem 7.5. [8] Suppose J is an arbitrary k-dimensional matrix on X1 × · · · × Xk , where we
+assume that k ≥ 3 is fixed. Let N := |X1 | × · · · × |Xk | and let ǫ, δ ∈ (0, 1]. Then, in time
+2
+O(kO(1) ǫ−O(log2 k) 2Õ(1/ǫ ) δ−2 ), we can, with probability at least 1 − δ, find a cut decomposition of
+√
+√
+√ k
+width O(ǫ2−2k ), coefficient length at most 27 ||J~||2 / N and error at most ǫ2k N ||J~||2 .
+As in the k = 2 case, the error of the cut decomposition refers to ||J −(D (1) +· · ·+D (s) )||∞7→1 :=
+sup||x||∞≤1 ||J − (D (1) + · · · + D (s) )||1 , where we view a k-dimensional matrix M as a linear operator
+P
+from (Rn )k−1 → Rn via the formula [M (x1 , . . . , xk−1 )]i := j1 ,...,jk−1 Mj1 ...jk−1 i x1,j1 . . . xk−1,jk−1 .
+13
+
+Given this theorem, the proof proceeds exactly as before – the same argument as Lemma 4.1
+k ǫ||J||
+~ 1
+shows that we can replace J by D (1) + · · · + D (s) (possibly incurring an additive error of 2 √
+),
+∆
+and once we have made this replacement, a similar optimization scheme as before lets us deduce
+Theorem 2.6. The proof of Theorem 2.7 is identical, the only difference being that we can obtain a
+cut decomposition of smaller width using the following theorem.
+Theorem 7.6. [1] Let J be a an arbitrary k-dimensional matrix on X1 × · · · × Xk , where we assume
+2
+that k ≥ 3 is fixed. Let N := |X1 | × · · · × |Xk | and let ǫ > 0. Then, in time 2O(1/ǫ ) O(N ) and with
+probability at √
+least 0.99, we can find a cut
+decomposition width at most 4/ǫ2 , coefficient length at
+√
+most 2||J~||2 /ǫ N and error at most ǫ2k N ||J~||2 .
+
+7.2
+
+Ising models with low threshold rank
+
+As in [18], we can also consider Ising models of low threshold rank. For simplicity, we consider only
+the regular case, noting that our results generalise with appropriate modifications to the non-regular
+case as well.
+P
+′
+Definition 7.7. A regular weighted Ising model is one for which
+j |Ji,j | = J for all i. The
+normalized adjacency matrix of a regular Ising model is the matrix with entries Ji,j /J ′ . We will
+denote this matrix by JD .
+Definition
+P7.8. The δ-sum-of squares threshold rank of a regular Ising model is defined to be
+tδ (JD ) := i:|λi |>δ λ2i , where λ1 , . . . , λn denote the eigenvalues of JD .
+
+Note that since all eigenvalues of JD have absolute value at most 1, our criterion for low threshold rank is more general than defining tδ (JD ) to be the number of eigenvalues of JD with absolute
+value strictly greater than δ.
+
+Our definition
+of tδ (JD ) differs slightly from the definition in [18]. There, the author defined
+P
+tδ (JD ) := i : |µi |>δ 1, where µ1 , . . . , µn denote the eigenvalues of the matrix abs(JD ) defined by
+abs(JD )i,j = |(JD )i,j |. His definition and our definition are related via the standard linear algebra
+P
+~ D )k2 , it follows that Pn λ2 = Pn µ2 .
+fact that ni=1 λ2i = ||J~D ||22 ; since ||J~D ||22 = ||abs(J
+2
+i=1 i
+i=1 i
+The same linear algebra fact shows that the low δ-sum-of-squares rank setting strictly generalises the ∆-dense setting: for any regular, ∆-dense Ising model and for any δ > 0, we have
+||J1~||21
+1
+′
+~
+tδ (JD ) ≤ ||J~D ||22 = J1′2 ||J~||22 ≤ J1′2 ∆n
+2 = ∆ , where we have used that ||J ||1 = nJ in the regular
+case.
+Our methods extend straightforwardly to the low sum-of-squares threshold rank setting due to
+the following algorithmic regularity lemma of Gharan and Trevisan.
+Theorem 7.9. [9] Let J be the matrix of interaction strengths of a regular Ising model, let ǫ > 0
+and let t := tǫ/2 (JD ). Then, in time poly(n, t, 1ǫ ), we can find a cut decomposition of width at most
+√
+16t/ǫ2 , |di | ≤ t and error at most 4ǫ||J~||1 .
+~ 1
+||J||
+
+Recall that in the case of the ∆-dense Ising model, the bounds
+on the cut decomposition we
+√
+27
+−2
+actually used were that the width is O(ǫ ), each |di | is at most √∆n2 ||J~||1 , and the error is at most
+~ 1 , which are quite similar since ||J~1 || = J ′ n. Hence, by exactly the same analysis as for the
+√4ǫ ||J||
+∆
+
+∆-dense case, we can conclude Theorem 2.10. We omit further details.
+
+14
+
+8
+
+Acknowledgements
+
+We thank David Gamarnik for insightful comments, Andrej Risteski for helpful discussions related
+to his work [18], and Yufei Zhao for introducing us to reference [1].
+
+References
+[1] Noga Alon, Fernandez de la Vega, Ravi Kannan, and Marek Karpinski. Random sampling and
+approximation of MAX-CSPs. J. Comput. System Sci., 67:212–243, 2003.
+[2] Sanjeev Arora, David Karger, and Marek Karpinski. Polynomial time approximation schemes
+for dense instances of np-hard problems. In Proceedings of the Twenty-seventh Annual ACM
+Symposium on Theory of Computing, STOC ’95, pages 284–293, New York, NY, USA, 1995.
+ACM.
+[3] Alexander Barvinok. Combinatorics and complexity of partition functions. Algorithms and
+Combinatorics, 30, 2017.
+[4] David M. Blei, Alp Kucukelbir, and Jon D. McAuliffe. Variational inference: A review for
+statisticians. arXiv preprint arXiv:1601.00670, 2016.
+[5] Wenceslas Fernandez de la Vega and Claire Kenyon-Mathieu. Linear programming relaxations
+of maxcut. In Proceedings of the eighteenth annual ACM-SIAM symposium on Discrete algorithms, pages 53–61. Society for Industrial and Applied Mathematics, 2007.
+[6] Richard S. Ellis. Entropy, large deviations, and statistical mechanics. Springer, 2007.
+[7] Alan Frieze and Ravi Kannan. The regularity lemma and approximation schemes for dense
+problems. Proceedings of the 37th Annual IEEE Symposium on Foundations of Computer
+Science, pages 12–20, 1996.
+[8] Alan Frieze and Ravi Kannan. Quick approximation to matrices and applications. Combinatorica, 19(2):175–220, 1999.
+[9] Shayan Oveis Gharan and Luca Trevisan. A new regularity lemma and faster approximation algorithms for low threshold rank graphs. In Approximation, Randomization, and Combinatorial
+Optimization. Algorithms and Techniques, pages 303–316. Springer, 2013.
+[10] Martin Grötschel, László Lovász, and Alexander Schrijver. Geometric algorithms and combinatorial optimization, volume 2. Springer Science & Business Media, 2012.
+[11] Piotr Indyk. Sublinear time algorithms for metric space problems. In Proceedings of the thirtyfirst annual ACM symposium on Theory of computing, pages 428–434. ACM, 1999.
+[12] M. Jerrum and A. Sinclair. Approximating the permanent. SIAM J. Comput., 18(6):1149–1178,
+1989.
+[13] M. Jerrum and A. Sinclair. Polynomial-time approximation algorithms for ising model (extended abstract). In Automata, Languages and Programming, pages 462–475, 1990.
+[14] M. Jerrum, A. Sinclair, and E. Vigoda. A polynomial-time approximation algorithm for the
+permanent of a matrix with non-negative entries. Journal of the ACM, 51(4):671-697, 2004.,
+51(4):671–697, 2004.
+15
+
+[15] Jingcheng Liu, Alistair Sinclair, and Piyush Srivastava. The ising partition function: Zeros and
+deterministic approximation. In FOCS, 2017.
+[16] László Lovász and Santosh Vempala. Fast algorithms for logconcave functions: Sampling,
+rounding, integration and optimization. In Foundations of Computer Science, 2006. FOCS’06.
+47th Annual IEEE Symposium on, pages 57–68. IEEE, 2006.
+[17] Claire Mathieu and Warren Schudy. Yet another algorithm for dense max cut: Go greedy. In
+Proceedings of the Nineteenth Annual ACM-SIAM Symposium on Discrete Algorithms, SODA
+’08, pages 176–182, Philadelphia, PA, USA, 2008. Society for Industrial and Applied Mathematics.
+[18] Andrej Risteski. How to calculate partition functions using convex programming hierarchies:
+provable bounds for variational methods. In COLT, 2016.
+[19] David Sherrington and Scott Kirkpatrick. Solvable model of a spin-glass. Physical review
+letters, 35(26):1792, 1975.
+[20] Alistair Sinclair and Mark Jerrum. Approximate counting, uniform generation and rapidly
+mixing markov chains. Information and Computation, 82(1):93–133, 1989.
+[21] Martin J. Wainwright and Michael I. Jordan. Graphical models, exponential families, and
+variational inference. Foundations and Trends in Machine Learning, 1(1-2):1–305, 2008.
+[22] Jonathan S. Yedidia, William T. Freeman, and Yair Weiss. Understanding belief propagation
+and its generalizations. 2003.
+[23] Yuichi Yoshida and Yuan Zhou. Approximation schemes via sherali-adams hierarchy for dense
+constraint satisfaction problems and assignment problems. In Proceedings of the 5th conference
+on Innovations in theoretical computer science, pages 423–438. ACM, 2014.
+
+16
+
+This figure "frog.jpg" is available in "jpg" format from:
+http://arxiv.org/ps/1711.01655v2
+
+

@@ -1,0 +1,21 @@
+Title: Learning to Predict Gradients for Semi-Supervised Continual Learning
+
+Authors: Yan Luo, Yongkang Wong, Mohan Kankanhalli, Qi Zhao
+
+Published: 2022-01-23
+
+Categories: cs.LG, cs.CV
+
+Abstract:
+A key challenge for machine intelligence is to learn new visual concepts without forgetting the previously acquired knowledge. Continual learning is aimed towards addressing this challenge. However, there is a gap between existing supervised continual learning and human-like intelligence, where human is able to learn from both labeled and unlabeled data. How unlabeled data affects learning and catastrophic forgetting in the continual learning process remains unknown. To explore these issues, we formulate a new semi-supervised continual learning method, which can be generically applied to existing continual learning models. Specifically, a novel gradient learner learns from labeled data to predict gradients on unlabeled data. Hence, the unlabeled data could fit into the supervised continual learning method. Different from conventional semi-supervised settings, we do not hypothesize that the underlying classes, which are associated to the unlabeled data, are known to the learning process. In other words, the unlabeled data could be very distinct from the labeled data. We evaluate the proposed method on mainstream continual learning, adversarial continual learning, and semi-supervised learning tasks. The proposed method achieves state-of-the-art performance on classification accuracy and backward transfer in the continual learning setting while achieving desired performance on classification accuracy in the semi-supervised learning setting. This implies that the unlabeled images can enhance the generalizability of continual learning models on the predictive ability on unseen data and significantly alleviate catastrophic forgetting. The code is available at \url{https://github.com/luoyan407/grad_prediction.git}.
+
+Paper ID: 2201.09196v2
+
+Summary:
+This paper titled "Learning to Predict Gradients for Semi-Supervised Continual Learning" was authored by Yan Luo, Yongkang Wong, Mohan Kankanhalli, Qi Zhao and published on 2022-01-23.
+It falls under the categories: cs.LG, cs.CV.
+The research explores the following topic: A key challenge for machine intelligence is to learn new visual concepts without forgetting the previously acquired knowledge. Continual learning is aimed towards addressing this challenge. However, there is a gap between existing supervised continual learning and human-like intelligence, where human is able to learn from both labeled and unlabeled data. How unlabeled data affects learning and catastrophic forgetting in the continual learning process remains unknown. To explore these issues, we formulate a new semi-supervised continual learning method, which can be generically applied to existing continual learning models. Specifically, a novel gradient learner learns from labeled data to predict gradients on unlabeled data. Hence, the unlabeled data could fit into the supervised continual learning method. Different from conventional semi-supervised settings, we do not hypothesize that the underlying classes, which are associated to the unlabeled data, are known to the learning process. In other words, the unlabeled data could be very distinct from the labeled data. We evaluate the proposed method on mainstream continual learning, adversarial continual learning, and semi-supervised learning tasks. The proposed method achieves state-of-the-art performance on classification accuracy and backward transfer in the continual learning setting while achieving desired performance on classification accuracy in the semi-supervised learning setting. This implies that the unlabeled images can enhance the generalizability of continual learning models on the predictive ability on unseen data and significantly alleviate catastrophic forgetting. The code is available at \url{https://github.com/luoyan407/grad_prediction.git}.
+
+Links:
+  - https://arxiv.org/abs/2201.09196v2
+  - https://arxiv.org/pdf/2201.09196v2

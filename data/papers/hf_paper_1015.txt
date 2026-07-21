@@ -1,0 +1,1587 @@
+Title: arXiv paper 1015
+
+Categories: 2
+
+Abstract:
+Multi-Label Classification of Patient Notes: Case Study on ICD Code Assignment
+Tal Baumel
+
+arXiv:1709.09587v3 [cs.CL] 20 Nov 2017
+
+Ben-Gurion University
+Beer-Sheva, Israel
+
+Jumana Nassour-Kassis Raphael Cohen
+
+Michael Elhadad
+
+Noémie Elhadad
+
+Chorus.ai
+San Francisco, CA
+
+Ben-Gurion University
+Beer-Sheva, Israel
+
+Columbia University
+New York, NY
+
+Ben-Gurion University
+Beer-Sheva, Israel
+
+Abstract
+The automatic coding of clinical documentation according
+to diagnosis codes is a useful task in the Electronic Health
+Record, but a challenging one due to the large number
+of codes and the length of patient notes. We investigate
+four models for assigning multiple ICD codes to discharge
+summaries, and experiment with data from the MIMIC II
+and III clinical datasets. We present Hierarchical Attentionbidirectional Gated Recurrent Unit (HA-GRU), a hierarchical approach to tag a document by identifying the sentences
+relevant for each label. HA-GRU achieves state-of-the art results. Furthermore, the learned sentence-level attention layer
+highlights the model decision process, allows for easier error
+analysis, and suggests future directions for improvement.
+
+Introduction
+In Electronic Health Records (EHRs), there is often a need
+to assign multiple labels to a patient record, choosing from
+a large number of potential labels. Diagnosis code assignment is such a task, with a massive amount of labels to chose
+from (14,000 ICD9 codes and 68,000 ICD10 codes). Largescale multiple phenotyping assignment, problem list identification, or even intermediate patient representation can
+all be cast as a multi-label classification over a large label
+set. More recently, in the context of predictive modeling,
+approaches to predict multiple future healthcare outcomes,
+such as future diagnosis codes or medication orders have
+been proposed in the literature. There again, the same setup
+occurs where patient-record data is fed to a multi-label classification over a large label set.
+In this paper, we investigate how to leverage the unstructured portion of the EHR, the patient notes, along a novel application of neural architectures. We focus on three characteristics: (i) a very large label set (6,500 unique ICD9 codes
+and 1,047 3-digit unique ICD9 codes); (ii) a multi-label setting (up to 20 labels per instance); (iii) instances are long
+documents (discharge summaries on average 1,900-word
+long); and (iv) furthermore, because we work on long documents, one critical aspect of the multi-label classification is
+transparency—to highlight the elements in the documents
+that explain and support the predicted labels. While there
+has been much work on each of these characteristics, there
+Copyright c 2018, Association for the Advancement of Artificial
+Intelligence (www.aaai.org). All rights reserved.
+
+has been limited work to tackle all at once, particularly in
+the clinical domain.
+We experiment with four approaches to classification: an
+SVM-based one-vs-all model, a continuous bag-of-words
+(CBOW) model, a convolutional neural network (CNN)
+model, and a bidirectional Gated Recurrent Unit model
+with a Hierarchical Attention mechanism (HA-GRU).
+Among them, the attention mechanism of the HA-GRU
+model provides full transparency for classification decisions. We rely on the publicly available MIMIC datasets to
+validate our experiments. A characteristic of the healthcare
+domain is long documents with a large number of technical
+words and typos/misspellings. We experiment with simple
+yet effective preprocessing of the input texts.
+Our results show that careful tokenization of the input
+texts, and hierarchical segmentation of the original document allow our Hierarchical Attention GRU architecture to
+yield the most promising results, over the SVM, CBOW, and
+CNN models, while preserving the full input text and providing effective transparency.
+
+Previous Work
+We review previous work in the healthcare domain as well
+as recent approaches to extreme multi-label classification,
+which take place in a range of domains and tasks.
+
+Multi-label Patient Classifications
+Approaches to classification of patient records against multiple labels fall into three types of tasks: diagnosis code assignment, patient record labeling, and predictive modeling.
+Diagnosis Code Assignment. Automated ICD coding is a
+well established task, with several methods proposed in the
+literature, ranging from rule based (Crammer et al. 2007;
+Farkas and Szarvas 2008) to machine learning such as support vector machines, Bayesian ridge regression, and Knearest neighbor (Larkey and Croft 1995; Lita et al. 2008).
+Some methods exploit the hierarchical structure of the ICD
+taxonomy (Perotte et al. 2011; Perotte et al. 2014), while
+others incorporated explicit co-occurrence relations between
+codes (Kavuluru, Rios, and Lu 2015). In many cases, to handle the sheer amount of labels, the different approaches focus on rolled-up ICD codes (i.e., 3-digit version of the codes
+
+and their descendants in the ICD taxonomy) or on a subset
+of the codes, like in the shared community task for radiology
+code assignment (Pestian et al. 2007).
+It is difficult to compare the different methods proposed,
+since each relies on different (and usually not publicly available) datasets. We experiment with the MIMIC dataset, since
+it is publicly available to the research community. Methodswise, our approach departs from previous work in two important ways: we experiment with both massively large and
+very large label sets (all ICD9 code and rolled-up ICD9
+codes), and we experiment with transparent models that
+highlight portions of the input text that support the assigned
+codes.
+Patient Record Labeling. Other than automated diagnosis coding, most multi-label patient record classifiers fall in
+the tasks of phenotyping across multiple conditions at once.
+For instance, the UPhenome model takes a probabilistic generative approach to assign 750 latent variables (Pivovarov et
+al. 2015). More recently, in the context of multi-task learning, Harutyunyan and colleagues experimented with phenotyping over 25 critical care conditions (Harutyunyan et al.
+2017).
+Predictive Modeling. Previous work in EHR multi-label
+classification has mostly focused on predictive scenarios.
+The size of the label set varies from one approach to another, and most limit the label set size however: DeepPatient (Miotto et al. 2016) predicts over a set of 78 condition codes. (Lipton et al. 2015) leverage an LSTM model
+to predict over a vocabulary of 128 diagnosis codes. DoctorAI (Choi, Bahadori, and Sun 2015) predicts over a set of
+1,183 3-digit ICD codes and 595 medication groups. The
+Survival Filter (Ranganath et al. 2015) predicts a series of
+future ICD codes across approximately 8,000 ICD codes.
+Inputs to Multi-Label Classifications. Most work in
+multi-label classification takes structured input. For instance, the Survival Filter expects ICD codes as input to
+predict the future ICD codes. DoctorAI takes as input medication orders, ICD codes, problem list, and procedure orders at a given visit. Deep Patient does take the content of
+notes as input, but the content is heavily preprocessed into a
+structured input to their neural network, by tagging all texts
+with medical named entities. In contrast, our approach is
+to leverage the entire content of the input texts. Our work
+contributes to clinical natural language processing (Demner Fushman and Elhadad 2016), which only recently investigated neural representations and architectures for traditional tasks such as named entity recognition (Jagannatha
+and Yu 2016).
+
+Multi-label Extreme Classification
+In extreme multi-label learning, the objective is to annotate each data point with the most relevant subset of labels
+from an extremely large label set. Much work has been carried outside of the healthcare domain on tasks such as image classification (Tsoumakas and Katakis 2006; Weston,
+
+Bengio, and Usunier 2011), question answering (Choi et al.
+2016), and advertising (Jain, Prabhu, and Varma 2016). In
+(Weston, Bengio, and Usunier 2011), the task of annotating a
+very large dataset of images (> 10M ) with a very large label
+set (> 100K) was first addressed. The authors introduced
+the WSABIE method which relies on two main features: (i)
+records (images) and labels are embedded in a shared lowdimension vector space; and (ii) the multi-label classification task is modeled as a ranking problem, evaluated with a
+Hamming Loss on a P@k metric. The proposed online approximate WARP loss allowed the algorithm to perform fast
+enough on the scale of the dataset. We found that in our case,
+the standard Micro-F measure is more appropriate as we do
+not tolerate approximate annotations to the same extent as in
+the image annotation task.
+The SLEEC method (Bhatia et al. 2015) also relies on
+learning an embedding transformation to map label vectors
+into a low-dimensional representation. SLEEC learns an ensemble of local distance preserving embeddings to accurately predict infrequently occurring labels. This approach
+attempts to exploit the similarity among labels to improve
+classification, and learns different representations for clusters of similar labels. Other approaches attempt to reduce
+the cost of training over very large datasets by considering
+only part of the labels for each classification decision (Yen
+et al. 2016). SLEEC was later improved in (Jain, Prabhu,
+and Varma 2016) with the PfastreXML method which also
+adopted P@k loss functions aiming at predicting tail labels.
+In (Joulin et al. 2016), the FastText method was introduced as a simple and scalable neural bag of words approach
+for assigning multiple labels to text. We test a similar model
+(CBOW) in our experiments as one of our baselines.
+
+Dataset and Preprocessing
+We use the publicly available de-identified MIMIC dataset
+of ICU stays from Beth Israel Deaconess Medical Center (Saeed et al. 2011; Johnson et al. 2016).
+
+MIMIC Datasets
+To test the impact of training size, we relied on both the
+MIMIC II (v2.6) and MIMIC III (v1.4) datasets. MIMIC
+III comprises records collected between 2001 and 2012, and
+can be described as an expansion of MIMIC II (which comprises records collected between 2001 and 2008), along with
+some edits to the dataset (including de-identification procedures).
+To compare our experiments to previous work in ICD coding, we used the publicly available split of MIMIC II from
+(Perotte et al. 2014). It contains 22,815 discharge summaries
+divided into a training set (20,533 summaries) and a testset of unseen patients (2,282 summaries). We thus kept the
+same train and the test-set from MIMIC II, and constructed
+an additional training set from MIMIC III. We made sure
+that the test-set patients remained unseen in this training set
+as well. Overall, we have two training sets, which we refer
+to as MIMIC II and MIMIC III, and a common test-set comprising summaries of unseen patients.
+While there is a large overlap between MIMIC II and
+MIMIC III, there are also marked differences. We found
+
+Nb of records
+Nb of unique tokens
+Avg nb of tokens / record
+Avg nb of sentences / record
+Nb of full labels
+Nb of rolled-up labels
+Label Cardinality
+Label Density
+% labels with 50+ records
+
+MIMIC II
+
+MIMIC III
+
+Test Set
+
+20,533
+69,248
+1,529
+90
+4,847
+948
+9.24
+0.0019
+11.33%
+
+49,857
+119,171
+1,947
+112
+6,527
+1,047
+11.48
+0.0018
+18.19%
+
+2,282
+33,958
+1,893
+104
+2,451
+684
+11.42
+0.0047
+4.08%
+
+Table 1: Datasets descriptive statistics.
+
+many cases where discharge summaries from 2001-2008 are
+found in one dataset but not in the other. In addition, MIMIC
+III contains addenda to the discharge summaries that were
+not part of MIMIC II. After examining the summaries and
+their addenda, we noticed that the addenda contain vital information for ICD coding that is missing from the main discharge summaries; therefore, we decided to concatenate the
+summaries with their addenda.
+Table 1 reports some descriptives statistics regarding the
+datasets. Overall, MIMIC III is larger than MIMIC II from
+all standpoints, including amounts of training data, vocabulary size, and overall number of labels.
+
+ICD9 Codes
+Our label set comes from the ICD9 taxonomy. The International Classification of Diseases (ICD) is a repository maintained by the World Health Organization (WHO) to provide
+a standardized system of diagnostic codes for classifying
+diseases. It has a hierarchical structure, connecting specific
+diagnostic codes through is-a relations. The hierarchy has
+eight levels, from less specific to more specific. ICD codes
+contain both diagnosis and procedure codes. In this paper,
+we focus on diagnosis codes only. ICD9 codes are conveyed
+as 5 digits, with 3 primary digits and 2 secondary ones.
+Table 1 provides the ICD9 label cardinality and density
+as defined by (Tsoumakas and Katakis 2006). Cardinality
+is the average number of codes assigned to records in the
+dataset. Density is the cardinality divided by the total number of codes. For both training sets, the number of labels is of
+the same order as the number of records, and the label density is extremely low. This confirms that the task of code assignment belongs to the family of extreme multi-label classification.
+We did not filter any ICD code based on their frequency.
+We note, however that there are approximately 1,000 frequent labels (defined as assigned to at least 50 records) (Table 1). We experimented with two versions of the label set:
+one with all the labels (i.e., 5-digit), and one with the labels
+rolled up to their 3-digit equivalent.
+
+Input Texts
+Tokenization. Preprocessing of the input records comprised the following steps: (i) tokenize all input texts us-
+
+ing spaCy library 1 ; (ii) convert all non-alphabetical characters to pseudo-tokens (e.g., “11/2/1986” was mapped to
+“dd/d/dddd”); (iii) build the vocabulary as tokens that appear
+at least 5 times in the training set; and (iv) map any out-ofvocabulary word to its nearest word in the vocabulary (using
+the edit distance). This step is simple, yet particularly useful
+in reducing the number of misspellings of medical terms.
+These preprocessing steps has a strong impact on the vocabulary. For instance, there were 1,005,489 unique tokens
+in MIMIC III and test set before preprocessing, and only
+121,595 remaining in the vocabulary after preprocessing (an
+88% drop). This step improved F-measure performance by
+˜0.5% when tested on the CBOW and CNN methods (not
+reported).
+Hierarchical Segmentation. Besides tokenization of the
+input texts, we carried one more level of segmentation, at the
+sentence level (using the spaCy library as well). There are
+two reasons for preprocessing the input texts with sentence
+segmentation. First, because we deal with long documents,
+it is impossible and ineffective to train a sequence model like
+an GRU on such long sequences. In previous approaches in
+document classification, this problem was resolved by truncating the input documents. In the case of discharge summaries, however, this is not an acceptable solution: we want
+to preserve the entire document for transparency. Second, we
+are inspired by the moving windows of (Johnson and Zhang
+2014) and posit that sentences form linguistically inspired
+windows of word sequences.
+Beyond tokens and sentences, discharge summaries exhibit strong discourse-level structure (e.g., history of present
+illness and past medical history, followed by hospital course,
+and discharge plans) (Li, Lipsky Gorman, and Elhadad
+2010). This presents an exciting opportunity for future work
+to exploit discourse segments as an additional representation
+layer of input texts.
+
+Methods
+We describe the four models we experimented with. ICD
+coding has been evaluated in the literature according to different metrics: Micro-F, Macro-F, a variant of Macro-F that
+takes into account the hierarchy of the codes (Perotte et al.
+2014), Hamming and ranking loss (Wang et al. 2016), and
+a modified version of mean reciprocal rank (MRR) (Subotin
+and Davis 2014). We evaluate performance using the MicroF metric, since it is the most commonly used metric.
+SVM. We used Scikit Learn (Pedregosa et al. 2011) to implement a one-vs-all, multi-label binary SVM classifier. Features were bag of words, with tf*idf weights (determined
+from the corpus of release notes) for each label. Stop words
+were removed using Scikit Learn default English stop-word
+list. The model fits a binary SVM classifier for each label
+(ICD code) against the rest of the labels. We also experimented with χ2 feature filtering to select the top-N words
+1
+
+https://spacy.io/
+
+Binary Cross-Entropy
+Loss
+Binary Cross-Entropy
+Loss
+Fully Connected
+(Sigmoid Activation)
+Fully Connected
+(Sigmoid Activation)
+
+Max Pooling
+
+Average
+
+Convolution Layer
+
+Embedding
+
+Embedding
+
+𝑤" 𝑤# 𝑤$ …
+
+𝑤%
+
+𝑤" 𝑤# 𝑤$ …
+
+𝑤%
+
+diagnoses that share lexical words will not be distinguished
+by the model.
+CNN. To address the problems of the CBOW model, the
+next model we investigate is a convolutional neural network
+(CNN). A one dimensional convolution applied on list of
+embedded words could be considered as a type of n-gram
+model, where n is the convolution filter size.
+The architecture of this model is very similar to the
+CBOW model, but instead of averaging the embedded words
+we apply a one dimensional convolution layer with filter f ,
+followed by a max pooling layer. On the output of the max
+pool layered a fully connected layer was applied, like in the
+CBOW model. We also experimented with deeper convolution networks and inception module (LeCun 2015), but they
+did not yield improved results.
+Embedding = E · [w1 , w2 , ..., wn ]
+
+Figure 1: CBOW architecture on the left and CNN model
+architecture on the right.
+according to their mutual information with each label, but
+this did not improve performance.
+CBOW. The continuous-bag-of-words (CBOW) model is
+inspired by the word2vec CBOW model (Mikolov et al.
+2013) and FastText (Joulin et al. 2016). Both methods use
+a simple neural-network to create a dense representation of
+words and use the average of this representation for prediction. The word2vec CBOW tries to predict a word from the
+words that appear around it, while our CBOW model for
+ICD classification predicts ICD9 codes from the words of
+its input discharge summary.
+The model architecture consists of an embedding layer
+applied to all the words in a given input text [w1 , w2 , ..., wn ],
+where wi is a one-hot encoding vector of the vocabulary. E
+is the embedding matrix with dimension nemb × V , where
+V is the size of the vocabulary and nemb is the embedding
+size (set to 100).
+The embedded words are averaged into a fixed-size vector and are fed to a fully connected layer with a matrix
+W and bias b, where the output dimension is the number
+of labels. We use a sigmoid activation on the output layer
+so all values are in the range of [0 − 1] and use a fixed
+threshold (0.5) to determine whether to assign a particular
+label. To train the model, we used binary cross-entropy loss
+(loss(target, output) = −(target · log(output) + (1 −
+target) · log(1 − output)).
+Embedding = E · [w1 , w2 , ..., wn ]
+Averaged = 1/nΣe∈Embedding (e)
+P rob = sigmoid(W · Averaged + b)
+
+While the model is extremely lightweight and fast it suffers from known bag-of-words issues: (i) it ignores word order; i.e., if negation will appear before a diagnosis mention,
+the model would not be able to learn this; (ii) multi-wordexpressions cannot be identified by the model, so different
+
+Conved =
+
+max
+
+i∈channels
+
+(Embedding ∗ f )
+
+P rob = sigmoid(W · Conved + b)
+
+In our experiments, we used the same embedding parameter
+as in the CBOW model. In addition, we set the number of
+channels to 300, and the filter size to 3.
+HA-GRU. We now introduce the Hierarchical Attentionbidirectional Gated Recurrent Unit model (HA-GRU) an
+adaptation of a Hierarchical Attention Networks (Yang et
+al. 2016) to be able to handle multi-label classification. A
+Gated Recurrent Unit (GRU) is a type of Recurrent Neural
+Network. Since the documents are long (see Table 1 ad up
+to 13,590 tokens in the MIMIC III training set), a regular
+GRU applied over the entire document is too slow as it requires number layers of the document length. Instead we apply a hierarchal model with two levels of bidirectional GRU
+encoding. The first bidirectional GRU operates over tokens
+and encodes sentences. The second bidirectional GRU encodes the document , applied over all the encoded sentences.
+In this architecture, each GRU is applied to a much shorter
+sequence compared with a single GRU.
+To take advantage of the property that each label is invoked from different parts of the text, we use an attention
+mechanism over the second GRU with different weights for
+each label. This allows the model to focus on the relevant
+sentences for each label (Choi et al. 2016). To allow clarity
+into what the model learns and enable error analysis attention is also applied over the first GRU with the same weights
+for all the labels.
+Each sentence in the input text is encoded to a fixed length
+vector (64) by applying an embedding layer over all the inputs, applying a bidirectional GRU layer on the embedded
+words, and using a neural attention mechanism to encode
+the bidirectional GRU outputs (size of 128). After the sentences are encoded into a fixed length vector, we apply a
+second bidirectional GRU layer over the sentences using different attention layers to generate an encoding specified to
+each class (128 × #labels). Finally we applied a fully connected layer with softmax for each classifier to determine
+if the label should be assigned to the document. Training is
+
+ICD9 codes
+MIMIC II MIMIC III
+
+Classifiers
+Classifiers
+Classifiers
+
+SVM
+CBOW
+CNN
+HA-GRU
+
+Document GRU
+Layer
+
+Sentence Encoder
+
+Sentence Encoder
+
+Sentence Encoder
+𝑤","𝑤",$ 𝑤",% … 𝑤",&'
+
+…
+
+𝑤$,"𝑤$,$ 𝑤$,% … 𝑤$,&)
+
+𝑤*," 𝑤*,$𝑤*,%… 𝑤*,&+
+
+28.13%
+30.60%
+33.25%
+36.60%
+
+22.25%
+30.02%
+40.72%
+40.52%
+
+Rolled-up ICD9 codes
+MIMIC II MIMIC III
+32.50%
+42.06%
+46.40%
+53.86%
+
+53.02%
+43.30%
+52.64%
+55.86%
+
+Table 2: Micro-F on two settings (full and rolled-up ICDs)
+and for the four models when trained on MIMIC II or
+MIMIC III datasets.
+
+Figure 2: HA-GRU model architecture overview.
+
+Results
+achieved by using categorical cross-entropyP
+on every classifier separately (loss(target, output) = − x ouput(x) ·
+log(target(x)))
+AttW eight(ini , v, w) = v · tanh(w · (ini ))
+AttW eight(ini , v, w) =
+
+eAttW eight(ini ,v,w)
+e
+
+P
+
+j AttW eightj (v,w)
+
+Attend(in, v, w) = sum(ini · AttW eight(ini , v, w))
+Embedding = E · [w1 , w2 , ..., wn ]
+EncSentsj = Attend(GRU words(Embedding), vwords , wwords )
+EncDoclabel = Attend(GRUsents (EncSents, vlabel , wlabel ), )
+P roblabel = sof tmax(pwlabel · EncDoclabel + pblabel )
+
+Where wi is a one-hot encoding vector of the vocabulary size V , E is an embedding matrix size of nemb × V ,
+GRUwords is a GRU layer with state size hstate , wwords
+is a square matrix (hstate × hstate ) and vwords is a vector (hstate ) for the sentence level attention. GRUsents is a
+GRU layer with state size of hstate . wlabel is a square matrix (hstate × hstate ) and vlabel is a vector (hstate ) for the
+document level attention for each class, pwlabel is a matrix
+(hstate × 2) and pblabel is a bias vector with a size of 2 for
+each label. We implemented the model using DyNet (Neubig et al. 2017)2 .
+𝑐"
+𝑠"
+
+𝑤" ,$ 𝑤" ,% 𝑤" ,& … 𝑤" ,'(
+
+Softmax
+Fully Connected
+Layer
+
+Classifier
+
+Embedding
+
+Sentence Encoder
+
+Sentence GRU Layer
+
+To evaluate the proposed methods on the MIMIC datasets,
+we conducted the following experiments. In the first setting
+we considered all ICD9 codes as our label set. We trained
+the SVM, CBOW, and CNN on the MIMIC II and on the
+MIMIC III training sets separately. All models were evaluated on the same test set according to Micro-F. In the second
+setting, we only considered the rolled-up ICD9 codes to their
+3-digit codes. There (Table 2).
+HA-GRU gives the best results in the rolled-up ICD9 setting, with a 7.4% and 3.2% improvement over the CNN and
+SVM, the second best methods, in MIMIC II and MIMIC
+III respectively. In the full ICD-9 scenario, all methods yield
+better results when trained on MIMIC III rather than on
+MIMIC II. This is expected considering the larger size of
+MIMIC III over II. We note that our CNN yields the best
+Micro-F when trained on MIMIC III passing the HA-GRU
+by a small margin.
+In comparison to the previous work of (Perotte et al.
+2014), our one-vs-all SVM yielded better results than their
+flat and hierarchy classifiers. This trend was confirmed when
+training on the new MIMIC III set, as well as when using the
+same evaluation metrics of (Perotte et al. 2014). We attribute
+these improved results both to the one-vs-all approach as
+well as our tokenization approach.
+
+Label Frequency
+Categorical CrossEntropy loss
+
+Weighted Average
+Sentence Attention
+
+Model Comparison
+
+Weighted Average
+Label Attention
+𝑠$ 𝑠% 𝑠&
+
+… 𝑠'
+
+Figure 3: Zoom-in of the sentence encoder and classifier.
+
+We also tested the effect label frequency on the performance
+of the HA-GRU classifier. We recalculated precision and recall scores on subsets of labels. The subsets were created
+by sorting the labels by frequency they appear in MIMIC-III
+dataset and binning them to groups of 50 labels. As such, bin
+1 comprises the 50 most frequent ICD9 codes in the training
+set (with an average 12% frequency over the records in the
+training set), codes in bin 2 had an average 1.9% frequency,
+codes in bin 3 appeared in 1.1% of the records, up to bin 8
+which 0.2% of the records in the training set. The effect can
+be seen in Figure 5. We note that the recall score drops much
+more dramatically than the precision as the label frequency
+decreases.
+
+Model Explaining Power
+2
+Code available at https://github.com/talbaumel/
+MIMIC.
+
+We discuss how the CNN and HA-GRU architectures can
+support model explaining power.
+
+Figure 4: Sample text of a patient note (one sentence per line). On the left, visualization for the with attention weights at the
+sentence and word levels associated with the ICD9 codes, on the left sentence level attention weights for ICD9 code “Heart
+failure”, on the the right for code “Traumatic pneumothorax and hemothorax”.
+find what word received the highest attention score. For example, in our experiments for label “428-Heart failure” we
+found that the sentence with the highest attention score was
+“d . congestive heart failure ( with an ejection fraction of
+dd % to dd % ) .”, while the token “failure” was found
+most relevant across all labels. Figure 4 provides additional
+examples. Note that the “d” and “dd” tokens are from the
+pre-procecssing step, which mapped all numbers to pseudotokens.
+
+Figure 5: Effect label frequency on HA-GRU performance
+when trained on MIMIC III. X-axis represents the bins of
+labels ranked by their frequency in the training set.
+CNN. To analyze the CNN prediction we can test which
+n-grams triggered the max-pooling layer. Given a sentence
+with n words we can feed it forward through the embedding
+layer and the convolution layer. The output of the convolution a list of vectors each the size of the number of channels of the convolution layer where vector corresponds to
+an n-gram. We can identify what triggered the max pooling
+layer by finding the maximum value of each channel. Thus,
+for predicted labels, one of the activated n-grams does include information relevant for that label (whether correct for
+true positive labels or incorrect for false positive labels). For
+example in our experiments, for the label: “682.6-Cellulitis
+and abscess of leg, except foot” one of the activated n-gram
+detected was “extremity cellulitis prior”.
+This transparency process can also be useful for error
+analysis while building a model, as it can highlight True Positive and False Positive labels. However, it is difficult in the
+CNN to trace back the decisions for False Negatives predictions.
+HA-GRU For the HA-GRU model we can use attention
+weights to better understand what sentences and what words
+in that sentence contributed the most to each decision. We
+can find which sentence had the highest attention score for
+each label, and given the most important sentence, we can
+
+Like in the CNN, we can use this process for error analysis. In fact, the HA-GRU model explains prediction with
+greater precision, at the sentence level. For instance, we
+could explore the following False Positive prediction: the
+model assigned the label “331-Other cerebral degenerations” to the sentence:“alzheimer ’s dementia .”. We can see
+that the condition was relevant to the medical note, but was
+mentioned under the patient’s past medical history (and not
+a current problem). In fact, many of the False Positive labels
+under the HA-GRU model were due to mentions belonging
+to the past medical history section. This suggests that the
+coding task would benefit from a deeper architecture, with
+attention to discourse-level structure.
+In contrast to the CNN, the HA-GRU model can also
+help analyze False Negative label assignments. When we
+explored the False Negative labels, we found that in many
+cases the model found a relevant sentence, but failed to classify correctly. This suggests the document-level attention
+mechanism is successful. For instance, for the False Negative “682-Other cellulitis and abscess”, the most attended
+sentence was “... for right lower extremity cellulitis prior
+to admission ...”. The false positive codes for this sentence
+included “250-Diabetes mellitus” and “414-Other forms of
+chronic ischemic heart disease”. We note that in the case of
+cellulitis, it is reasonable that the classifier preferred other,
+more frequent codes, as it is a common comorbid condition
+in the ICU.3
+
+3
+
+Full visualizations of sample discharge summaries are
+provided at https://www.cs.bgu.ac.il/˜talbau/
+mimicdemo
+
+Conclusion
+We investigate four modern models for the task of extreme
+multi-label classification on the MIMIC datasets. Unlike
+previous work, we evaluate our models on all ICD9 codes
+thus making sure our models could be used for real world
+ICD9 tagging. The tokenization step, mapping rare variants
+using edit distance, improved results for CBOW and CNN
+models by ˜0.5%, highlighting the importance of preprocessing data noise problems in real-world settings. The HA-GRU
+model not only achieves the best performance on the task
+of rolled-up codes (55.86% F 1 on MIMIC III, ˜2.8% absolute improvement on the best SVM baseline) but is able
+to provide insight on the task for future work such as using discourse-level structure available in medical notes yet
+never used before. The ability to highlight the decision process of the model is important for adoption of such models
+by medical experts. On the sub-task of MIMIC II, which
+includes a smaller training dataset, HA-GRU achieved ˜7%
+absolute F 1 improvement, suggesting it requires less training data to achieve top performance, which is important for
+domain adaptation efforts when applying such models to patient records from other sources (such as different hospitals).
+
+Acknowledgements
+This work is supported by National Institute of General
+Medical Sciences Grant R01GM114355 (NE) and Frankel
+Center for Computer Science .
+
+References
+[Bhatia et al. 2015] Bhatia, K.; Jain, H.; Kar, P.; Varma, M.;
+and Jain, P. 2015. Sparse local embeddings for extreme
+multi-label classification. In Advances in Neural Information Processing Systems (NIPS), 730–738.
+[Choi, Bahadori, and Sun 2015] Choi, E.; Bahadori, M. T.;
+and Sun, J.
+2015.
+Doctor AI: Predicting clinical
+events via recurrent neural networks.
+arXiv preprint
+arXiv:1511.05942.
+[Choi et al. 2016] Choi, E.; Hewlett, D.; Lacoste, A.; Polosukhin, I.; Uszkoreit, J.; and Berant, J. 2016. Hierarchical question answering for long documents. arXiv preprint
+arXiv:1611.01839.
+[Crammer et al. 2007] Crammer, K.; Dredze, M.; Ganchev,
+K.; Talukdar, P. P.; and Carroll, S. 2007. Automatic code assignment to medical text. In Proceedings of the ACL Workshop on BioNLP 2007: Biological, Translational, and Clinical Language Processing, 129–136.
+[Demner Fushman and Elhadad 2016] Demner
+Fushman,
+D., and Elhadad, N. 2016. Aspiring to unintended consequences of natural language processing: A review of recent
+developments in clinical and consumer-generated text processing. Yearbook of Medical Informatics 10(1):224–233.
+[Farkas and Szarvas 2008] Farkas, R., and Szarvas, G. 2008.
+Automatic construction of rule-based ICD-9-CM coding
+systems. BMC bioinformatics 9(3):S10.
+[Harutyunyan et al. 2017] Harutyunyan, H.; Khachatrian,
+H.; Kale, D. C.; and Galstyan, A. 2017. Multitask learn-
+
+ing and benchmarking with clinical time series data. arXiv
+preprint arXiv:1703.07771.
+[Jagannatha and Yu 2016] Jagannatha, A. N., and Yu, H.
+2016. Structured prediction models for RNN based sequence labeling in clinical text. In Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP), 856.
+[Jain, Prabhu, and Varma 2016] Jain, H.; Prabhu, Y.; and
+Varma, M. 2016. Extreme multi-label loss functions for
+recommendation, tagging, ranking & other missing label applications. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data
+Mining, 935–944.
+[Johnson and Zhang 2014] Johnson, R., and Zhang, T. 2014.
+Effective use of word order for text categorization
+with convolutional neural networks.
+arXiv preprint
+arXiv:1412.1058.
+[Johnson et al. 2016] Johnson, A. E.; Pollard, T. J.; Shen, L.;
+Lehman, L.-w. H.; Feng, M.; Ghassemi, M.; Moody, B.;
+Szolovits, P.; Celi, L. A.; and Mark, R. G. 2016. MIMIC-III,
+a freely accessible critical care database. Scientific Data 3.
+[Joulin et al. 2016] Joulin, A.; Grave, E.; Bojanowski, P.;
+Douze, M.; Jégou, H.; and Mikolov, T. 2016. Fasttext.zip:
+Compressing text classification models. arXiv preprint
+arXiv:1612.03651.
+[Kavuluru, Rios, and Lu 2015] Kavuluru, R.; Rios, A.; and
+Lu, Y. 2015. An empirical evaluation of supervised learning
+approaches in assigning diagnosis codes to electronic medical records. Artificial Intelligence in Medicine 65(2):155–
+166.
+[Larkey and Croft 1995] Larkey, L. S., and Croft, W. B.
+1995. Automatic assignment of ICD9 codes to discharge
+summaries. Technical report, University of Massachusetts
+at Amherst, Amherst, MA.
+[LeCun 2015] LeCun, Y. 2015. LeNet-5, convolutional
+neural networks. http://yann.lecun.com/exdb/
+lenet.
+[Li, Lipsky Gorman, and Elhadad 2010] Li, Y.; Lipsky Gorman, S.; and Elhadad, N. 2010. Section classification in
+clinical notes using supervised hidden Markov model. In
+Proceedings of the 1st ACM International Health Informatics Symposium, 744–750. ACM.
+[Lipton et al. 2015] Lipton, Z. C.; Kale, D. C.; Elkan, C.; and
+Wetzell, R. 2015. Learning to diagnose with LSTM recurrent neural networks. arXiv preprint arXiv:1511.03677.
+[Lita et al. 2008] Lita, L. V.; Yu, S.; Niculescu, R. S.; and
+Bi, J. 2008. Large scale diagnostic code classification
+for medical patient records. In Proceedings of the International Joint Conference on Natural Language Processing
+(IJCNLP), 877–882.
+[Mikolov et al. 2013] Mikolov, T.; Chen, K.; Corrado, G.;
+and Dean, J. 2013. Efficient estimation of word representations in vector space. arXiv preprint arXiv:1301.3781.
+[Miotto et al. 2016] Miotto, R.; Li, L.; Kidd, B. A.; and Dudley, J. T. 2016. Deep Patient: An unsupervised represen-
+
+tation to predict the future of patients from the electronic
+health records. Scientific Reports 6.
+[Neubig et al. 2017] Neubig, G.; Dyer, C.; Goldberg, Y.;
+Matthews, A.; Ammar, W.; Anastasopoulos, A.; Ballesteros,
+M.; Chiang, D.; Clothiaux, D.; Cohn, T.; et al. 2017.
+Dynet: The dynamic neural network toolkit. arXiv preprint
+arXiv:1701.03980.
+[Pedregosa et al. 2011] Pedregosa, F.; Varoquaux, G.; Gramfort, A.; Michel, V.; Thirion, B.; Grisel, O.; Blondel, M.;
+Prettenhofer, P.; Weiss, R.; Dubourg, V.; et al. 2011. Scikitlearn: Machine learning in python. Journal of Machine
+Learning Research 12(Oct):2825–2830.
+[Perotte et al. 2011] Perotte, A. J.; Wood, F.; Elhadad, N.;
+and Bartlett, N. 2011. Hierarchically supervised latent
+dirichlet allocation. In Advances in Neural Information Processing Systems (NIPS), 2609–2617.
+[Perotte et al. 2014] Perotte, A.; Pivovarov, R.; Natarajan,
+K.; Weiskopf, N.; Wood, F.; and Elhadad, N. 2014. Diagnosis code assignment: models and evaluation metrics.
+Journal of the American Medical Informatics Association
+21(2):231–237.
+[Pestian et al. 2007] Pestian, J. P.; Brew, C.; Matykiewicz, P.;
+Hovermale, D. J.; Johnson, N.; Cohen, K. B.; and Duch, W.
+2007. A shared task involving multi-label classification of
+clinical free text. In Proceedings of the ACL Workshop on
+BioNLP: Biological, Translational, and Clinical Language
+Processing, 97–104.
+[Pivovarov et al. 2015] Pivovarov, R.; Perotte, A. J.; Grave,
+E.; Angiolillo, J.; Wiggins, C. H.; and Elhadad, N. 2015.
+Learning probabilistic phenotypes from heterogeneous EHR
+data. Journal of Biomedical Informatics 58:156–165.
+[Ranganath et al. 2015] Ranganath, R.; Perotte, A. J.; Elhadad, N.; and Blei, D. M. 2015. The Survival Filter: joint
+survival analysis with a latent time series. In UAI, 742–751.
+[Saeed et al. 2011] Saeed, M.; Villarroel, M.; Reisner, A. T.;
+Clifford, G.; Lehman, L.-W.; Moody, G.; Heldt, T.; Kyaw,
+T. H.; Moody, B.; and Mark, R. G. 2011. Multiparameter intelligent monitoring in intensive care II (MIMIC-II):
+a public-access intensive care unit database. Critical Care
+Medicine 39(5):952.
+[Subotin and Davis 2014] Subotin, M., and Davis, A. R.
+2014. A system for predicting ICD-10-PCS codes from electronic health records. In Proceedings of the ACL Workshop
+on Biomedical Natural Language Processing (BioNLP), 59–
+67. Citeseer.
+[Tsoumakas and Katakis 2006] Tsoumakas, G., and Katakis,
+I. 2006. Multi-label classification: An overview. International Journal of Data Warehousing and Mining 3(3).
+[Wang et al. 2016] Wang, S.; Chang, X.; Li, X.; Long, G.;
+Yao, L.; and Sheng, Q. Z. 2016. Diagnosis code assignment using sparsity-based disease correlation embedding.
+IEEE Transactions on Knowledge and Data Engineering
+28(12):3191–3202.
+[Weston, Bengio, and Usunier 2011] Weston, J.; Bengio, S.;
+and Usunier, N. 2011. WSABIE: Scaling up to large vocabulary image annotation. In Proceedings of the Interna-
+
+tional Joint Conference on Artificial Intelligence (IJCAI),
+volume 11, 2764–2770.
+[Yang et al. 2016] Yang, Z.; Yang, D.; Dyer, C.; He, X.;
+Smola, A.; and Hovy, E. 2016. Hierarchical attention
+networks for document classification. In Proceedings of
+NAACL-HLT, 1480–1489.
+[Yen et al. 2016] Yen, I. E.; Huang, X.; Zhong, K.; Ravikumar, P.; and Dhillon, I. S. 2016. PD-Sparse: A primal and
+dual sparse approach to extreme multiclass and multilabel
+classification. In Proceedings of the International Conference on Machine Learning (ICML).
+
+
+
+Summary:
+This research paper covers the following topic: Multi-Label Classification of Patient Notes: Case Study on ICD Code Assignment
+Tal Baumel
+
+arXiv:1709.09587v3 [cs.CL] 20 Nov 2017
+
+Ben-Gurion University
+Beer-Sheva, Israel
+
+Jumana Nassour-Kassis Raphael Cohen
+
+Michael Elhadad
+
+Noémie Elhadad
+
+Chorus.ai
+San Francisco, CA
+
+Ben-Gurion University
+Beer-Sheva, Israel
+
+Columbia University
+New York, NY
+
+Ben-Gurion University
+Beer-Sheva, Israel
+
+Abstract
+The automatic coding of clinical documentation according
+to diagnosis codes is a useful task in the Electronic Health
+Record, but a challenging one due to the large number
+of codes and the length of patient notes. We investigate
+four models for assigning multiple ICD codes to discharge
+summaries, and experiment with data from the MIMIC II
+and III clinical datasets. We present Hierarchical Attentionbidirectional Gated Recurrent Unit (HA-GRU), a hierarchical approach to tag a document by identifying the sentences
+relevant for each label. HA-GRU achieves state-of-the art results. Furthermore, the learned sentence-level attention layer
+highlights the model decision process, allows for easier error
+analysis, and suggests future directions for improvement.
+
+Introduction
+In Electronic Health Records (EHRs), there is often a need
+to assign multiple labels to a patient record, choosing from
+a large number of potential labels. Diagnosis code assignment is such a task, with a massive amount of labels to chose
+from (14,000 ICD9 codes and 68,000 ICD10 codes). Largescale multiple phenotyping assignment, problem list identification, or even intermediate patient representation can
+all be cast as a multi-label classification over a large label
+set. More recently, in the context of predictive modeling,
+approaches to predict multiple future healthcare outcomes,
+such as future diagnosis codes or medication orders have
+been proposed in the literature. There again, the same setup
+occurs where patient-record data is fed to a multi-label classification over a large label set.
+In this paper, we investigate how to leverage the unstructured portion of the EHR, the patient notes, along a novel application of neural architectures. We focus on three characteristics: (i) a very large label set (6,500 unique ICD9 codes
+and 1,047 3-digit unique ICD9 codes); (ii) a multi-label setting (up to 20 labels per instance); (iii) instances are long
+documents (discharge summaries on average 1,900-word
+long); and (iv) furthermore, because we work on long documents, one critical aspect of the multi-label classification is
+transparency—to highlight the elements in the documents
+that explain and support the predicted labels. While there
+has been much work on each of these characteristics, there
+Copyright c 2018, Association for the Advancement of Artificial
+Intelligence (www.aaai.org). All rights reserved.
+
+has been limited work to tackle all at once, particularly in
+the clinical domain.
+We experiment with four approaches to classification: an
+SVM-based one-vs-all model, a continuous bag-of-words
+(CBOW) model, a convolutional neural network (CNN)
+model, and a bidirectional Gated Recurrent Unit model
+with a Hierarchical Attention mechanism (HA-GRU).
+Among them, the attention mechanism of the HA-GRU
+model provides full transparency for classification decisions. We rely on the publicly available MIMIC datasets to
+validate our experiments. A characteristic of the healthcare
+domain is long documents with a large number of technical
+words and typos/misspellings. We experiment with simple
+yet effective preprocessing of the input texts.
+Our results show that careful tokenization of the input
+texts, and hierarchical segmentation of the original document allow our Hierarchical Attention GRU architecture to
+yield the most promising results, over the SVM, CBOW, and
+CNN models, while preserving the full input text and providing effective transparency.
+
+Previous Work
+We review previous work in the healthcare domain as well
+as recent approaches to extreme multi-label classification,
+which take place in a range of domains and tasks.
+
+Multi-label Patient Classifications
+Approaches to classification of patient records against multiple labels fall into three types of tasks: diagnosis code assignment, patient record labeling, and predictive modeling.
+Diagnosis Code Assignment. Automated ICD coding is a
+well established task, with several methods proposed in the
+literature, ranging from rule based (Crammer et al. 2007;
+Farkas and Szarvas 2008) to machine learning such as support vector machines, Bayesian ridge regression, and Knearest neighbor (Larkey and Croft 1995; Lita et al. 2008).
+Some methods exploit the hierarchical structure of the ICD
+taxonomy (Perotte et al. 2011; Perotte et al. 2014), while
+others incorporated explicit co-occurrence relations between
+codes (Kavuluru, Rios, and Lu 2015). In many cases, to handle the sheer amount of labels, the different approaches focus on rolled-up ICD codes (i.e., 3-digit version of the codes
+
+and their descendants in the ICD taxonomy) or on a subset
+of the codes, like in the shared community task for radiology
+code assignment (Pestian et al. 2007).
+It is difficult to compare the different methods proposed,
+since each relies on different (and usually not publicly available) datasets. We experiment with the MIMIC dataset, since
+it is publicly available to the research community. Methodswise, our approach departs from previous work in two important ways: we experiment with both massively large and
+very large label sets (all ICD9 code and rolled-up ICD9
+codes), and we experiment with transparent models that
+highlight portions of the input text that support the assigned
+codes.
+Patient Record Labeling. Other than automated diagnosis coding, most multi-label patient record classifiers fall in
+the tasks of phenotyping across multiple conditions at once.
+For instance, the UPhenome model takes a probabilistic generative approach to assign 750 latent variables (Pivovarov et
+al. 2015). More recently, in the context of multi-task learning, Harutyunyan and colleagues experimented with phenotyping over 25 critical care conditions (Harutyunyan et al.
+2017).
+Predictive Modeling. Previous work in EHR multi-label
+classification has mostly focused on predictive scenarios.
+The size of the label set varies from one approach to another, and most limit the label set size however: DeepPatient (Miotto et al. 2016) predicts over a set of 78 condition codes. (Lipton et al. 2015) leverage an LSTM model
+to predict over a vocabulary of 128 diagnosis codes. DoctorAI (Choi, Bahadori, and Sun 2015) predicts over a set of
+1,183 3-digit ICD codes and 595 medication groups. The
+Survival Filter (Ranganath et al. 2015) predicts a series of
+future ICD codes across approximately 8,000 ICD codes.
+Inputs to Multi-Label Classifications. Most work in
+multi-label classification takes structured input. For instance, the Survival Filter expects ICD codes as input to
+predict the future ICD codes. DoctorAI takes as input medication orders, ICD codes, problem list, and procedure orders at a given visit. Deep Patient does take the content of
+notes as input, but the content is heavily preprocessed into a
+structured input to their neural network, by tagging all texts
+with medical named entities. In contrast, our approach is
+to leverage the entire content of the input texts. Our work
+contributes to clinical natural language processing (Demner Fushman and Elhadad 2016), which only recently investigated neural representations and architectures for traditional tasks such as named entity recognition (Jagannatha
+and Yu 2016).
+
+Multi-label Extreme Classification
+In extreme multi-label learning, the objective is to annotate each data point with the most relevant subset of labels
+from an extremely large label set. Much work has been carried outside of the healthcare domain on tasks such as image classification (Tsoumakas and Katakis 2006; Weston,
+
+Bengio, and Usunier 2011), question answering (Choi et al.
+2016), and advertising (Jain, Prabhu, and Varma 2016). In
+(Weston, Bengio, and Usunier 2011), the task of annotating a
+very large dataset of images (> 10M ) with a very large label
+set (> 100K) was first addressed. The authors introduced
+the WSABIE method which relies on two main features: (i)
+records (images) and labels are embedded in a shared lowdimension vector space; and (ii) the multi-label classification task is modeled as a ranking problem, evaluated with a
+Hamming Loss on a P@k metric. The proposed online approximate WARP loss allowed the algorithm to perform fast
+enough on the scale of the dataset. We found that in our case,
+the standard Micro-F measure is more appropriate as we do
+not tolerate approximate annotations to the same extent as in
+the image annotation task.
+The SLEEC method (Bhatia et al. 2015) also relies on
+learning an embedding transformation to map label vectors
+into a low-dimensional representation. SLEEC learns an ensemble of local distance preserving embeddings to accurately predict infrequently occurring labels. This approach
+attempts to exploit the similarity among labels to improve
+classification, and learns different representations for clusters of similar labels. Other approaches attempt to reduce
+the cost of training over very large datasets by considering
+only part of the labels for each classification decision (Yen
+et al. 2016). SLEEC was later improved in (Jain, Prabhu,
+and Varma 2016) with the PfastreXML method which also
+adopted P@k loss functions aiming at predicting tail labels.
+In (Joulin et al. 2016), the FastText method was introduced as a simple and scalable neural bag of words approach
+for assigning multiple labels to text. We test a similar model
+(CBOW) in our experiments as one of our baselines.
+
+Dataset and Preprocessing
+We use the publicly available de-identified MIMIC dataset
+of ICU stays from Beth Israel Deaconess Medical Center (Saeed et al. 2011; Johnson et al. 2016).
+
+MIMIC Datasets
+To test the impact of training size, we relied on both the
+MIMIC II (v2.6) and MIMIC III (v1.4) datasets. MIMIC
+III comprises records collected between 2001 and 2012, and
+can be described as an expansion of MIMIC II (which comprises records collected between 2001 and 2008), along with
+some edits to the dataset (including de-identification procedures).
+To compare our experiments to previous work in ICD coding, we used the publicly available split of MIMIC II from
+(Perotte et al. 2014). It contains 22,815 discharge summaries
+divided into a training set (20,533 summaries) and a testset of unseen patients (2,282 summaries). We thus kept the
+same train and the test-set from MIMIC II, and constructed
+an additional training set from MIMIC III. We made sure
+that the test-set patients remained unseen in this training set
+as well. Overall, we have two training sets, which we refer
+to as MIMIC II and MIMIC III, and a common test-set comprising summaries of unseen patients.
+While there is a large overlap between MIMIC II and
+MIMIC III, there are also marked differences. We found
+
+Nb of records
+Nb of unique tokens
+Avg nb of tokens / record
+Avg nb of sentences / record
+Nb of full labels
+Nb of rolled-up labels
+Label Cardinality
+Label Density
+% labels with 50+ records
+
+MIMIC II
+
+MIMIC III
+
+Test Set
+
+20,533
+69,248
+1,529
+90
+4,847
+948
+9.24
+0.0019
+11.33%
+
+49,857
+119,171
+1,947
+112
+6,527
+1,047
+11.48
+0.0018
+18.19%
+
+2,282
+33,958
+1,893
+104
+2,451
+684
+11.42
+0.0047
+4.08%
+
+Table 1: Datasets descriptive statistics.
+
+many cases where discharge summaries from 2001-2008 are
+found in one dataset but not in the other. In addition, MIMIC
+III contains addenda to the discharge summaries that were
+not part of MIMIC II. After examining the summaries and
+their addenda, we noticed that the addenda contain vital information for ICD coding that is missing from the main discharge summaries; therefore, we decided to concatenate the
+summaries with their addenda.
+Table 1 reports some descriptives statistics regarding the
+datasets. Overall, MIMIC III is larger than MIMIC II from
+all standpoints, including amounts of training data, vocabulary size, and overall number of labels.
+
+ICD9 Codes
+Our label set comes from the ICD9 taxonomy. The International Classification of Diseases (ICD) is a repository maintained by the World Health Organization (WHO) to provide
+a standardized system of diagnostic codes for classifying
+diseases. It has a hierarchical structure, connecting specific
+diagnostic codes through is-a relations. The hierarchy has
+eight levels, from less specific to more specific. ICD codes
+contain both diagnosis and procedure codes. In this paper,
+we focus on diagnosis codes only. ICD9 codes are conveyed
+as 5 digits, with 3 primary digits and 2 secondary ones.
+Table 1 provides the ICD9 label cardinality and density
+as defined by (Tsoumakas and Katakis 2006). Cardinality
+is the average number of codes assigned to records in the
+dataset. Density is the cardinality divided by the total number of codes. For both training sets, the number of labels is of
+the same order as the number of records, and the label density is extremely low. This confirms that the task of code assignment belongs to the family of extreme multi-label classification.
+We did not filter any ICD code based on their frequency.
+We note, however that there are approximately 1,000 frequent labels (defined as assigned to at least 50 records) (Table 1). We experimented with two versions of the label set:
+one with all the labels (i.e., 5-digit), and one with the labels
+rolled up to their 3-digit equivalent.
+
+Input Texts
+Tokenization. Preprocessing of the input records comprised the following steps: (i) tokenize all input texts us-
+
+ing spaCy library 1 ; (ii) convert all non-alphabetical characters to pseudo-tokens (e.g., “11/2/1986” was mapped to
+“dd/d/dddd”); (iii) build the vocabulary as tokens that appear
+at least 5 times in the training set; and (iv) map any out-ofvocabulary word to its nearest word in the vocabulary (using
+the edit distance). This step is simple, yet particularly useful
+in reducing the number of misspellings of medical terms.
+These preprocessing steps has a strong impact on the vocabulary. For instance, there were 1,005,489 unique tokens
+in MIMIC III and test set before preprocessing, and only
+121,595 remaining in the vocabulary after preprocessing (an
+88% drop). This step improved F-measure performance by
+˜0.5% when tested on the CBOW and CNN methods (not
+reported).
+Hierarchical Segmentation. Besides tokenization of the
+input texts, we carried one more level of segmentation, at the
+sentence level (using the spaCy library as well). There are
+two reasons for preprocessing the input texts with sentence
+segmentation. First, because we deal with long documents,
+it is impossible and ineffective to train a sequence model like
+an GRU on such long sequences. In previous approaches in
+document classification, this problem was resolved by truncating the input documents. In the case of discharge summaries, however, this is not an acceptable solution: we want
+to preserve the entire document for transparency. Second, we
+are inspired by the moving windows of (Johnson and Zhang
+2014) and posit that sentences form linguistically inspired
+windows of word sequences.
+Beyond tokens and sentences, discharge summaries exhibit strong discourse-level structure (e.g., history of present
+illness and past medical history, followed by hospital course,
+and discharge plans) (Li, Lipsky Gorman, and Elhadad
+2010). This presents an exciting opportunity for future work
+to exploit discourse segments as an additional representation
+layer of input texts.
+
+Methods
+We describe the four models we experimented with. ICD
+coding has been evaluated in the literature according to different metrics: Micro-F, Macro-F, a variant of Macro-F that
+takes into account the hierarchy of the codes (Perotte et al.
+2014), Hamming and ranking loss (Wang et al. 2016), and
+a modified version of mean reciprocal rank (MRR) (Subotin
+and Davis 2014). We evaluate performance using the MicroF metric, since it is the most commonly used metric.
+SVM. We used Scikit Learn (Pedregosa et al. 2011) to implement a one-vs-all, multi-label binary SVM classifier. Features were bag of words, with tf*idf weights (determined
+from the corpus of release notes) for each label. Stop words
+were removed using Scikit Learn default English stop-word
+list. The model fits a binary SVM classifier for each label
+(ICD code) against the rest of the labels. We also experimented with χ2 feature filtering to select the top-N words
+1
+
+https://spacy.io/
+
+Binary Cross-Entropy
+Loss
+Binary Cross-Entropy
+Loss
+Fully Connected
+(Sigmoid Activation)
+Fully Connected
+(Sigmoid Activation)
+
+Max Pooling
+
+Average
+
+Convolution Layer
+
+Embedding
+
+Embedding
+
+𝑤" 𝑤# 𝑤$ …
+
+𝑤%
+
+𝑤" 𝑤# 𝑤$ …
+
+𝑤%
+
+diagnoses that share lexical words will not be distinguished
+by the model.
+CNN. To address the problems of the CBOW model, the
+next model we investigate is a convolutional neural network
+(CNN). A one dimensional convolution applied on list of
+embedded words could be considered as a type of n-gram
+model, where n is the convolution filter size.
+The architecture of this model is very similar to the
+CBOW model, but instead of averaging the embedded words
+we apply a one dimensional convolution layer with filter f ,
+followed by a max pooling layer. On the output of the max
+pool layered a fully connected layer was applied, like in the
+CBOW model. We also experimented with deeper convolution networks and inception module (LeCun 2015), but they
+did not yield improved results.
+Embedding = E · [w1 , w2 , ..., wn ]
+
+Figure 1: CBOW architecture on the left and CNN model
+architecture on the right.
+according to their mutual information with each label, but
+this did not improve performance.
+CBOW. The continuous-bag-of-words (CBOW) model is
+inspired by the word2vec CBOW model (Mikolov et al.
+2013) and FastText (Joulin et al. 2016). Both methods use
+a simple neural-network to create a dense representation of
+words and use the average of this representation for prediction. The word2vec CBOW tries to predict a word from the
+words that appear around it, while our CBOW model for
+ICD classification predicts ICD9 codes from the words of
+its input discharge summary.
+The model architecture consists of an embedding layer
+applied to all the words in a given input text [w1 , w2 , ..., wn ],
+where wi is a one-hot encoding vector of the vocabulary. E
+is the embedding matrix with dimension nemb × V , where
+V is the size of the vocabulary and nemb is the embedding
+size (set to 100).
+The embedded words are averaged into a fixed-size vector and are fed to a fully connected layer with a matrix
+W and bias b, where the output dimension is the number
+of labels. We use a sigmoid activation on the output layer
+so all values are in the range of [0 − 1] and use a fixed
+threshold (0.5) to determine whether to assign a particular
+label. To train the model, we used binary cross-entropy loss
+(loss(target, output) = −(target · log(output) + (1 −
+target) · log(1 − output)).
+Embedding = E · [w1 , w2 , ..., wn ]
+Averaged = 1/nΣe∈Embedding (e)
+P rob = sigmoid(W · Averaged + b)
+
+While the model is extremely lightweight and fast it suffers from known bag-of-words issues: (i) it ignores word order; i.e., if negation will appear before a diagnosis mention,
+the model would not be able to learn this; (ii) multi-wordexpressions cannot be identified by the model, so different
+
+Conved =
+
+max
+
+i∈channels
+
+(Embedding ∗ f )
+
+P rob = sigmoid(W · Conved + b)
+
+In our experiments, we used the same embedding parameter
+as in the CBOW model. In addition, we set the number of
+channels to 300, and the filter size to 3.
+HA-GRU. We now introduce the Hierarchical Attentionbidirectional Gated Recurrent Unit model (HA-GRU) an
+adaptation of a Hierarchical Attention Networks (Yang et
+al. 2016) to be able to handle multi-label classification. A
+Gated Recurrent Unit (GRU) is a type of Recurrent Neural
+Network. Since the documents are long (see Table 1 ad up
+to 13,590 tokens in the MIMIC III training set), a regular
+GRU applied over the entire document is too slow as it requires number layers of the document length. Instead we apply a hierarchal model with two levels of bidirectional GRU
+encoding. The first bidirectional GRU operates over tokens
+and encodes sentences. The second bidirectional GRU encodes the document , applied over all the encoded sentences.
+In this architecture, each GRU is applied to a much shorter
+sequence compared with a single GRU.
+To take advantage of the property that each label is invoked from different parts of the text, we use an attention
+mechanism over the second GRU with different weights for
+each label. This allows the model to focus on the relevant
+sentences for each label (Choi et al. 2016). To allow clarity
+into what the model learns and enable error analysis attention is also applied over the first GRU with the same weights
+for all the labels.
+Each sentence in the input text is encoded to a fixed length
+vector (64) by applying an embedding layer over all the inputs, applying a bidirectional GRU layer on the embedded
+words, and using a neural attention mechanism to encode
+the bidirectional GRU outputs (size of 128). After the sentences are encoded into a fixed length vector, we apply a
+second bidirectional GRU layer over the sentences using different attention layers to generate an encoding specified to
+each class (128 × #labels). Finally we applied a fully connected layer with softmax for each classifier to determine
+if the label should be assigned to the document. Training is
+
+ICD9 codes
+MIMIC II MIMIC III
+
+Classifiers
+Classifiers
+Classifiers
+
+SVM
+CBOW
+CNN
+HA-GRU
+
+Document GRU
+Layer
+
+Sentence Encoder
+
+Sentence Encoder
+
+Sentence Encoder
+𝑤","𝑤",$ 𝑤",% … 𝑤",&'
+
+…
+
+𝑤$,"𝑤$,$ 𝑤$,% … 𝑤$,&)
+
+𝑤*," 𝑤*,$𝑤*,%… 𝑤*,&+
+
+28.13%
+30.60%
+33.25%
+36.60%
+
+22.25%
+30.02%
+40.72%
+40.52%
+
+Rolled-up ICD9 codes
+MIMIC II MIMIC III
+32.50%
+42.06%
+46.40%
+53.86%
+
+53.02%
+43.30%
+52.64%
+55.86%
+
+Table 2: Micro-F on two settings (full and rolled-up ICDs)
+and for the four models when trained on MIMIC II or
+MIMIC III datasets.
+
+Figure 2: HA-GRU model architecture overview.
+
+Results
+achieved by using categorical cross-entropyP
+on every classifier separately (loss(target, output) = − x ouput(x) ·
+log(target(x)))
+AttW eight(ini , v, w) = v · tanh(w · (ini ))
+AttW eight(ini , v, w) =
+
+eAttW eight(ini ,v,w)
+e
+
+P
+
+j AttW eightj (v,w)
+
+Attend(in, v, w) = sum(ini · AttW eight(ini , v, w))
+Embedding = E · [w1 , w2 , ..., wn ]
+EncSentsj = Attend(GRU words(Embedding), vwords , wwords )
+EncDoclabel = Attend(GRUsents (EncSents, vlabel , wlabel ), )
+P roblabel = sof tmax(pwlabel · EncDoclabel + pblabel )
+
+Where wi is a one-hot encoding vector of the vocabulary size V , E is an embedding matrix size of nemb × V ,
+GRUwords is a GRU layer with state size hstate , wwords
+is a square matrix (hstate × hstate ) and vwords is a vector (hstate ) for the sentence level attention. GRUsents is a
+GRU layer with state size of hstate . wlabel is a square matrix (hstate × hstate ) and vlabel is a vector (hstate ) for the
+document level attention for each class, pwlabel is a matrix
+(hstate × 2) and pblabel is a bias vector with a size of 2 for
+each label. We implemented the model using DyNet (Neubig et al. 2017)2 .
+𝑐"
+𝑠"
+
+𝑤" ,$ 𝑤" ,% 𝑤" ,& … 𝑤" ,'(
+
+Softmax
+Fully Connected
+Layer
+
+Classifier
+
+Embedding
+
+Sentence Encoder
+
+Sentence GRU Layer
+
+To evaluate the proposed methods on the MIMIC datasets,
+we conducted the following experiments. In the first setting
+we considered all ICD9 codes as our label set. We trained
+the SVM, CBOW, and CNN on the MIMIC II and on the
+MIMIC III training sets separately. All models were evaluated on the same test set according to Micro-F. In the second
+setting, we only considered the rolled-up ICD9 codes to their
+3-digit codes. There (Table 2).
+HA-GRU gives the best results in the rolled-up ICD9 setting, with a 7.4% and 3.2% improvement over the CNN and
+SVM, the second best methods, in MIMIC II and MIMIC
+III respectively. In the full ICD-9 scenario, all methods yield
+better results when trained on MIMIC III rather than on
+MIMIC II. This is expected considering the larger size of
+MIMIC III over II. We note that our CNN yields the best
+Micro-F when trained on MIMIC III passing the HA-GRU
+by a small margin.
+In comparison to the previous work of (Perotte et al.
+2014), our one-vs-all SVM yielded better results than their
+flat and hierarchy classifiers. This trend was confirmed when
+training on the new MIMIC III set, as well as when using the
+same evaluation metrics of (Perotte et al. 2014). We attribute
+these improved results both to the one-vs-all approach as
+well as our tokenization approach.
+
+Label Frequency
+Categorical CrossEntropy loss
+
+Weighted Average
+Sentence Attention
+
+Model Comparison
+
+Weighted Average
+Label Attention
+𝑠$ 𝑠% 𝑠&
+
+… 𝑠'
+
+Figure 3: Zoom-in of the sentence encoder and classifier.
+
+We also tested the effect label frequency on the performance
+of the HA-GRU classifier. We recalculated precision and recall scores on subsets of labels. The subsets were created
+by sorting the labels by frequency they appear in MIMIC-III
+dataset and binning them to groups of 50 labels. As such, bin
+1 comprises the 50 most frequent ICD9 codes in the training
+set (with an average 12% frequency over the records in the
+training set), codes in bin 2 had an average 1.9% frequency,
+codes in bin 3 appeared in 1.1% of the records, up to bin 8
+which 0.2% of the records in the training set. The effect can
+be seen in Figure 5. We note that the recall score drops much
+more dramatically than the precision as the label frequency
+decreases.
+
+Model Explaining Power
+2
+Code available at https://github.com/talbaumel/
+MIMIC.
+
+We discuss how the CNN and HA-GRU architectures can
+support model explaining power.
+
+Figure 4: Sample text of a patient note (one sentence per line). On the left, visualization for the with attention weights at the
+sentence and word levels associated with the ICD9 codes, on the left sentence level attention weights for ICD9 code “Heart
+failure”, on the the right for code “Traumatic pneumothorax and hemothorax”.
+find what word received the highest attention score. For example, in our experiments for label “428-Heart failure” we
+found that the sentence with the highest attention score was
+“d . congestive heart failure ( with an ejection fraction of
+dd % to dd % ) .”, while the token “failure” was found
+most relevant across all labels. Figure 4 provides additional
+examples. Note that the “d” and “dd” tokens are from the
+pre-procecssing step, which mapped all numbers to pseudotokens.
+
+Figure 5: Effect label frequency on HA-GRU performance
+when trained on MIMIC III. X-axis represents the bins of
+labels ranked by their frequency in the training set.
+CNN. To analyze the CNN prediction we can test which
+n-grams triggered the max-pooling layer. Given a sentence
+with n words we can feed it forward through the embedding
+layer and the convolution layer. The output of the convolution a list of vectors each the size of the number of channels of the convolution layer where vector corresponds to
+an n-gram. We can identify what triggered the max pooling
+layer by finding the maximum value of each channel. Thus,
+for predicted labels, one of the activated n-grams does include information relevant for that label (whether correct for
+true positive labels or incorrect for false positive labels). For
+example in our experiments, for the label: “682.6-Cellulitis
+and abscess of leg, except foot” one of the activated n-gram
+detected was “extremity cellulitis prior”.
+This transparency process can also be useful for error
+analysis while building a model, as it can highlight True Positive and False Positive labels. However, it is difficult in the
+CNN to trace back the decisions for False Negatives predictions.
+HA-GRU For the HA-GRU model we can use attention
+weights to better understand what sentences and what words
+in that sentence contributed the most to each decision. We
+can find which sentence had the highest attention score for
+each label, and given the most important sentence, we can
+
+Like in the CNN, we can use this process for error analysis. In fact, the HA-GRU model explains prediction with
+greater precision, at the sentence level. For instance, we
+could explore the following False Positive prediction: the
+model assigned the label “331-Other cerebral degenerations” to the sentence:“alzheimer ’s dementia .”. We can see
+that the condition was relevant to the medical note, but was
+mentioned under the patient’s past medical history (and not
+a current problem). In fact, many of the False Positive labels
+under the HA-GRU model were due to mentions belonging
+to the past medical history section. This suggests that the
+coding task would benefit from a deeper architecture, with
+attention to discourse-level structure.
+In contrast to the CNN, the HA-GRU model can also
+help analyze False Negative label assignments. When we
+explored the False Negative labels, we found that in many
+cases the model found a relevant sentence, but failed to classify correctly. This suggests the document-level attention
+mechanism is successful. For instance, for the False Negative “682-Other cellulitis and abscess”, the most attended
+sentence was “... for right lower extremity cellulitis prior
+to admission ...”. The false positive codes for this sentence
+included “250-Diabetes mellitus” and “414-Other forms of
+chronic ischemic heart disease”. We note that in the case of
+cellulitis, it is reasonable that the classifier preferred other,
+more frequent codes, as it is a common comorbid condition
+in the ICU.3
+
+3
+
+Full visualizations of sample discharge summaries are
+provided at https://www.cs.bgu.ac.il/˜talbau/
+mimicdemo
+
+Conclusion
+We investigate four modern models for the task of extreme
+multi-label classification on the MIMIC datasets. Unlike
+previous work, we evaluate our models on all ICD9 codes
+thus making sure our models could be used for real world
+ICD9 tagging. The tokenization step, mapping rare variants
+using edit distance, improved results for CBOW and CNN
+models by ˜0.5%, highlighting the importance of preprocessing data noise problems in real-world settings. The HA-GRU
+model not only achieves the best performance on the task
+of rolled-up codes (55.86% F 1 on MIMIC III, ˜2.8% absolute improvement on the best SVM baseline) but is able
+to provide insight on the task for future work such as using discourse-level structure available in medical notes yet
+never used before. The ability to highlight the decision process of the model is important for adoption of such models
+by medical experts. On the sub-task of MIMIC II, which
+includes a smaller training dataset, HA-GRU achieved ˜7%
+absolute F 1 improvement, suggesting it requires less training data to achieve top performance, which is important for
+domain adaptation efforts when applying such models to patient records from other sources (such as different hospitals).
+
+Acknowledgements
+This work is supported by National Institute of General
+Medical Sciences Grant R01GM114355 (NE) and Frankel
+Center for Computer Science .
+
+References
+[Bhatia et al. 2015] Bhatia, K.; Jain, H.; Kar, P.; Varma, M.;
+and Jain, P. 2015. Sparse local embeddings for extreme
+multi-label classification. In Advances in Neural Information Processing Systems (NIPS), 730–738.
+[Choi, Bahadori, and Sun 2015] Choi, E.; Bahadori, M. T.;
+and Sun, J.
+2015.
+Doctor AI: Predicting clinical
+events via recurrent neural networks.
+arXiv preprint
+arXiv:1511.05942.
+[Choi et al. 2016] Choi, E.; Hewlett, D.; Lacoste, A.; Polosukhin, I.; Uszkoreit, J.; and Berant, J. 2016. Hierarchical question answering for long documents. arXiv preprint
+arXiv:1611.01839.
+[Crammer et al. 2007] Crammer, K.; Dredze, M.; Ganchev,
+K.; Talukdar, P. P.; and Carroll, S. 2007. Automatic code assignment to medical text. In Proceedings of the ACL Workshop on BioNLP 2007: Biological, Translational, and Clinical Language Processing, 129–136.
+[Demner Fushman and Elhadad 2016] Demner
+Fushman,
+D., and Elhadad, N. 2016. Aspiring to unintended consequences of natural language processing: A review of recent
+developments in clinical and consumer-generated text processing. Yearbook of Medical Informatics 10(1):224–233.
+[Farkas and Szarvas 2008] Farkas, R., and Szarvas, G. 2008.
+Automatic construction of rule-based ICD-9-CM coding
+systems. BMC bioinformatics 9(3):S10.
+[Harutyunyan et al. 2017] Harutyunyan, H.; Khachatrian,
+H.; Kale, D. C.; and Galstyan, A. 2017. Multitask learn-
+
+ing and benchmarking with clinical time series data. arXiv
+preprint arXiv:1703.07771.
+[Jagannatha and Yu 2016] Jagannatha, A. N., and Yu, H.
+2016. Structured prediction models for RNN based sequence labeling in clinical text. In Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP), 856.
+[Jain, Prabhu, and Varma 2016] Jain, H.; Prabhu, Y.; and
+Varma, M. 2016. Extreme multi-label loss functions for
+recommendation, tagging, ranking & other missing label applications. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data
+Mining, 935–944.
+[Johnson and Zhang 2014] Johnson, R., and Zhang, T. 2014.
+Effective use of word order for text categorization
+with convolutional neural networks.
+arXiv preprint
+arXiv:1412.1058.
+[Johnson et al. 2016] Johnson, A. E.; Pollard, T. J.; Shen, L.;
+Lehman, L.-w. H.; Feng, M.; Ghassemi, M.; Moody, B.;
+Szolovits, P.; Celi, L. A.; and Mark, R. G. 2016. MIMIC-III,
+a freely accessible critical care database. Scientific Data 3.
+[Joulin et al. 2016] Joulin, A.; Grave, E.; Bojanowski, P.;
+Douze, M.; Jégou, H.; and Mikolov, T. 2016. Fasttext.zip:
+Compressing text classification models. arXiv preprint
+arXiv:1612.03651.
+[Kavuluru, Rios, and Lu 2015] Kavuluru, R.; Rios, A.; and
+Lu, Y. 2015. An empirical evaluation of supervised learning
+approaches in assigning diagnosis codes to electronic medical records. Artificial Intelligence in Medicine 65(2):155–
+166.
+[Larkey and Croft 1995] Larkey, L. S., and Croft, W. B.
+1995. Automatic assignment of ICD9 codes to discharge
+summaries. Technical report, University of Massachusetts
+at Amherst, Amherst, MA.
+[LeCun 2015] LeCun, Y. 2015. LeNet-5, convolutional
+neural networks. http://yann.lecun.com/exdb/
+lenet.
+[Li, Lipsky Gorman, and Elhadad 2010] Li, Y.; Lipsky Gorman, S.; and Elhadad, N. 2010. Section classification in
+clinical notes using supervised hidden Markov model. In
+Proceedings of the 1st ACM International Health Informatics Symposium, 744–750. ACM.
+[Lipton et al. 2015] Lipton, Z. C.; Kale, D. C.; Elkan, C.; and
+Wetzell, R. 2015. Learning to diagnose with LSTM recurrent neural networks. arXiv preprint arXiv:1511.03677.
+[Lita et al. 2008] Lita, L. V.; Yu, S.; Niculescu, R. S.; and
+Bi, J. 2008. Large scale diagnostic code classification
+for medical patient records. In Proceedings of the International Joint Conference on Natural Language Processing
+(IJCNLP), 877–882.
+[Mikolov et al. 2013] Mikolov, T.; Chen, K.; Corrado, G.;
+and Dean, J. 2013. Efficient estimation of word representations in vector space. arXiv preprint arXiv:1301.3781.
+[Miotto et al. 2016] Miotto, R.; Li, L.; Kidd, B. A.; and Dudley, J. T. 2016. Deep Patient: An unsupervised represen-
+
+tation to predict the future of patients from the electronic
+health records. Scientific Reports 6.
+[Neubig et al. 2017] Neubig, G.; Dyer, C.; Goldberg, Y.;
+Matthews, A.; Ammar, W.; Anastasopoulos, A.; Ballesteros,
+M.; Chiang, D.; Clothiaux, D.; Cohn, T.; et al. 2017.
+Dynet: The dynamic neural network toolkit. arXiv preprint
+arXiv:1701.03980.
+[Pedregosa et al. 2011] Pedregosa, F.; Varoquaux, G.; Gramfort, A.; Michel, V.; Thirion, B.; Grisel, O.; Blondel, M.;
+Prettenhofer, P.; Weiss, R.; Dubourg, V.; et al. 2011. Scikitlearn: Machine learning in python. Journal of Machine
+Learning Research 12(Oct):2825–2830.
+[Perotte et al. 2011] Perotte, A. J.; Wood, F.; Elhadad, N.;
+and Bartlett, N. 2011. Hierarchically supervised latent
+dirichlet allocation. In Advances in Neural Information Processing Systems (NIPS), 2609–2617.
+[Perotte et al. 2014] Perotte, A.; Pivovarov, R.; Natarajan,
+K.; Weiskopf, N.; Wood, F.; and Elhadad, N. 2014. Diagnosis code assignment: models and evaluation metrics.
+Journal of the American Medical Informatics Association
+21(2):231–237.
+[Pestian et al. 2007] Pestian, J. P.; Brew, C.; Matykiewicz, P.;
+Hovermale, D. J.; Johnson, N.; Cohen, K. B.; and Duch, W.
+2007. A shared task involving multi-label classification of
+clinical free text. In Proceedings of the ACL Workshop on
+BioNLP: Biological, Translational, and Clinical Language
+Processing, 97–104.
+[Pivovarov et al. 2015] Pivovarov, R.; Perotte, A. J.; Grave,
+E.; Angiolillo, J.; Wiggins, C. H.; and Elhadad, N. 2015.
+Learning probabilistic phenotypes from heterogeneous EHR
+data. Journal of Biomedical Informatics 58:156–165.
+[Ranganath et al. 2015] Ranganath, R.; Perotte, A. J.; Elhadad, N.; and Blei, D. M. 2015. The Survival Filter: joint
+survival analysis with a latent time series. In UAI, 742–751.
+[Saeed et al. 2011] Saeed, M.; Villarroel, M.; Reisner, A. T.;
+Clifford, G.; Lehman, L.-W.; Moody, G.; Heldt, T.; Kyaw,
+T. H.; Moody, B.; and Mark, R. G. 2011. Multiparameter intelligent monitoring in intensive care II (MIMIC-II):
+a public-access intensive care unit database. Critical Care
+Medicine 39(5):952.
+[Subotin and Davis 2014] Subotin, M., and Davis, A. R.
+2014. A system for predicting ICD-10-PCS codes from electronic health records. In Proceedings of the ACL Workshop
+on Biomedical Natural Language Processing (BioNLP), 59–
+67. Citeseer.
+[Tsoumakas and Katakis 2006] Tsoumakas, G., and Katakis,
+I. 2006. Multi-label classification: An overview. International Journal of Data Warehousing and Mining 3(3).
+[Wang et al. 2016] Wang, S.; Chang, X.; Li, X.; Long, G.;
+Yao, L.; and Sheng, Q. Z. 2016. Diagnosis code assignment using sparsity-based disease correlation embedding.
+IEEE Transactions on Knowledge and Data Engineering
+28(12):3191–3202.
+[Weston, Bengio, and Usunier 2011] Weston, J.; Bengio, S.;
+and Usunier, N. 2011. WSABIE: Scaling up to large vocabulary image annotation. In Proceedings of the Interna-
+
+tional Joint Conference on Artificial Intelligence (IJCAI),
+volume 11, 2764–2770.
+[Yang et al. 2016] Yang, Z.; Yang, D.; Dyer, C.; He, X.;
+Smola, A.; and Hovy, E. 2016. Hierarchical attention
+networks for document classification. In Proceedings of
+NAACL-HLT, 1480–1489.
+[Yen et al. 2016] Yen, I. E.; Huang, X.; Zhong, K.; Ravikumar, P.; and Dhillon, I. S. 2016. PD-Sparse: A primal and
+dual sparse approach to extreme multiclass and multilabel
+classification. In Proceedings of the International Conference on Machine Learning (ICML).
+
+

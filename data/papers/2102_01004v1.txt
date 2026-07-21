@@ -1,0 +1,21 @@
+Title: Hybrid Information-driven Multi-agent Reinforcement Learning
+
+Authors: William A. Dawson, Ruben Glatt, Edward Rusu, Braden C. Soper, Ryan A. Goldhahn
+
+Published: 2021-02-01
+
+Categories: cs.MA, cs.AI, cs.IT
+
+Abstract:
+Information theoretic sensor management approaches are an ideal solution to state estimation problems when considering the optimal control of multi-agent systems, however they are too computationally intensive for large state spaces, especially when considering the limited computational resources typical of large-scale distributed multi-agent systems. Reinforcement learning (RL) is a promising alternative which can find approximate solutions to distributed optimal control problems that take into account the resource constraints inherent in many systems of distributed agents. However, the RL training can be prohibitively inefficient, especially in low-information environments where agents receive little to no feedback in large portions of the state space. We propose a hybrid information-driven multi-agent reinforcement learning (MARL) approach that utilizes information theoretic models as heuristics to help the agents navigate large sparse state spaces, coupled with information based rewards in an RL framework to learn higher-level policies. This paper presents our ongoing work towards this objective. Our preliminary findings show that such an approach can result in a system of agents that are approximately three orders of magnitude more efficient at exploring a sparse state space than naive baseline metrics. While the work is still in its early stages, it provides a promising direction for future research.
+
+Paper ID: 2102.01004v1
+
+Summary:
+This paper titled "Hybrid Information-driven Multi-agent Reinforcement Learning" was authored by William A. Dawson, Ruben Glatt, Edward Rusu, Braden C. Soper, Ryan A. Goldhahn and published on 2021-02-01.
+It falls under the categories: cs.MA, cs.AI, cs.IT.
+The research explores the following topic: Information theoretic sensor management approaches are an ideal solution to state estimation problems when considering the optimal control of multi-agent systems, however they are too computationally intensive for large state spaces, especially when considering the limited computational resources typical of large-scale distributed multi-agent systems. Reinforcement learning (RL) is a promising alternative which can find approximate solutions to distributed optimal control problems that take into account the resource constraints inherent in many systems of distributed agents. However, the RL training can be prohibitively inefficient, especially in low-information environments where agents receive little to no feedback in large portions of the state space. We propose a hybrid information-driven multi-agent reinforcement learning (MARL) approach that utilizes information theoretic models as heuristics to help the agents navigate large sparse state spaces, coupled with information based rewards in an RL framework to learn higher-level policies. This paper presents our ongoing work towards this objective. Our preliminary findings show that such an approach can result in a system of agents that are approximately three orders of magnitude more efficient at exploring a sparse state space than naive baseline metrics. While the work is still in its early stages, it provides a promising direction for future research.
+
+Links:
+  - https://arxiv.org/abs/2102.01004v1
+  - https://arxiv.org/pdf/2102.01004v1

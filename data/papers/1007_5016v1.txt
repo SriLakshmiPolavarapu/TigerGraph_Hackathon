@@ -1,0 +1,21 @@
+Title: Percolation Approach to Study Connectivity in Living Neural Networks
+
+Authors: Jordi Soriano, Ilan Breskin, Elisha Moses, Tsvi Tlusty
+
+Published: 2010-07-28
+
+Categories: q-bio.NC, cond-mat.dis-nn, physics.bio-ph
+
+Abstract:
+We study neural connectivity in cultures of rat hippocampal neurons. We measure the neurons' response to an electric stimulation for gradual lower connectivity, and characterize the size of the giant cluster in the network. The connectivity undergoes a percolation transition described by the critical exponent $β\simeq 0.65$. We use a theoretic approach based on bond.percolation on a graph to describe the process of disintegration of the network and extract its statistical properties. Together with numerical simulations we show that the connectivity in the neural culture is local, characterized by a gaussian degree distribution and not a power law on
+
+Paper ID: 1007.5016v1
+
+Summary:
+This paper titled "Percolation Approach to Study Connectivity in Living Neural Networks" was authored by Jordi Soriano, Ilan Breskin, Elisha Moses, Tsvi Tlusty and published on 2010-07-28.
+It falls under the categories: q-bio.NC, cond-mat.dis-nn, physics.bio-ph.
+The research explores the following topic: We study neural connectivity in cultures of rat hippocampal neurons. We measure the neurons' response to an electric stimulation for gradual lower connectivity, and characterize the size of the giant cluster in the network. The connectivity undergoes a percolation transition described by the critical exponent $β\simeq 0.65$. We use a theoretic approach based on bond.percolation on a graph to describe the process of disintegration of the network and extract its statistical properties. Together with numerical simulations we show that the connectivity in the neural culture is local, characterized by a gaussian degree distribution and not a power law on
+
+Links:
+  - https://arxiv.org/abs/1007.5016v1
+  - https://arxiv.org/pdf/1007.5016v1

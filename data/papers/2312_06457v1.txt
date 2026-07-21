@@ -1,0 +1,21 @@
+Title: Large Language Models with Retrieval-Augmented Generation for Zero-Shot Disease Phenotyping
+
+Authors: Will E. Thompson, David M. Vidmar, Jessica K. De Freitas, John M. Pfeifer, Brandon K. Fornwalt, Ruijun Chen, Gabriel Altay, Kabir Manghnani, Andrew C. Nelsen, Kellie Morland, Martin C. Stumpe, Riccardo Miotto
+
+Published: 2023-12-11
+
+Categories: cs.AI, cs.CL, cs.IR
+
+Abstract:
+Identifying disease phenotypes from electronic health records (EHRs) is critical for numerous secondary uses. Manually encoding physician knowledge into rules is particularly challenging for rare diseases due to inadequate EHR coding, necessitating review of clinical notes. Large language models (LLMs) offer promise in text understanding but may not efficiently handle real-world clinical documentation. We propose a zero-shot LLM-based method enriched by retrieval-augmented generation and MapReduce, which pre-identifies disease-related text snippets to be used in parallel as queries for the LLM to establish diagnosis. We show that this method as applied to pulmonary hypertension (PH), a rare disease characterized by elevated arterial pressures in the lungs, significantly outperforms physician logic rules ($F_1$ score of 0.62 vs. 0.75). This method has the potential to enhance rare disease cohort identification, expanding the scope of robust clinical research and care gap identification.
+
+Paper ID: 2312.06457v1
+
+Summary:
+This paper titled "Large Language Models with Retrieval-Augmented Generation for Zero-Shot Disease Phenotyping" was authored by Will E. Thompson, David M. Vidmar, Jessica K. De Freitas, John M. Pfeifer, Brandon K. Fornwalt, Ruijun Chen, Gabriel Altay, Kabir Manghnani, Andrew C. Nelsen, Kellie Morland, Martin C. Stumpe, Riccardo Miotto and published on 2023-12-11.
+It falls under the categories: cs.AI, cs.CL, cs.IR.
+The research explores the following topic: Identifying disease phenotypes from electronic health records (EHRs) is critical for numerous secondary uses. Manually encoding physician knowledge into rules is particularly challenging for rare diseases due to inadequate EHR coding, necessitating review of clinical notes. Large language models (LLMs) offer promise in text understanding but may not efficiently handle real-world clinical documentation. We propose a zero-shot LLM-based method enriched by retrieval-augmented generation and MapReduce, which pre-identifies disease-related text snippets to be used in parallel as queries for the LLM to establish diagnosis. We show that this method as applied to pulmonary hypertension (PH), a rare disease characterized by elevated arterial pressures in the lungs, significantly outperforms physician logic rules ($F_1$ score of 0.62 vs. 0.75). This method has the potential to enhance rare disease cohort identification, expanding the scope of robust clinical research and care gap identification.
+
+Links:
+  - https://arxiv.org/abs/2312.06457v1
+  - https://arxiv.org/pdf/2312.06457v1

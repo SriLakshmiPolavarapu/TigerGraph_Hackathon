@@ -1,0 +1,21 @@
+Title: Promptware Engineering: Software Engineering for Prompt-Enabled Systems
+
+Authors: Zhenpeng Chen, Chong Wang, Weisong Sun, Xuanzhe Liu, Jie M. Zhang, Yang Liu
+
+Published: 2025-03-04
+
+Categories: cs.SE
+
+Abstract:
+Large Language Models (LLMs) are increasingly integrated into software applications, giving rise to a broad class of prompt-enabled systems, in which prompts serve as the primary 'programming' interface for guiding system behavior. Building on this trend, a new software paradigm, promptware, has emerged, which treats natural language prompts as first-class software artifacts for interacting with LLMs. Unlike traditional software, which relies on formal programming languages and deterministic runtime environments, promptware is based on ambiguous, unstructured, and context-dependent natural language and operates on LLMs as runtime environments, which are probabilistic and non-deterministic. These fundamental differences introduce unique challenges in prompt development. In practice, prompt development remains largely ad hoc and relies heavily on time-consuming trial-and-error, a challenge we term the promptware crisis. To address this, we propose promptware engineering, a new methodology that adapts established Software Engineering (SE) principles to prompt development. Drawing on decades of success in traditional SE, we envision a systematic framework encompassing prompt requirements engineering, design, implementation, testing, debugging, evolution, deployment, and monitoring. Our framework re-contextualizes emerging prompt-related challenges within the SE lifecycle, providing principled guidance beyond ad-hoc practices. Without the SE discipline, prompt development is likely to remain mired in trial-and-error. This paper outlines a comprehensive roadmap for promptware engineering, identifying key research directions and offering actionable insights to advance the development of prompt-enabled systems.
+
+Paper ID: 2503.02400v2
+
+Summary:
+This paper titled "Promptware Engineering: Software Engineering for Prompt-Enabled Systems" was authored by Zhenpeng Chen, Chong Wang, Weisong Sun, Xuanzhe Liu, Jie M. Zhang, Yang Liu and published on 2025-03-04.
+It falls under the categories: cs.SE.
+The research explores the following topic: Large Language Models (LLMs) are increasingly integrated into software applications, giving rise to a broad class of prompt-enabled systems, in which prompts serve as the primary 'programming' interface for guiding system behavior. Building on this trend, a new software paradigm, promptware, has emerged, which treats natural language prompts as first-class software artifacts for interacting with LLMs. Unlike traditional software, which relies on formal programming languages and deterministic runtime environments, promptware is based on ambiguous, unstructured, and context-dependent natural language and operates on LLMs as runtime environments, which are probabilistic and non-deterministic. These fundamental differences introduce unique challenges in prompt development. In practice, prompt development remains largely ad hoc and relies heavily on time-consuming trial-and-error, a challenge we term the promptware crisis. To address this, we propose promptware engineering, a new methodology that adapts established Software Engineering (SE) principles to prompt development. Drawing on decades of success in traditional SE, we envision a systematic framework encompassing prompt requirements engineering, design, implementation, testing, debugging, evolution, deployment, and monitoring. Our framework re-contextualizes emerging prompt-related challenges within the SE lifecycle, providing principled guidance beyond ad-hoc practices. Without the SE discipline, prompt development is likely to remain mired in trial-and-error. This paper outlines a comprehensive roadmap for promptware engineering, identifying key research directions and offering actionable insights to advance the development of prompt-enabled systems.
+
+Links:
+  - https://arxiv.org/abs/2503.02400v2
+  - https://arxiv.org/pdf/2503.02400v2

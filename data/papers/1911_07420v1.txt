@@ -1,0 +1,21 @@
+Title: A Graph Autoencoder Approach to Causal Structure Learning
+
+Authors: Ignavier Ng, Shengyu Zhu, Zhitang Chen, Zhuangyan Fang
+
+Published: 2019-11-18
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Causal structure learning has been a challenging task in the past decades and several mainstream approaches such as constraint- and score-based methods have been studied with theoretical guarantees. Recently, a new approach has transformed the combinatorial structure learning problem into a continuous one and then solved it using gradient-based optimization methods. Following the recent state-of-the-arts, we propose a new gradient-based method to learn causal structures from observational data. The proposed method generalizes the recent gradient-based methods to a graph autoencoder framework that allows nonlinear structural equation models and is easily applicable to vector-valued variables. We demonstrate that on synthetic datasets, our proposed method outperforms other gradient-based methods significantly, especially on large causal graphs. We further investigate the scalability and efficiency of our method, and observe a near linear training time when scaling up the graph size.
+
+Paper ID: 1911.07420v1
+
+Summary:
+This paper titled "A Graph Autoencoder Approach to Causal Structure Learning" was authored by Ignavier Ng, Shengyu Zhu, Zhitang Chen, Zhuangyan Fang and published on 2019-11-18.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Causal structure learning has been a challenging task in the past decades and several mainstream approaches such as constraint- and score-based methods have been studied with theoretical guarantees. Recently, a new approach has transformed the combinatorial structure learning problem into a continuous one and then solved it using gradient-based optimization methods. Following the recent state-of-the-arts, we propose a new gradient-based method to learn causal structures from observational data. The proposed method generalizes the recent gradient-based methods to a graph autoencoder framework that allows nonlinear structural equation models and is easily applicable to vector-valued variables. We demonstrate that on synthetic datasets, our proposed method outperforms other gradient-based methods significantly, especially on large causal graphs. We further investigate the scalability and efficiency of our method, and observe a near linear training time when scaling up the graph size.
+
+Links:
+  - https://arxiv.org/abs/1911.07420v1
+  - https://arxiv.org/pdf/1911.07420v1

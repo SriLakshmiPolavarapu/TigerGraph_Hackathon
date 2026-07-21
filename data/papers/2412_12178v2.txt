@@ -1,0 +1,22 @@
+Title: Activation Sparsity Opportunities for Compressing General Large Language Models
+
+Authors: Nobel Dhar, Bobin Deng, Md Romyull Islam, Kazi Fahim Ahmad Nasif, Liang Zhao, Kun Suo
+
+Published: 2024-12-13
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+Deploying local AI models, such as Large Language Models (LLMs), to edge devices can substantially enhance devices' independent capabilities, alleviate the server's burden, and lower the response time. Owing to these tremendous potentials, many big tech companies have released several lightweight Small Language Models (SLMs) to bridge this gap. However, we still have huge motivations to deploy more powerful (LLMs) AI models on edge devices and enhance their smartness level. Unlike the conventional approaches for AI model compression, we investigate activation sparsity. The activation sparsity method is orthogonal and combinable with existing techniques to maximize the compression rate while maintaining great accuracy. LLMs' Feed-Forward Network (FFN) components, which typically comprise a large proportion of parameters (around 2/3), ensure that our FFN optimizations would have a better chance of achieving effective compression. Moreover, our findings are beneficial to general LLMs and are not restricted to ReLU-based models. This work systematically investigates the tradeoff between enforcing activation sparsity and perplexity (accuracy) on state-of-the-art LLMs. Our empirical analysis demonstrates that we can obtain around 50% of main memory and computing reductions for critical FFN components with negligible accuracy degradation. This extra 50% sparsity does not naturally exist in the current LLMs, which require tuning LLMs' activation outputs by injecting zero-enforcing thresholds. To obtain the benefits of activation sparsity, we provide a guideline for the system architect for LLM prediction and prefetching. The success prediction allows the system to prefetch the necessary weights while omitting the inactive ones and their successors, therefore lowering cache and memory pollution and reducing LLM execution time on resource-constrained edge devices.
+
+Paper ID: 2412.12178v2
+
+Summary:
+This paper titled "Activation Sparsity Opportunities for Compressing General Large Language Models" was authored by Nobel Dhar, Bobin Deng, Md Romyull Islam, Kazi Fahim Ahmad Nasif, Liang Zhao, Kun Suo and published on 2024-12-13.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: Deploying local AI models, such as Large Language Models (LLMs), to edge devices can substantially enhance devices' independent capabilities, alleviate the server's burden, and lower the response time. Owing to these tremendous potentials, many big tech companies have released several lightweight Small Language Models (SLMs) to bridge this gap. However, we still have huge motivations to deploy more powerful (LLMs) AI models on edge devices and enhance their smartness level. Unlike the conventional approaches for AI model compression, we investigate activation sparsity. The activation sparsity method is orthogonal and combinable with existing techniques to maximize the compression rate while maintaining great accuracy. LLMs' Feed-Forward Network (FFN) components, which typically comprise a large proportion of parameters (around 2/3), ensure that our FFN optimizations would have a better chance of achieving effective compression. Moreover, our findings are beneficial to general LLMs and are not restricted to ReLU-based models. This work systematically investigates the tradeoff between enforcing activation sparsity and perplexity (accuracy) on state-of-the-art LLMs. Our empirical analysis demonstrates that we can obtain around 50% of main memory and computing reductions for critical FFN components with negligible accuracy degradation. This extra 50% sparsity does not naturally exist in the current LLMs, which require tuning LLMs' activation outputs by injecting zero-enforcing thresholds. To obtain the benefits of activation sparsity, we provide a guideline for the system architect for LLM prediction and prefetching. The success prediction allows the system to prefetch the necessary weights while omitting the inactive ones and their successors, therefore lowering cache and memory pollution and reducing LLM execution time on resource-constrained edge devices.
+
+Links:
+  - https://arxiv.org/abs/2412.12178v2
+  - https://arxiv.org/pdf/2412.12178v2
+  - https://doi.org/10.1109/IPCCC59868.2024.10850382

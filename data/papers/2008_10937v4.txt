@@ -1,0 +1,22 @@
+Title: A Survey on Evolutionary Neural Architecture Search
+
+Authors: Yuqiao Liu, Yanan Sun, Bing Xue, Mengjie Zhang, Gary G. Yen, Kay Chen Tan
+
+Published: 2020-08-25
+
+Categories: cs.NE
+
+Abstract:
+Deep Neural Networks (DNNs) have achieved great success in many applications. The architectures of DNNs play a crucial role in their performance, which is usually manually designed with rich expertise. However, such a design process is labour intensive because of the trial-and-error process, and also not easy to realize due to the rare expertise in practice. Neural Architecture Search (NAS) is a type of technology that can design the architectures automatically. Among different methods to realize NAS, Evolutionary Computation (EC) methods have recently gained much attention and success. Unfortunately, there has not yet been a comprehensive summary of the EC-based NAS algorithms. This paper reviews over 200 papers of most recent EC-based NAS methods in light of the core components, to systematically discuss their design principles as well as justifications on the design. Furthermore, current challenges and issues are also discussed to identify future research in this emerging field.
+
+Paper ID: 2008.10937v4
+
+Summary:
+This paper titled "A Survey on Evolutionary Neural Architecture Search" was authored by Yuqiao Liu, Yanan Sun, Bing Xue, Mengjie Zhang, Gary G. Yen, Kay Chen Tan and published on 2020-08-25.
+It falls under the categories: cs.NE.
+The research explores the following topic: Deep Neural Networks (DNNs) have achieved great success in many applications. The architectures of DNNs play a crucial role in their performance, which is usually manually designed with rich expertise. However, such a design process is labour intensive because of the trial-and-error process, and also not easy to realize due to the rare expertise in practice. Neural Architecture Search (NAS) is a type of technology that can design the architectures automatically. Among different methods to realize NAS, Evolutionary Computation (EC) methods have recently gained much attention and success. Unfortunately, there has not yet been a comprehensive summary of the EC-based NAS algorithms. This paper reviews over 200 papers of most recent EC-based NAS methods in light of the core components, to systematically discuss their design principles as well as justifications on the design. Furthermore, current challenges and issues are also discussed to identify future research in this emerging field.
+
+Links:
+  - https://arxiv.org/abs/2008.10937v4
+  - https://arxiv.org/pdf/2008.10937v4
+  - https://doi.org/10.1109/TNNLS.2021.3100554

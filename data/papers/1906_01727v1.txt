@@ -1,0 +1,21 @@
+Title: SemEval-2019 Task 8: Fact Checking in Community Question Answering Forums
+
+Authors: Tsvetomila Mihaylova, Georgi Karadjov, Pepa Atanasova, Ramy Baly, Mitra Mohtarami, Preslav Nakov
+
+Published: 2019-05-25
+
+Categories: cs.CL, cs.LG, stat.ML
+
+Abstract:
+We present SemEval-2019 Task 8 on Fact Checking in Community Question Answering Forums, which features two subtasks. Subtask A is about deciding whether a question asks for factual information vs. an opinion/advice vs. just socializing. Subtask B asks to predict whether an answer to a factual question is true, false or not a proper answer. We received 17 official submissions for subtask A and 11 official submissions for Subtask B. For subtask A, all systems improved over the majority class baseline. For Subtask B, all systems were below a majority class baseline, but several systems were very close to it. The leaderboard and the data from the competition can be found at http://competitions.codalab.org/competitions/20022
+
+Paper ID: 1906.01727v1
+
+Summary:
+This paper titled "SemEval-2019 Task 8: Fact Checking in Community Question Answering Forums" was authored by Tsvetomila Mihaylova, Georgi Karadjov, Pepa Atanasova, Ramy Baly, Mitra Mohtarami, Preslav Nakov and published on 2019-05-25.
+It falls under the categories: cs.CL, cs.LG, stat.ML.
+The research explores the following topic: We present SemEval-2019 Task 8 on Fact Checking in Community Question Answering Forums, which features two subtasks. Subtask A is about deciding whether a question asks for factual information vs. an opinion/advice vs. just socializing. Subtask B asks to predict whether an answer to a factual question is true, false or not a proper answer. We received 17 official submissions for subtask A and 11 official submissions for Subtask B. For subtask A, all systems improved over the majority class baseline. For Subtask B, all systems were below a majority class baseline, but several systems were very close to it. The leaderboard and the data from the competition can be found at http://competitions.codalab.org/competitions/20022
+
+Links:
+  - https://arxiv.org/abs/1906.01727v1
+  - https://arxiv.org/pdf/1906.01727v1

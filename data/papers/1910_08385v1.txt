@@ -1,0 +1,21 @@
+Title: Federated Generative Privacy
+
+Authors: Aleksei Triastcyn, Boi Faltings
+
+Published: 2019-10-18
+
+Categories: stat.ML, cs.CR, cs.DC, cs.LG
+
+Abstract:
+In this paper, we propose FedGP, a framework for privacy-preserving data release in the federated learning setting. We use generative adversarial networks, generator components of which are trained by FedAvg algorithm, to draw privacy-preserving artificial data samples and empirically assess the risk of information disclosure. Our experiments show that FedGP is able to generate labelled data of high quality to successfully train and validate supervised models. Finally, we demonstrate that our approach significantly reduces vulnerability of such models to model inversion attacks.
+
+Paper ID: 1910.08385v1
+
+Summary:
+This paper titled "Federated Generative Privacy" was authored by Aleksei Triastcyn, Boi Faltings and published on 2019-10-18.
+It falls under the categories: stat.ML, cs.CR, cs.DC, cs.LG.
+The research explores the following topic: In this paper, we propose FedGP, a framework for privacy-preserving data release in the federated learning setting. We use generative adversarial networks, generator components of which are trained by FedAvg algorithm, to draw privacy-preserving artificial data samples and empirically assess the risk of information disclosure. Our experiments show that FedGP is able to generate labelled data of high quality to successfully train and validate supervised models. Finally, we demonstrate that our approach significantly reduces vulnerability of such models to model inversion attacks.
+
+Links:
+  - https://arxiv.org/abs/1910.08385v1
+  - https://arxiv.org/pdf/1910.08385v1

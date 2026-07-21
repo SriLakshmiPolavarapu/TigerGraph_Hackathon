@@ -1,0 +1,21 @@
+Title: Bias in Knowledge Graphs -- an Empirical Study with Movie Recommendation and Different Language Editions of DBpedia
+
+Authors: Michael Matthias Voit, Heiko Paulheim
+
+Published: 2021-05-03
+
+Categories: cs.IR, cs.AI
+
+Abstract:
+Public knowledge graphs such as DBpedia and Wikidata have been recognized as interesting sources of background knowledge to build content-based recommender systems. They can be used to add information about the items to be recommended and links between those. While quite a few approaches for exploiting knowledge graphs have been proposed, most of them aim at optimizing the recommendation strategy while using a fixed knowledge graph. In this paper, we take a different approach, i.e., we fix the recommendation strategy and observe changes when using different underlying knowledge graphs. Particularly, we use different language editions of DBpedia. We show that the usage of different knowledge graphs does not only lead to differently biased recommender systems, but also to recommender systems that differ in performance for particular fields of recommendations.
+
+Paper ID: 2105.00674v1
+
+Summary:
+This paper titled "Bias in Knowledge Graphs -- an Empirical Study with Movie Recommendation and Different Language Editions of DBpedia" was authored by Michael Matthias Voit, Heiko Paulheim and published on 2021-05-03.
+It falls under the categories: cs.IR, cs.AI.
+The research explores the following topic: Public knowledge graphs such as DBpedia and Wikidata have been recognized as interesting sources of background knowledge to build content-based recommender systems. They can be used to add information about the items to be recommended and links between those. While quite a few approaches for exploiting knowledge graphs have been proposed, most of them aim at optimizing the recommendation strategy while using a fixed knowledge graph. In this paper, we take a different approach, i.e., we fix the recommendation strategy and observe changes when using different underlying knowledge graphs. Particularly, we use different language editions of DBpedia. We show that the usage of different knowledge graphs does not only lead to differently biased recommender systems, but also to recommender systems that differ in performance for particular fields of recommendations.
+
+Links:
+  - https://arxiv.org/abs/2105.00674v1
+  - https://arxiv.org/pdf/2105.00674v1

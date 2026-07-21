@@ -1,0 +1,22 @@
+Title: MambAttention: Mamba with Multi-Head Attention for Generalizable Single-Channel Speech Enhancement
+
+Authors: Nikolai Lund Kühne, Jesper Jensen, Jan Østergaard, Zheng-Hua Tan
+
+Published: 2025-07-01
+
+Categories: cs.SD, cs.AI, eess.AS
+
+Abstract:
+With new sequence models like Mamba and xLSTM, several studies have shown that these models match or outperform the state-of-the-art in single-channel speech enhancement and audio representation learning. However, prior research has demonstrated that sequence models like LSTM and Mamba tend to overfit to the training set. To address this, previous works have shown that adding self-attention to LSTMs substantially improves generalization performance for single-channel speech enhancement. Nevertheless, neither the concept of hybrid Mamba and time-frequency attention models nor their generalization performance have been explored for speech enhancement. In this paper, we propose a novel hybrid architecture, MambAttention, which combines Mamba and shared time- and frequency-multi-head attention modules for generalizable single-channel speech enhancement. To train our model, we introduce VB-DemandEx, a dataset inspired by VoiceBank+Demand but with more challenging noise types and lower signal-to-noise ratios. Trained on VB-DemandEx, MambAttention significantly outperforms existing state-of-the-art discriminative LSTM-, xLSTM-, Mamba-, and Conformer-based systems of similar complexity across all reported metrics on two out-of-domain datasets: DNS 2020 without reverberation and EARS-WHAM_v2. MambAttention also matches or outperforms generative diffusion models in generalization performance while being competitive with language model baselines. Ablation studies highlight the importance of weight sharing between time- and frequency-multi-head attention modules for generalization performance. Finally, we explore integrating the shared time- and frequency-multi-head attention modules with LSTM and xLSTM, which yields a notable performance improvement on the out-of-domain datasets. Yet, MambAttention remains superior for cross-corpus generalization across all reported evaluation metrics.
+
+Paper ID: 2507.00966v4
+
+Summary:
+This paper titled "MambAttention: Mamba with Multi-Head Attention for Generalizable Single-Channel Speech Enhancement" was authored by Nikolai Lund Kühne, Jesper Jensen, Jan Østergaard, Zheng-Hua Tan and published on 2025-07-01.
+It falls under the categories: cs.SD, cs.AI, eess.AS.
+The research explores the following topic: With new sequence models like Mamba and xLSTM, several studies have shown that these models match or outperform the state-of-the-art in single-channel speech enhancement and audio representation learning. However, prior research has demonstrated that sequence models like LSTM and Mamba tend to overfit to the training set. To address this, previous works have shown that adding self-attention to LSTMs substantially improves generalization performance for single-channel speech enhancement. Nevertheless, neither the concept of hybrid Mamba and time-frequency attention models nor their generalization performance have been explored for speech enhancement. In this paper, we propose a novel hybrid architecture, MambAttention, which combines Mamba and shared time- and frequency-multi-head attention modules for generalizable single-channel speech enhancement. To train our model, we introduce VB-DemandEx, a dataset inspired by VoiceBank+Demand but with more challenging noise types and lower signal-to-noise ratios. Trained on VB-DemandEx, MambAttention significantly outperforms existing state-of-the-art discriminative LSTM-, xLSTM-, Mamba-, and Conformer-based systems of similar complexity across all reported metrics on two out-of-domain datasets: DNS 2020 without reverberation and EARS-WHAM_v2. MambAttention also matches or outperforms generative diffusion models in generalization performance while being competitive with language model baselines. Ablation studies highlight the importance of weight sharing between time- and frequency-multi-head attention modules for generalization performance. Finally, we explore integrating the shared time- and frequency-multi-head attention modules with LSTM and xLSTM, which yields a notable performance improvement on the out-of-domain datasets. Yet, MambAttention remains superior for cross-corpus generalization across all reported evaluation metrics.
+
+Links:
+  - https://arxiv.org/abs/2507.00966v4
+  - https://arxiv.org/pdf/2507.00966v4
+  - https://doi.org/10.1109/TASLPRO.2026.3656023

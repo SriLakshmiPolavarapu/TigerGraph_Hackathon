@@ -1,0 +1,21 @@
+Title: A Knowledge-Enhanced Disease Diagnosis Method Based on Prompt Learning and BERT Integration
+
+Authors: Zhang Zheng
+
+Published: 2024-09-16
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+This paper proposes a knowledge-enhanced disease diagnosis method based on a prompt learning framework. The method retrieves structured knowledge from external knowledge graphs related to clinical cases, encodes it, and injects it into the prompt templates to enhance the language model's understanding and reasoning capabilities for the task.We conducted experiments on three public datasets: CHIP-CTC, IMCS-V2-NER, and KUAKE-QTR. The results show that the proposed method significantly outperforms existing models across multiple evaluation metrics, with an F1 score improvement of 2.4% on the CHIP-CTC dataset, 3.1% on the IMCS-V2-NER dataset,and 4.2% on the KUAKE-QTR dataset. Additionally,ablation studies confirmed the critical role of the knowledge injection module,as the removal of this module resulted in a significant drop in F1 score. The experimental results demonstrate that the proposed method not only effectively improves the accuracy of disease diagnosis but also enhances the interpretability of the predictions, providing more reliable support and evidence for clinical diagnosis.
+
+Paper ID: 2409.10403v1
+
+Summary:
+This paper titled "A Knowledge-Enhanced Disease Diagnosis Method Based on Prompt Learning and BERT Integration" was authored by Zhang Zheng and published on 2024-09-16.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: This paper proposes a knowledge-enhanced disease diagnosis method based on a prompt learning framework. The method retrieves structured knowledge from external knowledge graphs related to clinical cases, encodes it, and injects it into the prompt templates to enhance the language model's understanding and reasoning capabilities for the task.We conducted experiments on three public datasets: CHIP-CTC, IMCS-V2-NER, and KUAKE-QTR. The results show that the proposed method significantly outperforms existing models across multiple evaluation metrics, with an F1 score improvement of 2.4% on the CHIP-CTC dataset, 3.1% on the IMCS-V2-NER dataset,and 4.2% on the KUAKE-QTR dataset. Additionally,ablation studies confirmed the critical role of the knowledge injection module,as the removal of this module resulted in a significant drop in F1 score. The experimental results demonstrate that the proposed method not only effectively improves the accuracy of disease diagnosis but also enhances the interpretability of the predictions, providing more reliable support and evidence for clinical diagnosis.
+
+Links:
+  - https://arxiv.org/abs/2409.10403v1
+  - https://arxiv.org/pdf/2409.10403v1

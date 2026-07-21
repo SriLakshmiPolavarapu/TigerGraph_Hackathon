@@ -1,0 +1,21 @@
+Title: Probabilistic Time Series Forecasting with Implicit Quantile Networks
+
+Authors: Adèle Gouttes, Kashif Rasul, Mateusz Koren, Johannes Stephan, Tofigh Naghibi
+
+Published: 2021-07-08
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+Here, we propose a general method for probabilistic time series forecasting. We combine an autoregressive recurrent neural network to model temporal dynamics with Implicit Quantile Networks to learn a large class of distributions over a time-series target. When compared to other probabilistic neural forecasting models on real- and simulated data, our approach is favorable in terms of point-wise prediction accuracy as well as on estimating the underlying temporal distribution.
+
+Paper ID: 2107.03743v1
+
+Summary:
+This paper titled "Probabilistic Time Series Forecasting with Implicit Quantile Networks" was authored by Adèle Gouttes, Kashif Rasul, Mateusz Koren, Johannes Stephan, Tofigh Naghibi and published on 2021-07-08.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: Here, we propose a general method for probabilistic time series forecasting. We combine an autoregressive recurrent neural network to model temporal dynamics with Implicit Quantile Networks to learn a large class of distributions over a time-series target. When compared to other probabilistic neural forecasting models on real- and simulated data, our approach is favorable in terms of point-wise prediction accuracy as well as on estimating the underlying temporal distribution.
+
+Links:
+  - https://arxiv.org/abs/2107.03743v1
+  - https://arxiv.org/pdf/2107.03743v1

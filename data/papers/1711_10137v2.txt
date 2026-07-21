@@ -1,0 +1,21 @@
+Title: One-Shot Reinforcement Learning for Robot Navigation with Interactive Replay
+
+Authors: Jake Bruce, Niko Suenderhauf, Piotr Mirowski, Raia Hadsell, Michael Milford
+
+Published: 2017-11-28
+
+Categories: cs.AI, cs.LG, cs.RO
+
+Abstract:
+Recently, model-free reinforcement learning algorithms have been shown to solve challenging problems by learning from extensive interaction with the environment. A significant issue with transferring this success to the robotics domain is that interaction with the real world is costly, but training on limited experience is prone to overfitting. We present a method for learning to navigate, to a fixed goal and in a known environment, on a mobile robot. The robot leverages an interactive world model built from a single traversal of the environment, a pre-trained visual feature encoder, and stochastic environmental augmentation, to demonstrate successful zero-shot transfer under real-world environmental variations without fine-tuning.
+
+Paper ID: 1711.10137v2
+
+Summary:
+This paper titled "One-Shot Reinforcement Learning for Robot Navigation with Interactive Replay" was authored by Jake Bruce, Niko Suenderhauf, Piotr Mirowski, Raia Hadsell, Michael Milford and published on 2017-11-28.
+It falls under the categories: cs.AI, cs.LG, cs.RO.
+The research explores the following topic: Recently, model-free reinforcement learning algorithms have been shown to solve challenging problems by learning from extensive interaction with the environment. A significant issue with transferring this success to the robotics domain is that interaction with the real world is costly, but training on limited experience is prone to overfitting. We present a method for learning to navigate, to a fixed goal and in a known environment, on a mobile robot. The robot leverages an interactive world model built from a single traversal of the environment, a pre-trained visual feature encoder, and stochastic environmental augmentation, to demonstrate successful zero-shot transfer under real-world environmental variations without fine-tuning.
+
+Links:
+  - https://arxiv.org/abs/1711.10137v2
+  - https://arxiv.org/pdf/1711.10137v2

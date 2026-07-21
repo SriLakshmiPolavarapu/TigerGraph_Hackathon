@@ -1,0 +1,21 @@
+Title: ARTPS: Depth-Enhanced Hybrid Anomaly Detection and Learnable Curiosity Score for Autonomous Rover Target Prioritization
+
+Authors: Poyraz Baydemir
+
+Published: 2025-08-23
+
+Categories: cs.CV, cs.AI
+
+Abstract:
+We present ARTPS (Autonomous Rover Target Prioritization System), a novel hybrid AI system that combines depth estimation, anomaly detection, and learnable curiosity scoring for autonomous exploration of planetary surfaces. Our approach integrates monocular depth estimation using Vision Transformers with multi-component anomaly detection and a weighted curiosity score that balances known value, anomaly signals, depth variance, and surface roughness. The system achieves state-of-the-art performance with AUROC of 0.94, AUPRC of 0.89, and F1-Score of 0.87 on Mars rover datasets. We demonstrate significant improvements in target prioritization accuracy through ablation studies and provide comprehensive analysis of component contributions. The hybrid fusion approach reduces false positives by 23% while maintaining high detection sensitivity across diverse terrain types.
+
+Paper ID: 2509.00042v1
+
+Summary:
+This paper titled "ARTPS: Depth-Enhanced Hybrid Anomaly Detection and Learnable Curiosity Score for Autonomous Rover Target Prioritization" was authored by Poyraz Baydemir and published on 2025-08-23.
+It falls under the categories: cs.CV, cs.AI.
+The research explores the following topic: We present ARTPS (Autonomous Rover Target Prioritization System), a novel hybrid AI system that combines depth estimation, anomaly detection, and learnable curiosity scoring for autonomous exploration of planetary surfaces. Our approach integrates monocular depth estimation using Vision Transformers with multi-component anomaly detection and a weighted curiosity score that balances known value, anomaly signals, depth variance, and surface roughness. The system achieves state-of-the-art performance with AUROC of 0.94, AUPRC of 0.89, and F1-Score of 0.87 on Mars rover datasets. We demonstrate significant improvements in target prioritization accuracy through ablation studies and provide comprehensive analysis of component contributions. The hybrid fusion approach reduces false positives by 23% while maintaining high detection sensitivity across diverse terrain types.
+
+Links:
+  - https://arxiv.org/abs/2509.00042v1
+  - https://arxiv.org/pdf/2509.00042v1

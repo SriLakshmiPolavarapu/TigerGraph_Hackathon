@@ -1,0 +1,21 @@
+Title: Energy-Based Models for Continual Learning
+
+Authors: Shuang Li, Yilun Du, Gido M. van de Ven, Igor Mordatch
+
+Published: 2020-11-24
+
+Categories: cs.LG, cs.AI, stat.ML
+
+Abstract:
+We motivate Energy-Based Models (EBMs) as a promising model class for continual learning problems. Instead of tackling continual learning via the use of external memory, growing models, or regularization, EBMs change the underlying training objective to cause less interference with previously learned information. Our proposed version of EBMs for continual learning is simple, efficient, and outperforms baseline methods by a large margin on several benchmarks. Moreover, our proposed contrastive divergence-based training objective can be combined with other continual learning methods, resulting in substantial boosts in their performance. We further show that EBMs are adaptable to a more general continual learning setting where the data distribution changes without the notion of explicitly delineated tasks. These observations point towards EBMs as a useful building block for future continual learning methods.
+
+Paper ID: 2011.12216v3
+
+Summary:
+This paper titled "Energy-Based Models for Continual Learning" was authored by Shuang Li, Yilun Du, Gido M. van de Ven, Igor Mordatch and published on 2020-11-24.
+It falls under the categories: cs.LG, cs.AI, stat.ML.
+The research explores the following topic: We motivate Energy-Based Models (EBMs) as a promising model class for continual learning problems. Instead of tackling continual learning via the use of external memory, growing models, or regularization, EBMs change the underlying training objective to cause less interference with previously learned information. Our proposed version of EBMs for continual learning is simple, efficient, and outperforms baseline methods by a large margin on several benchmarks. Moreover, our proposed contrastive divergence-based training objective can be combined with other continual learning methods, resulting in substantial boosts in their performance. We further show that EBMs are adaptable to a more general continual learning setting where the data distribution changes without the notion of explicitly delineated tasks. These observations point towards EBMs as a useful building block for future continual learning methods.
+
+Links:
+  - https://arxiv.org/abs/2011.12216v3
+  - https://arxiv.org/pdf/2011.12216v3

@@ -1,0 +1,21 @@
+Title: Brush Your Text: Synthesize Any Scene Text on Images via Diffusion Model
+
+Authors: Lingjun Zhang, Xinyuan Chen, Yaohui Wang, Yue Lu, Yu Qiao
+
+Published: 2023-12-19
+
+Categories: cs.CV
+
+Abstract:
+Recently, diffusion-based image generation methods are credited for their remarkable text-to-image generation capabilities, while still facing challenges in accurately generating multilingual scene text images. To tackle this problem, we propose Diff-Text, which is a training-free scene text generation framework for any language. Our model outputs a photo-realistic image given a text of any language along with a textual description of a scene. The model leverages rendered sketch images as priors, thus arousing the potential multilingual-generation ability of the pre-trained Stable Diffusion. Based on the observation from the influence of the cross-attention map on object placement in generated images, we propose a localized attention constraint into the cross-attention layer to address the unreasonable positioning problem of scene text. Additionally, we introduce contrastive image-level prompts to further refine the position of the textual region and achieve more accurate scene text generation. Experiments demonstrate that our method outperforms the existing method in both the accuracy of text recognition and the naturalness of foreground-background blending.
+
+Paper ID: 2312.12232v1
+
+Summary:
+This paper titled "Brush Your Text: Synthesize Any Scene Text on Images via Diffusion Model" was authored by Lingjun Zhang, Xinyuan Chen, Yaohui Wang, Yue Lu, Yu Qiao and published on 2023-12-19.
+It falls under the categories: cs.CV.
+The research explores the following topic: Recently, diffusion-based image generation methods are credited for their remarkable text-to-image generation capabilities, while still facing challenges in accurately generating multilingual scene text images. To tackle this problem, we propose Diff-Text, which is a training-free scene text generation framework for any language. Our model outputs a photo-realistic image given a text of any language along with a textual description of a scene. The model leverages rendered sketch images as priors, thus arousing the potential multilingual-generation ability of the pre-trained Stable Diffusion. Based on the observation from the influence of the cross-attention map on object placement in generated images, we propose a localized attention constraint into the cross-attention layer to address the unreasonable positioning problem of scene text. Additionally, we introduce contrastive image-level prompts to further refine the position of the textual region and achieve more accurate scene text generation. Experiments demonstrate that our method outperforms the existing method in both the accuracy of text recognition and the naturalness of foreground-background blending.
+
+Links:
+  - https://arxiv.org/abs/2312.12232v1
+  - https://arxiv.org/pdf/2312.12232v1

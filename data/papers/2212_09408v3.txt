@@ -1,0 +1,21 @@
+Title: Universal Object Detection with Large Vision Model
+
+Authors: Feng Lin, Wenze Hu, Yaowei Wang, Yonghong Tian, Guangming Lu, Fanglin Chen, Yong Xu, Xiaoyu Wang
+
+Published: 2022-12-19
+
+Categories: cs.CV
+
+Abstract:
+Over the past few years, there has been growing interest in developing a broad, universal, and general-purpose computer vision system. Such systems have the potential to address a wide range of vision tasks simultaneously, without being limited to specific problems or data domains. This universality is crucial for practical, real-world computer vision applications. In this study, our focus is on a specific challenge: the large-scale, multi-domain universal object detection problem, which contributes to the broader goal of achieving a universal vision system. This problem presents several intricate challenges, including cross-dataset category label duplication, label conflicts, and the necessity to handle hierarchical taxonomies. To address these challenges, we introduce our approach to label handling, hierarchy-aware loss design, and resource-efficient model training utilizing a pre-trained large vision model. Our method has demonstrated remarkable performance, securing a prestigious second-place ranking in the object detection track of the Robust Vision Challenge 2022 (RVC 2022) on a million-scale cross-dataset object detection benchmark. We believe that our comprehensive study will serve as a valuable reference and offer an alternative approach for addressing similar challenges within the computer vision community. The source code for our work is openly available at https://github.com/linfeng93/Large-UniDet.
+
+Paper ID: 2212.09408v3
+
+Summary:
+This paper titled "Universal Object Detection with Large Vision Model" was authored by Feng Lin, Wenze Hu, Yaowei Wang, Yonghong Tian, Guangming Lu, Fanglin Chen, Yong Xu, Xiaoyu Wang and published on 2022-12-19.
+It falls under the categories: cs.CV.
+The research explores the following topic: Over the past few years, there has been growing interest in developing a broad, universal, and general-purpose computer vision system. Such systems have the potential to address a wide range of vision tasks simultaneously, without being limited to specific problems or data domains. This universality is crucial for practical, real-world computer vision applications. In this study, our focus is on a specific challenge: the large-scale, multi-domain universal object detection problem, which contributes to the broader goal of achieving a universal vision system. This problem presents several intricate challenges, including cross-dataset category label duplication, label conflicts, and the necessity to handle hierarchical taxonomies. To address these challenges, we introduce our approach to label handling, hierarchy-aware loss design, and resource-efficient model training utilizing a pre-trained large vision model. Our method has demonstrated remarkable performance, securing a prestigious second-place ranking in the object detection track of the Robust Vision Challenge 2022 (RVC 2022) on a million-scale cross-dataset object detection benchmark. We believe that our comprehensive study will serve as a valuable reference and offer an alternative approach for addressing similar challenges within the computer vision community. The source code for our work is openly available at https://github.com/linfeng93/Large-UniDet.
+
+Links:
+  - https://arxiv.org/abs/2212.09408v3
+  - https://arxiv.org/pdf/2212.09408v3

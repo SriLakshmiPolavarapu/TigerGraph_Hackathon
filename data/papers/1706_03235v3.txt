@@ -1,0 +1,23 @@
+Title: ACCNet: Actor-Coordinator-Critic Net for "Learning-to-Communicate" with Deep Multi-agent Reinforcement Learning
+
+Authors: Hangyu Mao, Zhibo Gong, Yan Ni, Zhen Xiao
+
+Published: 2017-06-10
+
+Categories: cs.AI, cs.LG
+
+Abstract:
+Communication is a critical factor for the big multi-agent world to stay organized and productive. Typically, most previous multi-agent "learning-to-communicate" studies try to predefine the communication protocols or use technologies such as tabular reinforcement learning and evolutionary algorithm, which can not generalize to changing environment or large collection of agents.
+  In this paper, we propose an Actor-Coordinator-Critic Net (ACCNet) framework for solving "learning-to-communicate" problem. The ACCNet naturally combines the powerful actor-critic reinforcement learning technology with deep learning technology. It can efficiently learn the communication protocols even from scratch under partially observable environment. We demonstrate that the ACCNet can achieve better results than several baselines under both continuous and discrete action space environments. We also analyse the learned protocols and discuss some design considerations.
+
+Paper ID: 1706.03235v3
+
+Summary:
+This paper titled "ACCNet: Actor-Coordinator-Critic Net for "Learning-to-Communicate" with Deep Multi-agent Reinforcement Learning" was authored by Hangyu Mao, Zhibo Gong, Yan Ni, Zhen Xiao and published on 2017-06-10.
+It falls under the categories: cs.AI, cs.LG.
+The research explores the following topic: Communication is a critical factor for the big multi-agent world to stay organized and productive. Typically, most previous multi-agent "learning-to-communicate" studies try to predefine the communication protocols or use technologies such as tabular reinforcement learning and evolutionary algorithm, which can not generalize to changing environment or large collection of agents.
+  In this paper, we propose an Actor-Coordinator-Critic Net (ACCNet) framework for solving "learning-to-communicate" problem. The ACCNet naturally combines the powerful actor-critic reinforcement learning technology with deep learning technology. It can efficiently learn the communication protocols even from scratch under partially observable environment. We demonstrate that the ACCNet can achieve better results than several baselines under both continuous and discrete action space environments. We also analyse the learned protocols and discuss some design considerations.
+
+Links:
+  - https://arxiv.org/abs/1706.03235v3
+  - https://arxiv.org/pdf/1706.03235v3

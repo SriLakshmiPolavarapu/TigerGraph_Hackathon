@@ -1,0 +1,21 @@
+Title: Central Server Free Federated Learning over Single-sided Trust Social Networks
+
+Authors: Chaoyang He, Conghui Tan, Hanlin Tang, Shuang Qiu, Ji Liu
+
+Published: 2019-10-11
+
+Categories: cs.LG, cs.SI, stat.ML
+
+Abstract:
+Federated learning has become increasingly important for modern machine learning, especially for data privacy-sensitive scenarios. Existing federated learning mostly adopts the central server-based architecture or centralized architecture. However, in many social network scenarios, centralized federated learning is not applicable (e.g., a central agent or server connecting all users may not exist, or the communication cost to the central server is not affordable). In this paper, we consider a generic setting: 1) the central server may not exist, and 2) the social network is unidirectional or of single-sided trust (i.e., user A trusts user B but user B may not trust user A). We propose a central server free federated learning algorithm, named Online Push-Sum (OPS) method, to handle this challenging but generic scenario. A rigorous regret analysis is also provided, which shows very interesting results on how users can benefit from communication with trusted users in the federated learning scenario. This work builds upon the fundamental algorithm framework and theoretical guarantees for federated learning in the generic social network scenario.
+
+Paper ID: 1910.04956v2
+
+Summary:
+This paper titled "Central Server Free Federated Learning over Single-sided Trust Social Networks" was authored by Chaoyang He, Conghui Tan, Hanlin Tang, Shuang Qiu, Ji Liu and published on 2019-10-11.
+It falls under the categories: cs.LG, cs.SI, stat.ML.
+The research explores the following topic: Federated learning has become increasingly important for modern machine learning, especially for data privacy-sensitive scenarios. Existing federated learning mostly adopts the central server-based architecture or centralized architecture. However, in many social network scenarios, centralized federated learning is not applicable (e.g., a central agent or server connecting all users may not exist, or the communication cost to the central server is not affordable). In this paper, we consider a generic setting: 1) the central server may not exist, and 2) the social network is unidirectional or of single-sided trust (i.e., user A trusts user B but user B may not trust user A). We propose a central server free federated learning algorithm, named Online Push-Sum (OPS) method, to handle this challenging but generic scenario. A rigorous regret analysis is also provided, which shows very interesting results on how users can benefit from communication with trusted users in the federated learning scenario. This work builds upon the fundamental algorithm framework and theoretical guarantees for federated learning in the generic social network scenario.
+
+Links:
+  - https://arxiv.org/abs/1910.04956v2
+  - https://arxiv.org/pdf/1910.04956v2

@@ -1,0 +1,25 @@
+Title: Local Attention Mechanism: Boosting the Transformer Architecture for Long-Sequence Time Series Forecasting
+
+Authors: Ignacio Aguilera-Martos, Andrés Herrera-Poyatos, Julián Luengo, Francisco Herrera
+
+Published: 2024-10-04
+
+Categories: cs.LG
+
+Abstract:
+Transformers have become the leading choice in natural language processing over other deep learning architectures. This trend has also permeated the field of time series analysis, especially for long-horizon forecasting, showcasing promising results both in performance and running time.
+  In this paper, we introduce Local Attention Mechanism (LAM), an efficient attention mechanism tailored for time series analysis. This mechanism exploits the continuity properties of time series to reduce the number of attention scores computed. We present an algorithm for implementing LAM in tensor algebra that runs in time and memory O(nlogn), significantly improving upon the O(n^2) time and memory complexity of traditional attention mechanisms. We also note the lack of proper datasets to evaluate long-horizon forecast models. Thus, we propose a novel set of datasets to improve the evaluation of models addressing long-horizon forecasting challenges.
+  Our experimental analysis demonstrates that the vanilla transformer architecture magnified with LAM surpasses state-of-the-art models, including the vanilla attention mechanism. These results confirm the effectiveness of our approach and highlight a range of future challenges in long-sequence time series forecasting.
+
+Paper ID: 2410.03805v3
+
+Summary:
+This paper titled "Local Attention Mechanism: Boosting the Transformer Architecture for Long-Sequence Time Series Forecasting" was authored by Ignacio Aguilera-Martos, Andrés Herrera-Poyatos, Julián Luengo, Francisco Herrera and published on 2024-10-04.
+It falls under the categories: cs.LG.
+The research explores the following topic: Transformers have become the leading choice in natural language processing over other deep learning architectures. This trend has also permeated the field of time series analysis, especially for long-horizon forecasting, showcasing promising results both in performance and running time.
+  In this paper, we introduce Local Attention Mechanism (LAM), an efficient attention mechanism tailored for time series analysis. This mechanism exploits the continuity properties of time series to reduce the number of attention scores computed. We present an algorithm for implementing LAM in tensor algebra that runs in time and memory O(nlogn), significantly improving upon the O(n^2) time and memory complexity of traditional attention mechanisms. We also note the lack of proper datasets to evaluate long-horizon forecast models. Thus, we propose a novel set of datasets to improve the evaluation of models addressing long-horizon forecasting challenges.
+  Our experimental analysis demonstrates that the vanilla transformer architecture magnified with LAM surpasses state-of-the-art models, including the vanilla attention mechanism. These results confirm the effectiveness of our approach and highlight a range of future challenges in long-sequence time series forecasting.
+
+Links:
+  - https://arxiv.org/abs/2410.03805v3
+  - https://arxiv.org/pdf/2410.03805v3

@@ -1,0 +1,22 @@
+Title: Horn Clauses as an Intermediate Representation for Program Analysis and Transformation
+
+Authors: Graeme Gange, Jorge A. Navas, Peter Schachte, Harald Sondergaard, Peter J. Stuckey
+
+Published: 2015-07-21
+
+Categories: cs.PL
+
+Abstract:
+Many recent analyses for conventional imperative programs begin by transforming programs into logic programs, capitalising on existing LP analyses and simple LP semantics. We propose using logic programs as an intermediate program representation throughout the compilation process. With restrictions ensuring determinism and single-modedness, a logic program can easily be transformed to machine language or other low-level language, while maintaining the simple semantics that makes it suitable as a language for program analysis and transformation. We present a simple LP language that enforces determinism and single-modedness, and show that it makes a convenient program representation for analysis and transformation.
+
+Paper ID: 1507.05762v1
+
+Summary:
+This paper titled "Horn Clauses as an Intermediate Representation for Program Analysis and Transformation" was authored by Graeme Gange, Jorge A. Navas, Peter Schachte, Harald Sondergaard, Peter J. Stuckey and published on 2015-07-21.
+It falls under the categories: cs.PL.
+The research explores the following topic: Many recent analyses for conventional imperative programs begin by transforming programs into logic programs, capitalising on existing LP analyses and simple LP semantics. We propose using logic programs as an intermediate program representation throughout the compilation process. With restrictions ensuring determinism and single-modedness, a logic program can easily be transformed to machine language or other low-level language, while maintaining the simple semantics that makes it suitable as a language for program analysis and transformation. We present a simple LP language that enforces determinism and single-modedness, and show that it makes a convenient program representation for analysis and transformation.
+
+Links:
+  - https://arxiv.org/abs/1507.05762v1
+  - https://arxiv.org/pdf/1507.05762v1
+  - https://doi.org/10.1017/S1471068415000204

@@ -1,0 +1,21 @@
+Title: Making Differentiable Architecture Search less local
+
+Authors: Erik Bodin, Federico Tomasi, Zhenwen Dai
+
+Published: 2021-04-21
+
+Categories: cs.LG
+
+Abstract:
+Neural architecture search (NAS) is a recent methodology for automating the design of neural network architectures. Differentiable neural architecture search (DARTS) is a promising NAS approach that dramatically increases search efficiency. However, it has been shown to suffer from performance collapse, where the search often leads to detrimental architectures. Many recent works try to address this issue of DARTS by identifying indicators for early stopping, regularising the search objective to reduce the dominance of some operations, or changing the parameterisation of the search problem. In this work, we hypothesise that performance collapses can arise from poor local optima around typical initial architectures and weights. We address this issue by developing a more global optimisation scheme that is able to better explore the space without changing the DARTS problem formulation. Our experiments show that our changes in the search algorithm allow the discovery of architectures with both better test performance and fewer parameters.
+
+Paper ID: 2104.10450v1
+
+Summary:
+This paper titled "Making Differentiable Architecture Search less local" was authored by Erik Bodin, Federico Tomasi, Zhenwen Dai and published on 2021-04-21.
+It falls under the categories: cs.LG.
+The research explores the following topic: Neural architecture search (NAS) is a recent methodology for automating the design of neural network architectures. Differentiable neural architecture search (DARTS) is a promising NAS approach that dramatically increases search efficiency. However, it has been shown to suffer from performance collapse, where the search often leads to detrimental architectures. Many recent works try to address this issue of DARTS by identifying indicators for early stopping, regularising the search objective to reduce the dominance of some operations, or changing the parameterisation of the search problem. In this work, we hypothesise that performance collapses can arise from poor local optima around typical initial architectures and weights. We address this issue by developing a more global optimisation scheme that is able to better explore the space without changing the DARTS problem formulation. Our experiments show that our changes in the search algorithm allow the discovery of architectures with both better test performance and fewer parameters.
+
+Links:
+  - https://arxiv.org/abs/2104.10450v1
+  - https://arxiv.org/pdf/2104.10450v1

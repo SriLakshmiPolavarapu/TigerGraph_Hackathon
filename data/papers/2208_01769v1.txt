@@ -1,0 +1,21 @@
+Title: Deep Reinforcement Learning for Multi-Agent Interaction
+
+Authors: Ibrahim H. Ahmed, Cillian Brewitt, Ignacio Carlucho, Filippos Christianos, Mhairi Dunion, Elliot Fosong, Samuel Garcin, Shangmin Guo, Balint Gyevnar, Trevor McInroe, Georgios Papoudakis, Arrasy Rahman, Lukas Schäfer, Massimiliano Tamborski, Giuseppe Vecchio, Cheng Wang, Stefano V. Albrecht
+
+Published: 2022-08-02
+
+Categories: cs.MA, cs.AI, cs.LG
+
+Abstract:
+The development of autonomous agents which can interact with other agents to accomplish a given task is a core area of research in artificial intelligence and machine learning. Towards this goal, the Autonomous Agents Research Group develops novel machine learning algorithms for autonomous systems control, with a specific focus on deep reinforcement learning and multi-agent reinforcement learning. Research problems include scalable learning of coordinated agent policies and inter-agent communication; reasoning about the behaviours, goals, and composition of other agents from limited observations; and sample-efficient learning based on intrinsic motivation, curriculum learning, causal inference, and representation learning. This article provides a broad overview of the ongoing research portfolio of the group and discusses open problems for future directions.
+
+Paper ID: 2208.01769v1
+
+Summary:
+This paper titled "Deep Reinforcement Learning for Multi-Agent Interaction" was authored by Ibrahim H. Ahmed, Cillian Brewitt, Ignacio Carlucho, Filippos Christianos, Mhairi Dunion, Elliot Fosong, Samuel Garcin, Shangmin Guo, Balint Gyevnar, Trevor McInroe, Georgios Papoudakis, Arrasy Rahman, Lukas Schäfer, Massimiliano Tamborski, Giuseppe Vecchio, Cheng Wang, Stefano V. Albrecht and published on 2022-08-02.
+It falls under the categories: cs.MA, cs.AI, cs.LG.
+The research explores the following topic: The development of autonomous agents which can interact with other agents to accomplish a given task is a core area of research in artificial intelligence and machine learning. Towards this goal, the Autonomous Agents Research Group develops novel machine learning algorithms for autonomous systems control, with a specific focus on deep reinforcement learning and multi-agent reinforcement learning. Research problems include scalable learning of coordinated agent policies and inter-agent communication; reasoning about the behaviours, goals, and composition of other agents from limited observations; and sample-efficient learning based on intrinsic motivation, curriculum learning, causal inference, and representation learning. This article provides a broad overview of the ongoing research portfolio of the group and discusses open problems for future directions.
+
+Links:
+  - https://arxiv.org/abs/2208.01769v1
+  - https://arxiv.org/pdf/2208.01769v1

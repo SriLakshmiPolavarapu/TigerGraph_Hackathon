@@ -1,0 +1,21 @@
+Title: Joint Multitask Learning for Community Question Answering Using Task-Specific Embeddings
+
+Authors: Shafiq Joty, Lluis Marquez, Preslav Nakov
+
+Published: 2018-09-24
+
+Categories: cs.CL
+
+Abstract:
+We address jointly two important tasks for Question Answering in community forums: given a new question, (i) find related existing questions, and (ii) find relevant answers to this new question. We further use an auxiliary task to complement the previous two, i.e., (iii) find good answers with respect to the thread question in a question-comment thread. We use deep neural networks (DNNs) to learn meaningful task-specific embeddings, which we then incorporate into a conditional random field (CRF) model for the multitask setting, performing joint learning over a complex graph structure. While DNNs alone achieve competitive results when trained to produce the embeddings, the CRF, which makes use of the embeddings and the dependencies between the tasks, improves the results significantly and consistently across a variety of evaluation metrics, thus showing the complementarity of DNNs and structured learning.
+
+Paper ID: 1809.08928v1
+
+Summary:
+This paper titled "Joint Multitask Learning for Community Question Answering Using Task-Specific Embeddings" was authored by Shafiq Joty, Lluis Marquez, Preslav Nakov and published on 2018-09-24.
+It falls under the categories: cs.CL.
+The research explores the following topic: We address jointly two important tasks for Question Answering in community forums: given a new question, (i) find related existing questions, and (ii) find relevant answers to this new question. We further use an auxiliary task to complement the previous two, i.e., (iii) find good answers with respect to the thread question in a question-comment thread. We use deep neural networks (DNNs) to learn meaningful task-specific embeddings, which we then incorporate into a conditional random field (CRF) model for the multitask setting, performing joint learning over a complex graph structure. While DNNs alone achieve competitive results when trained to produce the embeddings, the CRF, which makes use of the embeddings and the dependencies between the tasks, improves the results significantly and consistently across a variety of evaluation metrics, thus showing the complementarity of DNNs and structured learning.
+
+Links:
+  - https://arxiv.org/abs/1809.08928v1
+  - https://arxiv.org/pdf/1809.08928v1

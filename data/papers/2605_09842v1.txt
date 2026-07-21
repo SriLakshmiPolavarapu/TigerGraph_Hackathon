@@ -1,0 +1,21 @@
+Title: Yield Curve Forecasting using Machine Learning and Econometrics: A Comparative Analysis
+
+Authors: Aman Singh, Tokunbo Ogunfunmi, Sanjiv Das
+
+Published: 2026-05-11
+
+Categories: cs.AI
+
+Abstract:
+While machine learning has revolutionized many fields such as natural language processing (NLP) and computer vision, its impact on time-series forecasting is still widely disputed, especially in the finance domain. This paper compares forecasting performance on U.S. Treasury yield curve data across econometrics/time-series analysis, classical machine learning, and deep learning methods, using daily data over 47 years. The Treasury yield curve is important because it is widely used by every participant in the bond markets, which are larger than equity markets. We examine a variety of methods that have not been tested on yield curve forecasting, especially deep learning algorithms. The algorithms include the Autoregressive Integrated Moving Average (ARIMA) model and its extensions, naive benchmarks, ensemble methods, Recurrent Neural Networks (RNNs), and multiple transformers built for forecasting. ARIMA and naive econometric models outperform other models overall, except in one time block. Of the machine learning methods, TimeGPT, LGBM and RNNs perform the best. Furthermore, the paper explores whether stationary or nonstationary data are more appropriate as input to deep learning models.
+
+Paper ID: 2605.09842v1
+
+Summary:
+This paper titled "Yield Curve Forecasting using Machine Learning and Econometrics: A Comparative Analysis" was authored by Aman Singh, Tokunbo Ogunfunmi, Sanjiv Das and published on 2026-05-11.
+It falls under the categories: cs.AI.
+The research explores the following topic: While machine learning has revolutionized many fields such as natural language processing (NLP) and computer vision, its impact on time-series forecasting is still widely disputed, especially in the finance domain. This paper compares forecasting performance on U.S. Treasury yield curve data across econometrics/time-series analysis, classical machine learning, and deep learning methods, using daily data over 47 years. The Treasury yield curve is important because it is widely used by every participant in the bond markets, which are larger than equity markets. We examine a variety of methods that have not been tested on yield curve forecasting, especially deep learning algorithms. The algorithms include the Autoregressive Integrated Moving Average (ARIMA) model and its extensions, naive benchmarks, ensemble methods, Recurrent Neural Networks (RNNs), and multiple transformers built for forecasting. ARIMA and naive econometric models outperform other models overall, except in one time block. Of the machine learning methods, TimeGPT, LGBM and RNNs perform the best. Furthermore, the paper explores whether stationary or nonstationary data are more appropriate as input to deep learning models.
+
+Links:
+  - https://arxiv.org/abs/2605.09842v1
+  - https://arxiv.org/pdf/2605.09842v1

@@ -1,0 +1,22 @@
+Title: mFI-PSO: A Flexible and Effective Method in Adversarial Image Generation for Deep Neural Networks
+
+Authors: Hai Shu, Ronghua Shi, Qiran Jia, Hongtu Zhu, Ziqi Chen
+
+Published: 2020-06-05
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Deep neural networks (DNNs) have achieved great success in image classification, but can be very vulnerable to adversarial attacks with small perturbations to images. To improve adversarial image generation for DNNs, we develop a novel method, called mFI-PSO, which utilizes a Manifold-based First-order Influence measure for vulnerable image and pixel selection and the Particle Swarm Optimization for various objective functions. Our mFI-PSO can thus effectively design adversarial images with flexible, customized options on the number of perturbed pixels, the misclassification probability, and the targeted incorrect class. Experiments demonstrate the flexibility and effectiveness of our mFI-PSO in adversarial attacks and its appealing advantages over some popular methods.
+
+Paper ID: 2006.03243v3
+
+Summary:
+This paper titled "mFI-PSO: A Flexible and Effective Method in Adversarial Image Generation for Deep Neural Networks" was authored by Hai Shu, Ronghua Shi, Qiran Jia, Hongtu Zhu, Ziqi Chen and published on 2020-06-05.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Deep neural networks (DNNs) have achieved great success in image classification, but can be very vulnerable to adversarial attacks with small perturbations to images. To improve adversarial image generation for DNNs, we develop a novel method, called mFI-PSO, which utilizes a Manifold-based First-order Influence measure for vulnerable image and pixel selection and the Particle Swarm Optimization for various objective functions. Our mFI-PSO can thus effectively design adversarial images with flexible, customized options on the number of perturbed pixels, the misclassification probability, and the targeted incorrect class. Experiments demonstrate the flexibility and effectiveness of our mFI-PSO in adversarial attacks and its appealing advantages over some popular methods.
+
+Links:
+  - https://arxiv.org/abs/2006.03243v3
+  - https://arxiv.org/pdf/2006.03243v3
+  - https://doi.org/10.1109/IJCNN55064.2022.9892433

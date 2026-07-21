@@ -1,0 +1,21 @@
+Title: AI Safety in Generative AI Large Language Models: A Survey
+
+Authors: Jaymari Chua, Yun Li, Shiyi Yang, Chen Wang, Lina Yao
+
+Published: 2024-07-06
+
+Categories: cs.CY, cs.CL
+
+Abstract:
+Large Language Model (LLMs) such as ChatGPT that exhibit generative AI capabilities are facing accelerated adoption and innovation. The increased presence of Generative AI (GAI) inevitably raises concerns about the risks and safety associated with these models. This article provides an up-to-date survey of recent trends in AI safety research of GAI-LLMs from a computer scientist's perspective: specific and technical. In this survey, we explore the background and motivation for the identified harms and risks in the context of LLMs being generative language models; our survey differentiates by emphasising the need for unified theories of the distinct safety challenges in the research development and applications of LLMs. We start our discussion with a concise introduction to the workings of LLMs, supported by relevant literature. Then we discuss earlier research that has pointed out the fundamental constraints of generative models, or lack of understanding thereof (e.g., performance and safety trade-offs as LLMs scale in number of parameters). We provide a sufficient coverage of LLM alignment -- delving into various approaches, contending methods and present challenges associated with aligning LLMs with human preferences. By highlighting the gaps in the literature and possible implementation oversights, our aim is to create a comprehensive analysis that provides insights for addressing AI safety in LLMs and encourages the development of aligned and secure models. We conclude our survey by discussing future directions of LLMs for AI safety, offering insights into ongoing research in this critical area.
+
+Paper ID: 2407.18369v1
+
+Summary:
+This paper titled "AI Safety in Generative AI Large Language Models: A Survey" was authored by Jaymari Chua, Yun Li, Shiyi Yang, Chen Wang, Lina Yao and published on 2024-07-06.
+It falls under the categories: cs.CY, cs.CL.
+The research explores the following topic: Large Language Model (LLMs) such as ChatGPT that exhibit generative AI capabilities are facing accelerated adoption and innovation. The increased presence of Generative AI (GAI) inevitably raises concerns about the risks and safety associated with these models. This article provides an up-to-date survey of recent trends in AI safety research of GAI-LLMs from a computer scientist's perspective: specific and technical. In this survey, we explore the background and motivation for the identified harms and risks in the context of LLMs being generative language models; our survey differentiates by emphasising the need for unified theories of the distinct safety challenges in the research development and applications of LLMs. We start our discussion with a concise introduction to the workings of LLMs, supported by relevant literature. Then we discuss earlier research that has pointed out the fundamental constraints of generative models, or lack of understanding thereof (e.g., performance and safety trade-offs as LLMs scale in number of parameters). We provide a sufficient coverage of LLM alignment -- delving into various approaches, contending methods and present challenges associated with aligning LLMs with human preferences. By highlighting the gaps in the literature and possible implementation oversights, our aim is to create a comprehensive analysis that provides insights for addressing AI safety in LLMs and encourages the development of aligned and secure models. We conclude our survey by discussing future directions of LLMs for AI safety, offering insights into ongoing research in this critical area.
+
+Links:
+  - https://arxiv.org/abs/2407.18369v1
+  - https://arxiv.org/pdf/2407.18369v1

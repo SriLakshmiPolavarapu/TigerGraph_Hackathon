@@ -1,0 +1,21 @@
+Title: Towards Automated Deep Learning: Efficient Joint Neural Architecture and Hyperparameter Search
+
+Authors: Arber Zela, Aaron Klein, Stefan Falkner, Frank Hutter
+
+Published: 2018-07-18
+
+Categories: cs.LG, cs.AI, cs.CV, stat.ML
+
+Abstract:
+While existing work on neural architecture search (NAS) tunes hyperparameters in a separate post-processing step, we demonstrate that architectural choices and other hyperparameter settings interact in a way that can render this separation suboptimal. Likewise, we demonstrate that the common practice of using very few epochs during the main NAS and much larger numbers of epochs during a post-processing step is inefficient due to little correlation in the relative rankings for these two training regimes. To combat both of these problems, we propose to use a recent combination of Bayesian optimization and Hyperband for efficient joint neural architecture and hyperparameter search.
+
+Paper ID: 1807.06906v1
+
+Summary:
+This paper titled "Towards Automated Deep Learning: Efficient Joint Neural Architecture and Hyperparameter Search" was authored by Arber Zela, Aaron Klein, Stefan Falkner, Frank Hutter and published on 2018-07-18.
+It falls under the categories: cs.LG, cs.AI, cs.CV, stat.ML.
+The research explores the following topic: While existing work on neural architecture search (NAS) tunes hyperparameters in a separate post-processing step, we demonstrate that architectural choices and other hyperparameter settings interact in a way that can render this separation suboptimal. Likewise, we demonstrate that the common practice of using very few epochs during the main NAS and much larger numbers of epochs during a post-processing step is inefficient due to little correlation in the relative rankings for these two training regimes. To combat both of these problems, we propose to use a recent combination of Bayesian optimization and Hyperband for efficient joint neural architecture and hyperparameter search.
+
+Links:
+  - https://arxiv.org/abs/1807.06906v1
+  - https://arxiv.org/pdf/1807.06906v1

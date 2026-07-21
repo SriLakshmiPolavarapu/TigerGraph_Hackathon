@@ -1,0 +1,21 @@
+Title: Catastrophic Forgetting as Accessibility Collapse: A Three-Level Framework for Knowledge Persistence in Continual Learning
+
+Authors: Ayushman Trivedi, Bhavika Melwani
+
+Published: 2026-06-04
+
+Categories: cs.LG
+
+Abstract:
+Catastrophic forgetting is commonly interpreted as the irreversible erasure of previously acquired knowledge during sequential learning. In this work, we investigate an alternative perspective: that forgetting may arise not from complete destruction of task representations but from a loss of accessibility to preserved information. We introduce a three-level framework separating knowledge storage, representation, and accessibility, and evaluate each component through a series of continual-learning experiments on sequential CIFAR-100 classification using ResNet-18. Our analysis combines checkpoint persistence, linear probing, representation geometry, classifier-reset recovery, and layer-wise recoverability experiments. We observe complete behavioral forgetting of earlier tasks, with task accuracy collapsing from 54.8% to 0%, while linear probe performance retains approximately 76% of the original representational information. Furthermore, retraining only the final classifier restores 75.7% of the original task performance without modifying the backbone network. Layer-wise analysis reveals that early and intermediate layers preserve highly recoverable task information despite severe degradation at later stages. Projection-energy and principal-angle analyses indicate that retained knowledge persists as distributed high-dimensional representations rather than through preservation of a small dominant subspace. These findings suggest that catastrophic forgetting is better characterized as an accessibility failure than complete representational erasure, and that substantial task-relevant information remains embedded within neural representations even after functional forgetting has occurred.
+
+Paper ID: 2606.06032v1
+
+Summary:
+This paper titled "Catastrophic Forgetting as Accessibility Collapse: A Three-Level Framework for Knowledge Persistence in Continual Learning" was authored by Ayushman Trivedi, Bhavika Melwani and published on 2026-06-04.
+It falls under the categories: cs.LG.
+The research explores the following topic: Catastrophic forgetting is commonly interpreted as the irreversible erasure of previously acquired knowledge during sequential learning. In this work, we investigate an alternative perspective: that forgetting may arise not from complete destruction of task representations but from a loss of accessibility to preserved information. We introduce a three-level framework separating knowledge storage, representation, and accessibility, and evaluate each component through a series of continual-learning experiments on sequential CIFAR-100 classification using ResNet-18. Our analysis combines checkpoint persistence, linear probing, representation geometry, classifier-reset recovery, and layer-wise recoverability experiments. We observe complete behavioral forgetting of earlier tasks, with task accuracy collapsing from 54.8% to 0%, while linear probe performance retains approximately 76% of the original representational information. Furthermore, retraining only the final classifier restores 75.7% of the original task performance without modifying the backbone network. Layer-wise analysis reveals that early and intermediate layers preserve highly recoverable task information despite severe degradation at later stages. Projection-energy and principal-angle analyses indicate that retained knowledge persists as distributed high-dimensional representations rather than through preservation of a small dominant subspace. These findings suggest that catastrophic forgetting is better characterized as an accessibility failure than complete representational erasure, and that substantial task-relevant information remains embedded within neural representations even after functional forgetting has occurred.
+
+Links:
+  - https://arxiv.org/abs/2606.06032v1
+  - https://arxiv.org/pdf/2606.06032v1

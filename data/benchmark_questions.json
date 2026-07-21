@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "question": "What is retrieval augmented generation and how does it improve LLM accuracy?",
+    "expected_answer": "RAG combines information retrieval with LLM generation by first retrieving relevant documents from a knowledge base, then using them as context for the LLM to generate more accurate, grounded answers."
+  },
+  {
+    "id": 2,
+    "question": "Explain the transformer architecture and the role of self-attention mechanisms.",
+    "expected_answer": "The transformer uses self-attention to weigh the importance of different input tokens relative to each other, enabling parallel processing and capturing long-range dependencies without recurrence."
+  },
+  {
+    "id": 3,
+    "question": "How do graph neural networks differ from traditional neural networks?",
+    "expected_answer": "GNNs operate on graph-structured data, propagating information along edges between nodes through message passing, while traditional NNs process fixed-size vectors or grids."
+  },
+  {
+    "id": 4,
+    "question": "What are the main challenges in federated learning for healthcare applications?",
+    "expected_answer": "Key challenges include data heterogeneity across hospitals, privacy regulations like HIPAA, communication overhead, non-IID data distributions, and model convergence issues."
+  },
+  {
+    "id": 5,
+    "question": "Compare collaborative filtering and content-based recommendation systems.",
+    "expected_answer": "Collaborative filtering recommends based on user behavior patterns and similarities between users, while content-based systems recommend based on item features matching user preferences."
+  },
+  {
+    "id": 6,
+    "question": "How does RLHF work in training large language models?",
+    "expected_answer": "RLHF trains a reward model from human preference data, then uses reinforcement learning (typically PPO) to fine-tune the LLM to generate outputs that maximize the learned reward signal."
+  },
+  {
+    "id": 7,
+    "question": "What are the key differences between BERT and GPT architectures?",
+    "expected_answer": "BERT uses bidirectional encoder-only transformer for understanding tasks, while GPT uses autoregressive decoder-only transformer for generation. BERT is pre-trained with masked language modeling, GPT with next-token prediction."
+  },
+  {
+    "id": 8,
+    "question": "Explain knowledge graph embedding methods and their applications.",
+    "expected_answer": "KG embedding methods like TransE, RotatE, and ComplEx represent entities and relations as vectors in continuous space, enabling link prediction, knowledge base completion, and downstream reasoning tasks."
+  },
+  {
+    "id": 9,
+    "question": "What are the privacy concerns with large language models and how can they be mitigated?",
+    "expected_answer": "LLMs can memorize and leak training data, including PII. Mitigations include differential privacy during training, data deduplication, output filtering, and federated learning approaches."
+  },
+  {
+    "id": 10,
+    "question": "How does multi-hop reasoning work in knowledge graphs for question answering?",
+    "expected_answer": "Multi-hop reasoning traverses multiple edges in a knowledge graph to connect entities through intermediate relationships, enabling complex queries that require chaining multiple facts together."
+  }
+]

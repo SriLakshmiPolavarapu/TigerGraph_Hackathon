@@ -1,0 +1,21 @@
+Title: Sagalee: an Open Source Automatic Speech Recognition Dataset for Oromo Language
+
+Authors: Turi Abu, Ying Shi, Thomas Fang Zheng, Dong Wang
+
+Published: 2025-02-01
+
+Categories: cs.CL, cs.SD, eess.AS
+
+Abstract:
+We present a novel Automatic Speech Recognition (ASR) dataset for the Oromo language, a widely spoken language in Ethiopia and neighboring regions. The dataset was collected through a crowd-sourcing initiative, encompassing a diverse range of speakers and phonetic variations. It consists of 100 hours of real-world audio recordings paired with transcriptions, covering read speech in both clean and noisy environments. This dataset addresses the critical need for ASR resources for the Oromo language which is underrepresented. To show its applicability for the ASR task, we conducted experiments using the Conformer model, achieving a Word Error Rate (WER) of 15.32% with hybrid CTC and AED loss and WER of 18.74% with pure CTC loss. Additionally, fine-tuning the Whisper model resulted in a significantly improved WER of 10.82%. These results establish baselines for Oromo ASR, highlighting both the challenges and the potential for improving ASR performance in Oromo. The dataset is publicly available at https://github.com/turinaf/sagalee and we encourage its use for further research and development in Oromo speech processing.
+
+Paper ID: 2502.00421v1
+
+Summary:
+This paper titled "Sagalee: an Open Source Automatic Speech Recognition Dataset for Oromo Language" was authored by Turi Abu, Ying Shi, Thomas Fang Zheng, Dong Wang and published on 2025-02-01.
+It falls under the categories: cs.CL, cs.SD, eess.AS.
+The research explores the following topic: We present a novel Automatic Speech Recognition (ASR) dataset for the Oromo language, a widely spoken language in Ethiopia and neighboring regions. The dataset was collected through a crowd-sourcing initiative, encompassing a diverse range of speakers and phonetic variations. It consists of 100 hours of real-world audio recordings paired with transcriptions, covering read speech in both clean and noisy environments. This dataset addresses the critical need for ASR resources for the Oromo language which is underrepresented. To show its applicability for the ASR task, we conducted experiments using the Conformer model, achieving a Word Error Rate (WER) of 15.32% with hybrid CTC and AED loss and WER of 18.74% with pure CTC loss. Additionally, fine-tuning the Whisper model resulted in a significantly improved WER of 10.82%. These results establish baselines for Oromo ASR, highlighting both the challenges and the potential for improving ASR performance in Oromo. The dataset is publicly available at https://github.com/turinaf/sagalee and we encourage its use for further research and development in Oromo speech processing.
+
+Links:
+  - https://arxiv.org/abs/2502.00421v1
+  - https://arxiv.org/pdf/2502.00421v1

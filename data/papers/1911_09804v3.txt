@@ -1,0 +1,21 @@
+Title: Measuring Uncertainty through Bayesian Learning of Deep Neural Network Structure
+
+Authors: Zhijie Deng, Yucen Luo, Jun Zhu, Bo Zhang
+
+Published: 2019-11-22
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Bayesian neural networks (BNNs) augment deep networks with uncertainty quantification by Bayesian treatment of the network weights. However, such models face the challenge of Bayesian inference in a high-dimensional and usually over-parameterized space. This paper investigates a new line of Bayesian deep learning by performing Bayesian inference on network structure. Instead of building structure from scratch inefficiently, we draw inspirations from neural architecture search to represent the network structure. We then develop an efficient stochastic variational inference approach which unifies the learning of both network structure and weights. Empirically, our method exhibits competitive predictive performance while preserving the benefits of Bayesian principles across challenging scenarios. We also provide convincing experimental justification for our modeling choice.
+
+Paper ID: 1911.09804v3
+
+Summary:
+This paper titled "Measuring Uncertainty through Bayesian Learning of Deep Neural Network Structure" was authored by Zhijie Deng, Yucen Luo, Jun Zhu, Bo Zhang and published on 2019-11-22.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Bayesian neural networks (BNNs) augment deep networks with uncertainty quantification by Bayesian treatment of the network weights. However, such models face the challenge of Bayesian inference in a high-dimensional and usually over-parameterized space. This paper investigates a new line of Bayesian deep learning by performing Bayesian inference on network structure. Instead of building structure from scratch inefficiently, we draw inspirations from neural architecture search to represent the network structure. We then develop an efficient stochastic variational inference approach which unifies the learning of both network structure and weights. Empirically, our method exhibits competitive predictive performance while preserving the benefits of Bayesian principles across challenging scenarios. We also provide convincing experimental justification for our modeling choice.
+
+Links:
+  - https://arxiv.org/abs/1911.09804v3
+  - https://arxiv.org/pdf/1911.09804v3

@@ -1,0 +1,21 @@
+Title: Evaluating the Economic Implications of Using Machine Learning in Clinical Psychiatry
+
+Authors: Soaad Hossain, James Rasalingam, Arhum Waheed, Fatah Awil, Rachel Kandiah, Syed Ishtiaque Ahmed
+
+Published: 2024-11-07
+
+Categories: cs.CY, cs.AI, cs.CE, cs.HC, cs.LG
+
+Abstract:
+With the growing interest in using AI and machine learning (ML) in medicine, there is an increasing number of literature covering the application and ethics of using AI and ML in areas of medicine such as clinical psychiatry. The problem is that there is little literature covering the economic aspects associated with using ML in clinical psychiatry. This study addresses this gap by specifically studying the economic implications of using ML in clinical psychiatry. In this paper, we evaluate the economic implications of using ML in clinical psychiatry through using three problem-oriented case studies, literature on economics, socioeconomic and medical AI, and two types of health economic evaluations. In addition, we provide details on fairness, legal, ethics and other considerations for ML in clinical psychiatry.
+
+Paper ID: 2411.05856v1
+
+Summary:
+This paper titled "Evaluating the Economic Implications of Using Machine Learning in Clinical Psychiatry" was authored by Soaad Hossain, James Rasalingam, Arhum Waheed, Fatah Awil, Rachel Kandiah, Syed Ishtiaque Ahmed and published on 2024-11-07.
+It falls under the categories: cs.CY, cs.AI, cs.CE, cs.HC, cs.LG.
+The research explores the following topic: With the growing interest in using AI and machine learning (ML) in medicine, there is an increasing number of literature covering the application and ethics of using AI and ML in areas of medicine such as clinical psychiatry. The problem is that there is little literature covering the economic aspects associated with using ML in clinical psychiatry. This study addresses this gap by specifically studying the economic implications of using ML in clinical psychiatry. In this paper, we evaluate the economic implications of using ML in clinical psychiatry through using three problem-oriented case studies, literature on economics, socioeconomic and medical AI, and two types of health economic evaluations. In addition, we provide details on fairness, legal, ethics and other considerations for ML in clinical psychiatry.
+
+Links:
+  - https://arxiv.org/abs/2411.05856v1
+  - https://arxiv.org/pdf/2411.05856v1

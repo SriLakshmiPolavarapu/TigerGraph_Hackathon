@@ -1,0 +1,21 @@
+Title: Continual State Representation Learning for Reinforcement Learning using Generative Replay
+
+Authors: Hugo Caselles-Dupré, Michael Garcia-Ortiz, David Filliat
+
+Published: 2018-10-09
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+We consider the problem of building a state representation model in a continual fashion. As the environment changes, the aim is to efficiently compress the sensory state's information without losing past knowledge. The learned features are then fed to a Reinforcement Learning algorithm to learn a policy. We propose to use Variational Auto-Encoders for state representation, and Generative Replay, i.e. the use of generated samples, to maintain past knowledge. We also provide a general and statistically sound method for automatic environment change detection. Our method provides efficient state representation as well as forward transfer, and avoids catastrophic forgetting. The resulting model is capable of incrementally learning information without using past data and with a bounded system size.
+
+Paper ID: 1810.03880v3
+
+Summary:
+This paper titled "Continual State Representation Learning for Reinforcement Learning using Generative Replay" was authored by Hugo Caselles-Dupré, Michael Garcia-Ortiz, David Filliat and published on 2018-10-09.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: We consider the problem of building a state representation model in a continual fashion. As the environment changes, the aim is to efficiently compress the sensory state's information without losing past knowledge. The learned features are then fed to a Reinforcement Learning algorithm to learn a policy. We propose to use Variational Auto-Encoders for state representation, and Generative Replay, i.e. the use of generated samples, to maintain past knowledge. We also provide a general and statistically sound method for automatic environment change detection. Our method provides efficient state representation as well as forward transfer, and avoids catastrophic forgetting. The resulting model is capable of incrementally learning information without using past data and with a bounded system size.
+
+Links:
+  - https://arxiv.org/abs/1810.03880v3
+  - https://arxiv.org/pdf/1810.03880v3

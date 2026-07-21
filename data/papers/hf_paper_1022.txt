@@ -1,0 +1,1809 @@
+Title: arXiv paper 1022
+
+Categories: 8
+
+Abstract:
+An Improved Algorithm for Diameter-Optimally
+Augmenting Paths in a Metric Space
+Haitao Wang
+Department of Computer Science, Utah State University, Logan, UT 84322, USA.
+haitao.wang@usu.edu
+
+Abstract
+
+arXiv:1608.04456v1 [cs.DS] 16 Aug 2016
+
+Let P be a path graph of n vertices embedded in a metric space. We consider the problem of
+adding a new edge to P such that the diameter of the resulting graph is minimized. Previously
+(in ICALP 2015) the problem was solved in O(n log3 n) time. In this paper, based on new
+observations and different algorithmic techniques, we present an O(n log n) time algorithm.
+Keywords and phrases diameter, path graphs, augmenting paths, minimizing diameter, metric
+space
+
+1
+
+Introduction
+
+Let P be a path graph of n vertices embedded in a metric space. We consider the problem
+of adding a new edge to P such that the diameter of the resulting graph is minimized. The
+problem is formally defined as follows.
+Let G be a graph and each edge has a non-negative length. The length of any path of
+G is the total length of all edges of the path. For any two vertices u and v of G, we use
+dG (u, v) to denote the length of the shortest path from u to v in G. The diameter of G is
+defined as maxu,v∈G dG (u, v).
+Let P be a path graph of n vertices v1 , v2 , . . . , vn and there is an edge e(vi−1 , vi ) connecting
+vi−1 and vi for each 1 ≤ i ≤ n−1. Let V be the vertex set of P . We assume (V, |·|) is a metric
+space and |vi vj | is the distance of any two vertices vi and vj of V . Specifically, the following
+properties hold: (1) the triangle inequality: |vi vk | + |vk vj | ≥ |vi vj |; (2) |vi vj | = |vj vi | ≥ 0;
+(3) |vi vj | = 0 if i = j. In particular, for each edge e(vi−1 , vi ) of P , its length is equal to
+|vi−1 vi |. We assume that given any two vertices vi and vj of P , the distance |vi vj | can be
+obtained in O(1) time.
+Our goal is to find a new edge e connecting two vertices of P and add e to P , such that
+the diameter of the resulting graph P ∪ {e} is minimized.
+The problem has been studied before. Große et al. [10] solved the problem in O(n log3 n)
+time. In this paper, we present a new algorithm that runs in O(n log n) time. Our algorithm is
+based on new observations on the structures of the optimal solution and different algorithmic
+techniques. Following the previous work [10], we refer to the problem as the diameteroptimally augmenting path problem, or DOAP for short.
+
+1.1
+
+Related Work
+
+If the path P is in the Euclidean space Rd for a constant d, then Große et al. [10] also gave
+an O(n + 1/3 ) time algorithm that can find a (1 + )-approximation solution for the problem
+DOAP, for any  > 0. If P is in the Euclidean plane R2 , De Carulfel et al. [4] gave a linear
+time algorithm for adding a new edge to P to minimize the continuous diameter (i.e., the
+diameter is defined with respect to all points of P , not only vertices).
+The more general problem and many variations have also been studied before, e.g., see
+[1, 3, 5, 6, 9, 12, 13, 15] and the references therein. Consider a general graph G in which edges
+© Haitao Wang;
+licensed under Creative Commons License CC-BY
+Leibniz International Proceedings in Informatics
+Schloss Dagstuhl – Leibniz-Zentrum für Informatik, Dagstuhl Publishing, Germany
+
+2
+
+Diameter-Optimally Augmenting Paths
+
+have non-negative lengths. For an integer k, the goal of the general problem is to compute a
+set F of k new edges and add them to G such that the resulting graph has the minimum
+diameter. The problem is NP-hard [15] and some other variants are even W[2]-hard [6, 9].
+Approximation results have been given for the general problem and many of its variations,
+e.g., see [3, 6, 13]. The upper bounds and lower bounds on the values of the diameters of the
+augmented graphs have also been investigated, e.g. see [1, 12].
+Since diameter is an important metric of network performance, which measures the
+worst-case cost between any two nodes of the network, as discussed in [3, 5], the problem of
+augmenting graphs for minimizing the diameter and its variations have many practical applications, such as in data networks, telephone networks, transportation networks, scheduling
+problems, etc.
+As an application of our problem DOAP, consider the following scenario in transportation
+networks. Suppose there is a highway that connects several cities. In order to reduce the
+transportation time, we want to build a new highway connecting two cities such that the
+distance between the farthest two cities using both highways is minimized. Clearly, this is a
+problem instance of DOAP.
+
+1.2
+
+Our Approaches
+
+To tackle the problem, Große et al. [10] first gave an O(n log n) time algorithm for the
+decision version of the problem: Given any value λ, determine whether it is possible to add
+a new edge e into P such that the diameter of the resulting graph is at most λ. Then, by
+implementing the above decision algorithm in a parallel fashion and applying Megiddo’s
+parametric search [14], they solved the original problem DOAP in O(n log3 n) time [10]. For
+differentiation, we referred to the original problem DOAP as the optimization problem.
+Our improvement over the previous work [10] is twofold.
+First, we solve the decision problem in O(n) time. Our algorithm is based on the O(n log n)
+time algorithm in the previous work [10]. However, by discovering new observations on the
+problem structure and with the help of the range-minima data structure [2, 11], we avoid
+certain expensive operations and eventually achieve the O(n) time complexity.
+Second, comparing with the decision problem, our algorithm for the optimization problem
+is completely different from the previous work [10]. Let λ∗ be the diameter of the resulting
+graph in an optimal solution. Instead of using the parametric search, we identify a set S of
+candidate values such that λ∗ is in S and then we search λ∗ in S using our algorithm for the
+decision problem. However, computational difficulties arise for this approach due to that
+the set S is too large (|S| = Ω(n2 )) and computing certain values of S is time-consuming
+(e.g., for certain values of S, computing each of them takes O(n) time). To circumvent these
+difficulties, our algorithm has several steps. In each step, we shrink S significantly such that
+λ∗ always remains in S. More importantly, each step will obtain certain formation, based on
+which the next step can further reduce S. After several steps, the size of S is reduced to O(n)
+and all the remaining values of S can be computed in O(n log n) time. At this point we can
+use our decision algorithm to find λ∗ from S in additional O(n log n) time. Equipped with
+our linear time algorithm for the decision problem and utilizing several other algorithmic
+techniques such as the sorted-matrix searching techniques [7, 8] and range-minima data
+structure [2, 11], we eventually solve the optimization problem in O(n log n) time.
+The rest of the paper is organized as follows. In Section 2, we introduce some notation
+and observations. In Section 3, we present our algorithm for the decision problem. The
+optimization problem is solved in Section 4.
+
+H. Wang
+
+3
+vi
+
+v1
+
+vn
+
+vk
+
+vj
+
+vl
+
+Figure 1 Illustrating the resulting graph after a new edge e(vi , vj ) is added.
+
+2
+
+Preliminaries
+
+In this section, we introduce some notation and observations, some of which are from Große
+et al. [10].
+For any two vertices vi and vj of P , we use e(vi , vj ) to denote the edge connecting vi
+and vj in the metric space. Hence, e(vi , vj ) is in P if and only if |i − j| = 1. The length of
+e(vi , vj ) is |vi vj |.
+For any i and j with 1 ≤ i ≤ j ≤ n, we use G(i, j) to denote the resulting graph by
+adding the edge e(vi , vj ) into P . If i = j, G(i, j) is essentially P . Let D(i, j) denote the
+diameter of G(i, j).
+Our goal for the optimization problem DOAP is to find a pair of indices (i, j) with
+1 ≤ i ≤ j ≤ n such that D(i, j) is minimized. Let λ∗ = min1≤i≤j≤n D(i, j), i.e., λ∗ is the
+diameter in an optimal solution.
+Given any value λ, the decision problem is to determine whether λ ≥ λ∗ , or in other
+words, determine whether there exist a pair (i, j) with 1 ≤ i ≤ j ≤ n such that D(i, j) ≤ λ.
+If yes, we say that λ is a feasible value.
+Recall that for any graph G, dG (u, v) refers to the length of the shortest path between
+two vertices u and v in G.
+Consider any pair of indices (i, j) with 1 ≤ i ≤ j ≤ n. We define α(i, j), β(i, j), γ(i, j),
+and δ(i, j) as follows (refer to Fig. 1).
+I Definition 1. 1. Define α(i, j) to be the largest shortest path length in G(i, j) from v1 to
+all vertices vk with k ∈ [i, j], i.e., α(i, j) = maxi≤k≤j dG(i,j) (v1 , vk ).
+2. Define β(i, j) to be the largest shortest path length in G(i, j) from vn to all vertices vk
+with k ∈ [i, j], i.e., β(i, j) = maxi≤k≤j dG(i,j) (vk , vn ).
+3. Define γ(i, j) to be the largest shortest path length in G(i, j) from vk to vl for any k and
+l with i ≤ k ≤ l ≤ j, i.e., γ(i, j) = maxi≤k≤l≤j dG(i,j) (vk , vl ).
+4. Define δ(i, j) to be the shortest path length in G(i, j) from v1 to vn , i.e., δ(i, j) =
+dG(i,j) (v1 , vn ).
+It can be verified (also shown in [10]) that the following observation holds.
+I Observation 2. ([10]) D(i, j) = max{α(i, j), β(i, j), γ(i, j), δ(i, j)}.
+Further, due to the triangle inequality of the metric space, the following monotonicity
+properties hold.
+I Observation 3. ([10])
+1. For any 1 ≤ i ≤ j ≤ n − 1, α(i, j) ≤ α(i, j + 1), β(i, j) ≥ β(i, j + 1), γ(i, j) ≤ γ(i, j + 1),
+and δ(i, j) ≥ δ(i, j + 1).
+2. For any 1 ≤ i < j ≤ n, α(i, j) ≤ α(i + 1, j), β(i, j) ≥ β(i + 1, j), γ(i, j) ≥ γ(i + 1, j), and
+δ(i, j) ≤ δ(i + 1, j).
+
+4
+
+Diameter-Optimally Augmenting Paths
+
+For any pair (i, j) with 1 ≤ i ≤ j ≤ n, let P (i, j) denote the subpath of P between vi and
+P
+vj . Hence, dP (vi , vj ) is the length of P (i, j), i.e., dP (vi , vj ) = i≤k≤j−1 |vk vk+1 | if i < j
+and dP (vi , vj ) = 0 if i = j.
+In our algorithms, we will need to compute f (i, j) for each f ∈ {α, β, γ, δ}. The next
+observation gives an algorithm. The result was also given by Große et al. [10] and we present
+the proof here for completeness of this paper.
+I Lemma 4. ([10]) With O(n) time preprocessing, given any pair (i, j) with 1 ≤ i ≤ j ≤ n,
+we can compute dP (i, j) and δ(i, j) in O(1) time, and compute α(i, j) and β(i, j) in O(log n)
+time.
+Proof. As preprocessing, we compute the prefix sum array A[1 · · · n] such that A[k] =
+P
+1≤l≤k−1 |vl vl+1 | for each k ∈ [2, n] and A[1] = 0. This can be done in O(n) time. This
+finishes our preprocessing.
+Consider any pair (i, j) with 1 ≤ i ≤ j ≤ n. Note that dP (vi , vj ) = A[j] − A[i], which
+can be computed in constant time.
+For δ(i, j), it is easy to see that δ(i, j) = min{dP (1, n), dP (1, i) + |vi vj | + dP (j, n)}. Hence,
+δ(i, j) can be computed in constant time.
+For α(i, j), if we consider dG(i,j) (v1 , vk ) as a function of k ∈ [i, j], then dG(i,j) (v1 , vk ) is a
+unimodal function. More specifically, as k changes from i to j, dG(i,j) (v1 , vk ) first increases
+and then decreases. Hence, α(i, j) can be computed in O(log n) time by binary search on
+the sequence vi , vi+1 , . . . , vj .
+Computing β(i, j) can be also done in O(log n) time in a similar way to α(i, j). We omit
+the details.
+J
+For computing γ(i, j), although one may be able to do so in O(n) time, it is not clear
+to us how to make it in O(log n) time even with O(n log n) time preprocessing. As will be
+seen later, this is the major difficulty for solving the problem DOAP efficiently. We refer to
+it as the γ-computation difficulty. Our main effort will be to circumvent the difficulty by
+providing alternative and efficient solutions.
+For any pair (i, j) with 1 ≤ i ≤ j ≤ n, we use C(i, j) to denote the cycle P (i, j) ∪ e(vi , vj ).
+Consider dG(i,j) (vk , vl ) for any k and l with i ≤ k ≤ l ≤ j. Notice that the shortest
+path from vk to vl in C(i, j) is also a shortest path in G(i, j). Hence, dG(i,j) (vk , vl ) =
+dC(i,j) (vk , vl ). There are two paths in C(i, j) from vk to vl : one is P (k, l) and the other
+uses the edge e(vi , vj ). We use d1C(i,j) (vk , vl ) to denote the length of the above second
+path, i.e., d1C(i,j) (vk , vl ) = dP (vi , vk ) + |vi vj | + dP (vl , vj ). With these notation, we have
+dC(i,j) (vk , vl ) = min{dP (vk , vl ), d1C(i,j) (vk , vl )}. According to the definition of γ(i, j), we
+summarize our discussion in the following observation.
+I Observation 5. For any pair (i, j) with 1 ≤ i ≤ j ≤ n, γ(i, j) = maxi≤k≤l≤j dC(i,j) (vk , vl ),
+with dC(i,j) (vk , vl ) = min{dP (vk , vl ), d1C(i,j) (vk , vl )} and d1C(i,j) (vk , vl ) = dP (vi , vk ) + |vi vj | +
+dP (vl , vj ).
+In the following, to simplify the notation, when the context is clear, we use index i to
+refer to vertex vi . For example, dP (i, j) refers to dP (vi , vj ) and e(i, j) refers to e(vi , vj ).
+
+3
+
+The Decision Problem
+
+In this section, we present our O(n) time algorithm for solving the decision problem. For any
+value λ, our goal is to determine whether λ is feasible, i.e. whether λ ≥ λ∗ , or equivalently,
+
+H. Wang
+
+5
+
+α
+γ
+
+λ
+
+β
+δ
+Ii (δ) Ii (β)
+
+Ii (α) Ii (γ)
+
+Figure 2 Illustrating f (i, j) as j changes in [i, n] and Ii (f ) for f ∈ {α, β, γ, δ}.
+
+whether there is a pair (i, j) with 1 ≤ i ≤ j ≤ n such that D(i, j) ≤ λ. If yes, our algorithm
+can also find such a feasible edge e(i, j).
+By Observation 2, D(i, j) ≤ λ holds if and only if f (i, j) ≤ λ for each f ∈ {α, β, γ, δ}.
+To determine whether λ is feasible, our algorithm will determine for each i ∈ [1, n], whether
+there exists j ∈ [i, n] such that f (i, j) ≤ λ for each f ∈ {α, β, γ, δ}.
+For any fixed i ∈ [1, n], we consider α(i, j), β(i, j), γ(i, j), and δ(i, j) as functions of
+j ∈ [i, n]. In light of Observation 3, α(i, j) and γ(i, j) are monotonically increasing and β(i, j)
+and δ(i, j) are monotonically decreasing (e.g., see Fig. 2). We define four indices Ii (f ) for
+f ∈ {α, β, γ, δ} as follows. Refer to Fig. 2.
+I Definition 6. Define Ii (α) to be the largest index j ∈ [i, n] such that α(i, j) ≤ λ. We
+define Ii (γ) similarly to Ii (α). If β(i, n) ≤ λ, then define Ii (β) to be the smallest index
+j ∈ [i, n] such that β(i, j) ≤ λ; otherwise, let Ii (β) = ∞. We define Ii (δ) similarly to Ii (β).
+As discussed in [10], λ is feasible if and only if [1, Ii (α)]∩[Ii (β), n]∩[1, Ii (γ)]∩[Ii (δ), n] 6= ∅
+for some i ∈ [1, n]. By Observation 3, we have the following lemma.
+I Lemma 7. For any i ∈ [1, n − 1], Ii (α) ≥ Ii+1 (α), Ii (β) ≥ Ii+1 (β), Ii (γ) ≤ Ii+1 (γ), and
+Ii (δ) ≤ Ii+1 (δ) (e.g., see Fig. 3).
+Proof. According to Observation 3, α(i, j) ≤ α(i + 1, j). This implies that Ii (α) ≥ Ii+1 (α)
+by the their definitions (e.g., see Fig. 3). The other three cases for β, γ, and δ are similar. J
+β(i, j)
+β(i + 1, j)
+
+γ(i, j)
+γ(i + 1, j)
+
+δ(i, j)
+
+λ
+
+λ
+
+Ii+1 (β) Ii (β)
+
+δ(i + 1, j)
+
+α(i + 1, j)
+α(i, j)
+
+Ii+1 (α)Ii (α)
+
+Ii (δ) Ii+1 (δ)
+
+Ii (γ) Ii+1 (γ)
+
+Figure 3 Illustrating f (i, j) and f (i + 1, j) as j changes and Ii (f ) and Ii+1 (f ) for f ∈ {α, β, γ, δ}.
+
+3.1
+
+Computing Ii (α), Ii (β), and Ii (δ) for all i ∈ [1, n]
+
+In light of Lemma 7, for each f ∈ {α, β, δ}, we compute Ii (f ) for all i = 1, 2, . . . , n in O(n)
+time, as follows.
+We discuss the case for δ first. According to Lemma 4, δ(i, j) can be computed in constant
+time for any pair (i, j) with 1 ≤ i ≤ n. We can compute Ii (δ) for all i ∈ [1, n] in O(n) time
+by the following simple algorithm. We first compute I1 (δ), which is done by computing
+δ(1, j) from j = 1 incrementally until the first time δ(1, j) ≤ λ. Then, to compute I2 (δ),
+
+6
+
+Diameter-Optimally Augmenting Paths
+
+vi
+
+v1
+
+vn
+
+vk−1
+vk
+
+vj
+
+Figure 4 Illustrating the path (the dotted curve) from vn to vk−1 using the edge e(i, j).
+
+we compute δ(2, j) from j = I1 (δ) incrementally until the first time δ(2, j) ≤ λ. Next, we
+compute Ii (δ) for i = 3, 4, . . . , n in the same way. The total time is O(n). The correctness is
+based on the monotonicity property of Ii (δ) in Lemma 7.
+To compute Ii (α) or Ii (β) for i = 1, 2, . . . , n, using a similar approach as above, we can
+only have an O(n log n) time algorithm since computing each α(i, j) or β(i, j) takes O(log n)
+time by Lemma 4. In the following Lemma 8, we give another approach that only needs
+O(n) time.
+I Lemma 8. Ii (α) and Ii (β) for all i = 1, 2, . . . , n can be computed in O(n) time.
+Proof. We only discuss the case for β since the other case for α is analogous.
+The key idea is that for each pair (i, j), instead of computing the exact value of β(i, j), it
+is sufficient to determine whether β(i, j) ≤ λ. In what follows, we show that with O(n) time
+preprocessing, we can determine whether β(i, j) ≤ λ in O(1) time for any index pair (i, j)
+with 1 ≤ i ≤ j ≤ n.
+Let k be the smallest index in [1, n] such that dP (k, n) ≤ λ. This implies that dP (k−1, n) >
+λ if k > 1. As preprocessing, we compute the index k, which can be easily done in O(n) time
+(or even in O(log n) time by binary search).
+Consider any pair (i, j) for 1 ≤ i ≤ j ≤ n. Our goal is to determine whether β(i, j) ≤ λ.
+1. If k ≤ i, then it is vacuously true that β(i, j) ≤ λ.
+2. If k > j, then β(i, j) > λ.
+3. If i < k ≤ j, a crucial observation is that β(i, j) ≤ λ if and only if the length of the path
+from vn to vk−1 using the new edge e(i, j), i.e., dP (i, k − 1) + |vi vj | + dP (j, n), is less than
+or equal to λ. See Fig. 4. Clearly, the above path length can be computed in constant
+time, and thus, we can determine whether β(i, j) ≤ λ in constant time.
+Therefore, we can determine whether β(i, j) ≤ λ in constant time for any pair (i, j) with
+1 ≤ i ≤ j ≤ n. With this result, we can use a similar algorithm as the above for computing
+Ii (δ) to compute Ii (β) for all i ∈ [1, n] in O(n) time. The lemma thus follows.
+J
+Due to the γ-computation difficulty mentioned in Section 2, it is not clear whether it
+possible to compute Ii (γ) for all i = 1, . . . , n in O(n log n) time.
+Recall that λ is feasible if and only if there exists an i ∈ [1, n] such that [1, Ii (α)] ∩
+[Ii (β), n] ∩ [1, Ii (γ)] ∩ [Ii (δ), n] 6= ∅. Now that Ii (f ) for all i = 1, 2, . . . , n and f ∈ {α, β, δ}
+have been computed but the Ii (γ)’s are not known, in the following we will use an “indirect”
+approach to determine whether the intersection of the above four intervals is empty for every
+i ∈ [1, n].
+
+3.2
+
+Determining the Feasibility of λ
+
+For each i ∈ [1, n], define Qi = [1, Ii (α)] ∩ [Ii (β), n] ∩ [1, Ii (γ)] ∩ [Ii (δ), n]. Our goal is to
+determine whether Qi is empty for each i = 1, 2, . . . , n.
+
+H. Wang
+
+7
+i
+j
+
+ai gj + 1 gj
+
+Figure 5 Illustrating the graph G(i, ai ) with gj + 1 ≤ ai .
+
+Consider any i ∈ [1, n]. Since Ii (f ) for each f ∈ {α, β, δ} is known, we can determine the
+intersection [1, Ii (α)] ∩ [Ii (β), n] ∩ [Ii (δ), n] in constant time. If the intersection is empty,
+then we know that Qi = ∅. In the following, we assume the intersection is not empty.
+Let ai be the smallest index in the above intersection. As in [10], an easy observation is
+that Qi 6= ∅ if and only if ai ∈ [1, Ii (γ)]. If ai ≤ i (note that ai ≤ i actually implies ai = i
+since ai ≥ Ii (β) ≥ i), it is obviously true that ai ∈ [1, Ii (γ)] since i ≤ Ii (γ). Otherwise (i.e.,
+i < ai ), according to the definition of Ii (γ), ai ∈ [1, Ii (γ)] if and only if γ(i, ai ) ≤ λ. Große
+et al. [10] gave an approach that can determine whether γ(i, ai ) ≤ λ in O(log n) time after
+O(n log n) time preprocessing. In the following, by new observations and with the help of the
+range minima data structure [2, 11], we show that whether γ(i, ai ) ≤ λ can be determined in
+constant time after O(n) time preprocessing.
+For each j ∈ [1, n], define gj as the largest index k in [j, n] such that dP (j, k) ≤ λ. Observe
+that g1 ≤ g2 ≤ · · · ≤ gn .
+Consider any i and the corresponding ai with i < ai . Our goal is to determine
+whether γ(i, ai ) ≤ λ. Since we are talking about γ(i, ai ), we are essentially considering
+the graph G(i, ai ). Recall that C(i, ai ) is the cycle P (i, ai ) ∪ e(i, ai ). By Observation 5,
+γ(i, ai ) = maxi≤k≤l≤ai dC(i,ai ) (k, l), and further, dC(i,j) (k, l) = min{dP (k, l), d1C(i,ai ) (k, l)}
+and d1C(i,ai ) (k, l) = dP (i, k) + |vi vai | + dP (l, ai ).
+For any j ∈ [i, ai − 1], if gj ≤ ai − 1, then vertex gj + 1 is in the cycle C(i, ai ). Note that
+1
+dC(i,ai ) (j, gj + 1) = dP (i, j) + |vi vai | + dP (gj + 1, ai ). See Fig. 5.
+We have the following lemma.
+I Lemma 9. γ(i, ai ) ≤ λ if and only if for each j ∈ [i, ai −1], either gj ≥ ai or d1C(i,ai ) (j, gj +
+1) ≤ λ.
+Proof.
+Suppose γ(i, ai ) ≤ λ. Consider any j ∈ [i, ai − 1] such that gj ≤ ai − 1. Below we
+prove d1C(i,ai ) (j, gj + 1) ≤ λ must hold.
+By the definition of gj , it holds that dP (j, gj +1) > λ. Since γ(i, ai ) ≤ λ and dC(i,ai ) (j, gj +
+1) ≤ γ(i, ai ), we obtain dC(i,ai ) (j, gj +1) ≤ λ. Note that dC(i,ai ) (j, gj +1) = min{dP (j, gj +
+1), d1C(i,ai ) (j, gj + 1)}. Hence, it must hold that d1C(i,ai ) (j, gj + 1) ≤ λ.
+This proves one direction of the lemma.
+Suppose it is true that for each j ∈ [i, ai − 1], either gj ≥ ai or d1C(i,ai ) (j, gj + 1) ≤ λ. We
+prove γ(i, ai ) ≤ λ below.
+Consider any pair of indices (k, l) with i ≤ k ≤ l ≤ ai . To prove γ(i, ai ) ≤ λ, it is sufficient
+to show that dC(i,ai ) (k, l) ≤ λ. If k = l, then dC(i,ai ) (k, l) = 0 and thus dC(i,ai ) (k, l) ≤ λ
+obviously holds. In the following we assume k < l. This implies that k ≤ ai − 1. Hence,
+either gk ≥ ai or d1C(i,ai ) (k, gk + 1) ≤ λ.
+Recall that dC(i,ai ) (k, l) = min{dP (k, l), d1C(i,ai ) (k, l)}.
+If gk ≥ ai , then l ≤ ai ≤ gk , and thus, dP (k, l) ≤ λ by the definition of gk . Hence, we
+obtain dC(i,ai ) (k, l) ≤ λ.
+
+8
+
+Diameter-Optimally Augmenting Paths
+
+Otherwise, we have d1C(i,ai ) (k, gk + 1) ≤ λ. If l ≤ gk , we again have dP (k, l) ≤ λ and thus
+dC(i,ai ) (k, l) ≤ λ. If l ≥ gk + 1, then dP (l, ai ) ≤ dP (gk + 1, ai ). Hence, d1C(i,ai ) (k, l) =
+dP (i, k) + |vi vai | + dP (l, ai ) ≤ dP (i, k) + |vi vai | + dP (gk + 1, ai ) = d1C(i,ai ) (k, gk + 1) ≤ λ.
+Consequently, we again obtain dC(i,ai ) (k, l) ≤ λ.
+This proves the other direction of the lemma.
+J
+Recall that g1 ≤ g2 ≤ · · · ≤ gn . For each k ∈ [1, n], define hk to be the smallest index j
+in [1, k] with gj ≥ k. Observe that h1 ≤ h2 ≤ · · · ≤ hn .
+Note that if i < hai , then for each j ∈ [i, hai − 1], gj < ai and gj + 1 ≤ ai . Due to the
+preceding lemma, we further have the following lemma.
+I Lemma 10. γ(i, ai ) ≤ λ if and only if either hai ≤ i or d1C(i,ai ) (j, gj + 1) ≤ λ holds for
+each j ∈ [i, hai − 1].
+Proof.
+Suppose γ(i, ai ) ≤ λ. If hai ≤ i, then we do not need to prove anything. In the
+following, we assume hai > i. Consider any j ∈ [i, hai − 1]. Our goal is to show that
+d1C(i,ai ) (j, gj + 1) ≤ λ holds.
+Indeed, since γ(i, ai ) ≤ λ, by Lemma 9, we have either gj ≥ ai or d1C(i,ai ) (j, gj + 1) ≤ λ.
+Since j ∈ [i, hai − 1], gj < ai . Hence, it must be that d1C(i,ai ) (j, gj + 1) ≤ λ.
+This proves one direction of the lemma.
+Suppose either hai ≤ i or d1C(i,ai ) (j, gj + 1) ≤ λ holds for each j ∈ [i, hai − 1]. Our goal is
+to show that γ(i, ai ) ≤ λ. Consider any k ∈ [i, ai − 1]. By Lemma 9, it is sufficient to
+show that either gk ≥ ai or d1C(i,ai ) (k, gk + 1) ≤ λ.
+If hai ≤ i, then since k ≥ i, we obtain gk ≥ ai by the definition of hai .
+Otherwise, d1C(i,ai ) (j, gj + 1) ≤ λ holds for each j ∈ [i, hai − 1]. If k ≥ hai , then we still
+have gk ≥ ai . Otherwise, k is in [i, hai − 1], and thus it holds that d1C(i,ai ) (k, gk + 1) ≤ λ.
+This proves the other direction of the lemma.
+J
+Let |C(i, ai )| denote the total length of the cycle C(i, ai ), i.e., |C(i, ai )| = dP (i, ai ) +
+|vi vai |. The following observation is crucial because it immediately leads to our algorithm in
+Lemma 12.
+I Observation 11. γ(i, ai ) ≤ λ if and only if either hai ≤ i or minj∈[i,hai −1] {dP (j, gj +1)} ≥
+|C(i, ai )| − λ.
+Proof. Suppose hai > i. Then, for each j ∈ [i, hai − 1], gj < ai and gj + 1 ≤ ai . Note that
+d1C(i,ai ) (j, gj + 1) = |C(i, ai )| − dP (i, gj + 1). Hence, d1C(i,ai ) (j, gj + 1) ≤ λ is equivalent to
+dP (j, gj + 1) ≥ |C(i, ai )| − λ. Therefore, d1C(i,ai ) (j, gj + 1) ≤ λ holds for each j ∈ [i, hai − 1]
+if and only if minj∈[i,hai −1] {dP (j, gj + 1)} ≥ |C(i, ai )| − λ.
+By Lemma 10, the observation follows.
+J
+I Lemma 12. With O(n) time preprocessing, given any i ∈ [1, n] and the corresponding ai
+with i < ai , whether γ(i, ai ) ≤ λ can be determined in constant time.
+Proof. As preprocessing, we first compute gj for all j = 1, 2, . . . , n, which can be done in
+O(n) time due to the monotonicity property g1 ≤ g2 ≤ . . . ≤ gn . Then, we compute hk for
+all k = 1, 2, . . . , n, which can also be done in O(n) time due to the monotonicity property
+h1 ≤ h2 ≤ . . . ≤ hn . Next, we compute an array B[1, . . . , n] with B[j] = dP (j, gj + 1) for
+each j ∈ [1, n] (let dP (j, gj + 1) = ∞ if gj + 1 > n). We build a range-minima data structure
+
+H. Wang
+
+on B [2, 11]. The range minima data structure can be built in O(n) time such that given any
+pair (i, j) with 1 ≤ i ≤ j ≤ n, the minimum value of the subarray B[i · · · j] can be returned
+in constant time [2, 11]. This finishes the preprocessing step, which takes O(n) time in total.
+Consider any i and the corresponding ai with i < ai . Our goal is to determine whether
+γ(i, ai ) ≤ λ, which can be done in O(1) time as follows.
+By Observation 11, γ(i, ai ) ≤ λ if and only if either hai ≤ i or minj∈[i,hai −1] {dP (j, gj +
+1)} ≥ |C(i, ai )| − λ. Since hai has been computed in the preprocessing, we check whether
+hai ≤ i is true. If yes, then we are done with the assertion that γ(i, ai ) ≤ λ. Otherwise, we
+need to determine whether minj∈[i,hai −1] {dP (j, gj + 1)} ≥ |C(i, ai )| − λ holds. To this end,
+we first compute minj∈[i,hai −1] {dP (j, gj + 1)} in constant time by querying the range-minima
+data structure on B with (i, hai − 1). Note that |C(i, ai )| can be computed in constant time.
+Therefore, we can determine whether γ(i, ai ) ≤ λ in O(1) time. This proves the lemma. J
+With Lemma 12, the decision problem can be solved in O(n) time. The proof of the
+following theorem summarizes our algorithm.
+I Theorem 13. Given any λ, we can determine whether λ is feasible in O(n) time, and
+further, if λ is feasible, a feasible edge can be found in O(n) time.
+Proof. First, we do the preprocessing in Lemma 4 in O(n) time. Then, for each f ∈ {α, β, δ},
+we compute Ii (f ) for all i = 1, 2, . . . , n, in O(n) time. We also do the preprocessing in
+Lemma 12.
+Next, for each i ∈ [1, n], we do the following. Compute the intersection [1, Ii (α)] ∩
+[Ii (β), n] ∩ [Ii (δ), n] in constant time. If the intersection is empty, then we are done for this
+i. Otherwise, obtain the smallest index ai in the above intersection. If ai ≤ i, then we
+stop the algorithm with the assertion that λ is feasible and report e(i, ai ) as a feasible edge.
+Otherwise, we use Lemma 12 to determine whether γ(i, ai ) ≤ λ in constant time. If yes, we
+stop the algorithm with the assertion that λ is feasible and report e(i, ai ) as a feasible edge.
+Otherwise, we proceed on i + 1.
+If the algorithm does not stop after we check all i ∈ [1, n], then we stop the algorithm
+with the assertion that λ is not feasible. Clearly, we spend O(1) time on each i, and thus,
+the total time of the algorithm is O(n).
+J
+
+4
+
+The Optimization Problem
+
+In this section, we present our algorithm that solves the optimization problem in O(n log n)
+time, by making use of our algorithm for the decision problem given in Section 3 (we will
+refer to it as the decision algorithm). It is sufficient to compute λ∗ , after which we can use
+our decision algorithm to find an optimal new edge in additional O(n) time.
+We start with an easy observation that λ∗ must be equal to the diameter D(i, j) of G(i, j)
+for some pair (i, j) with 1 ≤ i ≤ j ≤ n. Further, by Observation 2, λ∗ is equal to f (i, j) for
+some f ∈ {α, β, γ, δ} and some pair (i, j) with 1 ≤ i ≤ j ≤ n.
+For each f ∈ {α, β, γ, δ}, define Sf = {f (i, j) | 1 ≤ i ≤ j ≤ n}. Let S = ∪f ∈{α,β,γ,δ} Sf .
+According to our discussion above, λ∗ is in S. Further, note that λ∗ is the smallest feasible
+value of S. We will not compute the entire set S since |S| = Ω(n2 ). For each f ∈ {α, β, γ, δ},
+let λf be the smallest feasible value in Sf . Hence, we have λ∗ = min{λα , λβ , λγ , λδ }.
+In the following, we first compute λα , λβ , λδ in O(n log n) time by using our decision
+algorithm and the sorted-matrix searching techniques [7, 8].
+
+9
+
+10
+
+Diameter-Optimally Augmenting Paths
+
+4.1
+
+Computing λα , λβ , and λδ
+
+For convenience, we begin with computing λβ .
+We define an n × n matrix M [1 · · · n; 1 · · · n]: For each 1 ≤ i ≤ n and 1 ≤ j ≤ n, define
+M [i, j] = β(i, j) if j ≥ i and M [i, j] = β(i, i) otherwise. By Observation 3, the following
+lemma shows that M is a sorted matrix in the sense that each row is sorted in descending
+order from left to right and each column is sorted in descending order from top to bottom.
+I Lemma 14. For each 1 ≤ i ≤ n, M [i, j] ≥ M [i, j + 1] for any j ∈ [1, n − 1]; for each
+1 ≤ j ≤ n, M [i, j] ≥ M [i + 1, j] for any i ∈ [1, n − 1].
+Proof. Consider any two adjacent matrix elements M [i, j] and M [i, j + 1] in the same
+row. If j ≥ i, then M [i, j] = β(i, j) and M [i, j + 1] = β(i, j + 1). By Observation 3,
+M [i, j] ≥ M [i, j + 1]. If j < i, then M [i, j] = M [i, j + 1] = β(i, i). Hence, in either case,
+M [i, j] ≥ M [i, j + 1] holds.
+Consider any two adjacent matrix elements M [i, j] and M [i + 1, j] in the same column.
+If j ≥ i + 1, then M [i, j] = β(i, j) and M [i + 1, j] = β(i + 1, j). By Observation 3, we obtain
+M [i, j] ≥ M [i, j + 1]. If j < i + 1, then M [i, j] = β(j, j) and M [i, j + 1] = β(j + 1, j + 1).
+Note that β(j, j) is essentially equal to dP (j, n) and β(j + 1, j + 1) is equal to dP (j + 1, n).
+Clearly, dP (j, n) ≥ dP (j + 1, n). Hence, in either case, M [i, j] ≥ M [i, j + 1].
+J
+Note that each element of Sβ is in M and vice versa. Since λβ is the smallest feasible
+value of Sβ , λβ is also the smallest feasible value of M . We do not construct M explicitly.
+Rather, given any i and j, we can “evaluate” M [i, j] in O(log n) time since β(i, j) can be
+computed in O(log n) time if i ≤ j by Lemma 4. Using the sorted-matrix searching techniques
+[7, 8], we can find λβ in M by calling our decision algorithm O(log n) times and evaluating
+O(n) elements of M . The total time on calling the decision algorithm is O(n log n) and the
+total time on evaluating matrix elements is also O(n log n). Hence, we can compute λβ in
+O(n log n) time.
+Computing λα and λδ can done similarly in O(n log n) time, although the corresponding
+sorted matrices may be defined slightly differently. We omit the details. However, we cannot
+compute λγ in O(n log n) time in the above way, and again this is due to the λ-computation
+difficulty mentioned in Section 2.
+Note that having λα , λβ , and λδ essentially reduces our search space for λ∗ from S to
+Sγ ∪ {λα , λβ , λδ }.
+We compute λ1 = min{λα , λβ , λδ }. Thus, λ∗ = min{λ1 , λγ }. Hence, if λγ ≥ λ1 , then
+∗
+λ = λ1 and we are done for computing λ∗ . Otherwise (i.e., λγ < λ1 ), it must be that
+λ∗ = λγ and we need to compute λγ . To compute λγ , again we cannot use the similar way
+as the above for computing λβ . Instead, we use the following approach. We should point out
+that the success of the approach relies on the information implied by λγ < λ1 .
+
+4.2
+
+Computing λ∗ in the Case λγ < λ1
+
+We assume λγ < λ1 . Hence, λ∗ = λγ . Let e(i∗ , j ∗ ) be the new edge added to P in an optimal
+solution. We also call e(i∗ , j ∗ ) an optimal edge.
+Since λ∗ = λγ < λ1 , we have the following observation.
+I Observation 15. If λγ < λ1 and e(i∗ , j ∗ ) is an optimal edge, then λ∗ = γ(i∗ , j ∗ ).
+Proof. Assume to the contrary that λ∗ =
+6 γ(i∗ , j ∗ ). Then, by Observation 2, λ∗ is equal to
+one of α(i∗ , j ∗ ), β(i∗ , j ∗ ), and δ(i∗ , j ∗ ). Without loss of generality, assume λ∗ = α(i∗ , j ∗ ).
+
+H. Wang
+
+11
+
+γ
+λ1
+
+α
+β
+δ
+
+ai ∗ − 1 ai ∗
+
+ai∗ + 1
+
+Figure 6 Illustrating f (i∗ , j) as j changes for f ∈ {α, β, γ, δ}. The three indices ai∗ − 1, ai∗ , and
+a
+
+i∗
+
++ 1 are shown.
+
+Since α(i∗ , j ∗ ) is in Sα , λ∗ must be the smallest feasible value of Sα , i.e., λ∗ = λα . However,
+this contradicts with that λ∗ = λγ < λ1 = min{λα , λβ , λγ } ≤ λα .
+J
+For any i ∈ [1, n], for each f ∈ {α, β, γ, δ}, with respect to λ1 , we define Ii0 (f ) in a similar
+way to Ii (f ) defined in Section 3 with respect to λ except that we change “≤ λ” to “< λ1 ”.
+Specifically, define Ii0 (α) to be the largest index j ∈ [i, n] such that α(i, j) < λ1 . I 0 (γ) is
+defined similarly to Ii0 (α). If β(i, n) < λ1 , then define Ii0 (β) to be the smallest index j ∈ [i, n]
+such that β(i, j) < λ1 ; otherwise Ii0 (β) = ∞. Ii0 (δ) is defined similarly to Ii0 (β). Note that
+similar monotonicity properties for Ii0 (f ) with f ∈ {α, β, γ, δ} to those in Lemma 7 also hold.
+Recall that e(i∗ , j ∗ ) is an optimal edge. An easy observation is that since λ1 is strictly
+larger than λ∗ , the intersection [1, Ii0∗ (α)] ∩ [Ii0∗ (β), n] ∩ [Ii0∗ (δ), n] cannot be empty. Let ai∗
+be the smallest index in the above intersection. Note that i∗ ≤ ai∗ since i∗ ≤ Ii0∗ (β) ≤ ai∗ .
+The following lemma shows that e(i∗ , ai∗ ) is actually an optimal edge.
+I Lemma 16. If λγ < λ1 and e(i∗ , j ∗ ) is an optimal edge, then j ∗ = ai∗ .
+Proof. For any pair (i, j) with 1 ≤ i ≤ j ≤ n, let η(i, j) = max{α(i, j), β(i, j), δ(i, j)}. By
+Observation 2, D(i, j) = max{γ(i, j), η(i, j)}.
+We first prove the following claim: If γ(i∗ , ai∗ ) ≥ η(i∗ , ai∗ ), then j ∗ = ai∗ (e.g., see
+Fig. 6).
+On the one hand, consider any j ∈ [i∗ , ai∗ − 1]. By the definition of ai∗ , η(i∗ , j) ≥ λ1 .
+Since λ1 > λγ = λ∗ , η(i∗ , j) > λ∗ . By Observation 2, D(i∗ , j) ≥ η(i∗ , j) > λ∗ . Hence, j
+cannot be j ∗ since otherwise D(i∗ , j) would be equal to λ∗ , incurring contradiction.
+On the other hand, consider any j ∈ [a∗ + 1, n]. By Observation 2, D(i∗ , j) ≥ γ(i∗ , j). By
+Observation 3, γ(i∗ , j) ≥ γ(i∗ , ai∗ ). Hence, D(i∗ , j) ≥ γ(i∗ , ai∗ ). Further, since γ(i∗ , ai∗ ) ≥
+η(i∗ , ai∗ ) (the claim hypothesis), we have D(i∗ , ai∗ ) = max{γ(i∗ , ai∗ ), η(i∗ , ai∗ )} = γ(i∗ , ai∗ ).
+Therefore, we obtain D(i∗ , ai∗ ) ≤ D(i∗ , j). This implies that j ∗ = ai∗ . Hence, the claim
+follows.
+We proceed to prove the lemma. Based on the above claim, it is sufficient to show that
+∗
+γ(i , ai∗ ) ≥ η(i∗ , ai∗ ), as follows.
+Assume to the contrary that γ(i∗ , ai∗ ) < η(i∗ , ai∗ ). Then, D(i∗ , ai∗ ) = η(i∗ , ai∗ ). According to the definition of ai∗ , η(i∗ , ai∗ ) < λ1 . Hence, D(i∗ , ai∗ ) < λ1 . Let λ0 = D(i∗ , ai∗ ).
+Since λ0 = η(i∗ , ai∗ ), λ0 is a value in Sα ∪ Sβ ∪ Sδ . Since λ0 = D(i∗ , ai∗ ), λ0 is a feasible value
+(i.e., λ0 ≥ λ∗ ). Recall that λ1 is the smallest feasible value of Sα ∪ Sβ ∪ Sδ . Thus, we obtain
+contradiction since λ0 < λ1 .
+Therefore, γ(i∗ , ai∗ ) ≥ η(i∗ , ai∗ ) holds. The lemma thus follows.
+J
+Lemma 16 is crucial because it immediately suggests the following algorithm.
+We first compute the indices Ii0 (α), Ii0 (β), Ii0 (δ) for i = 1, . . . , n. This can be done in O(n)
+time using the similar algorithms as those for computing Ii (α), Ii (β), Ii (δ) in Section 3.1. In
+
+12
+
+Diameter-Optimally Augmenting Paths
+
+fact, here we can even afford O(n log n) time to compute these indices. Hence, for simplicity,
+we can use the similar algorithm as that for computing Ii (δ) in Section 3.1 instead of the
+one in Lemma 8. The total time is O(n log n).
+Next, for each i ∈ [1, n], if [1, Ii0 (α)] ∩ [Ii0 (β), n] ∩ [Ii0 (δ), n] 6= ∅, then we compute ai , i.e.,
+the smallest index in the above intersection. Let I be the set of index i such that the above
+interval intersection for i is not empty. Lemma 16 leads to the following observation.
+I Observation 17. If λγ < λ1 , then λ∗ is the smallest feasible value of the set {γ(i, ai ) | i ∈
+I}.
+Proof. By Lemma 16, one of the edges of {e(i, ai ) | i ∈ I} is an optimal edge. By
+Observation 15, λ∗ is in {γ(i, ai ) | i ∈ I}. Thus, λ∗ is the smallest feasible value in
+{γ(i, ai ) | i ∈ I}.
+J
+We can further obtain the following “stronger” result, although Observation 17 is sufficient
+for our algorithm.
+I Lemma 18. If λγ < λ1 , then λ∗ = mini∈I γ(i, ai ).
+Proof. For any pair (i, j) with 1 ≤ i ≤ j ≤ n, let η(i, j) = max{α(i, j), β(i, j), δ(i, j)}. By
+Observation 2, D(i, j) = max{γ(i, j), η(i, j)}.
+We first prove the following claim: For any i ∈ I, η(i, ai ) < γ(i, ai ). Indeed, assume
+to the contrary that η(i, ai ) ≥ γ(i, ai ) for some i ∈ I. Then, D(i, ai ) = η(i, ai ). By the
+definition of ai , η(i, ai ) < λ1 . Hence, D(i, ai ) < λ1 . Let λ0 = D(i, ai ). Note that λ0 is a
+feasible value that is in Sα ∪ Sβ ∪ Sδ . However, λ0 < λ1 contradicts with that λ1 is the
+smallest feasible value in Sα ∪ Sβ ∪ Sδ .
+Next, we prove the lemma by using the above claim. For each i ∈ I, by the above clam,
+D(i, ai ) = γ(i, ai ), and thus, γ(i, ai ) is a feasible value. By Lemma 16, we know that λ∗ is in
+{γ(i, ai ) | i ∈ I}. Therefore, λ∗ is the smallest value in {γ(i, ai ) | i ∈ I}. The lemma thus
+follows.
+J
+Observation 17 essentially reduces the search space for λ∗ to {γ(i, ai ) | i ∈ I}, which has
+at most O(n) values. It is tempting to first explicitly compute the set and then find λ∗ from
+the set. However, again, due to the γ-computation difficulty, we are not able to compute the
+set in O(n log n) time. Alternatively, we use the following approach to compute λ∗ .
+
+4.3
+
+Finding λ∗ in the Set {γ(i, ai ) | i ∈ I}
+
+Recall that according to Observation 5, γ(i, j) = maxi≤k≤l≤j dC(i,j) (k, l), with dC(i,j) (k, l) =
+min{dP (k, l), d1C(i,j) (k, l)} and d1C(i,j) (k, l) = dP (i, k) + |vi vj | + dP (l, j). Hence, γ(i, j) is
+equal to dP (k, l) or d1C(i,j) (k, l) for some k ≤ l. Therefore, by Observation 17, there exists
+i ∈ I such that λ∗ is equal to dP (k, l) or d1C(i,j) (k, l) for some k and l with i ≤ k ≤ l ≤ ai .
+Let Sp = {dP (k, l) | 1 ≤ k ≤ l ≤ n} and Sc = {d1C(i,j) (k, l) | i ≤ k ≤ l ≤ ai , i ∈ I}. Based
+on our above discussion, λ∗ is in Sp ∪ Sc . Further, λ∗ is the smallest feasible value in Sp ∪ Sc .
+Let λp be the smallest feasible value of Sp and let λc be the smallest feasible value of
+Sc . Hence, λ∗ = min{λp , λc }. By using the technique of searching sorted-matrices [7, 8], the
+following lemma computes λp in O(n log n) time.
+I Lemma 19. λp can be computed in O(n log n) time.
+
+H. Wang
+
+13
+i
+k
+h′ai
+gk′
+
+ai
+
+l
+
+l−1
+
+Figure 7 Illustrating the graph G(i, ai ) whose diameter is λ∗ and λ∗ = dC(i,ai ) (k, l).
+
+Proof. We define an n × n matrix M [1 · · · n; 1 · · · n]: For each 1 ≤ i ≤ n and 1 ≤ j ≤ n,
+define M [i, j] = dP (i, j) if j ≥ i and M [i, j] = 0 otherwise. It is easy to verify that each row
+of M is sorted in ascending order from the left to right and each column is sorted in ascending
+order from bottom to top. Consequently, by using the sorted-matrix searching technique
+[7, 8], λp can be found by calling our decision algorithm O(log n) times and evaluating O(n)
+elements of M . Clearly, given any i and j, we can evaluate M [i, j] in constant time. Hence,
+λp can be computed in O(n log n) time.
+J
+Recall that λ∗ = min{λp , λc }. In the case λp ≤ λc , λ∗ = λp and we are done with
+computing λ∗ . In the following, we assume λp > λc . Thus, λ∗ = λc . With the help of the
+information implied by λp > λc , we will compute λ∗ in O(n log n) time. The details are given
+below.
+For any j ∈ [1, n], let gj0 denote the largest index k ∈ [j, n] such that the subpath length
+dP (j, k) is strictly smaller than λp . Note that the definition of gj0 is similar to gj defined in
+Section 4.3 except that we change “≤ λ” to “< λp ”.
+For each k ∈ [1, n], let h0k denote the smallest index j ∈ [1, k] with gj0 ≥ k. Let I 0 be the
+subset of i ∈ I 0 such that i ≤ h0ai − 1. Hence, for each i ∈ I 0 and each j ∈ [i, h0ai − 1], gj0 < ai
+and thus gj0 + 1 ≤ ai .
+For each i ∈ I 0 , define d1max (i, ai ) = maxj∈[i,h0a −1] d1C(i,j) (j, gj0 + 1). The following lemma
+i
+gives a way to determine λ∗ .
+I Lemma 20. If λγ < λ1 and λc < λp , then λ∗ = d1max (i, ai ) for some i ∈ I 0 .
+Proof. Since λγ < λ1 and λc < λp , by our above discussions, λ∗ = λc .
+By Observation 17, λ∗ is the diameter of the graph G(i, ai ) for some i ∈ I and λ∗ is equal
+to the length of the shortest path of two vertices vk and vl in C(i, ai ) for i ≤ k ≤ l ≤ ai ,
+i.e., λ∗ = dC(i,ai ) (k, l) = min{dP (k, l), d1C(i,j) (k, l)}. See Fig. 7. Since λ∗ = λc , we further
+know that λ∗ = d1C(i,j) (k, l) and d1C(i,j) (k, l) ≤ dP (k, l). In fact, d1C(i,j) (k, l) < dP (k, l), since
+otherwise if d1C(i,j) (k, l) = dP (k, l), then λ∗ = dP (k, l) would be in the set Sp , contradicting
+with that λp is the smallest feasible value in Sp and λ∗ < λp .
+For simplicity of discussion, we assume |vl vl−1 | > 0 (since otherwise we can keep updating
+l to l − 1 until we find |vl vl−1 | > 0; note that such an l will eventually be found before we
+reach k since 0 ≤ λ∗ = d1C(i,j) (k, l) < dP (k, l)).
+We prove the following claim: dP (k, l − 1) < λp ≤ dP (k, l).
+On the one hand, since λ∗ = d1C(i,ai ) (k, l) and |vl vl−1 | > 0, we obtain that λ∗ <
+d1C(i,ai ) (k, l − 1). Since λ∗ is the diameter in the graph G(i, ai ), dG(i,ai ) (k, l − 1) =
+dC(i,ai ) (k, l − 1) ≤ λ∗ . Further, because dC(i,ai ) (k, l − 1) = min{dP (k, l − 1), d1C(i,ai ) (k, l −
+1)} and λ∗ < d1C(i,ai ) (k, l − 1), we obtain dP (k, l − 1) ≤ λ∗ . As λ∗ = λc < λp , it follows
+that dP (k, l − 1) < λp .
+
+14
+
+Diameter-Optimally Augmenting Paths
+
+On the other hand, assume to the contrary that λp > dP (k, l). Then, since dP (k, l) >
+d1C(i,ai ) (k, l) = λ∗ , dP (k, l) is a feasible value. Clearly, dP (k, l) is in the set Sp . However,
+λp > dP (k, l) contradicts with that λp is the smallest feasible value in Sp .
+This proves the claim. With the claim, we show below that λ∗ = d1max (i, ai ), which will
+prove the lemma.
+We first show that i is in I 0 , i.e., i ≤ h0ai − 1. Indeed, since λp ≤ dP (k, l) (by the claim),
+based on the definition of gk0 , it holds that gk0 < l (e.g., see Fig. 7). Since l ≤ ai , we obtain
+gk0 ≤ ai − 1. This implies that k < h0ai and thus k ≤ h0ai − 1. Since i ≤ k, i ≤ h0ai − 1.
+It remains to prove λ∗ = d1max (i, ai ). Indeed, recall that λ∗ = d1C(i,ai ) (k, l). Note
+that the above claim in fact implies that gk0 = l − 1, and thus, gk0 + 1 = l. Hence, we
+have λ∗ = d1C(i,ai ) (k, l) = d1C(i,ai ) (k, gk0 + 1). Note that k is in [i, h0ai − 1]. Consider any
+j ∈ [i, h0ai − 1]. To prove λ∗ = d1max (i, ai ), it is now sufficient to prove λ∗ ≥ d1C(i,ai ) (j, gj0 + 1),
+as follows.
+Recall that gj0 + 1 = l ≤ ai . Since λ∗ is the diameter of G(i, ai ), dG(i,ai ) (j, gj0 + 1) =
+dC(i,ai ) (j, gj0 + 1) ≤ λ∗ . Recall that dC(i,ai ) (j, gj0 + 1) = min{dP (j, gj0 + 1), d1C(i,ai ) (j, gj0 + 1)}.
+By the definition of gj0 , we know that dP (j, gj0 + 1) ≥ λp . Since λp > λ∗ , dP (j, gj0 + 1) > λ∗ .
+Hence, it must be that λ∗ ≥ d1C(i,ai ) (j, gj0 + 1).
+This proves that λ∗ = d1max (i, ai ). The lemma thus follows.
+J
+In light of Lemma 20, in the case of λc < λp , λ∗ = λc is the smallest feasible value of
+for all i ∈ I 0 . Note that the number of such values d1max (i, ai ) is O(n). Hence, if
+we can compute d1max (i, ai ) for all i ∈ I 0 , then λ∗ can be easily found in additional O(n log n)
+time using our decision algorithm, e.g., by first sorting these values and then doing binary
+search.
+The next lemma gives an algorithm that can compute d1max (i, ai ) for all i ∈ I 0 in O(n)
+time, with the help of the range-minima data structure [2, 11].
+d1max (i, ai )
+
+I Lemma 21. d1max (i, ai ) for all i ∈ I 0 can be computed in O(n) time.
+Proof. Consider any i ∈ I 0 . For any j ∈ [i, h0ai −1 ], it is easy to see that d1C(i,ai ) (j, gj + 1) =
+|C(i, ai )| − dP (j, gj + 1), where |C(i, ai )| is the length of the cycle C(i, ai ). Hence, we can
+obtain the following,
+d1max (i, ai ) =
+
+max
+
+j∈[i,h0a −1]
+i
+
+d1C(i,j) (j, gj0 + 1) =
+
+max
+
+j∈[i,h0a −1]
+
+{|C(i, ai )| − dP (j, gj0 + 1)}
+
+i
+
+= |C(i, ai )| −
+
+min
+
+j∈[i,h0a −1]
+
+dP (j, gj0 + 1).
+
+i
+
+minj∈[i,h0a −1] dP (j, gj0
+i
+
+Define dmin (i, ai ) =
++ 1). By the above discussions we have
+= |C(i, ai )| − dmin (i, ai ). Therefore, computing d1max (i, ai ) boils down to computing dmin (i, ai ). In the following, we compute dmin (i, ai ) for all i ∈ I 0 in O(n) time, after
+which d1max (i, ai ) for all i ∈ I 0 can be computed in additional O(n) time.
+First of all, we compute gj0 and h0j for all j = 1, 2, . . . , n. This can be easily done in O(n)
+time due to the monotonicity properties: g10 ≤ g20 ≤ · · · ≤ gn0 and h01 ≤ h02 ≤ · · · ≤ h0n . Recall
+that for each i ∈ I, ai has already been computed. Then, we can compute I 0 in O(n) time
+by checking whether i ≤ h0ai − 1 for each i ∈ I.
+Next we compute an array B[1 · · · n] such that B[j] = dP (j, gj0 + 1) for each j ∈ [1, n].
+Clearly, the array B can be computed in O(n) time. Then, we build a range-minima data
+structure on B [2, 11]. The range-minima data structure can be built in O(n) time such that
+given any pair (i, j) with 1 ≤ i ≤ j ≤ n, the minimum value of the subarray B[i · · · j] can be
+computed in constant time.
+d1max (i, ai )
+
+H. Wang
+
+Finally, for each i ∈ I 0 , we can compute dmin (i, ai ) in constant time by querying the
+range-minima data structure on B with (i, h0ai − 1).
+Therefore, we can compute dmin (i, ai ) for all i ∈ I 0 , and thus compute d1max (i, ai ) for all
+i ∈ I 0 in O(n) time.
+J
+In summary, we can compute λ∗ in O(n log n) time in the case λγ < λ1 and λc < λp .
+Our overall algorithm for computing an optimal solution is summarized in the proof of
+Theorem 22.
+I Theorem 22. An optimal solution for the optimization problem can be found in O(n log n)
+time.
+Proof. First, we compute λα , λβ , and λδ , in O(n log n) time by using our decision algorithm
+and the sorted-matrix searching techniques. Then, we compute λ1 = min{λα , λβ , λδ }.
+Second, by using λ1 , we compute the indices Ii0 (α), Ii0 (β), and Ii0 (δ) for all i = 1, 2, . . . , n.
+This can be done in O(n) time. For each i ∈ [1, n], if [1, Ii0 (α)] ∩ [Ii0 (β), n] ∩ [Ii0 (δ), n] 6= ∅, we
+compute ai (i.e., the smallest index in the above intersection) and add i to the set I (initially
+I = ∅). Hence, all such ai ’s and I can be computed in O(n) time.
+If I = ∅, then we return λ1 as λ∗ .
+If I 6= ∅, then we compute λp in O(n log n) time by Lemma 19. We proceed to compute
+d1max (i, ai ) for all i ∈ I 0 by Lemma 21, and then find the smallest feasible value λ0 in the set
+{d1max (i, ai ) | i ∈ I 0 } in O(n log n) time. Finally, we return min{λ1 , λp , λ0 } as λ∗ .
+The above computes λ∗ in O(n log n) time. Applying λ = λ∗ on our decision algorithm
+can eventually find an optimal edge in additional O(n) time.
+J
+References
+1
+2
+3
+
+4
+
+5
+
+6
+7
+8
+9
+10
+
+N. Alon, A. Gyárfás, and M. Ruszinkó. Decreasing the diameter of bounded degree graphs.
+Journal of Graph Theory, 35:161–172, 2000.
+M. Bender and M. Farach-Colton. The LCA problem revisited. In Proc. of the 4th Latin
+American Symposium on Theoretical Informatics, pages 88–94, 2000.
+D. Bilò, Luciano Gualà, and Guido Proietti. Improved approximability and nonapproximability results for graph diameter decreasing problems. Theoretical Computer
+Science, 417:12–22, 2012.
+J.-L. De Carufel, C. Grimm, A. Maheshwari, and M. Smid. Minimizing the continuous diameter when augmenting paths and cycles with shortcuts. In Proc. of the 15th Scandinavian
+Workshop on Algorithm Theory (SWAT), pages 27:1–27:14, 2016.
+E.D. Demaine and M. Zadimoghaddam. Minimizing the diameter of a network using shortcut edges. In Proc. of the 12th Scandinavian conference on Algorithm Theory (SWAT),
+pages 420–431, 2010.
+F. Frati, S. Gaspers, J. Gudmundsson, and L. Mathieson. Augmenting graphs to minimize
+the diameter. Algorithmica, 72:995–1010, 2015.
+G. Frederickson and D. Johnson. Generalized selection and ranking: Sorted matrices. SIAM
+Journal on Computing, 13(1):14–30, 1984.
+G.N. Frederickson and D.B. Johnson. Finding kth paths and p-centers by generating and
+searching good data structures. Journal of Algorithms, 4(1):61–80, 1983.
+Y. Gao, D.R. Hare, and J. Nastos. The parametric complexity of graph diameter augmentation. Discrete Applied Mathematics, 161:1626–1631, 2013.
+U. Große, J. Gudmundsson, C. Knauer, M. Smid, and F. Stehn. Fast algorithms for
+diameter-optimally augmenting paths. In Proc. of the 42nd International Colloquium on
+Automata, Languages and Programming (ICALP), pages 678–688, 2015.
+
+15
+
+16
+
+Diameter-Optimally Augmenting Paths
+
+11
+12
+13
+
+14
+15
+
+D. Harel and R.E. Tarjan. Fast algorithms for finding nearest common ancestors. SIAM
+Journal on Computing, 13:338–355, 1984.
+T. Ishii. Augmenting outerplanar graphs to meet diameter requirements. Journal of Graph
+Theory, 74:392–416, 2013.
+C.-L. Li, S.T. McCormick, and D. Simchi-Levi. On the minimum-cardinality-boundeddiameter and the bounded-cardinality-minimum-diameter edge addition problems. Operations Research Letters, 11:303–308, 1992.
+N. Megiddo. Applying parallel computation algorithms in the design of serial algorithms.
+Journal of the ACM, 30(4):852–865, 1983.
+A.A. Schoone, H.L. Bodlaender, and J. Van Leeuwen. Diameter increase caused by edge
+deletion. Journal of Graph Theory, 11:409–427, 1997.
+
+
+
+Summary:
+This research paper covers the following topic: An Improved Algorithm for Diameter-Optimally
+Augmenting Paths in a Metric Space
+Haitao Wang
+Department of Computer Science, Utah State University, Logan, UT 84322, USA.
+haitao.wang@usu.edu
+
+Abstract
+
+arXiv:1608.04456v1 [cs.DS] 16 Aug 2016
+
+Let P be a path graph of n vertices embedded in a metric space. We consider the problem of
+adding a new edge to P such that the diameter of the resulting graph is minimized. Previously
+(in ICALP 2015) the problem was solved in O(n log3 n) time. In this paper, based on new
+observations and different algorithmic techniques, we present an O(n log n) time algorithm.
+Keywords and phrases diameter, path graphs, augmenting paths, minimizing diameter, metric
+space
+
+1
+
+Introduction
+
+Let P be a path graph of n vertices embedded in a metric space. We consider the problem
+of adding a new edge to P such that the diameter of the resulting graph is minimized. The
+problem is formally defined as follows.
+Let G be a graph and each edge has a non-negative length. The length of any path of
+G is the total length of all edges of the path. For any two vertices u and v of G, we use
+dG (u, v) to denote the length of the shortest path from u to v in G. The diameter of G is
+defined as maxu,v∈G dG (u, v).
+Let P be a path graph of n vertices v1 , v2 , . . . , vn and there is an edge e(vi−1 , vi ) connecting
+vi−1 and vi for each 1 ≤ i ≤ n−1. Let V be the vertex set of P . We assume (V, |·|) is a metric
+space and |vi vj | is the distance of any two vertices vi and vj of V . Specifically, the following
+properties hold: (1) the triangle inequality: |vi vk | + |vk vj | ≥ |vi vj |; (2) |vi vj | = |vj vi | ≥ 0;
+(3) |vi vj | = 0 if i = j. In particular, for each edge e(vi−1 , vi ) of P , its length is equal to
+|vi−1 vi |. We assume that given any two vertices vi and vj of P , the distance |vi vj | can be
+obtained in O(1) time.
+Our goal is to find a new edge e connecting two vertices of P and add e to P , such that
+the diameter of the resulting graph P ∪ {e} is minimized.
+The problem has been studied before. Große et al. [10] solved the problem in O(n log3 n)
+time. In this paper, we present a new algorithm that runs in O(n log n) time. Our algorithm is
+based on new observations on the structures of the optimal solution and different algorithmic
+techniques. Following the previous work [10], we refer to the problem as the diameteroptimally augmenting path problem, or DOAP for short.
+
+1.1
+
+Related Work
+
+If the path P is in the Euclidean space Rd for a constant d, then Große et al. [10] also gave
+an O(n + 1/3 ) time algorithm that can find a (1 + )-approximation solution for the problem
+DOAP, for any  > 0. If P is in the Euclidean plane R2 , De Carulfel et al. [4] gave a linear
+time algorithm for adding a new edge to P to minimize the continuous diameter (i.e., the
+diameter is defined with respect to all points of P , not only vertices).
+The more general problem and many variations have also been studied before, e.g., see
+[1, 3, 5, 6, 9, 12, 13, 15] and the references therein. Consider a general graph G in which edges
+© Haitao Wang;
+licensed under Creative Commons License CC-BY
+Leibniz International Proceedings in Informatics
+Schloss Dagstuhl – Leibniz-Zentrum für Informatik, Dagstuhl Publishing, Germany
+
+2
+
+Diameter-Optimally Augmenting Paths
+
+have non-negative lengths. For an integer k, the goal of the general problem is to compute a
+set F of k new edges and add them to G such that the resulting graph has the minimum
+diameter. The problem is NP-hard [15] and some other variants are even W[2]-hard [6, 9].
+Approximation results have been given for the general problem and many of its variations,
+e.g., see [3, 6, 13]. The upper bounds and lower bounds on the values of the diameters of the
+augmented graphs have also been investigated, e.g. see [1, 12].
+Since diameter is an important metric of network performance, which measures the
+worst-case cost between any two nodes of the network, as discussed in [3, 5], the problem of
+augmenting graphs for minimizing the diameter and its variations have many practical applications, such as in data networks, telephone networks, transportation networks, scheduling
+problems, etc.
+As an application of our problem DOAP, consider the following scenario in transportation
+networks. Suppose there is a highway that connects several cities. In order to reduce the
+transportation time, we want to build a new highway connecting two cities such that the
+distance between the farthest two cities using both highways is minimized. Clearly, this is a
+problem instance of DOAP.
+
+1.2
+
+Our Approaches
+
+To tackle the problem, Große et al. [10] first gave an O(n log n) time algorithm for the
+decision version of the problem: Given any value λ, determine whether it is possible to add
+a new edge e into P such that the diameter of the resulting graph is at most λ. Then, by
+implementing the above decision algorithm in a parallel fashion and applying Megiddo’s
+parametric search [14], they solved the original problem DOAP in O(n log3 n) time [10]. For
+differentiation, we referred to the original problem DOAP as the optimization problem.
+Our improvement over the previous work [10] is twofold.
+First, we solve the decision problem in O(n) time. Our algorithm is based on the O(n log n)
+time algorithm in the previous work [10]. However, by discovering new observations on the
+problem structure and with the help of the range-minima data structure [2, 11], we avoid
+certain expensive operations and eventually achieve the O(n) time complexity.
+Second, comparing with the decision problem, our algorithm for the optimization problem
+is completely different from the previous work [10]. Let λ∗ be the diameter of the resulting
+graph in an optimal solution. Instead of using the parametric search, we identify a set S of
+candidate values such that λ∗ is in S and then we search λ∗ in S using our algorithm for the
+decision problem. However, computational difficulties arise for this approach due to that
+the set S is too large (|S| = Ω(n2 )) and computing certain values of S is time-consuming
+(e.g., for certain values of S, computing each of them takes O(n) time). To circumvent these
+difficulties, our algorithm has several steps. In each step, we shrink S significantly such that
+λ∗ always remains in S. More importantly, each step will obtain certain formation, based on
+which the next step can further reduce S. After several steps, the size of S is reduced to O(n)
+and all the remaining values of S can be computed in O(n log n) time. At this point we can
+use our decision algorithm to find λ∗ from S in additional O(n log n) time. Equipped with
+our linear time algorithm for the decision problem and utilizing several other algorithmic
+techniques such as the sorted-matrix searching techniques [7, 8] and range-minima data
+structure [2, 11], we eventually solve the optimization problem in O(n log n) time.
+The rest of the paper is organized as follows. In Section 2, we introduce some notation
+and observations. In Section 3, we present our algorithm for the decision problem. The
+optimization problem is solved in Section 4.
+
+H. Wang
+
+3
+vi
+
+v1
+
+vn
+
+vk
+
+vj
+
+vl
+
+Figure 1 Illustrating the resulting graph after a new edge e(vi , vj ) is added.
+
+2
+
+Preliminaries
+
+In this section, we introduce some notation and observations, some of which are from Große
+et al. [10].
+For any two vertices vi and vj of P , we use e(vi , vj ) to denote the edge connecting vi
+and vj in the metric space. Hence, e(vi , vj ) is in P if and only if |i − j| = 1. The length of
+e(vi , vj ) is |vi vj |.
+For any i and j with 1 ≤ i ≤ j ≤ n, we use G(i, j) to denote the resulting graph by
+adding the edge e(vi , vj ) into P . If i = j, G(i, j) is essentially P . Let D(i, j) denote the
+diameter of G(i, j).
+Our goal for the optimization problem DOAP is to find a pair of indices (i, j) with
+1 ≤ i ≤ j ≤ n such that D(i, j) is minimized. Let λ∗ = min1≤i≤j≤n D(i, j), i.e., λ∗ is the
+diameter in an optimal solution.
+Given any value λ, the decision problem is to determine whether λ ≥ λ∗ , or in other
+words, determine whether there exist a pair (i, j) with 1 ≤ i ≤ j ≤ n such that D(i, j) ≤ λ.
+If yes, we say that λ is a feasible value.
+Recall that for any graph G, dG (u, v) refers to the length of the shortest path between
+two vertices u and v in G.
+Consider any pair of indices (i, j) with 1 ≤ i ≤ j ≤ n. We define α(i, j), β(i, j), γ(i, j),
+and δ(i, j) as follows (refer to Fig. 1).
+I Definition 1. 1. Define α(i, j) to be the largest shortest path length in G(i, j) from v1 to
+all vertices vk with k ∈ [i, j], i.e., α(i, j) = maxi≤k≤j dG(i,j) (v1 , vk ).
+2. Define β(i, j) to be the largest shortest path length in G(i, j) from vn to all vertices vk
+with k ∈ [i, j], i.e., β(i, j) = maxi≤k≤j dG(i,j) (vk , vn ).
+3. Define γ(i, j) to be the largest shortest path length in G(i, j) from vk to vl for any k and
+l with i ≤ k ≤ l ≤ j, i.e., γ(i, j) = maxi≤k≤l≤j dG(i,j) (vk , vl ).
+4. Define δ(i, j) to be the shortest path length in G(i, j) from v1 to vn , i.e., δ(i, j) =
+dG(i,j) (v1 , vn ).
+It can be verified (also shown in [10]) that the following observation holds.
+I Observation 2. ([10]) D(i, j) = max{α(i, j), β(i, j), γ(i, j), δ(i, j)}.
+Further, due to the triangle inequality of the metric space, the following monotonicity
+properties hold.
+I Observation 3. ([10])
+1. For any 1 ≤ i ≤ j ≤ n − 1, α(i, j) ≤ α(i, j + 1), β(i, j) ≥ β(i, j + 1), γ(i, j) ≤ γ(i, j + 1),
+and δ(i, j) ≥ δ(i, j + 1).
+2. For any 1 ≤ i < j ≤ n, α(i, j) ≤ α(i + 1, j), β(i, j) ≥ β(i + 1, j), γ(i, j) ≥ γ(i + 1, j), and
+δ(i, j) ≤ δ(i + 1, j).
+
+4
+
+Diameter-Optimally Augmenting Paths
+
+For any pair (i, j) with 1 ≤ i ≤ j ≤ n, let P (i, j) denote the subpath of P between vi and
+P
+vj . Hence, dP (vi , vj ) is the length of P (i, j), i.e., dP (vi , vj ) = i≤k≤j−1 |vk vk+1 | if i < j
+and dP (vi , vj ) = 0 if i = j.
+In our algorithms, we will need to compute f (i, j) for each f ∈ {α, β, γ, δ}. The next
+observation gives an algorithm. The result was also given by Große et al. [10] and we present
+the proof here for completeness of this paper.
+I Lemma 4. ([10]) With O(n) time preprocessing, given any pair (i, j) with 1 ≤ i ≤ j ≤ n,
+we can compute dP (i, j) and δ(i, j) in O(1) time, and compute α(i, j) and β(i, j) in O(log n)
+time.
+Proof. As preprocessing, we compute the prefix sum array A[1 · · · n] such that A[k] =
+P
+1≤l≤k−1 |vl vl+1 | for each k ∈ [2, n] and A[1] = 0. This can be done in O(n) time. This
+finishes our preprocessing.
+Consider any pair (i, j) with 1 ≤ i ≤ j ≤ n. Note that dP (vi , vj ) = A[j] − A[i], which
+can be computed in constant time.
+For δ(i, j), it is easy to see that δ(i, j) = min{dP (1, n), dP (1, i) + |vi vj | + dP (j, n)}. Hence,
+δ(i, j) can be computed in constant time.
+For α(i, j), if we consider dG(i,j) (v1 , vk ) as a function of k ∈ [i, j], then dG(i,j) (v1 , vk ) is a
+unimodal function. More specifically, as k changes from i to j, dG(i,j) (v1 , vk ) first increases
+and then decreases. Hence, α(i, j) can be computed in O(log n) time by binary search on
+the sequence vi , vi+1 , . . . , vj .
+Computing β(i, j) can be also done in O(log n) time in a similar way to α(i, j). We omit
+the details.
+J
+For computing γ(i, j), although one may be able to do so in O(n) time, it is not clear
+to us how to make it in O(log n) time even with O(n log n) time preprocessing. As will be
+seen later, this is the major difficulty for solving the problem DOAP efficiently. We refer to
+it as the γ-computation difficulty. Our main effort will be to circumvent the difficulty by
+providing alternative and efficient solutions.
+For any pair (i, j) with 1 ≤ i ≤ j ≤ n, we use C(i, j) to denote the cycle P (i, j) ∪ e(vi , vj ).
+Consider dG(i,j) (vk , vl ) for any k and l with i ≤ k ≤ l ≤ j. Notice that the shortest
+path from vk to vl in C(i, j) is also a shortest path in G(i, j). Hence, dG(i,j) (vk , vl ) =
+dC(i,j) (vk , vl ). There are two paths in C(i, j) from vk to vl : one is P (k, l) and the other
+uses the edge e(vi , vj ). We use d1C(i,j) (vk , vl ) to denote the length of the above second
+path, i.e., d1C(i,j) (vk , vl ) = dP (vi , vk ) + |vi vj | + dP (vl , vj ). With these notation, we have
+dC(i,j) (vk , vl ) = min{dP (vk , vl ), d1C(i,j) (vk , vl )}. According to the definition of γ(i, j), we
+summarize our discussion in the following observation.
+I Observation 5. For any pair (i, j) with 1 ≤ i ≤ j ≤ n, γ(i, j) = maxi≤k≤l≤j dC(i,j) (vk , vl ),
+with dC(i,j) (vk , vl ) = min{dP (vk , vl ), d1C(i,j) (vk , vl )} and d1C(i,j) (vk , vl ) = dP (vi , vk ) + |vi vj | +
+dP (vl , vj ).
+In the following, to simplify the notation, when the context is clear, we use index i to
+refer to vertex vi . For example, dP (i, j) refers to dP (vi , vj ) and e(i, j) refers to e(vi , vj ).
+
+3
+
+The Decision Problem
+
+In this section, we present our O(n) time algorithm for solving the decision problem. For any
+value λ, our goal is to determine whether λ is feasible, i.e. whether λ ≥ λ∗ , or equivalently,
+
+H. Wang
+
+5
+
+α
+γ
+
+λ
+
+β
+δ
+Ii (δ) Ii (β)
+
+Ii (α) Ii (γ)
+
+Figure 2 Illustrating f (i, j) as j changes in [i, n] and Ii (f ) for f ∈ {α, β, γ, δ}.
+
+whether there is a pair (i, j) with 1 ≤ i ≤ j ≤ n such that D(i, j) ≤ λ. If yes, our algorithm
+can also find such a feasible edge e(i, j).
+By Observation 2, D(i, j) ≤ λ holds if and only if f (i, j) ≤ λ for each f ∈ {α, β, γ, δ}.
+To determine whether λ is feasible, our algorithm will determine for each i ∈ [1, n], whether
+there exists j ∈ [i, n] such that f (i, j) ≤ λ for each f ∈ {α, β, γ, δ}.
+For any fixed i ∈ [1, n], we consider α(i, j), β(i, j), γ(i, j), and δ(i, j) as functions of
+j ∈ [i, n]. In light of Observation 3, α(i, j) and γ(i, j) are monotonically increasing and β(i, j)
+and δ(i, j) are monotonically decreasing (e.g., see Fig. 2). We define four indices Ii (f ) for
+f ∈ {α, β, γ, δ} as follows. Refer to Fig. 2.
+I Definition 6. Define Ii (α) to be the largest index j ∈ [i, n] such that α(i, j) ≤ λ. We
+define Ii (γ) similarly to Ii (α). If β(i, n) ≤ λ, then define Ii (β) to be the smallest index
+j ∈ [i, n] such that β(i, j) ≤ λ; otherwise, let Ii (β) = ∞. We define Ii (δ) similarly to Ii (β).
+As discussed in [10], λ is feasible if and only if [1, Ii (α)]∩[Ii (β), n]∩[1, Ii (γ)]∩[Ii (δ), n] 6= ∅
+for some i ∈ [1, n]. By Observation 3, we have the following lemma.
+I Lemma 7. For any i ∈ [1, n − 1], Ii (α) ≥ Ii+1 (α), Ii (β) ≥ Ii+1 (β), Ii (γ) ≤ Ii+1 (γ), and
+Ii (δ) ≤ Ii+1 (δ) (e.g., see Fig. 3).
+Proof. According to Observation 3, α(i, j) ≤ α(i + 1, j). This implies that Ii (α) ≥ Ii+1 (α)
+by the their definitions (e.g., see Fig. 3). The other three cases for β, γ, and δ are similar. J
+β(i, j)
+β(i + 1, j)
+
+γ(i, j)
+γ(i + 1, j)
+
+δ(i, j)
+
+λ
+
+λ
+
+Ii+1 (β) Ii (β)
+
+δ(i + 1, j)
+
+α(i + 1, j)
+α(i, j)
+
+Ii+1 (α)Ii (α)
+
+Ii (δ) Ii+1 (δ)
+
+Ii (γ) Ii+1 (γ)
+
+Figure 3 Illustrating f (i, j) and f (i + 1, j) as j changes and Ii (f ) and Ii+1 (f ) for f ∈ {α, β, γ, δ}.
+
+3.1
+
+Computing Ii (α), Ii (β), and Ii (δ) for all i ∈ [1, n]
+
+In light of Lemma 7, for each f ∈ {α, β, δ}, we compute Ii (f ) for all i = 1, 2, . . . , n in O(n)
+time, as follows.
+We discuss the case for δ first. According to Lemma 4, δ(i, j) can be computed in constant
+time for any pair (i, j) with 1 ≤ i ≤ n. We can compute Ii (δ) for all i ∈ [1, n] in O(n) time
+by the following simple algorithm. We first compute I1 (δ), which is done by computing
+δ(1, j) from j = 1 incrementally until the first time δ(1, j) ≤ λ. Then, to compute I2 (δ),
+
+6
+
+Diameter-Optimally Augmenting Paths
+
+vi
+
+v1
+
+vn
+
+vk−1
+vk
+
+vj
+
+Figure 4 Illustrating the path (the dotted curve) from vn to vk−1 using the edge e(i, j).
+
+we compute δ(2, j) from j = I1 (δ) incrementally until the first time δ(2, j) ≤ λ. Next, we
+compute Ii (δ) for i = 3, 4, . . . , n in the same way. The total time is O(n). The correctness is
+based on the monotonicity property of Ii (δ) in Lemma 7.
+To compute Ii (α) or Ii (β) for i = 1, 2, . . . , n, using a similar approach as above, we can
+only have an O(n log n) time algorithm since computing each α(i, j) or β(i, j) takes O(log n)
+time by Lemma 4. In the following Lemma 8, we give another approach that only needs
+O(n) time.
+I Lemma 8. Ii (α) and Ii (β) for all i = 1, 2, . . . , n can be computed in O(n) time.
+Proof. We only discuss the case for β since the other case for α is analogous.
+The key idea is that for each pair (i, j), instead of computing the exact value of β(i, j), it
+is sufficient to determine whether β(i, j) ≤ λ. In what follows, we show that with O(n) time
+preprocessing, we can determine whether β(i, j) ≤ λ in O(1) time for any index pair (i, j)
+with 1 ≤ i ≤ j ≤ n.
+Let k be the smallest index in [1, n] such that dP (k, n) ≤ λ. This implies that dP (k−1, n) >
+λ if k > 1. As preprocessing, we compute the index k, which can be easily done in O(n) time
+(or even in O(log n) time by binary search).
+Consider any pair (i, j) for 1 ≤ i ≤ j ≤ n. Our goal is to determine whether β(i, j) ≤ λ.
+1. If k ≤ i, then it is vacuously true that β(i, j) ≤ λ.
+2. If k > j, then β(i, j) > λ.
+3. If i < k ≤ j, a crucial observation is that β(i, j) ≤ λ if and only if the length of the path
+from vn to vk−1 using the new edge e(i, j), i.e., dP (i, k − 1) + |vi vj | + dP (j, n), is less than
+or equal to λ. See Fig. 4. Clearly, the above path length can be computed in constant
+time, and thus, we can determine whether β(i, j) ≤ λ in constant time.
+Therefore, we can determine whether β(i, j) ≤ λ in constant time for any pair (i, j) with
+1 ≤ i ≤ j ≤ n. With this result, we can use a similar algorithm as the above for computing
+Ii (δ) to compute Ii (β) for all i ∈ [1, n] in O(n) time. The lemma thus follows.
+J
+Due to the γ-computation difficulty mentioned in Section 2, it is not clear whether it
+possible to compute Ii (γ) for all i = 1, . . . , n in O(n log n) time.
+Recall that λ is feasible if and only if there exists an i ∈ [1, n] such that [1, Ii (α)] ∩
+[Ii (β), n] ∩ [1, Ii (γ)] ∩ [Ii (δ), n] 6= ∅. Now that Ii (f ) for all i = 1, 2, . . . , n and f ∈ {α, β, δ}
+have been computed but the Ii (γ)’s are not known, in the following we will use an “indirect”
+approach to determine whether the intersection of the above four intervals is empty for every
+i ∈ [1, n].
+
+3.2
+
+Determining the Feasibility of λ
+
+For each i ∈ [1, n], define Qi = [1, Ii (α)] ∩ [Ii (β), n] ∩ [1, Ii (γ)] ∩ [Ii (δ), n]. Our goal is to
+determine whether Qi is empty for each i = 1, 2, . . . , n.
+
+H. Wang
+
+7
+i
+j
+
+ai gj + 1 gj
+
+Figure 5 Illustrating the graph G(i, ai ) with gj + 1 ≤ ai .
+
+Consider any i ∈ [1, n]. Since Ii (f ) for each f ∈ {α, β, δ} is known, we can determine the
+intersection [1, Ii (α)] ∩ [Ii (β), n] ∩ [Ii (δ), n] in constant time. If the intersection is empty,
+then we know that Qi = ∅. In the following, we assume the intersection is not empty.
+Let ai be the smallest index in the above intersection. As in [10], an easy observation is
+that Qi 6= ∅ if and only if ai ∈ [1, Ii (γ)]. If ai ≤ i (note that ai ≤ i actually implies ai = i
+since ai ≥ Ii (β) ≥ i), it is obviously true that ai ∈ [1, Ii (γ)] since i ≤ Ii (γ). Otherwise (i.e.,
+i < ai ), according to the definition of Ii (γ), ai ∈ [1, Ii (γ)] if and only if γ(i, ai ) ≤ λ. Große
+et al. [10] gave an approach that can determine whether γ(i, ai ) ≤ λ in O(log n) time after
+O(n log n) time preprocessing. In the following, by new observations and with the help of the
+range minima data structure [2, 11], we show that whether γ(i, ai ) ≤ λ can be determined in
+constant time after O(n) time preprocessing.
+For each j ∈ [1, n], define gj as the largest index k in [j, n] such that dP (j, k) ≤ λ. Observe
+that g1 ≤ g2 ≤ · · · ≤ gn .
+Consider any i and the corresponding ai with i < ai . Our goal is to determine
+whether γ(i, ai ) ≤ λ. Since we are talking about γ(i, ai ), we are essentially considering
+the graph G(i, ai ). Recall that C(i, ai ) is the cycle P (i, ai ) ∪ e(i, ai ). By Observation 5,
+γ(i, ai ) = maxi≤k≤l≤ai dC(i,ai ) (k, l), and further, dC(i,j) (k, l) = min{dP (k, l), d1C(i,ai ) (k, l)}
+and d1C(i,ai ) (k, l) = dP (i, k) + |vi vai | + dP (l, ai ).
+For any j ∈ [i, ai − 1], if gj ≤ ai − 1, then vertex gj + 1 is in the cycle C(i, ai ). Note that
+1
+dC(i,ai ) (j, gj + 1) = dP (i, j) + |vi vai | + dP (gj + 1, ai ). See Fig. 5.
+We have the following lemma.
+I Lemma 9. γ(i, ai ) ≤ λ if and only if for each j ∈ [i, ai −1], either gj ≥ ai or d1C(i,ai ) (j, gj +
+1) ≤ λ.
+Proof.
+Suppose γ(i, ai ) ≤ λ. Consider any j ∈ [i, ai − 1] such that gj ≤ ai − 1. Below we
+prove d1C(i,ai ) (j, gj + 1) ≤ λ must hold.
+By the definition of gj , it holds that dP (j, gj +1) > λ. Since γ(i, ai ) ≤ λ and dC(i,ai ) (j, gj +
+1) ≤ γ(i, ai ), we obtain dC(i,ai ) (j, gj +1) ≤ λ. Note that dC(i,ai ) (j, gj +1) = min{dP (j, gj +
+1), d1C(i,ai ) (j, gj + 1)}. Hence, it must hold that d1C(i,ai ) (j, gj + 1) ≤ λ.
+This proves one direction of the lemma.
+Suppose it is true that for each j ∈ [i, ai − 1], either gj ≥ ai or d1C(i,ai ) (j, gj + 1) ≤ λ. We
+prove γ(i, ai ) ≤ λ below.
+Consider any pair of indices (k, l) with i ≤ k ≤ l ≤ ai . To prove γ(i, ai ) ≤ λ, it is sufficient
+to show that dC(i,ai ) (k, l) ≤ λ. If k = l, then dC(i,ai ) (k, l) = 0 and thus dC(i,ai ) (k, l) ≤ λ
+obviously holds. In the following we assume k < l. This implies that k ≤ ai − 1. Hence,
+either gk ≥ ai or d1C(i,ai ) (k, gk + 1) ≤ λ.
+Recall that dC(i,ai ) (k, l) = min{dP (k, l), d1C(i,ai ) (k, l)}.
+If gk ≥ ai , then l ≤ ai ≤ gk , and thus, dP (k, l) ≤ λ by the definition of gk . Hence, we
+obtain dC(i,ai ) (k, l) ≤ λ.
+
+8
+
+Diameter-Optimally Augmenting Paths
+
+Otherwise, we have d1C(i,ai ) (k, gk + 1) ≤ λ. If l ≤ gk , we again have dP (k, l) ≤ λ and thus
+dC(i,ai ) (k, l) ≤ λ. If l ≥ gk + 1, then dP (l, ai ) ≤ dP (gk + 1, ai ). Hence, d1C(i,ai ) (k, l) =
+dP (i, k) + |vi vai | + dP (l, ai ) ≤ dP (i, k) + |vi vai | + dP (gk + 1, ai ) = d1C(i,ai ) (k, gk + 1) ≤ λ.
+Consequently, we again obtain dC(i,ai ) (k, l) ≤ λ.
+This proves the other direction of the lemma.
+J
+Recall that g1 ≤ g2 ≤ · · · ≤ gn . For each k ∈ [1, n], define hk to be the smallest index j
+in [1, k] with gj ≥ k. Observe that h1 ≤ h2 ≤ · · · ≤ hn .
+Note that if i < hai , then for each j ∈ [i, hai − 1], gj < ai and gj + 1 ≤ ai . Due to the
+preceding lemma, we further have the following lemma.
+I Lemma 10. γ(i, ai ) ≤ λ if and only if either hai ≤ i or d1C(i,ai ) (j, gj + 1) ≤ λ holds for
+each j ∈ [i, hai − 1].
+Proof.
+Suppose γ(i, ai ) ≤ λ. If hai ≤ i, then we do not need to prove anything. In the
+following, we assume hai > i. Consider any j ∈ [i, hai − 1]. Our goal is to show that
+d1C(i,ai ) (j, gj + 1) ≤ λ holds.
+Indeed, since γ(i, ai ) ≤ λ, by Lemma 9, we have either gj ≥ ai or d1C(i,ai ) (j, gj + 1) ≤ λ.
+Since j ∈ [i, hai − 1], gj < ai . Hence, it must be that d1C(i,ai ) (j, gj + 1) ≤ λ.
+This proves one direction of the lemma.
+Suppose either hai ≤ i or d1C(i,ai ) (j, gj + 1) ≤ λ holds for each j ∈ [i, hai − 1]. Our goal is
+to show that γ(i, ai ) ≤ λ. Consider any k ∈ [i, ai − 1]. By Lemma 9, it is sufficient to
+show that either gk ≥ ai or d1C(i,ai ) (k, gk + 1) ≤ λ.
+If hai ≤ i, then since k ≥ i, we obtain gk ≥ ai by the definition of hai .
+Otherwise, d1C(i,ai ) (j, gj + 1) ≤ λ holds for each j ∈ [i, hai − 1]. If k ≥ hai , then we still
+have gk ≥ ai . Otherwise, k is in [i, hai − 1], and thus it holds that d1C(i,ai ) (k, gk + 1) ≤ λ.
+This proves the other direction of the lemma.
+J
+Let |C(i, ai )| denote the total length of the cycle C(i, ai ), i.e., |C(i, ai )| = dP (i, ai ) +
+|vi vai |. The following observation is crucial because it immediately leads to our algorithm in
+Lemma 12.
+I Observation 11. γ(i, ai ) ≤ λ if and only if either hai ≤ i or minj∈[i,hai −1] {dP (j, gj +1)} ≥
+|C(i, ai )| − λ.
+Proof. Suppose hai > i. Then, for each j ∈ [i, hai − 1], gj < ai and gj + 1 ≤ ai . Note that
+d1C(i,ai ) (j, gj + 1) = |C(i, ai )| − dP (i, gj + 1). Hence, d1C(i,ai ) (j, gj + 1) ≤ λ is equivalent to
+dP (j, gj + 1) ≥ |C(i, ai )| − λ. Therefore, d1C(i,ai ) (j, gj + 1) ≤ λ holds for each j ∈ [i, hai − 1]
+if and only if minj∈[i,hai −1] {dP (j, gj + 1)} ≥ |C(i, ai )| − λ.
+By Lemma 10, the observation follows.
+J
+I Lemma 12. With O(n) time preprocessing, given any i ∈ [1, n] and the corresponding ai
+with i < ai , whether γ(i, ai ) ≤ λ can be determined in constant time.
+Proof. As preprocessing, we first compute gj for all j = 1, 2, . . . , n, which can be done in
+O(n) time due to the monotonicity property g1 ≤ g2 ≤ . . . ≤ gn . Then, we compute hk for
+all k = 1, 2, . . . , n, which can also be done in O(n) time due to the monotonicity property
+h1 ≤ h2 ≤ . . . ≤ hn . Next, we compute an array B[1, . . . , n] with B[j] = dP (j, gj + 1) for
+each j ∈ [1, n] (let dP (j, gj + 1) = ∞ if gj + 1 > n). We build a range-minima data structure
+
+H. Wang
+
+on B [2, 11]. The range minima data structure can be built in O(n) time such that given any
+pair (i, j) with 1 ≤ i ≤ j ≤ n, the minimum value of the subarray B[i · · · j] can be returned
+in constant time [2, 11]. This finishes the preprocessing step, which takes O(n) time in total.
+Consider any i and the corresponding ai with i < ai . Our goal is to determine whether
+γ(i, ai ) ≤ λ, which can be done in O(1) time as follows.
+By Observation 11, γ(i, ai ) ≤ λ if and only if either hai ≤ i or minj∈[i,hai −1] {dP (j, gj +
+1)} ≥ |C(i, ai )| − λ. Since hai has been computed in the preprocessing, we check whether
+hai ≤ i is true. If yes, then we are done with the assertion that γ(i, ai ) ≤ λ. Otherwise, we
+need to determine whether minj∈[i,hai −1] {dP (j, gj + 1)} ≥ |C(i, ai )| − λ holds. To this end,
+we first compute minj∈[i,hai −1] {dP (j, gj + 1)} in constant time by querying the range-minima
+data structure on B with (i, hai − 1). Note that |C(i, ai )| can be computed in constant time.
+Therefore, we can determine whether γ(i, ai ) ≤ λ in O(1) time. This proves the lemma. J
+With Lemma 12, the decision problem can be solved in O(n) time. The proof of the
+following theorem summarizes our algorithm.
+I Theorem 13. Given any λ, we can determine whether λ is feasible in O(n) time, and
+further, if λ is feasible, a feasible edge can be found in O(n) time.
+Proof. First, we do the preprocessing in Lemma 4 in O(n) time. Then, for each f ∈ {α, β, δ},
+we compute Ii (f ) for all i = 1, 2, . . . , n, in O(n) time. We also do the preprocessing in
+Lemma 12.
+Next, for each i ∈ [1, n], we do the following. Compute the intersection [1, Ii (α)] ∩
+[Ii (β), n] ∩ [Ii (δ), n] in constant time. If the intersection is empty, then we are done for this
+i. Otherwise, obtain the smallest index ai in the above intersection. If ai ≤ i, then we
+stop the algorithm with the assertion that λ is feasible and report e(i, ai ) as a feasible edge.
+Otherwise, we use Lemma 12 to determine whether γ(i, ai ) ≤ λ in constant time. If yes, we
+stop the algorithm with the assertion that λ is feasible and report e(i, ai ) as a feasible edge.
+Otherwise, we proceed on i + 1.
+If the algorithm does not stop after we check all i ∈ [1, n], then we stop the algorithm
+with the assertion that λ is not feasible. Clearly, we spend O(1) time on each i, and thus,
+the total time of the algorithm is O(n).
+J
+
+4
+
+The Optimization Problem
+
+In this section, we present our algorithm that solves the optimization problem in O(n log n)
+time, by making use of our algorithm for the decision problem given in Section 3 (we will
+refer to it as the decision algorithm). It is sufficient to compute λ∗ , after which we can use
+our decision algorithm to find an optimal new edge in additional O(n) time.
+We start with an easy observation that λ∗ must be equal to the diameter D(i, j) of G(i, j)
+for some pair (i, j) with 1 ≤ i ≤ j ≤ n. Further, by Observation 2, λ∗ is equal to f (i, j) for
+some f ∈ {α, β, γ, δ} and some pair (i, j) with 1 ≤ i ≤ j ≤ n.
+For each f ∈ {α, β, γ, δ}, define Sf = {f (i, j) | 1 ≤ i ≤ j ≤ n}. Let S = ∪f ∈{α,β,γ,δ} Sf .
+According to our discussion above, λ∗ is in S. Further, note that λ∗ is the smallest feasible
+value of S. We will not compute the entire set S since |S| = Ω(n2 ). For each f ∈ {α, β, γ, δ},
+let λf be the smallest feasible value in Sf . Hence, we have λ∗ = min{λα , λβ , λγ , λδ }.
+In the following, we first compute λα , λβ , λδ in O(n log n) time by using our decision
+algorithm and the sorted-matrix searching techniques [7, 8].
+
+9
+
+10
+
+Diameter-Optimally Augmenting Paths
+
+4.1
+
+Computing λα , λβ , and λδ
+
+For convenience, we begin with computing λβ .
+We define an n × n matrix M [1 · · · n; 1 · · · n]: For each 1 ≤ i ≤ n and 1 ≤ j ≤ n, define
+M [i, j] = β(i, j) if j ≥ i and M [i, j] = β(i, i) otherwise. By Observation 3, the following
+lemma shows that M is a sorted matrix in the sense that each row is sorted in descending
+order from left to right and each column is sorted in descending order from top to bottom.
+I Lemma 14. For each 1 ≤ i ≤ n, M [i, j] ≥ M [i, j + 1] for any j ∈ [1, n − 1]; for each
+1 ≤ j ≤ n, M [i, j] ≥ M [i + 1, j] for any i ∈ [1, n − 1].
+Proof. Consider any two adjacent matrix elements M [i, j] and M [i, j + 1] in the same
+row. If j ≥ i, then M [i, j] = β(i, j) and M [i, j + 1] = β(i, j + 1). By Observation 3,
+M [i, j] ≥ M [i, j + 1]. If j < i, then M [i, j] = M [i, j + 1] = β(i, i). Hence, in either case,
+M [i, j] ≥ M [i, j + 1] holds.
+Consider any two adjacent matrix elements M [i, j] and M [i + 1, j] in the same column.
+If j ≥ i + 1, then M [i, j] = β(i, j) and M [i + 1, j] = β(i + 1, j). By Observation 3, we obtain
+M [i, j] ≥ M [i, j + 1]. If j < i + 1, then M [i, j] = β(j, j) and M [i, j + 1] = β(j + 1, j + 1).
+Note that β(j, j) is essentially equal to dP (j, n) and β(j + 1, j + 1) is equal to dP (j + 1, n).
+Clearly, dP (j, n) ≥ dP (j + 1, n). Hence, in either case, M [i, j] ≥ M [i, j + 1].
+J
+Note that each element of Sβ is in M and vice versa. Since λβ is the smallest feasible
+value of Sβ , λβ is also the smallest feasible value of M . We do not construct M explicitly.
+Rather, given any i and j, we can “evaluate” M [i, j] in O(log n) time since β(i, j) can be
+computed in O(log n) time if i ≤ j by Lemma 4. Using the sorted-matrix searching techniques
+[7, 8], we can find λβ in M by calling our decision algorithm O(log n) times and evaluating
+O(n) elements of M . The total time on calling the decision algorithm is O(n log n) and the
+total time on evaluating matrix elements is also O(n log n). Hence, we can compute λβ in
+O(n log n) time.
+Computing λα and λδ can done similarly in O(n log n) time, although the corresponding
+sorted matrices may be defined slightly differently. We omit the details. However, we cannot
+compute λγ in O(n log n) time in the above way, and again this is due to the λ-computation
+difficulty mentioned in Section 2.
+Note that having λα , λβ , and λδ essentially reduces our search space for λ∗ from S to
+Sγ ∪ {λα , λβ , λδ }.
+We compute λ1 = min{λα , λβ , λδ }. Thus, λ∗ = min{λ1 , λγ }. Hence, if λγ ≥ λ1 , then
+∗
+λ = λ1 and we are done for computing λ∗ . Otherwise (i.e., λγ < λ1 ), it must be that
+λ∗ = λγ and we need to compute λγ . To compute λγ , again we cannot use the similar way
+as the above for computing λβ . Instead, we use the following approach. We should point out
+that the success of the approach relies on the information implied by λγ < λ1 .
+
+4.2
+
+Computing λ∗ in the Case λγ < λ1
+
+We assume λγ < λ1 . Hence, λ∗ = λγ . Let e(i∗ , j ∗ ) be the new edge added to P in an optimal
+solution. We also call e(i∗ , j ∗ ) an optimal edge.
+Since λ∗ = λγ < λ1 , we have the following observation.
+I Observation 15. If λγ < λ1 and e(i∗ , j ∗ ) is an optimal edge, then λ∗ = γ(i∗ , j ∗ ).
+Proof. Assume to the contrary that λ∗ =
+6 γ(i∗ , j ∗ ). Then, by Observation 2, λ∗ is equal to
+one of α(i∗ , j ∗ ), β(i∗ , j ∗ ), and δ(i∗ , j ∗ ). Without loss of generality, assume λ∗ = α(i∗ , j ∗ ).
+
+H. Wang
+
+11
+
+γ
+λ1
+
+α
+β
+δ
+
+ai ∗ − 1 ai ∗
+
+ai∗ + 1
+
+Figure 6 Illustrating f (i∗ , j) as j changes for f ∈ {α, β, γ, δ}. The three indices ai∗ − 1, ai∗ , and
+a
+
+i∗
+
++ 1 are shown.
+
+Since α(i∗ , j ∗ ) is in Sα , λ∗ must be the smallest feasible value of Sα , i.e., λ∗ = λα . However,
+this contradicts with that λ∗ = λγ < λ1 = min{λα , λβ , λγ } ≤ λα .
+J
+For any i ∈ [1, n], for each f ∈ {α, β, γ, δ}, with respect to λ1 , we define Ii0 (f ) in a similar
+way to Ii (f ) defined in Section 3 with respect to λ except that we change “≤ λ” to “< λ1 ”.
+Specifically, define Ii0 (α) to be the largest index j ∈ [i, n] such that α(i, j) < λ1 . I 0 (γ) is
+defined similarly to Ii0 (α). If β(i, n) < λ1 , then define Ii0 (β) to be the smallest index j ∈ [i, n]
+such that β(i, j) < λ1 ; otherwise Ii0 (β) = ∞. Ii0 (δ) is defined similarly to Ii0 (β). Note that
+similar monotonicity properties for Ii0 (f ) with f ∈ {α, β, γ, δ} to those in Lemma 7 also hold.
+Recall that e(i∗ , j ∗ ) is an optimal edge. An easy observation is that since λ1 is strictly
+larger than λ∗ , the intersection [1, Ii0∗ (α)] ∩ [Ii0∗ (β), n] ∩ [Ii0∗ (δ), n] cannot be empty. Let ai∗
+be the smallest index in the above intersection. Note that i∗ ≤ ai∗ since i∗ ≤ Ii0∗ (β) ≤ ai∗ .
+The following lemma shows that e(i∗ , ai∗ ) is actually an optimal edge.
+I Lemma 16. If λγ < λ1 and e(i∗ , j ∗ ) is an optimal edge, then j ∗ = ai∗ .
+Proof. For any pair (i, j) with 1 ≤ i ≤ j ≤ n, let η(i, j) = max{α(i, j), β(i, j), δ(i, j)}. By
+Observation 2, D(i, j) = max{γ(i, j), η(i, j)}.
+We first prove the following claim: If γ(i∗ , ai∗ ) ≥ η(i∗ , ai∗ ), then j ∗ = ai∗ (e.g., see
+Fig. 6).
+On the one hand, consider any j ∈ [i∗ , ai∗ − 1]. By the definition of ai∗ , η(i∗ , j) ≥ λ1 .
+Since λ1 > λγ = λ∗ , η(i∗ , j) > λ∗ . By Observation 2, D(i∗ , j) ≥ η(i∗ , j) > λ∗ . Hence, j
+cannot be j ∗ since otherwise D(i∗ , j) would be equal to λ∗ , incurring contradiction.
+On the other hand, consider any j ∈ [a∗ + 1, n]. By Observation 2, D(i∗ , j) ≥ γ(i∗ , j). By
+Observation 3, γ(i∗ , j) ≥ γ(i∗ , ai∗ ). Hence, D(i∗ , j) ≥ γ(i∗ , ai∗ ). Further, since γ(i∗ , ai∗ ) ≥
+η(i∗ , ai∗ ) (the claim hypothesis), we have D(i∗ , ai∗ ) = max{γ(i∗ , ai∗ ), η(i∗ , ai∗ )} = γ(i∗ , ai∗ ).
+Therefore, we obtain D(i∗ , ai∗ ) ≤ D(i∗ , j). This implies that j ∗ = ai∗ . Hence, the claim
+follows.
+We proceed to prove the lemma. Based on the above claim, it is sufficient to show that
+∗
+γ(i , ai∗ ) ≥ η(i∗ , ai∗ ), as follows.
+Assume to the contrary that γ(i∗ , ai∗ ) < η(i∗ , ai∗ ). Then, D(i∗ , ai∗ ) = η(i∗ , ai∗ ). According to the definition of ai∗ , η(i∗ , ai∗ ) < λ1 . Hence, D(i∗ , ai∗ ) < λ1 . Let λ0 = D(i∗ , ai∗ ).
+Since λ0 = η(i∗ , ai∗ ), λ0 is a value in Sα ∪ Sβ ∪ Sδ . Since λ0 = D(i∗ , ai∗ ), λ0 is a feasible value
+(i.e., λ0 ≥ λ∗ ). Recall that λ1 is the smallest feasible value of Sα ∪ Sβ ∪ Sδ . Thus, we obtain
+contradiction since λ0 < λ1 .
+Therefore, γ(i∗ , ai∗ ) ≥ η(i∗ , ai∗ ) holds. The lemma thus follows.
+J
+Lemma 16 is crucial because it immediately suggests the following algorithm.
+We first compute the indices Ii0 (α), Ii0 (β), Ii0 (δ) for i = 1, . . . , n. This can be done in O(n)
+time using the similar algorithms as those for computing Ii (α), Ii (β), Ii (δ) in Section 3.1. In
+
+12
+
+Diameter-Optimally Augmenting Paths
+
+fact, here we can even afford O(n log n) time to compute these indices. Hence, for simplicity,
+we can use the similar algorithm as that for computing Ii (δ) in Section 3.1 instead of the
+one in Lemma 8. The total time is O(n log n).
+Next, for each i ∈ [1, n], if [1, Ii0 (α)] ∩ [Ii0 (β), n] ∩ [Ii0 (δ), n] 6= ∅, then we compute ai , i.e.,
+the smallest index in the above intersection. Let I be the set of index i such that the above
+interval intersection for i is not empty. Lemma 16 leads to the following observation.
+I Observation 17. If λγ < λ1 , then λ∗ is the smallest feasible value of the set {γ(i, ai ) | i ∈
+I}.
+Proof. By Lemma 16, one of the edges of {e(i, ai ) | i ∈ I} is an optimal edge. By
+Observation 15, λ∗ is in {γ(i, ai ) | i ∈ I}. Thus, λ∗ is the smallest feasible value in
+{γ(i, ai ) | i ∈ I}.
+J
+We can further obtain the following “stronger” result, although Observation 17 is sufficient
+for our algorithm.
+I Lemma 18. If λγ < λ1 , then λ∗ = mini∈I γ(i, ai ).
+Proof. For any pair (i, j) with 1 ≤ i ≤ j ≤ n, let η(i, j) = max{α(i, j), β(i, j), δ(i, j)}. By
+Observation 2, D(i, j) = max{γ(i, j), η(i, j)}.
+We first prove the following claim: For any i ∈ I, η(i, ai ) < γ(i, ai ). Indeed, assume
+to the contrary that η(i, ai ) ≥ γ(i, ai ) for some i ∈ I. Then, D(i, ai ) = η(i, ai ). By the
+definition of ai , η(i, ai ) < λ1 . Hence, D(i, ai ) < λ1 . Let λ0 = D(i, ai ). Note that λ0 is a
+feasible value that is in Sα ∪ Sβ ∪ Sδ . However, λ0 < λ1 contradicts with that λ1 is the
+smallest feasible value in Sα ∪ Sβ ∪ Sδ .
+Next, we prove the lemma by using the above claim. For each i ∈ I, by the above clam,
+D(i, ai ) = γ(i, ai ), and thus, γ(i, ai ) is a feasible value. By Lemma 16, we know that λ∗ is in
+{γ(i, ai ) | i ∈ I}. Therefore, λ∗ is the smallest value in {γ(i, ai ) | i ∈ I}. The lemma thus
+follows.
+J
+Observation 17 essentially reduces the search space for λ∗ to {γ(i, ai ) | i ∈ I}, which has
+at most O(n) values. It is tempting to first explicitly compute the set and then find λ∗ from
+the set. However, again, due to the γ-computation difficulty, we are not able to compute the
+set in O(n log n) time. Alternatively, we use the following approach to compute λ∗ .
+
+4.3
+
+Finding λ∗ in the Set {γ(i, ai ) | i ∈ I}
+
+Recall that according to Observation 5, γ(i, j) = maxi≤k≤l≤j dC(i,j) (k, l), with dC(i,j) (k, l) =
+min{dP (k, l), d1C(i,j) (k, l)} and d1C(i,j) (k, l) = dP (i, k) + |vi vj | + dP (l, j). Hence, γ(i, j) is
+equal to dP (k, l) or d1C(i,j) (k, l) for some k ≤ l. Therefore, by Observation 17, there exists
+i ∈ I such that λ∗ is equal to dP (k, l) or d1C(i,j) (k, l) for some k and l with i ≤ k ≤ l ≤ ai .
+Let Sp = {dP (k, l) | 1 ≤ k ≤ l ≤ n} and Sc = {d1C(i,j) (k, l) | i ≤ k ≤ l ≤ ai , i ∈ I}. Based
+on our above discussion, λ∗ is in Sp ∪ Sc . Further, λ∗ is the smallest feasible value in Sp ∪ Sc .
+Let λp be the smallest feasible value of Sp and let λc be the smallest feasible value of
+Sc . Hence, λ∗ = min{λp , λc }. By using the technique of searching sorted-matrices [7, 8], the
+following lemma computes λp in O(n log n) time.
+I Lemma 19. λp can be computed in O(n log n) time.
+
+H. Wang
+
+13
+i
+k
+h′ai
+gk′
+
+ai
+
+l
+
+l−1
+
+Figure 7 Illustrating the graph G(i, ai ) whose diameter is λ∗ and λ∗ = dC(i,ai ) (k, l).
+
+Proof. We define an n × n matrix M [1 · · · n; 1 · · · n]: For each 1 ≤ i ≤ n and 1 ≤ j ≤ n,
+define M [i, j] = dP (i, j) if j ≥ i and M [i, j] = 0 otherwise. It is easy to verify that each row
+of M is sorted in ascending order from the left to right and each column is sorted in ascending
+order from bottom to top. Consequently, by using the sorted-matrix searching technique
+[7, 8], λp can be found by calling our decision algorithm O(log n) times and evaluating O(n)
+elements of M . Clearly, given any i and j, we can evaluate M [i, j] in constant time. Hence,
+λp can be computed in O(n log n) time.
+J
+Recall that λ∗ = min{λp , λc }. In the case λp ≤ λc , λ∗ = λp and we are done with
+computing λ∗ . In the following, we assume λp > λc . Thus, λ∗ = λc . With the help of the
+information implied by λp > λc , we will compute λ∗ in O(n log n) time. The details are given
+below.
+For any j ∈ [1, n], let gj0 denote the largest index k ∈ [j, n] such that the subpath length
+dP (j, k) is strictly smaller than λp . Note that the definition of gj0 is similar to gj defined in
+Section 4.3 except that we change “≤ λ” to “< λp ”.
+For each k ∈ [1, n], let h0k denote the smallest index j ∈ [1, k] with gj0 ≥ k. Let I 0 be the
+subset of i ∈ I 0 such that i ≤ h0ai − 1. Hence, for each i ∈ I 0 and each j ∈ [i, h0ai − 1], gj0 < ai
+and thus gj0 + 1 ≤ ai .
+For each i ∈ I 0 , define d1max (i, ai ) = maxj∈[i,h0a −1] d1C(i,j) (j, gj0 + 1). The following lemma
+i
+gives a way to determine λ∗ .
+I Lemma 20. If λγ < λ1 and λc < λp , then λ∗ = d1max (i, ai ) for some i ∈ I 0 .
+Proof. Since λγ < λ1 and λc < λp , by our above discussions, λ∗ = λc .
+By Observation 17, λ∗ is the diameter of the graph G(i, ai ) for some i ∈ I and λ∗ is equal
+to the length of the shortest path of two vertices vk and vl in C(i, ai ) for i ≤ k ≤ l ≤ ai ,
+i.e., λ∗ = dC(i,ai ) (k, l) = min{dP (k, l), d1C(i,j) (k, l)}. See Fig. 7. Since λ∗ = λc , we further
+know that λ∗ = d1C(i,j) (k, l) and d1C(i,j) (k, l) ≤ dP (k, l). In fact, d1C(i,j) (k, l) < dP (k, l), since
+otherwise if d1C(i,j) (k, l) = dP (k, l), then λ∗ = dP (k, l) would be in the set Sp , contradicting
+with that λp is the smallest feasible value in Sp and λ∗ < λp .
+For simplicity of discussion, we assume |vl vl−1 | > 0 (since otherwise we can keep updating
+l to l − 1 until we find |vl vl−1 | > 0; note that such an l will eventually be found before we
+reach k since 0 ≤ λ∗ = d1C(i,j) (k, l) < dP (k, l)).
+We prove the following claim: dP (k, l − 1) < λp ≤ dP (k, l).
+On the one hand, since λ∗ = d1C(i,ai ) (k, l) and |vl vl−1 | > 0, we obtain that λ∗ <
+d1C(i,ai ) (k, l − 1). Since λ∗ is the diameter in the graph G(i, ai ), dG(i,ai ) (k, l − 1) =
+dC(i,ai ) (k, l − 1) ≤ λ∗ . Further, because dC(i,ai ) (k, l − 1) = min{dP (k, l − 1), d1C(i,ai ) (k, l −
+1)} and λ∗ < d1C(i,ai ) (k, l − 1), we obtain dP (k, l − 1) ≤ λ∗ . As λ∗ = λc < λp , it follows
+that dP (k, l − 1) < λp .
+
+14
+
+Diameter-Optimally Augmenting Paths
+
+On the other hand, assume to the contrary that λp > dP (k, l). Then, since dP (k, l) >
+d1C(i,ai ) (k, l) = λ∗ , dP (k, l) is a feasible value. Clearly, dP (k, l) is in the set Sp . However,
+λp > dP (k, l) contradicts with that λp is the smallest feasible value in Sp .
+This proves the claim. With the claim, we show below that λ∗ = d1max (i, ai ), which will
+prove the lemma.
+We first show that i is in I 0 , i.e., i ≤ h0ai − 1. Indeed, since λp ≤ dP (k, l) (by the claim),
+based on the definition of gk0 , it holds that gk0 < l (e.g., see Fig. 7). Since l ≤ ai , we obtain
+gk0 ≤ ai − 1. This implies that k < h0ai and thus k ≤ h0ai − 1. Since i ≤ k, i ≤ h0ai − 1.
+It remains to prove λ∗ = d1max (i, ai ). Indeed, recall that λ∗ = d1C(i,ai ) (k, l). Note
+that the above claim in fact implies that gk0 = l − 1, and thus, gk0 + 1 = l. Hence, we
+have λ∗ = d1C(i,ai ) (k, l) = d1C(i,ai ) (k, gk0 + 1). Note that k is in [i, h0ai − 1]. Consider any
+j ∈ [i, h0ai − 1]. To prove λ∗ = d1max (i, ai ), it is now sufficient to prove λ∗ ≥ d1C(i,ai ) (j, gj0 + 1),
+as follows.
+Recall that gj0 + 1 = l ≤ ai . Since λ∗ is the diameter of G(i, ai ), dG(i,ai ) (j, gj0 + 1) =
+dC(i,ai ) (j, gj0 + 1) ≤ λ∗ . Recall that dC(i,ai ) (j, gj0 + 1) = min{dP (j, gj0 + 1), d1C(i,ai ) (j, gj0 + 1)}.
+By the definition of gj0 , we know that dP (j, gj0 + 1) ≥ λp . Since λp > λ∗ , dP (j, gj0 + 1) > λ∗ .
+Hence, it must be that λ∗ ≥ d1C(i,ai ) (j, gj0 + 1).
+This proves that λ∗ = d1max (i, ai ). The lemma thus follows.
+J
+In light of Lemma 20, in the case of λc < λp , λ∗ = λc is the smallest feasible value of
+for all i ∈ I 0 . Note that the number of such values d1max (i, ai ) is O(n). Hence, if
+we can compute d1max (i, ai ) for all i ∈ I 0 , then λ∗ can be easily found in additional O(n log n)
+time using our decision algorithm, e.g., by first sorting these values and then doing binary
+search.
+The next lemma gives an algorithm that can compute d1max (i, ai ) for all i ∈ I 0 in O(n)
+time, with the help of the range-minima data structure [2, 11].
+d1max (i, ai )
+
+I Lemma 21. d1max (i, ai ) for all i ∈ I 0 can be computed in O(n) time.
+Proof. Consider any i ∈ I 0 . For any j ∈ [i, h0ai −1 ], it is easy to see that d1C(i,ai ) (j, gj + 1) =
+|C(i, ai )| − dP (j, gj + 1), where |C(i, ai )| is the length of the cycle C(i, ai ). Hence, we can
+obtain the following,
+d1max (i, ai ) =
+
+max
+
+j∈[i,h0a −1]
+i
+
+d1C(i,j) (j, gj0 + 1) =
+
+max
+
+j∈[i,h0a −1]
+
+{|C(i, ai )| − dP (j, gj0 + 1)}
+
+i
+
+= |C(i, ai )| −
+
+min
+
+j∈[i,h0a −1]
+
+dP (j, gj0 + 1).
+
+i
+
+minj∈[i,h0a −1] dP (j, gj0
+i
+
+Define dmin (i, ai ) =
++ 1). By the above discussions we have
+= |C(i, ai )| − dmin (i, ai ). Therefore, computing d1max (i, ai ) boils down to computing dmin (i, ai ). In the following, we compute dmin (i, ai ) for all i ∈ I 0 in O(n) time, after
+which d1max (i, ai ) for all i ∈ I 0 can be computed in additional O(n) time.
+First of all, we compute gj0 and h0j for all j = 1, 2, . . . , n. This can be easily done in O(n)
+time due to the monotonicity properties: g10 ≤ g20 ≤ · · · ≤ gn0 and h01 ≤ h02 ≤ · · · ≤ h0n . Recall
+that for each i ∈ I, ai has already been computed. Then, we can compute I 0 in O(n) time
+by checking whether i ≤ h0ai − 1 for each i ∈ I.
+Next we compute an array B[1 · · · n] such that B[j] = dP (j, gj0 + 1) for each j ∈ [1, n].
+Clearly, the array B can be computed in O(n) time. Then, we build a range-minima data
+structure on B [2, 11]. The range-minima data structure can be built in O(n) time such that
+given any pair (i, j) with 1 ≤ i ≤ j ≤ n, the minimum value of the subarray B[i · · · j] can be
+computed in constant time.
+d1max (i, ai )
+
+H. Wang
+
+Finally, for each i ∈ I 0 , we can compute dmin (i, ai ) in constant time by querying the
+range-minima data structure on B with (i, h0ai − 1).
+Therefore, we can compute dmin (i, ai ) for all i ∈ I 0 , and thus compute d1max (i, ai ) for all
+i ∈ I 0 in O(n) time.
+J
+In summary, we can compute λ∗ in O(n log n) time in the case λγ < λ1 and λc < λp .
+Our overall algorithm for computing an optimal solution is summarized in the proof of
+Theorem 22.
+I Theorem 22. An optimal solution for the optimization problem can be found in O(n log n)
+time.
+Proof. First, we compute λα , λβ , and λδ , in O(n log n) time by using our decision algorithm
+and the sorted-matrix searching techniques. Then, we compute λ1 = min{λα , λβ , λδ }.
+Second, by using λ1 , we compute the indices Ii0 (α), Ii0 (β), and Ii0 (δ) for all i = 1, 2, . . . , n.
+This can be done in O(n) time. For each i ∈ [1, n], if [1, Ii0 (α)] ∩ [Ii0 (β), n] ∩ [Ii0 (δ), n] 6= ∅, we
+compute ai (i.e., the smallest index in the above intersection) and add i to the set I (initially
+I = ∅). Hence, all such ai ’s and I can be computed in O(n) time.
+If I = ∅, then we return λ1 as λ∗ .
+If I 6= ∅, then we compute λp in O(n log n) time by Lemma 19. We proceed to compute
+d1max (i, ai ) for all i ∈ I 0 by Lemma 21, and then find the smallest feasible value λ0 in the set
+{d1max (i, ai ) | i ∈ I 0 } in O(n log n) time. Finally, we return min{λ1 , λp , λ0 } as λ∗ .
+The above computes λ∗ in O(n log n) time. Applying λ = λ∗ on our decision algorithm
+can eventually find an optimal edge in additional O(n) time.
+J
+References
+1
+2
+3
+
+4
+
+5
+
+6
+7
+8
+9
+10
+
+N. Alon, A. Gyárfás, and M. Ruszinkó. Decreasing the diameter of bounded degree graphs.
+Journal of Graph Theory, 35:161–172, 2000.
+M. Bender and M. Farach-Colton. The LCA problem revisited. In Proc. of the 4th Latin
+American Symposium on Theoretical Informatics, pages 88–94, 2000.
+D. Bilò, Luciano Gualà, and Guido Proietti. Improved approximability and nonapproximability results for graph diameter decreasing problems. Theoretical Computer
+Science, 417:12–22, 2012.
+J.-L. De Carufel, C. Grimm, A. Maheshwari, and M. Smid. Minimizing the continuous diameter when augmenting paths and cycles with shortcuts. In Proc. of the 15th Scandinavian
+Workshop on Algorithm Theory (SWAT), pages 27:1–27:14, 2016.
+E.D. Demaine and M. Zadimoghaddam. Minimizing the diameter of a network using shortcut edges. In Proc. of the 12th Scandinavian conference on Algorithm Theory (SWAT),
+pages 420–431, 2010.
+F. Frati, S. Gaspers, J. Gudmundsson, and L. Mathieson. Augmenting graphs to minimize
+the diameter. Algorithmica, 72:995–1010, 2015.
+G. Frederickson and D. Johnson. Generalized selection and ranking: Sorted matrices. SIAM
+Journal on Computing, 13(1):14–30, 1984.
+G.N. Frederickson and D.B. Johnson. Finding kth paths and p-centers by generating and
+searching good data structures. Journal of Algorithms, 4(1):61–80, 1983.
+Y. Gao, D.R. Hare, and J. Nastos. The parametric complexity of graph diameter augmentation. Discrete Applied Mathematics, 161:1626–1631, 2013.
+U. Große, J. Gudmundsson, C. Knauer, M. Smid, and F. Stehn. Fast algorithms for
+diameter-optimally augmenting paths. In Proc. of the 42nd International Colloquium on
+Automata, Languages and Programming (ICALP), pages 678–688, 2015.
+
+15
+
+16
+
+Diameter-Optimally Augmenting Paths
+
+11
+12
+13
+
+14
+15
+
+D. Harel and R.E. Tarjan. Fast algorithms for finding nearest common ancestors. SIAM
+Journal on Computing, 13:338–355, 1984.
+T. Ishii. Augmenting outerplanar graphs to meet diameter requirements. Journal of Graph
+Theory, 74:392–416, 2013.
+C.-L. Li, S.T. McCormick, and D. Simchi-Levi. On the minimum-cardinality-boundeddiameter and the bounded-cardinality-minimum-diameter edge addition problems. Operations Research Letters, 11:303–308, 1992.
+N. Megiddo. Applying parallel computation algorithms in the design of serial algorithms.
+Journal of the ACM, 30(4):852–865, 1983.
+A.A. Schoone, H.L. Bodlaender, and J. Van Leeuwen. Diameter increase caused by edge
+deletion. Journal of Graph Theory, 11:409–427, 1997.
+
+

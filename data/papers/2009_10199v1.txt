@@ -1,0 +1,21 @@
+Title: Evolutionary Architecture Search for Graph Neural Networks
+
+Authors: Min Shi, David A. Wilson, Xingquan Zhu, Yu Huang, Yuan Zhuang, Jianxun Liu, Yufei Tang
+
+Published: 2020-09-21
+
+Categories: cs.NE
+
+Abstract:
+Automated machine learning (AutoML) has seen a resurgence in interest with the boom of deep learning over the past decade. In particular, Neural Architecture Search (NAS) has seen significant attention throughout the AutoML research community, and has pushed forward the state-of-the-art in a number of neural models to address grid-like data such as texts and images. However, very litter work has been done about Graph Neural Networks (GNN) learning on unstructured network data. Given the huge number of choices and combinations of components such as aggregator and activation function, determining the suitable GNN structure for a specific problem normally necessitates tremendous expert knowledge and laborious trails. In addition, the slight variation of hyper parameters such as learning rate and dropout rate could dramatically hurt the learning capacity of GNN. In this paper, we propose a novel AutoML framework through the evolution of individual models in a large GNN architecture space involving both neural structures and learning parameters. Instead of optimizing only the model structures with fixed parameter settings as existing work, an alternating evolution process is performed between GNN structures and learning parameters to dynamically find the best fit of each other. To the best of our knowledge, this is the first work to introduce and evaluate evolutionary architecture search for GNN models. Experiments and validations demonstrate that evolutionary NAS is capable of matching existing state-of-the-art reinforcement learning approaches for both the semi-supervised transductive and inductive node representation learning and classification.
+
+Paper ID: 2009.10199v1
+
+Summary:
+This paper titled "Evolutionary Architecture Search for Graph Neural Networks" was authored by Min Shi, David A. Wilson, Xingquan Zhu, Yu Huang, Yuan Zhuang, Jianxun Liu, Yufei Tang and published on 2020-09-21.
+It falls under the categories: cs.NE.
+The research explores the following topic: Automated machine learning (AutoML) has seen a resurgence in interest with the boom of deep learning over the past decade. In particular, Neural Architecture Search (NAS) has seen significant attention throughout the AutoML research community, and has pushed forward the state-of-the-art in a number of neural models to address grid-like data such as texts and images. However, very litter work has been done about Graph Neural Networks (GNN) learning on unstructured network data. Given the huge number of choices and combinations of components such as aggregator and activation function, determining the suitable GNN structure for a specific problem normally necessitates tremendous expert knowledge and laborious trails. In addition, the slight variation of hyper parameters such as learning rate and dropout rate could dramatically hurt the learning capacity of GNN. In this paper, we propose a novel AutoML framework through the evolution of individual models in a large GNN architecture space involving both neural structures and learning parameters. Instead of optimizing only the model structures with fixed parameter settings as existing work, an alternating evolution process is performed between GNN structures and learning parameters to dynamically find the best fit of each other. To the best of our knowledge, this is the first work to introduce and evaluate evolutionary architecture search for GNN models. Experiments and validations demonstrate that evolutionary NAS is capable of matching existing state-of-the-art reinforcement learning approaches for both the semi-supervised transductive and inductive node representation learning and classification.
+
+Links:
+  - https://arxiv.org/abs/2009.10199v1
+  - https://arxiv.org/pdf/2009.10199v1

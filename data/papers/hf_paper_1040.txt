@@ -1,0 +1,4627 @@
+Title: arXiv paper 1040
+
+Categories: 7
+
+Abstract:
+1
+
+Uplink Channel Estimation and Data Transmission
+in Millimeter-Wave CRAN with Lens Antenna
+Arrays
+
+arXiv:1802.02076v1 [cs.IT] 6 Feb 2018
+
+Reuben George Stephen, Student Member, IEEE, and Rui Zhang, Fellow, IEEE
+
+Abstract—Millimeter-wave (mmWave) communication and
+network densification hold great promise for achieving highrate communication in next-generation wireless networks. Cloud
+radio access network (CRAN), in which low-complexity remote
+radio heads (RRHs) coordinated by a central unit (CU) are
+deployed to serve users in a distributed manner, is a costeffective solution to achieve network densification. However, when
+operating over a large bandwidth in the mmWave frequencies,
+the digital fronthaul links in a CRAN would be easily saturated
+by the large amount of sampled and quantized signals to be
+transferred between RRHs and the CU. To tackle this challenge,
+we propose in this paper a new architecture for mmWavebased CRAN with advanced lens antenna arrays at the RRHs.
+Due to the energy focusing property, lens antenna arrays are
+effective in exploiting the angular sparsity of mmWave channels,
+and thus help in substantially reducing the fronthaul rate and
+simplifying the signal processing at the multi-antenna RRHs
+and the CU, even when the channels are frequency-selective.
+We consider the uplink transmission in a mmWave CRAN with
+lens antenna arrays and propose a low-complexity quantization
+bit allocation scheme for multiple antennas at each RRH to
+meet the given fronthaul rate constraint. Further, we propose
+a channel estimation technique that exploits the energy focusing
+property of the lens array and can be implemented at the CU
+with low complexity. Finally, we compare the proposed mmWave
+CRAN using lens antenna arrays with a conventional CRAN
+using uniform planar arrays at the RRHs, and show that the
+proposed design achieves significant throughput gains, yet with
+much lower complexity.
+Index Terms—Cloud radio access network, millimeter-wave
+communication, lens antenna array, channel estimation, fronthaul constraint, antenna selection, quantization bit allocation.
+
+I. I NTRODUCTION
+
+N
+
+ETWORK densification by increasing the densities of
+base stations (BSs)/access points (APs) deployed, and
+millimeter-wave (mmWave) communication by exploiting
+large unused bandwidth in the higher frequencies of the radio
+spectrum, are two key strategies for achieving the orders of
+magnitude data rate improvement required for future wireless
+communication networks [1]. On one hand, cloud radio access
+This paper was presented in part at the IEEE Global Communications
+Conference (GLOBECOM), Singapore, Dec. 4–8, 2017.
+R. G. Stephen is with the National University of Singapore Graduate School
+for Integrative Sciences and Engineering, National University of Singapore,
+Singapore 117456, and also with the Department of Electrical and Computer
+Engineering, National University of Singapore, Singapore 117583 (e-mail:
+reubenstephen@u.nus.edu).
+R. Zhang is with the Department of Electrical and Computer Engineering, National University of Singapore, Singapore 117583 (e-mail:
+elezhang@nus.edu.sg).
+
+network (CRAN), in which distributed low-complexity remote
+radio heads (RRHs) are deployed close to the users, and
+coordinated by a central unit (CU) for joint processing, provides a cost-effective way of achieving network densification.
+Thanks to the centralized resource allocation and joint signal
+processing for the RRHs at the CU, CRAN achieves significant improvements in both the spectral efficiency and energy
+efficiency compared to the conventional cellular network [2]–
+[9], while RRHs can be simple relay nodes that transmit
+and receive quantized/compressed baseband signals to/from
+the CU over their fronthaul links. On the other hand, with
+advances in radio frequency (RF) circuits, wireless communication over mmWave bands has emerged as a promising technology to achieve high-rate communications, due to the large
+bandwidth available and the beamforming gain brought about
+by the possibility of deploying a large number of antennas at
+the transceivers thanks to the small wavelengths [10], [11].
+Thus, CRAN when integrated with mmWave communication,
+achieves the double goals of network densification and ample
+bandwidth at the same time for future wireless networks. However, in such a dense CRAN operating over a large mmWave
+bandwidth, the digital fronthaul links would be easily saturated
+by the large volume of sampled and quantized/compressed
+baseband signals that need to be transmitted between the CU
+and RRHs; thus, it is crucial to find cost-effective solutions to
+reduce the transmission rate required for each fronthaul link.
+In CRANs operating over the conventional cellular frequency bands, a considerable body of prior work (e.g. [2]–[5])
+has investigated various techniques for data compression at the
+RRHs to achieve fronthaul rate reduction. Further, channel estimation in networks with coordinated multi-antenna BSs has
+also been considered in prior work [12], [13]. In [12], random
+matrix theory was used to derive an approximate lower bound
+on the uplink ergodic achievable rate in a system with multiple
+single-antenna users and multi-antenna BSs, while [13] considered an estimate-compress-forward approach for the uplink
+of a CRAN and proposed various schemes to optimize the
+ergodic achievable sum rate subject to backhaul constraints.
+Most of the above techniques for compression and/or channel estimation are applicable for relatively small bandwidth
+compared to that in mmWave, and typically involve complex
+signal processing and cooperative signal compression across
+the RRHs, which are difficult to implement for mmWave
+systems due to practical cost and complexity considerations.
+A low-complexity training sequence design for CRAN was
+considered in [14], where the problem of minimizing the train-
+
+2
+
+z-axis (wavelengths)
+
+5
+
+0
+
+Antenna element
+EM Lens
+
+−5
+0
+2
+4
+
+x-axis (wavelengths)
+
+6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+y-axis (wavelengths)
+
+focusing antennas that can be selected for signal sampling
+and quantization. Thus, the use of lens antenna arrays can
+potentially achieve significant reduction in both the fronthaul
+rate requirement for transmitting the quantized signals to the
+CU and the interference among the users for the joint decoding
+at the CU in the uplink transmission. However, due to the
+finite fronthaul rate constraint at each RRH, it is crucial to
+design antenna selection and signal quantization schemes to
+maximize the achievable user rates at the CU. Since the RRHs
+in a CRAN are typically simple relay nodes, in this paper, we
+consider that simple uniform scalar quantization (SQ) of the
+sampled baseband signals is performed independently over the
+antennas selected at each RRH. The major contributions of this
+paper are summarized as follows.
+•
+
+Fig. 1. Illustration of lens antenna array with Dy = Dz = 10, Θ− =
+π
+, Θ+ = π2 , Φ− = Φ+ = π2 .
+6
+•
+
+ing length, while maintaining local orthogonality among the
+training sequences of the users, was considered; however, the
+fronthaul constraints at the RRHs were ignored. For frequencyselective mmWave channels, channel estimation for hybrid
+precoding was considered in [15], [16]. The approach is to
+represent the channel taps in the angular domain corresponding
+to a set of quantized angles, and then use sparse signal
+processing techniques to estimate the relevant parameters.
+In this paper, we propose a new architecture for mmWave
+CRAN by leveraging the use of advanced lens antenna arrays [17]–[22] at the RRHs. A full-dimensional lens antenna
+array [19] consists of an electromagnetic (EM) lens with
+energy focusing capability integrated with an antenna array
+whose elements are located on the focal surface of the
+lens (see Fig. 1). The amplitude response of a lens array can
+be expressed as a “sinc”-type function in terms of the angles
+of arrival/departure of plane waves incident on/transmitted
+from it, and the locations of the antenna elements [18], [19].
+Hence, by appropriately designing the locations of the antenna
+elements on the focal surface, the lens array is capable of
+focusing most of the energy from a uniform plane wave
+arriving in a particular direction onto a specific antenna
+element or subset of elements. Moreover, due to the multipath sparsity of mmWave channels [11], a lens array can
+be used to achieve the capacity of a point-to-point mmWave
+channel with multiple antennas via a technique called path
+division multiplexing [18], which uses simple single-carrier
+modulation even for transmission over wideband frequencyselective channels, and has low signal processing complexity.
+With lens antenna arrays, the angular domain sparsity of
+mmWave channels is transformed to the spatial domain, which
+then enables lower complexity signal processing for channel
+estimation and data transmission. Moreover, in a CRAN, since
+the angles of arrival of the signals from different users are
+typically independent, and thus different at each RRH, the
+user signals are effectively separated over a small number of
+
+•
+
+•
+
+•
+
+We introduce a new architecture for CRAN in mmWave
+frequencies using full-dimensional lens antenna arrays [18], [19] at the RRHs, taking into consideration
+both the elevation and azimuth angles of arrival of the
+signals from the users in the uplink transmission.
+We propose a simple energy-detection based antenna
+selection at each RRH and a low-complexity quantization
+bit allocation algorithm over the selected antennas to
+minimize the total quantization noise power based only
+on the estimates of the received signal power at different
+antennas, subject to the fronthaul rate constraint.
+When the CU has perfect channel state information (CSI),
+we show that the proposed system with lens antenna
+arrays can achieve better sum-rate performance compared to a conventional CRAN using uniform planar
+arrays (UPAs) at the RRHs and orthogonal frequency
+division multiplexing (OFDM) transmission by the users,
+when the same quantization algorithm is employed in
+both cases.
+Under imperfect CSI, we propose a reduced-size, approximate MMSE beamforming, by exploiting the energyfocusing property of lens antenna arrays. In the proposed
+scheme, for each user, only the data streams where the
+estimated channel gains are larger than a certain threshold
+are chosen for beamforming, while the interference on
+these streams is also approximated by thresholding the
+channel gain estimates.
+With the proposed bit allocation at the RRHs, channel
+estimation at the CU, and data transmission with singlecarrier modulation, we compare the proposed system with
+the conventional CRAN with UPAs via simulations, and
+show that when the fronthaul is constrained, the proposed
+system can achieve significant sum-throughput gains at
+much lower signal processing complexity and training
+overhead compared to the benchmark.
+
+The rest of this paper is organized as follows. In Section II we
+present the system model for the proposed mmWave CRAN
+with lens arrays, and carry out an analysis of the achievable
+rates under perfect and imperfect CSI, with our proposed bit
+allocation and channel estimation schemes. Section III gives a
+brief description of the benchmark CRAN system with UPAs
+and OFDM transmission. In Section IV, we compare our
+proposed system with the benchmark system via simulations.
+
+3
+
+Finally, Section V concludes the paper.
+Notation: In this paper, , denotes equality by definition,
+and ∼ means “distributed as”. The cardinality of a finite set S
+is denoted by |S|, while A \ B denotes the elements in A that
+are not in B. Sets of M ×N real, complex, and integer matrices
+are denoted by RM×N , CM×N and ZM×N respectively, while
+R+ and Z++ denote the set of non-negative real numbers
+and positive integers, respectively. δ[n] denotes the Kronecker
+delta function. The normalized sinc function is defined as
+for x 6= 0 and sinc(x) , 1 if x = 0. The
+sinc(x) , sin(πx)
+πx
+imaginary unit is denoted by  with 2 = 1. Scalars are denoted
+by lower-case letters, e.g. x, while vectors and matrices are
+denoted by bold-face lower-case and upper-case letters, e.g.
+x and X, respectively. For x ∈ R, ⌈x⌉ denotes the smallest
+integer greater than or equal to x, and ⌊x⌋ denotes the largest
+integer less than or equal to x. For x ∈ C, |x| ≥ 0 denotes its
+magnitude and ∠x ∈ [0, 2π) denotes its phase in radian. For
+a vector x, kxk denotes its Euclidean norm. A vector with
+all elements equal to 0 is denoted by 0, where the dimension is implied from the context. For vectors and matrices,
+()T denotes transpose, and ()H denotes conjugate transpose
+(Hermitian). For matrix X, tr(X) denotes the sum of its
+diagonal elements (trace). For X with linearly independent
+columns, X † , (X H X)−1 X H denotes the Moore-Penrose
+pseudo-inverse. X ⊗ Y denotes the Kronecker product of two
+matrices X and Y , while IN denotes the identity matrix of
+dimension N . A diagonal matrix with elements x1 , . . . , xM on
+the main diagonal is denoted by diag( x1 ··· xM ), and a block
+diagonal matrix by blkdiag( X1 ··· XM ). CN (µ, Σ) denotes a
+circularly symmetric complex Gaussian (CSCG) distribution
+centered at µ with covariance Σ, and U[a, b] denotes a uniform
+distribution over the interval [a, b].
+
+II. S YSTEM M ODEL
+We study the uplink transmission in a mmWave-based dense
+CRAN cluster (see Fig. 2) with M multi-antenna RRHs,
+denoted by M = {1, . . . , M }. The cluster is sectorized,
+where each RRH has J = 3 sectors covering 120◦ each,
+and each sector is served by a full-dimensional lens antenna
+array with Q antenna elements denoted by the set Q(j) =
+{1, . . . , Q} , j ∈ J , where J = {1, . . . , J} denotes the
+set of sectors. Further, we use Q without the superscript to
+denote the set of S
+all antenna elements in all sectors of an
+RRH, i.e., Q = j∈J Q(j) , and |Q| = JQ. Each RRH
+is connected to the CU via an individual fronthaul link of
+finite capacity R̄m > 0 in bits per second (bps). There are
+K single-antenna users in the CRAN cluster, denoted by
+K = {1, . . . , K}. All the users and RRHs share the same
+bandwidth for communication. Depending on a user’s location,
+its signals are incident on at most one sector of an RRH, and
+we model any inter-sector/inter-cluster leakage interference as
+Gaussian noise. We further assume that the total number of
+sectors in the CRAN is greater than or equal to the number
+of users, i.e., JM ≥ K. The users transmit over a mmWave,
+frequency-selective, block-fading channel of bandwidth W Hz.
+
+Fronthaul
+link
+RRH m
+
+Central
+Unit (CU)
+
+mmWave
+wireless link
+
+User k
+
+Lens array
+CRAN
+cluster
+
+R̄m
+
+Fig. 2. Schematic of CRAN.
+
+The channel between user k and RRH m1 has Lm,k paths
+denoted by Lm,k = {1, . . . , Lm,k }. Then the discrete-time
+channel coefficient vector hm,k [n] ∈ CQ×1 at time index
+n between user k and RRH m can be expressed using a
+geometric channel model as
+X
+
+αm,k,ℓ a θm,k,ℓ , φm,k,ℓ δ[n − dm,k,ℓ ]
+hm,k [n] =
+ℓ∈Lm,k
+
+=
+
+X
+
+ℓ∈Lm,k
+
+hm,k,ℓ δ[n − dm,k,ℓ ],
+
+(1)
+
+where αm,k,ℓ ∈ C and dm,k,ℓ ∈ {0, 1, . . . , dmax } , D denote,
+respectively, the complex gain and delay in symbol periods
+
+corresponding to path ℓ ∈ Lm,k , and a θm,k,ℓ , φm,k,ℓ ∈
+CQ×1 is the array response for the elevation and azimuth
+angles of arrival of path ℓ denoted by θm,k,l and φm,k,l ,
+respectively.
+We consider that for each sector, each RRH is equipped
+with a rectangular EM lens in the y − z plane, with
+dimensions Dy × Dz normalized by the wavelength2 along
+the y- and z-axes, respectively. The EM lens is followed by
+a full-dimensional antenna array with Q elements placed on
+the focal surface of the lens, which is a hemisphere around
+the lens’ center (taken to be the origin in Fig. 1) with radius
+equal to the focal length of the lens (see Fig. 1). Let each
+antenna element be indexed by a pair of indexes (qe , qa ),
+where qe denotes the index in the elevation direction along
+the focal surface of the lens and qa denotes the index in the
+azimuth direction along the focal surface. Now, for a ray
+drawn from the center of the lens to an antenna element
+(qe , qa ), let φqa ∈ [−Φ− , Φ+ ] denote the azimuth angle made
+by the ray, where Φ− , Φ+ ∈ (0, π/2] are the maximum
+azimuth angles in the negative and positive y-directions,
+respectively. Similarly, let θqe ∈ [−Θ− , Θ+ ] denote the
+elevation angle made by the ray, where Θ− , Θ+ ∈ (0, π/2]
+are the maximum elevation angles covered by the antenna
+array in the negative and positive z-directions, respectively.
+Then, the antennas are placed such that the indexes qe
+run from the integers −⌊Dz sin Θ− ⌋ to ⌊Dz sin Θ+ ⌋.
+1 Since each user’s signals are received by only one sector of every RRH, we
+refer to the channel between the user and the RRH, instead of the particular
+sector of the RRH, for convenience.
+2 The dimensions are assumed to be same at all RRHs for convenience.
+
+4
+
+Ta
+
+Td
+
+Tp
+
+Power probing Guard
+Guard
+for antenna
+interval Pilot symbols interval
+selection
+dmax
+
+ADC/Quantization
+1
+
+Data symbols
+
+ℜ{y1,m }
+
+AGC/
+Power
+est.
+
+1
+
+RF to
+baseband
+
+Tf
+Q
+
+Fig. 3. Frame structure for uplink transmission with lens antenna arrays.
+Lens
+
+Antenna
+array
+
+AGC/
+Power
+est.
+
+
+ℑ{y1,m }
+
+RF
+switches
+
+dmax
+
+SQ
+
+ℜ{yQm ,m }
+
+RF to
+Qm baseband
+
+To CU via
+fronthaul
+
+SQ
+
+
+ℑ{yQm ,m }
+
+y̌1,m
+
+SQ
+
+SQ
+
+y̌Qm ,m
+
+Bit allocation/
+antenna
+selection
+
+Thus, the elevation angles of the antenna elements θqe
+are related to the indexes qe by sin θqe = qe /Dz , qe ∈ Fig. 4. Architecture of RRH with lens antenna array.
+{−⌊Dz sin Θ− ⌋, . . . , −1, 0, 1, . . . , ⌊Dz sin Θ+ ⌋}.
+Next,
+for each index qe , the index qa runs from the integers
+A. Uniform Scalar Quantization (SQ) and Bit Allocation at
+−⌊Dy cos θqe sin Φ− ⌋ to ⌊Dy cos θqe sin Φ⌋, so that the
+azimuth angles of the antenna elements φqa are related RRHs
+During the power-probing stage, the users transmit constant
+to the indexes qa by sin φqa = qa /(Dy cos θqe ), qa ∈
+amplitude signals for a duration Ta ≥ dmax + 1, and each
+{−⌊Dy cos θqe sin Φ− ⌋, . . . , −1, 0, 1, . . . , ⌊Dy cos θqe sin Φ⌋} [19].
+Then the amplitude response in (1) of the lens array element RRH m obtains an estimate of the average received power
+(qe , qa ) ≡ q ∈ Q(j) , to a uniform plane wave incident at ρq,m on each antenna either from the AGC circuitry, or using
+elevation and azimuth angles (θ, φ), can be expressed as [20] analog power estimators. We consider that each RRH performs
+uniform SQ on the real and imaginary components of the
+complex baseband samples received at each antenna q ∈ Q
+p
+aq (θ, φ) = Dz Dy sinc (qe − Dz sin θ)
+and
+denoted by yq,m [n], independently,3 using bq,m ∈ Z++
+
+· sinc qa − Dy cos θ sin φ ,
+(2) bits. If bq,m = 0, the symbols on antenna q are not forwarded
+to the CU by RRH m (i.e., this antenna is not selected for
+subsequent channel training and data transmission). Following
+q ∈ Q(j) , j ∈ J . Since the RRHs have fronthaul links the design in [8], the resulting quantized samples y̌q,m [n] can
+of finite capacities, they must quantize the received signals be expressed as
+before forwarding to the CU. As the RRHs are typically
+y̌q,m [n] = yq,m [n] + eq,m [n],
+(3)
+simple nodes with limited processing capability, we consider
+that they perform uniform SQ independently on each antenna,
+where eq,m [n] represents the quantization error, modeled as a
+with the SQ bit allocation adapted in each channel coherence
+random variable with mean zero and variance given by [8]
+interval. As shown in Fig. 4, the RRHs perform bit allocation
+based on the estimated received power levels at each antenna
+ε2q,m , E[|eq,m [n]|2 ] = 3ρq,m /22bq,m , bq,m ∈ Z++ . (4)
+element, which can be obtained before converting the signals
+to the baseband, either using feedback from the automatic The quantization error is assumed to be uncorrelated with
+gain control (AGC) circuitry, or by means of analog power yq,m [n], and as the SQ is performed independently at each
+estimators [23], which can be implemented using band-pass antenna and for each sample, we have E[eq,m [n]e∗q′ ,m [n′ ]] = 0
+filters and envelope detectors. We consider a frame-based for any q ′ 6= q or n′ 6= n, ∀m ∈ M. With Nyquist
+transmission by the users, with frame duration Tf < Tc in rate sampling, the transmission rate required
+P to forward the
+quantized
+signals
+over
+all
+the
+antennas
+is
+symbol periods, where Tc denotes the minimum coherence
+q∈Q 2W bq,m bps,
+time among all the user-RRH channels. Each frame is further which must not exceed the fronthaul capacity R̄m . Each RRH
+m uses the estimate ρq,m of the average received power
+divided into the following three stages as shown in Fig. 3:
+computed from the received signals in the power-probing stage
+• A power probing stage of duration Ta , where the users
+to perform the SQ in the subsequent channel training and data
+transmit constant amplitude signals in order to enable the transmission stages. We consider the design of quantization
+RRHs to perform bit allocation and antenna selection;
+bit allocation to minimize the total SQ noise power over all
+• A channel training stage of duration Tp , where the users
+the antennas subject to the fronthaul capacity constraint at the
+transmit pilot symbols, and the CU performs channel RRH, as captured by the following optimization problem
+estimation for the selected antennas using the quantized
+X 3ρq,m
+signals forwarded by the RRHs; and
+(5)
+minimize
+bm
+22bq,m
+• A data transmission stage of duration Td , where the users
+q∈Q
+transmit their data, which is quantized and forwarded by
+subject to
+the RRHs for decoding at the CU.
+X
+R̄m
+(5a)
+bq,m ≤
+2W
+The above stages are separated by guard intervals of dmax
+q∈Q
+symbols (see Fig. 3), where dmax denotes the maximum delay
+spread of all the user-RRH channels. Note that Tf = Ta +Tp +
+3 This can be performed using low-cost, low-resolution analog-to-digital
+Td + 2dmax . In the following, we describe each stage in detail. converters (ADCs).
+
+5
+
+T
+
+where bm , [ b1,m ··· bQ,m ] ∈ ZJQ×1
+++ . Since the bq,m ’s are
+integers, the above problem is non-convex. However, if the
+variables are relaxed so that bq,m ∈ R+ ∀q ∈ Q, we have the
+following relaxed problem
+X 3ρq,m
+22bq,m
+
+min
+
+bm ∈RJQ×1
++
+q∈Q
+
+(6)
+
+s.t. (5a)
+
+which is convex since the objective function is convex,4 while
+the constraint (5a) is linear. Thus, we have the following
+proposition.
+Proposition 2.1. The optimal solution to problem (6) is given
+by
+b′q,m = max
+
+n1
+2
+
+log2
+
+where λ⋆ ≥ 0 is such that
+
+ 6ρ
+
+P
+
+q,m ln 2
+λ⋆
+
+′
+q∈Q bq,m
+
+ o
+, 0 , q ∈ Q,
+
+TABLE I
+A LGORITHM FOR QUANTIZATION BIT ALLOCATION
+Initialize λmin = 0, λmax = 6ρmax,m ln 2, tolerance ǫ > 0
+repeat
+λ = (λmin + λmax )/2
+Compute
+bm according to (7)
+P
+if q∈Q bq,m ≤ R̄m /2W then
+Set λmax = λ
+else
+Set λmin = λ
+end if
+until |λmax − λmin | < ǫ
+Use λ⋆ = λ in (7) to compute b′m
+Initialize βmin = 0, βmax = 1, and find β in (8) by bisection
+similar to above until |βmax − βmin | < ǫ
+13: Compute final integer solution b̃m to problem (5) according to (8)
+with converged β
+
+1:
+2:
+3:
+4:
+5:
+6:
+7:
+8:
+9:
+10:
+11:
+12:
+
+(7)
+
+= R̄m /2W .
+
+Proof. Please refer to the appendix.
+Let Q′m denote the set of antennas with non-zero allocation
+according to (7). With the optimal solution b′m to
+problem (6), we proceed to construct a feasible integer solution
+b̃m ∈ ZJQ×1
+for the original problem (5) by rounding b′m as
+++
+follows
+(
+⌊b′q,m ⌋ if b′q,m − ⌊b′q,m ⌋ ≤ β
+b̃q,m =
+, q ∈ Q′m ,
+(8)
+⌈b′q,m ⌉ if b′q,m − ⌊b′q,m ⌋ > β
+b′q,m
+
+where β ∈ [0, 1] is an appropriate threshold. Notice that as
+β is decreased, most of the b′q,m ’s would be rounded above,
+making it more difficult to satisfy the constraint in (5) and
+vice versa. Hence, a suitable β can be found by bisection on
+the interval [0, 1], each time evaluating the constraint in (5)
+with b̃m in (8) and updating β accordingly.
+From (7), we observe that the optimal solution allocates
+more bits to the antenna with higher estimated power ρq,m ,
+which is desirable, since the antennas that receive stronger
+signals from the users are more likely to have useful information to be decoded. The algorithm is summarized in Table I
+and we denote the final set of selected antennas at RRH m as
+Qm = {q ∈ Q | b̃q,m > 0} with |Qm | , Qm . We assume that
+the fronthaul capacities are such that R̄m ≥ 2JW, ∀m ∈ M,
+so that the number of selected antennas at each RRH is at
+least Qm ≥ J, ∀m ∈ M. Then, since JM ≥ K, it is
+always feasible to recover all K users’ signals at the CU
+via linear processing with independent channels. Let Qtot ,
+P
+m∈M Qm denote the total number of selected antennas. For
+the ease of exposition, we refer to the selected antennas as
+“streams” and use the index i ∈ {1, . . . , Qtot } , I to denote
+each stream so that the stream i corresponds to the antenna
+(j)
+qi in sector j of RRH mi .
+4 For the relaxed problem, we assume that the objective function is defined
+for bq,m = 0 as well.
+
+B. Path Delay Compensation and Achievable Sum-Rate with
+Perfect CSI
+In this subsection, we describe the operations at the CU,
+assuming perfect CSI. If the RRHs are equipped with lens
+antenna arrays, we propose that the users transmit simultaneously with single-carrier modulation, so that the data
+√ symbols
+transmitted by user k are given by xd,k [n] = P sd,k [n],
+where P ≥ 0 is the transmit power and sd,k [n] ∼ CN (0, 1)
+is the complex data symbol of user k. Using (1) and (3), the
+quantized symbols received at the CU corresponding to stream
+i ∈ I can be expressed as
+X X
+y̌d,i [n] =
+hi,k,ℓ xd,k [n − dmi ,k,ℓ ] + zd,i [n]
+k∈K ℓ∈Lmi ,k
+
++ ed,i [n],
+
+i ∈ I.
+
+(9)
+
+We assume that the CU decodes the users’ data symbols via
+linear processing, after path delay compensation [20] on the
+received signals for each stream as described below. Let ℓ⋆i,k =
+arg maxℓ∈Lm ,k |hi,k,ℓ |2 denote the strongest path among all
+i
+those arriving on stream (selected antenna) i ∈ I from user
+k. Due to the response of the lens array, the delayed versions
+of a particular user’s signals with different angels of arrival
+are focused on different antenna elements at each RRH in
+general. Thus, to ensure that the symbols of each user that
+have undergone the strongest path gain on each stream are
+combined at the CU in a synchronized manner, each stream
+(j)
+of quantized symbols y̌d,i [n], corresponding to antenna qi of
+RRH mi , is advanced by the delay dmi ,k,ℓ⋆i,k corresponding to
+
+the path ℓ⋆i,k , to obtain the delay compensated signal y̌d,i,k n+
+
+dmi ,k,ℓ⋆i,k , y̌¯d,i,k [n] for each user k ∈ K, as given by
+y̌¯d,i,k [n]
+X
+=
+
+X
+
+k′ ∈K ℓ′ ∈Lmi ,k′
+
+
+
+hi,k′ ,ℓ′ xd,k′ n − dmi ,k′ ,ℓ′ − dmi ,k,ℓ⋆i,k
+
+
+
+
+
++ zd,i n + dmi ,k,ℓ⋆i,k + ed,i n + dmi ,k,ℓ⋆i,k .
+
+(10)
+
+In order to write the summation over the paths in (10) in
+terms of the delay differences ν = dmi ,k′ ,ℓ′ − dmi ,k,ℓ⋆i,k ∈
+{0, ±1, . . . , ±dmax } , ∆ with the delay of the maximum gain
+
+6
+
+path dmi ,k,ℓ⋆i,k , we define for each antenna i ∈ I and user pair
+k, k ′ ∈ K, the new channel coefficient
+X
+
+
+h̄i,kk′ [ν] ,
+hi,k′ ,ℓ′ δ ν − dmi ,k′ ,ℓ′ − dmi ,k,ℓ⋆i,k ,
+ℓ′ ∈Lmi ,k′
+
+i ∈ I, k, k ′ ∈ K, ν ∈ ∆,
+
+(11)
+
+which is equivalent to the channel coefficient (or sum of
+coefficients) corresponding to the path(s) ℓ′ ∈ Lmi ,k′ from
+user k ′ to antenna i, which has (have) a delay difference of
+ν with the maximum gain path ℓ⋆i,k of user k to the same
+antenna. Then, (10) can be expressed as
+X
+h̄i,kk [ν]xd,k [n − ν]
+y̌¯d,i,k [n] = h̄i,kk [0]xd,k [n] +
+ν∈∆\{0}
+
++
+
+X
+
+X
+
+k′ ∈K\{k} ν∈∆
+
+|
+
+|
+
+{z
+
+inter-symbol interference (ISI)
+
+h̄i,kk′ [ν]xd,k′ [n − ν]
+{z
+
+inter-user interference (IUI)
+
+}
+
+}
+
++ z̄d,i,k [n] + ēd,i,k [n], i ∈ I, k ∈ K,
+(12)
+
+
+2
+) and
+where z̄d,i,k [n] , zd,i n + dmi ,k,ℓ⋆i,k ∼ CN (0, σm
+i
+
+
+ēd,i,k [n] , ed,i n + dmi ,k,ℓ⋆i,k , with E[ēd,i,k [n]] = 0 and
+E[|ēd,i,k [n]|2 ] = ε2i defined in (4) denote the AWGN and
+quantization noise samples shifted by dmi ,k,ℓ⋆i,k symbol periods. Note that y̌¯d,j,k [n] in (12) depends on user k whose
+maximum gain path ℓ⋆i,k is used as reference. The second and
+third terms in (12) represent user k’s own delayed symbols,
+and the interfering symbols from other users, respectively.
+Collecting the signals from all the streams, (12) can be written
+in vector form as
+X
+¯d,k [n] = h̄kk [0]xd,k [n] +
+h̄kk [ν]xd,k [n − ν]
+y̌
+ν∈∆\{0}
+
++
+
+X X
+
+k′ ∈K\k ν∈∆
+
+h̄kk′ [ν]xd,k′ [n − ν]
+
++ z̄d,k [n] + ēd,k [n],
+
+k ∈ K,
+
+(13)
+
+where all the vectors are of dimension Qtot × 1. We consider
+¯k [n]
+that the CU performs linear receive beamforming on y̌
+with the beamforming vector uk ∈ CQtot ×1 to construct the
+¯
+estimate x̂d,k [n] = uH
+k y̌d,k [n] of user k’s symbol. Treating the
+inter-symbol and inter-user interference in (12) as Gaussian
+noise, the signal to interference-plus-noise ratio (SINR) for
+decoding xd,k [n] is given by (14) on the top of the next page.
+2
+2
+IQM ) ∈ CQtot ×Qtot , and
+IQ1 ··· σM
+In (14), Σ , blkdiag(
+ σ1Q
+2 Qtot
+tot ×Qtot
+, where ε2i , i ∈ I, is deΞ , diag {εi }i=1 ∈ C
+fined in (4). Since the transmit powers of the users are fixed, γk
+in (14) is maximized by uk = Ck−1 h̄kk [0], k ∈ K according
+to the minimum mean squared error (MMSE) criterion [24],
+where
+X
+P h̄kk [ν]h̄kk [ν]H
+Ck ,
+ν∈∆\{0}
+
++
+
+X
+
+X
+
+k′ ∈K\{k} ν∈∆
+
+P h̄kk′ [ν]h̄kk′ [ν]H + Σ + Ξ,
+
+k ∈ K,
+(15)
+
+denotes the covariance of the noise and interference terms
+in (13). In this case, the SINR in (14) becomes γk =
+P h̄kk [0]H Ck−1 h̄kk [0], and by assuming the worst-case CSCG
+distribution for the quantization noise, a lower bound on the
+achievable sum rate over all users is thus given by
+X
+rlens =
+log2 (1 + γk )
+(16)
+k∈K
+
+in bps/Hz. In the next subsection, we consider channel estimation at the CU, and extend the achievable rate analysis to
+the case with imperfect CSI.
+C. Channel Estimation and Achievable Sum-Rate with Imperfect CSI
+Since the CU does not know the CSI a priori, it needs
+to estimate the CSI using pilot signals sent by the users and
+then quantized and forwarded by the RRHs in the channel
+The users transmit known pilot
+estimation stage (see Fig. 3). √
+symbols given by xp,k [n] = P sp,k [n], n = 0, 1, . . . , Tp −
+T
+1, k ∈ K. Let hi,k , [ hi,k [0] ··· hi,k [dmax ] ] ∈ C(dmax +1)×1
+denote the vector of time-domain channel taps from user k to
+antenna i ∈ I. Then, the vector of quantized symbols y̌p,i ,
+T
+[ y̌p,i [0] ··· y̌p,i [Tp −1] ] ∈ CTp ×1 received at the CU during the
+channel estimation stage can be expressed as
+X
+y̌p,i =
+Xp,k hi,k + zp,i + ep,i
+k∈K
+
+= Xp hi + zp,i + ep,i , i ∈ I,
+
+(17)
+
+where
+
+
+
+Xp,k , 
+
+xp,k [0]
+xp,k [1]
+
+0
+xp,k [0]
+
+..
+.
+
+..
+.
+
+···
+···
+
+..
+
+.
+
+0
+0
+
+..
+.
+
+xp,k [Tp −1] xp,k [Tp −2] ··· xp,k [Tp −1−dmax ]
+
+∈ CTp ×(dmax +1) ,
+
+k ∈ K,
+
+
+
+
+
+(18)
+
+is a Toeplitz matrix constructed from consecutive shifts of the
+pilot symbols of the users, while zp,i , [ zp,i [0] ··· zp,i [Tp −1] ]T
+2
+I ) denotes the AWGN, and ep,i ,
+with zp,i ∼ CN (0, σm
+i Tp
+T
+2
+[ ep,i [0] ··· ep,i [Tp −1] ] ∈ CTp ×1 with E[ep,i eH
+p,i ] = εi ITp
+X
+···
+X
+p,K ] ∈
+denotes the quantization noise. Also, Xp , [ p,1
+T
+CTp ×K(dmax +1) , and hi , [ hTi,1 ··· hTi,K ] ∈ CK(dmax +1)×1
+in (17). It is sufficient to estimate hi , i ∈ I in (18), to find both
+the channel coefficients and their corresponding tap delays.
+We do not assume any prior knowledge of the probability
+distribution function (pdf) of the elements of hi , i ∈ I at
+the CU, i.e. they are treated as unknown constants. Then, the
+least-squares (LS) estimate of hi is given by
+ĥi = arg min ky̌p,i − Xp hi k2 = Xp† y̌p,i
+hi
+
+= hi + ξp,i ,
+
+i ∈ I.
+
+(19)
+
+where we define ξp,i , Xp† zp,i + Xp† ep,i . Since each component of the vector X † ep,i ∈ C(dmax +1)×1 is a linear combination of the Tp independent zero-mean random variables in ep,i ,
+the second term in ξp,i , X † ep,i , can be modeled as a CSCG
+random vector, with mean E[X † ep,i ] = 0 and covariance
+† H
+2
+H
+−1
+E[X † ep,i eH
+, due to the central limit
+p,i (X ) ] = εi (Xp Xp )
+
+7
+
+γk = P
+
+ν∈∆\{0}
+
+2
+P |uH
+k h̄kk [ν]| +
+
+P uH
+k h̄kk [0]
+P
+P
+k′ ∈K\k
+
+
+2
++ ε2i )(XpH Xp )−1 in (19).
+theorem. Thus, ξp,i ∼ CN 0, (σm
+i
+Note that Tp ≥ K(dmax + 1) must be satisfied for the solution
+in (19) to exist. The MSE of the estimate ĥi is given by
+E[kĥi − hi k2 ] = E[kξp,i k2 ]
+
+
+
+2
++ ε2i tr (XpH Xp )−1 ,
+= σm
+i
+
+(20)
+
+which is minimized if XpH Xp = cIK(dmax +1) , where c
+is a constant [25, Example 4.3]. From the construction of
+H
+Xp , this translates to the condition Xp,k
+Xp,k′ = cδ[k −
+′
+′
+k ]I(dmax +1) , ∀k, k ∈ K, which is satisfied if each user’s
+training sequence sp,k [n], n = 0, . . . , Tp − 1 is orthogonal
+to that of every other user’s training sequence, and has the
+“ideal” auto-correlation property [25]. This can be ensured by
+using e.g., unit-amplitude Zadoff-Chu sequences [26], [27] for
+sp,k [n], with equal transmit power P, ∀k ∈ K. In this case,
+H
+c = P Tp so that (Xp,k
+Xp,k )−1 = P 1Tp I(dmax +1) , ∀k ∈ K,
+and thus Xp† = P 1Tp XpH . Consequently, the LS estimate in (19)
+reduces to
+1
+ĥi =
+X H y̌p,i = hi + ξp,i ,
+(21)
+P Tp p
+1
+X H (zp,i + ep,i )
+∼
+where
+ξp,i
+=
+ (σ2 +ε2 )
+P Tp p
+CN 0, mPiTp i IK(dmax +1) . According to (21), each
+tap in hi is estimated by correlating the received signal vector
+y̌p,i with the training sequence of the corresponding user
+shifted by the corresponding delay of the tap.
+Due to the energy focusing property of the lens antenna
+array in (2), and the different directions of arrival of the users’
+signals at different RRHs, at any stream i, typically only one
+path corresponding to a particular user corresponding to a
+particular tap delay would dominate over all its the other paths.
+Thus, the magnitudes of the channel coefficients in hi can
+be vastly different, depending on the angle of arrival of the
+users’ signals, and directly using the estimates of all the taps in
+hi , i ∈ I according to (19) may be ineffective. To overcome
+this issue, we propose a reduced-size, approximate linear
+MMSE beamforming by exploiting the “sinc”-type response
+of the lens array, where for each user, we select only the
+streams which contain at least one dominant estimated tap
+of its own, and then perform an approximate linear MMSE
+beamforming over these selected streams by thresholding the
+channel estimates, as explained below.
+Notice that for the data decoding with path delay compensation detailed in Section II-B, the term h̄i,kk [0] in (12)
+corresponds to the channel coefficient with maximum path
+gain from user k to antenna i. Now, due to the energy focusing
+property of the lens, the angle of arrival of user k’s signal is
+typically such that |h̄i,kk [0]| ≫ |h̄i,kk [ν]|, ∀ν ∈ ∆ \ {0}, on
+some streams i. This means that the maximum gain path of
+the user would dominate over the other paths on a particular
+stream i, provided the antenna corresponding to stream i has
+
+ν∈∆
+
+2
+H
+2
+P |uH
+k h̄kk′ [ν]| + uk (Σ + Ξ)uk
+
+,
+
+(14)
+
+a response which peaks at one of the angles of arrival of the
+user’s paths. Since we do not know the actual channel gains,
+we aim to find the set of such streams Ik for each user k,
+for which the magnitude of the maximum estimated channel
+gain exceeds a certain threshold. For this, we first estimate the
+tap delays of the maximum gain paths from user k to every
+stream i ∈ I. These are denoted by d˘i,k , i ∈ I, and computed
+from the LS estimate in (21) as follows
+d˘i,k , arg max |ĥi,k [d]|, k ∈ K, i ∈ I.
+
+(22)
+
+d∈D
+
+In the above, ĥi,k [d] is the ((k−1)(dmax +1)+d+1)th element
+of the vector LS estimate ĥi in (21). Essentially, we choose
+the tap delay corresponding to the estimate with the largest
+magnitude as the estimated delay of the maximum gain path
+on each stream i ∈ I. Then, for each stream i ∈ I, the estimate
+of the channel coefficient corresponding to the estimated
+maximum gain path, is given by ĥi,k [d˘i,k ], i ∈ I, k ∈ K,
+which is the ((k − 1)(dmax + 1) + d˘i,k + 1)th element of the
+vector LS estimate ĥi in (21).
+Further, during the data transmission stage, the CU selects a
+set of streams Ik ⊆ I, for which the above estimated channel
+gains ĥi,k [d˘i,k ] corresponding to the estimated maximum
+gain paths, are larger than a given threshold; i.e., we define
+
+
+2
+
+P ĥi,k [d̆i,k ]
+
+
+i∈I
+≥η ,
+2 +ε2
+
+σm
+
+i
+i
+
+ 2
+
+
+P ĥi,k d̆i,k
+Ik , if ∃ at least one i ∈ I s.t.
+≥ η,
+2 +ε2
+σm
+i
+
+i
+
+
+{ik }
+
+
+
+
+
+otherwise, where i , arg max
+,
+ĥ d˘
+k
+
+i∈I
+
+i,k
+
+i,k
+
+(23)
+
+k ∈ K, where η is a suitable threshold. Also, let Ik =
+{j1 , . . . , jIk }, and |Ik | = Ik , so that Ik ≥ 1, i.e. at least
+one stream is selected for decoding each user’s signal. Thus,
+for the data transmission stage, we now have the reduced set
+of streams y̌d,i , i ∈ Ik for each user k, with each y̌d,i given
+by (12). On these set of streams, the CU performs path delay
+compensation as in Section II-B, but now with the estimated
+delays d˘i,k ’s of the maximum gain paths instead of the true
+delays dmi ,k,ℓ⋆i,k ’s. The delay compensated signal can then be
+expressed in terms of the delay differences of the taps with
+d˘i,k , similar to (12), as
+X
+h̆i,kk [ν̆]xd,k [n − ν̆]
+y̌˘d,i,k [n] = h̆i,kk [0̆]xd,k [n] +
+ν̆∈∆\{0̆}
+
++
+
+X
+
+X
+
+k′ ∈K\{k} ν̆∈∆
+
+|
+
+|
+
+{z
+ISI
+
+h̆i,kk′ [ν̆]xd,k′ [n − ν̆]
+{z
+
+IUI
+
+}
+
++ z̆d,i,k [n] + ĕd,i,k [n], i ∈ Ik , k ∈ K,
+
+}
+
+(24)
+
+8
+
+ˆ −1 ˆ
+ˆ k = C̆
+˘
+where we have defined y̌˘d,i,k [n] , y̌d,i,k [n + d˘i,k ], z̆d,i,k [n] , beamforming ŭ
+k h̆kk [0̆] on the observations y̌d,k [n]
+5
+zd,i [n + d̆i,k ], and ĕd,i,k [n] , ed,i [n + d̆i,k ], and also placed a˘ in (26), where
+X
+symbol over the delay differences ν̆ ∈ ∆ to indicate that they
+ˆ
+ˆ
+ˆ
+P h̆kk [ν̆]h̆kk [ν̆]H
+C̆k ,
+are w.r.t. the estimated tap delay d˘i,k . The channel coefficients
+ν̆∈∆\{0̆}
+h̆i,kk′ [ν̆] are defined similar to (11), and are given by
+X X ˆ
+ˆ
+X
++
+P h̆kk′ [ν̆]h̆kk′ [ν̆]H + Σ̆ + Ξ̆, (29)
+
+
+˘
+hi,k′ ,ℓ′ δ ν̆ − dmi ,k′ ,ℓ′ − di,k ,
+h̆i,kk′ [ν̆] ,
+k′ ∈K\{k} ν̆∈∆
+ℓ′ ∈Lmi ,k′
+
+i ∈ Ik , k, k ′ ∈ K, ν̆ ∈ ∆.
+
+(25)
+
+Note that the h̆i,kk′ [ν̆]’s in (24) and (25) denote the true
+channel coefficients that correspond to a delay difference of
+ν̆ with the estimated delay d˘i,k . In vector form, (24) can be
+written as
+X
+˘d,k [n] = h̆kk [0̆]xd,k [n] +
+h̆kk [ν̆]xd,k [n − ν̆]
+y̌
+ν̆∈∆\{0̆}
+
++
+
+X
+
+X
+
+k′ ∈K\{k} ν̆∈∆
+
+h̆kk′ [ν̆]xd,k′ [n − ν̆]
+
++ z̆d,k [n] + ĕd,k [n],
+
+k ∈ K,
+
+X
+
+P h̆kk [ν̆]h̆kk [ν̆]H
+
+ν̆∈∆\{0̆}
+
++
+
+X
+
+k′ ∈K\{k}
+
+X
+
+P h̆kk′ [ν̆]h̆kk′ [ν̆]H + Σ̆ + Ξ̆,
+
+k∈K
+
+in bps/Hz. In the following subsection we briefly describe a
+benchmark scheme in the conventional CRAN when the RRHs
+use UPAs and the users transmit using OFDM.
+
+(26)
+
+where all the vectors have dimensions Ik × 1. Then, the
+reduced-size linear MMSE beamformer ŭk ∈ CIk ×1 for user
+k after path delay compensation with the estimated tap delay
+of the maximum gain path on each stream i ∈ Ik is given by
+ŭk = C̆k−1 h̆kk [ν̆], where
+C̆k ,
+
+and the resulting SINR is given by (30) on the top of the next
+page. Thus, with the proposed channel estimation, path delay
+compensation, and reduced-size, approximate linear MMSE
+receive beamforming for each user at the CU, a lower bound
+on the effective sum-throughput over all users of the CRAN
+is given by
+
+
+Ta + Tp + 2dmax X
+r̂lens = 1 −
+log2 (1 + γ̂k ) (31)
+Tf
+
+(27)
+
+ν̆∈∆
+
+is the covariance
+matrix ofthe interference terms in (26), with
+
+
+2
+2
+2
+2
+σ
+...
+σm
+m
+Σ̆ , diag
+, and Ξ̆ , εj1 ... εjIk .
+j1
+jI
+k
+However, the CU cannot compute the beamformer ŭk since
+it only has the estimates of h̆i,kk′ [ν̆], computed from (21).
+Now, on the selected streams i ∈ Ik , to avoid using the
+noisy estimates, the CU approximates the ISI and IUI terms
+in (24) by thresholding the estimates similar to (23). With the
+thresholding, the estimates of h̆i,kk′ [ν̆], which we denote by
+ˆ
+h̆i,kk′ [ν̆], are given by
+
+ĥ ′ [ν̆ + d˘ ], if P |ĥi,k′ [ν̆+d̆i,k ]|2 ≥ η,
+i,k
+i,k
+2 +ε2
+ˆ ′
+σm
+i
+h̆i,kk [ν̆] ,
+(28)
+i
+0
+otherwise,
+
+i ∈ Ik , k, k ′ ∈ K, ν̆ ∈ ∆. In (28), ĥi,k′ [ν̆ + d˘i,k ] is
+the ((k ′ − 1)(dmax + 1) + (ν̆ + d˘i,k ) + 1)th element of
+the vector LS estimate ĥi in (21). Note that due to the
+response of the lens antenna array, for each stream i ∈ Ik ,
+ˆ
+the thresholded estimates h̆i,kk′ [ν̆] will be non-zero only for
+a few usersh k ′ ∈ K and delay idifferences ν̆ ∈ ∆. Let
+T
+ˆ
+h̆kk′ [ν̆] = h̆ˆ j1 ,kk′ [ν̆] ··· h̆ˆ jIk ,kk′ [ν̆]
+∈ CIk ×1 denote the
+vector of the thresholded channel estimates in (28). Then,
+the CU applies the reduced-size, approximate linear MMSE
+
+III. B ENCHMARK : C ONVENTIONAL CRAN
+AND OFDM
+
+WITH
+
+UPA S
+
+In this case, each sector of an RRH is assumed to be
+equipped with a rectangular UPA of physical dimensions D̃y ×
+D̃z , with adjacent antenna elements of the array separated by a
+distance equal to half the wavelength. Let Q̃(j) , {1, . . . , Q̃},
+denote the set of antennas
+at sector j ∈ J of each RRH in
+S
+this case, and Q̃ = j∈J Q(j) denote the set of all antenna
+elements. The number of antenna elements per sector is given
+by Q̃ = Q̃y Q̃z , where Q̃y = ⌊2D̃y ⌋ denotes the number of
+antennas along the y-axis of the UPA and Q̃z = ⌊2D̃z ⌋ is the
+number of antennas along the z-axis. For the UPA, the array
+response vector a(θ, φ) ∈ CQ̃×1 in (1) can be written as
+a(θ, φ) = az (θ) ⊗ ay (θ, φ),
+(32)
+q
+T
+D̃z
+where az (θ) =
+[ 1 exp(π sin θ) ··· exp(π(Q̃z −1) sin θ) ] ∈
+Q̃
+z
+
+CQ̃z ×1
+is
+ray
+along
+r
+
+the
+the
+
+response
+z-axis,
+
+of
+and
+
+the
+linear
+ay (θ, φ)
+
+D̃y
+T
+[ 1 exp(π cos θ sin φ) ··· exp(π(Q̃y −1) cos θ sin φ) ]
+Q̃y
+
+ar=
+
+∈ CQ̃y ×1
+
+is the response of the linear array along the y-axis.
+The total channel bandwidth W is divided into N
+orthogonal sub-channels (SCs) of equal width denoted
+by N , {0, 1, . . . , N − 1}.
+The uplink transmission protocol is similar to that in Fig. 3,
+except that the users transmit their symbols in (N + µ)length symbol blocks using OFDM, where µ ≥ dmax is the
+length of the cyclic prefix (CP). Hence, the guard intervals
+shown in Fig. 3 are implicit in this case due to the CP,
+which is discarded at the CU. We assume that all the users
+transmit on all SCs for fully exploiting spatial multiplexing.
+5 It is assumed that the CU knows the quantization noise variances on each
+stream. These can be transmitted by the RRHs after the power probing stage
+to the CU once every frame period, along with information about the number
+of SQ bits on each antenna, since these quantities do not change within a
+frame.
+
+9
+
+γ̂k = P
+
+ν̆∈∆\{0̆}
+
+ˆ H h̆kk [ν̆]|2 +
+P |ŭ
+k
+
+ˆ H h̆kk [0̆]
+P ŭ
+k
+P
+P
+k′ ∈K\k
+
+In general, there can be multiple OFDM symbols in the power
+probing, channel estimation, and data transmission stages.
+For convenience, it is assumed that Ta , Tp and Td are all
+a
+integer multiples of N + µ, i.e. there are τa = NT+µ
+∈ Z++ ,
+Tp
+τp = N +µ ∈ Z++ , and τd = τd ∈ Z++ OFDM symbols in
+the power probing, channel estimation, and data transmission
+stages of a frame, respectively. Let x̃t,k ∈ CN ×1 denote the tth
+OFDM symbol transmitted by user k in the frequency-domain.
+Then the corresponding time-domain signals are given by
+the inverse discrete Fourier transform (IDFT) xt,k = F H x̃k ,
+where F ∈ CN ×N denotes the DFT matrix with columns
+T
+2πn(N −1)
+) ] , n ∈ N . Similar
+fn , √1N [ 1 exp(− 2πn
+N ) ··· exp(−
+N
+to Section II-A, the RRHs perform antenna selection and
+SQ bit allocation on the received time-domain signals and
+forward them to the CU. Let Q̃m , {q ∈ Q̃|bq,m > 0}
+with |Q̃m | = Q̃m denote the set of selected antennas at each
+RRH m in this case. Notice that with UPAs, the selected
+set of antennas and their non-zero quantization bit allocation
+at each RRH can be very different from that with the lens
+antenna P
+array, due to the lack of the lens focusing. Let
+Q̃tot =
+m∈M Q̃m and similar to Section II-A we index
+the selected antennas (streams) with i ∈ {1, . . . , Q̃tot } , Ĩ,
+where stream index i corresponds to antenna qi of RRH mi .
+
+2
+
+ν̆∈∆
+
+ˆk
+ˆ H (Σ̆ + Ξ̆)ŭ
+ˆ H h̆kk′ [ν̆]|2 + ŭ
+P |ŭ
+k
+k
+
+k∈K
+
+=
+
+X√
+N X̃p,t,k F0 hi,k + z̃p,t,i + ẽp,t,i
+
+k∈K
+
+= X̄p,t hi + z̃p,t,i + ẽp,t,i ,
+
+(33)
+
+where z̃p,t,i = F zp,t,i is the DFT of the AWGN so
+2
+I ), and ẽp,t,i = F ep,t,i is the
+that z̃p,t,i ∼ CN (0, σm
+i N
+DFT of the quantization noise with E[ẽp,t,i ] = 0 and
+2
+E[ẽp,t,i ẽH
+p,t,i ] = εi IN . Since each element of ẽp,t,i is a
+linear combination of the N elements in ep,t,i , due to the
+2
+central limit
+IN ). Also, in (33),
+√ theorem, ẽp,t,i ∼ CN (0, εNi×K(d
+max +1)
+, and hi
+X̄p,t , N [ X̃p,t,1 F0 ··· X̃p,t,K F0 ] ∈ C
+
+(30)
+
+˜p,t,i ,
+is defined similar to (17). For τp > 1, stacking each of y̌
+X̄p,t , z̃p,t,i , and ẽp,t,i , t ∈ {1, . . . , τp − 1} column-wise, we
+have
+˜p,i = X̄p hi + z̃p,i + ẽp,i .
+y̌
+
+(34)
+
+Similar to Section II-C, the LS estimate for hi is given by6
+˜p = hi + ξp,i ,
+ĥi = X̄p† y̌
+
+(35)
+
+2
++
+where ξp,i , X̄p† (z̃p,i + ẽp,i ) ∼ CN (0, (σm
+i
+2
+H
+−1
+εi )(X̄p X̄p ) ). Note that the estimate in (35) exists only
+if τp N ≥ K(dmax + 1), and the MSE of the estimate is
+
+
+2
++ ε2i )tr (X̄pH X̄p )−1 ,
+E[kĥi − hi k2 ] = E[kξp,i k2 ] = (σm
+i
+(36)
+which is minimized if X̄pH X̄p = c̃IK(dmax +1) , where c̃ is a
+constant. Due to the construction of X̄p in (34), this translates
+to the requirement that
+τp −1
+
+X
+
+H
+X̄p,t,k
+X̄p,t,k′ = N F0H
+
+ τX
+p −1
+t=0
+
+t=0
+
+
+H
+X̃p,t,k
+X̃p,t,k′ F0
+
+= δ[k − k ′ ]c̃I(dmax +1)
+
+A. Channel Estimation
+In the channel estimation stage, let x̃p,t,k [n] denote the
+frequency-domain pilot symbol transmitted by user k ∈ K on
+SC n ∈ N in the tth OFDM symbol, where t ∈ {0, 1, . . . , τp −
+1}. Also, let X̃p,t,k , diag( x̃p,t,k [0] ··· x̃p,t,k [N −1] ) ∈ CN ×N
+be the diagonal matrix constructed
+√ from the pilot symbols
+on all the SCs, and h̃i,k =
+N F0 hi,k , the vector of
+frequency-domain channel coefficients from user k to antenna
+i ∈ I, where hi,k ∈ C(dmax +1)×1 is the time-domain
+channel coefficient vector similar to that in Section II-C, and
+F0 ∈ CN ×(dmax +1) denotes the first (dmax +1) columns of F .
+Then, the frequency-domain received signal vector at the CU
+corresponding to the OFDM symbol t at antenna i ∈ Ĩ, after
+removing the CP and applying the DFT can be expressed as
+X
+˜p,t,i =
+y̌
+X̃p,t,k h̃i,k + z̃p,t,i + ẽp,t,i
+
+.
+
+k, k ′ ∈ K. (37)
+
+Now, let Ψ , V ⊗Sp,k ∈ Cτp N ×τp N , where V ∈ Cτp ×τp is a
+unitary matrix and Sp,k , diag( sp,k [0] ··· sp,k [N −1] ) ∈ CN ×N
+is a diagonal matrix with unit amplitude training symbols,
+H
+H
+satisfying Sp,k
+Sp,k = IN . Then, ΨH Ψ = V H V ⊗Sp,k
+Sp,k =
+Iτp N . The√condition
+(37)
+can
+then
+be
+ensured
+by
+choosing
+√
+X̃p,t,k = P Ψtω ( N diag(fκ )), where Ψtω ∈ CN ×N is the
+(t, ω)th block of Ψ, t, ω ∈ {0, . . . , τp − 1} [28, Theorem 2].
+Here, κ and ω are such that the user index k can be written
+K−1
+as k = κτp + ω + 1, i.e., κ = ⌊ k−1
+τp ⌋ ∈ {0, 1, . . . , ⌊ τp ⌋},
+and ω = k − 1 − κτp ∈ {0, 1, . . . , τp − 1}. Then, (37) holds
+with c̃ = τp N P , and X̄pH X̄p = τp N P IK(dmax +1) . Then, the
+LS estimate in (35) can be written as
+ĥi =
+
+1
+˜p = hi + ξp,i ,
+X̄ H y̌
+τp N P p
+
+(38)
+
+1
+X̄ H (z̃p,i + ẽp,i )
+∼
+where
+ξp,i
+=
+ σ2 +ε2
+τp N P p
+CN 0, τmpiN P i IK(dmax +1) . Note that (35) gives the
+time-domain channel estimates, and the frequency domain
+ˆ
+estimates h̃i,k , i ∈ Ĩ for each user k ∈ K, are given by
+√
+ˆ
+applying the transformation h̃i,k = N F0 ĥi,k , i ∈ Ĩ, k ∈ K,
+where ĥi,k is the length (dmax + 1) sub-vector in ĥi starting
+at index (k − 1)(dmax + 1) + 1 and ending at k(dmax + 1).
+6 Since both z̃
+p,i and ẽp,i are CSCG, this is also the maximum likelihood
+estimate of hi .
+
+B. Achievable Sum-Rate
+√
+Let x̃d,k [n] = P sd,k [n] denote the frequency-domain data
+symbol transmitted by user k on SC n ∈ N , where sd,k [n] ∼
+CN (0, 1) and P ≥ 0. Then, the frequency-domain received
+signal at the CU on SC n ∈ N corresponding to stream i ∈ Ĩ
+can be expressed as
+X
+y̌˜d,i [n] =
+h̃i,k [n]x̃d,k [n] + z̃d,i [n] + ẽd,i [n],
+(39)
+k∈K
+
+th
+
+where z̃d,i [n] and ẽd,i [n] are the n components of the DFTs
+of the AWGN and quantization noise similar to that in (33).
+Collecting the received signals from all streams on each SC
+n, we have
+X
+˜d [n] =
+y̌
+h̃k [n]x̃d,k [n] + z̃d [n] + ẽd [n], n ∈ N , (40)
+
+z-axis (meters)
+
+10
+
+40
+20
+0
+60
+50
+40
+30
+
+50
+RRH
+User
+
+20
+
+y-axis (meters)
+
+40
+30
+
+10
+
+20
+10
+0
+
+0
+
+x-axis (meters)
+
+k∈K
+
+where all the vectors are of dimensions Q̃tot × 1. If the CU
+has perfect CSI, the linear MMSE beamforming vector ũk,n ∈
+CQ̃tot ×1 that maximizes the receive SINR for each user k on
+SC n, treating the interference from other users as noise, is
+−1
+given by ũk,n = C̃k,n
+h̃k [n], where
+X
+(41)
+P h̃k′ [n]h̃k′ [n]H + Σ̃ + Ξ̃,
+C̃k,n ,
+k′ ∈K\{k}
+
+
+2
+IQ̃
+∈ CQ̃tot ×Q̃tot and Ξ̃ ,
+with Σ̃ , blkdiag σ12 IQ̃1 ··· σM
+M
+Q
+Q̃
+×
+Q̃
+tot
+diag( {ε2i }i=1
+) ∈ C tot tot . The SINR for user k on SC
+−1
+h̃k [n], and thus the
+n is then given by γ̃k,n = P h̃k [n]H C̃k,n
+sum-rate over all users with UPAs and OFDM transmission is
+given by
+X
+X 1
+r̃upa =
+log2 (1 + γ̃k,n )
+(42)
+N +µ
+k∈K
+
+n∈N
+
+in bps/Hz.
+On the other hand, with estimated CSI, the CU computes
+ˆ
+ˆ −1 h̃
+ˆ k,n = C̃
+the linear MMSE receiver ũ
+k,n k [n] on each SC n,
+P
+ˆ ′ [n]H + Σ̃+ Ξ̃
+ˆ ′ [n]h̃
+ˆ
+P h̃
+where the matrix C̃
+,
+k,n
+
+k′ ∈K\{k}
+
+k
+
+k
+
+ˆ
+and the components of h̃k [n], n ∈ N , k ∈ K are computed
+by transforming the time-domain estimates in (35) as outlined
+earlier. Then the resulting SINR is given by
+ˆ H h̃k [n]|2
+P |ũ
+k,n
+ˆ H h̃k′ [n]|2 + ũ
+ˆ H (Σ̃ + Ξ̃)ũ
+ˆ k,n
+P
+|
+ũ
+′
+k ∈K\{k}
+k,n
+k,n
+(43)
+
+γ̃ˆk,n = P
+
+Thus, the effective sum-throughput over all users with UPAs
+and OFDM transmission is given by
+
+τa + τp  1 X X
+r̃ˆupa = 1 −
+log2 (1 + γ̃ˆk,n ), (44)
+τf
+N +µ
+k∈K n∈N
+
+in bps/Hz.
+IV. S IMULATION R ESULTS
+For the simulations, we consider a part of the general
+sectorized CRAN illustrated in Fig. 2 with M
+√ = 6 RRHs
+located at the corners of a hexagon of side 50/ 3 meters (m),
+along with K = 6 users randomly located in the common
+
+Fig. 5. Example of RRH and user layout for simulations.
+
+region covered by one sector of each RRH as shown in Fig. 5.
+All the RRHs are assumed to be of height 30 meters (m), while
+the users’ height can vary between 1 m and 25 m. The size of
+the EM lens at the RRHs is such that Dy = Dz = 10, while
+the UPAs are rectangular with same length D̃y = 10 as the
+EM lens along the y-axis, and length D̃z = 7 along the z-axis.
+The height of the RRHs is greater than the maximum height of
+the users, and the minimum distance along the ground between
+a user and RRH is assumed to be 2 m. Based on the above
+setup, the maximum coverage angles for the lens array in the
+elevation direction are chosen to be Θ+ = π/2, Θ− = π/6,
+while the corresponding angles in the azimuth direction are
+Φ+ = Φ− = π/3 due to the sectorization. This leads to
+Q = 208 and Q̃ = 280 antennas per sector at each RRH
+for the lens array and the UPA, respectively. The carrier
+frequency is 28 GHz and the mmWave channel shared by
+the users and RRHs has a bandwidth W = 200 MHz. The
+maximum delay spread of the channel is 100 ns, which
+translates to dmax = 20 symbols. The free-space path loss
+′
+between a user k and RRH m separated by distance Dm,k
+m
+′
+is modeled by 61.4 + 34.1 log10 Dm,k
+dB [29]. The number
+of paths Lm,k between user k and RRH m is equal to 1, 2
+or 3 with equal probability, and the time delays of the paths
+ζℓ , ℓ ∈ Lm,k , are generated from an exponential distribution
+with mean rζ µζ , but truncated to 100 ns, where µζ = 67 ns
+and rζ = 0.25 [29]. The relative P
+power levels of the paths
+are given by κ̄m,k,ℓ = κm,k,ℓ /( ℓ′ ∈Lm,k κm,k,ℓ′ ), where
+
+Z
+−ζℓ
+κm,k,ℓ = 10 10 (0.613) exp 31.4
+ns [29], and Z is zero-mean
+Gaussian with standard deviation 9.4 dB, representing the perpath shadowing [29]; thus |αm,k,ℓ |2 = κ̄m,k,ℓ Pr,m,k , where
+Pr,m,k in watt is the received power at RRH m from user k
+after accounting for the free-space path loss. The phase shifts
+of each path ∠αm,k,ℓ are generated uniformly randomly from
+the interval [0, 2π]. The elevation angles of arrival θm,k,ℓ for
+each path ℓ ∈ Lm,k from user k ∈ K to RRH m ∈ M are indeπ π
+pendent and generated as θm,k,ℓ = θ̄m,k,ℓ +U[− 12
+, 12 ], where
+θ̄m,k,ℓ is the line-of-sight (LoS) angle of elevation from the
+user to the RRH. Similarly, the azimuth angles of arrival φm,k,ℓ
+are independent and generated as φm,k,ℓ = φ̄m,k,ℓ +U[− π6 , π6 ],
+
+11
+
+TABLE II
+AVERAGE NUMBER OF SELECTED ANTENNAS PER RRH
+
+5
+
+Fronthaul
+capacity
+per
+sector (Gbps)
+
+4
+3.5
+
+Lens
+UPA-OFDM
+
+3
+2.5
+
+0.4
+
+2
+
+4
+
+8
+
+20
+
+40
+
+60
+
+100
+
+200
+
+2
+2
+
+5
+6
+
+10
+11
+
+19
+21
+
+48
+51
+
+98
+101
+
+148
+151
+
+208
+251
+
+208
+280
+
+4
+
+2
+1.5
+1
+
+Lens: Perfect fronthaul, perfect CSI
+UPA−OFDM: Perfect fronthaul, perfect CSI
+Lens: Constrained fronthaul, perfect CSI
+UPA−OFDM: Constrained fronthaul, perfect CSI
+
+0.5
+0
+0
+
+50
+
+100
+
+150
+
+200
+
+Fronthaul capacity per sector (Gbps)
+Fig. 6. Average rate per user vs. common fronthaul capacity per RRH sector
+under perfect CSI, with P = 23 dBm.
+
+where φ̄m,k,ℓ is the LoS angle of azimuth. The power spectral
+density of the AWGN is −174 dBm/Hz, with an additional
+noise figure of 6 dB at each RRH. The inter-sector/intercluster interference is assumed to be equal to −80 dBm at
+all sectors. The fronthaul capacity of all RRHs are the same,
+i.e. R̄m = R̄, ∀m ∈ M. For the benchmark scheme using
+OFDM with UPAs at the RRHs, the number of SCs N = 256
+and the CP length µ = dmax = 20. The minimum coherence
+time of the channels is taken to be 0.4 ms, while each frame is
+assumed to be Tf = 8280 symbols long, which corresponds to
+30 OFDM symbols. For the proposed system with lens arrays,
+we choose Tp = K(dmax +1), while for the benchmark system
+with UPAs and OFDM, Tp = 3(N + µ) i.e., τp = 3. In order
+to make a fair comparison, we assume Ta = N + dmax in both
+cases. All the results are averaged over random user locations
+and channel realizations.
+Figs. 6 and 7 plot the average throughput per user against
+the common fronthaul capacity per sector R̄/3, where the
+users’ transmit power P = 23 dBm. Fig. 6 shows the
+performance assuming perfect CSI at the CU, both with
+and without the fronthaul constraints at the RRHs. Without
+fronthaul constraints and with perfect CSI, it can be observed
+that the performance of the benchmark system with OFDM
+and UPAs is close to the proposed system with lens. The
+difference can be attributed to the loss due to the CP insertion
+in the case of OFDM transmission with UPAs. As the lens
+array only redistributes the incident energy among the antenna
+elements depending on the angle of arrival of the plane waves,
+it is reasonable to expect that it does not offer a large gain
+in the achievable rate over UPA-OFDM when there is no
+constraint on the fronthaul. However, since only single-carrier
+transmission by the users is required, and the ISI and IUI can
+be mitigated without CP insertion and IDFT/DFT processing,
+the use of lens arrays can greatly simplify the signal processing
+required, when compared with UPA-OFDM. For the system
+
+Average sum-rate per user (bps/Hz)
+
+Average sum-rate per user (bps/Hz)
+
+4.5
+
+3.5
+3
+2.5
+2
+1.5
+1
+0.5
+0
+0
+
+Lens: Perfect fronthaul, estimated CSI
+UPA−OFDM: Perfect fronthaul, estimated CSI
+Lens: Constrained fronthaul, estimated CSI
+UPA−OFDM: Constrained fronthaul, estimated CSI
+50
+
+100
+
+150
+
+200
+
+Common fronthaul capacity per sector (Gbps)
+Fig. 7. Average rate per user vs. common fronthaul capacity per RRH sector
+under estimated CSI, with P = 23 dBm.
+
+with UPA-OFDM, the overall complexity of performing linear
+MMSE beamforming for all the users on all the SCs with no
+fronthaul constraint is of the order O(N K(M J Q̃)3 ), while
+for the proposed system with lens arrays, the complexity is
+O(K(M JQ)3 ), offering a reduction of a factor of N .
+Further, for the fronthaul constrained case, it can be observed from Fig. 6 that the proposed system with lens arrays
+provides significant throughput gains over the conventional
+UPA-OFDM. This is due to the energy focusing property of the
+EM lens, which makes the antenna selection and quantization
+bit allocation much more effective with lens arrays compared
+to UPAs. In the antenna selection and bit allocation scheme,
+the antennas with larger received power are selected and
+allocated more bits compared to the antennas with lower
+received power. Table II compares the number of antennas
+selected at the RRHs in both cases. As the EM lens focuses
+the incident energy onto a few antenna elements, the selection
+and bit allocation algorithm tends to select these elements
+with large received power. Thus, although the number of
+antennas selected in both cases is more or less similar when
+the fronthaul capacity is low, the selection and bit allocation is
+much more effective with lens arrays when compared to UPAOFDM. With UPA-OFDM, the received energy distribution is
+more or less similar across the antenna elements and the selection and bit allocation can thus adversely affect the achievable
+rate compared to the case with no fronthaul constraint. Fig. 7
+shows the performance of the proposed system with estimated
+
+12
+
+TABLE III
+AVERAGE NUMBER OF STREAMS SELECTED PER USER FOR REDUCED
+MMSE WITH ESTIMATED CSI FOR LENS ANTENNA ARRAY
+Fronthaul
+capacity
+per
+sector (Gbps)
+Number
+streams Ik
+
+of
+
+0.4
+
+2
+
+4
+
+8
+
+20
+
+40
+
+60
+
+100
+
+200
+
+1
+
+2
+
+2
+
+2
+
+2
+
+3
+
+3
+
+3
+
+4
+
+CSI. For the thresholding of the channel estimates as given
+in (23) and (28), we choose η = 3 dB. Again, it can be
+observed that with the proposed channel estimation scheme
+via thresholding the LS channel estimates, the system with
+lens antenna arrays offers significant gains over the benchmark
+UPA-OFDM system. This is because the quantization and
+antenna selection at the RRHs adversely affects both the channel estimation as well as data transmission in the benchmark
+system, when the fronthaul is constrained. On the other hand,
+due to the energy focusing property of the lens, the stronger
+channels are relatively less affected by the quantization, and
+since the channels between the users and RRHs are sparse in
+the angular domain, and the lens converts this angular domain
+sparsity to the spatial domain, it is sufficient to use only
+the estimates of the stronger channels to retain most of the
+gains in the subsequent MMSE beamforming. In the UPAOFDM system, such a thresholding is not effective since the
+energy is distributed uniformly over the antenna elements, and
+there is no way of distinguishing the significant channels in
+the spatial domain. Table III shows the average number of
+streams Ik selected after thresholding the channel estimates
+for the proposed reduced, approximate MMSE beamforming
+with lens arrays at the RRHs. It can be observed that the
+total number of streams can potentially be even an order of
+magnitude less than the total number of streams in the UPAOFDM case (see Table II), and this leads to a huge reduction
+in complexity of the receive beamforming in CRAN, since
+3
+for the proposed system the complexity is only O(KImax
+),
+where Imax = maxk∈K Ik is the maximum number of streams
+for a user, while for the benchmark with UPA-OFDM, it is
+O(N K Q̃3tot ). Moreover, this gain in throughput is achieved
+at a much lower training overhead of K(dmax + 1) for the
+proposed system, compared to at least N + dmax for the
+benchmark, where in practice N ≫ K as usual.
+V. C ONCLUSION
+In this paper, we introduce a new architecture for mmWave
+CRAN with lens antenna arrays at the RRHs. We propose
+a low-complexity bit allocation scheme for SQ at the RRHs
+based only on the estimated received power levels of the
+antennas. We show that when the fronthaul is constrained, the
+proposed system which uses single-carrier transmission by the
+users combined with path delay compensation and reducedsize MMSE beamforming, can achieve large throughput gains
+over the conventional system that uses UPAs at the RRHs
+along with OFDM transmission by the users and full-size
+MMSE combining on each SC. Further, we propose a simple,
+yet effective channel estimation scheme for the proposed
+
+system, which exploits the unique energy focusing property
+of the lens array, and show that the proposed system still
+offers considerable advantage over the benchmark system,
+when both have imperfect CSI. Moreover, these gains are
+achieved at a much lower signal processing complexity at
+the CU, since it is sufficient to process a considerably fewer
+number of streams for the proposed system when compared to
+the benchmark. This shows that the proposed system with lens
+antenna arrays is a promising candidate for future evolution
+of CRAN operating in the mmWave frequencies.
+A PPENDIX
+As problem (6) is convex and is strictly feasible, it can
+be optimally solved by solving its dual problem. Let λ denote
+the Lagrange multiplier for constraint (5a) in problem (6). The
+Lagrangian is then given by
+X
+X 3ρq,m
+R̄m 
+,
+(45)
++
+λ
+b
+−
+L(bm , λ) =
+q,m
+2b
+2 q,m
+2W
+q∈Q
+
+q∈Q
+
+and the dual function is given by f (λ) = minbm ≥0 L(bm , λ).
+Differentiating (45) with respect to each bq,m and setting the
+derivative equal to zero, we have
+
+ 6ρ
+1
+q,m ln 2
+bq,m = log2
+.
+(46)
+2
+λ
+Since bq,m ≥ 0 ∀q ∈ Q, the dual variable λ must lie in
+the interval [0, 6ρmax,m ln 2], where ρmin,m = minq∈Q ρq,m
+and ρmax,m = maxq∈Q ρq,m . Moreover, according to (7), as
+λ increases, the bq,m ’s decrease, making the constraint (5a)
+more feasible, and vice versa. Thus, the optimal λ⋆ that
+solves the dual problem maxλ≥0 f (λ), can be found by a
+simple bisection search over [0, 6ρmax,m ln 2]; then the optimal
+solution b′m for problem (6) is obtained as given by (7). The
+proof of Proposition 2.1 is thus completed.
+R EFERENCES
+[1] J. Andrews et al., “What will 5G be?” IEEE J. Sel. Areas Commun.,
+vol. 32, no. 6, pp. 1065–1082, June 2014.
+[2] Y. Zhou and W. Yu, “Optimized backhaul compression for uplink cloud
+radio access network,” IEEE J. Sel. Areas Commun., vol. 32, no. 6, pp.
+1295–1307, June 2014.
+[3] L. Liu and R. Zhang, “Optimized uplink transmission in multi-antenna
+C-RAN with spatial compression and forward,” IEEE Trans. Signal
+Process., vol. 63, no. 19, pp. 5083–5095, Oct. 2015.
+[4] B. Dai and W. Yu, “Sparse beamforming and user-centric clustering for
+downlink cloud radio access network,” IEEE Access, vol. 2, pp. 1326–
+1339, 2014.
+[5] Y. Shi, J. Zhang, and K. Letaief, “Group sparse beamforming for green
+cloud-RAN,” IEEE Trans. Wireless Commun., vol. 13, no. 5, pp. 2809–
+2823, May 2014.
+[6] S. Luo, R. Zhang, and T. J. Lim, “Downlink and uplink energy
+minimization through user association and beamforming in C-RAN,”
+IEEE Trans. Wireless Commun., vol. 14, no. 1, pp. 494–508, Jan. 2015.
+[7] R. G. Stephen and R. Zhang, “Joint millimeter-wave fronthaul and
+OFDMA resource allocation in ultra-dense CRAN,” IEEE Trans. Commun., vol. 65, no. 3, pp. 1411–1423, Mar. 2017.
+[8] L. Liu, S. Bi, and R. Zhang, “Joint power control and fronthaul rate
+allocation for throughput maximization in OFDMA-based cloud radio
+access network,” IEEE Trans. Commun., vol. 63, no. 11, pp. 4097–4110,
+Nov. 2015.
+[9] R. G. Stephen and R. Zhang, “Fronthaul-limited uplink OFDMA in
+ultra-dense CRAN with hybrid decoding,” IEEE Trans. Veh. Technol.,
+vol. 66, no. 10, pp. 9074–9084, Oct. 2017.
+
+13
+
+[10] T. Bai, A. Alkhateeb, and R. W. Heath, “Coverage and capacity of
+millimeter-wave cellular networks,” IEEE Commun. Mag., vol. 52, no. 9,
+pp. 70–77, Sep. 2014.
+[11] M. R. Akdeniz et al., “Millimeter wave channel modeling and cellular
+capacity evaluation,” IEEE J. Sel. Areas Commun., vol. 32, no. 6, pp.
+1164–1179, June 2014.
+[12] J. Hoydis, M. Kobayashi, and M. Debbah, “Optimal channel training in
+uplink network MIMO systems,” IEEE Trans. Signal Process., vol. 59,
+no. 6, pp. 2824–2833, Jun. 2011.
+[13] J. Kang, O. Simeone, J. Kang, and S. S. Shitz, “Joint signal and channel
+state information compression for the backhaul of uplink network mimo
+systems,” IEEE Trans. Wireless Commun., vol. 13, no. 3, pp. 1555–1567,
+Mar. 2014.
+[14] J. Zhang, X. Yuan, and Y. J. Zhang, “Locally orthogonal training
+design for cloud-RANs based on graph coloring,” IEEE Trans. Wireless
+Commun., vol. 16, no. 10, pp. 6426–6437, Oct. 2017.
+[15] Z. Gao, C. Hu, L. Dai, and Z. Wang, “Channel estimation for millimeterwave massive MIMO with hybrid precoding over frequency-selective
+fading channels,” IEEE Communications Letters, vol. 20, no. 6, pp.
+1259–1262, Jun. 2016.
+[16] K. Venugopal, A. Alkhateeb, N. G. Prelcic, and R. W. Heath, “Channel
+estimation for hybrid architecture-based wideband millimeter wave
+systems,” IEEE J. Sel. Areas Commun., vol. 35, no. 9, pp. 1996–2009,
+Sep. 2017.
+[17] Y. Zeng, R. Zhang, and Z. N. Chen, “Electromagnetic lens-focusing
+antenna enabled massive MIMO: Performance improvement and cost
+reduction,” IEEE J. Sel. Areas Commun., vol. 32, no. 6, pp. 1194–1206,
+June 2014.
+[18] Y. Zeng and R. Zhang, “Millimeter wave MIMO with lens antenna array:
+A new path division multiplexing paradigm,” IEEE Trans. Commun.,
+vol. 64, no. 4, pp. 1557–1571, Apr. 2016.
+[19] ——, “Cost-effective millimeter-wave communications with lens antenna array,” IEEE Wireless Communications, vol. 24, no. 4, pp. 81–87,
+2017.
+[20] Y. Zeng, L. Yang, and R. Zhang, “Multi-user millimeter wave
+MIMO with full-dimensional lens antenna array.” [Online]. Available:
+http://arxiv.org/abs/1611.06008
+[21] T. Kwon, Y. G. Lim, B. W. Min, and C. B. Chae, “RF lens-embedded
+massive MIMO systems: Fabrication issues and codebook design,” IEEE
+Trans. Microw. Theory Tech., vol. 64, no. 7, pp. 2256–2271, July 2016.
+[22] L. Yang, Y. Zeng, and R. Zhang, “Channel estimation for millimeter
+wave MIMO communications with lens antenna arrays,” IEEE Trans.
+Veh. Technol., 2017, to appear.
+[23] A. B. Narasimhamurthy and C. Tepedelenlioglu, “Antenna selection for
+MIMO-OFDM systems with channel estimation error,” IEEE Trans. Veh.
+Technol., vol. 58, no. 5, pp. 2269–2278, Jun. 2009.
+[24] D. Tse and P. Viswanath, Fundamentals of wireless communication.
+Cambridge University Press, 2005.
+[25] S. M. Kay, Fundamentals of Statistical Signal Processing: Estimation
+Theory. Upper Saddle River, NJ, USA: Prentice-Hall, Inc., 1993.
+[26] B. M. Popovic, “Generalized chirp-like polyphase sequences with optimum correlation properties,” IEEE Trans. Inf. Theory, vol. 38, no. 4,
+pp. 1406–1409, Jul. 1992.
+[27] S. Sesia, I. Toufik, and M. Baker, LTE, The UMTS Long Term Evolution:
+From Theory to Practice. Wiley Publishing, 2009.
+[28] Y. Chi, A. Gomaa, N. Al-Dhahir, and A. R. Calderbank, “Training signal
+design and tradeoffs for spectrally-efficient multi-user MIMO-OFDM
+systems,” IEEE Trans. Wireless Commun., vol. 10, no. 7, pp. 2234–
+2245, Jul. 2011.
+[29] M. K. Samimi and T. S. Rappaport, “Ultra-wideband statistical channel
+model for non line of sight millimeter-wave urban channels,” in Proc.
+IEEE GLOBECOM, Dec. 2014, pp. 3483–3489.
+
+
+
+Summary:
+This research paper covers the following topic: 1
+
+Uplink Channel Estimation and Data Transmission
+in Millimeter-Wave CRAN with Lens Antenna
+Arrays
+
+arXiv:1802.02076v1 [cs.IT] 6 Feb 2018
+
+Reuben George Stephen, Student Member, IEEE, and Rui Zhang, Fellow, IEEE
+
+Abstract—Millimeter-wave (mmWave) communication and
+network densification hold great promise for achieving highrate communication in next-generation wireless networks. Cloud
+radio access network (CRAN), in which low-complexity remote
+radio heads (RRHs) coordinated by a central unit (CU) are
+deployed to serve users in a distributed manner, is a costeffective solution to achieve network densification. However, when
+operating over a large bandwidth in the mmWave frequencies,
+the digital fronthaul links in a CRAN would be easily saturated
+by the large amount of sampled and quantized signals to be
+transferred between RRHs and the CU. To tackle this challenge,
+we propose in this paper a new architecture for mmWavebased CRAN with advanced lens antenna arrays at the RRHs.
+Due to the energy focusing property, lens antenna arrays are
+effective in exploiting the angular sparsity of mmWave channels,
+and thus help in substantially reducing the fronthaul rate and
+simplifying the signal processing at the multi-antenna RRHs
+and the CU, even when the channels are frequency-selective.
+We consider the uplink transmission in a mmWave CRAN with
+lens antenna arrays and propose a low-complexity quantization
+bit allocation scheme for multiple antennas at each RRH to
+meet the given fronthaul rate constraint. Further, we propose
+a channel estimation technique that exploits the energy focusing
+property of the lens array and can be implemented at the CU
+with low complexity. Finally, we compare the proposed mmWave
+CRAN using lens antenna arrays with a conventional CRAN
+using uniform planar arrays at the RRHs, and show that the
+proposed design achieves significant throughput gains, yet with
+much lower complexity.
+Index Terms—Cloud radio access network, millimeter-wave
+communication, lens antenna array, channel estimation, fronthaul constraint, antenna selection, quantization bit allocation.
+
+I. I NTRODUCTION
+
+N
+
+ETWORK densification by increasing the densities of
+base stations (BSs)/access points (APs) deployed, and
+millimeter-wave (mmWave) communication by exploiting
+large unused bandwidth in the higher frequencies of the radio
+spectrum, are two key strategies for achieving the orders of
+magnitude data rate improvement required for future wireless
+communication networks [1]. On one hand, cloud radio access
+This paper was presented in part at the IEEE Global Communications
+Conference (GLOBECOM), Singapore, Dec. 4–8, 2017.
+R. G. Stephen is with the National University of Singapore Graduate School
+for Integrative Sciences and Engineering, National University of Singapore,
+Singapore 117456, and also with the Department of Electrical and Computer
+Engineering, National University of Singapore, Singapore 117583 (e-mail:
+reubenstephen@u.nus.edu).
+R. Zhang is with the Department of Electrical and Computer Engineering, National University of Singapore, Singapore 117583 (e-mail:
+elezhang@nus.edu.sg).
+
+network (CRAN), in which distributed low-complexity remote
+radio heads (RRHs) are deployed close to the users, and
+coordinated by a central unit (CU) for joint processing, provides a cost-effective way of achieving network densification.
+Thanks to the centralized resource allocation and joint signal
+processing for the RRHs at the CU, CRAN achieves significant improvements in both the spectral efficiency and energy
+efficiency compared to the conventional cellular network [2]–
+[9], while RRHs can be simple relay nodes that transmit
+and receive quantized/compressed baseband signals to/from
+the CU over their fronthaul links. On the other hand, with
+advances in radio frequency (RF) circuits, wireless communication over mmWave bands has emerged as a promising technology to achieve high-rate communications, due to the large
+bandwidth available and the beamforming gain brought about
+by the possibility of deploying a large number of antennas at
+the transceivers thanks to the small wavelengths [10], [11].
+Thus, CRAN when integrated with mmWave communication,
+achieves the double goals of network densification and ample
+bandwidth at the same time for future wireless networks. However, in such a dense CRAN operating over a large mmWave
+bandwidth, the digital fronthaul links would be easily saturated
+by the large volume of sampled and quantized/compressed
+baseband signals that need to be transmitted between the CU
+and RRHs; thus, it is crucial to find cost-effective solutions to
+reduce the transmission rate required for each fronthaul link.
+In CRANs operating over the conventional cellular frequency bands, a considerable body of prior work (e.g. [2]–[5])
+has investigated various techniques for data compression at the
+RRHs to achieve fronthaul rate reduction. Further, channel estimation in networks with coordinated multi-antenna BSs has
+also been considered in prior work [12], [13]. In [12], random
+matrix theory was used to derive an approximate lower bound
+on the uplink ergodic achievable rate in a system with multiple
+single-antenna users and multi-antenna BSs, while [13] considered an estimate-compress-forward approach for the uplink
+of a CRAN and proposed various schemes to optimize the
+ergodic achievable sum rate subject to backhaul constraints.
+Most of the above techniques for compression and/or channel estimation are applicable for relatively small bandwidth
+compared to that in mmWave, and typically involve complex
+signal processing and cooperative signal compression across
+the RRHs, which are difficult to implement for mmWave
+systems due to practical cost and complexity considerations.
+A low-complexity training sequence design for CRAN was
+considered in [14], where the problem of minimizing the train-
+
+2
+
+z-axis (wavelengths)
+
+5
+
+0
+
+Antenna element
+EM Lens
+
+−5
+0
+2
+4
+
+x-axis (wavelengths)
+
+6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+y-axis (wavelengths)
+
+focusing antennas that can be selected for signal sampling
+and quantization. Thus, the use of lens antenna arrays can
+potentially achieve significant reduction in both the fronthaul
+rate requirement for transmitting the quantized signals to the
+CU and the interference among the users for the joint decoding
+at the CU in the uplink transmission. However, due to the
+finite fronthaul rate constraint at each RRH, it is crucial to
+design antenna selection and signal quantization schemes to
+maximize the achievable user rates at the CU. Since the RRHs
+in a CRAN are typically simple relay nodes, in this paper, we
+consider that simple uniform scalar quantization (SQ) of the
+sampled baseband signals is performed independently over the
+antennas selected at each RRH. The major contributions of this
+paper are summarized as follows.
+•
+
+Fig. 1. Illustration of lens antenna array with Dy = Dz = 10, Θ− =
+π
+, Θ+ = π2 , Φ− = Φ+ = π2 .
+6
+•
+
+ing length, while maintaining local orthogonality among the
+training sequences of the users, was considered; however, the
+fronthaul constraints at the RRHs were ignored. For frequencyselective mmWave channels, channel estimation for hybrid
+precoding was considered in [15], [16]. The approach is to
+represent the channel taps in the angular domain corresponding
+to a set of quantized angles, and then use sparse signal
+processing techniques to estimate the relevant parameters.
+In this paper, we propose a new architecture for mmWave
+CRAN by leveraging the use of advanced lens antenna arrays [17]–[22] at the RRHs. A full-dimensional lens antenna
+array [19] consists of an electromagnetic (EM) lens with
+energy focusing capability integrated with an antenna array
+whose elements are located on the focal surface of the
+lens (see Fig. 1). The amplitude response of a lens array can
+be expressed as a “sinc”-type function in terms of the angles
+of arrival/departure of plane waves incident on/transmitted
+from it, and the locations of the antenna elements [18], [19].
+Hence, by appropriately designing the locations of the antenna
+elements on the focal surface, the lens array is capable of
+focusing most of the energy from a uniform plane wave
+arriving in a particular direction onto a specific antenna
+element or subset of elements. Moreover, due to the multipath sparsity of mmWave channels [11], a lens array can
+be used to achieve the capacity of a point-to-point mmWave
+channel with multiple antennas via a technique called path
+division multiplexing [18], which uses simple single-carrier
+modulation even for transmission over wideband frequencyselective channels, and has low signal processing complexity.
+With lens antenna arrays, the angular domain sparsity of
+mmWave channels is transformed to the spatial domain, which
+then enables lower complexity signal processing for channel
+estimation and data transmission. Moreover, in a CRAN, since
+the angles of arrival of the signals from different users are
+typically independent, and thus different at each RRH, the
+user signals are effectively separated over a small number of
+
+•
+
+•
+
+•
+
+We introduce a new architecture for CRAN in mmWave
+frequencies using full-dimensional lens antenna arrays [18], [19] at the RRHs, taking into consideration
+both the elevation and azimuth angles of arrival of the
+signals from the users in the uplink transmission.
+We propose a simple energy-detection based antenna
+selection at each RRH and a low-complexity quantization
+bit allocation algorithm over the selected antennas to
+minimize the total quantization noise power based only
+on the estimates of the received signal power at different
+antennas, subject to the fronthaul rate constraint.
+When the CU has perfect channel state information (CSI),
+we show that the proposed system with lens antenna
+arrays can achieve better sum-rate performance compared to a conventional CRAN using uniform planar
+arrays (UPAs) at the RRHs and orthogonal frequency
+division multiplexing (OFDM) transmission by the users,
+when the same quantization algorithm is employed in
+both cases.
+Under imperfect CSI, we propose a reduced-size, approximate MMSE beamforming, by exploiting the energyfocusing property of lens antenna arrays. In the proposed
+scheme, for each user, only the data streams where the
+estimated channel gains are larger than a certain threshold
+are chosen for beamforming, while the interference on
+these streams is also approximated by thresholding the
+channel gain estimates.
+With the proposed bit allocation at the RRHs, channel
+estimation at the CU, and data transmission with singlecarrier modulation, we compare the proposed system with
+the conventional CRAN with UPAs via simulations, and
+show that when the fronthaul is constrained, the proposed
+system can achieve significant sum-throughput gains at
+much lower signal processing complexity and training
+overhead compared to the benchmark.
+
+The rest of this paper is organized as follows. In Section II we
+present the system model for the proposed mmWave CRAN
+with lens arrays, and carry out an analysis of the achievable
+rates under perfect and imperfect CSI, with our proposed bit
+allocation and channel estimation schemes. Section III gives a
+brief description of the benchmark CRAN system with UPAs
+and OFDM transmission. In Section IV, we compare our
+proposed system with the benchmark system via simulations.
+
+3
+
+Finally, Section V concludes the paper.
+Notation: In this paper, , denotes equality by definition,
+and ∼ means “distributed as”. The cardinality of a finite set S
+is denoted by |S|, while A \ B denotes the elements in A that
+are not in B. Sets of M ×N real, complex, and integer matrices
+are denoted by RM×N , CM×N and ZM×N respectively, while
+R+ and Z++ denote the set of non-negative real numbers
+and positive integers, respectively. δ[n] denotes the Kronecker
+delta function. The normalized sinc function is defined as
+for x 6= 0 and sinc(x) , 1 if x = 0. The
+sinc(x) , sin(πx)
+πx
+imaginary unit is denoted by  with 2 = 1. Scalars are denoted
+by lower-case letters, e.g. x, while vectors and matrices are
+denoted by bold-face lower-case and upper-case letters, e.g.
+x and X, respectively. For x ∈ R, ⌈x⌉ denotes the smallest
+integer greater than or equal to x, and ⌊x⌋ denotes the largest
+integer less than or equal to x. For x ∈ C, |x| ≥ 0 denotes its
+magnitude and ∠x ∈ [0, 2π) denotes its phase in radian. For
+a vector x, kxk denotes its Euclidean norm. A vector with
+all elements equal to 0 is denoted by 0, where the dimension is implied from the context. For vectors and matrices,
+()T denotes transpose, and ()H denotes conjugate transpose
+(Hermitian). For matrix X, tr(X) denotes the sum of its
+diagonal elements (trace). For X with linearly independent
+columns, X † , (X H X)−1 X H denotes the Moore-Penrose
+pseudo-inverse. X ⊗ Y denotes the Kronecker product of two
+matrices X and Y , while IN denotes the identity matrix of
+dimension N . A diagonal matrix with elements x1 , . . . , xM on
+the main diagonal is denoted by diag( x1 ··· xM ), and a block
+diagonal matrix by blkdiag( X1 ··· XM ). CN (µ, Σ) denotes a
+circularly symmetric complex Gaussian (CSCG) distribution
+centered at µ with covariance Σ, and U[a, b] denotes a uniform
+distribution over the interval [a, b].
+
+II. S YSTEM M ODEL
+We study the uplink transmission in a mmWave-based dense
+CRAN cluster (see Fig. 2) with M multi-antenna RRHs,
+denoted by M = {1, . . . , M }. The cluster is sectorized,
+where each RRH has J = 3 sectors covering 120◦ each,
+and each sector is served by a full-dimensional lens antenna
+array with Q antenna elements denoted by the set Q(j) =
+{1, . . . , Q} , j ∈ J , where J = {1, . . . , J} denotes the
+set of sectors. Further, we use Q without the superscript to
+denote the set of S
+all antenna elements in all sectors of an
+RRH, i.e., Q = j∈J Q(j) , and |Q| = JQ. Each RRH
+is connected to the CU via an individual fronthaul link of
+finite capacity R̄m > 0 in bits per second (bps). There are
+K single-antenna users in the CRAN cluster, denoted by
+K = {1, . . . , K}. All the users and RRHs share the same
+bandwidth for communication. Depending on a user’s location,
+its signals are incident on at most one sector of an RRH, and
+we model any inter-sector/inter-cluster leakage interference as
+Gaussian noise. We further assume that the total number of
+sectors in the CRAN is greater than or equal to the number
+of users, i.e., JM ≥ K. The users transmit over a mmWave,
+frequency-selective, block-fading channel of bandwidth W Hz.
+
+Fronthaul
+link
+RRH m
+
+Central
+Unit (CU)
+
+mmWave
+wireless link
+
+User k
+
+Lens array
+CRAN
+cluster
+
+R̄m
+
+Fig. 2. Schematic of CRAN.
+
+The channel between user k and RRH m1 has Lm,k paths
+denoted by Lm,k = {1, . . . , Lm,k }. Then the discrete-time
+channel coefficient vector hm,k [n] ∈ CQ×1 at time index
+n between user k and RRH m can be expressed using a
+geometric channel model as
+X
+
+αm,k,ℓ a θm,k,ℓ , φm,k,ℓ δ[n − dm,k,ℓ ]
+hm,k [n] =
+ℓ∈Lm,k
+
+=
+
+X
+
+ℓ∈Lm,k
+
+hm,k,ℓ δ[n − dm,k,ℓ ],
+
+(1)
+
+where αm,k,ℓ ∈ C and dm,k,ℓ ∈ {0, 1, . . . , dmax } , D denote,
+respectively, the complex gain and delay in symbol periods
+
+corresponding to path ℓ ∈ Lm,k , and a θm,k,ℓ , φm,k,ℓ ∈
+CQ×1 is the array response for the elevation and azimuth
+angles of arrival of path ℓ denoted by θm,k,l and φm,k,l ,
+respectively.
+We consider that for each sector, each RRH is equipped
+with a rectangular EM lens in the y − z plane, with
+dimensions Dy × Dz normalized by the wavelength2 along
+the y- and z-axes, respectively. The EM lens is followed by
+a full-dimensional antenna array with Q elements placed on
+the focal surface of the lens, which is a hemisphere around
+the lens’ center (taken to be the origin in Fig. 1) with radius
+equal to the focal length of the lens (see Fig. 1). Let each
+antenna element be indexed by a pair of indexes (qe , qa ),
+where qe denotes the index in the elevation direction along
+the focal surface of the lens and qa denotes the index in the
+azimuth direction along the focal surface. Now, for a ray
+drawn from the center of the lens to an antenna element
+(qe , qa ), let φqa ∈ [−Φ− , Φ+ ] denote the azimuth angle made
+by the ray, where Φ− , Φ+ ∈ (0, π/2] are the maximum
+azimuth angles in the negative and positive y-directions,
+respectively. Similarly, let θqe ∈ [−Θ− , Θ+ ] denote the
+elevation angle made by the ray, where Θ− , Θ+ ∈ (0, π/2]
+are the maximum elevation angles covered by the antenna
+array in the negative and positive z-directions, respectively.
+Then, the antennas are placed such that the indexes qe
+run from the integers −⌊Dz sin Θ− ⌋ to ⌊Dz sin Θ+ ⌋.
+1 Since each user’s signals are received by only one sector of every RRH, we
+refer to the channel between the user and the RRH, instead of the particular
+sector of the RRH, for convenience.
+2 The dimensions are assumed to be same at all RRHs for convenience.
+
+4
+
+Ta
+
+Td
+
+Tp
+
+Power probing Guard
+Guard
+for antenna
+interval Pilot symbols interval
+selection
+dmax
+
+ADC/Quantization
+1
+
+Data symbols
+
+ℜ{y1,m }
+
+AGC/
+Power
+est.
+
+1
+
+RF to
+baseband
+
+Tf
+Q
+
+Fig. 3. Frame structure for uplink transmission with lens antenna arrays.
+Lens
+
+Antenna
+array
+
+AGC/
+Power
+est.
+
+
+ℑ{y1,m }
+
+RF
+switches
+
+dmax
+
+SQ
+
+ℜ{yQm ,m }
+
+RF to
+Qm baseband
+
+To CU via
+fronthaul
+
+SQ
+
+
+ℑ{yQm ,m }
+
+y̌1,m
+
+SQ
+
+SQ
+
+y̌Qm ,m
+
+Bit allocation/
+antenna
+selection
+
+Thus, the elevation angles of the antenna elements θqe
+are related to the indexes qe by sin θqe = qe /Dz , qe ∈ Fig. 4. Architecture of RRH with lens antenna array.
+{−⌊Dz sin Θ− ⌋, . . . , −1, 0, 1, . . . , ⌊Dz sin Θ+ ⌋}.
+Next,
+for each index qe , the index qa runs from the integers
+A. Uniform Scalar Quantization (SQ) and Bit Allocation at
+−⌊Dy cos θqe sin Φ− ⌋ to ⌊Dy cos θqe sin Φ⌋, so that the
+azimuth angles of the antenna elements φqa are related RRHs
+During the power-probing stage, the users transmit constant
+to the indexes qa by sin φqa = qa /(Dy cos θqe ), qa ∈
+amplitude signals for a duration Ta ≥ dmax + 1, and each
+{−⌊Dy cos θqe sin Φ− ⌋, . . . , −1, 0, 1, . . . , ⌊Dy cos θqe sin Φ⌋} [19].
+Then the amplitude response in (1) of the lens array element RRH m obtains an estimate of the average received power
+(qe , qa ) ≡ q ∈ Q(j) , to a uniform plane wave incident at ρq,m on each antenna either from the AGC circuitry, or using
+elevation and azimuth angles (θ, φ), can be expressed as [20] analog power estimators. We consider that each RRH performs
+uniform SQ on the real and imaginary components of the
+complex baseband samples received at each antenna q ∈ Q
+p
+aq (θ, φ) = Dz Dy sinc (qe − Dz sin θ)
+and
+denoted by yq,m [n], independently,3 using bq,m ∈ Z++
+
+· sinc qa − Dy cos θ sin φ ,
+(2) bits. If bq,m = 0, the symbols on antenna q are not forwarded
+to the CU by RRH m (i.e., this antenna is not selected for
+subsequent channel training and data transmission). Following
+q ∈ Q(j) , j ∈ J . Since the RRHs have fronthaul links the design in [8], the resulting quantized samples y̌q,m [n] can
+of finite capacities, they must quantize the received signals be expressed as
+before forwarding to the CU. As the RRHs are typically
+y̌q,m [n] = yq,m [n] + eq,m [n],
+(3)
+simple nodes with limited processing capability, we consider
+that they perform uniform SQ independently on each antenna,
+where eq,m [n] represents the quantization error, modeled as a
+with the SQ bit allocation adapted in each channel coherence
+random variable with mean zero and variance given by [8]
+interval. As shown in Fig. 4, the RRHs perform bit allocation
+based on the estimated received power levels at each antenna
+ε2q,m , E[|eq,m [n]|2 ] = 3ρq,m /22bq,m , bq,m ∈ Z++ . (4)
+element, which can be obtained before converting the signals
+to the baseband, either using feedback from the automatic The quantization error is assumed to be uncorrelated with
+gain control (AGC) circuitry, or by means of analog power yq,m [n], and as the SQ is performed independently at each
+estimators [23], which can be implemented using band-pass antenna and for each sample, we have E[eq,m [n]e∗q′ ,m [n′ ]] = 0
+filters and envelope detectors. We consider a frame-based for any q ′ 6= q or n′ 6= n, ∀m ∈ M. With Nyquist
+transmission by the users, with frame duration Tf < Tc in rate sampling, the transmission rate required
+P to forward the
+quantized
+signals
+over
+all
+the
+antennas
+is
+symbol periods, where Tc denotes the minimum coherence
+q∈Q 2W bq,m bps,
+time among all the user-RRH channels. Each frame is further which must not exceed the fronthaul capacity R̄m . Each RRH
+m uses the estimate ρq,m of the average received power
+divided into the following three stages as shown in Fig. 3:
+computed from the received signals in the power-probing stage
+• A power probing stage of duration Ta , where the users
+to perform the SQ in the subsequent channel training and data
+transmit constant amplitude signals in order to enable the transmission stages. We consider the design of quantization
+RRHs to perform bit allocation and antenna selection;
+bit allocation to minimize the total SQ noise power over all
+• A channel training stage of duration Tp , where the users
+the antennas subject to the fronthaul capacity constraint at the
+transmit pilot symbols, and the CU performs channel RRH, as captured by the following optimization problem
+estimation for the selected antennas using the quantized
+X 3ρq,m
+signals forwarded by the RRHs; and
+(5)
+minimize
+bm
+22bq,m
+• A data transmission stage of duration Td , where the users
+q∈Q
+transmit their data, which is quantized and forwarded by
+subject to
+the RRHs for decoding at the CU.
+X
+R̄m
+(5a)
+bq,m ≤
+2W
+The above stages are separated by guard intervals of dmax
+q∈Q
+symbols (see Fig. 3), where dmax denotes the maximum delay
+spread of all the user-RRH channels. Note that Tf = Ta +Tp +
+3 This can be performed using low-cost, low-resolution analog-to-digital
+Td + 2dmax . In the following, we describe each stage in detail. converters (ADCs).
+
+5
+
+T
+
+where bm , [ b1,m ··· bQ,m ] ∈ ZJQ×1
+++ . Since the bq,m ’s are
+integers, the above problem is non-convex. However, if the
+variables are relaxed so that bq,m ∈ R+ ∀q ∈ Q, we have the
+following relaxed problem
+X 3ρq,m
+22bq,m
+
+min
+
+bm ∈RJQ×1
++
+q∈Q
+
+(6)
+
+s.t. (5a)
+
+which is convex since the objective function is convex,4 while
+the constraint (5a) is linear. Thus, we have the following
+proposition.
+Proposition 2.1. The optimal solution to problem (6) is given
+by
+b′q,m = max
+
+n1
+2
+
+log2
+
+where λ⋆ ≥ 0 is such that
+
+ 6ρ
+
+P
+
+q,m ln 2
+λ⋆
+
+′
+q∈Q bq,m
+
+ o
+, 0 , q ∈ Q,
+
+TABLE I
+A LGORITHM FOR QUANTIZATION BIT ALLOCATION
+Initialize λmin = 0, λmax = 6ρmax,m ln 2, tolerance ǫ > 0
+repeat
+λ = (λmin + λmax )/2
+Compute
+bm according to (7)
+P
+if q∈Q bq,m ≤ R̄m /2W then
+Set λmax = λ
+else
+Set λmin = λ
+end if
+until |λmax − λmin | < ǫ
+Use λ⋆ = λ in (7) to compute b′m
+Initialize βmin = 0, βmax = 1, and find β in (8) by bisection
+similar to above until |βmax − βmin | < ǫ
+13: Compute final integer solution b̃m to problem (5) according to (8)
+with converged β
+
+1:
+2:
+3:
+4:
+5:
+6:
+7:
+8:
+9:
+10:
+11:
+12:
+
+(7)
+
+= R̄m /2W .
+
+Proof. Please refer to the appendix.
+Let Q′m denote the set of antennas with non-zero allocation
+according to (7). With the optimal solution b′m to
+problem (6), we proceed to construct a feasible integer solution
+b̃m ∈ ZJQ×1
+for the original problem (5) by rounding b′m as
+++
+follows
+(
+⌊b′q,m ⌋ if b′q,m − ⌊b′q,m ⌋ ≤ β
+b̃q,m =
+, q ∈ Q′m ,
+(8)
+⌈b′q,m ⌉ if b′q,m − ⌊b′q,m ⌋ > β
+b′q,m
+
+where β ∈ [0, 1] is an appropriate threshold. Notice that as
+β is decreased, most of the b′q,m ’s would be rounded above,
+making it more difficult to satisfy the constraint in (5) and
+vice versa. Hence, a suitable β can be found by bisection on
+the interval [0, 1], each time evaluating the constraint in (5)
+with b̃m in (8) and updating β accordingly.
+From (7), we observe that the optimal solution allocates
+more bits to the antenna with higher estimated power ρq,m ,
+which is desirable, since the antennas that receive stronger
+signals from the users are more likely to have useful information to be decoded. The algorithm is summarized in Table I
+and we denote the final set of selected antennas at RRH m as
+Qm = {q ∈ Q | b̃q,m > 0} with |Qm | , Qm . We assume that
+the fronthaul capacities are such that R̄m ≥ 2JW, ∀m ∈ M,
+so that the number of selected antennas at each RRH is at
+least Qm ≥ J, ∀m ∈ M. Then, since JM ≥ K, it is
+always feasible to recover all K users’ signals at the CU
+via linear processing with independent channels. Let Qtot ,
+P
+m∈M Qm denote the total number of selected antennas. For
+the ease of exposition, we refer to the selected antennas as
+“streams” and use the index i ∈ {1, . . . , Qtot } , I to denote
+each stream so that the stream i corresponds to the antenna
+(j)
+qi in sector j of RRH mi .
+4 For the relaxed problem, we assume that the objective function is defined
+for bq,m = 0 as well.
+
+B. Path Delay Compensation and Achievable Sum-Rate with
+Perfect CSI
+In this subsection, we describe the operations at the CU,
+assuming perfect CSI. If the RRHs are equipped with lens
+antenna arrays, we propose that the users transmit simultaneously with single-carrier modulation, so that the data
+√ symbols
+transmitted by user k are given by xd,k [n] = P sd,k [n],
+where P ≥ 0 is the transmit power and sd,k [n] ∼ CN (0, 1)
+is the complex data symbol of user k. Using (1) and (3), the
+quantized symbols received at the CU corresponding to stream
+i ∈ I can be expressed as
+X X
+y̌d,i [n] =
+hi,k,ℓ xd,k [n − dmi ,k,ℓ ] + zd,i [n]
+k∈K ℓ∈Lmi ,k
+
++ ed,i [n],
+
+i ∈ I.
+
+(9)
+
+We assume that the CU decodes the users’ data symbols via
+linear processing, after path delay compensation [20] on the
+received signals for each stream as described below. Let ℓ⋆i,k =
+arg maxℓ∈Lm ,k |hi,k,ℓ |2 denote the strongest path among all
+i
+those arriving on stream (selected antenna) i ∈ I from user
+k. Due to the response of the lens array, the delayed versions
+of a particular user’s signals with different angels of arrival
+are focused on different antenna elements at each RRH in
+general. Thus, to ensure that the symbols of each user that
+have undergone the strongest path gain on each stream are
+combined at the CU in a synchronized manner, each stream
+(j)
+of quantized symbols y̌d,i [n], corresponding to antenna qi of
+RRH mi , is advanced by the delay dmi ,k,ℓ⋆i,k corresponding to
+
+the path ℓ⋆i,k , to obtain the delay compensated signal y̌d,i,k n+
+
+dmi ,k,ℓ⋆i,k , y̌¯d,i,k [n] for each user k ∈ K, as given by
+y̌¯d,i,k [n]
+X
+=
+
+X
+
+k′ ∈K ℓ′ ∈Lmi ,k′
+
+
+
+hi,k′ ,ℓ′ xd,k′ n − dmi ,k′ ,ℓ′ − dmi ,k,ℓ⋆i,k
+
+
+
+
+
++ zd,i n + dmi ,k,ℓ⋆i,k + ed,i n + dmi ,k,ℓ⋆i,k .
+
+(10)
+
+In order to write the summation over the paths in (10) in
+terms of the delay differences ν = dmi ,k′ ,ℓ′ − dmi ,k,ℓ⋆i,k ∈
+{0, ±1, . . . , ±dmax } , ∆ with the delay of the maximum gain
+
+6
+
+path dmi ,k,ℓ⋆i,k , we define for each antenna i ∈ I and user pair
+k, k ′ ∈ K, the new channel coefficient
+X
+
+
+h̄i,kk′ [ν] ,
+hi,k′ ,ℓ′ δ ν − dmi ,k′ ,ℓ′ − dmi ,k,ℓ⋆i,k ,
+ℓ′ ∈Lmi ,k′
+
+i ∈ I, k, k ′ ∈ K, ν ∈ ∆,
+
+(11)
+
+which is equivalent to the channel coefficient (or sum of
+coefficients) corresponding to the path(s) ℓ′ ∈ Lmi ,k′ from
+user k ′ to antenna i, which has (have) a delay difference of
+ν with the maximum gain path ℓ⋆i,k of user k to the same
+antenna. Then, (10) can be expressed as
+X
+h̄i,kk [ν]xd,k [n − ν]
+y̌¯d,i,k [n] = h̄i,kk [0]xd,k [n] +
+ν∈∆\{0}
+
++
+
+X
+
+X
+
+k′ ∈K\{k} ν∈∆
+
+|
+
+|
+
+{z
+
+inter-symbol interference (ISI)
+
+h̄i,kk′ [ν]xd,k′ [n − ν]
+{z
+
+inter-user interference (IUI)
+
+}
+
+}
+
++ z̄d,i,k [n] + ēd,i,k [n], i ∈ I, k ∈ K,
+(12)
+
+
+2
+) and
+where z̄d,i,k [n] , zd,i n + dmi ,k,ℓ⋆i,k ∼ CN (0, σm
+i
+
+
+ēd,i,k [n] , ed,i n + dmi ,k,ℓ⋆i,k , with E[ēd,i,k [n]] = 0 and
+E[|ēd,i,k [n]|2 ] = ε2i defined in (4) denote the AWGN and
+quantization noise samples shifted by dmi ,k,ℓ⋆i,k symbol periods. Note that y̌¯d,j,k [n] in (12) depends on user k whose
+maximum gain path ℓ⋆i,k is used as reference. The second and
+third terms in (12) represent user k’s own delayed symbols,
+and the interfering symbols from other users, respectively.
+Collecting the signals from all the streams, (12) can be written
+in vector form as
+X
+¯d,k [n] = h̄kk [0]xd,k [n] +
+h̄kk [ν]xd,k [n − ν]
+y̌
+ν∈∆\{0}
+
++
+
+X X
+
+k′ ∈K\k ν∈∆
+
+h̄kk′ [ν]xd,k′ [n − ν]
+
++ z̄d,k [n] + ēd,k [n],
+
+k ∈ K,
+
+(13)
+
+where all the vectors are of dimension Qtot × 1. We consider
+¯k [n]
+that the CU performs linear receive beamforming on y̌
+with the beamforming vector uk ∈ CQtot ×1 to construct the
+¯
+estimate x̂d,k [n] = uH
+k y̌d,k [n] of user k’s symbol. Treating the
+inter-symbol and inter-user interference in (12) as Gaussian
+noise, the signal to interference-plus-noise ratio (SINR) for
+decoding xd,k [n] is given by (14) on the top of the next page.
+2
+2
+IQM ) ∈ CQtot ×Qtot , and
+IQ1 ··· σM
+In (14), Σ , blkdiag(
+ σ1Q
+2 Qtot
+tot ×Qtot
+, where ε2i , i ∈ I, is deΞ , diag {εi }i=1 ∈ C
+fined in (4). Since the transmit powers of the users are fixed, γk
+in (14) is maximized by uk = Ck−1 h̄kk [0], k ∈ K according
+to the minimum mean squared error (MMSE) criterion [24],
+where
+X
+P h̄kk [ν]h̄kk [ν]H
+Ck ,
+ν∈∆\{0}
+
++
+
+X
+
+X
+
+k′ ∈K\{k} ν∈∆
+
+P h̄kk′ [ν]h̄kk′ [ν]H + Σ + Ξ,
+
+k ∈ K,
+(15)
+
+denotes the covariance of the noise and interference terms
+in (13). In this case, the SINR in (14) becomes γk =
+P h̄kk [0]H Ck−1 h̄kk [0], and by assuming the worst-case CSCG
+distribution for the quantization noise, a lower bound on the
+achievable sum rate over all users is thus given by
+X
+rlens =
+log2 (1 + γk )
+(16)
+k∈K
+
+in bps/Hz. In the next subsection, we consider channel estimation at the CU, and extend the achievable rate analysis to
+the case with imperfect CSI.
+C. Channel Estimation and Achievable Sum-Rate with Imperfect CSI
+Since the CU does not know the CSI a priori, it needs
+to estimate the CSI using pilot signals sent by the users and
+then quantized and forwarded by the RRHs in the channel
+The users transmit known pilot
+estimation stage (see Fig. 3). √
+symbols given by xp,k [n] = P sp,k [n], n = 0, 1, . . . , Tp −
+T
+1, k ∈ K. Let hi,k , [ hi,k [0] ··· hi,k [dmax ] ] ∈ C(dmax +1)×1
+denote the vector of time-domain channel taps from user k to
+antenna i ∈ I. Then, the vector of quantized symbols y̌p,i ,
+T
+[ y̌p,i [0] ··· y̌p,i [Tp −1] ] ∈ CTp ×1 received at the CU during the
+channel estimation stage can be expressed as
+X
+y̌p,i =
+Xp,k hi,k + zp,i + ep,i
+k∈K
+
+= Xp hi + zp,i + ep,i , i ∈ I,
+
+(17)
+
+where
+
+
+
+Xp,k , 
+
+xp,k [0]
+xp,k [1]
+
+0
+xp,k [0]
+
+..
+.
+
+..
+.
+
+···
+···
+
+..
+
+.
+
+0
+0
+
+..
+.
+
+xp,k [Tp −1] xp,k [Tp −2] ··· xp,k [Tp −1−dmax ]
+
+∈ CTp ×(dmax +1) ,
+
+k ∈ K,
+
+
+
+
+
+(18)
+
+is a Toeplitz matrix constructed from consecutive shifts of the
+pilot symbols of the users, while zp,i , [ zp,i [0] ··· zp,i [Tp −1] ]T
+2
+I ) denotes the AWGN, and ep,i ,
+with zp,i ∼ CN (0, σm
+i Tp
+T
+2
+[ ep,i [0] ··· ep,i [Tp −1] ] ∈ CTp ×1 with E[ep,i eH
+p,i ] = εi ITp
+X
+···
+X
+p,K ] ∈
+denotes the quantization noise. Also, Xp , [ p,1
+T
+CTp ×K(dmax +1) , and hi , [ hTi,1 ··· hTi,K ] ∈ CK(dmax +1)×1
+in (17). It is sufficient to estimate hi , i ∈ I in (18), to find both
+the channel coefficients and their corresponding tap delays.
+We do not assume any prior knowledge of the probability
+distribution function (pdf) of the elements of hi , i ∈ I at
+the CU, i.e. they are treated as unknown constants. Then, the
+least-squares (LS) estimate of hi is given by
+ĥi = arg min ky̌p,i − Xp hi k2 = Xp† y̌p,i
+hi
+
+= hi + ξp,i ,
+
+i ∈ I.
+
+(19)
+
+where we define ξp,i , Xp† zp,i + Xp† ep,i . Since each component of the vector X † ep,i ∈ C(dmax +1)×1 is a linear combination of the Tp independent zero-mean random variables in ep,i ,
+the second term in ξp,i , X † ep,i , can be modeled as a CSCG
+random vector, with mean E[X † ep,i ] = 0 and covariance
+† H
+2
+H
+−1
+E[X † ep,i eH
+, due to the central limit
+p,i (X ) ] = εi (Xp Xp )
+
+7
+
+γk = P
+
+ν∈∆\{0}
+
+2
+P |uH
+k h̄kk [ν]| +
+
+P uH
+k h̄kk [0]
+P
+P
+k′ ∈K\k
+
+
+2
++ ε2i )(XpH Xp )−1 in (19).
+theorem. Thus, ξp,i ∼ CN 0, (σm
+i
+Note that Tp ≥ K(dmax + 1) must be satisfied for the solution
+in (19) to exist. The MSE of the estimate ĥi is given by
+E[kĥi − hi k2 ] = E[kξp,i k2 ]
+
+
+
+2
++ ε2i tr (XpH Xp )−1 ,
+= σm
+i
+
+(20)
+
+which is minimized if XpH Xp = cIK(dmax +1) , where c
+is a constant [25, Example 4.3]. From the construction of
+H
+Xp , this translates to the condition Xp,k
+Xp,k′ = cδ[k −
+′
+′
+k ]I(dmax +1) , ∀k, k ∈ K, which is satisfied if each user’s
+training sequence sp,k [n], n = 0, . . . , Tp − 1 is orthogonal
+to that of every other user’s training sequence, and has the
+“ideal” auto-correlation property [25]. This can be ensured by
+using e.g., unit-amplitude Zadoff-Chu sequences [26], [27] for
+sp,k [n], with equal transmit power P, ∀k ∈ K. In this case,
+H
+c = P Tp so that (Xp,k
+Xp,k )−1 = P 1Tp I(dmax +1) , ∀k ∈ K,
+and thus Xp† = P 1Tp XpH . Consequently, the LS estimate in (19)
+reduces to
+1
+ĥi =
+X H y̌p,i = hi + ξp,i ,
+(21)
+P Tp p
+1
+X H (zp,i + ep,i )
+∼
+where
+ξp,i
+=
+ (σ2 +ε2 )
+P Tp p
+CN 0, mPiTp i IK(dmax +1) . According to (21), each
+tap in hi is estimated by correlating the received signal vector
+y̌p,i with the training sequence of the corresponding user
+shifted by the corresponding delay of the tap.
+Due to the energy focusing property of the lens antenna
+array in (2), and the different directions of arrival of the users’
+signals at different RRHs, at any stream i, typically only one
+path corresponding to a particular user corresponding to a
+particular tap delay would dominate over all its the other paths.
+Thus, the magnitudes of the channel coefficients in hi can
+be vastly different, depending on the angle of arrival of the
+users’ signals, and directly using the estimates of all the taps in
+hi , i ∈ I according to (19) may be ineffective. To overcome
+this issue, we propose a reduced-size, approximate linear
+MMSE beamforming by exploiting the “sinc”-type response
+of the lens array, where for each user, we select only the
+streams which contain at least one dominant estimated tap
+of its own, and then perform an approximate linear MMSE
+beamforming over these selected streams by thresholding the
+channel estimates, as explained below.
+Notice that for the data decoding with path delay compensation detailed in Section II-B, the term h̄i,kk [0] in (12)
+corresponds to the channel coefficient with maximum path
+gain from user k to antenna i. Now, due to the energy focusing
+property of the lens, the angle of arrival of user k’s signal is
+typically such that |h̄i,kk [0]| ≫ |h̄i,kk [ν]|, ∀ν ∈ ∆ \ {0}, on
+some streams i. This means that the maximum gain path of
+the user would dominate over the other paths on a particular
+stream i, provided the antenna corresponding to stream i has
+
+ν∈∆
+
+2
+H
+2
+P |uH
+k h̄kk′ [ν]| + uk (Σ + Ξ)uk
+
+,
+
+(14)
+
+a response which peaks at one of the angles of arrival of the
+user’s paths. Since we do not know the actual channel gains,
+we aim to find the set of such streams Ik for each user k,
+for which the magnitude of the maximum estimated channel
+gain exceeds a certain threshold. For this, we first estimate the
+tap delays of the maximum gain paths from user k to every
+stream i ∈ I. These are denoted by d˘i,k , i ∈ I, and computed
+from the LS estimate in (21) as follows
+d˘i,k , arg max |ĥi,k [d]|, k ∈ K, i ∈ I.
+
+(22)
+
+d∈D
+
+In the above, ĥi,k [d] is the ((k−1)(dmax +1)+d+1)th element
+of the vector LS estimate ĥi in (21). Essentially, we choose
+the tap delay corresponding to the estimate with the largest
+magnitude as the estimated delay of the maximum gain path
+on each stream i ∈ I. Then, for each stream i ∈ I, the estimate
+of the channel coefficient corresponding to the estimated
+maximum gain path, is given by ĥi,k [d˘i,k ], i ∈ I, k ∈ K,
+which is the ((k − 1)(dmax + 1) + d˘i,k + 1)th element of the
+vector LS estimate ĥi in (21).
+Further, during the data transmission stage, the CU selects a
+set of streams Ik ⊆ I, for which the above estimated channel
+gains ĥi,k [d˘i,k ] corresponding to the estimated maximum
+gain paths, are larger than a given threshold; i.e., we define
+
+
+2
+
+P ĥi,k [d̆i,k ]
+
+
+i∈I
+≥η ,
+2 +ε2
+
+σm
+
+i
+i
+
+ 2
+
+
+P ĥi,k d̆i,k
+Ik , if ∃ at least one i ∈ I s.t.
+≥ η,
+2 +ε2
+σm
+i
+
+i
+
+
+{ik }
+
+
+
+
+
+otherwise, where i , arg max
+,
+ĥ d˘
+k
+
+i∈I
+
+i,k
+
+i,k
+
+(23)
+
+k ∈ K, where η is a suitable threshold. Also, let Ik =
+{j1 , . . . , jIk }, and |Ik | = Ik , so that Ik ≥ 1, i.e. at least
+one stream is selected for decoding each user’s signal. Thus,
+for the data transmission stage, we now have the reduced set
+of streams y̌d,i , i ∈ Ik for each user k, with each y̌d,i given
+by (12). On these set of streams, the CU performs path delay
+compensation as in Section II-B, but now with the estimated
+delays d˘i,k ’s of the maximum gain paths instead of the true
+delays dmi ,k,ℓ⋆i,k ’s. The delay compensated signal can then be
+expressed in terms of the delay differences of the taps with
+d˘i,k , similar to (12), as
+X
+h̆i,kk [ν̆]xd,k [n − ν̆]
+y̌˘d,i,k [n] = h̆i,kk [0̆]xd,k [n] +
+ν̆∈∆\{0̆}
+
++
+
+X
+
+X
+
+k′ ∈K\{k} ν̆∈∆
+
+|
+
+|
+
+{z
+ISI
+
+h̆i,kk′ [ν̆]xd,k′ [n − ν̆]
+{z
+
+IUI
+
+}
+
++ z̆d,i,k [n] + ĕd,i,k [n], i ∈ Ik , k ∈ K,
+
+}
+
+(24)
+
+8
+
+ˆ −1 ˆ
+ˆ k = C̆
+˘
+where we have defined y̌˘d,i,k [n] , y̌d,i,k [n + d˘i,k ], z̆d,i,k [n] , beamforming ŭ
+k h̆kk [0̆] on the observations y̌d,k [n]
+5
+zd,i [n + d̆i,k ], and ĕd,i,k [n] , ed,i [n + d̆i,k ], and also placed a˘ in (26), where
+X
+symbol over the delay differences ν̆ ∈ ∆ to indicate that they
+ˆ
+ˆ
+ˆ
+P h̆kk [ν̆]h̆kk [ν̆]H
+C̆k ,
+are w.r.t. the estimated tap delay d˘i,k . The channel coefficients
+ν̆∈∆\{0̆}
+h̆i,kk′ [ν̆] are defined similar to (11), and are given by
+X X ˆ
+ˆ
+X
++
+P h̆kk′ [ν̆]h̆kk′ [ν̆]H + Σ̆ + Ξ̆, (29)
+
+
+˘
+hi,k′ ,ℓ′ δ ν̆ − dmi ,k′ ,ℓ′ − di,k ,
+h̆i,kk′ [ν̆] ,
+k′ ∈K\{k} ν̆∈∆
+ℓ′ ∈Lmi ,k′
+
+i ∈ Ik , k, k ′ ∈ K, ν̆ ∈ ∆.
+
+(25)
+
+Note that the h̆i,kk′ [ν̆]’s in (24) and (25) denote the true
+channel coefficients that correspond to a delay difference of
+ν̆ with the estimated delay d˘i,k . In vector form, (24) can be
+written as
+X
+˘d,k [n] = h̆kk [0̆]xd,k [n] +
+h̆kk [ν̆]xd,k [n − ν̆]
+y̌
+ν̆∈∆\{0̆}
+
++
+
+X
+
+X
+
+k′ ∈K\{k} ν̆∈∆
+
+h̆kk′ [ν̆]xd,k′ [n − ν̆]
+
++ z̆d,k [n] + ĕd,k [n],
+
+k ∈ K,
+
+X
+
+P h̆kk [ν̆]h̆kk [ν̆]H
+
+ν̆∈∆\{0̆}
+
++
+
+X
+
+k′ ∈K\{k}
+
+X
+
+P h̆kk′ [ν̆]h̆kk′ [ν̆]H + Σ̆ + Ξ̆,
+
+k∈K
+
+in bps/Hz. In the following subsection we briefly describe a
+benchmark scheme in the conventional CRAN when the RRHs
+use UPAs and the users transmit using OFDM.
+
+(26)
+
+where all the vectors have dimensions Ik × 1. Then, the
+reduced-size linear MMSE beamformer ŭk ∈ CIk ×1 for user
+k after path delay compensation with the estimated tap delay
+of the maximum gain path on each stream i ∈ Ik is given by
+ŭk = C̆k−1 h̆kk [ν̆], where
+C̆k ,
+
+and the resulting SINR is given by (30) on the top of the next
+page. Thus, with the proposed channel estimation, path delay
+compensation, and reduced-size, approximate linear MMSE
+receive beamforming for each user at the CU, a lower bound
+on the effective sum-throughput over all users of the CRAN
+is given by
+
+
+Ta + Tp + 2dmax X
+r̂lens = 1 −
+log2 (1 + γ̂k ) (31)
+Tf
+
+(27)
+
+ν̆∈∆
+
+is the covariance
+matrix ofthe interference terms in (26), with
+
+
+2
+2
+2
+2
+σ
+...
+σm
+m
+Σ̆ , diag
+, and Ξ̆ , εj1 ... εjIk .
+j1
+jI
+k
+However, the CU cannot compute the beamformer ŭk since
+it only has the estimates of h̆i,kk′ [ν̆], computed from (21).
+Now, on the selected streams i ∈ Ik , to avoid using the
+noisy estimates, the CU approximates the ISI and IUI terms
+in (24) by thresholding the estimates similar to (23). With the
+thresholding, the estimates of h̆i,kk′ [ν̆], which we denote by
+ˆ
+h̆i,kk′ [ν̆], are given by
+
+ĥ ′ [ν̆ + d˘ ], if P |ĥi,k′ [ν̆+d̆i,k ]|2 ≥ η,
+i,k
+i,k
+2 +ε2
+ˆ ′
+σm
+i
+h̆i,kk [ν̆] ,
+(28)
+i
+0
+otherwise,
+
+i ∈ Ik , k, k ′ ∈ K, ν̆ ∈ ∆. In (28), ĥi,k′ [ν̆ + d˘i,k ] is
+the ((k ′ − 1)(dmax + 1) + (ν̆ + d˘i,k ) + 1)th element of
+the vector LS estimate ĥi in (21). Note that due to the
+response of the lens antenna array, for each stream i ∈ Ik ,
+ˆ
+the thresholded estimates h̆i,kk′ [ν̆] will be non-zero only for
+a few usersh k ′ ∈ K and delay idifferences ν̆ ∈ ∆. Let
+T
+ˆ
+h̆kk′ [ν̆] = h̆ˆ j1 ,kk′ [ν̆] ··· h̆ˆ jIk ,kk′ [ν̆]
+∈ CIk ×1 denote the
+vector of the thresholded channel estimates in (28). Then,
+the CU applies the reduced-size, approximate linear MMSE
+
+III. B ENCHMARK : C ONVENTIONAL CRAN
+AND OFDM
+
+WITH
+
+UPA S
+
+In this case, each sector of an RRH is assumed to be
+equipped with a rectangular UPA of physical dimensions D̃y ×
+D̃z , with adjacent antenna elements of the array separated by a
+distance equal to half the wavelength. Let Q̃(j) , {1, . . . , Q̃},
+denote the set of antennas
+at sector j ∈ J of each RRH in
+S
+this case, and Q̃ = j∈J Q(j) denote the set of all antenna
+elements. The number of antenna elements per sector is given
+by Q̃ = Q̃y Q̃z , where Q̃y = ⌊2D̃y ⌋ denotes the number of
+antennas along the y-axis of the UPA and Q̃z = ⌊2D̃z ⌋ is the
+number of antennas along the z-axis. For the UPA, the array
+response vector a(θ, φ) ∈ CQ̃×1 in (1) can be written as
+a(θ, φ) = az (θ) ⊗ ay (θ, φ),
+(32)
+q
+T
+D̃z
+where az (θ) =
+[ 1 exp(π sin θ) ··· exp(π(Q̃z −1) sin θ) ] ∈
+Q̃
+z
+
+CQ̃z ×1
+is
+ray
+along
+r
+
+the
+the
+
+response
+z-axis,
+
+of
+and
+
+the
+linear
+ay (θ, φ)
+
+D̃y
+T
+[ 1 exp(π cos θ sin φ) ··· exp(π(Q̃y −1) cos θ sin φ) ]
+Q̃y
+
+ar=
+
+∈ CQ̃y ×1
+
+is the response of the linear array along the y-axis.
+The total channel bandwidth W is divided into N
+orthogonal sub-channels (SCs) of equal width denoted
+by N , {0, 1, . . . , N − 1}.
+The uplink transmission protocol is similar to that in Fig. 3,
+except that the users transmit their symbols in (N + µ)length symbol blocks using OFDM, where µ ≥ dmax is the
+length of the cyclic prefix (CP). Hence, the guard intervals
+shown in Fig. 3 are implicit in this case due to the CP,
+which is discarded at the CU. We assume that all the users
+transmit on all SCs for fully exploiting spatial multiplexing.
+5 It is assumed that the CU knows the quantization noise variances on each
+stream. These can be transmitted by the RRHs after the power probing stage
+to the CU once every frame period, along with information about the number
+of SQ bits on each antenna, since these quantities do not change within a
+frame.
+
+9
+
+γ̂k = P
+
+ν̆∈∆\{0̆}
+
+ˆ H h̆kk [ν̆]|2 +
+P |ŭ
+k
+
+ˆ H h̆kk [0̆]
+P ŭ
+k
+P
+P
+k′ ∈K\k
+
+In general, there can be multiple OFDM symbols in the power
+probing, channel estimation, and data transmission stages.
+For convenience, it is assumed that Ta , Tp and Td are all
+a
+integer multiples of N + µ, i.e. there are τa = NT+µ
+∈ Z++ ,
+Tp
+τp = N +µ ∈ Z++ , and τd = τd ∈ Z++ OFDM symbols in
+the power probing, channel estimation, and data transmission
+stages of a frame, respectively. Let x̃t,k ∈ CN ×1 denote the tth
+OFDM symbol transmitted by user k in the frequency-domain.
+Then the corresponding time-domain signals are given by
+the inverse discrete Fourier transform (IDFT) xt,k = F H x̃k ,
+where F ∈ CN ×N denotes the DFT matrix with columns
+T
+2πn(N −1)
+) ] , n ∈ N . Similar
+fn , √1N [ 1 exp(− 2πn
+N ) ··· exp(−
+N
+to Section II-A, the RRHs perform antenna selection and
+SQ bit allocation on the received time-domain signals and
+forward them to the CU. Let Q̃m , {q ∈ Q̃|bq,m > 0}
+with |Q̃m | = Q̃m denote the set of selected antennas at each
+RRH m in this case. Notice that with UPAs, the selected
+set of antennas and their non-zero quantization bit allocation
+at each RRH can be very different from that with the lens
+antenna P
+array, due to the lack of the lens focusing. Let
+Q̃tot =
+m∈M Q̃m and similar to Section II-A we index
+the selected antennas (streams) with i ∈ {1, . . . , Q̃tot } , Ĩ,
+where stream index i corresponds to antenna qi of RRH mi .
+
+2
+
+ν̆∈∆
+
+ˆk
+ˆ H (Σ̆ + Ξ̆)ŭ
+ˆ H h̆kk′ [ν̆]|2 + ŭ
+P |ŭ
+k
+k
+
+k∈K
+
+=
+
+X√
+N X̃p,t,k F0 hi,k + z̃p,t,i + ẽp,t,i
+
+k∈K
+
+= X̄p,t hi + z̃p,t,i + ẽp,t,i ,
+
+(33)
+
+where z̃p,t,i = F zp,t,i is the DFT of the AWGN so
+2
+I ), and ẽp,t,i = F ep,t,i is the
+that z̃p,t,i ∼ CN (0, σm
+i N
+DFT of the quantization noise with E[ẽp,t,i ] = 0 and
+2
+E[ẽp,t,i ẽH
+p,t,i ] = εi IN . Since each element of ẽp,t,i is a
+linear combination of the N elements in ep,t,i , due to the
+2
+central limit
+IN ). Also, in (33),
+√ theorem, ẽp,t,i ∼ CN (0, εNi×K(d
+max +1)
+, and hi
+X̄p,t , N [ X̃p,t,1 F0 ··· X̃p,t,K F0 ] ∈ C
+
+(30)
+
+˜p,t,i ,
+is defined similar to (17). For τp > 1, stacking each of y̌
+X̄p,t , z̃p,t,i , and ẽp,t,i , t ∈ {1, . . . , τp − 1} column-wise, we
+have
+˜p,i = X̄p hi + z̃p,i + ẽp,i .
+y̌
+
+(34)
+
+Similar to Section II-C, the LS estimate for hi is given by6
+˜p = hi + ξp,i ,
+ĥi = X̄p† y̌
+
+(35)
+
+2
++
+where ξp,i , X̄p† (z̃p,i + ẽp,i ) ∼ CN (0, (σm
+i
+2
+H
+−1
+εi )(X̄p X̄p ) ). Note that the estimate in (35) exists only
+if τp N ≥ K(dmax + 1), and the MSE of the estimate is
+
+
+2
++ ε2i )tr (X̄pH X̄p )−1 ,
+E[kĥi − hi k2 ] = E[kξp,i k2 ] = (σm
+i
+(36)
+which is minimized if X̄pH X̄p = c̃IK(dmax +1) , where c̃ is a
+constant. Due to the construction of X̄p in (34), this translates
+to the requirement that
+τp −1
+
+X
+
+H
+X̄p,t,k
+X̄p,t,k′ = N F0H
+
+ τX
+p −1
+t=0
+
+t=0
+
+
+H
+X̃p,t,k
+X̃p,t,k′ F0
+
+= δ[k − k ′ ]c̃I(dmax +1)
+
+A. Channel Estimation
+In the channel estimation stage, let x̃p,t,k [n] denote the
+frequency-domain pilot symbol transmitted by user k ∈ K on
+SC n ∈ N in the tth OFDM symbol, where t ∈ {0, 1, . . . , τp −
+1}. Also, let X̃p,t,k , diag( x̃p,t,k [0] ··· x̃p,t,k [N −1] ) ∈ CN ×N
+be the diagonal matrix constructed
+√ from the pilot symbols
+on all the SCs, and h̃i,k =
+N F0 hi,k , the vector of
+frequency-domain channel coefficients from user k to antenna
+i ∈ I, where hi,k ∈ C(dmax +1)×1 is the time-domain
+channel coefficient vector similar to that in Section II-C, and
+F0 ∈ CN ×(dmax +1) denotes the first (dmax +1) columns of F .
+Then, the frequency-domain received signal vector at the CU
+corresponding to the OFDM symbol t at antenna i ∈ Ĩ, after
+removing the CP and applying the DFT can be expressed as
+X
+˜p,t,i =
+y̌
+X̃p,t,k h̃i,k + z̃p,t,i + ẽp,t,i
+
+.
+
+k, k ′ ∈ K. (37)
+
+Now, let Ψ , V ⊗Sp,k ∈ Cτp N ×τp N , where V ∈ Cτp ×τp is a
+unitary matrix and Sp,k , diag( sp,k [0] ··· sp,k [N −1] ) ∈ CN ×N
+is a diagonal matrix with unit amplitude training symbols,
+H
+H
+satisfying Sp,k
+Sp,k = IN . Then, ΨH Ψ = V H V ⊗Sp,k
+Sp,k =
+Iτp N . The√condition
+(37)
+can
+then
+be
+ensured
+by
+choosing
+√
+X̃p,t,k = P Ψtω ( N diag(fκ )), where Ψtω ∈ CN ×N is the
+(t, ω)th block of Ψ, t, ω ∈ {0, . . . , τp − 1} [28, Theorem 2].
+Here, κ and ω are such that the user index k can be written
+K−1
+as k = κτp + ω + 1, i.e., κ = ⌊ k−1
+τp ⌋ ∈ {0, 1, . . . , ⌊ τp ⌋},
+and ω = k − 1 − κτp ∈ {0, 1, . . . , τp − 1}. Then, (37) holds
+with c̃ = τp N P , and X̄pH X̄p = τp N P IK(dmax +1) . Then, the
+LS estimate in (35) can be written as
+ĥi =
+
+1
+˜p = hi + ξp,i ,
+X̄ H y̌
+τp N P p
+
+(38)
+
+1
+X̄ H (z̃p,i + ẽp,i )
+∼
+where
+ξp,i
+=
+ σ2 +ε2
+τp N P p
+CN 0, τmpiN P i IK(dmax +1) . Note that (35) gives the
+time-domain channel estimates, and the frequency domain
+ˆ
+estimates h̃i,k , i ∈ Ĩ for each user k ∈ K, are given by
+√
+ˆ
+applying the transformation h̃i,k = N F0 ĥi,k , i ∈ Ĩ, k ∈ K,
+where ĥi,k is the length (dmax + 1) sub-vector in ĥi starting
+at index (k − 1)(dmax + 1) + 1 and ending at k(dmax + 1).
+6 Since both z̃
+p,i and ẽp,i are CSCG, this is also the maximum likelihood
+estimate of hi .
+
+B. Achievable Sum-Rate
+√
+Let x̃d,k [n] = P sd,k [n] denote the frequency-domain data
+symbol transmitted by user k on SC n ∈ N , where sd,k [n] ∼
+CN (0, 1) and P ≥ 0. Then, the frequency-domain received
+signal at the CU on SC n ∈ N corresponding to stream i ∈ Ĩ
+can be expressed as
+X
+y̌˜d,i [n] =
+h̃i,k [n]x̃d,k [n] + z̃d,i [n] + ẽd,i [n],
+(39)
+k∈K
+
+th
+
+where z̃d,i [n] and ẽd,i [n] are the n components of the DFTs
+of the AWGN and quantization noise similar to that in (33).
+Collecting the received signals from all streams on each SC
+n, we have
+X
+˜d [n] =
+y̌
+h̃k [n]x̃d,k [n] + z̃d [n] + ẽd [n], n ∈ N , (40)
+
+z-axis (meters)
+
+10
+
+40
+20
+0
+60
+50
+40
+30
+
+50
+RRH
+User
+
+20
+
+y-axis (meters)
+
+40
+30
+
+10
+
+20
+10
+0
+
+0
+
+x-axis (meters)
+
+k∈K
+
+where all the vectors are of dimensions Q̃tot × 1. If the CU
+has perfect CSI, the linear MMSE beamforming vector ũk,n ∈
+CQ̃tot ×1 that maximizes the receive SINR for each user k on
+SC n, treating the interference from other users as noise, is
+−1
+given by ũk,n = C̃k,n
+h̃k [n], where
+X
+(41)
+P h̃k′ [n]h̃k′ [n]H + Σ̃ + Ξ̃,
+C̃k,n ,
+k′ ∈K\{k}
+
+
+2
+IQ̃
+∈ CQ̃tot ×Q̃tot and Ξ̃ ,
+with Σ̃ , blkdiag σ12 IQ̃1 ··· σM
+M
+Q
+Q̃
+×
+Q̃
+tot
+diag( {ε2i }i=1
+) ∈ C tot tot . The SINR for user k on SC
+−1
+h̃k [n], and thus the
+n is then given by γ̃k,n = P h̃k [n]H C̃k,n
+sum-rate over all users with UPAs and OFDM transmission is
+given by
+X
+X 1
+r̃upa =
+log2 (1 + γ̃k,n )
+(42)
+N +µ
+k∈K
+
+n∈N
+
+in bps/Hz.
+On the other hand, with estimated CSI, the CU computes
+ˆ
+ˆ −1 h̃
+ˆ k,n = C̃
+the linear MMSE receiver ũ
+k,n k [n] on each SC n,
+P
+ˆ ′ [n]H + Σ̃+ Ξ̃
+ˆ ′ [n]h̃
+ˆ
+P h̃
+where the matrix C̃
+,
+k,n
+
+k′ ∈K\{k}
+
+k
+
+k
+
+ˆ
+and the components of h̃k [n], n ∈ N , k ∈ K are computed
+by transforming the time-domain estimates in (35) as outlined
+earlier. Then the resulting SINR is given by
+ˆ H h̃k [n]|2
+P |ũ
+k,n
+ˆ H h̃k′ [n]|2 + ũ
+ˆ H (Σ̃ + Ξ̃)ũ
+ˆ k,n
+P
+|
+ũ
+′
+k ∈K\{k}
+k,n
+k,n
+(43)
+
+γ̃ˆk,n = P
+
+Thus, the effective sum-throughput over all users with UPAs
+and OFDM transmission is given by
+
+τa + τp  1 X X
+r̃ˆupa = 1 −
+log2 (1 + γ̃ˆk,n ), (44)
+τf
+N +µ
+k∈K n∈N
+
+in bps/Hz.
+IV. S IMULATION R ESULTS
+For the simulations, we consider a part of the general
+sectorized CRAN illustrated in Fig. 2 with M
+√ = 6 RRHs
+located at the corners of a hexagon of side 50/ 3 meters (m),
+along with K = 6 users randomly located in the common
+
+Fig. 5. Example of RRH and user layout for simulations.
+
+region covered by one sector of each RRH as shown in Fig. 5.
+All the RRHs are assumed to be of height 30 meters (m), while
+the users’ height can vary between 1 m and 25 m. The size of
+the EM lens at the RRHs is such that Dy = Dz = 10, while
+the UPAs are rectangular with same length D̃y = 10 as the
+EM lens along the y-axis, and length D̃z = 7 along the z-axis.
+The height of the RRHs is greater than the maximum height of
+the users, and the minimum distance along the ground between
+a user and RRH is assumed to be 2 m. Based on the above
+setup, the maximum coverage angles for the lens array in the
+elevation direction are chosen to be Θ+ = π/2, Θ− = π/6,
+while the corresponding angles in the azimuth direction are
+Φ+ = Φ− = π/3 due to the sectorization. This leads to
+Q = 208 and Q̃ = 280 antennas per sector at each RRH
+for the lens array and the UPA, respectively. The carrier
+frequency is 28 GHz and the mmWave channel shared by
+the users and RRHs has a bandwidth W = 200 MHz. The
+maximum delay spread of the channel is 100 ns, which
+translates to dmax = 20 symbols. The free-space path loss
+′
+between a user k and RRH m separated by distance Dm,k
+m
+′
+is modeled by 61.4 + 34.1 log10 Dm,k
+dB [29]. The number
+of paths Lm,k between user k and RRH m is equal to 1, 2
+or 3 with equal probability, and the time delays of the paths
+ζℓ , ℓ ∈ Lm,k , are generated from an exponential distribution
+with mean rζ µζ , but truncated to 100 ns, where µζ = 67 ns
+and rζ = 0.25 [29]. The relative P
+power levels of the paths
+are given by κ̄m,k,ℓ = κm,k,ℓ /( ℓ′ ∈Lm,k κm,k,ℓ′ ), where
+
+Z
+−ζℓ
+κm,k,ℓ = 10 10 (0.613) exp 31.4
+ns [29], and Z is zero-mean
+Gaussian with standard deviation 9.4 dB, representing the perpath shadowing [29]; thus |αm,k,ℓ |2 = κ̄m,k,ℓ Pr,m,k , where
+Pr,m,k in watt is the received power at RRH m from user k
+after accounting for the free-space path loss. The phase shifts
+of each path ∠αm,k,ℓ are generated uniformly randomly from
+the interval [0, 2π]. The elevation angles of arrival θm,k,ℓ for
+each path ℓ ∈ Lm,k from user k ∈ K to RRH m ∈ M are indeπ π
+pendent and generated as θm,k,ℓ = θ̄m,k,ℓ +U[− 12
+, 12 ], where
+θ̄m,k,ℓ is the line-of-sight (LoS) angle of elevation from the
+user to the RRH. Similarly, the azimuth angles of arrival φm,k,ℓ
+are independent and generated as φm,k,ℓ = φ̄m,k,ℓ +U[− π6 , π6 ],
+
+11
+
+TABLE II
+AVERAGE NUMBER OF SELECTED ANTENNAS PER RRH
+
+5
+
+Fronthaul
+capacity
+per
+sector (Gbps)
+
+4
+3.5
+
+Lens
+UPA-OFDM
+
+3
+2.5
+
+0.4
+
+2
+
+4
+
+8
+
+20
+
+40
+
+60
+
+100
+
+200
+
+2
+2
+
+5
+6
+
+10
+11
+
+19
+21
+
+48
+51
+
+98
+101
+
+148
+151
+
+208
+251
+
+208
+280
+
+4
+
+2
+1.5
+1
+
+Lens: Perfect fronthaul, perfect CSI
+UPA−OFDM: Perfect fronthaul, perfect CSI
+Lens: Constrained fronthaul, perfect CSI
+UPA−OFDM: Constrained fronthaul, perfect CSI
+
+0.5
+0
+0
+
+50
+
+100
+
+150
+
+200
+
+Fronthaul capacity per sector (Gbps)
+Fig. 6. Average rate per user vs. common fronthaul capacity per RRH sector
+under perfect CSI, with P = 23 dBm.
+
+where φ̄m,k,ℓ is the LoS angle of azimuth. The power spectral
+density of the AWGN is −174 dBm/Hz, with an additional
+noise figure of 6 dB at each RRH. The inter-sector/intercluster interference is assumed to be equal to −80 dBm at
+all sectors. The fronthaul capacity of all RRHs are the same,
+i.e. R̄m = R̄, ∀m ∈ M. For the benchmark scheme using
+OFDM with UPAs at the RRHs, the number of SCs N = 256
+and the CP length µ = dmax = 20. The minimum coherence
+time of the channels is taken to be 0.4 ms, while each frame is
+assumed to be Tf = 8280 symbols long, which corresponds to
+30 OFDM symbols. For the proposed system with lens arrays,
+we choose Tp = K(dmax +1), while for the benchmark system
+with UPAs and OFDM, Tp = 3(N + µ) i.e., τp = 3. In order
+to make a fair comparison, we assume Ta = N + dmax in both
+cases. All the results are averaged over random user locations
+and channel realizations.
+Figs. 6 and 7 plot the average throughput per user against
+the common fronthaul capacity per sector R̄/3, where the
+users’ transmit power P = 23 dBm. Fig. 6 shows the
+performance assuming perfect CSI at the CU, both with
+and without the fronthaul constraints at the RRHs. Without
+fronthaul constraints and with perfect CSI, it can be observed
+that the performance of the benchmark system with OFDM
+and UPAs is close to the proposed system with lens. The
+difference can be attributed to the loss due to the CP insertion
+in the case of OFDM transmission with UPAs. As the lens
+array only redistributes the incident energy among the antenna
+elements depending on the angle of arrival of the plane waves,
+it is reasonable to expect that it does not offer a large gain
+in the achievable rate over UPA-OFDM when there is no
+constraint on the fronthaul. However, since only single-carrier
+transmission by the users is required, and the ISI and IUI can
+be mitigated without CP insertion and IDFT/DFT processing,
+the use of lens arrays can greatly simplify the signal processing
+required, when compared with UPA-OFDM. For the system
+
+Average sum-rate per user (bps/Hz)
+
+Average sum-rate per user (bps/Hz)
+
+4.5
+
+3.5
+3
+2.5
+2
+1.5
+1
+0.5
+0
+0
+
+Lens: Perfect fronthaul, estimated CSI
+UPA−OFDM: Perfect fronthaul, estimated CSI
+Lens: Constrained fronthaul, estimated CSI
+UPA−OFDM: Constrained fronthaul, estimated CSI
+50
+
+100
+
+150
+
+200
+
+Common fronthaul capacity per sector (Gbps)
+Fig. 7. Average rate per user vs. common fronthaul capacity per RRH sector
+under estimated CSI, with P = 23 dBm.
+
+with UPA-OFDM, the overall complexity of performing linear
+MMSE beamforming for all the users on all the SCs with no
+fronthaul constraint is of the order O(N K(M J Q̃)3 ), while
+for the proposed system with lens arrays, the complexity is
+O(K(M JQ)3 ), offering a reduction of a factor of N .
+Further, for the fronthaul constrained case, it can be observed from Fig. 6 that the proposed system with lens arrays
+provides significant throughput gains over the conventional
+UPA-OFDM. This is due to the energy focusing property of the
+EM lens, which makes the antenna selection and quantization
+bit allocation much more effective with lens arrays compared
+to UPAs. In the antenna selection and bit allocation scheme,
+the antennas with larger received power are selected and
+allocated more bits compared to the antennas with lower
+received power. Table II compares the number of antennas
+selected at the RRHs in both cases. As the EM lens focuses
+the incident energy onto a few antenna elements, the selection
+and bit allocation algorithm tends to select these elements
+with large received power. Thus, although the number of
+antennas selected in both cases is more or less similar when
+the fronthaul capacity is low, the selection and bit allocation is
+much more effective with lens arrays when compared to UPAOFDM. With UPA-OFDM, the received energy distribution is
+more or less similar across the antenna elements and the selection and bit allocation can thus adversely affect the achievable
+rate compared to the case with no fronthaul constraint. Fig. 7
+shows the performance of the proposed system with estimated
+
+12
+
+TABLE III
+AVERAGE NUMBER OF STREAMS SELECTED PER USER FOR REDUCED
+MMSE WITH ESTIMATED CSI FOR LENS ANTENNA ARRAY
+Fronthaul
+capacity
+per
+sector (Gbps)
+Number
+streams Ik
+
+of
+
+0.4
+
+2
+
+4
+
+8
+
+20
+
+40
+
+60
+
+100
+
+200
+
+1
+
+2
+
+2
+
+2
+
+2
+
+3
+
+3
+
+3
+
+4
+
+CSI. For the thresholding of the channel estimates as given
+in (23) and (28), we choose η = 3 dB. Again, it can be
+observed that with the proposed channel estimation scheme
+via thresholding the LS channel estimates, the system with
+lens antenna arrays offers significant gains over the benchmark
+UPA-OFDM system. This is because the quantization and
+antenna selection at the RRHs adversely affects both the channel estimation as well as data transmission in the benchmark
+system, when the fronthaul is constrained. On the other hand,
+due to the energy focusing property of the lens, the stronger
+channels are relatively less affected by the quantization, and
+since the channels between the users and RRHs are sparse in
+the angular domain, and the lens converts this angular domain
+sparsity to the spatial domain, it is sufficient to use only
+the estimates of the stronger channels to retain most of the
+gains in the subsequent MMSE beamforming. In the UPAOFDM system, such a thresholding is not effective since the
+energy is distributed uniformly over the antenna elements, and
+there is no way of distinguishing the significant channels in
+the spatial domain. Table III shows the average number of
+streams Ik selected after thresholding the channel estimates
+for the proposed reduced, approximate MMSE beamforming
+with lens arrays at the RRHs. It can be observed that the
+total number of streams can potentially be even an order of
+magnitude less than the total number of streams in the UPAOFDM case (see Table II), and this leads to a huge reduction
+in complexity of the receive beamforming in CRAN, since
+3
+for the proposed system the complexity is only O(KImax
+),
+where Imax = maxk∈K Ik is the maximum number of streams
+for a user, while for the benchmark with UPA-OFDM, it is
+O(N K Q̃3tot ). Moreover, this gain in throughput is achieved
+at a much lower training overhead of K(dmax + 1) for the
+proposed system, compared to at least N + dmax for the
+benchmark, where in practice N ≫ K as usual.
+V. C ONCLUSION
+In this paper, we introduce a new architecture for mmWave
+CRAN with lens antenna arrays at the RRHs. We propose
+a low-complexity bit allocation scheme for SQ at the RRHs
+based only on the estimated received power levels of the
+antennas. We show that when the fronthaul is constrained, the
+proposed system which uses single-carrier transmission by the
+users combined with path delay compensation and reducedsize MMSE beamforming, can achieve large throughput gains
+over the conventional system that uses UPAs at the RRHs
+along with OFDM transmission by the users and full-size
+MMSE combining on each SC. Further, we propose a simple,
+yet effective channel estimation scheme for the proposed
+
+system, which exploits the unique energy focusing property
+of the lens array, and show that the proposed system still
+offers considerable advantage over the benchmark system,
+when both have imperfect CSI. Moreover, these gains are
+achieved at a much lower signal processing complexity at
+the CU, since it is sufficient to process a considerably fewer
+number of streams for the proposed system when compared to
+the benchmark. This shows that the proposed system with lens
+antenna arrays is a promising candidate for future evolution
+of CRAN operating in the mmWave frequencies.
+A PPENDIX
+As problem (6) is convex and is strictly feasible, it can
+be optimally solved by solving its dual problem. Let λ denote
+the Lagrange multiplier for constraint (5a) in problem (6). The
+Lagrangian is then given by
+X
+X 3ρq,m
+R̄m 
+,
+(45)
++
+λ
+b
+−
+L(bm , λ) =
+q,m
+2b
+2 q,m
+2W
+q∈Q
+
+q∈Q
+
+and the dual function is given by f (λ) = minbm ≥0 L(bm , λ).
+Differentiating (45) with respect to each bq,m and setting the
+derivative equal to zero, we have
+
+ 6ρ
+1
+q,m ln 2
+bq,m = log2
+.
+(46)
+2
+λ
+Since bq,m ≥ 0 ∀q ∈ Q, the dual variable λ must lie in
+the interval [0, 6ρmax,m ln 2], where ρmin,m = minq∈Q ρq,m
+and ρmax,m = maxq∈Q ρq,m . Moreover, according to (7), as
+λ increases, the bq,m ’s decrease, making the constraint (5a)
+more feasible, and vice versa. Thus, the optimal λ⋆ that
+solves the dual problem maxλ≥0 f (λ), can be found by a
+simple bisection search over [0, 6ρmax,m ln 2]; then the optimal
+solution b′m for problem (6) is obtained as given by (7). The
+proof of Proposition 2.1 is thus completed.
+R EFERENCES
+[1] J. Andrews et al., “What will 5G be?” IEEE J. Sel. Areas Commun.,
+vol. 32, no. 6, pp. 1065–1082, June 2014.
+[2] Y. Zhou and W. Yu, “Optimized backhaul compression for uplink cloud
+radio access network,” IEEE J. Sel. Areas Commun., vol. 32, no. 6, pp.
+1295–1307, June 2014.
+[3] L. Liu and R. Zhang, “Optimized uplink transmission in multi-antenna
+C-RAN with spatial compression and forward,” IEEE Trans. Signal
+Process., vol. 63, no. 19, pp. 5083–5095, Oct. 2015.
+[4] B. Dai and W. Yu, “Sparse beamforming and user-centric clustering for
+downlink cloud radio access network,” IEEE Access, vol. 2, pp. 1326–
+1339, 2014.
+[5] Y. Shi, J. Zhang, and K. Letaief, “Group sparse beamforming for green
+cloud-RAN,” IEEE Trans. Wireless Commun., vol. 13, no. 5, pp. 2809–
+2823, May 2014.
+[6] S. Luo, R. Zhang, and T. J. Lim, “Downlink and uplink energy
+minimization through user association and beamforming in C-RAN,”
+IEEE Trans. Wireless Commun., vol. 14, no. 1, pp. 494–508, Jan. 2015.
+[7] R. G. Stephen and R. Zhang, “Joint millimeter-wave fronthaul and
+OFDMA resource allocation in ultra-dense CRAN,” IEEE Trans. Commun., vol. 65, no. 3, pp. 1411–1423, Mar. 2017.
+[8] L. Liu, S. Bi, and R. Zhang, “Joint power control and fronthaul rate
+allocation for throughput maximization in OFDMA-based cloud radio
+access network,” IEEE Trans. Commun., vol. 63, no. 11, pp. 4097–4110,
+Nov. 2015.
+[9] R. G. Stephen and R. Zhang, “Fronthaul-limited uplink OFDMA in
+ultra-dense CRAN with hybrid decoding,” IEEE Trans. Veh. Technol.,
+vol. 66, no. 10, pp. 9074–9084, Oct. 2017.
+
+13
+
+[10] T. Bai, A. Alkhateeb, and R. W. Heath, “Coverage and capacity of
+millimeter-wave cellular networks,” IEEE Commun. Mag., vol. 52, no. 9,
+pp. 70–77, Sep. 2014.
+[11] M. R. Akdeniz et al., “Millimeter wave channel modeling and cellular
+capacity evaluation,” IEEE J. Sel. Areas Commun., vol. 32, no. 6, pp.
+1164–1179, June 2014.
+[12] J. Hoydis, M. Kobayashi, and M. Debbah, “Optimal channel training in
+uplink network MIMO systems,” IEEE Trans. Signal Process., vol. 59,
+no. 6, pp. 2824–2833, Jun. 2011.
+[13] J. Kang, O. Simeone, J. Kang, and S. S. Shitz, “Joint signal and channel
+state information compression for the backhaul of uplink network mimo
+systems,” IEEE Trans. Wireless Commun., vol. 13, no. 3, pp. 1555–1567,
+Mar. 2014.
+[14] J. Zhang, X. Yuan, and Y. J. Zhang, “Locally orthogonal training
+design for cloud-RANs based on graph coloring,” IEEE Trans. Wireless
+Commun., vol. 16, no. 10, pp. 6426–6437, Oct. 2017.
+[15] Z. Gao, C. Hu, L. Dai, and Z. Wang, “Channel estimation for millimeterwave massive MIMO with hybrid precoding over frequency-selective
+fading channels,” IEEE Communications Letters, vol. 20, no. 6, pp.
+1259–1262, Jun. 2016.
+[16] K. Venugopal, A. Alkhateeb, N. G. Prelcic, and R. W. Heath, “Channel
+estimation for hybrid architecture-based wideband millimeter wave
+systems,” IEEE J. Sel. Areas Commun., vol. 35, no. 9, pp. 1996–2009,
+Sep. 2017.
+[17] Y. Zeng, R. Zhang, and Z. N. Chen, “Electromagnetic lens-focusing
+antenna enabled massive MIMO: Performance improvement and cost
+reduction,” IEEE J. Sel. Areas Commun., vol. 32, no. 6, pp. 1194–1206,
+June 2014.
+[18] Y. Zeng and R. Zhang, “Millimeter wave MIMO with lens antenna array:
+A new path division multiplexing paradigm,” IEEE Trans. Commun.,
+vol. 64, no. 4, pp. 1557–1571, Apr. 2016.
+[19] ——, “Cost-effective millimeter-wave communications with lens antenna array,” IEEE Wireless Communications, vol. 24, no. 4, pp. 81–87,
+2017.
+[20] Y. Zeng, L. Yang, and R. Zhang, “Multi-user millimeter wave
+MIMO with full-dimensional lens antenna array.” [Online]. Available:
+http://arxiv.org/abs/1611.06008
+[21] T. Kwon, Y. G. Lim, B. W. Min, and C. B. Chae, “RF lens-embedded
+massive MIMO systems: Fabrication issues and codebook design,” IEEE
+Trans. Microw. Theory Tech., vol. 64, no. 7, pp. 2256–2271, July 2016.
+[22] L. Yang, Y. Zeng, and R. Zhang, “Channel estimation for millimeter
+wave MIMO communications with lens antenna arrays,” IEEE Trans.
+Veh. Technol., 2017, to appear.
+[23] A. B. Narasimhamurthy and C. Tepedelenlioglu, “Antenna selection for
+MIMO-OFDM systems with channel estimation error,” IEEE Trans. Veh.
+Technol., vol. 58, no. 5, pp. 2269–2278, Jun. 2009.
+[24] D. Tse and P. Viswanath, Fundamentals of wireless communication.
+Cambridge University Press, 2005.
+[25] S. M. Kay, Fundamentals of Statistical Signal Processing: Estimation
+Theory. Upper Saddle River, NJ, USA: Prentice-Hall, Inc., 1993.
+[26] B. M. Popovic, “Generalized chirp-like polyphase sequences with optimum correlation properties,” IEEE Trans. Inf. Theory, vol. 38, no. 4,
+pp. 1406–1409, Jul. 1992.
+[27] S. Sesia, I. Toufik, and M. Baker, LTE, The UMTS Long Term Evolution:
+From Theory to Practice. Wiley Publishing, 2009.
+[28] Y. Chi, A. Gomaa, N. Al-Dhahir, and A. R. Calderbank, “Training signal
+design and tradeoffs for spectrally-efficient multi-user MIMO-OFDM
+systems,” IEEE Trans. Wireless Commun., vol. 10, no. 7, pp. 2234–
+2245, Jul. 2011.
+[29] M. K. Samimi and T. S. Rappaport, “Ultra-wideband statistical channel
+model for non line of sight millimeter-wave urban channels,” in Proc.
+IEEE GLOBECOM, Dec. 2014, pp. 3483–3489.
+
+

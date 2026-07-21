@@ -1,0 +1,21 @@
+Title: Assistax: A Multi-Agent Hardware-Accelerated Reinforcement Learning Benchmark for Assistive Robotics
+
+Authors: Leonard Hinckeldey, Elliot Fosong, Rimvydas Rubavicius, Elle Miller, Trevor McInroe, Fan Zhang, Patricia Wollstadt, Stefano V. Albrecht, Subramanian Ramamoorthy
+
+Published: 2025-07-29
+
+Categories: cs.AI, cs.LG, cs.MA, cs.RO
+
+Abstract:
+The development of reinforcement learning (RL) algorithms has been largely driven by ambitious challenge tasks and benchmarks. Games have dominated RL benchmarks because they present relevant challenges, are inexpensive to run and easy to understand. While games such as Go and Atari have led to many breakthroughs, they often do not directly translate to real-world embodied applications. In recognising the need to diversify RL benchmarks and addressing complexities that arise in embodied interaction scenarios, we introduce Assistax: an open-source benchmark designed to address challenges arising in assistive robotics tasks. Assistax uses JAX's hardware acceleration for significant speed-ups for learning in physics-based simulations. In terms of open-loop wall-clock time, Assistax runs up to $370\times$ faster when vectorising training runs compared to CPU-based alternatives. Assistax conceptualises the interaction between an assistive robot and an active human patient using multi-agent RL to train a population of diverse partner agents against which an embodied robotic agent's zero-shot coordination capabilities can be tested. Extensive evaluation and hyperparameter tuning for popular continuous control RL and MARL algorithms provide reliable baselines and establish Assistax as a practical benchmark for advancing RL research for assistive robotics. The code is available at: https://github.com/assistive-autonomy/assistax.
+
+Paper ID: 2507.21638v2
+
+Summary:
+This paper titled "Assistax: A Multi-Agent Hardware-Accelerated Reinforcement Learning Benchmark for Assistive Robotics" was authored by Leonard Hinckeldey, Elliot Fosong, Rimvydas Rubavicius, Elle Miller, Trevor McInroe, Fan Zhang, Patricia Wollstadt, Stefano V. Albrecht, Subramanian Ramamoorthy and published on 2025-07-29.
+It falls under the categories: cs.AI, cs.LG, cs.MA, cs.RO.
+The research explores the following topic: The development of reinforcement learning (RL) algorithms has been largely driven by ambitious challenge tasks and benchmarks. Games have dominated RL benchmarks because they present relevant challenges, are inexpensive to run and easy to understand. While games such as Go and Atari have led to many breakthroughs, they often do not directly translate to real-world embodied applications. In recognising the need to diversify RL benchmarks and addressing complexities that arise in embodied interaction scenarios, we introduce Assistax: an open-source benchmark designed to address challenges arising in assistive robotics tasks. Assistax uses JAX's hardware acceleration for significant speed-ups for learning in physics-based simulations. In terms of open-loop wall-clock time, Assistax runs up to $370\times$ faster when vectorising training runs compared to CPU-based alternatives. Assistax conceptualises the interaction between an assistive robot and an active human patient using multi-agent RL to train a population of diverse partner agents against which an embodied robotic agent's zero-shot coordination capabilities can be tested. Extensive evaluation and hyperparameter tuning for popular continuous control RL and MARL algorithms provide reliable baselines and establish Assistax as a practical benchmark for advancing RL research for assistive robotics. The code is available at: https://github.com/assistive-autonomy/assistax.
+
+Links:
+  - https://arxiv.org/abs/2507.21638v2
+  - https://arxiv.org/pdf/2507.21638v2

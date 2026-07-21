@@ -1,0 +1,21 @@
+Title: Analysing Gender Bias in Text-to-Image Models using Object Detection
+
+Authors: Harvey Mannering
+
+Published: 2023-07-16
+
+Categories: cs.CV
+
+Abstract:
+This work presents a novel strategy to measure bias in text-to-image models. Using paired prompts that specify gender and vaguely reference an object (e.g. "a man/woman holding an item") we can examine whether certain objects are associated with a certain gender. In analysing results from Stable Diffusion, we observed that male prompts generated objects such as ties, knives, trucks, baseball bats, and bicycles more frequently. On the other hand, female prompts were more likely to generate objects such as handbags, umbrellas, bowls, bottles, and cups. We hope that the method outlined here will be a useful tool for examining bias in text-to-image models.
+
+Paper ID: 2307.08025v1
+
+Summary:
+This paper titled "Analysing Gender Bias in Text-to-Image Models using Object Detection" was authored by Harvey Mannering and published on 2023-07-16.
+It falls under the categories: cs.CV.
+The research explores the following topic: This work presents a novel strategy to measure bias in text-to-image models. Using paired prompts that specify gender and vaguely reference an object (e.g. "a man/woman holding an item") we can examine whether certain objects are associated with a certain gender. In analysing results from Stable Diffusion, we observed that male prompts generated objects such as ties, knives, trucks, baseball bats, and bicycles more frequently. On the other hand, female prompts were more likely to generate objects such as handbags, umbrellas, bowls, bottles, and cups. We hope that the method outlined here will be a useful tool for examining bias in text-to-image models.
+
+Links:
+  - https://arxiv.org/abs/2307.08025v1
+  - https://arxiv.org/pdf/2307.08025v1

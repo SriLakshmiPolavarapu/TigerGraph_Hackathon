@@ -1,0 +1,22 @@
+Title: Optimizing Deep Neural Network Architecture: A Tabu Search Based Approach
+
+Authors: Tarun Kumar Gupta, Khalid Raza
+
+Published: 2018-08-17
+
+Categories: cs.LG, cs.AI, cs.NE, stat.ML
+
+Abstract:
+The performance of Feedforward neural network (FNN) fully de-pends upon the selection of architecture and training algorithm. FNN architecture can be tweaked using several parameters, such as the number of hidden layers, number of hidden neurons at each hidden layer and number of connections between layers. There may be exponential combinations for these architectural attributes which may be unmanageable manually, so it requires an algorithm which can automatically design an optimal architecture with high generalization ability. Numerous optimization algorithms have been utilized for FNN architecture determination. This paper proposes a new methodology which can work on the estimation of hidden layers and their respective neurons for FNN. This work combines the advantages of Tabu search (TS) and Gradient descent with momentum backpropagation (GDM) training algorithm to demonstrate how Tabu search can automatically select the best architecture from the populated architectures based on minimum testing error criteria. The proposed approach has been tested on four classification benchmark dataset of different size.
+
+Paper ID: 1808.05979v1
+
+Summary:
+This paper titled "Optimizing Deep Neural Network Architecture: A Tabu Search Based Approach" was authored by Tarun Kumar Gupta, Khalid Raza and published on 2018-08-17.
+It falls under the categories: cs.LG, cs.AI, cs.NE, stat.ML.
+The research explores the following topic: The performance of Feedforward neural network (FNN) fully de-pends upon the selection of architecture and training algorithm. FNN architecture can be tweaked using several parameters, such as the number of hidden layers, number of hidden neurons at each hidden layer and number of connections between layers. There may be exponential combinations for these architectural attributes which may be unmanageable manually, so it requires an algorithm which can automatically design an optimal architecture with high generalization ability. Numerous optimization algorithms have been utilized for FNN architecture determination. This paper proposes a new methodology which can work on the estimation of hidden layers and their respective neurons for FNN. This work combines the advantages of Tabu search (TS) and Gradient descent with momentum backpropagation (GDM) training algorithm to demonstrate how Tabu search can automatically select the best architecture from the populated architectures based on minimum testing error criteria. The proposed approach has been tested on four classification benchmark dataset of different size.
+
+Links:
+  - https://arxiv.org/abs/1808.05979v1
+  - https://arxiv.org/pdf/1808.05979v1
+  - https://doi.org/10.1007/s11063-020-10234-7

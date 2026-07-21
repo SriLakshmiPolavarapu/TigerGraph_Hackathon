@@ -1,0 +1,22 @@
+Title: Continual Learning and Catastrophic Forgetting
+
+Authors: Gido M. van de Ven, Nicholas Soures, Dhireesha Kudithipudi
+
+Published: 2024-03-08
+
+Categories: cs.LG, cs.AI, cs.CV, q-bio.NC, stat.ML
+
+Abstract:
+This book chapter delves into the dynamics of continual learning, which is the process of incrementally learning from a non-stationary stream of data. Although continual learning is a natural skill for the human brain, it is very challenging for artificial neural networks. An important reason is that, when learning something new, these networks tend to quickly and drastically forget what they had learned before, a phenomenon known as catastrophic forgetting. Especially in the last decade, continual learning has become an extensively studied topic in deep learning. This book chapter reviews the insights that this field has generated.
+
+Paper ID: 2403.05175v1
+
+Summary:
+This paper titled "Continual Learning and Catastrophic Forgetting" was authored by Gido M. van de Ven, Nicholas Soures, Dhireesha Kudithipudi and published on 2024-03-08.
+It falls under the categories: cs.LG, cs.AI, cs.CV, q-bio.NC, stat.ML.
+The research explores the following topic: This book chapter delves into the dynamics of continual learning, which is the process of incrementally learning from a non-stationary stream of data. Although continual learning is a natural skill for the human brain, it is very challenging for artificial neural networks. An important reason is that, when learning something new, these networks tend to quickly and drastically forget what they had learned before, a phenomenon known as catastrophic forgetting. Especially in the last decade, continual learning has become an extensively studied topic in deep learning. This book chapter reviews the insights that this field has generated.
+
+Links:
+  - https://arxiv.org/abs/2403.05175v1
+  - https://arxiv.org/pdf/2403.05175v1
+  - https://doi.org/10.1016/B978-0-443-15754-7.00073-0

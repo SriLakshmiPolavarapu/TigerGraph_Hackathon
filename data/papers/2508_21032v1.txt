@@ -1,0 +1,21 @@
+Title: Reusing Computation in Text-to-Image Diffusion for Efficient Generation of Image Sets
+
+Authors: Dale Decatur, Thibault Groueix, Wang Yifan, Rana Hanocka, Vladimir Kim, Matheus Gadelha
+
+Published: 2025-08-28
+
+Categories: cs.CV
+
+Abstract:
+Text-to-image diffusion models enable high-quality image generation but are computationally expensive. While prior work optimizes per-inference efficiency, we explore an orthogonal approach: reducing redundancy across correlated prompts. Our method leverages the coarse-to-fine nature of diffusion models, where early denoising steps capture shared structures among similar prompts. We propose a training-free approach that clusters prompts based on semantic similarity and shares computation in early diffusion steps. Experiments show that for models trained conditioned on image embeddings, our approach significantly reduces compute cost while improving image quality. By leveraging UnClip's text-to-image prior, we enhance diffusion step allocation for greater efficiency. Our method seamlessly integrates with existing pipelines, scales with prompt sets, and reduces the environmental and financial burden of large-scale text-to-image generation. Project page: https://ddecatur.github.io/hierarchical-diffusion/
+
+Paper ID: 2508.21032v1
+
+Summary:
+This paper titled "Reusing Computation in Text-to-Image Diffusion for Efficient Generation of Image Sets" was authored by Dale Decatur, Thibault Groueix, Wang Yifan, Rana Hanocka, Vladimir Kim, Matheus Gadelha and published on 2025-08-28.
+It falls under the categories: cs.CV.
+The research explores the following topic: Text-to-image diffusion models enable high-quality image generation but are computationally expensive. While prior work optimizes per-inference efficiency, we explore an orthogonal approach: reducing redundancy across correlated prompts. Our method leverages the coarse-to-fine nature of diffusion models, where early denoising steps capture shared structures among similar prompts. We propose a training-free approach that clusters prompts based on semantic similarity and shares computation in early diffusion steps. Experiments show that for models trained conditioned on image embeddings, our approach significantly reduces compute cost while improving image quality. By leveraging UnClip's text-to-image prior, we enhance diffusion step allocation for greater efficiency. Our method seamlessly integrates with existing pipelines, scales with prompt sets, and reduces the environmental and financial burden of large-scale text-to-image generation. Project page: https://ddecatur.github.io/hierarchical-diffusion/
+
+Links:
+  - https://arxiv.org/abs/2508.21032v1
+  - https://arxiv.org/pdf/2508.21032v1

@@ -1,0 +1,21 @@
+Title: Machine Learning for Everyone: Simplifying Healthcare Analytics with BigQuery ML
+
+Authors: Mohammad Amir Salari, Bahareh Rahmani
+
+Published: 2025-02-10
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+Machine learning (ML) transforms healthcare by enabling predictive analytics, personalized treatments, and improved patient outcomes. However, traditional ML workflows often require specialized skills, infrastructure, and resources, limiting accessibility for many healthcare professionals. This paper explores how BigQuery ML Cloud service helps healthcare researchers and data analysts to build and deploy models using SQL, without need for advanced ML knowledge. Our results demonstrate that the Boosted Tree model achieved the highest performance among the three models making it highly effective for diabetes prediction. BigQuery ML directly integrates predictive analytics into their workflows to inform decision-making and support patient care. We reveal this capability through a case study on diabetes prediction using the Diabetes Health Indicators Dataset. Our study underscores BigQuery ML's role in democratizing machine learning, enabling faster, scalable, and efficient predictive analytics that can directly enhance healthcare decision-making processes. This study aims to bridge the gap between advanced machine learning and practical healthcare analytics by providing detailed insights into BigQuery ML's capabilities. By demonstrating its utility in a real-world case study, we highlight its potential to simplify complex workflows and expand access to predictive tools for a broader audience of healthcare professionals.
+
+Paper ID: 2502.07026v2
+
+Summary:
+This paper titled "Machine Learning for Everyone: Simplifying Healthcare Analytics with BigQuery ML" was authored by Mohammad Amir Salari, Bahareh Rahmani and published on 2025-02-10.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: Machine learning (ML) transforms healthcare by enabling predictive analytics, personalized treatments, and improved patient outcomes. However, traditional ML workflows often require specialized skills, infrastructure, and resources, limiting accessibility for many healthcare professionals. This paper explores how BigQuery ML Cloud service helps healthcare researchers and data analysts to build and deploy models using SQL, without need for advanced ML knowledge. Our results demonstrate that the Boosted Tree model achieved the highest performance among the three models making it highly effective for diabetes prediction. BigQuery ML directly integrates predictive analytics into their workflows to inform decision-making and support patient care. We reveal this capability through a case study on diabetes prediction using the Diabetes Health Indicators Dataset. Our study underscores BigQuery ML's role in democratizing machine learning, enabling faster, scalable, and efficient predictive analytics that can directly enhance healthcare decision-making processes. This study aims to bridge the gap between advanced machine learning and practical healthcare analytics by providing detailed insights into BigQuery ML's capabilities. By demonstrating its utility in a real-world case study, we highlight its potential to simplify complex workflows and expand access to predictive tools for a broader audience of healthcare professionals.
+
+Links:
+  - https://arxiv.org/abs/2502.07026v2
+  - https://arxiv.org/pdf/2502.07026v2

@@ -1,0 +1,21 @@
+Title: Forecasting high-frequency financial time series: an adaptive learning approach with the order book data
+
+Authors: Parley Ruogu Yang
+
+Published: 2021-02-27
+
+Categories: q-fin.ST, econ.EM, q-fin.TR, stat.AP
+
+Abstract:
+This paper proposes a forecast-centric adaptive learning model that engages with the past studies on the order book and high-frequency data, with applications to hypothesis testing. In line with the past literature, we produce brackets of summaries of statistics from the high-frequency bid and ask data in the CSI 300 Index Futures market and aim to forecast the one-step-ahead prices. Traditional time series issues, e.g. ARIMA order selection, stationarity, together with potential financial applications are covered in the exploratory data analysis, which pave paths to the adaptive learning model. By designing and running the learning model, we found it to perform well compared to the top fixed models, and some could improve the forecasting accuracy by being more stable and resilient to non-stationarity. Applications to hypothesis testing are shown with a rolling window, and further potential applications to finance and statistics are outlined.
+
+Paper ID: 2103.00264v1
+
+Summary:
+This paper titled "Forecasting high-frequency financial time series: an adaptive learning approach with the order book data" was authored by Parley Ruogu Yang and published on 2021-02-27.
+It falls under the categories: q-fin.ST, econ.EM, q-fin.TR, stat.AP.
+The research explores the following topic: This paper proposes a forecast-centric adaptive learning model that engages with the past studies on the order book and high-frequency data, with applications to hypothesis testing. In line with the past literature, we produce brackets of summaries of statistics from the high-frequency bid and ask data in the CSI 300 Index Futures market and aim to forecast the one-step-ahead prices. Traditional time series issues, e.g. ARIMA order selection, stationarity, together with potential financial applications are covered in the exploratory data analysis, which pave paths to the adaptive learning model. By designing and running the learning model, we found it to perform well compared to the top fixed models, and some could improve the forecasting accuracy by being more stable and resilient to non-stationarity. Applications to hypothesis testing are shown with a rolling window, and further potential applications to finance and statistics are outlined.
+
+Links:
+  - https://arxiv.org/abs/2103.00264v1
+  - https://arxiv.org/pdf/2103.00264v1

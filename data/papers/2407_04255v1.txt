@@ -1,0 +1,21 @@
+Title: Second Place Solution of WSDM2023 Toloka Visual Question Answering Challenge
+
+Authors: Xiangyu Wu, Zhouyang Chi, Yang Yang, Jianfeng Lu
+
+Published: 2024-07-05
+
+Categories: cs.CV
+
+Abstract:
+In this paper, we present our solution for the WSDM2023 Toloka Visual Question Answering Challenge. Inspired by the application of multimodal pre-trained models to various downstream tasks(e.g., visual question answering, visual grounding, and cross-modal retrieval), we approached this competition as a visual grounding task, where the input is an image and a question, guiding the model to answer the question and display the answer as a bounding box on the image. We designed a three-stage solution for this task. Specifically, we used the visual-language pre-trained model OFA as the foundation. In the first stage, we constructed a large-scale synthetic dataset similar to the competition dataset and coarse-tuned the model to learn generalized semantic information. In the second stage, we treated the competition task as a visual grounding task, loaded the weights from the previous stage, and continued to fine-tune the model on the competition dataset, transferring the semantic information learned in the first stage to the competition task. Finally, we designed a bounding box matching and replacing post-processing strategy to correct the model's prediction results. Our team achieved a score of 76.342 on the final leaderboard, ranking second.
+
+Paper ID: 2407.04255v1
+
+Summary:
+This paper titled "Second Place Solution of WSDM2023 Toloka Visual Question Answering Challenge" was authored by Xiangyu Wu, Zhouyang Chi, Yang Yang, Jianfeng Lu and published on 2024-07-05.
+It falls under the categories: cs.CV.
+The research explores the following topic: In this paper, we present our solution for the WSDM2023 Toloka Visual Question Answering Challenge. Inspired by the application of multimodal pre-trained models to various downstream tasks(e.g., visual question answering, visual grounding, and cross-modal retrieval), we approached this competition as a visual grounding task, where the input is an image and a question, guiding the model to answer the question and display the answer as a bounding box on the image. We designed a three-stage solution for this task. Specifically, we used the visual-language pre-trained model OFA as the foundation. In the first stage, we constructed a large-scale synthetic dataset similar to the competition dataset and coarse-tuned the model to learn generalized semantic information. In the second stage, we treated the competition task as a visual grounding task, loaded the weights from the previous stage, and continued to fine-tune the model on the competition dataset, transferring the semantic information learned in the first stage to the competition task. Finally, we designed a bounding box matching and replacing post-processing strategy to correct the model's prediction results. Our team achieved a score of 76.342 on the final leaderboard, ranking second.
+
+Links:
+  - https://arxiv.org/abs/2407.04255v1
+  - https://arxiv.org/pdf/2407.04255v1

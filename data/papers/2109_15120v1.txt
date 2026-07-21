@@ -1,0 +1,21 @@
+Title: SUper Team at SemEval-2016 Task 3: Building a feature-rich system for community question answering
+
+Authors: Tsvetomila Mihaylova, Pepa Gencheva, Martin Boyanov, Ivana Yovcheva, Todor Mihaylov, Momchil Hardalov, Yasen Kiprov, Daniel Balchev, Ivan Koychev, Preslav Nakov, Ivelina Nikolova, Galia Angelova
+
+Published: 2021-09-26
+
+Categories: cs.CL, cs.AI, cs.IR, cs.LG, cs.SI
+
+Abstract:
+We present the system we built for participating in SemEval-2016 Task 3 on Community Question Answering. We achieved the best results on subtask C, and strong results on subtasks A and B, by combining a rich set of various types of features: semantic, lexical, metadata, and user-related. The most important group turned out to be the metadata for the question and for the comment, semantic vectors trained on QatarLiving data and similarities between the question and the comment for subtasks A and C, and between the original and the related question for Subtask B.
+
+Paper ID: 2109.15120v1
+
+Summary:
+This paper titled "SUper Team at SemEval-2016 Task 3: Building a feature-rich system for community question answering" was authored by Tsvetomila Mihaylova, Pepa Gencheva, Martin Boyanov, Ivana Yovcheva, Todor Mihaylov, Momchil Hardalov, Yasen Kiprov, Daniel Balchev, Ivan Koychev, Preslav Nakov, Ivelina Nikolova, Galia Angelova and published on 2021-09-26.
+It falls under the categories: cs.CL, cs.AI, cs.IR, cs.LG, cs.SI.
+The research explores the following topic: We present the system we built for participating in SemEval-2016 Task 3 on Community Question Answering. We achieved the best results on subtask C, and strong results on subtasks A and B, by combining a rich set of various types of features: semantic, lexical, metadata, and user-related. The most important group turned out to be the metadata for the question and for the comment, semantic vectors trained on QatarLiving data and similarities between the question and the comment for subtasks A and C, and between the original and the related question for Subtask B.
+
+Links:
+  - https://arxiv.org/abs/2109.15120v1
+  - https://arxiv.org/pdf/2109.15120v1

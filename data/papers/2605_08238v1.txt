@@ -1,0 +1,22 @@
+Title: Resource-Aware Evolutionary Neural Architecture Search for Cardiac MRI Segmentation
+
+Authors: Farhana Yasmin, Mahade Hasan, Haipeng Liu, Amjad Ali, Ghulam Muhammad, Yu Xue
+
+Published: 2026-05-07
+
+Categories: cs.CV, cs.AI, cs.ET, cs.LG
+
+Abstract:
+Cardiac magnetic resonance (CMR) segmentation underpins quantitative assessment of ventricular structure and function, yet reliable delineation remains difficult due to low tissue contrast, fuzzy boundaries, and inter scan variability. We present CardiacNAS, an evolutionary neural architecture search (NAS) framework that couples a UNet like supernet with a cardiac aware search space spanning depth width, kernel size, filter size, attention, fusion, activation, dropout, and residual scaling. The search is explicitly resource aware, jointly optimizing dice similarity coefficient (DSC) and 95th percentile Hausdorff distance (HD95) versus model size and floating point operations (FLOPs) under fixed compute budgets. Candidate architectures are instantiated from the supernet, trained with proxy budgets, and evolved through crossover, mutation, and elitist selection. We evaluate on the ACDC dataset and compare against six state of the art methods, using qualitative comparisons, learning curve analyses, and design factor correlation studies. The resulting model attains 93.22% average DSC and 4.73 mm HD95 with 3.58M parameters and 14.56 GFLOPs, demonstrating a favorable accuracy efficiency trade off. Analyses indicate that searched attention and fusion choices, together with residual scaling, contribute to improved boundary fidelity and stability. CardiacNAS offers a principled, resource aware approach to deployable CMR segmentation with transparent reporting of architectural complexity and compute budgets.
+
+Paper ID: 2605.08238v1
+
+Summary:
+This paper titled "Resource-Aware Evolutionary Neural Architecture Search for Cardiac MRI Segmentation" was authored by Farhana Yasmin, Mahade Hasan, Haipeng Liu, Amjad Ali, Ghulam Muhammad, Yu Xue and published on 2026-05-07.
+It falls under the categories: cs.CV, cs.AI, cs.ET, cs.LG.
+The research explores the following topic: Cardiac magnetic resonance (CMR) segmentation underpins quantitative assessment of ventricular structure and function, yet reliable delineation remains difficult due to low tissue contrast, fuzzy boundaries, and inter scan variability. We present CardiacNAS, an evolutionary neural architecture search (NAS) framework that couples a UNet like supernet with a cardiac aware search space spanning depth width, kernel size, filter size, attention, fusion, activation, dropout, and residual scaling. The search is explicitly resource aware, jointly optimizing dice similarity coefficient (DSC) and 95th percentile Hausdorff distance (HD95) versus model size and floating point operations (FLOPs) under fixed compute budgets. Candidate architectures are instantiated from the supernet, trained with proxy budgets, and evolved through crossover, mutation, and elitist selection. We evaluate on the ACDC dataset and compare against six state of the art methods, using qualitative comparisons, learning curve analyses, and design factor correlation studies. The resulting model attains 93.22% average DSC and 4.73 mm HD95 with 3.58M parameters and 14.56 GFLOPs, demonstrating a favorable accuracy efficiency trade off. Analyses indicate that searched attention and fusion choices, together with residual scaling, contribute to improved boundary fidelity and stability. CardiacNAS offers a principled, resource aware approach to deployable CMR segmentation with transparent reporting of architectural complexity and compute budgets.
+
+Links:
+  - https://arxiv.org/abs/2605.08238v1
+  - https://arxiv.org/pdf/2605.08238v1
+  - https://doi.org/10.1109/ICCIT68739.2025.11491084

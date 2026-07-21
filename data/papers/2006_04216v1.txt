@@ -1,0 +1,21 @@
+Title: Efficient AutoML Pipeline Search with Matrix and Tensor Factorization
+
+Authors: Chengrun Yang, Jicong Fan, Ziyang Wu, Madeleine Udell
+
+Published: 2020-06-07
+
+Categories: cs.LG, cs.AI, stat.ML
+
+Abstract:
+Data scientists seeking a good supervised learning model on a new dataset have many choices to make: they must preprocess the data, select features, possibly reduce the dimension, select an estimation algorithm, and choose hyperparameters for each of these pipeline components. With new pipeline components comes a combinatorial explosion in the number of choices! In this work, we design a new AutoML system to address this challenge: an automated system to design a supervised learning pipeline. Our system uses matrix and tensor factorization as surrogate models to model the combinatorial pipeline search space. Under these models, we develop greedy experiment design protocols to efficiently gather information about a new dataset. Experiments on large corpora of real-world classification problems demonstrate the effectiveness of our approach.
+
+Paper ID: 2006.04216v1
+
+Summary:
+This paper titled "Efficient AutoML Pipeline Search with Matrix and Tensor Factorization" was authored by Chengrun Yang, Jicong Fan, Ziyang Wu, Madeleine Udell and published on 2020-06-07.
+It falls under the categories: cs.LG, cs.AI, stat.ML.
+The research explores the following topic: Data scientists seeking a good supervised learning model on a new dataset have many choices to make: they must preprocess the data, select features, possibly reduce the dimension, select an estimation algorithm, and choose hyperparameters for each of these pipeline components. With new pipeline components comes a combinatorial explosion in the number of choices! In this work, we design a new AutoML system to address this challenge: an automated system to design a supervised learning pipeline. Our system uses matrix and tensor factorization as surrogate models to model the combinatorial pipeline search space. Under these models, we develop greedy experiment design protocols to efficiently gather information about a new dataset. Experiments on large corpora of real-world classification problems demonstrate the effectiveness of our approach.
+
+Links:
+  - https://arxiv.org/abs/2006.04216v1
+  - https://arxiv.org/pdf/2006.04216v1

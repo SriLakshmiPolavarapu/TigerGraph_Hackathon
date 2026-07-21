@@ -1,0 +1,21 @@
+Title: Pre-trained Forecasting Models: Strong Zero-Shot Feature Extractors for Time Series Classification
+
+Authors: Andreas Auer, Daniel Klotz, Sebastinan Böck, Sepp Hochreiter
+
+Published: 2025-10-30
+
+Categories: cs.LG
+
+Abstract:
+Recent research on time series foundation models has primarily focused on forecasting, leaving it unclear how generalizable their learned representations are. In this study, we examine whether frozen pre-trained forecasting models can provide effective representations for classification. To this end, we compare different representation extraction strategies and introduce two model-agnostic embedding augmentations. Our experiments show that the best forecasting models achieve classification accuracy that matches or even surpasses that of state-of-the-art models pre-trained specifically for classification. Moreover, we observe a positive correlation between forecasting and classification performance. These findings challenge the assumption that task-specific pre-training is necessary, and suggest that learning to forecast may provide a powerful route toward constructing general-purpose time series foundation models.
+
+Paper ID: 2510.26777v1
+
+Summary:
+This paper titled "Pre-trained Forecasting Models: Strong Zero-Shot Feature Extractors for Time Series Classification" was authored by Andreas Auer, Daniel Klotz, Sebastinan Böck, Sepp Hochreiter and published on 2025-10-30.
+It falls under the categories: cs.LG.
+The research explores the following topic: Recent research on time series foundation models has primarily focused on forecasting, leaving it unclear how generalizable their learned representations are. In this study, we examine whether frozen pre-trained forecasting models can provide effective representations for classification. To this end, we compare different representation extraction strategies and introduce two model-agnostic embedding augmentations. Our experiments show that the best forecasting models achieve classification accuracy that matches or even surpasses that of state-of-the-art models pre-trained specifically for classification. Moreover, we observe a positive correlation between forecasting and classification performance. These findings challenge the assumption that task-specific pre-training is necessary, and suggest that learning to forecast may provide a powerful route toward constructing general-purpose time series foundation models.
+
+Links:
+  - https://arxiv.org/abs/2510.26777v1
+  - https://arxiv.org/pdf/2510.26777v1

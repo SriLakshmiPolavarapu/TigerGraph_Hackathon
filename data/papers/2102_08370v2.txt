@@ -1,0 +1,22 @@
+Title: Quantifying the effects of environment and population diversity in multi-agent reinforcement learning
+
+Authors: Kevin R. McKee, Joel Z. Leibo, Charlie Beattie, Richard Everett
+
+Published: 2021-02-16
+
+Categories: cs.MA, cs.AI
+
+Abstract:
+Generalization is a major challenge for multi-agent reinforcement learning. How well does an agent perform when placed in novel environments and in interactions with new co-players? In this paper, we investigate and quantify the relationship between generalization and diversity in the multi-agent domain. Across the range of multi-agent environments considered here, procedurally generating training levels significantly improves agent performance on held-out levels. However, agent performance on the specific levels used in training sometimes declines as a result. To better understand the effects of co-player variation, our experiments introduce a new environment-agnostic measure of behavioral diversity. Results demonstrate that population size and intrinsic motivation are both effective methods of generating greater population diversity. In turn, training with a diverse set of co-players strengthens agent performance in some (but not all) cases.
+
+Paper ID: 2102.08370v2
+
+Summary:
+This paper titled "Quantifying the effects of environment and population diversity in multi-agent reinforcement learning" was authored by Kevin R. McKee, Joel Z. Leibo, Charlie Beattie, Richard Everett and published on 2021-02-16.
+It falls under the categories: cs.MA, cs.AI.
+The research explores the following topic: Generalization is a major challenge for multi-agent reinforcement learning. How well does an agent perform when placed in novel environments and in interactions with new co-players? In this paper, we investigate and quantify the relationship between generalization and diversity in the multi-agent domain. Across the range of multi-agent environments considered here, procedurally generating training levels significantly improves agent performance on held-out levels. However, agent performance on the specific levels used in training sometimes declines as a result. To better understand the effects of co-player variation, our experiments introduce a new environment-agnostic measure of behavioral diversity. Results demonstrate that population size and intrinsic motivation are both effective methods of generating greater population diversity. In turn, training with a diverse set of co-players strengthens agent performance in some (but not all) cases.
+
+Links:
+  - https://arxiv.org/abs/2102.08370v2
+  - https://arxiv.org/pdf/2102.08370v2
+  - https://doi.org/10.1007/s10458-022-09548-8

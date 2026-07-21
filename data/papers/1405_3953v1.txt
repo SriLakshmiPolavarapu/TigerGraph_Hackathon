@@ -1,0 +1,22 @@
+Title: Pengines: Web Logic Programming Made Easy
+
+Authors: Torbjörn Lager, Jan Wielemaker
+
+Published: 2014-05-14
+
+Categories: cs.PL
+
+Abstract:
+When developing a (web) interface for a deductive database, functionality required by the client is provided by means of HTTP handlers that wrap the logical data access predicates. These handlers are responsible for converting between client and server data representations and typically include options for paginating results. Designing the web accessible API is difficult because it is hard to predict the exact requirements of clients. Pengines changes this picture. The client provides a Prolog program that selects the required data by accessing the logical API of the server. The pengine infrastructure provides general mechanisms for converting Prolog data and handling Prolog non-determinism. The Pengines library is small (2000 lines Prolog, 150 lines JavaScript). It greatly simplifies defining an AJAX based client for a Prolog program and provides non-deterministic RPC between Prolog processes as well as interaction with Prolog engines similar to Paul Tarau's engines. Pengines are available as a standard package for SWI-Prolog 7.
+
+Paper ID: 1405.3953v1
+
+Summary:
+This paper titled "Pengines: Web Logic Programming Made Easy" was authored by Torbjörn Lager, Jan Wielemaker and published on 2014-05-14.
+It falls under the categories: cs.PL.
+The research explores the following topic: When developing a (web) interface for a deductive database, functionality required by the client is provided by means of HTTP handlers that wrap the logical data access predicates. These handlers are responsible for converting between client and server data representations and typically include options for paginating results. Designing the web accessible API is difficult because it is hard to predict the exact requirements of clients. Pengines changes this picture. The client provides a Prolog program that selects the required data by accessing the logical API of the server. The pengine infrastructure provides general mechanisms for converting Prolog data and handling Prolog non-determinism. The Pengines library is small (2000 lines Prolog, 150 lines JavaScript). It greatly simplifies defining an AJAX based client for a Prolog program and provides non-deterministic RPC between Prolog processes as well as interaction with Prolog engines similar to Paul Tarau's engines. Pengines are available as a standard package for SWI-Prolog 7.
+
+Links:
+  - https://arxiv.org/abs/1405.3953v1
+  - https://arxiv.org/pdf/1405.3953v1
+  - https://doi.org/10.1017/S1471068414000192

@@ -1,0 +1,21 @@
+Title: Self-Captioning Multimodal Interaction Tuning: Amplifying Exploitable Redundancies for Robust Vision Language Models
+
+Authors: Yuriel Ryan, Hei Man Ip, Adriel Kuek, Paul Pu Liang, Roy Ka-Wei Lee
+
+Published: 2026-05-03
+
+Categories: cs.CV, cs.AI, cs.LG
+
+Abstract:
+Current vision language models face hallucination and robustness issues against ambiguous or corrupted modalities. We hypothesize that these issues can be addressed by exploiting the shared information between modalities to compensate for the impaired one. To this end, we analyze multimodal interactions -- redundant (shared), unique (exclusive), and synergistic (emergent) task-relevant information provided by the modalities -- to determine their impacts on model reliability. Specifically, amplifying redundant interactions would increase this exploitable shared information to resolve these issues; yet, modern instruction datasets often eliminate redundancies to prioritize visual grounding. We bridge this gap through a self-captioning workflow featuring a \textsc{Multimodal Interaction Gate}: a mechanism to convert unique interactions into redundant interactions. Our findings suggest that increasing redundancy can reduce visual induced errors by 38.3\% and improve consistency by 16.8\%.
+
+Paper ID: 2605.08145v2
+
+Summary:
+This paper titled "Self-Captioning Multimodal Interaction Tuning: Amplifying Exploitable Redundancies for Robust Vision Language Models" was authored by Yuriel Ryan, Hei Man Ip, Adriel Kuek, Paul Pu Liang, Roy Ka-Wei Lee and published on 2026-05-03.
+It falls under the categories: cs.CV, cs.AI, cs.LG.
+The research explores the following topic: Current vision language models face hallucination and robustness issues against ambiguous or corrupted modalities. We hypothesize that these issues can be addressed by exploiting the shared information between modalities to compensate for the impaired one. To this end, we analyze multimodal interactions -- redundant (shared), unique (exclusive), and synergistic (emergent) task-relevant information provided by the modalities -- to determine their impacts on model reliability. Specifically, amplifying redundant interactions would increase this exploitable shared information to resolve these issues; yet, modern instruction datasets often eliminate redundancies to prioritize visual grounding. We bridge this gap through a self-captioning workflow featuring a \textsc{Multimodal Interaction Gate}: a mechanism to convert unique interactions into redundant interactions. Our findings suggest that increasing redundancy can reduce visual induced errors by 38.3\% and improve consistency by 16.8\%.
+
+Links:
+  - https://arxiv.org/abs/2605.08145v2
+  - https://arxiv.org/pdf/2605.08145v2

@@ -1,0 +1,21 @@
+Title: A New Unified Deep Learning Approach with Decomposition-Reconstruction-Ensemble Framework for Time Series Forecasting
+
+Authors: Guowei Zhang, Tao Ren, Yifan Yang
+
+Published: 2020-02-22
+
+Categories: stat.ML, cs.LG, stat.AP
+
+Abstract:
+A new variational mode decomposition (VMD) based deep learning approach is proposed in this paper for time series forecasting problem. Firstly, VMD is adopted to decompose the original time series into several sub-signals. Then, a convolutional neural network (CNN) is applied to learn the reconstruction patterns on the decomposed sub-signals to obtain several reconstructed sub-signals. Finally, a long short term memory (LSTM) network is employed to forecast the time series with the decomposed sub-signals and the reconstructed sub-signals as inputs. The proposed VMD-CNN-LSTM approach is originated from the decomposition-reconstruction-ensemble framework, and innovated by embedding the reconstruction, single forecasting, and ensemble steps in a unified deep learning approach. To verify the forecasting performance of the proposed approach, four typical time series datasets are introduced for empirical analysis. The empirical results demonstrate that the proposed approach outperforms consistently the benchmark approaches in terms of forecasting accuracy, and also indicate that the reconstructed sub-signals obtained by CNN is of importance for further improving the forecasting performance.
+
+Paper ID: 2002.09695v1
+
+Summary:
+This paper titled "A New Unified Deep Learning Approach with Decomposition-Reconstruction-Ensemble Framework for Time Series Forecasting" was authored by Guowei Zhang, Tao Ren, Yifan Yang and published on 2020-02-22.
+It falls under the categories: stat.ML, cs.LG, stat.AP.
+The research explores the following topic: A new variational mode decomposition (VMD) based deep learning approach is proposed in this paper for time series forecasting problem. Firstly, VMD is adopted to decompose the original time series into several sub-signals. Then, a convolutional neural network (CNN) is applied to learn the reconstruction patterns on the decomposed sub-signals to obtain several reconstructed sub-signals. Finally, a long short term memory (LSTM) network is employed to forecast the time series with the decomposed sub-signals and the reconstructed sub-signals as inputs. The proposed VMD-CNN-LSTM approach is originated from the decomposition-reconstruction-ensemble framework, and innovated by embedding the reconstruction, single forecasting, and ensemble steps in a unified deep learning approach. To verify the forecasting performance of the proposed approach, four typical time series datasets are introduced for empirical analysis. The empirical results demonstrate that the proposed approach outperforms consistently the benchmark approaches in terms of forecasting accuracy, and also indicate that the reconstructed sub-signals obtained by CNN is of importance for further improving the forecasting performance.
+
+Links:
+  - https://arxiv.org/abs/2002.09695v1
+  - https://arxiv.org/pdf/2002.09695v1

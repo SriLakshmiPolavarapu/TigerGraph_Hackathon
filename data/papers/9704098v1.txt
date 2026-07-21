@@ -1,0 +1,22 @@
+Title: Phase Transitions of Neural Networks
+
+Authors: Wolfgang Kinzel
+
+Published: 1997-04-11
+
+Categories: cond-mat.dis-nn, q-bio
+
+Abstract:
+The cooperative behaviour of interacting neurons and synapses is studied using models and methods from statistical physics. The competition between training error and entropy may lead to discontinuous properties of the neural network. This is demonstrated for a few examples: Perceptron, associative memory, learning from examples, generalization, multilayer networks, structure recognition, Bayesian estimate, on-line training, noise estimation and time series generation.
+
+Paper ID: 9704098v1
+
+Summary:
+This paper titled "Phase Transitions of Neural Networks" was authored by Wolfgang Kinzel and published on 1997-04-11.
+It falls under the categories: cond-mat.dis-nn, q-bio.
+The research explores the following topic: The cooperative behaviour of interacting neurons and synapses is studied using models and methods from statistical physics. The competition between training error and entropy may lead to discontinuous properties of the neural network. This is demonstrated for a few examples: Perceptron, associative memory, learning from examples, generalization, multilayer networks, structure recognition, Bayesian estimate, on-line training, noise estimation and time series generation.
+
+Links:
+  - https://arxiv.org/abs/cond-mat/9704098v1
+  - https://arxiv.org/pdf/cond-mat/9704098v1
+  - https://doi.org/10.1080/13642819808205038

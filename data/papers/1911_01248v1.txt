@@ -1,0 +1,21 @@
+Title: A Holistic Natural Language Generation Framework for the Semantic Web
+
+Authors: Axel-Cyrille Ngonga Ngomo, Diego Moussallem, Lorenz Bühmann
+
+Published: 2019-11-04
+
+Categories: cs.CL, cs.DB
+
+Abstract:
+With the ever-growing generation of data for the Semantic Web comes an increasing demand for this data to be made available to non-semantic Web experts. One way of achieving this goal is to translate the languages of the Semantic Web into natural language. We present LD2NL, a framework for verbalizing the three key languages of the Semantic Web, i.e., RDF, OWL, and SPARQL. Our framework is based on a bottom-up approach to verbalization. We evaluated LD2NL in an open survey with 86 persons. Our results suggest that our framework can generate verbalizations that are close to natural languages and that can be easily understood by non-experts. Therewith, it enables non-domain experts to interpret Semantic Web data with more than 91\% of the accuracy of domain experts.
+
+Paper ID: 1911.01248v1
+
+Summary:
+This paper titled "A Holistic Natural Language Generation Framework for the Semantic Web" was authored by Axel-Cyrille Ngonga Ngomo, Diego Moussallem, Lorenz Bühmann and published on 2019-11-04.
+It falls under the categories: cs.CL, cs.DB.
+The research explores the following topic: With the ever-growing generation of data for the Semantic Web comes an increasing demand for this data to be made available to non-semantic Web experts. One way of achieving this goal is to translate the languages of the Semantic Web into natural language. We present LD2NL, a framework for verbalizing the three key languages of the Semantic Web, i.e., RDF, OWL, and SPARQL. Our framework is based on a bottom-up approach to verbalization. We evaluated LD2NL in an open survey with 86 persons. Our results suggest that our framework can generate verbalizations that are close to natural languages and that can be easily understood by non-experts. Therewith, it enables non-domain experts to interpret Semantic Web data with more than 91\% of the accuracy of domain experts.
+
+Links:
+  - https://arxiv.org/abs/1911.01248v1
+  - https://arxiv.org/pdf/1911.01248v1

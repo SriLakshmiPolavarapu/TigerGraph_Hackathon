@@ -1,0 +1,21 @@
+Title: Conversational Lexicography: Querying Lexicographic Data on Knowledge Graphs with SPARQL through Natural Language
+
+Authors: Kilian Sennrich, Sina Ahmadi
+
+Published: 2025-05-26
+
+Categories: cs.CL
+
+Abstract:
+Knowledge graphs offer an excellent solution for representing the lexical-semantic structures of lexicographic data. However, working with the SPARQL query language represents a considerable hurdle for many non-expert users who could benefit from the advantages of this technology. This paper addresses the challenge of creating natural language interfaces for lexicographic data retrieval on knowledge graphs such as Wikidata. We develop a multidimensional taxonomy capturing the complexity of Wikidata's lexicographic data ontology module through four dimensions and create a template-based dataset with over 1.2 million mappings from natural language utterances to SPARQL queries. Our experiments with GPT-2 (124M), Phi-1.5 (1.3B), and GPT-3.5-Turbo reveal significant differences in model capabilities. While all models perform well on familiar patterns, only GPT-3.5-Turbo demonstrates meaningful generalization capabilities, suggesting that model size and diverse pre-training are crucial for adaptability in this domain. However, significant challenges remain in achieving robust generalization, handling diverse linguistic data, and developing scalable solutions that can accommodate the full complexity of lexicographic knowledge representation.
+
+Paper ID: 2505.19971v1
+
+Summary:
+This paper titled "Conversational Lexicography: Querying Lexicographic Data on Knowledge Graphs with SPARQL through Natural Language" was authored by Kilian Sennrich, Sina Ahmadi and published on 2025-05-26.
+It falls under the categories: cs.CL.
+The research explores the following topic: Knowledge graphs offer an excellent solution for representing the lexical-semantic structures of lexicographic data. However, working with the SPARQL query language represents a considerable hurdle for many non-expert users who could benefit from the advantages of this technology. This paper addresses the challenge of creating natural language interfaces for lexicographic data retrieval on knowledge graphs such as Wikidata. We develop a multidimensional taxonomy capturing the complexity of Wikidata's lexicographic data ontology module through four dimensions and create a template-based dataset with over 1.2 million mappings from natural language utterances to SPARQL queries. Our experiments with GPT-2 (124M), Phi-1.5 (1.3B), and GPT-3.5-Turbo reveal significant differences in model capabilities. While all models perform well on familiar patterns, only GPT-3.5-Turbo demonstrates meaningful generalization capabilities, suggesting that model size and diverse pre-training are crucial for adaptability in this domain. However, significant challenges remain in achieving robust generalization, handling diverse linguistic data, and developing scalable solutions that can accommodate the full complexity of lexicographic knowledge representation.
+
+Links:
+  - https://arxiv.org/abs/2505.19971v1
+  - https://arxiv.org/pdf/2505.19971v1

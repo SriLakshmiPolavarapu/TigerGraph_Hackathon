@@ -1,0 +1,21 @@
+Title: A Comprehensive Review on Non-Neural Networks Collaborative Filtering Recommendation Systems
+
+Authors: Carmel Wenga, Majirus Fansi, Sébastien Chabrier, Jean-Martial Mari, Alban Gabillon
+
+Published: 2021-06-20
+
+Categories: cs.IR, cs.AI, cs.LG
+
+Abstract:
+Over the past two decades, recommender systems have attracted a lot of interest due to the explosion in the amount of data in online applications. A particular attention has been paid to collaborative filtering, which is the most widely used in applications that involve information recommendations. Collaborative filtering (CF) uses the known preference of a group of users to make predictions and recommendations about the unknown preferences of other users (recommendations are made based on the past behavior of users). First introduced in the 1990s, a wide variety of increasingly successful models have been proposed. Due to the success of machine learning techniques in many areas, there has been a growing emphasis on the application of such algorithms in recommendation systems. In this article, we present an overview of the CF approaches for recommender systems, their two main categories, and their evaluation metrics. We focus on the application of classical Machine Learning algorithms to CF recommender systems by presenting their evolution from their first use-cases to advanced Machine Learning models. We attempt to provide a comprehensive and comparative overview of CF systems (with python implementations) that can serve as a guideline for research and practice in this area.
+
+Paper ID: 2106.10679v2
+
+Summary:
+This paper titled "A Comprehensive Review on Non-Neural Networks Collaborative Filtering Recommendation Systems" was authored by Carmel Wenga, Majirus Fansi, Sébastien Chabrier, Jean-Martial Mari, Alban Gabillon and published on 2021-06-20.
+It falls under the categories: cs.IR, cs.AI, cs.LG.
+The research explores the following topic: Over the past two decades, recommender systems have attracted a lot of interest due to the explosion in the amount of data in online applications. A particular attention has been paid to collaborative filtering, which is the most widely used in applications that involve information recommendations. Collaborative filtering (CF) uses the known preference of a group of users to make predictions and recommendations about the unknown preferences of other users (recommendations are made based on the past behavior of users). First introduced in the 1990s, a wide variety of increasingly successful models have been proposed. Due to the success of machine learning techniques in many areas, there has been a growing emphasis on the application of such algorithms in recommendation systems. In this article, we present an overview of the CF approaches for recommender systems, their two main categories, and their evaluation metrics. We focus on the application of classical Machine Learning algorithms to CF recommender systems by presenting their evolution from their first use-cases to advanced Machine Learning models. We attempt to provide a comprehensive and comparative overview of CF systems (with python implementations) that can serve as a guideline for research and practice in this area.
+
+Links:
+  - https://arxiv.org/abs/2106.10679v2
+  - https://arxiv.org/pdf/2106.10679v2

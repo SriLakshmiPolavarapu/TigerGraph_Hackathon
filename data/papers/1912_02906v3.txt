@@ -1,0 +1,21 @@
+Title: Scalable Reinforcement Learning for Multi-Agent Networked Systems
+
+Authors: Guannan Qu, Adam Wierman, Na Li
+
+Published: 2019-12-05
+
+Categories: math.OC, cs.AI, cs.LG
+
+Abstract:
+We study reinforcement learning (RL) in a setting with a network of agents whose states and actions interact in a local manner where the objective is to find localized policies such that the (discounted) global reward is maximized. A fundamental challenge in this setting is that the state-action space size scales exponentially in the number of agents, rendering the problem intractable for large networks. In this paper, we propose a Scalable Actor Critic (SAC) framework that exploits the network structure and finds a localized policy that is an $O(ρ^κ)$-approximation of a stationary point of the objective for some $ρ\in(0,1)$, with complexity that scales with the local state-action space size of the largest $κ$-hop neighborhood of the network. We illustrate our model and approach using examples from wireless communication, epidemics and traffic.
+
+Paper ID: 1912.02906v3
+
+Summary:
+This paper titled "Scalable Reinforcement Learning for Multi-Agent Networked Systems" was authored by Guannan Qu, Adam Wierman, Na Li and published on 2019-12-05.
+It falls under the categories: math.OC, cs.AI, cs.LG.
+The research explores the following topic: We study reinforcement learning (RL) in a setting with a network of agents whose states and actions interact in a local manner where the objective is to find localized policies such that the (discounted) global reward is maximized. A fundamental challenge in this setting is that the state-action space size scales exponentially in the number of agents, rendering the problem intractable for large networks. In this paper, we propose a Scalable Actor Critic (SAC) framework that exploits the network structure and finds a localized policy that is an $O(ρ^κ)$-approximation of a stationary point of the objective for some $ρ\in(0,1)$, with complexity that scales with the local state-action space size of the largest $κ$-hop neighborhood of the network. We illustrate our model and approach using examples from wireless communication, epidemics and traffic.
+
+Links:
+  - https://arxiv.org/abs/1912.02906v3
+  - https://arxiv.org/pdf/1912.02906v3

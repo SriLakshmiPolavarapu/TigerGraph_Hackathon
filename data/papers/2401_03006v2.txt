@@ -1,0 +1,21 @@
+Title: The Rise of Diffusion Models in Time-Series Forecasting
+
+Authors: Caspar Meijer, Lydia Y. Chen
+
+Published: 2024-01-05
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+This survey delves into the application of diffusion models in time-series forecasting. Diffusion models are demonstrating state-of-the-art results in various fields of generative AI. The paper includes comprehensive background information on diffusion models, detailing their conditioning methods and reviewing their use in time-series forecasting. The analysis covers 11 specific time-series implementations, the intuition and theory behind them, the effectiveness on different datasets, and a comparison among each other. Key contributions of this work are the thorough exploration of diffusion models' applications in time-series forecasting and a chronologically ordered overview of these models. Additionally, the paper offers an insightful discussion on the current state-of-the-art in this domain and outlines potential future research directions. This serves as a valuable resource for researchers in AI and time-series analysis, offering a clear view of the latest advancements and future potential of diffusion models.
+
+Paper ID: 2401.03006v2
+
+Summary:
+This paper titled "The Rise of Diffusion Models in Time-Series Forecasting" was authored by Caspar Meijer, Lydia Y. Chen and published on 2024-01-05.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: This survey delves into the application of diffusion models in time-series forecasting. Diffusion models are demonstrating state-of-the-art results in various fields of generative AI. The paper includes comprehensive background information on diffusion models, detailing their conditioning methods and reviewing their use in time-series forecasting. The analysis covers 11 specific time-series implementations, the intuition and theory behind them, the effectiveness on different datasets, and a comparison among each other. Key contributions of this work are the thorough exploration of diffusion models' applications in time-series forecasting and a chronologically ordered overview of these models. Additionally, the paper offers an insightful discussion on the current state-of-the-art in this domain and outlines potential future research directions. This serves as a valuable resource for researchers in AI and time-series analysis, offering a clear view of the latest advancements and future potential of diffusion models.
+
+Links:
+  - https://arxiv.org/abs/2401.03006v2
+  - https://arxiv.org/pdf/2401.03006v2

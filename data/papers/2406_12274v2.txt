@@ -1,0 +1,21 @@
+Title: SafeInfer: Context Adaptive Decoding Time Safety Alignment for Large Language Models
+
+Authors: Somnath Banerjee, Sayan Layek, Soham Tripathy, Shanu Kumar, Animesh Mukherjee, Rima Hazra
+
+Published: 2024-06-18
+
+Categories: cs.CL
+
+Abstract:
+Safety-aligned language models often exhibit fragile and imbalanced safety mechanisms, increasing the likelihood of generating unsafe content. In addition, incorporating new knowledge through editing techniques to language models can further compromise safety. To address these issues, we propose SafeInfer, a context-adaptive, decoding-time safety alignment strategy for generating safe responses to user queries. SafeInfer comprises two phases: the safety amplification phase, which employs safe demonstration examples to adjust the model's hidden states and increase the likelihood of safer outputs, and the safety-guided decoding phase, which influences token selection based on safety-optimized distributions, ensuring the generated content complies with ethical guidelines. Further, we present HarmEval, a novel benchmark for extensive safety evaluations, designed to address potential misuse scenarios in accordance with the policies of leading AI tech giants.
+
+Paper ID: 2406.12274v2
+
+Summary:
+This paper titled "SafeInfer: Context Adaptive Decoding Time Safety Alignment for Large Language Models" was authored by Somnath Banerjee, Sayan Layek, Soham Tripathy, Shanu Kumar, Animesh Mukherjee, Rima Hazra and published on 2024-06-18.
+It falls under the categories: cs.CL.
+The research explores the following topic: Safety-aligned language models often exhibit fragile and imbalanced safety mechanisms, increasing the likelihood of generating unsafe content. In addition, incorporating new knowledge through editing techniques to language models can further compromise safety. To address these issues, we propose SafeInfer, a context-adaptive, decoding-time safety alignment strategy for generating safe responses to user queries. SafeInfer comprises two phases: the safety amplification phase, which employs safe demonstration examples to adjust the model's hidden states and increase the likelihood of safer outputs, and the safety-guided decoding phase, which influences token selection based on safety-optimized distributions, ensuring the generated content complies with ethical guidelines. Further, we present HarmEval, a novel benchmark for extensive safety evaluations, designed to address potential misuse scenarios in accordance with the policies of leading AI tech giants.
+
+Links:
+  - https://arxiv.org/abs/2406.12274v2
+  - https://arxiv.org/pdf/2406.12274v2

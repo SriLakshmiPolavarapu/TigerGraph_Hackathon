@@ -1,0 +1,21 @@
+Title: Dynamic memory to alleviate catastrophic forgetting in continuous learning settings
+
+Authors: Johannes Hofmanninger, Matthias Perkonigg, James A. Brink, Oleg Pianykh, Christian Herold, Georg Langs
+
+Published: 2020-07-06
+
+Categories: cs.LG, cs.CV, stat.ML
+
+Abstract:
+In medical imaging, technical progress or changes in diagnostic procedures lead to a continuous change in image appearance. Scanner manufacturer, reconstruction kernel, dose, other protocol specific settings or administering of contrast agents are examples that influence image content independent of the scanned biology. Such domain and task shifts limit the applicability of machine learning algorithms in the clinical routine by rendering models obsolete over time. Here, we address the problem of data shifts in a continuous learning scenario by adapting a model to unseen variations in the source domain while counteracting catastrophic forgetting effects. Our method uses a dynamic memory to facilitate rehearsal of a diverse training data subset to mitigate forgetting. We evaluated our approach on routine clinical CT data obtained with two different scanner protocols and synthetic classification tasks. Experiments show that dynamic memory counters catastrophic forgetting in a setting with multiple data shifts without the necessity for explicit knowledge about when these shifts occur.
+
+Paper ID: 2007.02639v2
+
+Summary:
+This paper titled "Dynamic memory to alleviate catastrophic forgetting in continuous learning settings" was authored by Johannes Hofmanninger, Matthias Perkonigg, James A. Brink, Oleg Pianykh, Christian Herold, Georg Langs and published on 2020-07-06.
+It falls under the categories: cs.LG, cs.CV, stat.ML.
+The research explores the following topic: In medical imaging, technical progress or changes in diagnostic procedures lead to a continuous change in image appearance. Scanner manufacturer, reconstruction kernel, dose, other protocol specific settings or administering of contrast agents are examples that influence image content independent of the scanned biology. Such domain and task shifts limit the applicability of machine learning algorithms in the clinical routine by rendering models obsolete over time. Here, we address the problem of data shifts in a continuous learning scenario by adapting a model to unseen variations in the source domain while counteracting catastrophic forgetting effects. Our method uses a dynamic memory to facilitate rehearsal of a diverse training data subset to mitigate forgetting. We evaluated our approach on routine clinical CT data obtained with two different scanner protocols and synthetic classification tasks. Experiments show that dynamic memory counters catastrophic forgetting in a setting with multiple data shifts without the necessity for explicit knowledge about when these shifts occur.
+
+Links:
+  - https://arxiv.org/abs/2007.02639v2
+  - https://arxiv.org/pdf/2007.02639v2

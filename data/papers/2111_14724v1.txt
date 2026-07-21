@@ -1,0 +1,21 @@
+Title: Encoding Causal Macrovariables
+
+Authors: Benedikt Höltgen
+
+Published: 2021-11-29
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+In many scientific disciplines, coarse-grained causal models are used to explain and predict the dynamics of more fine-grained systems. Naturally, such models require appropriate macrovariables. Automated procedures to detect suitable variables would be useful to leverage increasingly available high-dimensional observational datasets. This work introduces a novel algorithmic approach that is inspired by a new characterisation of causal macrovariables as information bottlenecks between microstates. Its general form can be adapted to address individual needs of different scientific goals. After a further transformation step, the causal relationships between learned variables can be investigated through additive noise models. Experiments on both simulated data and on a real climate dataset are reported. In a synthetic dataset, the algorithm robustly detects the ground-truth variables and correctly infers the causal relationships between them. In a real climate dataset, the algorithm robustly detects two variables that correspond to the two known variations of the El Nino phenomenon.
+
+Paper ID: 2111.14724v1
+
+Summary:
+This paper titled "Encoding Causal Macrovariables" was authored by Benedikt Höltgen and published on 2021-11-29.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: In many scientific disciplines, coarse-grained causal models are used to explain and predict the dynamics of more fine-grained systems. Naturally, such models require appropriate macrovariables. Automated procedures to detect suitable variables would be useful to leverage increasingly available high-dimensional observational datasets. This work introduces a novel algorithmic approach that is inspired by a new characterisation of causal macrovariables as information bottlenecks between microstates. Its general form can be adapted to address individual needs of different scientific goals. After a further transformation step, the causal relationships between learned variables can be investigated through additive noise models. Experiments on both simulated data and on a real climate dataset are reported. In a synthetic dataset, the algorithm robustly detects the ground-truth variables and correctly infers the causal relationships between them. In a real climate dataset, the algorithm robustly detects two variables that correspond to the two known variations of the El Nino phenomenon.
+
+Links:
+  - https://arxiv.org/abs/2111.14724v1
+  - https://arxiv.org/pdf/2111.14724v1

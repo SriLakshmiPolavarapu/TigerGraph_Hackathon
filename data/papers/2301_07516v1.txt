@@ -1,0 +1,24 @@
+Title: Quality Attributes Optimization of Software Architecture: Research Challenges and Directions
+
+Authors: Daniele Di Pompeo, Michele Tucci
+
+Published: 2023-01-18
+
+Categories: cs.SE
+
+Abstract:
+The estimation and improvement of quality attributes in software architectures is a challenging and time-consuming activity. On modern software applications, a model-based representation is crucial to face the complexity of such activity. One main challenge is that the improvement of distinctive quality attributes may require contrasting refactoring actions on the architecture, for instance when looking for trade-off between performance and reliability (or other non-functional quality attributes). In such cases, multi-objective optimization can provide the designer with a more complete view on these trade-offs and, consequently, can lead to identify suitable refactoring actions that take into account independent or even competing objectives.
+  In this paper, we present open challenges and research directions to fill current gaps in the context of multi-objective software architecture optimization.
+
+Paper ID: 2301.07516v1
+
+Summary:
+This paper titled "Quality Attributes Optimization of Software Architecture: Research Challenges and Directions" was authored by Daniele Di Pompeo, Michele Tucci and published on 2023-01-18.
+It falls under the categories: cs.SE.
+The research explores the following topic: The estimation and improvement of quality attributes in software architectures is a challenging and time-consuming activity. On modern software applications, a model-based representation is crucial to face the complexity of such activity. One main challenge is that the improvement of distinctive quality attributes may require contrasting refactoring actions on the architecture, for instance when looking for trade-off between performance and reliability (or other non-functional quality attributes). In such cases, multi-objective optimization can provide the designer with a more complete view on these trade-offs and, consequently, can lead to identify suitable refactoring actions that take into account independent or even competing objectives.
+  In this paper, we present open challenges and research directions to fill current gaps in the context of multi-objective software architecture optimization.
+
+Links:
+  - https://arxiv.org/abs/2301.07516v1
+  - https://arxiv.org/pdf/2301.07516v1
+  - https://doi.org/10.1109/ICSA-C57050.2023.00061

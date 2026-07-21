@@ -1,0 +1,21 @@
+Title: MetaSC: Test-Time Safety Specification Optimization for Language Models
+
+Authors: Víctor Gallego
+
+Published: 2025-02-11
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+We propose a novel dynamic safety framework that optimizes language model (LM) safety reasoning at inference time without modifying model weights. Building on recent advances in self-critique methods, our approach leverages a meta-critique mechanism that iteratively updates safety prompts-termed specifications-to drive the critique and revision process adaptively. This test-time optimization not only improves performance against adversarial jailbreak requests but also in diverse general safety-related tasks, such as avoiding moral harm or pursuing honest responses. Our empirical evaluations across several language models demonstrate that dynamically optimized safety prompts yield significantly higher safety scores compared to fixed system prompts and static self-critique defenses. Code released at https://github.com/vicgalle/meta-self-critique.git .
+
+Paper ID: 2502.07985v2
+
+Summary:
+This paper titled "MetaSC: Test-Time Safety Specification Optimization for Language Models" was authored by Víctor Gallego and published on 2025-02-11.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: We propose a novel dynamic safety framework that optimizes language model (LM) safety reasoning at inference time without modifying model weights. Building on recent advances in self-critique methods, our approach leverages a meta-critique mechanism that iteratively updates safety prompts-termed specifications-to drive the critique and revision process adaptively. This test-time optimization not only improves performance against adversarial jailbreak requests but also in diverse general safety-related tasks, such as avoiding moral harm or pursuing honest responses. Our empirical evaluations across several language models demonstrate that dynamically optimized safety prompts yield significantly higher safety scores compared to fixed system prompts and static self-critique defenses. Code released at https://github.com/vicgalle/meta-self-critique.git .
+
+Links:
+  - https://arxiv.org/abs/2502.07985v2
+  - https://arxiv.org/pdf/2502.07985v2

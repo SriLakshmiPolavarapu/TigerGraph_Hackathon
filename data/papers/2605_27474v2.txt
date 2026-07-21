@@ -1,0 +1,21 @@
+Title: Stop Suppressing the Tail: Causal Inference for Extreme Events
+
+Authors: Eichi Uehara
+
+Published: 2026-05-26
+
+Categories: stat.ML, cs.LG
+
+Abstract:
+Estimating how an outcome responds to a continuous treatment (the Average Dose-Response Function, or ADRF) is a core causal-inference primitive. However, when outcomes possess heavy tails, standard robust double machine learning (DML) deliberately suppresses these extremes to stabilize the bulk average. In high-stakes settings, such as financial returns or climate losses, this omitted 1-in-1000 extreme event is the actual target quantity. Furthermore, current methods that read the tail from a model's residuals suffer from circular dependence, causing tail shape inferences to shift drastically based solely on whether the core estimator is switched between Huber and Welsch. The research proposes an ADRF estimator that emits a structured tail-shape output alongside the standard point estimate. Its tail diagnostic (PDHTE+JK) evaluates the per-treatment tail shape from the outcome centered by a pilot median, successfully breaking the circular dependence and rendering the diagnostic invariant to the choice of core method. The output encompasses four treatment-conditional quantities: tail shape $\hatξ(t)$, deep-tail return levels $\hat{Q}_α(t)$, conditional shortfalls $\hat{S}_α(t)$, the recovered mean ADRF, and an explicit refusal mechanism that declines extrapolation when extreme-value modeling is unsupported by the data. Compared to kernel-weighted quantile regression (QR), the proposed estimator reduces deep-tail ($α=0.001$) return-level MAE by 11% and conditional-shortfall MAE by 25.5% across a heavy-tailed panel. It also achieves a 20-29% MAE reduction in sample-scarce regimes ($n\le2000$). On freMTPL2 motor-insurance claims, it successfully triggered an explicit extrapolation refusal on the log-claim scale, which neither QR nor loss-only DML can produce.
+
+Paper ID: 2605.27474v2
+
+Summary:
+This paper titled "Stop Suppressing the Tail: Causal Inference for Extreme Events" was authored by Eichi Uehara and published on 2026-05-26.
+It falls under the categories: stat.ML, cs.LG.
+The research explores the following topic: Estimating how an outcome responds to a continuous treatment (the Average Dose-Response Function, or ADRF) is a core causal-inference primitive. However, when outcomes possess heavy tails, standard robust double machine learning (DML) deliberately suppresses these extremes to stabilize the bulk average. In high-stakes settings, such as financial returns or climate losses, this omitted 1-in-1000 extreme event is the actual target quantity. Furthermore, current methods that read the tail from a model's residuals suffer from circular dependence, causing tail shape inferences to shift drastically based solely on whether the core estimator is switched between Huber and Welsch. The research proposes an ADRF estimator that emits a structured tail-shape output alongside the standard point estimate. Its tail diagnostic (PDHTE+JK) evaluates the per-treatment tail shape from the outcome centered by a pilot median, successfully breaking the circular dependence and rendering the diagnostic invariant to the choice of core method. The output encompasses four treatment-conditional quantities: tail shape $\hatξ(t)$, deep-tail return levels $\hat{Q}_α(t)$, conditional shortfalls $\hat{S}_α(t)$, the recovered mean ADRF, and an explicit refusal mechanism that declines extrapolation when extreme-value modeling is unsupported by the data. Compared to kernel-weighted quantile regression (QR), the proposed estimator reduces deep-tail ($α=0.001$) return-level MAE by 11% and conditional-shortfall MAE by 25.5% across a heavy-tailed panel. It also achieves a 20-29% MAE reduction in sample-scarce regimes ($n\le2000$). On freMTPL2 motor-insurance claims, it successfully triggered an explicit extrapolation refusal on the log-claim scale, which neither QR nor loss-only DML can produce.
+
+Links:
+  - https://arxiv.org/abs/2605.27474v2
+  - https://arxiv.org/pdf/2605.27474v2

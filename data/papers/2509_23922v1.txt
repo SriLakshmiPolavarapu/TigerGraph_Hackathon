@@ -1,0 +1,21 @@
+Title: DriveE2E: Closed-Loop Benchmark for End-to-End Autonomous Driving through Real-to-Simulation
+
+Authors: Haibao Yu, Wenxian Yang, Ruiyang Hao, Chuanye Wang, Jiaru Zhong, Ping Luo, Zaiqing Nie
+
+Published: 2025-09-28
+
+Categories: cs.CV, cs.RO
+
+Abstract:
+Closed-loop evaluation is increasingly critical for end-to-end autonomous driving. Current closed-loop benchmarks using the CARLA simulator rely on manually configured traffic scenarios, which can diverge from real-world conditions, limiting their ability to reflect actual driving performance. To address these limitations, we introduce a simple yet challenging closed-loop evaluation framework that closely integrates real-world driving scenarios into the CARLA simulator with infrastructure cooperation. Our approach involves extracting 800 dynamic traffic scenarios selected from a comprehensive 100-hour video dataset captured by high-mounted infrastructure sensors, and creating static digital twin assets for 15 real-world intersections with consistent visual appearance. These digital twins accurately replicate the traffic and environmental characteristics of their real-world counterparts, enabling more realistic simulations in CARLA. This evaluation is challenging due to the diversity of driving behaviors, locations, weather conditions, and times of day at complex urban intersections. In addition, we provide a comprehensive closed-loop benchmark for evaluating end-to-end autonomous driving models. Project URL: \href{https://github.com/AIR-THU/DriveE2E}{https://github.com/AIR-THU/DriveE2E}.
+
+Paper ID: 2509.23922v1
+
+Summary:
+This paper titled "DriveE2E: Closed-Loop Benchmark for End-to-End Autonomous Driving through Real-to-Simulation" was authored by Haibao Yu, Wenxian Yang, Ruiyang Hao, Chuanye Wang, Jiaru Zhong, Ping Luo, Zaiqing Nie and published on 2025-09-28.
+It falls under the categories: cs.CV, cs.RO.
+The research explores the following topic: Closed-loop evaluation is increasingly critical for end-to-end autonomous driving. Current closed-loop benchmarks using the CARLA simulator rely on manually configured traffic scenarios, which can diverge from real-world conditions, limiting their ability to reflect actual driving performance. To address these limitations, we introduce a simple yet challenging closed-loop evaluation framework that closely integrates real-world driving scenarios into the CARLA simulator with infrastructure cooperation. Our approach involves extracting 800 dynamic traffic scenarios selected from a comprehensive 100-hour video dataset captured by high-mounted infrastructure sensors, and creating static digital twin assets for 15 real-world intersections with consistent visual appearance. These digital twins accurately replicate the traffic and environmental characteristics of their real-world counterparts, enabling more realistic simulations in CARLA. This evaluation is challenging due to the diversity of driving behaviors, locations, weather conditions, and times of day at complex urban intersections. In addition, we provide a comprehensive closed-loop benchmark for evaluating end-to-end autonomous driving models. Project URL: \href{https://github.com/AIR-THU/DriveE2E}{https://github.com/AIR-THU/DriveE2E}.
+
+Links:
+  - https://arxiv.org/abs/2509.23922v1
+  - https://arxiv.org/pdf/2509.23922v1

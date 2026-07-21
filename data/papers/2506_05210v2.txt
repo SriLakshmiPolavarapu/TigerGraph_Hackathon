@@ -1,0 +1,21 @@
+Title: Towards Vision-Language-Garment Models for Web Knowledge Garment Understanding and Generation
+
+Authors: Jan Ackermann, Kiyohiro Nakayama, Guandao Yang, Tong Wu, Gordon Wetzstein
+
+Published: 2025-06-05
+
+Categories: cs.CV
+
+Abstract:
+Multimodal foundation models have demonstrated strong generalization, yet their ability to transfer knowledge to specialized domains such as garment generation remains underexplored. We introduce VLG, a vision-language-garment model that synthesizes garments from textual descriptions and visual imagery. Our experiments assess VLG's zero-shot generalization, investigating its ability to transfer web-scale reasoning to unseen garment styles and prompts. Preliminary results indicate promising transfer capabilities, highlighting the potential for multimodal foundation models to adapt effectively to specialized domains like fashion design.
+
+Paper ID: 2506.05210v2
+
+Summary:
+This paper titled "Towards Vision-Language-Garment Models for Web Knowledge Garment Understanding and Generation" was authored by Jan Ackermann, Kiyohiro Nakayama, Guandao Yang, Tong Wu, Gordon Wetzstein and published on 2025-06-05.
+It falls under the categories: cs.CV.
+The research explores the following topic: Multimodal foundation models have demonstrated strong generalization, yet their ability to transfer knowledge to specialized domains such as garment generation remains underexplored. We introduce VLG, a vision-language-garment model that synthesizes garments from textual descriptions and visual imagery. Our experiments assess VLG's zero-shot generalization, investigating its ability to transfer web-scale reasoning to unseen garment styles and prompts. Preliminary results indicate promising transfer capabilities, highlighting the potential for multimodal foundation models to adapt effectively to specialized domains like fashion design.
+
+Links:
+  - https://arxiv.org/abs/2506.05210v2
+  - https://arxiv.org/pdf/2506.05210v2

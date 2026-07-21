@@ -1,0 +1,21 @@
+Title: User-based collaborative filtering approach for content recommendation in OpenCourseWare platforms
+
+Authors: Nikola Tomasevic, Dejan Paunovic, Sanja Vranes
+
+Published: 2019-02-27
+
+Categories: cs.IR
+
+Abstract:
+A content recommender system or a recommendation system represents a subclass of information filtering systems which seeks to predict the user preferences, i.e. the content that would be most likely positively "rated" by the user. Nowadays, the recommender systems of OpenCourseWare (OCW) platforms typically generate a list of recommendations in one of two ways, i.e. through the content-based filtering, or user-based collaborative filtering (CF). In this paper, the conceptual idea of the content recommendation module was provided, which is capable of proposing the related decks (presentations, educational material, etc.) to the user having in mind past user activities, preferences, type and content similarity, etc. It particularly analyses suitable techniques for implementation of the user-based CF approach and user-related features that are relevant for the content evaluation. The proposed approach also envisages a hybrid recommendation system as a combination of user-based and content-based approaches in order to provide a holistic and efficient solution for content recommendation. Finally, for evaluation and testing purposes, a designated content recommendation module was implemented as part of the SlideWiki authoring OCW platform.
+
+Paper ID: 1902.10376v1
+
+Summary:
+This paper titled "User-based collaborative filtering approach for content recommendation in OpenCourseWare platforms" was authored by Nikola Tomasevic, Dejan Paunovic, Sanja Vranes and published on 2019-02-27.
+It falls under the categories: cs.IR.
+The research explores the following topic: A content recommender system or a recommendation system represents a subclass of information filtering systems which seeks to predict the user preferences, i.e. the content that would be most likely positively "rated" by the user. Nowadays, the recommender systems of OpenCourseWare (OCW) platforms typically generate a list of recommendations in one of two ways, i.e. through the content-based filtering, or user-based collaborative filtering (CF). In this paper, the conceptual idea of the content recommendation module was provided, which is capable of proposing the related decks (presentations, educational material, etc.) to the user having in mind past user activities, preferences, type and content similarity, etc. It particularly analyses suitable techniques for implementation of the user-based CF approach and user-related features that are relevant for the content evaluation. The proposed approach also envisages a hybrid recommendation system as a combination of user-based and content-based approaches in order to provide a holistic and efficient solution for content recommendation. Finally, for evaluation and testing purposes, a designated content recommendation module was implemented as part of the SlideWiki authoring OCW platform.
+
+Links:
+  - https://arxiv.org/abs/1902.10376v1
+  - https://arxiv.org/pdf/1902.10376v1

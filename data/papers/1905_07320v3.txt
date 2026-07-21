@@ -1,0 +1,21 @@
+Title: EENA: Efficient Evolution of Neural Architecture
+
+Authors: Hui Zhu, Zhulin An, Chuanguang Yang, Kaiqiang Xu, Erhu Zhao, Yongjun Xu
+
+Published: 2019-05-10
+
+Categories: cs.NE, cs.CV, cs.LG, stat.ML
+
+Abstract:
+Latest algorithms for automatic neural architecture search perform remarkable but are basically directionless in search space and computational expensive in training of every intermediate architecture. In this paper, we propose a method for efficient architecture search called EENA (Efficient Evolution of Neural Architecture). Due to the elaborately designed mutation and crossover operations, the evolution process can be guided by the information have already been learned. Therefore, less computational effort will be required while the searching and training time can be reduced significantly. On CIFAR-10 classification, EENA using minimal computational resources (0.65 GPU-days) can design highly effective neural architecture which achieves 2.56% test error with 8.47M parameters. Furthermore, the best architecture discovered is also transferable for CIFAR-100.
+
+Paper ID: 1905.07320v3
+
+Summary:
+This paper titled "EENA: Efficient Evolution of Neural Architecture" was authored by Hui Zhu, Zhulin An, Chuanguang Yang, Kaiqiang Xu, Erhu Zhao, Yongjun Xu and published on 2019-05-10.
+It falls under the categories: cs.NE, cs.CV, cs.LG, stat.ML.
+The research explores the following topic: Latest algorithms for automatic neural architecture search perform remarkable but are basically directionless in search space and computational expensive in training of every intermediate architecture. In this paper, we propose a method for efficient architecture search called EENA (Efficient Evolution of Neural Architecture). Due to the elaborately designed mutation and crossover operations, the evolution process can be guided by the information have already been learned. Therefore, less computational effort will be required while the searching and training time can be reduced significantly. On CIFAR-10 classification, EENA using minimal computational resources (0.65 GPU-days) can design highly effective neural architecture which achieves 2.56% test error with 8.47M parameters. Furthermore, the best architecture discovered is also transferable for CIFAR-100.
+
+Links:
+  - https://arxiv.org/abs/1905.07320v3
+  - https://arxiv.org/pdf/1905.07320v3

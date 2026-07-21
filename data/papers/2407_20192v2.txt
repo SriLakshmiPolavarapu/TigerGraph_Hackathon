@@ -1,0 +1,21 @@
+Title: Time series forecasting with high stakes: A field study of the air cargo industry
+
+Authors: Abhinav Garg, Naman Shukla, Maarten Wormer
+
+Published: 2024-07-29
+
+Categories: cs.LG, eess.SY
+
+Abstract:
+Time series forecasting in the air cargo industry presents unique challenges due to volatile market dynamics and the significant impact of accurate forecasts on generated revenue. This paper explores a comprehensive approach to demand forecasting at the origin-destination (O\&D) level, focusing on the development and implementation of machine learning models in decision-making for the air cargo industry. We leverage a mixture of experts framework, combining statistical and advanced deep learning models to provide reliable forecasts for cargo demand over a six-month horizon. The results demonstrate that our approach outperforms industry benchmarks, offering actionable insights for cargo capacity allocation and strategic decision-making in the air cargo industry. While this work is applied in the airline industry, the methodology is broadly applicable to any field where forecast-based decision-making in a volatile environment is crucial.
+
+Paper ID: 2407.20192v2
+
+Summary:
+This paper titled "Time series forecasting with high stakes: A field study of the air cargo industry" was authored by Abhinav Garg, Naman Shukla, Maarten Wormer and published on 2024-07-29.
+It falls under the categories: cs.LG, eess.SY.
+The research explores the following topic: Time series forecasting in the air cargo industry presents unique challenges due to volatile market dynamics and the significant impact of accurate forecasts on generated revenue. This paper explores a comprehensive approach to demand forecasting at the origin-destination (O\&D) level, focusing on the development and implementation of machine learning models in decision-making for the air cargo industry. We leverage a mixture of experts framework, combining statistical and advanced deep learning models to provide reliable forecasts for cargo demand over a six-month horizon. The results demonstrate that our approach outperforms industry benchmarks, offering actionable insights for cargo capacity allocation and strategic decision-making in the air cargo industry. While this work is applied in the airline industry, the methodology is broadly applicable to any field where forecast-based decision-making in a volatile environment is crucial.
+
+Links:
+  - https://arxiv.org/abs/2407.20192v2
+  - https://arxiv.org/pdf/2407.20192v2

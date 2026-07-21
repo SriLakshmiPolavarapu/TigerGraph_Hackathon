@@ -1,0 +1,21 @@
+Title: MirrorDiffusion: Stabilizing Diffusion Process in Zero-shot Image Translation by Prompts Redescription and Beyond
+
+Authors: Yupei Lin, Xiaoyu Xian, Yukai Shi, Liang Lin
+
+Published: 2024-01-06
+
+Categories: cs.CV, cs.AI
+
+Abstract:
+Recently, text-to-image diffusion models become a new paradigm in image processing fields, including content generation, image restoration and image-to-image translation. Given a target prompt, Denoising Diffusion Probabilistic Models (DDPM) are able to generate realistic yet eligible images. With this appealing property, the image translation task has the potential to be free from target image samples for supervision. By using a target text prompt for domain adaption, the diffusion model is able to implement zero-shot image-to-image translation advantageously. However, the sampling and inversion processes of DDPM are stochastic, and thus the inversion process often fail to reconstruct the input content. Specifically, the displacement effect will gradually accumulated during the diffusion and inversion processes, which led to the reconstructed results deviating from the source domain. To make reconstruction explicit, we propose a prompt redescription strategy to realize a mirror effect between the source and reconstructed image in the diffusion model (MirrorDiffusion). More specifically, a prompt redescription mechanism is investigated to align the text prompts with latent code at each time step of the Denoising Diffusion Implicit Models (DDIM) inversion to pursue a structure-preserving reconstruction. With the revised DDIM inversion, MirrorDiffusion is able to realize accurate zero-shot image translation by editing optimized text prompts and latent code. Extensive experiments demonstrate that MirrorDiffusion achieves superior performance over the state-of-the-art methods on zero-shot image translation benchmarks by clear margins and practical model stability.
+
+Paper ID: 2401.03221v1
+
+Summary:
+This paper titled "MirrorDiffusion: Stabilizing Diffusion Process in Zero-shot Image Translation by Prompts Redescription and Beyond" was authored by Yupei Lin, Xiaoyu Xian, Yukai Shi, Liang Lin and published on 2024-01-06.
+It falls under the categories: cs.CV, cs.AI.
+The research explores the following topic: Recently, text-to-image diffusion models become a new paradigm in image processing fields, including content generation, image restoration and image-to-image translation. Given a target prompt, Denoising Diffusion Probabilistic Models (DDPM) are able to generate realistic yet eligible images. With this appealing property, the image translation task has the potential to be free from target image samples for supervision. By using a target text prompt for domain adaption, the diffusion model is able to implement zero-shot image-to-image translation advantageously. However, the sampling and inversion processes of DDPM are stochastic, and thus the inversion process often fail to reconstruct the input content. Specifically, the displacement effect will gradually accumulated during the diffusion and inversion processes, which led to the reconstructed results deviating from the source domain. To make reconstruction explicit, we propose a prompt redescription strategy to realize a mirror effect between the source and reconstructed image in the diffusion model (MirrorDiffusion). More specifically, a prompt redescription mechanism is investigated to align the text prompts with latent code at each time step of the Denoising Diffusion Implicit Models (DDIM) inversion to pursue a structure-preserving reconstruction. With the revised DDIM inversion, MirrorDiffusion is able to realize accurate zero-shot image translation by editing optimized text prompts and latent code. Extensive experiments demonstrate that MirrorDiffusion achieves superior performance over the state-of-the-art methods on zero-shot image translation benchmarks by clear margins and practical model stability.
+
+Links:
+  - https://arxiv.org/abs/2401.03221v1
+  - https://arxiv.org/pdf/2401.03221v1

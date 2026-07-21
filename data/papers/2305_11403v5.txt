@@ -1,0 +1,21 @@
+Title: Efficient Mixed Transformer for Single Image Super-Resolution
+
+Authors: Ling Zheng, Jinchen Zhu, Jinpeng Shi, Shizhuang Weng
+
+Published: 2023-05-19
+
+Categories: cs.CV
+
+Abstract:
+Recently, Transformer-based methods have achieved impressive results in single image super-resolution (SISR). However, the lack of locality mechanism and high complexity limit their application in the field of super-resolution (SR). To solve these problems, we propose a new method, Efficient Mixed Transformer (EMT) in this study. Specifically, we propose the Mixed Transformer Block (MTB), consisting of multiple consecutive transformer layers, in some of which the Pixel Mixer (PM) is used to replace the Self-Attention (SA). PM can enhance the local knowledge aggregation with pixel shifting operations. At the same time, no additional complexity is introduced as PM has no parameters and floating-point operations. Moreover, we employ striped window for SA (SWSA) to gain an efficient global dependency modelling by utilizing image anisotropy. Experimental results show that EMT outperforms the existing methods on benchmark dataset and achieved state-of-the-art performance. The Code is available at https://github.com/Fried-Rice-Lab/FriedRiceLab.
+
+Paper ID: 2305.11403v5
+
+Summary:
+This paper titled "Efficient Mixed Transformer for Single Image Super-Resolution" was authored by Ling Zheng, Jinchen Zhu, Jinpeng Shi, Shizhuang Weng and published on 2023-05-19.
+It falls under the categories: cs.CV.
+The research explores the following topic: Recently, Transformer-based methods have achieved impressive results in single image super-resolution (SISR). However, the lack of locality mechanism and high complexity limit their application in the field of super-resolution (SR). To solve these problems, we propose a new method, Efficient Mixed Transformer (EMT) in this study. Specifically, we propose the Mixed Transformer Block (MTB), consisting of multiple consecutive transformer layers, in some of which the Pixel Mixer (PM) is used to replace the Self-Attention (SA). PM can enhance the local knowledge aggregation with pixel shifting operations. At the same time, no additional complexity is introduced as PM has no parameters and floating-point operations. Moreover, we employ striped window for SA (SWSA) to gain an efficient global dependency modelling by utilizing image anisotropy. Experimental results show that EMT outperforms the existing methods on benchmark dataset and achieved state-of-the-art performance. The Code is available at https://github.com/Fried-Rice-Lab/FriedRiceLab.
+
+Links:
+  - https://arxiv.org/abs/2305.11403v5
+  - https://arxiv.org/pdf/2305.11403v5

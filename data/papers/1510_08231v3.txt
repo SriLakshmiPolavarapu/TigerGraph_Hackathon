@@ -1,0 +1,21 @@
+Title: Operator-valued Kernels for Learning from Functional Response Data
+
+Authors: Hachem Kadri, Emmanuel Duflos, Philippe Preux, Stéphane Canu, Alain Rakotomamonjy, Julien Audiffren
+
+Published: 2015-10-28
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+In this paper we consider the problems of supervised classification and regression in the case where attributes and labels are functions: a data is represented by a set of functions, and the label is also a function. We focus on the use of reproducing kernel Hilbert space theory to learn from such functional data. Basic concepts and properties of kernel-based learning are extended to include the estimation of function-valued functions. In this setting, the representer theorem is restated, a set of rigorously defined infinite-dimensional operator-valued kernels that can be valuably applied when the data are functions is described, and a learning algorithm for nonlinear functional data analysis is introduced. The methodology is illustrated through speech and audio signal processing experiments.
+
+Paper ID: 1510.08231v3
+
+Summary:
+This paper titled "Operator-valued Kernels for Learning from Functional Response Data" was authored by Hachem Kadri, Emmanuel Duflos, Philippe Preux, Stéphane Canu, Alain Rakotomamonjy, Julien Audiffren and published on 2015-10-28.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: In this paper we consider the problems of supervised classification and regression in the case where attributes and labels are functions: a data is represented by a set of functions, and the label is also a function. We focus on the use of reproducing kernel Hilbert space theory to learn from such functional data. Basic concepts and properties of kernel-based learning are extended to include the estimation of function-valued functions. In this setting, the representer theorem is restated, a set of rigorously defined infinite-dimensional operator-valued kernels that can be valuably applied when the data are functions is described, and a learning algorithm for nonlinear functional data analysis is introduced. The methodology is illustrated through speech and audio signal processing experiments.
+
+Links:
+  - https://arxiv.org/abs/1510.08231v3
+  - https://arxiv.org/pdf/1510.08231v3

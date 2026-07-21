@@ -1,0 +1,21 @@
+Title: Prior-Guided One-shot Neural Architecture Search
+
+Authors: Peijie Dong, Xin Niu, Lujun Li, Linzhen Xie, Wenbin Zou, Tian Ye, Zimian Wei, Hengyue Pan
+
+Published: 2022-06-27
+
+Categories: cs.CV
+
+Abstract:
+Neural architecture search methods seek optimal candidates with efficient weight-sharing supernet training. However, recent studies indicate poor ranking consistency about the performance between stand-alone architectures and shared-weight networks. In this paper, we present Prior-Guided One-shot NAS (PGONAS) to strengthen the ranking correlation of supernets. Specifically, we first explore the effect of activation functions and propose a balanced sampling strategy based on the Sandwich Rule to alleviate weight coupling in the supernet. Then, FLOPs and Zen-Score are adopted to guide the training of supernet with ranking correlation loss. Our PGONAS ranks 3rd place in the supernet Track Track of CVPR2022 Second lightweight NAS challenge. Code is available in https://github.com/pprp/CVPR2022-NAS?competition-Track1-3th-solution.
+
+Paper ID: 2206.13329v1
+
+Summary:
+This paper titled "Prior-Guided One-shot Neural Architecture Search" was authored by Peijie Dong, Xin Niu, Lujun Li, Linzhen Xie, Wenbin Zou, Tian Ye, Zimian Wei, Hengyue Pan and published on 2022-06-27.
+It falls under the categories: cs.CV.
+The research explores the following topic: Neural architecture search methods seek optimal candidates with efficient weight-sharing supernet training. However, recent studies indicate poor ranking consistency about the performance between stand-alone architectures and shared-weight networks. In this paper, we present Prior-Guided One-shot NAS (PGONAS) to strengthen the ranking correlation of supernets. Specifically, we first explore the effect of activation functions and propose a balanced sampling strategy based on the Sandwich Rule to alleviate weight coupling in the supernet. Then, FLOPs and Zen-Score are adopted to guide the training of supernet with ranking correlation loss. Our PGONAS ranks 3rd place in the supernet Track Track of CVPR2022 Second lightweight NAS challenge. Code is available in https://github.com/pprp/CVPR2022-NAS?competition-Track1-3th-solution.
+
+Links:
+  - https://arxiv.org/abs/2206.13329v1
+  - https://arxiv.org/pdf/2206.13329v1

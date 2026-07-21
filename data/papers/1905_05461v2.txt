@@ -1,0 +1,21 @@
+Title: Learning Generative Models across Incomparable Spaces
+
+Authors: Charlotte Bunne, David Alvarez-Melis, Andreas Krause, Stefanie Jegelka
+
+Published: 2019-05-14
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Generative Adversarial Networks have shown remarkable success in learning a distribution that faithfully recovers a reference distribution in its entirety. However, in some cases, we may want to only learn some aspects (e.g., cluster or manifold structure), while modifying others (e.g., style, orientation or dimension). In this work, we propose an approach to learn generative models across such incomparable spaces, and demonstrate how to steer the learned distribution towards target properties. A key component of our model is the Gromov-Wasserstein distance, a notion of discrepancy that compares distributions relationally rather than absolutely. While this framework subsumes current generative models in identically reproducing distributions, its inherent flexibility allows application to tasks in manifold learning, relational learning and cross-domain learning.
+
+Paper ID: 1905.05461v2
+
+Summary:
+This paper titled "Learning Generative Models across Incomparable Spaces" was authored by Charlotte Bunne, David Alvarez-Melis, Andreas Krause, Stefanie Jegelka and published on 2019-05-14.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Generative Adversarial Networks have shown remarkable success in learning a distribution that faithfully recovers a reference distribution in its entirety. However, in some cases, we may want to only learn some aspects (e.g., cluster or manifold structure), while modifying others (e.g., style, orientation or dimension). In this work, we propose an approach to learn generative models across such incomparable spaces, and demonstrate how to steer the learned distribution towards target properties. A key component of our model is the Gromov-Wasserstein distance, a notion of discrepancy that compares distributions relationally rather than absolutely. While this framework subsumes current generative models in identically reproducing distributions, its inherent flexibility allows application to tasks in manifold learning, relational learning and cross-domain learning.
+
+Links:
+  - https://arxiv.org/abs/1905.05461v2
+  - https://arxiv.org/pdf/1905.05461v2

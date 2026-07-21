@@ -1,0 +1,21 @@
+Title: Unmasking the Shadows of AI: Investigating Deceptive Capabilities in Large Language Models
+
+Authors: Linge Guo
+
+Published: 2024-02-07
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+This research critically navigates the intricate landscape of AI deception, concentrating on deceptive behaviours of Large Language Models (LLMs). My objective is to elucidate this issue, examine the discourse surrounding it, and subsequently delve into its categorization and ramifications. The essay initiates with an evaluation of the AI Safety Summit 2023 (ASS) and introduction of LLMs, emphasising multidimensional biases that underlie their deceptive behaviours.The literature review covers four types of deception categorised: Strategic deception, Imitation, Sycophancy, and Unfaithful Reasoning, along with the social implications and risks they entail. Lastly, I take an evaluative stance on various aspects related to navigating the persistent challenges of the deceptive AI. This encompasses considerations of international collaborative governance, the reconfigured engagement of individuals with AI, proposal of practical adjustments, and specific elements of digital education.
+
+Paper ID: 2403.09676v1
+
+Summary:
+This paper titled "Unmasking the Shadows of AI: Investigating Deceptive Capabilities in Large Language Models" was authored by Linge Guo and published on 2024-02-07.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: This research critically navigates the intricate landscape of AI deception, concentrating on deceptive behaviours of Large Language Models (LLMs). My objective is to elucidate this issue, examine the discourse surrounding it, and subsequently delve into its categorization and ramifications. The essay initiates with an evaluation of the AI Safety Summit 2023 (ASS) and introduction of LLMs, emphasising multidimensional biases that underlie their deceptive behaviours.The literature review covers four types of deception categorised: Strategic deception, Imitation, Sycophancy, and Unfaithful Reasoning, along with the social implications and risks they entail. Lastly, I take an evaluative stance on various aspects related to navigating the persistent challenges of the deceptive AI. This encompasses considerations of international collaborative governance, the reconfigured engagement of individuals with AI, proposal of practical adjustments, and specific elements of digital education.
+
+Links:
+  - https://arxiv.org/abs/2403.09676v1
+  - https://arxiv.org/pdf/2403.09676v1

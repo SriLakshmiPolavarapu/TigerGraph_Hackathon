@@ -1,0 +1,22 @@
+Title: Test-time generative augmentation for medical image segmentation
+
+Authors: Xiao Ma, Yuhui Tao, Zetian Zhang, Yuhan Zhang, Xi Wang, Sheng Zhang, Zexuan Ji, Yizhe Zhang, Qiang Chen, Guang Yang
+
+Published: 2024-06-25
+
+Categories: cs.CV
+
+Abstract:
+Medical image segmentation is critical for clinical diagnosis, treatment planning, and monitoring, yet segmentation models often struggle with uncertainties stemming from occlusions, ambiguous boundaries, and variations in imaging devices. Traditional test-time augmentation (TTA) techniques typically rely on predefined geometric and photometric transformations, limiting their adaptability and effectiveness in complex medical scenarios. In this study, we introduced Test-Time Generative Augmentation (TTGA), a novel augmentation strategy specifically tailored for medical image segmentation at inference time. Different from conventional augmentation strategies that suffer from excessive randomness or limited flexibility, TTGA leverages a domain-fine-tuned generative model to produce contextually relevant and diverse augmentations tailored to the characteristics of each test image. Built upon diffusion model inversion, a masked null-text inversion method is proposed to enable region-specific augmentations during sampling. Furthermore, a dual denoising pathway is designed to balance precise identity preservation with controlled variability. We demonstrate the efficacy of our TTGA through extensive experiments across three distinct segmentation tasks spanning nine datasets. Our results consistently demonstrate that TTGA not only improves segmentation accuracy (with DSC gains ranging from 0.1% to 2.3% over the baseline) but also offers pixel-wise error estimation (with DSC gains ranging from 1.1% to 29.0% over the baseline). The source code and demonstration are available at: https://github.com/maxiao0234/TTGA.
+
+Paper ID: 2406.17608v2
+
+Summary:
+This paper titled "Test-time generative augmentation for medical image segmentation" was authored by Xiao Ma, Yuhui Tao, Zetian Zhang, Yuhan Zhang, Xi Wang, Sheng Zhang, Zexuan Ji, Yizhe Zhang, Qiang Chen, Guang Yang and published on 2024-06-25.
+It falls under the categories: cs.CV.
+The research explores the following topic: Medical image segmentation is critical for clinical diagnosis, treatment planning, and monitoring, yet segmentation models often struggle with uncertainties stemming from occlusions, ambiguous boundaries, and variations in imaging devices. Traditional test-time augmentation (TTA) techniques typically rely on predefined geometric and photometric transformations, limiting their adaptability and effectiveness in complex medical scenarios. In this study, we introduced Test-Time Generative Augmentation (TTGA), a novel augmentation strategy specifically tailored for medical image segmentation at inference time. Different from conventional augmentation strategies that suffer from excessive randomness or limited flexibility, TTGA leverages a domain-fine-tuned generative model to produce contextually relevant and diverse augmentations tailored to the characteristics of each test image. Built upon diffusion model inversion, a masked null-text inversion method is proposed to enable region-specific augmentations during sampling. Furthermore, a dual denoising pathway is designed to balance precise identity preservation with controlled variability. We demonstrate the efficacy of our TTGA through extensive experiments across three distinct segmentation tasks spanning nine datasets. Our results consistently demonstrate that TTGA not only improves segmentation accuracy (with DSC gains ranging from 0.1% to 2.3% over the baseline) but also offers pixel-wise error estimation (with DSC gains ranging from 1.1% to 29.0% over the baseline). The source code and demonstration are available at: https://github.com/maxiao0234/TTGA.
+
+Links:
+  - https://arxiv.org/abs/2406.17608v2
+  - https://arxiv.org/pdf/2406.17608v2
+  - https://doi.org/10.1016/j.media.2025.103902

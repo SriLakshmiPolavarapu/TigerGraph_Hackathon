@@ -1,0 +1,21 @@
+Title: An Overview and Case Study of the Clinical AI Model Development Life Cycle for Healthcare Systems
+
+Authors: Charles Lu, Julia Strout, Romane Gauriau, Brad Wright, Fabiola Bezerra De Carvalho Marcruz, Varun Buch, Katherine Andriole
+
+Published: 2020-03-02
+
+Categories: cs.CY, cs.LG, cs.SE, eess.IV
+
+Abstract:
+Healthcare is one of the most promising areas for machine learning models to make a positive impact. However, successful adoption of AI-based systems in healthcare depends on engaging and educating stakeholders from diverse backgrounds about the development process of AI models. We present a broadly accessible overview of the development life cycle of clinical AI models that is general enough to be adapted to most machine learning projects, and then give an in-depth case study of the development process of a deep learning based system to detect aortic aneurysms in Computed Tomography (CT) exams. We hope other healthcare institutions and clinical practitioners find the insights we share about the development process useful in informing their own model development efforts and to increase the likelihood of successful deployment and integration of AI in healthcare.
+
+Paper ID: 2003.07678v3
+
+Summary:
+This paper titled "An Overview and Case Study of the Clinical AI Model Development Life Cycle for Healthcare Systems" was authored by Charles Lu, Julia Strout, Romane Gauriau, Brad Wright, Fabiola Bezerra De Carvalho Marcruz, Varun Buch, Katherine Andriole and published on 2020-03-02.
+It falls under the categories: cs.CY, cs.LG, cs.SE, eess.IV.
+The research explores the following topic: Healthcare is one of the most promising areas for machine learning models to make a positive impact. However, successful adoption of AI-based systems in healthcare depends on engaging and educating stakeholders from diverse backgrounds about the development process of AI models. We present a broadly accessible overview of the development life cycle of clinical AI models that is general enough to be adapted to most machine learning projects, and then give an in-depth case study of the development process of a deep learning based system to detect aortic aneurysms in Computed Tomography (CT) exams. We hope other healthcare institutions and clinical practitioners find the insights we share about the development process useful in informing their own model development efforts and to increase the likelihood of successful deployment and integration of AI in healthcare.
+
+Links:
+  - https://arxiv.org/abs/2003.07678v3
+  - https://arxiv.org/pdf/2003.07678v3

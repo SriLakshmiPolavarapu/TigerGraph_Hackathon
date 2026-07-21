@@ -1,0 +1,22 @@
+Title: Towards Assessing Spread in Sets of Software Architecture Designs
+
+Authors: Vittorio Cortellessa, J. Andres Diaz-Pace, Daniele Di Pompeo, Michele Tucci
+
+Published: 2024-02-29
+
+Categories: cs.SE, cs.PF
+
+Abstract:
+Several approaches have recently used automated techniques to generate architecture design alternatives by means of optimization techniques. These approaches aim at improving an initial architecture with respect to quality aspects, such as performance, reliability, or maintainability. In this context, each optimization experiment usually produces a different set of architecture alternatives that is characterized by specific settings. As a consequence, the designer is left with the task of comparing such sets to identify the settings that lead to better solution sets for the problem. To assess the quality of solution sets, multi-objective optimization commonly relies on quality indicators. Among these, the quality indicator for the maximum spread estimates the diversity of the generated alternatives, providing a measure of how much of the solution space has been explored. However, the maximum spread indicator is computed only on the objective space and does not consider architectural information (e.g., components structure, design decisions) from the architectural space. In this paper, we propose a quality indicator for the spread that assesses the diversity of alternatives by taking into account architectural features. To compute the spread, we rely on a notion of distance between alternatives according to the way they were generated during the optimization. We demonstrate how our architectural quality indicator can be applied to a dataset from the literature.
+
+Paper ID: 2402.19171v1
+
+Summary:
+This paper titled "Towards Assessing Spread in Sets of Software Architecture Designs" was authored by Vittorio Cortellessa, J. Andres Diaz-Pace, Daniele Di Pompeo, Michele Tucci and published on 2024-02-29.
+It falls under the categories: cs.SE, cs.PF.
+The research explores the following topic: Several approaches have recently used automated techniques to generate architecture design alternatives by means of optimization techniques. These approaches aim at improving an initial architecture with respect to quality aspects, such as performance, reliability, or maintainability. In this context, each optimization experiment usually produces a different set of architecture alternatives that is characterized by specific settings. As a consequence, the designer is left with the task of comparing such sets to identify the settings that lead to better solution sets for the problem. To assess the quality of solution sets, multi-objective optimization commonly relies on quality indicators. Among these, the quality indicator for the maximum spread estimates the diversity of the generated alternatives, providing a measure of how much of the solution space has been explored. However, the maximum spread indicator is computed only on the objective space and does not consider architectural information (e.g., components structure, design decisions) from the architectural space. In this paper, we propose a quality indicator for the spread that assesses the diversity of alternatives by taking into account architectural features. To compute the spread, we rely on a notion of distance between alternatives according to the way they were generated during the optimization. We demonstrate how our architectural quality indicator can be applied to a dataset from the literature.
+
+Links:
+  - https://arxiv.org/abs/2402.19171v1
+  - https://arxiv.org/pdf/2402.19171v1
+  - https://doi.org/10.1007/978-3-031-42592-9_9

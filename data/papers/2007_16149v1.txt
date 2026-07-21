@@ -1,0 +1,21 @@
+Title: HMCNAS: Neural Architecture Search using Hidden Markov Chains and Bayesian Optimization
+
+Authors: Vasco Lopes, Luís A. Alexandre
+
+Published: 2020-07-31
+
+Categories: cs.LG, cs.CV, cs.NE, stat.ML
+
+Abstract:
+Neural Architecture Search has achieved state-of-the-art performance in a variety of tasks, out-performing human-designed networks. However, many assumptions, that require human definition, related with the problems being solved or the models generated are still needed: final model architectures, number of layers to be sampled, forced operations, small search spaces, which ultimately contributes to having models with higher performances at the cost of inducing bias into the system. In this paper, we propose HMCNAS, which is composed of two novel components: i) a method that leverages information about human-designed models to autonomously generate a complex search space, and ii) an Evolutionary Algorithm with Bayesian Optimization that is capable of generating competitive CNNs from scratch, without relying on human-defined parameters or small search spaces. The experimental results show that the proposed approach results in competitive architectures obtained in a very short time. HMCNAS provides a step towards generalizing NAS, by providing a way to create competitive models, without requiring any human knowledge about the specific task.
+
+Paper ID: 2007.16149v1
+
+Summary:
+This paper titled "HMCNAS: Neural Architecture Search using Hidden Markov Chains and Bayesian Optimization" was authored by Vasco Lopes, Luís A. Alexandre and published on 2020-07-31.
+It falls under the categories: cs.LG, cs.CV, cs.NE, stat.ML.
+The research explores the following topic: Neural Architecture Search has achieved state-of-the-art performance in a variety of tasks, out-performing human-designed networks. However, many assumptions, that require human definition, related with the problems being solved or the models generated are still needed: final model architectures, number of layers to be sampled, forced operations, small search spaces, which ultimately contributes to having models with higher performances at the cost of inducing bias into the system. In this paper, we propose HMCNAS, which is composed of two novel components: i) a method that leverages information about human-designed models to autonomously generate a complex search space, and ii) an Evolutionary Algorithm with Bayesian Optimization that is capable of generating competitive CNNs from scratch, without relying on human-defined parameters or small search spaces. The experimental results show that the proposed approach results in competitive architectures obtained in a very short time. HMCNAS provides a step towards generalizing NAS, by providing a way to create competitive models, without requiring any human knowledge about the specific task.
+
+Links:
+  - https://arxiv.org/abs/2007.16149v1
+  - https://arxiv.org/pdf/2007.16149v1

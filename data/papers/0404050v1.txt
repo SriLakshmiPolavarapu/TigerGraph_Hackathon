@@ -1,0 +1,21 @@
+Title: A General Framework For Lazy Functional Logic Programming With Algebraic Polymorphic Types
+
+Authors: Puri Arenas-Sanchez, Mario Rodriguez-Artalejo
+
+Published: 2004-04-24
+
+Categories: cs.PL
+
+Abstract:
+We propose a general framework for first-order functional logic programming, supporting lazy functions, non-determinism and polymorphic datatypes whose data constructors obey a set C of equational axioms. On top of a given C, we specify a program as a set R of C-based conditional rewriting rules for defined functions. We argue that equational logic does not supply the proper semantics for such programs. Therefore, we present an alternative logic which includes C-based rewriting calculi and a notion of model. We get soundness and completeness for C-based rewriting w.r.t. models, existence of free models for all programs, and type preservation results. As operational semantics, we develop a sound and complete procedure for goal solving, which is based on the combination of lazy narrowing with unification modulo C. Our framework is quite expressive for many purposes, such as solving action and change problems, or realizing the GAMMA computation model.
+
+Paper ID: 0404050v1
+
+Summary:
+This paper titled "A General Framework For Lazy Functional Logic Programming With Algebraic Polymorphic Types" was authored by Puri Arenas-Sanchez, Mario Rodriguez-Artalejo and published on 2004-04-24.
+It falls under the categories: cs.PL.
+The research explores the following topic: We propose a general framework for first-order functional logic programming, supporting lazy functions, non-determinism and polymorphic datatypes whose data constructors obey a set C of equational axioms. On top of a given C, we specify a program as a set R of C-based conditional rewriting rules for defined functions. We argue that equational logic does not supply the proper semantics for such programs. Therefore, we present an alternative logic which includes C-based rewriting calculi and a notion of model. We get soundness and completeness for C-based rewriting w.r.t. models, existence of free models for all programs, and type preservation results. As operational semantics, we develop a sound and complete procedure for goal solving, which is based on the combination of lazy narrowing with unification modulo C. Our framework is quite expressive for many purposes, such as solving action and change problems, or realizing the GAMMA computation model.
+
+Links:
+  - https://arxiv.org/abs/cs/0404050v1
+  - https://arxiv.org/pdf/cs/0404050v1

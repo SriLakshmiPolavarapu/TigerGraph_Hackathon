@@ -1,0 +1,21 @@
+Title: Algorithmic Programming Language Identification
+
+Authors: David Klein, Kyle Murray, Simon Weber
+
+Published: 2011-06-21
+
+Categories: cs.LG
+
+Abstract:
+Motivated by the amount of code that goes unidentified on the web, we introduce a practical method for algorithmically identifying the programming language of source code. Our work is based on supervised learning and intelligent statistical features. We also explored, but abandoned, a grammatical approach. In testing, our implementation greatly outperforms that of an existing tool that relies on a Bayesian classifier. Code is written in Python and available under an MIT license.
+
+Paper ID: 1106.4064v2
+
+Summary:
+This paper titled "Algorithmic Programming Language Identification" was authored by David Klein, Kyle Murray, Simon Weber and published on 2011-06-21.
+It falls under the categories: cs.LG.
+The research explores the following topic: Motivated by the amount of code that goes unidentified on the web, we introduce a practical method for algorithmically identifying the programming language of source code. Our work is based on supervised learning and intelligent statistical features. We also explored, but abandoned, a grammatical approach. In testing, our implementation greatly outperforms that of an existing tool that relies on a Bayesian classifier. Code is written in Python and available under an MIT license.
+
+Links:
+  - https://arxiv.org/abs/1106.4064v2
+  - https://arxiv.org/pdf/1106.4064v2

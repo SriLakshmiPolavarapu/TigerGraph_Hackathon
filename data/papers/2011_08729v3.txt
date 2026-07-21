@@ -1,0 +1,22 @@
+Title: Control Strategies for Autonomous Vehicles
+
+Authors: Chinmay Vilas Samak, Tanmay Vilas Samak, Sivanathan Kandhasamy
+
+Published: 2020-11-17
+
+Categories: cs.RO, eess.SY
+
+Abstract:
+This chapter focuses on the self-driving technology from a control perspective and investigates the control strategies used in autonomous vehicles and advanced driver-assistance systems from both theoretical and practical viewpoints. First, we introduce the self-driving technology as a whole, including perception, planning and control techniques required for accomplishing the challenging task of autonomous driving. We then dwell upon each of these operations to explain their role in the autonomous system architecture, with a prime focus on control strategies. The core portion of this chapter commences with detailed mathematical modeling of autonomous vehicles followed by a comprehensive discussion on control strategies. The chapter covers longitudinal as well as lateral control strategies for autonomous vehicles with coupled and de-coupled control schemes. We as well discuss some of the machine learning techniques applied to autonomous vehicle control task. Finally, we briefly summarize some of the research works that our team has carried out at the Autonomous Systems Lab and conclude the chapter with a few thoughtful remarks.
+
+Paper ID: 2011.08729v3
+
+Summary:
+This paper titled "Control Strategies for Autonomous Vehicles" was authored by Chinmay Vilas Samak, Tanmay Vilas Samak, Sivanathan Kandhasamy and published on 2020-11-17.
+It falls under the categories: cs.RO, eess.SY.
+The research explores the following topic: This chapter focuses on the self-driving technology from a control perspective and investigates the control strategies used in autonomous vehicles and advanced driver-assistance systems from both theoretical and practical viewpoints. First, we introduce the self-driving technology as a whole, including perception, planning and control techniques required for accomplishing the challenging task of autonomous driving. We then dwell upon each of these operations to explain their role in the autonomous system architecture, with a prime focus on control strategies. The core portion of this chapter commences with detailed mathematical modeling of autonomous vehicles followed by a comprehensive discussion on control strategies. The chapter covers longitudinal as well as lateral control strategies for autonomous vehicles with coupled and de-coupled control schemes. We as well discuss some of the machine learning techniques applied to autonomous vehicle control task. Finally, we briefly summarize some of the research works that our team has carried out at the Autonomous Systems Lab and conclude the chapter with a few thoughtful remarks.
+
+Links:
+  - https://arxiv.org/abs/2011.08729v3
+  - https://arxiv.org/pdf/2011.08729v3
+  - https://doi.org/10.1201/9781003048381

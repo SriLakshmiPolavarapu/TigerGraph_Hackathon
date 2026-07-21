@@ -1,0 +1,21 @@
+Title: Evolutionary Multi-objective Architecture Search Framework: Application to COVID-19 3D CT Classification
+
+Authors: Xin He, Guohao Ying, Jiyong Zhang, Xiaowen Chu
+
+Published: 2021-01-26
+
+Categories: eess.IV, cs.CV
+
+Abstract:
+The COVID-19 pandemic has threatened global health. Many studies have applied deep convolutional neural networks (CNN) to recognize COVID-19 based on chest 3D computed tomography (CT). Recent works show that no model generalizes well across CT datasets from different countries, and manually designing models for specific datasets requires expertise; thus, neural architecture search (NAS) that aims to search models automatically has become an attractive solution. To reduce the search cost on large 3D CT datasets, most NAS-based works use the weight-sharing (WS) strategy to make all models share weights within a supernet; however, WS inevitably incurs search instability, leading to inaccurate model estimation. In this work, we propose an efficient Evolutionary Multi-objective ARchitecture Search (EMARS) framework. We propose a new objective, namely potential, which can help exploit promising models to indirectly reduce the number of models involved in weights training, thus alleviating search instability. We demonstrate that under objectives of accuracy and potential, EMARS can balance exploitation and exploration, i.e., reducing search time and finding better models. Our searched models are small and perform better than prior works on three public COVID-19 3D CT datasets.
+
+Paper ID: 2101.10667v2
+
+Summary:
+This paper titled "Evolutionary Multi-objective Architecture Search Framework: Application to COVID-19 3D CT Classification" was authored by Xin He, Guohao Ying, Jiyong Zhang, Xiaowen Chu and published on 2021-01-26.
+It falls under the categories: eess.IV, cs.CV.
+The research explores the following topic: The COVID-19 pandemic has threatened global health. Many studies have applied deep convolutional neural networks (CNN) to recognize COVID-19 based on chest 3D computed tomography (CT). Recent works show that no model generalizes well across CT datasets from different countries, and manually designing models for specific datasets requires expertise; thus, neural architecture search (NAS) that aims to search models automatically has become an attractive solution. To reduce the search cost on large 3D CT datasets, most NAS-based works use the weight-sharing (WS) strategy to make all models share weights within a supernet; however, WS inevitably incurs search instability, leading to inaccurate model estimation. In this work, we propose an efficient Evolutionary Multi-objective ARchitecture Search (EMARS) framework. We propose a new objective, namely potential, which can help exploit promising models to indirectly reduce the number of models involved in weights training, thus alleviating search instability. We demonstrate that under objectives of accuracy and potential, EMARS can balance exploitation and exploration, i.e., reducing search time and finding better models. Our searched models are small and perform better than prior works on three public COVID-19 3D CT datasets.
+
+Links:
+  - https://arxiv.org/abs/2101.10667v2
+  - https://arxiv.org/pdf/2101.10667v2

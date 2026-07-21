@@ -1,0 +1,22 @@
+Title: Federated and Transfer Learning: A Survey on Adversaries and Defense Mechanisms
+
+Authors: Ehsan Hallaji, Roozbeh Razavi-Far, Mehrdad Saif
+
+Published: 2022-07-05
+
+Categories: cs.LG, cs.AI, cs.CR, cs.CV, cs.DC
+
+Abstract:
+The advent of federated learning has facilitated large-scale data exchange amongst machine learning models while maintaining privacy. Despite its brief history, federated learning is rapidly evolving to make wider use more practical. One of the most significant advancements in this domain is the incorporation of transfer learning into federated learning, which overcomes fundamental constraints of primary federated learning, particularly in terms of security. This chapter performs a comprehensive survey on the intersection of federated and transfer learning from a security point of view. The main goal of this study is to uncover potential vulnerabilities and defense mechanisms that might compromise the privacy and performance of systems that use federated and transfer learning.
+
+Paper ID: 2207.02337v1
+
+Summary:
+This paper titled "Federated and Transfer Learning: A Survey on Adversaries and Defense Mechanisms" was authored by Ehsan Hallaji, Roozbeh Razavi-Far, Mehrdad Saif and published on 2022-07-05.
+It falls under the categories: cs.LG, cs.AI, cs.CR, cs.CV, cs.DC.
+The research explores the following topic: The advent of federated learning has facilitated large-scale data exchange amongst machine learning models while maintaining privacy. Despite its brief history, federated learning is rapidly evolving to make wider use more practical. One of the most significant advancements in this domain is the incorporation of transfer learning into federated learning, which overcomes fundamental constraints of primary federated learning, particularly in terms of security. This chapter performs a comprehensive survey on the intersection of federated and transfer learning from a security point of view. The main goal of this study is to uncover potential vulnerabilities and defense mechanisms that might compromise the privacy and performance of systems that use federated and transfer learning.
+
+Links:
+  - https://arxiv.org/abs/2207.02337v1
+  - https://arxiv.org/pdf/2207.02337v1
+  - https://doi.org/10.1007/978-3-031-11748-0_3

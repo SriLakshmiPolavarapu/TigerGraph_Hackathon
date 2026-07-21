@@ -1,0 +1,21 @@
+Title: CSG0: Continual Urban Scene Generation with Zero Forgetting
+
+Authors: Himalaya Jain, Tuan-Hung Vu, Patrick Pérez, Matthieu Cord
+
+Published: 2021-12-06
+
+Categories: cs.CV
+
+Abstract:
+With the rapid advances in generative adversarial networks (GANs), the visual quality of synthesised scenes keeps improving, including for complex urban scenes with applications to automated driving. We address in this work a continual scene generation setup in which GANs are trained on a stream of distinct domains; ideally, the learned models should eventually be able to generate new scenes in all seen domains. This setup reflects the real-life scenario where data are continuously acquired in different places at different times. In such a continual setup, we aim for learning with zero forgetting, \IE, with no degradation in synthesis quality over earlier domains due to catastrophic forgetting. To this end, we introduce a novel framework that not only (i) enables seamless knowledge transfer in continual training but also (ii) guarantees zero forgetting with a small overhead cost. While being more memory efficient, thanks to continual learning, our model obtains better synthesis quality as compared against the brute-force solution that trains one full model for each domain. Especially, under extreme low-data regimes, our approach outperforms the brute-force one by a large margin.
+
+Paper ID: 2112.03252v2
+
+Summary:
+This paper titled "CSG0: Continual Urban Scene Generation with Zero Forgetting" was authored by Himalaya Jain, Tuan-Hung Vu, Patrick Pérez, Matthieu Cord and published on 2021-12-06.
+It falls under the categories: cs.CV.
+The research explores the following topic: With the rapid advances in generative adversarial networks (GANs), the visual quality of synthesised scenes keeps improving, including for complex urban scenes with applications to automated driving. We address in this work a continual scene generation setup in which GANs are trained on a stream of distinct domains; ideally, the learned models should eventually be able to generate new scenes in all seen domains. This setup reflects the real-life scenario where data are continuously acquired in different places at different times. In such a continual setup, we aim for learning with zero forgetting, \IE, with no degradation in synthesis quality over earlier domains due to catastrophic forgetting. To this end, we introduce a novel framework that not only (i) enables seamless knowledge transfer in continual training but also (ii) guarantees zero forgetting with a small overhead cost. While being more memory efficient, thanks to continual learning, our model obtains better synthesis quality as compared against the brute-force solution that trains one full model for each domain. Especially, under extreme low-data regimes, our approach outperforms the brute-force one by a large margin.
+
+Links:
+  - https://arxiv.org/abs/2112.03252v2
+  - https://arxiv.org/pdf/2112.03252v2

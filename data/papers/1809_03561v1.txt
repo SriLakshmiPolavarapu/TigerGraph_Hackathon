@@ -1,0 +1,22 @@
+Title: Quantile Regression for Qualifying Match of GEFCom2017 Probabilistic Load Forecasting
+
+Authors: Florian Ziel
+
+Published: 2018-09-10
+
+Categories: stat.AP, stat.CO, stat.ME, stat.ML, stat.OT
+
+Abstract:
+We present a simple quantile regression-based forecasting method that was applied in a probabilistic load forecasting framework of the Global Energy Forecasting Competition 2017 (GEFCom2017). The hourly load data is log transformed and split into a long-term trend component and a remainder term. The key forecasting element is the quantile regression approach for the remainder term that takes into account weekly and annual seasonalities such as their interactions. Temperature information is only used to stabilize the forecast of the long-term trend component. Public holidays information is ignored. Still, the forecasting method placed second in the open data track and fourth in the definite data track with our forecasting method, which is remarkable given simplicity of the model. The method also outperforms the Vanilla benchmark consistently.
+
+Paper ID: 1809.03561v1
+
+Summary:
+This paper titled "Quantile Regression for Qualifying Match of GEFCom2017 Probabilistic Load Forecasting" was authored by Florian Ziel and published on 2018-09-10.
+It falls under the categories: stat.AP, stat.CO, stat.ME, stat.ML, stat.OT.
+The research explores the following topic: We present a simple quantile regression-based forecasting method that was applied in a probabilistic load forecasting framework of the Global Energy Forecasting Competition 2017 (GEFCom2017). The hourly load data is log transformed and split into a long-term trend component and a remainder term. The key forecasting element is the quantile regression approach for the remainder term that takes into account weekly and annual seasonalities such as their interactions. Temperature information is only used to stabilize the forecast of the long-term trend component. Public holidays information is ignored. Still, the forecasting method placed second in the open data track and fourth in the definite data track with our forecasting method, which is remarkable given simplicity of the model. The method also outperforms the Vanilla benchmark consistently.
+
+Links:
+  - https://arxiv.org/abs/1809.03561v1
+  - https://arxiv.org/pdf/1809.03561v1
+  - https://doi.org/10.1016/j.ijforecast.2018.07.004

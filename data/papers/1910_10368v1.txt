@@ -1,0 +1,21 @@
+Title: MLAT: Metric Learning for kNN in Streaming Time Series
+
+Authors: Dongmin Park, Susik Yoon, Hwanjun Song, Jae-Gil Lee
+
+Published: 2019-10-23
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Learning a good distance measure for distance-based classification in time series leads to significant performance improvement in many tasks. Specifically, it is critical to effectively deal with variations and temporal dependencies in time series. However, existing metric learning approaches focus on tackling variations mainly using a strict alignment of two sequences, thereby being not able to capture temporal dependencies. To overcome this limitation, we propose MLAT, which covers both alignment and temporal dependencies at the same time. MLAT achieves the alignment effect as well as preserves temporal dependencies by augmenting a given time series using a sliding window. Furthermore, MLAT employs time-invariant metric learning to derive the most appropriate distance measure from the augmented samples which can also capture the temporal dependencies among them well. We show that MLAT outperforms other existing algorithms in the extensive experiments on various real-world data sets.
+
+Paper ID: 1910.10368v1
+
+Summary:
+This paper titled "MLAT: Metric Learning for kNN in Streaming Time Series" was authored by Dongmin Park, Susik Yoon, Hwanjun Song, Jae-Gil Lee and published on 2019-10-23.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Learning a good distance measure for distance-based classification in time series leads to significant performance improvement in many tasks. Specifically, it is critical to effectively deal with variations and temporal dependencies in time series. However, existing metric learning approaches focus on tackling variations mainly using a strict alignment of two sequences, thereby being not able to capture temporal dependencies. To overcome this limitation, we propose MLAT, which covers both alignment and temporal dependencies at the same time. MLAT achieves the alignment effect as well as preserves temporal dependencies by augmenting a given time series using a sliding window. Furthermore, MLAT employs time-invariant metric learning to derive the most appropriate distance measure from the augmented samples which can also capture the temporal dependencies among them well. We show that MLAT outperforms other existing algorithms in the extensive experiments on various real-world data sets.
+
+Links:
+  - https://arxiv.org/abs/1910.10368v1
+  - https://arxiv.org/pdf/1910.10368v1

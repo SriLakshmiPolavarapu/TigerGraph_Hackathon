@@ -1,0 +1,21 @@
+Title: Global Thread-Level Inference for Comment Classification in Community Question Answering
+
+Authors: Shafiq Joty, Alberto Barrón-Cedeño, Giovanni Da San Martino, Simone Filice, Lluís Màrquez, Alessandro Moschitti, Preslav Nakov
+
+Published: 2019-11-20
+
+Categories: cs.CL, cs.AI, cs.IR, cs.LO
+
+Abstract:
+Community question answering, a recent evolution of question answering in the Web context, allows a user to quickly consult the opinion of a number of people on a particular topic, thus taking advantage of the wisdom of the crowd. Here we try to help the user by deciding automatically which answers are good and which are bad for a given question. In particular, we focus on exploiting the output structure at the thread level in order to make more consistent global decisions. More specifically, we exploit the relations between pairs of comments at any distance in the thread, which we incorporate in a graph-cut and in an ILP frameworks. We evaluated our approach on the benchmark dataset of SemEval-2015 Task 3. Results improved over the state of the art, confirming the importance of using thread level information.
+
+Paper ID: 1911.08755v1
+
+Summary:
+This paper titled "Global Thread-Level Inference for Comment Classification in Community Question Answering" was authored by Shafiq Joty, Alberto Barrón-Cedeño, Giovanni Da San Martino, Simone Filice, Lluís Màrquez, Alessandro Moschitti, Preslav Nakov and published on 2019-11-20.
+It falls under the categories: cs.CL, cs.AI, cs.IR, cs.LO.
+The research explores the following topic: Community question answering, a recent evolution of question answering in the Web context, allows a user to quickly consult the opinion of a number of people on a particular topic, thus taking advantage of the wisdom of the crowd. Here we try to help the user by deciding automatically which answers are good and which are bad for a given question. In particular, we focus on exploiting the output structure at the thread level in order to make more consistent global decisions. More specifically, we exploit the relations between pairs of comments at any distance in the thread, which we incorporate in a graph-cut and in an ILP frameworks. We evaluated our approach on the benchmark dataset of SemEval-2015 Task 3. Results improved over the state of the art, confirming the importance of using thread level information.
+
+Links:
+  - https://arxiv.org/abs/1911.08755v1
+  - https://arxiv.org/pdf/1911.08755v1

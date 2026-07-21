@@ -1,0 +1,21 @@
+Title: Image2Text2Image: A Novel Framework for Label-Free Evaluation of Image-to-Text Generation with Text-to-Image Diffusion Models
+
+Authors: Jia-Hong Huang, Hongyi Zhu, Yixian Shen, Stevan Rudinac, Evangelos Kanoulas
+
+Published: 2024-11-08
+
+Categories: cs.CV, cs.CL
+
+Abstract:
+Evaluating the quality of automatically generated image descriptions is a complex task that requires metrics capturing various dimensions, such as grammaticality, coverage, accuracy, and truthfulness. Although human evaluation provides valuable insights, its cost and time-consuming nature pose limitations. Existing automated metrics like BLEU, ROUGE, METEOR, and CIDEr attempt to fill this gap, but they often exhibit weak correlations with human judgment. To address this challenge, we propose a novel evaluation framework called Image2Text2Image, which leverages diffusion models, such as Stable Diffusion or DALL-E, for text-to-image generation. In the Image2Text2Image framework, an input image is first processed by a selected image captioning model, chosen for evaluation, to generate a textual description. Using this generated description, a diffusion model then creates a new image. By comparing features extracted from the original and generated images, we measure their similarity using a designated similarity metric. A high similarity score suggests that the model has produced a faithful textual description, while a low score highlights discrepancies, revealing potential weaknesses in the model's performance. Notably, our framework does not rely on human-annotated reference captions, making it a valuable tool for assessing image captioning models. Extensive experiments and human evaluations validate the efficacy of our proposed Image2Text2Image evaluation framework. The code and dataset will be published to support further research in the community.
+
+Paper ID: 2411.05706v1
+
+Summary:
+This paper titled "Image2Text2Image: A Novel Framework for Label-Free Evaluation of Image-to-Text Generation with Text-to-Image Diffusion Models" was authored by Jia-Hong Huang, Hongyi Zhu, Yixian Shen, Stevan Rudinac, Evangelos Kanoulas and published on 2024-11-08.
+It falls under the categories: cs.CV, cs.CL.
+The research explores the following topic: Evaluating the quality of automatically generated image descriptions is a complex task that requires metrics capturing various dimensions, such as grammaticality, coverage, accuracy, and truthfulness. Although human evaluation provides valuable insights, its cost and time-consuming nature pose limitations. Existing automated metrics like BLEU, ROUGE, METEOR, and CIDEr attempt to fill this gap, but they often exhibit weak correlations with human judgment. To address this challenge, we propose a novel evaluation framework called Image2Text2Image, which leverages diffusion models, such as Stable Diffusion or DALL-E, for text-to-image generation. In the Image2Text2Image framework, an input image is first processed by a selected image captioning model, chosen for evaluation, to generate a textual description. Using this generated description, a diffusion model then creates a new image. By comparing features extracted from the original and generated images, we measure their similarity using a designated similarity metric. A high similarity score suggests that the model has produced a faithful textual description, while a low score highlights discrepancies, revealing potential weaknesses in the model's performance. Notably, our framework does not rely on human-annotated reference captions, making it a valuable tool for assessing image captioning models. Extensive experiments and human evaluations validate the efficacy of our proposed Image2Text2Image evaluation framework. The code and dataset will be published to support further research in the community.
+
+Links:
+  - https://arxiv.org/abs/2411.05706v1
+  - https://arxiv.org/pdf/2411.05706v1

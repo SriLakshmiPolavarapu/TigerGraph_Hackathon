@@ -1,0 +1,21 @@
+Title: General-Purpose Multicore Architectures
+
+Authors: Saugata Ghose
+
+Published: 2024-08-23
+
+Categories: cs.AR, cs.DC
+
+Abstract:
+The first years of the 2000s led to an inflection point in computer architectures: while the number of available transistors on a chip continued to grow, crucial transistor scaling properties started to break down and result in increasing power consumption, while aggressive single-core performance optimizations were resulting in diminishing returns due to inherent limits in instruction-level parallelism. This led to the rise of multicore CPU architectures, which are now commonplace in modern computers at all scales. In this chapter, we discuss the evolution of multicore CPUs since their introduction. Starting with a historic overview of multiprocessing, we explore the basic microarchitecture of a multicore CPU, key challenges resulting from shared memory resources, operating system modifications to optimize multicore CPU support, popular metrics for multicore evaluation, and recent trends in multicore CPU design.
+
+Paper ID: 2408.12999v2
+
+Summary:
+This paper titled "General-Purpose Multicore Architectures" was authored by Saugata Ghose and published on 2024-08-23.
+It falls under the categories: cs.AR, cs.DC.
+The research explores the following topic: The first years of the 2000s led to an inflection point in computer architectures: while the number of available transistors on a chip continued to grow, crucial transistor scaling properties started to break down and result in increasing power consumption, while aggressive single-core performance optimizations were resulting in diminishing returns due to inherent limits in instruction-level parallelism. This led to the rise of multicore CPU architectures, which are now commonplace in modern computers at all scales. In this chapter, we discuss the evolution of multicore CPUs since their introduction. Starting with a historic overview of multiprocessing, we explore the basic microarchitecture of a multicore CPU, key challenges resulting from shared memory resources, operating system modifications to optimize multicore CPU support, popular metrics for multicore evaluation, and recent trends in multicore CPU design.
+
+Links:
+  - https://arxiv.org/abs/2408.12999v2
+  - https://arxiv.org/pdf/2408.12999v2

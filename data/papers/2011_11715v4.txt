@@ -1,0 +1,21 @@
+Title: Multi-task Language Modeling for Improving Speech Recognition of Rare Words
+
+Authors: Chao-Han Huck Yang, Linda Liu, Ankur Gandhe, Yile Gu, Anirudh Raju, Denis Filimonov, Ivan Bulyko
+
+Published: 2020-11-23
+
+Categories: cs.CL, cs.AI, cs.LG, cs.NE, cs.SD, eess.AS
+
+Abstract:
+End-to-end automatic speech recognition (ASR) systems are increasingly popular due to their relative architectural simplicity and competitive performance. However, even though the average accuracy of these systems may be high, the performance on rare content words often lags behind hybrid ASR systems. To address this problem, second-pass rescoring is often applied leveraging upon language modeling. In this paper, we propose a second-pass system with multi-task learning, utilizing semantic targets (such as intent and slot prediction) to improve speech recognition performance. We show that our rescoring model trained with these additional tasks outperforms the baseline rescoring model, trained with only the language modeling task, by 1.4% on a general test and by 2.6% on a rare word test set in terms of word-error-rate relative (WERR). Our best ASR system with multi-task LM shows 4.6% WERR deduction compared with RNN Transducer only ASR baseline for rare words recognition.
+
+Paper ID: 2011.11715v4
+
+Summary:
+This paper titled "Multi-task Language Modeling for Improving Speech Recognition of Rare Words" was authored by Chao-Han Huck Yang, Linda Liu, Ankur Gandhe, Yile Gu, Anirudh Raju, Denis Filimonov, Ivan Bulyko and published on 2020-11-23.
+It falls under the categories: cs.CL, cs.AI, cs.LG, cs.NE, cs.SD, eess.AS.
+The research explores the following topic: End-to-end automatic speech recognition (ASR) systems are increasingly popular due to their relative architectural simplicity and competitive performance. However, even though the average accuracy of these systems may be high, the performance on rare content words often lags behind hybrid ASR systems. To address this problem, second-pass rescoring is often applied leveraging upon language modeling. In this paper, we propose a second-pass system with multi-task learning, utilizing semantic targets (such as intent and slot prediction) to improve speech recognition performance. We show that our rescoring model trained with these additional tasks outperforms the baseline rescoring model, trained with only the language modeling task, by 1.4% on a general test and by 2.6% on a rare word test set in terms of word-error-rate relative (WERR). Our best ASR system with multi-task LM shows 4.6% WERR deduction compared with RNN Transducer only ASR baseline for rare words recognition.
+
+Links:
+  - https://arxiv.org/abs/2011.11715v4
+  - https://arxiv.org/pdf/2011.11715v4

@@ -1,0 +1,22 @@
+Title: Federated Learning With Individualized Privacy Through Client Sampling
+
+Authors: Lucas Lange, Ole Borchardt, Erhard Rahm
+
+Published: 2025-01-29
+
+Categories: cs.LG, cs.AI, cs.CR, cs.CV
+
+Abstract:
+With growing concerns about user data collection, individualized privacy has emerged as a promising solution to balance protection and utility by accounting for diverse user privacy preferences. Instead of enforcing a uniform level of anonymization for all users, this approach allows individuals to choose privacy settings that align with their comfort levels. Building on this idea, we propose an adapted method for enabling Individualized Differential Privacy (IDP) in Federated Learning (FL) by handling clients according to their personal privacy preferences. By extending the SAMPLE algorithm from centralized settings to FL, we calculate client-specific sampling rates based on their heterogeneous privacy budgets and integrate them into a modified IDP-FedAvg algorithm. We test this method under realistic privacy distributions and multiple datasets. The experimental results demonstrate that our approach achieves clear improvements over uniform DP baselines, reducing the trade-off between privacy and utility. Compared to the alternative SCALE method in related work, which assigns differing noise scales to clients, our method performs notably better. However, challenges remain for complex tasks with non-i.i.d. data, primarily stemming from the constraints of the decentralized setting.
+
+Paper ID: 2501.17634v2
+
+Summary:
+This paper titled "Federated Learning With Individualized Privacy Through Client Sampling" was authored by Lucas Lange, Ole Borchardt, Erhard Rahm and published on 2025-01-29.
+It falls under the categories: cs.LG, cs.AI, cs.CR, cs.CV.
+The research explores the following topic: With growing concerns about user data collection, individualized privacy has emerged as a promising solution to balance protection and utility by accounting for diverse user privacy preferences. Instead of enforcing a uniform level of anonymization for all users, this approach allows individuals to choose privacy settings that align with their comfort levels. Building on this idea, we propose an adapted method for enabling Individualized Differential Privacy (IDP) in Federated Learning (FL) by handling clients according to their personal privacy preferences. By extending the SAMPLE algorithm from centralized settings to FL, we calculate client-specific sampling rates based on their heterogeneous privacy budgets and integrate them into a modified IDP-FedAvg algorithm. We test this method under realistic privacy distributions and multiple datasets. The experimental results demonstrate that our approach achieves clear improvements over uniform DP baselines, reducing the trade-off between privacy and utility. Compared to the alternative SCALE method in related work, which assigns differing noise scales to clients, our method performs notably better. However, challenges remain for complex tasks with non-i.i.d. data, primarily stemming from the constraints of the decentralized setting.
+
+Links:
+  - https://arxiv.org/abs/2501.17634v2
+  - https://arxiv.org/pdf/2501.17634v2
+  - https://doi.org/10.1109/ICMLT65785.2025.11193238

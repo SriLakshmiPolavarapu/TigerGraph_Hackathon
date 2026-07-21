@@ -1,0 +1,21 @@
+Title: VEGA: Towards an End-to-End Configurable AutoML Pipeline
+
+Authors: Bochao Wang, Hang Xu, Jiajin Zhang, Chen Chen, Xiaozhi Fang, Yixing Xu, Ning Kang, Lanqing Hong, Chenhan Jiang, Xinyue Cai, Jiawei Li, Fengwei Zhou, Yong Li, Zhicheng Liu, Xinghao Chen, Kai Han, Han Shu, Dehua Song, Yunhe Wang, Wei Zhang, Chunjing Xu, Zhenguo Li, Wenzhi Liu, Tong Zhang
+
+Published: 2020-11-03
+
+Categories: cs.CV
+
+Abstract:
+Automated Machine Learning (AutoML) is an important industrial solution for automatic discovery and deployment of the machine learning models. However, designing an integrated AutoML system faces four great challenges of configurability, scalability, integrability, and platform diversity. In this work, we present VEGA, an efficient and comprehensive AutoML framework that is compatible and optimized for multiple hardware platforms. a) The VEGA pipeline integrates various modules of AutoML, including Neural Architecture Search (NAS), Hyperparameter Optimization (HPO), Auto Data Augmentation, Model Compression, and Fully Train. b) To support a variety of search algorithms and tasks, we design a novel fine-grained search space and its description language to enable easy adaptation to different search algorithms and tasks. c) We abstract the common components of deep learning frameworks into a unified interface. VEGA can be executed with multiple back-ends and hardwares. Extensive benchmark experiments on multiple tasks demonstrate that VEGA can improve the existing AutoML algorithms and discover new high-performance models against SOTA methods, e.g. the searched DNet model zoo for Ascend 10x faster than EfficientNet-B5 and 9.2x faster than RegNetX-32GF on ImageNet. VEGA is open-sourced at https://github.com/huawei-noah/vega.
+
+Paper ID: 2011.01507v4
+
+Summary:
+This paper titled "VEGA: Towards an End-to-End Configurable AutoML Pipeline" was authored by Bochao Wang, Hang Xu, Jiajin Zhang, Chen Chen, Xiaozhi Fang, Yixing Xu, Ning Kang, Lanqing Hong, Chenhan Jiang, Xinyue Cai, Jiawei Li, Fengwei Zhou, Yong Li, Zhicheng Liu, Xinghao Chen, Kai Han, Han Shu, Dehua Song, Yunhe Wang, Wei Zhang, Chunjing Xu, Zhenguo Li, Wenzhi Liu, Tong Zhang and published on 2020-11-03.
+It falls under the categories: cs.CV.
+The research explores the following topic: Automated Machine Learning (AutoML) is an important industrial solution for automatic discovery and deployment of the machine learning models. However, designing an integrated AutoML system faces four great challenges of configurability, scalability, integrability, and platform diversity. In this work, we present VEGA, an efficient and comprehensive AutoML framework that is compatible and optimized for multiple hardware platforms. a) The VEGA pipeline integrates various modules of AutoML, including Neural Architecture Search (NAS), Hyperparameter Optimization (HPO), Auto Data Augmentation, Model Compression, and Fully Train. b) To support a variety of search algorithms and tasks, we design a novel fine-grained search space and its description language to enable easy adaptation to different search algorithms and tasks. c) We abstract the common components of deep learning frameworks into a unified interface. VEGA can be executed with multiple back-ends and hardwares. Extensive benchmark experiments on multiple tasks demonstrate that VEGA can improve the existing AutoML algorithms and discover new high-performance models against SOTA methods, e.g. the searched DNet model zoo for Ascend 10x faster than EfficientNet-B5 and 9.2x faster than RegNetX-32GF on ImageNet. VEGA is open-sourced at https://github.com/huawei-noah/vega.
+
+Links:
+  - https://arxiv.org/abs/2011.01507v4
+  - https://arxiv.org/pdf/2011.01507v4

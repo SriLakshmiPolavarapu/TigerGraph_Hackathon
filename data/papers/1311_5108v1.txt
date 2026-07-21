@@ -1,0 +1,22 @@
+Title: A Methodology to Engineer and Validate Dynamic Multi-level Multi-agent Based Simulations
+
+Authors: Jean-Baptiste Soyez, Gildas Morvan, Daniel Dupont, Rochdi Merzouki
+
+Published: 2013-11-20
+
+Categories: cs.MA
+
+Abstract:
+This article proposes a methodology to model and simulate complex systems, based on IRM4MLS, a generic agent-based meta-model able to deal with multi-level systems. This methodology permits the engineering of dynamic multi-level agent-based models, to represent complex systems over several scales and domains of interest. Its goal is to simulate a phenomenon using dynamically the lightest representation to save computer resources without loss of information. This methodology is based on two mechanisms: (1) the activation or deactivation of agents representing different domain parts of the same phenomenon and (2) the aggregation or disaggregation of agents representing the same phenomenon at different scales.
+
+Paper ID: 1311.5108v1
+
+Summary:
+This paper titled "A Methodology to Engineer and Validate Dynamic Multi-level Multi-agent Based Simulations" was authored by Jean-Baptiste Soyez, Gildas Morvan, Daniel Dupont, Rochdi Merzouki and published on 2013-11-20.
+It falls under the categories: cs.MA.
+The research explores the following topic: This article proposes a methodology to model and simulate complex systems, based on IRM4MLS, a generic agent-based meta-model able to deal with multi-level systems. This methodology permits the engineering of dynamic multi-level agent-based models, to represent complex systems over several scales and domains of interest. Its goal is to simulate a phenomenon using dynamically the lightest representation to save computer resources without loss of information. This methodology is based on two mechanisms: (1) the activation or deactivation of agents representing different domain parts of the same phenomenon and (2) the aggregation or disaggregation of agents representing the same phenomenon at different scales.
+
+Links:
+  - https://arxiv.org/abs/1311.5108v1
+  - https://arxiv.org/pdf/1311.5108v1
+  - https://doi.org/10.1007/978-3-642-38859-0_10

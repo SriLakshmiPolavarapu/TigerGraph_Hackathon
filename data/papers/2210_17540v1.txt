@@ -1,0 +1,21 @@
+Title: Agent-Time Attention for Sparse Rewards Multi-Agent Reinforcement Learning
+
+Authors: Jennifer She, Jayesh K. Gupta, Mykel J. Kochenderfer
+
+Published: 2022-10-31
+
+Categories: cs.LG, cs.MA
+
+Abstract:
+Sparse and delayed rewards pose a challenge to single agent reinforcement learning. This challenge is amplified in multi-agent reinforcement learning (MARL) where credit assignment of these rewards needs to happen not only across time, but also across agents. We propose Agent-Time Attention (ATA), a neural network model with auxiliary losses for redistributing sparse and delayed rewards in collaborative MARL. We provide a simple example that demonstrates how providing agents with their own local redistributed rewards and shared global redistributed rewards motivate different policies. We extend several MiniGrid environments, specifically MultiRoom and DoorKey, to the multi-agent sparse delayed rewards setting. We demonstrate that ATA outperforms various baselines on many instances of these environments. Source code of the experiments is available at https://github.com/jshe/agent-time-attention.
+
+Paper ID: 2210.17540v1
+
+Summary:
+This paper titled "Agent-Time Attention for Sparse Rewards Multi-Agent Reinforcement Learning" was authored by Jennifer She, Jayesh K. Gupta, Mykel J. Kochenderfer and published on 2022-10-31.
+It falls under the categories: cs.LG, cs.MA.
+The research explores the following topic: Sparse and delayed rewards pose a challenge to single agent reinforcement learning. This challenge is amplified in multi-agent reinforcement learning (MARL) where credit assignment of these rewards needs to happen not only across time, but also across agents. We propose Agent-Time Attention (ATA), a neural network model with auxiliary losses for redistributing sparse and delayed rewards in collaborative MARL. We provide a simple example that demonstrates how providing agents with their own local redistributed rewards and shared global redistributed rewards motivate different policies. We extend several MiniGrid environments, specifically MultiRoom and DoorKey, to the multi-agent sparse delayed rewards setting. We demonstrate that ATA outperforms various baselines on many instances of these environments. Source code of the experiments is available at https://github.com/jshe/agent-time-attention.
+
+Links:
+  - https://arxiv.org/abs/2210.17540v1
+  - https://arxiv.org/pdf/2210.17540v1

@@ -1,0 +1,21 @@
+Title: Continual Learning of Object Instances
+
+Authors: Kishan Parshotam, Mert Kilickaya
+
+Published: 2020-04-22
+
+Categories: cs.CV
+
+Abstract:
+We propose continual instance learning - a method that applies the concept of continual learning to the task of distinguishing instances of the same object category. We specifically focus on the car object, and incrementally learn to distinguish car instances from each other with metric learning. We begin our paper by evaluating current techniques. Establishing that catastrophic forgetting is evident in existing methods, we then propose two remedies. Firstly, we regularise metric learning via Normalised Cross-Entropy. Secondly, we augment existing models with synthetic data transfer. Our extensive experiments on three large-scale datasets, using two different architectures for five different continual learning methods, reveal that Normalised cross-entropy and synthetic transfer leads to less forgetting in existing techniques.
+
+Paper ID: 2004.10862v1
+
+Summary:
+This paper titled "Continual Learning of Object Instances" was authored by Kishan Parshotam, Mert Kilickaya and published on 2020-04-22.
+It falls under the categories: cs.CV.
+The research explores the following topic: We propose continual instance learning - a method that applies the concept of continual learning to the task of distinguishing instances of the same object category. We specifically focus on the car object, and incrementally learn to distinguish car instances from each other with metric learning. We begin our paper by evaluating current techniques. Establishing that catastrophic forgetting is evident in existing methods, we then propose two remedies. Firstly, we regularise metric learning via Normalised Cross-Entropy. Secondly, we augment existing models with synthetic data transfer. Our extensive experiments on three large-scale datasets, using two different architectures for five different continual learning methods, reveal that Normalised cross-entropy and synthetic transfer leads to less forgetting in existing techniques.
+
+Links:
+  - https://arxiv.org/abs/2004.10862v1
+  - https://arxiv.org/pdf/2004.10862v1

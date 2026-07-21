@@ -1,0 +1,21 @@
+Title: Deep Variational Models for Collaborative Filtering-based Recommender Systems
+
+Authors: Jesús Bobadilla, Fernando Ortega, Abraham Gutiérrez, Ángel González-Prieto
+
+Published: 2021-07-27
+
+Categories: cs.IR, cs.LG, cs.NE
+
+Abstract:
+Deep learning provides accurate collaborative filtering models to improve recommender system results. Deep matrix factorization and their related collaborative neural networks are the state-of-art in the field; nevertheless, both models lack the necessary stochasticity to create the robust, continuous, and structured latent spaces that variational autoencoders exhibit. On the other hand, data augmentation through variational autoencoder does not provide accurate results in the collaborative filtering field due to the high sparsity of recommender systems. Our proposed models apply the variational concept to inject stochasticity in the latent space of the deep architecture, introducing the variational technique in the neural collaborative filtering field. This method does not depend on the particular model used to generate the latent representation. In this way, this approach can be applied as a plugin to any current and future specific models. The proposed models have been tested using four representative open datasets, three different quality measures, and state-of-art baselines. The results show the superiority of the proposed approach in scenarios where the variational enrichment exceeds the injected noise effect. Additionally, a framework is provided to enable the reproducibility of the conducted experiments.
+
+Paper ID: 2107.12677v1
+
+Summary:
+This paper titled "Deep Variational Models for Collaborative Filtering-based Recommender Systems" was authored by Jesús Bobadilla, Fernando Ortega, Abraham Gutiérrez, Ángel González-Prieto and published on 2021-07-27.
+It falls under the categories: cs.IR, cs.LG, cs.NE.
+The research explores the following topic: Deep learning provides accurate collaborative filtering models to improve recommender system results. Deep matrix factorization and their related collaborative neural networks are the state-of-art in the field; nevertheless, both models lack the necessary stochasticity to create the robust, continuous, and structured latent spaces that variational autoencoders exhibit. On the other hand, data augmentation through variational autoencoder does not provide accurate results in the collaborative filtering field due to the high sparsity of recommender systems. Our proposed models apply the variational concept to inject stochasticity in the latent space of the deep architecture, introducing the variational technique in the neural collaborative filtering field. This method does not depend on the particular model used to generate the latent representation. In this way, this approach can be applied as a plugin to any current and future specific models. The proposed models have been tested using four representative open datasets, three different quality measures, and state-of-art baselines. The results show the superiority of the proposed approach in scenarios where the variational enrichment exceeds the injected noise effect. Additionally, a framework is provided to enable the reproducibility of the conducted experiments.
+
+Links:
+  - https://arxiv.org/abs/2107.12677v1
+  - https://arxiv.org/pdf/2107.12677v1

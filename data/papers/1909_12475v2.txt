@@ -1,0 +1,21 @@
+Title: Hidden Stratification Causes Clinically Meaningful Failures in Machine Learning for Medical Imaging
+
+Authors: Luke Oakden-Rayner, Jared Dunnmon, Gustavo Carneiro, Christopher Ré
+
+Published: 2019-09-27
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Machine learning models for medical image analysis often suffer from poor performance on important subsets of a population that are not identified during training or testing. For example, overall performance of a cancer detection model may be high, but the model still consistently misses a rare but aggressive cancer subtype. We refer to this problem as hidden stratification, and observe that it results from incompletely describing the meaningful variation in a dataset. While hidden stratification can substantially reduce the clinical efficacy of machine learning models, its effects remain difficult to measure. In this work, we assess the utility of several possible techniques for measuring and describing hidden stratification effects, and characterize these effects on multiple medical imaging datasets. We find evidence that hidden stratification can occur in unidentified imaging subsets with low prevalence, low label quality, subtle distinguishing features, or spurious correlates, and that it can result in relative performance differences of over 20% on clinically important subsets. Finally, we explore the clinical implications of our findings, and suggest that evaluation of hidden stratification should be a critical component of any machine learning deployment in medical imaging.
+
+Paper ID: 1909.12475v2
+
+Summary:
+This paper titled "Hidden Stratification Causes Clinically Meaningful Failures in Machine Learning for Medical Imaging" was authored by Luke Oakden-Rayner, Jared Dunnmon, Gustavo Carneiro, Christopher Ré and published on 2019-09-27.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Machine learning models for medical image analysis often suffer from poor performance on important subsets of a population that are not identified during training or testing. For example, overall performance of a cancer detection model may be high, but the model still consistently misses a rare but aggressive cancer subtype. We refer to this problem as hidden stratification, and observe that it results from incompletely describing the meaningful variation in a dataset. While hidden stratification can substantially reduce the clinical efficacy of machine learning models, its effects remain difficult to measure. In this work, we assess the utility of several possible techniques for measuring and describing hidden stratification effects, and characterize these effects on multiple medical imaging datasets. We find evidence that hidden stratification can occur in unidentified imaging subsets with low prevalence, low label quality, subtle distinguishing features, or spurious correlates, and that it can result in relative performance differences of over 20% on clinically important subsets. Finally, we explore the clinical implications of our findings, and suggest that evaluation of hidden stratification should be a critical component of any machine learning deployment in medical imaging.
+
+Links:
+  - https://arxiv.org/abs/1909.12475v2
+  - https://arxiv.org/pdf/1909.12475v2

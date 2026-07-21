@@ -1,0 +1,21 @@
+Title: Prompt Coach: An Empirical Evaluation of an Agentic Tutor for Learning Prompt Engineering in Software Development
+
+Authors: Rohit Mehra, Kapil Singi, Vikrant Kaulgud, Vibhu Saujanya Sharma, Swapnajeet Gon Choudhury, Swati Sharma, Adam P. Burden, Majd Sakr
+
+Published: 2026-07-07
+
+Categories: cs.SE, cs.AI, cs.CY, cs.HC
+
+Abstract:
+Prompt engineering has emerged as a critical yet undertaught skill for software developers, one that traditional learning approaches are ill-equipped to support given its evolving, interactive, and context-dependent nature. In this paper, we introduce Prompt Coach (PC), an agentic tutor that helps developers learn how to craft high-quality code-generation prompts through Socratic guidance embedded in-flow within their IDE. PC evaluates prompt quality across multiple dimensions and surfaces targeted questions to guide self-correction, grounded in the developer's codebase and the behavior of the target LLM. We present an early empirical study with 15 professional developers combining quantitative prompt quality scoring with qualitative perception measures. Participants showed statistically significant improvements after a single 60-minute session, with the largest gains across dimensions commonly overlooked by developers. They also reported strong trust, high adoption readiness, and unanimous agreement that PC improved their prompt-writing skills.
+
+Paper ID: 2607.06074v1
+
+Summary:
+This paper titled "Prompt Coach: An Empirical Evaluation of an Agentic Tutor for Learning Prompt Engineering in Software Development" was authored by Rohit Mehra, Kapil Singi, Vikrant Kaulgud, Vibhu Saujanya Sharma, Swapnajeet Gon Choudhury, Swati Sharma, Adam P. Burden, Majd Sakr and published on 2026-07-07.
+It falls under the categories: cs.SE, cs.AI, cs.CY, cs.HC.
+The research explores the following topic: Prompt engineering has emerged as a critical yet undertaught skill for software developers, one that traditional learning approaches are ill-equipped to support given its evolving, interactive, and context-dependent nature. In this paper, we introduce Prompt Coach (PC), an agentic tutor that helps developers learn how to craft high-quality code-generation prompts through Socratic guidance embedded in-flow within their IDE. PC evaluates prompt quality across multiple dimensions and surfaces targeted questions to guide self-correction, grounded in the developer's codebase and the behavior of the target LLM. We present an early empirical study with 15 professional developers combining quantitative prompt quality scoring with qualitative perception measures. Participants showed statistically significant improvements after a single 60-minute session, with the largest gains across dimensions commonly overlooked by developers. They also reported strong trust, high adoption readiness, and unanimous agreement that PC improved their prompt-writing skills.
+
+Links:
+  - https://arxiv.org/abs/2607.06074v1
+  - https://arxiv.org/pdf/2607.06074v1

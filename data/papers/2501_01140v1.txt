@@ -1,0 +1,21 @@
+Title: Communicating Unexpectedness for Out-of-Distribution Multi-Agent Reinforcement Learning
+
+Authors: Min Whoo Lee, Kibeom Kim, Soo Wung Shin, Minsu Lee, Byoung-Tak Zhang
+
+Published: 2025-01-02
+
+Categories: cs.MA
+
+Abstract:
+Applying multi-agent reinforcement learning methods to realistic settings is challenging as it may require the agents to quickly adapt to unexpected situations that are rarely or never encountered in training. Recent methods for generalization to such out-of-distribution settings are limited to more specific, restricted instances of distribution shifts. To tackle adaptation to distribution shifts, we propose Unexpected Encoding Scheme, a novel decentralized multi-agent reinforcement learning algorithm where agents communicate "unexpectedness," the aspects of the environment that are surprising. In addition to a message yielded by the original reward-driven communication, each agent predicts the next observation based on previous experience, measures the discrepancy between the prediction and the actually encountered observation, and encodes this discrepancy as a message. Experiments on multi-robot warehouse environment support that our proposed method adapts robustly to dynamically changing training environments as well as out-of-distribution environment.
+
+Paper ID: 2501.01140v1
+
+Summary:
+This paper titled "Communicating Unexpectedness for Out-of-Distribution Multi-Agent Reinforcement Learning" was authored by Min Whoo Lee, Kibeom Kim, Soo Wung Shin, Minsu Lee, Byoung-Tak Zhang and published on 2025-01-02.
+It falls under the categories: cs.MA.
+The research explores the following topic: Applying multi-agent reinforcement learning methods to realistic settings is challenging as it may require the agents to quickly adapt to unexpected situations that are rarely or never encountered in training. Recent methods for generalization to such out-of-distribution settings are limited to more specific, restricted instances of distribution shifts. To tackle adaptation to distribution shifts, we propose Unexpected Encoding Scheme, a novel decentralized multi-agent reinforcement learning algorithm where agents communicate "unexpectedness," the aspects of the environment that are surprising. In addition to a message yielded by the original reward-driven communication, each agent predicts the next observation based on previous experience, measures the discrepancy between the prediction and the actually encountered observation, and encodes this discrepancy as a message. Experiments on multi-robot warehouse environment support that our proposed method adapts robustly to dynamically changing training environments as well as out-of-distribution environment.
+
+Links:
+  - https://arxiv.org/abs/2501.01140v1
+  - https://arxiv.org/pdf/2501.01140v1

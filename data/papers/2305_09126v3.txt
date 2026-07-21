@@ -1,0 +1,21 @@
+Title: Transfer Learning for Causal Effect Estimation
+
+Authors: Song Wei, Hanyu Zhang, Ronald Moore, Rishikesan Kamaleswaran, Yao Xie
+
+Published: 2023-05-16
+
+Categories: cs.LG, math.ST, stat.ME, stat.ML
+
+Abstract:
+We present a Transfer Causal Learning (TCL) framework when target and source domains share the same covariate/feature spaces, aiming to improve causal effect estimation accuracy in limited data. Limited data is very common in medical applications, where some rare medical conditions, such as sepsis, are of interest. Our proposed method, named \texttt{$\ell_1$-TCL}, incorporates $\ell_1$ regularized TL for nuisance models (e.g., propensity score model); the TL estimator of the nuisance parameters is plugged into downstream average causal/treatment effect estimators (e.g., inverse probability weighted estimator). We establish non-asymptotic recovery guarantees for the \texttt{$\ell_1$-TCL} with generalized linear model (GLM) under the sparsity assumption in the high-dimensional setting, and demonstrate the empirical benefits of \texttt{$\ell_1$-TCL} through extensive numerical simulation for GLM and recent neural network nuisance models. Our method is subsequently extended to real data and generates meaningful insights consistent with medical literature, a case where all baseline methods fail.
+
+Paper ID: 2305.09126v3
+
+Summary:
+This paper titled "Transfer Learning for Causal Effect Estimation" was authored by Song Wei, Hanyu Zhang, Ronald Moore, Rishikesan Kamaleswaran, Yao Xie and published on 2023-05-16.
+It falls under the categories: cs.LG, math.ST, stat.ME, stat.ML.
+The research explores the following topic: We present a Transfer Causal Learning (TCL) framework when target and source domains share the same covariate/feature spaces, aiming to improve causal effect estimation accuracy in limited data. Limited data is very common in medical applications, where some rare medical conditions, such as sepsis, are of interest. Our proposed method, named \texttt{$\ell_1$-TCL}, incorporates $\ell_1$ regularized TL for nuisance models (e.g., propensity score model); the TL estimator of the nuisance parameters is plugged into downstream average causal/treatment effect estimators (e.g., inverse probability weighted estimator). We establish non-asymptotic recovery guarantees for the \texttt{$\ell_1$-TCL} with generalized linear model (GLM) under the sparsity assumption in the high-dimensional setting, and demonstrate the empirical benefits of \texttt{$\ell_1$-TCL} through extensive numerical simulation for GLM and recent neural network nuisance models. Our method is subsequently extended to real data and generates meaningful insights consistent with medical literature, a case where all baseline methods fail.
+
+Links:
+  - https://arxiv.org/abs/2305.09126v3
+  - https://arxiv.org/pdf/2305.09126v3

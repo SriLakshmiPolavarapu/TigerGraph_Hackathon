@@ -1,0 +1,21 @@
+Title: A Diffusion-based Method for Multi-turn Compositional Image Generation
+
+Authors: Chao Wang
+
+Published: 2023-04-05
+
+Categories: cs.CV, cs.AI, cs.LG
+
+Abstract:
+Multi-turn compositional image generation (M-CIG) is a challenging task that aims to iteratively manipulate a reference image given a modification text. While most of the existing methods for M-CIG are based on generative adversarial networks (GANs), recent advances in image generation have demonstrated the superiority of diffusion models over GANs. In this paper, we propose a diffusion-based method for M-CIG named conditional denoising diffusion with image compositional matching (CDD-ICM). We leverage CLIP as the backbone of image and text encoders, and incorporate a gated fusion mechanism, originally proposed for question answering, to compositionally fuse the reference image and the modification text at each turn of M-CIG. We introduce a conditioning scheme to generate the target image based on the fusion results. To prioritize the semantic quality of the generated target image, we learn an auxiliary image compositional match (ICM) objective, along with the conditional denoising diffusion (CDD) objective in a multi-task learning framework. Additionally, we also perform ICM guidance and classifier-free guidance to improve performance. Experimental results show that CDD-ICM achieves state-of-the-art results on two benchmark datasets for M-CIG, i.e., CoDraw and i-CLEVR.
+
+Paper ID: 2304.02192v2
+
+Summary:
+This paper titled "A Diffusion-based Method for Multi-turn Compositional Image Generation" was authored by Chao Wang and published on 2023-04-05.
+It falls under the categories: cs.CV, cs.AI, cs.LG.
+The research explores the following topic: Multi-turn compositional image generation (M-CIG) is a challenging task that aims to iteratively manipulate a reference image given a modification text. While most of the existing methods for M-CIG are based on generative adversarial networks (GANs), recent advances in image generation have demonstrated the superiority of diffusion models over GANs. In this paper, we propose a diffusion-based method for M-CIG named conditional denoising diffusion with image compositional matching (CDD-ICM). We leverage CLIP as the backbone of image and text encoders, and incorporate a gated fusion mechanism, originally proposed for question answering, to compositionally fuse the reference image and the modification text at each turn of M-CIG. We introduce a conditioning scheme to generate the target image based on the fusion results. To prioritize the semantic quality of the generated target image, we learn an auxiliary image compositional match (ICM) objective, along with the conditional denoising diffusion (CDD) objective in a multi-task learning framework. Additionally, we also perform ICM guidance and classifier-free guidance to improve performance. Experimental results show that CDD-ICM achieves state-of-the-art results on two benchmark datasets for M-CIG, i.e., CoDraw and i-CLEVR.
+
+Links:
+  - https://arxiv.org/abs/2304.02192v2
+  - https://arxiv.org/pdf/2304.02192v2

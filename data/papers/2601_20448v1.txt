@@ -1,0 +1,21 @@
+Title: TimeCatcher: A Variational Framework for Volatility-Aware Forecasting of Non-Stationary Time Series
+
+Authors: Zhiyu Chen, Minhao Liu, Yanru Zhang
+
+Published: 2026-01-28
+
+Categories: cs.LG
+
+Abstract:
+Recent lightweight MLP-based models have achieved strong performance in time series forecasting by capturing stable trends and seasonal patterns. However, their effectiveness hinges on an implicit assumption of local stationarity assumption, making them prone to errors in long-term forecasting of highly non-stationary series, especially when abrupt fluctuations occur, a common challenge in domains like web traffic monitoring. To overcome this limitation, we propose TimeCatcher, a novel Volatility-Aware Variational Forecasting framework. TimeCatcher extends linear architectures with a variational encoder to capture latent dynamic patterns hidden in historical data and a volatility-aware enhancement mechanism to detect and amplify significant local variations. Experiments on nine real-world datasets from traffic, financial, energy, and weather domains show that TimeCatcher consistently outperforms state-of-the-art baselines, with particularly large improvements in long-term forecasting scenarios characterized by high volatility and sudden fluctuations. Our code is available at https://github.com/ColaPrinceCHEN/TimeCatcher.
+
+Paper ID: 2601.20448v1
+
+Summary:
+This paper titled "TimeCatcher: A Variational Framework for Volatility-Aware Forecasting of Non-Stationary Time Series" was authored by Zhiyu Chen, Minhao Liu, Yanru Zhang and published on 2026-01-28.
+It falls under the categories: cs.LG.
+The research explores the following topic: Recent lightweight MLP-based models have achieved strong performance in time series forecasting by capturing stable trends and seasonal patterns. However, their effectiveness hinges on an implicit assumption of local stationarity assumption, making them prone to errors in long-term forecasting of highly non-stationary series, especially when abrupt fluctuations occur, a common challenge in domains like web traffic monitoring. To overcome this limitation, we propose TimeCatcher, a novel Volatility-Aware Variational Forecasting framework. TimeCatcher extends linear architectures with a variational encoder to capture latent dynamic patterns hidden in historical data and a volatility-aware enhancement mechanism to detect and amplify significant local variations. Experiments on nine real-world datasets from traffic, financial, energy, and weather domains show that TimeCatcher consistently outperforms state-of-the-art baselines, with particularly large improvements in long-term forecasting scenarios characterized by high volatility and sudden fluctuations. Our code is available at https://github.com/ColaPrinceCHEN/TimeCatcher.
+
+Links:
+  - https://arxiv.org/abs/2601.20448v1
+  - https://arxiv.org/pdf/2601.20448v1

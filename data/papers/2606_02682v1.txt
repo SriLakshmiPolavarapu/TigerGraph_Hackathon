@@ -1,0 +1,22 @@
+Title: Neural Networks and Schramm-Loewner Evolutions
+
+Authors: Neilesh Shrotri, Vlad Margarint
+
+Published: 2026-06-01
+
+Categories: cond-mat.dis-nn, math.PR
+
+Abstract:
+In this manuscript, we explore the application of neural networks to predict the natural parameter $κ\geq 0$ of Schramm-Loewner Evolution (SLE$_κ$) theory. SLE$_κ$ is a family of random fractal curves that has significant implications in Statistical Mechanics and Conformal Field Theory. This parameter $κ\geq 0$ plays an important role in the theory as there are models of Planar Statistical Physics that are proven to have SLE as scaling limits as well as others that are conjectured to have this limit for various choices of the parameter $κ\geq 0$. In addition, there are three different statistical behaviors of the SLE curves as the parameter $κ$ changes in $[0, \infty).$ Leveraging the powerful pattern recognition capabilities of neural networks, this study aims to develop a predictive model that can estimate the $κ$ parameter with good accuracy.
+
+Paper ID: 2606.02682v1
+
+Summary:
+This paper titled "Neural Networks and Schramm-Loewner Evolutions" was authored by Neilesh Shrotri, Vlad Margarint and published on 2026-06-01.
+It falls under the categories: cond-mat.dis-nn, math.PR.
+The research explores the following topic: In this manuscript, we explore the application of neural networks to predict the natural parameter $κ\geq 0$ of Schramm-Loewner Evolution (SLE$_κ$) theory. SLE$_κ$ is a family of random fractal curves that has significant implications in Statistical Mechanics and Conformal Field Theory. This parameter $κ\geq 0$ plays an important role in the theory as there are models of Planar Statistical Physics that are proven to have SLE as scaling limits as well as others that are conjectured to have this limit for various choices of the parameter $κ\geq 0$. In addition, there are three different statistical behaviors of the SLE curves as the parameter $κ$ changes in $[0, \infty).$ Leveraging the powerful pattern recognition capabilities of neural networks, this study aims to develop a predictive model that can estimate the $κ$ parameter with good accuracy.
+
+Links:
+  - https://arxiv.org/abs/2606.02682v1
+  - https://arxiv.org/pdf/2606.02682v1
+  - https://doi.org/10.1007/s00521-026-12058-3

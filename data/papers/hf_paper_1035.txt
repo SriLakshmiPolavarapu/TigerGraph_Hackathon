@@ -1,0 +1,3063 @@
+Title: arXiv paper 1035
+
+Categories: 4
+
+Abstract:
+arXiv:1710.10109v4 [math.GR] 27 Nov 2017
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR
+AND AUTOMATA GROUPS
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+Abstract. We prove that the word problem is undecidable in functionally recursive groups, and that the order problem is undecidable in automata groups,
+even under the assumption that they are contracting.
+
+1. Introduction
+Let A be a finite set, and consider a group G acting faithfully and “self-similarly”
+on the set A˚ of words over A. This means that every g P G acts in the form
+(1.1)
+
+pa1 . . . an qg “ a11 pa2 . . . an qg
+
+1
+
+for some a11 P A and some g 1 P G depending only on a1 , g; we encode them as
+pg 1 , a11 q “ Φpa1 , gq for a map Φ : A ˆ G Ñ G ˆ A. If furthermore G is finitely
+generated (say by a finite set S, so G is a quotient FS ։ G of the free group on S),
+then its action may be described by finite data, namely a lift Φ : A ˆ S Ñ FS ˆ A of
+the restriction of Φ to the generators of G. A finitely generated group given in this
+manner is called functionally recursive [4, §3], or self-similar ; we call G the group
+presented by Φ, and write G “ xΦy. We call Φ an (asynchronous) transducer.
+Large classes of finitely generated groups can be presented as functionally recursive ones; notably, all the “iterated monodromy groups” of Nekrashevych [16], and
+the automata groups mentioned in §1.1 below.
+Even though the map Φ completely determines the action of G, and therefore G
+itself, it is unclear how much of G is known from Φ. Our first result is as negative
+as can be:
+Theorem A. There is no algorithm that, given Φ : A ˆ S Ñ FS ˆ A and s P S,
+determines whether s “ 1 in xΦy.
+1.1. Automata groups. Assume now that G is a functionally recursive group,
+and that in the action (1.1) the elements g 1 have at most the length of g, in the
+generating set S. Then, up to replacing S by S Y S ´1 Y t1u, the map Φ takes the
+form Φ : A ˆ S Ñ S ˆ A; we call it a finite state transducer. The group G is called
+an automata group; these form a notorious class of groups, containing all finitely
+generated linear groups as well as infinite torsion groups such as the “Grigorchuk
+group” [7] and “Gupta-Sidki groups” [10]. The Grigorchuk group is also a group
+of intermediate word-growth, and was used to settle the Milnor problem on group
+growth [8].
+The action of S, and of G itself, may be conveniently described by a finite labeled
+graph called its Moore diagram. Consider the directed graph Γ with vertex set S
+Date: October 25, 2017.
+This work is supported by the “@raction” grant ANR-14-ACHN-0018-01.
+1
+
+2
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+p1, 1q
+
+b
+
+p0, 0q
+
+p1, 1q
+
+p1, 1q
+
+d
+p0, 0q
+
+c
+a
+
+p0, 0q
+
+p0, 0q
+e
+p1, 1q
+
+p0, 1q, p1, 0q
+Figure 1. The transducer generating the Grigorchuk group. Here
+A “ t0, 1u and S “ ta, b, c, d, eu.
+and an edge from s to t labeled pa, bq whenever Φpa, sq “ pt, bq; then the action of
+s P S on A˚ is determined as follows: given a1 . . . an P A˚ , find the unique path in
+Γ starting at s and whose first label letters read a1 . . . an ; let b1 . . . bn be the second
+label letters; then pa1 . . . an qs “ b1 . . . bn . See Figure 1 for the graph Γ describing
+the Grigorchuk group.
+Every element of G (say represented by a word w of length n in S) admits
+a similar description, but now using a graph with vertex set S n . The word w
+represents the identity in G if and only if at every vertex reachable from w all the
+outgoing edges have labels in tpa, aq | a P Au. It follows that the word problem is
+decidable in G, and even belongs to LinSpace (and therefore to ExpTime); but
+that is about as much as is known. We consider the “order problem” (determine
+the order of an element), which was raised at the end of last century by Sidki
+and by Grigorchuk, Nekrashevych and Sushchansky [9, Problem 7.2.1(a)], to which
+Gillibert announced a solution in July 2017; his proof appears in [6]:
+Theorem B. There is no algorithm that, given Φ : A ˆ S Ñ S ˆ A and s P S,
+determines the order of s in xΦy, namely the cardinality of xsy.
+Worse than that, the action is uncomputable in the following sense: consider the
+natural extension of the action of xΦy to A8 . Then we have the following variants
+of Theorems A and B:
+Theorem A1 . There is no algorithm that, given Φ : A ˆ S Ñ FS ˆ A and a P A
+and s P S, determines whether a8 is fixed by s.
+Theorem B1 . There is no algorithm that, given Φ : A ˆ S Ñ S ˆ A and a P A and
+s P S, determines the cardinality of the orbit of a8 under xsy.
+Finally, the results in Theorems A and B can be made uniform as follows:
+Theorem A2 . There is a functionally recursive group xΦy with Φ : AˆS Ñ FS ˆA
+such that ts P FS | s “ 1 in xΦyu is not recursive.
+Theorem B2 . There is an automata group xΦy with Φ : A ˆ S Ñ S ˆ A, and two
+states s, t P S, such that the set tn P N | stn has finite orderu is not recursive.
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS
+
+3
+
+1.2. Contracting groups. Assume now that G is a functionally recursive group,
+and that in the action (1.1) the elements g 1 are shorter than g, in the generating set
+S, in the sense that there are constants λ ă 1 and C with |g 1 | ď λ|g|`C for all g P G.
+Then, up to replacing S by the set of all words of length ď C{p1 ´ λq, we also have
+|g 1 | ď |g|; we have thus defined a subclass of automata groups, called contracting
+automata groups (see §3.4 for a more precise definition). Their word problem is
+decidable in LogSpace (and therefore in PolyTime). We will see, however, that
+the order and orbit order problems remain unsolvable in that restricted class:
+Theorem C (= Theorem 3.4). The transducers constructed in Theorems B and B1
+may be assumed to generate contracting groups.
+1.3. Sketch of proofs. We encode Minsky machines in functionally recursive
+groups. Minsky machines (see [15]) are restricted Turing machines with two tapes,
+which may move the tapes and sense the tape’s end but may not write on them;
+equivalently, they are finite state automata equipped with two counters with values
+in N that may be incremented, decremented and tested for 0.
+In all cases, we encode the machine, in state s with counter values pm, nq, by
+m
+n
+the word sx2 y 2 in a functionally recursive group containing elements x, y and
+an element s for each state of the machine. The action of the group is so devised
+that if the machine evolves to state ps1 , m1 , n1 q then the recursive action is given
+m
+n
+n1
+m1
+by s1 x2 y 2 . The image of a prescribed ray under sx2 y 2 records the computational steps of the machine when started in ps, m, nq, and in particular whether the
+machine reached a final state. We construct an auxiliary element t that only acts
+m
+n
+m
+n
+on sequences containing a trace of this final state, and then psx2 y 2 qtpsx2 y 2 q´1
+fixes the original ray if and only if the machine never reaches the final state. Taking
+the commutator of that last element acting only in the neighbourhood of the original ray yields an expression that is trivial if and only if the machine never reaches
+the final state.
+Inherently, sometimes the output of the transducer is longer than the input (e.g.,
+if the machine increments the first counter, the transducer must replace x by x2 ).
+To obtain an automata group, we have the transducer consume a power of its input
+m
+n
+word sx2 y 2 ; e.g., the incrementation of the counter may be performed by erasing
+n
+m
+n
+every second s and every second block of y 2 ’s. The element sx2 y 2 then may be
+arranged to finite order if and only if the machine reaches the final state.
+1.4. Tilings. Our results on functionally recursive groups and transducers may also
+be interpreted in terms of tilings. Let C be a finite set of colours, and T Ď C N,E,S,W
+be a set of Wang tiles. A valid tiling is a map t : Z2 Ñ T with tpx, yqN “ tpx, y `1qS
+and tpx, yqE “ tpx ` 1, yqW for all x, y P Z2 . Berger showed in [2] that it is
+undecidable to determine, given T , whether there exists a valid tiling by T . This
+has been improved: for λ, µ P tN, E, S, W u, call a set of tiles λµ-deterministic if
+for every c, d P C there exists at most one tile u P T with uλ “ c and uµ “ d, and
+λµ-complete if there exists precisely one tile u P T with these conditions. Lukkarila
+showed in [14] that the undecidability result holds even under the restriction that
+T is N E, N W, SE, SW -deterministic. Clearly a SW -complete tileset tiles uniquely
+the first quadrant for any choice of colours on the axes.
+Our result on the order problem has the following translation into tilings. We
+consider tilings of the upper half-plane tpx, yq | y ě 0u. Then the following problem
+is undecidable even for SE, SW -complete tilesets: “given c P C, is there an integer
+
+4
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+n P N such that every tiling of the upper half-plane with c8 on the horizontal axis
+is horizontally n-periodic?”.
+Indeed, given Φ : A ˆ S Ñ S ˆ A, set C “ A \ S and whenever Φpa, sq “
+ps1 , a1 q build a tile with N, E, S, W -labels s1 , a1 , s, a respectively; also build tiles
+with N, E, S, W -labels c, d, c, d for all pc, dq P C 2 zpS ˆ Aq. Then the above tiling
+problem is satisfied for c P S if and only if c has finite order in xΦy.
+The word problem may also be translated to a tiling problem, but now in hyperbolic space. The tileset is now T Ď C N,E,S1 ,S2 ,W . The lattice Z2 is now Λ :“ t2y pi`
+xq | x, y P Zu Ă H. A tiling is a map t : Λ Ñ T with tp2y pi`xqqE “ tp2y pi`x`1qqW
+and tp2y pi ` 2xqqN “ tp2y`1 pi ` xqqS1 and tp2y pi ` 2x ` 1qqN “ tp2y`1 pi ` xqqS2
+for all x, y P Z. Tiles are visualized as pentagons assembling into a tiling of the
+hyperbolic plane, invariant under the transformations z ÞÑ z ` 1 and z ÞÑ 2z:
+
+The following problem is undecidable even for N E, N W -complete tilesets: “given
+c P C, does every tiling of tx ` iy P H | x P r0, 1s, y ď 1uwith c on the edge from i
+to i ` 1 have identical labels on the boundary half-lines tx “ 0u and tx “ 1u?”.
+Indeed by subdividing and inserting the empty state we may assume that the
+map Φ describing our functionally recursive group satisfies ΦpA ˆ Sq Ď S 2 ˆ A;
+then tiles are defined as above.
+1.5. History. Links have been established since the beginning between undecidable problems in theoretical computer science — halting of Turing machines —
+and in algebra — decidability of properties of algebraic objects. Minsky machines,
+because of their simplicity, have been early recognized as useful tools in this correspondence, see e.g. Gurevich’s work [11] on identities in semigroups.
+Automata semigroups are defined quite similarly to automata groups; one merely
+drops the requirement that the action be by invertible maps. Decision problems
+have been extensively studied within the class of automata semigroups [1, 13].
+Gillibert proved in [5] that the order problem is unsolvable in that class. His
+proof is based on the undecidability of Wang’s tiling problem [2], and harnesses
+Kari’s solution of the nilpotency problem for cellular automata [12].
+There are usually serious difficulties in converting a solution in semigroups to
+one in groups. In particular, the tilings at the heart of Gillibert’s construction give
+fundamentally non-invertible transformations of A˚ .
+On the other hand, a direct approach to the order problem succeeded for the
+restricted class of “bounded automata” groups; Bondarenko, Sidki and Zapata
+prove in [3] that they have solvable order problem. Gillibert announced in [6] the
+undecidability of the order problem in automata groups; his work uses a simulation
+of arbitrary Turing machines by transducers via cellular automata.
+2. Functionally recursive groups and Minsky machines
+All our theorems are proven by embedding Minsky machine computations into
+functionally recursive groups. Let us recall more precisely the definition of these
+machines:
+Definition 2.1. A Minsky machine is a computational device M equipped with
+two integer counters m, n and a finite amount of additional memory. It has a finite
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS
+
+5
+
+set S of states, an initial state s˚ P S, a final state s: P S, and for each state s ‰ s:
+an instruction, which can by any of the following kind:
+I:
+II:
+III:
+IV:
+V:
+VI:
+VII:
+VIII:
+IX:
+X:
+
+ps, m, nq ÞÑ ps1 , m ` 1, nq;
+ps, m, nq ÞÑ ps1 , m, n ` 1q;
+ps, m, nq ÞÑ ps1 , m ` 1, n ` 1q;
+ps, m, nq ÞÑ ps1 , m ´ 1, nq, only valid if m ą 0;
+ps, m, nq ÞÑ ps1 , m, n ´ 1q, only valid if n ą 0;
+ps, m, nq ÞÑ ps1 , n, mq;
+ps, m, nq ÞÑ pm “ 0 ? s1 : s2 , m, nq;
+ps, m, nq ÞÑ pn “ 0 ? s1 : s2 , m, nq;
+ps, m, nq ÞÑ m “ 0 ? ps1 , m, nq : ps2 , m ´ 1, nq;
+ps, m, nq ÞÑ n “ 0 ? ps1 , m, nq : ps2 , m, n ´ 1q.
+
+(We use the C style “?:” operator, with ‘a ? b : c’ meaning ‘if a then b else c’.)
+As M is turned on, its state and counters initialize at ps0 , m0 , n0 q “ ps˚ , 0, 0q,
+and then psi`1 , mi`1 , ni`1 q is determined from psi , mi , ni q using the prescribed
+rules. If at some moment si “ s: then M stops; otherwise it runs forever.
+△
+We recall the main result on Mealy machines, namely that they are as powerful
+as Turing machines:
+Proposition 2.2 ([15]). (1) There is no algorithm that, given a Minksy machine
+M, determine whether it stops.
+(2) There is a “universal” Minsky machine M such that
+tn P N | M stops when turned on in state ps˚ , 0, nqu
+is not recursive.
+
+
+
+We also note that only one of the instructions {I,II} and III is necessary, and that
+in the presence of VI only one of I,II, one of IV,V, one of VII,VIII and one of IX,X is
+necessary. Minimal sets of instructions are {III,IV,V,VII,VIII} and {I,IV,VI,VII}
+and {III,IX,X} and {I,VI,IX}.
+2.1. Proof of Theorem A1 . Let M be a Minsky machine with stateset S0 . Without loss of generality, we assume that all instructions of M are of type I, VI, IX.
+We construct a functionally recursive group xΦM y presented by ΦM : A ˆ S Ñ
+FS ˆ A, for sets A, S given as follows: the generating set S consists of
+‚ elements x, y, s: , t and u;
+‚ for each state si P S0 of type I or IX, an element si ;
+‚ for each state si P S0 of type VI, three elements si , ai , bi .
+The alphabet A consists of:
+‚
+‚
+‚
+‚
+
+four letters 0,
+for each state
+for each state
+for each state
+
+1, :1 and :2 ;
+si P S0 of type I, a letter i1 ;
+si P S0 of type IX, two letters i1 and i2 ;
+si P S0 of type VI, five letters i1 , i2 , . . . , i5 .
+
+The map ΦM : A ˆ S Ñ FS ˆ A is given below, with ǫ denoting the empty word
+in FS . Whenever a value of ΦM is unspecified, we take it to mean ΦM pa, sq “ ps, aq.
+
+6
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+‚ for the states s: and t, u we put
+ΦM p0, s: q “ pǫ, :1 q;
+
+ΦM p:1 , xq “ pǫ, :1 q;
+
+ΦM p:1 , yq “ pǫ, :1 q;
+
+ΦM p:2 , xq “ pǫ, :2 q;
+
+ΦM p:2 , yq “ pǫ, :2 q;
+
+ΦM p:1 , tq “ pǫ, :2 q;
+
+ΦM p0, uq “ pu, 1q;
+
+ΦM p:2 , s: q “ pǫ, :2 q;
+
+ΦM p:2 , tq “ pǫ, :1 q
+
+ΦM p1, uq “ pu, 0q.
+
+ΦM p:1 , s: q “ pǫ, 0q;
+
+‚ for all g P Sztuu we put ΦM p1, gq “ pǫ, 1q, and for all a P Azt0, 1u we put
+ΦM pa, uq “ pǫ, aq.
+‚ for each instruction psi , m, nq ÞÑ psj , m ` 1, nq of type I we put
+ΦM pi1 , si q “ pǫ, 0q; ΦM pi1 , xq “ px2 , i1 q;
+
+ΦM p0, si q “ psj , i1 q;
+
+ΦM pi1 , yq “ py, i1 q.
+
+‚ for each instruction psi , m, nq ÞÑ psj , n, mq of type VI, ΦM pa, sq is written
+at position pa, sq of the following table:
+
+element of S
+
+0
+x
+y
+si pai bi x, i1 q
+ai
+pai , i2 q
+bi
+
+input letter
+i2
+i3
+pǫ, i3 q
+px, i2 q
+py, i2 q
+
+i1
+pxbi x , i1 q
+py x , i1 q
+pǫ, 0q
+
+i4
+i5
+px2 , i4 q py, i5 q
+py, i4 q px, i5 q
+
+pǫ, 0q
+pbi , i4 q pa´1
+i sj , i 5 q
+
+pǫ, i2 q
+
+pǫ, i3 q
+
+‚ for each instruction psi , m, nq ÞÑ pm “ 0 ? sj : sk , maxp0, m ´ 1q, nq of type
+IX we put
+ΦM pi1 , xq “ ps´1
+k sj x, i2 q;
+
+ΦM p0, si q “ psk , i1 q;
+ΦM pi1 , si q “ pǫ, 0q;
+
+ΦM pi2 , xq “
+
+ΦM pi1 , yq “ py, i1 q;
+
+px´1 s´1
+j sk x, i1 q;
+
+ΦM pi2 , yq “ py, i2 q.
+
+Theorem A1 follows from the undecidability of the halting problem for the Minsky
+machines (Proposition 2.2) and the following
+Proposition 2.3. Consider the infinite sequence W “ 08 . Then the Minsky machine M does not halt if and only if the action of xΦM y satisfies
+W ps˚ xyqtps˚ xyq
+
+´1
+
+“ W.
+m
+
+n
+
+m
+
+n
+
+Proof. We encode the states of M by elements of FS . The word psi x2 y 2 qαpsi x2 y 2 q´1
+corresponds to the state psi , m, nq.
+It is convenient to write ΦM pa, gq “ pg 1 , a1 q in the form a ¨ g “ g 1 ¨ a1 . In this
+manner, the computation of the functionally recursive action is given by a sequence
+of exchanges of letters with words in FS . We check the following equalities:
+If psi , m, nq Ñ psj , m ` 1, nq is an instruction of type I, then
+(2.1)
+
+m
+
+n
+
+m
+
+n
+
+m`1
+
+0 ¨ psi x2 y 2 qtpsi x2 y 2 q´1 “ psj x2
+m
+
+n
+
+m
+
+n
+
+n
+
+m`1
+
+y 2 qtpsj x2
+
+m`1
+
+n
+
+y 2 q´1 ¨ 0.
+
+n
+
+Indeed 0 ¨ si x2 y 2 “ sj ¨ i1 ¨ x2 y 2 “ sj x2
+y 2 ¨ i1 ; the claim follows from
+m
+n
+m`1
+n
+i1 ¨ t “ t ¨ i1 and the reverse i1 ¨ psi x2 y 2 q´1 “ psj x2
+y 2 q´1 ¨ 0.
+If psi , m, nq Ñ psj , n, mq is an instruction of type VI, then
+(2.2)
+
+m
+
+n
+
+m
+
+n
+
+n
+
+m
+
+n
+
+m
+
+0m`2 ¨ psi x2 y 2 qtpsi x2 y 2 q´1 “ psj x2 y 2 qtpsj x2 y 2 q´1 ¨ 0m`2 .
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+Indeed we first check 0 ¨ si x2 y 2 “ ai bi xpxbi x q2 py x q2 ¨ i1 “ ai x2 bi y 2 x ¨ i1 .
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS
+m
+
+7
+
+0
+
+We obtained a word with two “blocks” of x: the blocks x2 and x2 . Each time
+a ‘0’ letter is multiplied on the left of that word, the size of the first block will halve
+and the size of the second one will double: for m, n, p P N, we have
+0 ¨ ai x2m bi y n xp “ ai xm bi y n x2p ¨ i4
+m
+
+n
+
+n
+
+m
+
+so 0m`1 ¨ si x2 y 2 “ ai xbi y 2 x2 ¨ pi4 qm i1 . Then
+n
+
+m
+
+n
+
+m
+
+2
+2
+0 ¨ ai xbi y 2 x2 “ ai pa´1
+¨ i5 ,
+i sj qx y
+m
+
+n
+
+n
+
+m
+
+so 0m`2 ¨ si x2 y 2 “ sj x2 y 2 ¨ i5 pi4 qm i1 . Recalling that we have a ¨ t “ t ¨ a for all
+a “ i1 , . . . , i5 , the claim is proven.
+If ps, m, nq Ñ pm “ 0 ? sj : sk , maxpm ´ 1, 0q, nq is an instruction of type IX,
+then if m “ 0 we have
+(2.3)
+
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+n
+
+m
+
+n
+
+m´1
+
+y 2 qtpsk x2
+
+0 ¨ psi x2 y 2 qtpsi x2 y 2 q´1 “ psj x2 y 2 qtpsj x2 y 2 q´1 ¨ 0
+
+while if m ą 0 we have
+(2.4)
+
+m
+
+0 ¨ psi x2 y 2 qtpsi x2 y 2 q´1 “ psk x2
+
+n
+
+m´1
+
+n
+
+y 2 q´1 ¨ 0.
+
+Indeed in the first case we have
+n
+
+n
+
+2
+0 ¨ si xy 2 “ sk ps´1
+¨ i2 ,
+k sj xqy
+
+while in the second case we have
+m
+
+n
+
+m´1
+
+´1 ´1
+0 ¨ si x2 y 2 “ sk ps´1
+sk sj xq2
+j sk x ¨ x
+
+n
+
+m´1
+
+y 2 ¨ i1 “ sk x2
+
+n
+
+y 2 ¨ i1 .
+
+Recalling that we have a ¨ t “ t ¨ a for all a “ i1 , i2 , the claim is proven.
+From (2.1)–(2.4) it follows that if M does not halt then W ps˚ xyqtps˚ xyq
+Conversely, if M halts then there exist k, m, n P N such that
+m
+
+n
+
+m
+
+´1
+
+“ W.
+
+n
+
+0k ¨ ps˚ xyqtps˚ xyq´1 “ ps: x2 y 2 qtps: x2 y 2 q´1 ¨ 0k .
+Then
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+0 ¨ s: x2 y 2 tps: x2 y 2 q´1 “ :1 ¨ tps: x2 y 2 q´1 “ :2 ¨ ps: x2 y 2 q´1 “ :2 .
+In that case, we have W ps˚ xyqtps˚ xyq
+
+´1
+
+“ 0 k :2 0 8 ‰ W .
+
+
+
+The computations are best carried on ΦM ’s dual Moore diagram ∆, see Figure 2
+: this is the directed labeled graph with vertex set A and with for all a P A, s P S an
+edge from a to b labeled ps, tq whenever ΦM pa, sq “ pt, bq. One checks an equality
+‘ΦM pa, sq “ pt, bq’ by finding in ∆ a path starting at a with input label s; the
+endpoint of the path is b, and the output label is t.
+2.2. Proof of Theorem A. We have not yet used the letter 1 and the state u of
+ΦM . Theorem A follows now from the following
+Proposition 2.4. The Minsky machine M halts if and only if
+rps˚ xyqtps˚ xyq´1 , us ‰ 1 in xΦM y.
+Proof. The element u acts on Aω as follows: it scans X P Aω for its longest prefix
+in t0, 1u˚ , and exchanges all 0 and 1 in that prefix. Write g “ ps˚ xyqtps˚ xyq´1 ;
+from Proposition 2.3 we know that g fixes 08 if and only if M does not halt.
+Assume first that M does not halt; then g in fact also fixes t0, 1u8 , so the
+supports of g and u are disjoint and rg, us “ 1 in xΦM y.
+
+8
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+pg, ǫq@g
+py, yq
+
+px, x2 q
+
+px, yq
+
+py, ǫqpx, ǫq
+:1
+
+1
+
+i4
+pt, tq
+
+px, ǫq
+
+pu, uq
+
+pbi , bi q
+
+pt, tq
+
+i2
+px, xq
+
+0
+
+pai , ai q
+
+ps: , ǫq
+ps: , ǫq
+
+px, x2 q
+
+i3
+
+psi , sj q
+
+i1
+
+pt, tq
+py, y x q
+
+pt, tq Type I
+py, yq
+
+Type VI
+px, ǫqpsi , ai bi xq
+
+pbi , a´1
+i sj q
+
+:2
+
+pt, ǫq
+
+py, xq
+i5
+
+py, ǫq
+
+pt, tq
+
+i1
+
+py, yq
+px, xbi x q
+
+psi , sk q Type IX
+px, s´1
+k sj xq
+i1
+i2
+´1 ´1
+px, x sj sk xq
+
+pt, tq
+
+py, yq
+
+Figure 2. The dual Moore diagram of ΦM , used in the proof of Theorem A
+Assume next that M does halt; without loss of generality, we may assume M
+does not stop immediately, so there is k ě 1 such that p0k`1 qg “ 0k :2 . Since
+p0k`1 qu “ 1k`1 and p0k :2 qu “ 1k :2 and p1k`1 qg “ 1k`1 and p1k :2 qg “ 1k :2 ,
+the commutator rg, us acts as a 2-2-cycle p0k`1 , 0k :2 qp1k`1 , 1k :2 q and in particular
+rg, us ‰ 1 in xΦM y:
+g
+
+1k`1
+
+u
+
+0k`1
+
+g
+
+0 k :2
+
+u
+
+1 k :2
+
+g
+
+
+
+2.3. Proof of Theorem A2 . Consider a universal Minsky machine Mu , namely
+one that emulates arbitrary Turing machines encoded in an integer n, when started
+in state ps˚ , 0, nq. The set of 2n such that Mu halts when started in state ps˚ , 0, nq
+is not recursive, see Proposition 2.2. Therefore, Theorem A2 follows by considering
+n
+n
+in the group xΦMu y the elements rps˚ xy 2 qtps˚ xy 2 q´1 , us; this set of words is
+recursive, but the subset of those that equal 1 in xΦMu y is not recursive.
+3. Automata groups and Minsky machines
+3.1. Proof of Theorem B. Let M by a Minsky machine with stateset S0 . Without loss of generality, we assume that all instructions of M are of type III,IV,V,VII,VIII,
+as defined in the beginning of Section 2,
+S0 “ SIII \ SIV \ SV \ SVII \ SVIII \ ts: u
+We consider the transducer with stateset S :“ S0˘1 \ tǫ, x, x´1 , y, y ´1 u and alphabet
+A “ tIIIi , IVi , Vi , VIIj , VIIIj | i “ 1, 2, 1, 2; j “ 1, . . . , 4, 1, . . . , 4u.
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS
+
+9
+
+in state
+
+The structure of the transducer is given by its map ΦM : A ˆ S Ñ S ˆ A, first
+described as a table, with ΦM pa, sq at position pa, sq. The state ǫ is the identity,
+and ΦM pa, ǫq “ pǫ, aq for all a P A.
+For all instructions ps, m, nq ÞÑ ps1 , m ` 1, n ` 1q of type III and for all t P S0 zSIII
+we have
+input letter
+III2
+III1
+III2
+III1
+´1
+´1
+x px, III1 q px, III2 q px , III1 q px , III2 q
+py ´1 , III1 q
+y py, III1 q py, III2 q py ´1 , III1 q
+1
+s ps , III2 q pǫ, III1 q
+pǫ, III2 q
+pps1 q´1 , III1 q
+pǫ, III1 q
+pǫ, III2 q
+t pǫ, III1 q pǫ, III2 q
+
+in state
+
+in state
+
+For all instructions ps, m, nq ÞÑ ps1 , m ´ 1, nq of type IV and for all t P S0 zSIV , we
+have
+input letter
+IV2
+IV1
+IV2
+IV1
+x px, IV2 q pǫ, IV1 q
+pǫ, IV2 q
+px´1 , IV1 q
+py ´1 , IV2 q
+y py, IV1 q py, IV2 q
+py ´1 , IV1 q
+1
+1
+1 ´1
+s ps , IV1 q ps , IV2 q pps q , IV1 q pps1 q´1 , IV2 q
+pǫ, IV1 q
+pǫ, IV2 q
+t pǫ, IV1 q pǫ, IV2 q
+The same applies for an instruction of type V, with the roles of x, y switched.
+For an instruction ps, m, nq ÞÑ pm “ 0 ? s1 : s2 , m, nq of type VII and for all
+t P S0 zSVII , we have
+
+x
+y
+s
+t
+
+VII1
+VII2
+px, VII4 q pǫ, VII3 q
+py, VII1 q pǫ, VII2 q
+pǫ, VII2 q ps2 , VII1 q
+pǫ, VII1 q pǫ, VII2 q
+
+input letter
+VII3
+VII4
+VII1
+pǫ, VII2 q px, VII1 q
+px´1 , VII4 q
+pǫ, VII3 q py, VII4 q
+py ´1 , VII1 q
+1
+ps , VII4 q pǫ, VII4 q pps2 q´1 , VII2 q
+pǫ, VII1 q
+pǫ, VII3 q pǫ, VII4 q
+
+VII2
+pǫ, VII3 q
+pǫ, VII2 q
+pǫ, VII1 q
+pǫ, VII2 q
+
+VII3
+VII4
+pǫ, VII2 q px´1 , VII1 q
+pǫ, VII3 q py ´1 , VII4 q
+pǫ, VII3 q pps1 q´1 , VII3 q
+pǫ, VII3 q
+pǫ, VII4 q
+
+The same applies for an instruction of type VIII, with the roles of x, y switched.
+Note that s: is treated as a state t in all tables above.
+Theorem B follows from the undecidability of the halting problem for Minsky
+machines, and the following
+Proposition 3.1. The Minsky machine M constructed above halts if and only if
+the element s˚ xy has finite order in xΦM y.
+Proof. Set G “ xΦM y. For g P G, denote by Cpgq its symmetric conjugacy class:
+Cpgq :“ tg ˘x | x P Gu.
+Given a symmetric conjugacy class C, choose a representative g in it, let A “
+A1 \ ¨ ¨ ¨ \ Aℓ be the decomposition of A into cycles for the action of g, and choose
+representatives ai P Ai . We have ΦM pai , g #Ai q “ phi , ai q for some hi P G, and it is
+easy to see that the collection of symmetric conjugacy class tCphi q | i “ 1, . . . , ℓu
+is independent of the choice of g and the ai .
+We construct an integer-labeled, directed graph1 whose vertices are symmetric
+conjugacy classes in G; for a conjugacy class C as above, there are ℓ edges starting
+at C, ending respectively at Cph1 q, . . . , Cphℓ q with labels #A1 , . . . , #Aℓ .
+1This graph essentially appears in the solution of [3] to the order problem in bounded automata.
+
+10
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+Lemma 3.2. For g P G, its order (in N Y t8u) is the least common multiple, along
+all paths starting at Cpgq, of the product of the labels along the path.
+Proof. Consider a path starting at Cpgq, with labels n1 , . . . , ns , and going through
+vertices Cpg1 q, . . . , Cpgs q. Then g has an orbit of length n1 on A, so the order of g
+is a multiple of n1 . Furthermore, g n1 fixes that orbit, and acts as g1 on sequences
+that start by that orbit. Recursively, the order of g1 is a multiple of n2 ¨ ¨ ¨ ns , so the
+order of g is a multiple of n1 ¨ ¨ ¨ ns . In particular, if there are paths with arbitrarily
+large product of labels then g has infinite order.
+Conversely, if g has infinite order then there are arbitrarily long orbits of g on
+A˚ , so there are paths with arbitrarily large product of labels; and if m be the least
+common multiple of all path labels then all edges on paths starting at Cpg m q are
+labeled 1 so g m fixes every sequence and therefore g m “ 1.
+
+Let us compute the subgraph spanned by Cps˚ xyq. For the computations, it is
+helpful to picture the operation of the transducer ΦM by means of its dual Moore
+diagram ∆, see Figure 3. Given g P G, we compute all primitive cycles in ∆ whose
+input label is a power of g, and read the corresponding output label; these are the
+hi in the map on symmetric conjugacy classes Cpgq
+tCphi qu.
+We first note, by direct inspection, that x and y commute in G. This follows by tracing the path x´1 y ´1 xy in the graphs above, and noting that they
+always induce the trivial permutation of A with output either trivial or conjugate
+to px´1 y ´1 xyq˘1 .
+We now claim that, if ps, m, nq Ñ ps1 , m1 , n1 q is a transition of the machine M,
+n1
+m
+n
+m1
+then the conjugacy class Cpsx2 y 2 q has at least one arrow to Cps1 x2 y 2 q, and
+possibly other arrows, all of them to Cp1q. We also claim that if s is not of type
+n1
+m1
+IV or V, then arrows to Cps1 x2 y 2 q are with labels ą 1; and all arrows from
+m
+n
+Cps: x2 y 2 q are arrows to Cp1q. We see that if the machine halts then every path
+starting at Cps˚ xyq has only a finite number of labels ą 1, and this shows that the
+order of s˚ xy is finite.
+On the other hand, if the machine does not halt then there is an path with
+infinitely many labels ą 1 (because no Minsky machine can decrease its counters
+infinitely many times in a row) so s˚ xy has infinite order.
+Note that our transducer has the property ΦM pLi , gq “ ΦM pLi , g ´1 q, for all g P S
+and all L P tIII, IV, V, VII, VIIIu. Also note that ΦM pLi , tq “ ΦM pLi , t´1 q “ pǫ, Li q
+whenever t is any instruction not of type L.
+Using this, we can prove that if t is not of type L, then tgn gn´1 ¨ ¨ ¨ g1 tg1 g2 ¨ ¨ ¨ gn
+fixes the orbit tLi u with output ǫ.
+Indeed, tgn gn´1 ¨ ¨ ¨ g1 tg1 g2 ¨ ¨ ¨ gn “ pgn tgn t´1 ¨ tgn´1 gn´2 ¨ ¨ ¨ g1 tg1 g2 ¨ ¨ ¨ gn´1 qgn ,
+and we use induction on n. It follows that ptxm y n q2 fixes Li with outputs ǫ, i.e.,
+there is an arrow from Cptxm y n q to Cp1q with label 2.
+Let us first restrict to the orbit tIIIi u of G on A. We consider g :“ sxm y n with s
+an instruction of type III. It acts as a product of two cycles pIII1 , III2 qpIII1 , III2 q; the
+output label of g 2 on the first cycle, starting at III1 , is s1 xm y n ǫxm y n “ s1 x2m y 2n ,
+and the output of g 2 starting on the second cycle at III1 is ǫx´m y ´n ps1 q´1 x´m y ´n P
+m
+n
+m`1
+n`1
+Cps1 x2m y 2n q. There are therefore two arrows from Cpsx2 y 2 q to Cps1 x2
+y 2 q,
+as required. We do not consider g :“ txm y n with t an instruction of different type
+or s: , because it was considered above (there are some arrows to Cp1q with labels
+2).
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS 11
+
+ps, s1 q
+
+III1
+
+ps, ǫq
+III2
+
+px, xq
+
+pt, ǫq
+
+py, yq
+
+´1
+
+III1
+
+px, x
+
+q
+
+ps, ǫq
+
+py, yq
+
+pt, ǫq
+
+IV1
+
+px, ǫq
+px, x´1 q
+
+III2
+
+py, yq
+
+px, xq
+IV2
+
+IV1
+px, x´1 q
+
+pt, ǫq
+ps, ps1 q´1 q
+
+px, xq
+
+ps, ps1 q´1 q
+
+ps, s1 q
+
+ps, s1 q
+
+py, y ´1 q
+
+IV2
+
+pt, ǫq
+
+py, y ´1 q
+px, ǫq
+
+py, y ´1 q
+
+py, yq
+
+py, y ´1 q
+
+ps, ps1 q´1 q
+
+pt, ǫq
+py, yq
+py, yq
+
+VII1
+
+ps, s2 q
+
+py, ǫq
+
+px, xq
+
+ps, ǫq
+VII2
+
+px, ǫq
+
+VII4
+ps, s1 q
+
+pt, ǫq
+ps, ǫq
+
+py, y ´1 q
+VII4
+
+ps, ps1 q´1 q
+
+VII3
+py, ǫq
+
+ps, ǫq
+pt, ǫq
+
+VII3
+
+px, x´1 q
+
+ps, ps2 q´1 q
+
+ps, ǫq
+
+px, ǫq
+
+py, y ´1 q
+
+VII1
+
+VII2
+
+py, ǫq
+
+py, ǫq
+
+pt, ǫq
+Figure 3. The dual Moore diagram of ΦM , used in the proof of Theorem B
+We restrict next to the orbit tIVi u of G and consider the case g “ sx2m y n . (We
+do not need to consider cases g “ sx2m`1 y n or g “ txm y n , for the first because we
+suppose that if m “ 0 then M does not perform an instruction of type IV, and for
+the second because it was already considered above.)
+An element g “ sx2m y n fixes IV1 , IV2 , IV1 and IV2 , its outputs are respectively
+1
+s pxǫqm y n “ s1 xm y n , s1 xm y n , ps1 q´1 x´m y ´n and ps1 q´1 x´m y ´n . Hence there are
+m
+n
+m´1
+n
+4 arrows from Cpsx2 y 2 q to Cps1 x2
+y 2 q, all with labels 1.
+We restrict next to the orbit tVIIi u of G and perform the same computations,
+the result is in the following table:
+gPG
+sx2m y n
+
+sx2m`1 y n
+
+cycles of g
+pVII1 , VII2 q
+pVII3 , VII4 , VII4 , VII3 q
+pVII1 , VII2 q
+pVII1 , VII3 q
+pVII2 , VII4 , VII1 , VII3 q
+pVII2 , VII4 q
+
+output, starting at first element of the cycle
+ǫs2 x2m y n
+s1 x2m y n ǫx´2m y ´n ps1 q´1 ǫ “ 1
+ps2 q´1 ǫx´2m y ´n
+ǫs1 x2m`1 y n
+s2 x2m`1 y n ǫx´2m´1 y ´n ps2 q´1 ǫ “ 1
+ǫx´2m´1 y ´n ps1 q´1 ǫ
+
+12
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+m
+
+n
+
+m
+
+n
+
+If m ą 0 then there are therefore two arrows from Cpsx2 y 2 q to Cps2 x2 y 2 q
+with labels 2 and an arrow to Cp1q with label 4; if m “ 0 then there are two arrows
+m
+n
+m
+n
+from Cpsx2 y 2 q to Cps2 x2 y 2 q with label 4 and an arrow to Cp1q with label 4.
+The orbits tVi u and tVIIIi u are investigated in the same way as tIVi u and tVIIi u
+respectively.
+
+3.2. Proof of Theorem B2 . Consider a universal Minsky machine Mu , namely
+one that emulates arbitrary Turing machines encoded in an integer n, when started
+in state ps˚ , 0, nq. The set of 2n such that Mu halts when started in state ps˚ , 0, nq
+is not recursive, see Proposition 2.2. Therefore, Theorem B2 follows by considering
+in the group xΦMu y the elements s “ s˚ x and t “ y.
+3.3. Proof of Theorem B1 . Let M be a Minsky machine with stateset S0 . Without loss of generality, we assume that all instructions are of type III,IX,X.
+We associate to it the transducer with stateset Q :“ S0 \ tǫ, x, yu and alphabet
+A “ t0, IIIi , IXj , Xj | i “ 1, 2; j “ 1, . . . , 4u.
+
+in state
+
+The structure of the transducer is given by its map ΦM : A ˆ Q Ñ Q ˆ A.
+The state ǫ is the identity, and ΦM pa, ǫq “ pǫ, aq for all a P A.
+‚ for all instructions psi , m, nq ÞÑ ps1i , m ` 1, n ` 1q of type III we have
+input letter
+0
+III1
+III2
+x
+pǫ, 0q
+px, III1 q px, III2 q
+y
+pǫ, 0q
+py, III1 q py, III2 q
+si ps1i , III1 q pǫ, III2 q
+pǫ, 0q
+
+in state
+
+and every instruction t of another type acts as ΦM pt, IIIℓ q “ pIIIℓ , tq.
+‚ for all instructions psj , m, nq ÞÑ m “ 0 ? ps1j , m, nq : ps2j , m ´ 1, nq of type
+IX we have
+input letter
+0
+IX1
+IX2
+IX3
+IX4
+x
+pǫ, 0q
+pǫ, IX2 q
+pǫ, IX1 q px, IX4 q pǫ, IX3 q
+y
+pǫ, 0q
+pǫ, IX1 q
+pǫ, IX2 q py, IX3 q py, IX4 q
+sj pǫ, IX1 q ps2j , IX4 q ps1j , IX3 q ps1j , IX2 q
+pǫ, 0q
+and every instruction t of another type acts as ΦM pIXℓ , tq “ pt, IXℓ q.
+‚ The same applies for every instruction psk , m, nq ÞÑ n “ 0 ? ps1k , m, nq :
+ps2k , m, n ´ 1q of type X, with the roles of x and y switched.
+‚ for all a P A we have ΦM pa, s: q “ pǫ, aq.
+We claim that the orbit of 08 under s˚ xy is finite if and only if the machine M
+stops.
+Set G “ xΦM y. We construct an integer-labeled, directed graph whose vertices
+are elements of G. For g P G consider its action on A and the minimal pg such that
+g pg fixes 0, i.e., 0 ¨ g pg “ g 1 ¨ 0. In our graph we put an edge g Ñ g 1 with label pg
+on it.
+The size of the the orbit of 08 under s˚ xy is a finite number or 8 and it is equal
+to product of the labels along the path starting at s˚ xy.
+We claim that for any instruction ps, m, nq Ñ ps1 , m1 , n1 q there is an edge from
+m
+n
+m1
+n1
+m
+n
+sx2 y 2 to s1 x2 y 2 with label 3, and an edge from s: x2 y 2 to 1. This is checked
+on the dual Moore diagram of ΦM , see Figure 4:
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS 13
+
+py, ǫq
+IX2
+
+px, ǫq
+
+py, ǫq
+
+px, ǫq
+
+IX1
+
+X1
+
+px, ǫq
+py, ǫq
+
+X2
+
+psk , ǫq
+ps: , ǫq
+
+IX4
+
+si1q
+III1
+px, xq
+
+X3
+
+px, xq
+
+py, yq
+
+px, xq
+
+ǫq
+
+psi
+,
+
+py, yq
+
+py, yq
+
+py, ǫq
+
+X4
+
+,
+ps i
+
+px, ǫq
+
+psk , s1k q
+
+0
+psj , ǫq
+
+psk , s2k q
+
+px, xq
+
+IX3
+py, yq
+
+psj , s2j q
+
+psj , s1j q
+
+psj , ǫq px, ǫqpy, ǫq psk , ǫq
+
+psi , ǫq
+
+III2
+
+py, yq
+
+px, xq
+
+Figure 4. The dual Moore diagram of ΦM , used in the proof of Theorem B1
+We first note that x and y commute in G. If g “ si xm y n and si is an instruction
+of type III, then the orbit of 0 under the action of g is p0, III1 , III2 q. There is an
+edge labeled 3 from g to s1i xm y n ǫxm y n “ s1i x2m y 2n .
+Consider next sj an instruction of type IX. There are two cases. if g “ sj xy n
+then the orbit of 0 is p0, IX2 , IX4 q and the output is ǫs1j xy n ǫ; if g “ sj x2m y n then
+the orbit of 0 is p0, IX1 , IX4 q and the output is ǫs2j xm y n ǫ.
+m
+n
+This means that if m “ 0 then there is an edge labeled 3 from sj x2 y 2 to
+m´1
+n
+m
+n
+m
+n
+y2 .
+s1j x2 y 2 , and if m ą 0 then there is an edge labeled 3 from sj x2 y 2 to s2j x2
+The same naturally applies to instructions of type IX. Finally, for all m, n P N
+the element s: xm y n fixes 0, and there is an edge labeled 1 from s: xm y n to 1.
+3.4. Contracting automata: proof of Theorem C. We finally explain how to
+make the transducers ΦM of the previous subsections contracting. We expand the
+definition from the introduction:
+Definition 3.3 ([16, Definition 2.11.1]). Let G “ xΦy be a self-automata group
+with Φ : A ˆ S Ñ S ˆ A and Φ : A ˆ G Ñ G ˆ A. For g P G and u P A˚ , the state
+g@u is the unique element of G such that puvqg “ ug v g@u ; namely, the action of g
+on tails of sequences starting with u.
+The group G is contracting if there exists a finite subset N Ď G such that, for
+all g P G, there exists npgq P N such that g@u P N whenever |u| ě npgq.
+△
+The minimal subset N satisfying the definition is called the nucleus. In particular, one has n@a P N for all pa, nq P A ˆ N , so Φ induces an automaton still written
+r :“ An for n
+Φ : A ˆ N Ñ N ˆ A. Up to replacing S by Sr :“ S Y N and A by A
+larger than maxgPSr2 npgq, thus making the transducer process n letters at a time,
+
+14
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+one may also assume
+r ˆ Sr2 q Ď Sr ˆ A.
+r
+ΦpA
+A transducer Φ with this extra property is called nuclear.
+Note that is is probably undecidable whether a self-similar group xΦy is contracting; but it is easy to decide whether a transducer Φ : A ˆ S Ñ S ˆ A is nuclear: by
+minimizing the composite transducer A ˆ S 3 Ñ S ˆ A ˆ S 2 Ñ S 2 ˆ A ˆ S Ñ S 3 ˆ A,
+find the set R of all words s1 s2 s3 P S 3 that equal 1 in G. Then Φ is nuclear if and
+only if for all a P A, s1 , s2 P S there exists s3 P S such that if Φpa, s1 q “ ps11 , bq and
+Φpb, s2 q “ ps12 , cq then s11 s12 s´1
+3 P R. The more precise form of Theorem C is:
+Theorem 3.4. There is no algorithm that, given a nuclear transducer Φ : A ˆ S Ñ
+S ˆ A and a P A and s P S, determines the cardinality of the orbit of a8 under xsy.
+There is no algorithm that, given a nuclear transducer Φ : A ˆ S Ñ S ˆ A and
+s P S, determines the order of s in xΦy.
+Note that the group is not changed by these operations of replacing S by N and
+A by An . If Φ is nuclear, then xΦy is contracting in the sense of the introduction,
+since |g 1 | ď p|g|`1q{2 in the word metric defined by N . Conversely, if |g 1 | ď λ|g|`C
+then one may take N “ tg P G | C{p1 ´ λq ě |g|u to see that G is contracting in
+the sense of Definition 3.3.
+Lemma 3.5. Let Φ : A ˆ S Ñ S ˆ A be a transducer. If there is a constant N P N
+such that every reduced path of length ě N in the dual Moore diagram of Φ contains
+an ǫ letter along its output, then xΦy is contracting.
+Proof. Consider g P xΦy, and represent it by a word w P S ˚ of length ℓ “ |g|.
+Factor w “ w1 . . . wt with |wi | “ N for all i “ 1, . . . , t ´ 1 and |wt | ă N .
+Then every g 1 as in (1.1) is computed by following, in the dual Moore diagram,
+the path starting at a1 with label w on its input. The output label along that path
+is g 1 , and by hypothesis each time a segment wi is read, for i ă t, an ǫ letter is
+produced for g 1 ; so |g 1 | ď ℓ ´ t ` 1. Now t “ rℓ{N s, so
+|g 1 | ď ℓ ´ rℓ{N s ` 1 ď p1 ´ 1{N q|g| ` 1.
+
+
+
+We shall modify the transducers ΦM by composing them with appropriate machines. We recall the general definition: let Φ : AˆS Ñ SˆA and Ψ : BˆS Ñ SˆB
+be transducers with same stateset S. Their composition is the transducer Φ ˝ Ψ
+with alphabet A ˆ B, given by
+AˆΨ
+
+ΦˆB
+
+Φ˝Ψ : pAˆBqˆS “ AˆpBˆSq ÝÑ AˆpSˆBq “ pAˆSqˆB ÝÑ pSˆAqˆB “ SˆpAˆBq.
+We are given a transducer Φ with stateset S “ ts1 , . . . , sℓ , x, yu and alphabet
+A. We write G “ xΦy, and freely identify words in S ˚ with their value in G. We
+require that x, y commute.
+For every i P t1, . . . , ℓu, consider the transducer Φi with alphabet Ai “ t0, 1u
+and transitions Φi pa, qq “ pa “ 0 ? q : ǫ, q “ si ? 1 ´ a : aq.
+Note (by drawing the dual Moore diagram and deleting the transitions with ǫ
+output) that the only paths with input and output of same length are of the form
+b
+s´a
+i wsi for some a, b P t0, 1u and w a word not involving si .
+Note also that for a word w of form sj xm y n
+(1) if i “ j then Φi p0, w2 q “ pw, 0q and Φi p1, w2 q “ pw1 , 1q with w1 conjugate
+to w;
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS 15
+
+(2) if i ‰ j then Φi p0, wq “ pw, 0q and Φi p1, wq “ pǫ, 1q.
+Consider also a transducer Φ0 with alphabet A0 “ t0, 1u3 and transitions
+Φ0 ppa, b, cq, si q “ pc “ 0 ? si : ǫ, pa, b, 1 ´ cqq for all i;
+Φ0 ppa, b, cq, xq “ pa “ 0 ? x : ǫ, p1 ´ a, b, cqq;
+Φ0 ppa, b, cq, yq “ pb “ 0 ? y : ǫ, pa, 1 ´ b, cqq.
+Note that, in the dual Moore diagram of Φ0 , all paths with input label of the form
+m n b
+s´a
+i x y sj have shorter output label as soon as |m| ` |n| ě 3. Note also that if w
+is a word of the form si xm y n then for all pa, b, cq P A0 we have Φ0 ppa, b, cq, w2 q “
+pw1 , pa, b, cqq for some permutation w1 of w; so in particular w1 is conjugate to w.
+Furthermore, for pa, b, cq “ p0, 0, 0q we get w1 “ w in G.
+Proposition 3.6. Under the hypotheses above, the transducer Φ1 :“ Φ ˝ Φ0 ˝ Φ1 ˝
+¨ ¨ ¨ ˝ Φℓ generates a contracting group, and whenever we have Φpa, psi xm y n qt q “
+1
+1
+ps1i xm y n , aq in the original transducer we have for all j P t0, 1uℓ`3 the relation
+1
+1
+Φ1 ppj, aq, psi xm y n q4t q “ pw, pj, aqq, with w either equal to 1 or conjugate to s1i xm y n .
+1
+1
+Furthermore, if j “ 0ℓ`3 then w “ s1i xm y n .
+Proof. After applying the transducers Φ1 , . . . , Φℓ , the only words that don’t get
+b
+shortened are of the form s´a
+i wpx, yqsj for some i, j P t1, . . . , ℓu and some a, b P
+t0, 1u. These get shortened by Φ0 as soon as |w| ě 3, using the fact that x and y
+commute. It follows that xΦ1 y is contracting.
+Consider the transitions of psi xm y n q4 in transducer Φ1 ˝ ¨ ¨ ¨ ˝ Φℓ . On input letter
+ℓ
+0 it produces psi xm y n q2 , on input letter 0 ¨ ¨ ¨ 1 ¨ ¨ ¨ 0 with the ‘1’ in position i it
+produces a conjugate of psi xm y n q2 and on all other input letters it produces ǫ.
+Feed then psi xm y n q2 to transducer Φ0 ; on input letter 000 it produces si xm y n and
+on all other input letters it produces a conjugate of si xm y n . Feed finally si xm y n
+to Φ to conclude the proof.
+
+We are ready to finish the proof of Theorem 3.4. We constructed an integerlabeled graph for a transducer Φ, whose vertices are elements of G for Theorem B1
+or symmetric conjugacy classes for Theorem B.
+By Proposition 3.6, the transducer Φ1 is contracting. Let us check that the order
+problems for xΦy and for xΦ1 y are equivalent.
+A graph for Φ1 will have the same set of vertices as the graph for Φ, and Proposition 3.6 shows that this new graph has the same set of outgoing edges for each
+element of form si xm y n , with labels multiplied by 4 and, possibly, some new edges
+to 1 (or to Cp1q). Since in the old graph there were no loops at non-identity elements, s˚ xy has infinite order in xΦ1 y if and only if it has infinite order in xΦy, and
+the orbit of p0, 0ℓ`3 q8 is infinite under the action of s˚ xy P xΦ1 y if and only if the
+orbit of 08 is infinite under the action of s˚ xy P xΦy.
+r “ An , we may
+Finally, by replacing the stateset S by Sr “ S Y N and A by A
+1
+assume that Φ is nuclear.
+4. Outlook
+We proved in this article the undecidability of the order problem for automata
+groups, namely groups of transformations generated by a transducer.
+If the transducer belongs to a restricted class, it may well be that the order
+problem becomes decidable. Of particular importance are:
+
+16
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+Transducers of polynomial growth. In a transducer Φ (represented by a graph
+as in Figure 1), let αpnq denote the number of paths of length n that end in a
+non-identity state. If αpnq is a bounded function (as is the case for the Grigorchuk
+group), then the order problem is solvable in xΦy, see [3]. What happens if αpnq
+is bounded by a linear function? or by a polynomial of degree d? The groups
+generated by such transducers have been considered by Sidki [17].
+Reset transducers. These are transducers Φ with Φpa, sq “ pφpaq, ψpa, sqq for
+some functions φ, ψ; namely, the state reached by the transducer is independent of
+the original state. These transducers are intimately connected to tilings, by Kari’s
+construction [12]. Gillibert proved in [5] that the order problem is unsolvable for
+semigroups of reset automata. Is it solvable in groups of reset automata?
+Reversible transducers. These are transducers whose dual is invertible; they
+should be related to reversible Turing or Minsky machines. Is the order problem
+solvable for groups generated by reversible automata?
+Bireversible transducers. These are transducers Φ such that all 8 transducers
+obtained from Φ by inverting or permuting the stateset and alphabet remain transducers; they give another point of view on square complexes (by tiling the plane
+with squares whose labels are pa, s, a1 , s1 q when Φpa, sq “ ps1 , a1 q).
+We expect it to be undecidable whether a functionally recursive group is actually
+an automata group (for a larger generating set), whether an automata group is
+contracting, and even whether a contracting group is finite. Again, the related
+questions for semigroups are known to be undecidable by constructions in or similar
+to [5].
+References
+[1] Ali Akhavi, Ines Klimann, Sylvain Lombardy, Jean Mairesse, and Matthieu Picantin, On
+the finiteness problem for automaton (semi)groups, Internat. J. Algebra Comput. 22 (2012),
+no. 6, 1250052, 26, DOI 10.1142/S021819671250052X. MR2974106
+[2] Robert Berger, The undecidability of the domino problem, Mem. Amer. Math. Soc. No. 66
+(1966), 72. MR0216954 (36 #49)
+[3] Ievgen V. Bondarenko, Natalia V. Bondarenko, Said N. Sidki, and Flavia R. Zapata, On the
+conjugacy problem for finite-state automorphisms of regular rooted trees, Groups Geom. Dyn.
+7 (2013), no. 2, 323–355, DOI 10.4171/GGD/184. With an appendix by Raphaël M. Jungers.
+MR3054572
+[4] Andrew M. Brunner and Said N. Sidki, On the automorphism group of the one-rooted binary
+tree, J. Algebra 195 (1997), no. 2, 465–486. MR98i:20035
+[5] Pierre Gillibert, The finiteness problem for automaton semigroups is undecidable, Internat.
+J. Algebra Comput. 24 (2014), no. 1, 1–9, DOI 10.1142/S0218196714500015. MR3189662
+, An automaton group with undecidable order and Engel problems (2017), available
+[6]
+at arXiv:1710.09733.
+[7] Rostislav I. Grigorchuk, On Burnside’s problem on periodic groups, Funkcional. Anal. i
+Priloжen. 14 (1980), no. 1, 53–54. English translation: Functional Anal. Appl. 14 (1980),
+41–43. MR81m:20045
+, On the Milnor problem of group growth, Dokl. Akad. Nauk SSSR 271 (1983), no. 1,
+[8]
+30–33. MR85g:20042
+[9] Rostislav I. Grigorchuk, Volodymyr V. Nekrashevych, and Vitaliı̆ Ī Suščans1 kiı̆, Automata,
+dynamical sysytems, and groups, PROSI 231 (2000), no. 4, 128–203.
+[10] Narain D. Gupta and Said N. Sidki, On the Burnside problem for periodic groups, Math. Z.
+182 (1983), 385–388.
+[11] Ju. Š. Gurevič, The problem of equality of words for certain classes of semigroups, Algebra
+i Logika Sem. 5 (1966), no. 5, 25–35 (Russian). MR0206079
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS 17
+
+[12] Jarkko Kari, The nilpotency problem of one-dimensional cellular automata, SIAM J. Comput.
+21 (1992), no. 3, 571–586, DOI 10.1137/0221036. MR1163346
+[13] Ines Klimann, Jean Mairesse, and Matthieu Picantin, Implementing computations in automaton (semi)groups, Implementation and application of automata, Lecture Notes in Comput.
+Sci., vol. 7381, Springer, Heidelberg, 2012, pp. 240–252, DOI 10.1007/978-3-642-31606-7 21.
+MR2993189
+[14] Ville Lukkarila, The 4-way deterministic tiling problem is undecidable, Theoret. Comput. Sci.
+410 (2009), no. 16, 1516–1533, DOI 10.1016/j.tcs.2008.12.006. MR2502125 (2010d:03071)
+[15] Marvin L. Minsky, Recursive unsolvability of Post’s problem of “tag” and other topics in
+theory of Turing machines, Ann. of Math. (2) 74 (1961), 437–455, DOI 10.2307/1970290.
+MR0140405
+[16] Volodymyr V. Nekrashevych, Self-similar groups, Mathematical Surveys and Monographs,
+vol. 117, American Mathematical Society, Providence, RI, 2005. MR2162164 (2006e:20047)
+[17] Said N. Sidki, Automorphisms of one-rooted trees: growth, circuit structure, and acyclicity,
+J. Math. Sci. (New York) 100 (2000), no. 1, 1925–1943. Algebra, 12. MR1774 362
+Département de Mathématiques et Applications, École Normale Supérieure, Paris
+and Mathematisches Institut, Georg-August Universität zu Göttingen
+E-mail address: laurent.bartholdi@gmail.com
+E-mail address: phortim@yandex.ru
+
+
+
+Summary:
+This research paper covers the following topic: arXiv:1710.10109v4 [math.GR] 27 Nov 2017
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR
+AND AUTOMATA GROUPS
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+Abstract. We prove that the word problem is undecidable in functionally recursive groups, and that the order problem is undecidable in automata groups,
+even under the assumption that they are contracting.
+
+1. Introduction
+Let A be a finite set, and consider a group G acting faithfully and “self-similarly”
+on the set A˚ of words over A. This means that every g P G acts in the form
+(1.1)
+
+pa1 . . . an qg “ a11 pa2 . . . an qg
+
+1
+
+for some a11 P A and some g 1 P G depending only on a1 , g; we encode them as
+pg 1 , a11 q “ Φpa1 , gq for a map Φ : A ˆ G Ñ G ˆ A. If furthermore G is finitely
+generated (say by a finite set S, so G is a quotient FS ։ G of the free group on S),
+then its action may be described by finite data, namely a lift Φ : A ˆ S Ñ FS ˆ A of
+the restriction of Φ to the generators of G. A finitely generated group given in this
+manner is called functionally recursive [4, §3], or self-similar ; we call G the group
+presented by Φ, and write G “ xΦy. We call Φ an (asynchronous) transducer.
+Large classes of finitely generated groups can be presented as functionally recursive ones; notably, all the “iterated monodromy groups” of Nekrashevych [16], and
+the automata groups mentioned in §1.1 below.
+Even though the map Φ completely determines the action of G, and therefore G
+itself, it is unclear how much of G is known from Φ. Our first result is as negative
+as can be:
+Theorem A. There is no algorithm that, given Φ : A ˆ S Ñ FS ˆ A and s P S,
+determines whether s “ 1 in xΦy.
+1.1. Automata groups. Assume now that G is a functionally recursive group,
+and that in the action (1.1) the elements g 1 have at most the length of g, in the
+generating set S. Then, up to replacing S by S Y S ´1 Y t1u, the map Φ takes the
+form Φ : A ˆ S Ñ S ˆ A; we call it a finite state transducer. The group G is called
+an automata group; these form a notorious class of groups, containing all finitely
+generated linear groups as well as infinite torsion groups such as the “Grigorchuk
+group” [7] and “Gupta-Sidki groups” [10]. The Grigorchuk group is also a group
+of intermediate word-growth, and was used to settle the Milnor problem on group
+growth [8].
+The action of S, and of G itself, may be conveniently described by a finite labeled
+graph called its Moore diagram. Consider the directed graph Γ with vertex set S
+Date: October 25, 2017.
+This work is supported by the “@raction” grant ANR-14-ACHN-0018-01.
+1
+
+2
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+p1, 1q
+
+b
+
+p0, 0q
+
+p1, 1q
+
+p1, 1q
+
+d
+p0, 0q
+
+c
+a
+
+p0, 0q
+
+p0, 0q
+e
+p1, 1q
+
+p0, 1q, p1, 0q
+Figure 1. The transducer generating the Grigorchuk group. Here
+A “ t0, 1u and S “ ta, b, c, d, eu.
+and an edge from s to t labeled pa, bq whenever Φpa, sq “ pt, bq; then the action of
+s P S on A˚ is determined as follows: given a1 . . . an P A˚ , find the unique path in
+Γ starting at s and whose first label letters read a1 . . . an ; let b1 . . . bn be the second
+label letters; then pa1 . . . an qs “ b1 . . . bn . See Figure 1 for the graph Γ describing
+the Grigorchuk group.
+Every element of G (say represented by a word w of length n in S) admits
+a similar description, but now using a graph with vertex set S n . The word w
+represents the identity in G if and only if at every vertex reachable from w all the
+outgoing edges have labels in tpa, aq | a P Au. It follows that the word problem is
+decidable in G, and even belongs to LinSpace (and therefore to ExpTime); but
+that is about as much as is known. We consider the “order problem” (determine
+the order of an element), which was raised at the end of last century by Sidki
+and by Grigorchuk, Nekrashevych and Sushchansky [9, Problem 7.2.1(a)], to which
+Gillibert announced a solution in July 2017; his proof appears in [6]:
+Theorem B. There is no algorithm that, given Φ : A ˆ S Ñ S ˆ A and s P S,
+determines the order of s in xΦy, namely the cardinality of xsy.
+Worse than that, the action is uncomputable in the following sense: consider the
+natural extension of the action of xΦy to A8 . Then we have the following variants
+of Theorems A and B:
+Theorem A1 . There is no algorithm that, given Φ : A ˆ S Ñ FS ˆ A and a P A
+and s P S, determines whether a8 is fixed by s.
+Theorem B1 . There is no algorithm that, given Φ : A ˆ S Ñ S ˆ A and a P A and
+s P S, determines the cardinality of the orbit of a8 under xsy.
+Finally, the results in Theorems A and B can be made uniform as follows:
+Theorem A2 . There is a functionally recursive group xΦy with Φ : AˆS Ñ FS ˆA
+such that ts P FS | s “ 1 in xΦyu is not recursive.
+Theorem B2 . There is an automata group xΦy with Φ : A ˆ S Ñ S ˆ A, and two
+states s, t P S, such that the set tn P N | stn has finite orderu is not recursive.
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS
+
+3
+
+1.2. Contracting groups. Assume now that G is a functionally recursive group,
+and that in the action (1.1) the elements g 1 are shorter than g, in the generating set
+S, in the sense that there are constants λ ă 1 and C with |g 1 | ď λ|g|`C for all g P G.
+Then, up to replacing S by the set of all words of length ď C{p1 ´ λq, we also have
+|g 1 | ď |g|; we have thus defined a subclass of automata groups, called contracting
+automata groups (see §3.4 for a more precise definition). Their word problem is
+decidable in LogSpace (and therefore in PolyTime). We will see, however, that
+the order and orbit order problems remain unsolvable in that restricted class:
+Theorem C (= Theorem 3.4). The transducers constructed in Theorems B and B1
+may be assumed to generate contracting groups.
+1.3. Sketch of proofs. We encode Minsky machines in functionally recursive
+groups. Minsky machines (see [15]) are restricted Turing machines with two tapes,
+which may move the tapes and sense the tape’s end but may not write on them;
+equivalently, they are finite state automata equipped with two counters with values
+in N that may be incremented, decremented and tested for 0.
+In all cases, we encode the machine, in state s with counter values pm, nq, by
+m
+n
+the word sx2 y 2 in a functionally recursive group containing elements x, y and
+an element s for each state of the machine. The action of the group is so devised
+that if the machine evolves to state ps1 , m1 , n1 q then the recursive action is given
+m
+n
+n1
+m1
+by s1 x2 y 2 . The image of a prescribed ray under sx2 y 2 records the computational steps of the machine when started in ps, m, nq, and in particular whether the
+machine reached a final state. We construct an auxiliary element t that only acts
+m
+n
+m
+n
+on sequences containing a trace of this final state, and then psx2 y 2 qtpsx2 y 2 q´1
+fixes the original ray if and only if the machine never reaches the final state. Taking
+the commutator of that last element acting only in the neighbourhood of the original ray yields an expression that is trivial if and only if the machine never reaches
+the final state.
+Inherently, sometimes the output of the transducer is longer than the input (e.g.,
+if the machine increments the first counter, the transducer must replace x by x2 ).
+To obtain an automata group, we have the transducer consume a power of its input
+m
+n
+word sx2 y 2 ; e.g., the incrementation of the counter may be performed by erasing
+n
+m
+n
+every second s and every second block of y 2 ’s. The element sx2 y 2 then may be
+arranged to finite order if and only if the machine reaches the final state.
+1.4. Tilings. Our results on functionally recursive groups and transducers may also
+be interpreted in terms of tilings. Let C be a finite set of colours, and T Ď C N,E,S,W
+be a set of Wang tiles. A valid tiling is a map t : Z2 Ñ T with tpx, yqN “ tpx, y `1qS
+and tpx, yqE “ tpx ` 1, yqW for all x, y P Z2 . Berger showed in [2] that it is
+undecidable to determine, given T , whether there exists a valid tiling by T . This
+has been improved: for λ, µ P tN, E, S, W u, call a set of tiles λµ-deterministic if
+for every c, d P C there exists at most one tile u P T with uλ “ c and uµ “ d, and
+λµ-complete if there exists precisely one tile u P T with these conditions. Lukkarila
+showed in [14] that the undecidability result holds even under the restriction that
+T is N E, N W, SE, SW -deterministic. Clearly a SW -complete tileset tiles uniquely
+the first quadrant for any choice of colours on the axes.
+Our result on the order problem has the following translation into tilings. We
+consider tilings of the upper half-plane tpx, yq | y ě 0u. Then the following problem
+is undecidable even for SE, SW -complete tilesets: “given c P C, is there an integer
+
+4
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+n P N such that every tiling of the upper half-plane with c8 on the horizontal axis
+is horizontally n-periodic?”.
+Indeed, given Φ : A ˆ S Ñ S ˆ A, set C “ A \ S and whenever Φpa, sq “
+ps1 , a1 q build a tile with N, E, S, W -labels s1 , a1 , s, a respectively; also build tiles
+with N, E, S, W -labels c, d, c, d for all pc, dq P C 2 zpS ˆ Aq. Then the above tiling
+problem is satisfied for c P S if and only if c has finite order in xΦy.
+The word problem may also be translated to a tiling problem, but now in hyperbolic space. The tileset is now T Ď C N,E,S1 ,S2 ,W . The lattice Z2 is now Λ :“ t2y pi`
+xq | x, y P Zu Ă H. A tiling is a map t : Λ Ñ T with tp2y pi`xqqE “ tp2y pi`x`1qqW
+and tp2y pi ` 2xqqN “ tp2y`1 pi ` xqqS1 and tp2y pi ` 2x ` 1qqN “ tp2y`1 pi ` xqqS2
+for all x, y P Z. Tiles are visualized as pentagons assembling into a tiling of the
+hyperbolic plane, invariant under the transformations z ÞÑ z ` 1 and z ÞÑ 2z:
+
+The following problem is undecidable even for N E, N W -complete tilesets: “given
+c P C, does every tiling of tx ` iy P H | x P r0, 1s, y ď 1uwith c on the edge from i
+to i ` 1 have identical labels on the boundary half-lines tx “ 0u and tx “ 1u?”.
+Indeed by subdividing and inserting the empty state we may assume that the
+map Φ describing our functionally recursive group satisfies ΦpA ˆ Sq Ď S 2 ˆ A;
+then tiles are defined as above.
+1.5. History. Links have been established since the beginning between undecidable problems in theoretical computer science — halting of Turing machines —
+and in algebra — decidability of properties of algebraic objects. Minsky machines,
+because of their simplicity, have been early recognized as useful tools in this correspondence, see e.g. Gurevich’s work [11] on identities in semigroups.
+Automata semigroups are defined quite similarly to automata groups; one merely
+drops the requirement that the action be by invertible maps. Decision problems
+have been extensively studied within the class of automata semigroups [1, 13].
+Gillibert proved in [5] that the order problem is unsolvable in that class. His
+proof is based on the undecidability of Wang’s tiling problem [2], and harnesses
+Kari’s solution of the nilpotency problem for cellular automata [12].
+There are usually serious difficulties in converting a solution in semigroups to
+one in groups. In particular, the tilings at the heart of Gillibert’s construction give
+fundamentally non-invertible transformations of A˚ .
+On the other hand, a direct approach to the order problem succeeded for the
+restricted class of “bounded automata” groups; Bondarenko, Sidki and Zapata
+prove in [3] that they have solvable order problem. Gillibert announced in [6] the
+undecidability of the order problem in automata groups; his work uses a simulation
+of arbitrary Turing machines by transducers via cellular automata.
+2. Functionally recursive groups and Minsky machines
+All our theorems are proven by embedding Minsky machine computations into
+functionally recursive groups. Let us recall more precisely the definition of these
+machines:
+Definition 2.1. A Minsky machine is a computational device M equipped with
+two integer counters m, n and a finite amount of additional memory. It has a finite
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS
+
+5
+
+set S of states, an initial state s˚ P S, a final state s: P S, and for each state s ‰ s:
+an instruction, which can by any of the following kind:
+I:
+II:
+III:
+IV:
+V:
+VI:
+VII:
+VIII:
+IX:
+X:
+
+ps, m, nq ÞÑ ps1 , m ` 1, nq;
+ps, m, nq ÞÑ ps1 , m, n ` 1q;
+ps, m, nq ÞÑ ps1 , m ` 1, n ` 1q;
+ps, m, nq ÞÑ ps1 , m ´ 1, nq, only valid if m ą 0;
+ps, m, nq ÞÑ ps1 , m, n ´ 1q, only valid if n ą 0;
+ps, m, nq ÞÑ ps1 , n, mq;
+ps, m, nq ÞÑ pm “ 0 ? s1 : s2 , m, nq;
+ps, m, nq ÞÑ pn “ 0 ? s1 : s2 , m, nq;
+ps, m, nq ÞÑ m “ 0 ? ps1 , m, nq : ps2 , m ´ 1, nq;
+ps, m, nq ÞÑ n “ 0 ? ps1 , m, nq : ps2 , m, n ´ 1q.
+
+(We use the C style “?:” operator, with ‘a ? b : c’ meaning ‘if a then b else c’.)
+As M is turned on, its state and counters initialize at ps0 , m0 , n0 q “ ps˚ , 0, 0q,
+and then psi`1 , mi`1 , ni`1 q is determined from psi , mi , ni q using the prescribed
+rules. If at some moment si “ s: then M stops; otherwise it runs forever.
+△
+We recall the main result on Mealy machines, namely that they are as powerful
+as Turing machines:
+Proposition 2.2 ([15]). (1) There is no algorithm that, given a Minksy machine
+M, determine whether it stops.
+(2) There is a “universal” Minsky machine M such that
+tn P N | M stops when turned on in state ps˚ , 0, nqu
+is not recursive.
+
+
+
+We also note that only one of the instructions {I,II} and III is necessary, and that
+in the presence of VI only one of I,II, one of IV,V, one of VII,VIII and one of IX,X is
+necessary. Minimal sets of instructions are {III,IV,V,VII,VIII} and {I,IV,VI,VII}
+and {III,IX,X} and {I,VI,IX}.
+2.1. Proof of Theorem A1 . Let M be a Minsky machine with stateset S0 . Without loss of generality, we assume that all instructions of M are of type I, VI, IX.
+We construct a functionally recursive group xΦM y presented by ΦM : A ˆ S Ñ
+FS ˆ A, for sets A, S given as follows: the generating set S consists of
+‚ elements x, y, s: , t and u;
+‚ for each state si P S0 of type I or IX, an element si ;
+‚ for each state si P S0 of type VI, three elements si , ai , bi .
+The alphabet A consists of:
+‚
+‚
+‚
+‚
+
+four letters 0,
+for each state
+for each state
+for each state
+
+1, :1 and :2 ;
+si P S0 of type I, a letter i1 ;
+si P S0 of type IX, two letters i1 and i2 ;
+si P S0 of type VI, five letters i1 , i2 , . . . , i5 .
+
+The map ΦM : A ˆ S Ñ FS ˆ A is given below, with ǫ denoting the empty word
+in FS . Whenever a value of ΦM is unspecified, we take it to mean ΦM pa, sq “ ps, aq.
+
+6
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+‚ for the states s: and t, u we put
+ΦM p0, s: q “ pǫ, :1 q;
+
+ΦM p:1 , xq “ pǫ, :1 q;
+
+ΦM p:1 , yq “ pǫ, :1 q;
+
+ΦM p:2 , xq “ pǫ, :2 q;
+
+ΦM p:2 , yq “ pǫ, :2 q;
+
+ΦM p:1 , tq “ pǫ, :2 q;
+
+ΦM p0, uq “ pu, 1q;
+
+ΦM p:2 , s: q “ pǫ, :2 q;
+
+ΦM p:2 , tq “ pǫ, :1 q
+
+ΦM p1, uq “ pu, 0q.
+
+ΦM p:1 , s: q “ pǫ, 0q;
+
+‚ for all g P Sztuu we put ΦM p1, gq “ pǫ, 1q, and for all a P Azt0, 1u we put
+ΦM pa, uq “ pǫ, aq.
+‚ for each instruction psi , m, nq ÞÑ psj , m ` 1, nq of type I we put
+ΦM pi1 , si q “ pǫ, 0q; ΦM pi1 , xq “ px2 , i1 q;
+
+ΦM p0, si q “ psj , i1 q;
+
+ΦM pi1 , yq “ py, i1 q.
+
+‚ for each instruction psi , m, nq ÞÑ psj , n, mq of type VI, ΦM pa, sq is written
+at position pa, sq of the following table:
+
+element of S
+
+0
+x
+y
+si pai bi x, i1 q
+ai
+pai , i2 q
+bi
+
+input letter
+i2
+i3
+pǫ, i3 q
+px, i2 q
+py, i2 q
+
+i1
+pxbi x , i1 q
+py x , i1 q
+pǫ, 0q
+
+i4
+i5
+px2 , i4 q py, i5 q
+py, i4 q px, i5 q
+
+pǫ, 0q
+pbi , i4 q pa´1
+i sj , i 5 q
+
+pǫ, i2 q
+
+pǫ, i3 q
+
+‚ for each instruction psi , m, nq ÞÑ pm “ 0 ? sj : sk , maxp0, m ´ 1q, nq of type
+IX we put
+ΦM pi1 , xq “ ps´1
+k sj x, i2 q;
+
+ΦM p0, si q “ psk , i1 q;
+ΦM pi1 , si q “ pǫ, 0q;
+
+ΦM pi2 , xq “
+
+ΦM pi1 , yq “ py, i1 q;
+
+px´1 s´1
+j sk x, i1 q;
+
+ΦM pi2 , yq “ py, i2 q.
+
+Theorem A1 follows from the undecidability of the halting problem for the Minsky
+machines (Proposition 2.2) and the following
+Proposition 2.3. Consider the infinite sequence W “ 08 . Then the Minsky machine M does not halt if and only if the action of xΦM y satisfies
+W ps˚ xyqtps˚ xyq
+
+´1
+
+“ W.
+m
+
+n
+
+m
+
+n
+
+Proof. We encode the states of M by elements of FS . The word psi x2 y 2 qαpsi x2 y 2 q´1
+corresponds to the state psi , m, nq.
+It is convenient to write ΦM pa, gq “ pg 1 , a1 q in the form a ¨ g “ g 1 ¨ a1 . In this
+manner, the computation of the functionally recursive action is given by a sequence
+of exchanges of letters with words in FS . We check the following equalities:
+If psi , m, nq Ñ psj , m ` 1, nq is an instruction of type I, then
+(2.1)
+
+m
+
+n
+
+m
+
+n
+
+m`1
+
+0 ¨ psi x2 y 2 qtpsi x2 y 2 q´1 “ psj x2
+m
+
+n
+
+m
+
+n
+
+n
+
+m`1
+
+y 2 qtpsj x2
+
+m`1
+
+n
+
+y 2 q´1 ¨ 0.
+
+n
+
+Indeed 0 ¨ si x2 y 2 “ sj ¨ i1 ¨ x2 y 2 “ sj x2
+y 2 ¨ i1 ; the claim follows from
+m
+n
+m`1
+n
+i1 ¨ t “ t ¨ i1 and the reverse i1 ¨ psi x2 y 2 q´1 “ psj x2
+y 2 q´1 ¨ 0.
+If psi , m, nq Ñ psj , n, mq is an instruction of type VI, then
+(2.2)
+
+m
+
+n
+
+m
+
+n
+
+n
+
+m
+
+n
+
+m
+
+0m`2 ¨ psi x2 y 2 qtpsi x2 y 2 q´1 “ psj x2 y 2 qtpsj x2 y 2 q´1 ¨ 0m`2 .
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+Indeed we first check 0 ¨ si x2 y 2 “ ai bi xpxbi x q2 py x q2 ¨ i1 “ ai x2 bi y 2 x ¨ i1 .
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS
+m
+
+7
+
+0
+
+We obtained a word with two “blocks” of x: the blocks x2 and x2 . Each time
+a ‘0’ letter is multiplied on the left of that word, the size of the first block will halve
+and the size of the second one will double: for m, n, p P N, we have
+0 ¨ ai x2m bi y n xp “ ai xm bi y n x2p ¨ i4
+m
+
+n
+
+n
+
+m
+
+so 0m`1 ¨ si x2 y 2 “ ai xbi y 2 x2 ¨ pi4 qm i1 . Then
+n
+
+m
+
+n
+
+m
+
+2
+2
+0 ¨ ai xbi y 2 x2 “ ai pa´1
+¨ i5 ,
+i sj qx y
+m
+
+n
+
+n
+
+m
+
+so 0m`2 ¨ si x2 y 2 “ sj x2 y 2 ¨ i5 pi4 qm i1 . Recalling that we have a ¨ t “ t ¨ a for all
+a “ i1 , . . . , i5 , the claim is proven.
+If ps, m, nq Ñ pm “ 0 ? sj : sk , maxpm ´ 1, 0q, nq is an instruction of type IX,
+then if m “ 0 we have
+(2.3)
+
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+n
+
+m
+
+n
+
+m´1
+
+y 2 qtpsk x2
+
+0 ¨ psi x2 y 2 qtpsi x2 y 2 q´1 “ psj x2 y 2 qtpsj x2 y 2 q´1 ¨ 0
+
+while if m ą 0 we have
+(2.4)
+
+m
+
+0 ¨ psi x2 y 2 qtpsi x2 y 2 q´1 “ psk x2
+
+n
+
+m´1
+
+n
+
+y 2 q´1 ¨ 0.
+
+Indeed in the first case we have
+n
+
+n
+
+2
+0 ¨ si xy 2 “ sk ps´1
+¨ i2 ,
+k sj xqy
+
+while in the second case we have
+m
+
+n
+
+m´1
+
+´1 ´1
+0 ¨ si x2 y 2 “ sk ps´1
+sk sj xq2
+j sk x ¨ x
+
+n
+
+m´1
+
+y 2 ¨ i1 “ sk x2
+
+n
+
+y 2 ¨ i1 .
+
+Recalling that we have a ¨ t “ t ¨ a for all a “ i1 , i2 , the claim is proven.
+From (2.1)–(2.4) it follows that if M does not halt then W ps˚ xyqtps˚ xyq
+Conversely, if M halts then there exist k, m, n P N such that
+m
+
+n
+
+m
+
+´1
+
+“ W.
+
+n
+
+0k ¨ ps˚ xyqtps˚ xyq´1 “ ps: x2 y 2 qtps: x2 y 2 q´1 ¨ 0k .
+Then
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+m
+
+n
+
+0 ¨ s: x2 y 2 tps: x2 y 2 q´1 “ :1 ¨ tps: x2 y 2 q´1 “ :2 ¨ ps: x2 y 2 q´1 “ :2 .
+In that case, we have W ps˚ xyqtps˚ xyq
+
+´1
+
+“ 0 k :2 0 8 ‰ W .
+
+
+
+The computations are best carried on ΦM ’s dual Moore diagram ∆, see Figure 2
+: this is the directed labeled graph with vertex set A and with for all a P A, s P S an
+edge from a to b labeled ps, tq whenever ΦM pa, sq “ pt, bq. One checks an equality
+‘ΦM pa, sq “ pt, bq’ by finding in ∆ a path starting at a with input label s; the
+endpoint of the path is b, and the output label is t.
+2.2. Proof of Theorem A. We have not yet used the letter 1 and the state u of
+ΦM . Theorem A follows now from the following
+Proposition 2.4. The Minsky machine M halts if and only if
+rps˚ xyqtps˚ xyq´1 , us ‰ 1 in xΦM y.
+Proof. The element u acts on Aω as follows: it scans X P Aω for its longest prefix
+in t0, 1u˚ , and exchanges all 0 and 1 in that prefix. Write g “ ps˚ xyqtps˚ xyq´1 ;
+from Proposition 2.3 we know that g fixes 08 if and only if M does not halt.
+Assume first that M does not halt; then g in fact also fixes t0, 1u8 , so the
+supports of g and u are disjoint and rg, us “ 1 in xΦM y.
+
+8
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+pg, ǫq@g
+py, yq
+
+px, x2 q
+
+px, yq
+
+py, ǫqpx, ǫq
+:1
+
+1
+
+i4
+pt, tq
+
+px, ǫq
+
+pu, uq
+
+pbi , bi q
+
+pt, tq
+
+i2
+px, xq
+
+0
+
+pai , ai q
+
+ps: , ǫq
+ps: , ǫq
+
+px, x2 q
+
+i3
+
+psi , sj q
+
+i1
+
+pt, tq
+py, y x q
+
+pt, tq Type I
+py, yq
+
+Type VI
+px, ǫqpsi , ai bi xq
+
+pbi , a´1
+i sj q
+
+:2
+
+pt, ǫq
+
+py, xq
+i5
+
+py, ǫq
+
+pt, tq
+
+i1
+
+py, yq
+px, xbi x q
+
+psi , sk q Type IX
+px, s´1
+k sj xq
+i1
+i2
+´1 ´1
+px, x sj sk xq
+
+pt, tq
+
+py, yq
+
+Figure 2. The dual Moore diagram of ΦM , used in the proof of Theorem A
+Assume next that M does halt; without loss of generality, we may assume M
+does not stop immediately, so there is k ě 1 such that p0k`1 qg “ 0k :2 . Since
+p0k`1 qu “ 1k`1 and p0k :2 qu “ 1k :2 and p1k`1 qg “ 1k`1 and p1k :2 qg “ 1k :2 ,
+the commutator rg, us acts as a 2-2-cycle p0k`1 , 0k :2 qp1k`1 , 1k :2 q and in particular
+rg, us ‰ 1 in xΦM y:
+g
+
+1k`1
+
+u
+
+0k`1
+
+g
+
+0 k :2
+
+u
+
+1 k :2
+
+g
+
+
+
+2.3. Proof of Theorem A2 . Consider a universal Minsky machine Mu , namely
+one that emulates arbitrary Turing machines encoded in an integer n, when started
+in state ps˚ , 0, nq. The set of 2n such that Mu halts when started in state ps˚ , 0, nq
+is not recursive, see Proposition 2.2. Therefore, Theorem A2 follows by considering
+n
+n
+in the group xΦMu y the elements rps˚ xy 2 qtps˚ xy 2 q´1 , us; this set of words is
+recursive, but the subset of those that equal 1 in xΦMu y is not recursive.
+3. Automata groups and Minsky machines
+3.1. Proof of Theorem B. Let M by a Minsky machine with stateset S0 . Without loss of generality, we assume that all instructions of M are of type III,IV,V,VII,VIII,
+as defined in the beginning of Section 2,
+S0 “ SIII \ SIV \ SV \ SVII \ SVIII \ ts: u
+We consider the transducer with stateset S :“ S0˘1 \ tǫ, x, x´1 , y, y ´1 u and alphabet
+A “ tIIIi , IVi , Vi , VIIj , VIIIj | i “ 1, 2, 1, 2; j “ 1, . . . , 4, 1, . . . , 4u.
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS
+
+9
+
+in state
+
+The structure of the transducer is given by its map ΦM : A ˆ S Ñ S ˆ A, first
+described as a table, with ΦM pa, sq at position pa, sq. The state ǫ is the identity,
+and ΦM pa, ǫq “ pǫ, aq for all a P A.
+For all instructions ps, m, nq ÞÑ ps1 , m ` 1, n ` 1q of type III and for all t P S0 zSIII
+we have
+input letter
+III2
+III1
+III2
+III1
+´1
+´1
+x px, III1 q px, III2 q px , III1 q px , III2 q
+py ´1 , III1 q
+y py, III1 q py, III2 q py ´1 , III1 q
+1
+s ps , III2 q pǫ, III1 q
+pǫ, III2 q
+pps1 q´1 , III1 q
+pǫ, III1 q
+pǫ, III2 q
+t pǫ, III1 q pǫ, III2 q
+
+in state
+
+in state
+
+For all instructions ps, m, nq ÞÑ ps1 , m ´ 1, nq of type IV and for all t P S0 zSIV , we
+have
+input letter
+IV2
+IV1
+IV2
+IV1
+x px, IV2 q pǫ, IV1 q
+pǫ, IV2 q
+px´1 , IV1 q
+py ´1 , IV2 q
+y py, IV1 q py, IV2 q
+py ´1 , IV1 q
+1
+1
+1 ´1
+s ps , IV1 q ps , IV2 q pps q , IV1 q pps1 q´1 , IV2 q
+pǫ, IV1 q
+pǫ, IV2 q
+t pǫ, IV1 q pǫ, IV2 q
+The same applies for an instruction of type V, with the roles of x, y switched.
+For an instruction ps, m, nq ÞÑ pm “ 0 ? s1 : s2 , m, nq of type VII and for all
+t P S0 zSVII , we have
+
+x
+y
+s
+t
+
+VII1
+VII2
+px, VII4 q pǫ, VII3 q
+py, VII1 q pǫ, VII2 q
+pǫ, VII2 q ps2 , VII1 q
+pǫ, VII1 q pǫ, VII2 q
+
+input letter
+VII3
+VII4
+VII1
+pǫ, VII2 q px, VII1 q
+px´1 , VII4 q
+pǫ, VII3 q py, VII4 q
+py ´1 , VII1 q
+1
+ps , VII4 q pǫ, VII4 q pps2 q´1 , VII2 q
+pǫ, VII1 q
+pǫ, VII3 q pǫ, VII4 q
+
+VII2
+pǫ, VII3 q
+pǫ, VII2 q
+pǫ, VII1 q
+pǫ, VII2 q
+
+VII3
+VII4
+pǫ, VII2 q px´1 , VII1 q
+pǫ, VII3 q py ´1 , VII4 q
+pǫ, VII3 q pps1 q´1 , VII3 q
+pǫ, VII3 q
+pǫ, VII4 q
+
+The same applies for an instruction of type VIII, with the roles of x, y switched.
+Note that s: is treated as a state t in all tables above.
+Theorem B follows from the undecidability of the halting problem for Minsky
+machines, and the following
+Proposition 3.1. The Minsky machine M constructed above halts if and only if
+the element s˚ xy has finite order in xΦM y.
+Proof. Set G “ xΦM y. For g P G, denote by Cpgq its symmetric conjugacy class:
+Cpgq :“ tg ˘x | x P Gu.
+Given a symmetric conjugacy class C, choose a representative g in it, let A “
+A1 \ ¨ ¨ ¨ \ Aℓ be the decomposition of A into cycles for the action of g, and choose
+representatives ai P Ai . We have ΦM pai , g #Ai q “ phi , ai q for some hi P G, and it is
+easy to see that the collection of symmetric conjugacy class tCphi q | i “ 1, . . . , ℓu
+is independent of the choice of g and the ai .
+We construct an integer-labeled, directed graph1 whose vertices are symmetric
+conjugacy classes in G; for a conjugacy class C as above, there are ℓ edges starting
+at C, ending respectively at Cph1 q, . . . , Cphℓ q with labels #A1 , . . . , #Aℓ .
+1This graph essentially appears in the solution of [3] to the order problem in bounded automata.
+
+10
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+Lemma 3.2. For g P G, its order (in N Y t8u) is the least common multiple, along
+all paths starting at Cpgq, of the product of the labels along the path.
+Proof. Consider a path starting at Cpgq, with labels n1 , . . . , ns , and going through
+vertices Cpg1 q, . . . , Cpgs q. Then g has an orbit of length n1 on A, so the order of g
+is a multiple of n1 . Furthermore, g n1 fixes that orbit, and acts as g1 on sequences
+that start by that orbit. Recursively, the order of g1 is a multiple of n2 ¨ ¨ ¨ ns , so the
+order of g is a multiple of n1 ¨ ¨ ¨ ns . In particular, if there are paths with arbitrarily
+large product of labels then g has infinite order.
+Conversely, if g has infinite order then there are arbitrarily long orbits of g on
+A˚ , so there are paths with arbitrarily large product of labels; and if m be the least
+common multiple of all path labels then all edges on paths starting at Cpg m q are
+labeled 1 so g m fixes every sequence and therefore g m “ 1.
+
+Let us compute the subgraph spanned by Cps˚ xyq. For the computations, it is
+helpful to picture the operation of the transducer ΦM by means of its dual Moore
+diagram ∆, see Figure 3. Given g P G, we compute all primitive cycles in ∆ whose
+input label is a power of g, and read the corresponding output label; these are the
+hi in the map on symmetric conjugacy classes Cpgq
+tCphi qu.
+We first note, by direct inspection, that x and y commute in G. This follows by tracing the path x´1 y ´1 xy in the graphs above, and noting that they
+always induce the trivial permutation of A with output either trivial or conjugate
+to px´1 y ´1 xyq˘1 .
+We now claim that, if ps, m, nq Ñ ps1 , m1 , n1 q is a transition of the machine M,
+n1
+m
+n
+m1
+then the conjugacy class Cpsx2 y 2 q has at least one arrow to Cps1 x2 y 2 q, and
+possibly other arrows, all of them to Cp1q. We also claim that if s is not of type
+n1
+m1
+IV or V, then arrows to Cps1 x2 y 2 q are with labels ą 1; and all arrows from
+m
+n
+Cps: x2 y 2 q are arrows to Cp1q. We see that if the machine halts then every path
+starting at Cps˚ xyq has only a finite number of labels ą 1, and this shows that the
+order of s˚ xy is finite.
+On the other hand, if the machine does not halt then there is an path with
+infinitely many labels ą 1 (because no Minsky machine can decrease its counters
+infinitely many times in a row) so s˚ xy has infinite order.
+Note that our transducer has the property ΦM pLi , gq “ ΦM pLi , g ´1 q, for all g P S
+and all L P tIII, IV, V, VII, VIIIu. Also note that ΦM pLi , tq “ ΦM pLi , t´1 q “ pǫ, Li q
+whenever t is any instruction not of type L.
+Using this, we can prove that if t is not of type L, then tgn gn´1 ¨ ¨ ¨ g1 tg1 g2 ¨ ¨ ¨ gn
+fixes the orbit tLi u with output ǫ.
+Indeed, tgn gn´1 ¨ ¨ ¨ g1 tg1 g2 ¨ ¨ ¨ gn “ pgn tgn t´1 ¨ tgn´1 gn´2 ¨ ¨ ¨ g1 tg1 g2 ¨ ¨ ¨ gn´1 qgn ,
+and we use induction on n. It follows that ptxm y n q2 fixes Li with outputs ǫ, i.e.,
+there is an arrow from Cptxm y n q to Cp1q with label 2.
+Let us first restrict to the orbit tIIIi u of G on A. We consider g :“ sxm y n with s
+an instruction of type III. It acts as a product of two cycles pIII1 , III2 qpIII1 , III2 q; the
+output label of g 2 on the first cycle, starting at III1 , is s1 xm y n ǫxm y n “ s1 x2m y 2n ,
+and the output of g 2 starting on the second cycle at III1 is ǫx´m y ´n ps1 q´1 x´m y ´n P
+m
+n
+m`1
+n`1
+Cps1 x2m y 2n q. There are therefore two arrows from Cpsx2 y 2 q to Cps1 x2
+y 2 q,
+as required. We do not consider g :“ txm y n with t an instruction of different type
+or s: , because it was considered above (there are some arrows to Cp1q with labels
+2).
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS 11
+
+ps, s1 q
+
+III1
+
+ps, ǫq
+III2
+
+px, xq
+
+pt, ǫq
+
+py, yq
+
+´1
+
+III1
+
+px, x
+
+q
+
+ps, ǫq
+
+py, yq
+
+pt, ǫq
+
+IV1
+
+px, ǫq
+px, x´1 q
+
+III2
+
+py, yq
+
+px, xq
+IV2
+
+IV1
+px, x´1 q
+
+pt, ǫq
+ps, ps1 q´1 q
+
+px, xq
+
+ps, ps1 q´1 q
+
+ps, s1 q
+
+ps, s1 q
+
+py, y ´1 q
+
+IV2
+
+pt, ǫq
+
+py, y ´1 q
+px, ǫq
+
+py, y ´1 q
+
+py, yq
+
+py, y ´1 q
+
+ps, ps1 q´1 q
+
+pt, ǫq
+py, yq
+py, yq
+
+VII1
+
+ps, s2 q
+
+py, ǫq
+
+px, xq
+
+ps, ǫq
+VII2
+
+px, ǫq
+
+VII4
+ps, s1 q
+
+pt, ǫq
+ps, ǫq
+
+py, y ´1 q
+VII4
+
+ps, ps1 q´1 q
+
+VII3
+py, ǫq
+
+ps, ǫq
+pt, ǫq
+
+VII3
+
+px, x´1 q
+
+ps, ps2 q´1 q
+
+ps, ǫq
+
+px, ǫq
+
+py, y ´1 q
+
+VII1
+
+VII2
+
+py, ǫq
+
+py, ǫq
+
+pt, ǫq
+Figure 3. The dual Moore diagram of ΦM , used in the proof of Theorem B
+We restrict next to the orbit tIVi u of G and consider the case g “ sx2m y n . (We
+do not need to consider cases g “ sx2m`1 y n or g “ txm y n , for the first because we
+suppose that if m “ 0 then M does not perform an instruction of type IV, and for
+the second because it was already considered above.)
+An element g “ sx2m y n fixes IV1 , IV2 , IV1 and IV2 , its outputs are respectively
+1
+s pxǫqm y n “ s1 xm y n , s1 xm y n , ps1 q´1 x´m y ´n and ps1 q´1 x´m y ´n . Hence there are
+m
+n
+m´1
+n
+4 arrows from Cpsx2 y 2 q to Cps1 x2
+y 2 q, all with labels 1.
+We restrict next to the orbit tVIIi u of G and perform the same computations,
+the result is in the following table:
+gPG
+sx2m y n
+
+sx2m`1 y n
+
+cycles of g
+pVII1 , VII2 q
+pVII3 , VII4 , VII4 , VII3 q
+pVII1 , VII2 q
+pVII1 , VII3 q
+pVII2 , VII4 , VII1 , VII3 q
+pVII2 , VII4 q
+
+output, starting at first element of the cycle
+ǫs2 x2m y n
+s1 x2m y n ǫx´2m y ´n ps1 q´1 ǫ “ 1
+ps2 q´1 ǫx´2m y ´n
+ǫs1 x2m`1 y n
+s2 x2m`1 y n ǫx´2m´1 y ´n ps2 q´1 ǫ “ 1
+ǫx´2m´1 y ´n ps1 q´1 ǫ
+
+12
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+m
+
+n
+
+m
+
+n
+
+If m ą 0 then there are therefore two arrows from Cpsx2 y 2 q to Cps2 x2 y 2 q
+with labels 2 and an arrow to Cp1q with label 4; if m “ 0 then there are two arrows
+m
+n
+m
+n
+from Cpsx2 y 2 q to Cps2 x2 y 2 q with label 4 and an arrow to Cp1q with label 4.
+The orbits tVi u and tVIIIi u are investigated in the same way as tIVi u and tVIIi u
+respectively.
+
+3.2. Proof of Theorem B2 . Consider a universal Minsky machine Mu , namely
+one that emulates arbitrary Turing machines encoded in an integer n, when started
+in state ps˚ , 0, nq. The set of 2n such that Mu halts when started in state ps˚ , 0, nq
+is not recursive, see Proposition 2.2. Therefore, Theorem B2 follows by considering
+in the group xΦMu y the elements s “ s˚ x and t “ y.
+3.3. Proof of Theorem B1 . Let M be a Minsky machine with stateset S0 . Without loss of generality, we assume that all instructions are of type III,IX,X.
+We associate to it the transducer with stateset Q :“ S0 \ tǫ, x, yu and alphabet
+A “ t0, IIIi , IXj , Xj | i “ 1, 2; j “ 1, . . . , 4u.
+
+in state
+
+The structure of the transducer is given by its map ΦM : A ˆ Q Ñ Q ˆ A.
+The state ǫ is the identity, and ΦM pa, ǫq “ pǫ, aq for all a P A.
+‚ for all instructions psi , m, nq ÞÑ ps1i , m ` 1, n ` 1q of type III we have
+input letter
+0
+III1
+III2
+x
+pǫ, 0q
+px, III1 q px, III2 q
+y
+pǫ, 0q
+py, III1 q py, III2 q
+si ps1i , III1 q pǫ, III2 q
+pǫ, 0q
+
+in state
+
+and every instruction t of another type acts as ΦM pt, IIIℓ q “ pIIIℓ , tq.
+‚ for all instructions psj , m, nq ÞÑ m “ 0 ? ps1j , m, nq : ps2j , m ´ 1, nq of type
+IX we have
+input letter
+0
+IX1
+IX2
+IX3
+IX4
+x
+pǫ, 0q
+pǫ, IX2 q
+pǫ, IX1 q px, IX4 q pǫ, IX3 q
+y
+pǫ, 0q
+pǫ, IX1 q
+pǫ, IX2 q py, IX3 q py, IX4 q
+sj pǫ, IX1 q ps2j , IX4 q ps1j , IX3 q ps1j , IX2 q
+pǫ, 0q
+and every instruction t of another type acts as ΦM pIXℓ , tq “ pt, IXℓ q.
+‚ The same applies for every instruction psk , m, nq ÞÑ n “ 0 ? ps1k , m, nq :
+ps2k , m, n ´ 1q of type X, with the roles of x and y switched.
+‚ for all a P A we have ΦM pa, s: q “ pǫ, aq.
+We claim that the orbit of 08 under s˚ xy is finite if and only if the machine M
+stops.
+Set G “ xΦM y. We construct an integer-labeled, directed graph whose vertices
+are elements of G. For g P G consider its action on A and the minimal pg such that
+g pg fixes 0, i.e., 0 ¨ g pg “ g 1 ¨ 0. In our graph we put an edge g Ñ g 1 with label pg
+on it.
+The size of the the orbit of 08 under s˚ xy is a finite number or 8 and it is equal
+to product of the labels along the path starting at s˚ xy.
+We claim that for any instruction ps, m, nq Ñ ps1 , m1 , n1 q there is an edge from
+m
+n
+m1
+n1
+m
+n
+sx2 y 2 to s1 x2 y 2 with label 3, and an edge from s: x2 y 2 to 1. This is checked
+on the dual Moore diagram of ΦM , see Figure 4:
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS 13
+
+py, ǫq
+IX2
+
+px, ǫq
+
+py, ǫq
+
+px, ǫq
+
+IX1
+
+X1
+
+px, ǫq
+py, ǫq
+
+X2
+
+psk , ǫq
+ps: , ǫq
+
+IX4
+
+si1q
+III1
+px, xq
+
+X3
+
+px, xq
+
+py, yq
+
+px, xq
+
+ǫq
+
+psi
+,
+
+py, yq
+
+py, yq
+
+py, ǫq
+
+X4
+
+,
+ps i
+
+px, ǫq
+
+psk , s1k q
+
+0
+psj , ǫq
+
+psk , s2k q
+
+px, xq
+
+IX3
+py, yq
+
+psj , s2j q
+
+psj , s1j q
+
+psj , ǫq px, ǫqpy, ǫq psk , ǫq
+
+psi , ǫq
+
+III2
+
+py, yq
+
+px, xq
+
+Figure 4. The dual Moore diagram of ΦM , used in the proof of Theorem B1
+We first note that x and y commute in G. If g “ si xm y n and si is an instruction
+of type III, then the orbit of 0 under the action of g is p0, III1 , III2 q. There is an
+edge labeled 3 from g to s1i xm y n ǫxm y n “ s1i x2m y 2n .
+Consider next sj an instruction of type IX. There are two cases. if g “ sj xy n
+then the orbit of 0 is p0, IX2 , IX4 q and the output is ǫs1j xy n ǫ; if g “ sj x2m y n then
+the orbit of 0 is p0, IX1 , IX4 q and the output is ǫs2j xm y n ǫ.
+m
+n
+This means that if m “ 0 then there is an edge labeled 3 from sj x2 y 2 to
+m´1
+n
+m
+n
+m
+n
+y2 .
+s1j x2 y 2 , and if m ą 0 then there is an edge labeled 3 from sj x2 y 2 to s2j x2
+The same naturally applies to instructions of type IX. Finally, for all m, n P N
+the element s: xm y n fixes 0, and there is an edge labeled 1 from s: xm y n to 1.
+3.4. Contracting automata: proof of Theorem C. We finally explain how to
+make the transducers ΦM of the previous subsections contracting. We expand the
+definition from the introduction:
+Definition 3.3 ([16, Definition 2.11.1]). Let G “ xΦy be a self-automata group
+with Φ : A ˆ S Ñ S ˆ A and Φ : A ˆ G Ñ G ˆ A. For g P G and u P A˚ , the state
+g@u is the unique element of G such that puvqg “ ug v g@u ; namely, the action of g
+on tails of sequences starting with u.
+The group G is contracting if there exists a finite subset N Ď G such that, for
+all g P G, there exists npgq P N such that g@u P N whenever |u| ě npgq.
+△
+The minimal subset N satisfying the definition is called the nucleus. In particular, one has n@a P N for all pa, nq P A ˆ N , so Φ induces an automaton still written
+r :“ An for n
+Φ : A ˆ N Ñ N ˆ A. Up to replacing S by Sr :“ S Y N and A by A
+larger than maxgPSr2 npgq, thus making the transducer process n letters at a time,
+
+14
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+one may also assume
+r ˆ Sr2 q Ď Sr ˆ A.
+r
+ΦpA
+A transducer Φ with this extra property is called nuclear.
+Note that is is probably undecidable whether a self-similar group xΦy is contracting; but it is easy to decide whether a transducer Φ : A ˆ S Ñ S ˆ A is nuclear: by
+minimizing the composite transducer A ˆ S 3 Ñ S ˆ A ˆ S 2 Ñ S 2 ˆ A ˆ S Ñ S 3 ˆ A,
+find the set R of all words s1 s2 s3 P S 3 that equal 1 in G. Then Φ is nuclear if and
+only if for all a P A, s1 , s2 P S there exists s3 P S such that if Φpa, s1 q “ ps11 , bq and
+Φpb, s2 q “ ps12 , cq then s11 s12 s´1
+3 P R. The more precise form of Theorem C is:
+Theorem 3.4. There is no algorithm that, given a nuclear transducer Φ : A ˆ S Ñ
+S ˆ A and a P A and s P S, determines the cardinality of the orbit of a8 under xsy.
+There is no algorithm that, given a nuclear transducer Φ : A ˆ S Ñ S ˆ A and
+s P S, determines the order of s in xΦy.
+Note that the group is not changed by these operations of replacing S by N and
+A by An . If Φ is nuclear, then xΦy is contracting in the sense of the introduction,
+since |g 1 | ď p|g|`1q{2 in the word metric defined by N . Conversely, if |g 1 | ď λ|g|`C
+then one may take N “ tg P G | C{p1 ´ λq ě |g|u to see that G is contracting in
+the sense of Definition 3.3.
+Lemma 3.5. Let Φ : A ˆ S Ñ S ˆ A be a transducer. If there is a constant N P N
+such that every reduced path of length ě N in the dual Moore diagram of Φ contains
+an ǫ letter along its output, then xΦy is contracting.
+Proof. Consider g P xΦy, and represent it by a word w P S ˚ of length ℓ “ |g|.
+Factor w “ w1 . . . wt with |wi | “ N for all i “ 1, . . . , t ´ 1 and |wt | ă N .
+Then every g 1 as in (1.1) is computed by following, in the dual Moore diagram,
+the path starting at a1 with label w on its input. The output label along that path
+is g 1 , and by hypothesis each time a segment wi is read, for i ă t, an ǫ letter is
+produced for g 1 ; so |g 1 | ď ℓ ´ t ` 1. Now t “ rℓ{N s, so
+|g 1 | ď ℓ ´ rℓ{N s ` 1 ď p1 ´ 1{N q|g| ` 1.
+
+
+
+We shall modify the transducers ΦM by composing them with appropriate machines. We recall the general definition: let Φ : AˆS Ñ SˆA and Ψ : BˆS Ñ SˆB
+be transducers with same stateset S. Their composition is the transducer Φ ˝ Ψ
+with alphabet A ˆ B, given by
+AˆΨ
+
+ΦˆB
+
+Φ˝Ψ : pAˆBqˆS “ AˆpBˆSq ÝÑ AˆpSˆBq “ pAˆSqˆB ÝÑ pSˆAqˆB “ SˆpAˆBq.
+We are given a transducer Φ with stateset S “ ts1 , . . . , sℓ , x, yu and alphabet
+A. We write G “ xΦy, and freely identify words in S ˚ with their value in G. We
+require that x, y commute.
+For every i P t1, . . . , ℓu, consider the transducer Φi with alphabet Ai “ t0, 1u
+and transitions Φi pa, qq “ pa “ 0 ? q : ǫ, q “ si ? 1 ´ a : aq.
+Note (by drawing the dual Moore diagram and deleting the transitions with ǫ
+output) that the only paths with input and output of same length are of the form
+b
+s´a
+i wsi for some a, b P t0, 1u and w a word not involving si .
+Note also that for a word w of form sj xm y n
+(1) if i “ j then Φi p0, w2 q “ pw, 0q and Φi p1, w2 q “ pw1 , 1q with w1 conjugate
+to w;
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS 15
+
+(2) if i ‰ j then Φi p0, wq “ pw, 0q and Φi p1, wq “ pǫ, 1q.
+Consider also a transducer Φ0 with alphabet A0 “ t0, 1u3 and transitions
+Φ0 ppa, b, cq, si q “ pc “ 0 ? si : ǫ, pa, b, 1 ´ cqq for all i;
+Φ0 ppa, b, cq, xq “ pa “ 0 ? x : ǫ, p1 ´ a, b, cqq;
+Φ0 ppa, b, cq, yq “ pb “ 0 ? y : ǫ, pa, 1 ´ b, cqq.
+Note that, in the dual Moore diagram of Φ0 , all paths with input label of the form
+m n b
+s´a
+i x y sj have shorter output label as soon as |m| ` |n| ě 3. Note also that if w
+is a word of the form si xm y n then for all pa, b, cq P A0 we have Φ0 ppa, b, cq, w2 q “
+pw1 , pa, b, cqq for some permutation w1 of w; so in particular w1 is conjugate to w.
+Furthermore, for pa, b, cq “ p0, 0, 0q we get w1 “ w in G.
+Proposition 3.6. Under the hypotheses above, the transducer Φ1 :“ Φ ˝ Φ0 ˝ Φ1 ˝
+¨ ¨ ¨ ˝ Φℓ generates a contracting group, and whenever we have Φpa, psi xm y n qt q “
+1
+1
+ps1i xm y n , aq in the original transducer we have for all j P t0, 1uℓ`3 the relation
+1
+1
+Φ1 ppj, aq, psi xm y n q4t q “ pw, pj, aqq, with w either equal to 1 or conjugate to s1i xm y n .
+1
+1
+Furthermore, if j “ 0ℓ`3 then w “ s1i xm y n .
+Proof. After applying the transducers Φ1 , . . . , Φℓ , the only words that don’t get
+b
+shortened are of the form s´a
+i wpx, yqsj for some i, j P t1, . . . , ℓu and some a, b P
+t0, 1u. These get shortened by Φ0 as soon as |w| ě 3, using the fact that x and y
+commute. It follows that xΦ1 y is contracting.
+Consider the transitions of psi xm y n q4 in transducer Φ1 ˝ ¨ ¨ ¨ ˝ Φℓ . On input letter
+ℓ
+0 it produces psi xm y n q2 , on input letter 0 ¨ ¨ ¨ 1 ¨ ¨ ¨ 0 with the ‘1’ in position i it
+produces a conjugate of psi xm y n q2 and on all other input letters it produces ǫ.
+Feed then psi xm y n q2 to transducer Φ0 ; on input letter 000 it produces si xm y n and
+on all other input letters it produces a conjugate of si xm y n . Feed finally si xm y n
+to Φ to conclude the proof.
+
+We are ready to finish the proof of Theorem 3.4. We constructed an integerlabeled graph for a transducer Φ, whose vertices are elements of G for Theorem B1
+or symmetric conjugacy classes for Theorem B.
+By Proposition 3.6, the transducer Φ1 is contracting. Let us check that the order
+problems for xΦy and for xΦ1 y are equivalent.
+A graph for Φ1 will have the same set of vertices as the graph for Φ, and Proposition 3.6 shows that this new graph has the same set of outgoing edges for each
+element of form si xm y n , with labels multiplied by 4 and, possibly, some new edges
+to 1 (or to Cp1q). Since in the old graph there were no loops at non-identity elements, s˚ xy has infinite order in xΦ1 y if and only if it has infinite order in xΦy, and
+the orbit of p0, 0ℓ`3 q8 is infinite under the action of s˚ xy P xΦ1 y if and only if the
+orbit of 08 is infinite under the action of s˚ xy P xΦy.
+r “ An , we may
+Finally, by replacing the stateset S by Sr “ S Y N and A by A
+1
+assume that Φ is nuclear.
+4. Outlook
+We proved in this article the undecidability of the order problem for automata
+groups, namely groups of transformations generated by a transducer.
+If the transducer belongs to a restricted class, it may well be that the order
+problem becomes decidable. Of particular importance are:
+
+16
+
+LAURENT BARTHOLDI AND IVAN MITROFANOV
+
+Transducers of polynomial growth. In a transducer Φ (represented by a graph
+as in Figure 1), let αpnq denote the number of paths of length n that end in a
+non-identity state. If αpnq is a bounded function (as is the case for the Grigorchuk
+group), then the order problem is solvable in xΦy, see [3]. What happens if αpnq
+is bounded by a linear function? or by a polynomial of degree d? The groups
+generated by such transducers have been considered by Sidki [17].
+Reset transducers. These are transducers Φ with Φpa, sq “ pφpaq, ψpa, sqq for
+some functions φ, ψ; namely, the state reached by the transducer is independent of
+the original state. These transducers are intimately connected to tilings, by Kari’s
+construction [12]. Gillibert proved in [5] that the order problem is unsolvable for
+semigroups of reset automata. Is it solvable in groups of reset automata?
+Reversible transducers. These are transducers whose dual is invertible; they
+should be related to reversible Turing or Minsky machines. Is the order problem
+solvable for groups generated by reversible automata?
+Bireversible transducers. These are transducers Φ such that all 8 transducers
+obtained from Φ by inverting or permuting the stateset and alphabet remain transducers; they give another point of view on square complexes (by tiling the plane
+with squares whose labels are pa, s, a1 , s1 q when Φpa, sq “ ps1 , a1 q).
+We expect it to be undecidable whether a functionally recursive group is actually
+an automata group (for a larger generating set), whether an automata group is
+contracting, and even whether a contracting group is finite. Again, the related
+questions for semigroups are known to be undecidable by constructions in or similar
+to [5].
+References
+[1] Ali Akhavi, Ines Klimann, Sylvain Lombardy, Jean Mairesse, and Matthieu Picantin, On
+the finiteness problem for automaton (semi)groups, Internat. J. Algebra Comput. 22 (2012),
+no. 6, 1250052, 26, DOI 10.1142/S021819671250052X. MR2974106
+[2] Robert Berger, The undecidability of the domino problem, Mem. Amer. Math. Soc. No. 66
+(1966), 72. MR0216954 (36 #49)
+[3] Ievgen V. Bondarenko, Natalia V. Bondarenko, Said N. Sidki, and Flavia R. Zapata, On the
+conjugacy problem for finite-state automorphisms of regular rooted trees, Groups Geom. Dyn.
+7 (2013), no. 2, 323–355, DOI 10.4171/GGD/184. With an appendix by Raphaël M. Jungers.
+MR3054572
+[4] Andrew M. Brunner and Said N. Sidki, On the automorphism group of the one-rooted binary
+tree, J. Algebra 195 (1997), no. 2, 465–486. MR98i:20035
+[5] Pierre Gillibert, The finiteness problem for automaton semigroups is undecidable, Internat.
+J. Algebra Comput. 24 (2014), no. 1, 1–9, DOI 10.1142/S0218196714500015. MR3189662
+, An automaton group with undecidable order and Engel problems (2017), available
+[6]
+at arXiv:1710.09733.
+[7] Rostislav I. Grigorchuk, On Burnside’s problem on periodic groups, Funkcional. Anal. i
+Priloжen. 14 (1980), no. 1, 53–54. English translation: Functional Anal. Appl. 14 (1980),
+41–43. MR81m:20045
+, On the Milnor problem of group growth, Dokl. Akad. Nauk SSSR 271 (1983), no. 1,
+[8]
+30–33. MR85g:20042
+[9] Rostislav I. Grigorchuk, Volodymyr V. Nekrashevych, and Vitaliı̆ Ī Suščans1 kiı̆, Automata,
+dynamical sysytems, and groups, PROSI 231 (2000), no. 4, 128–203.
+[10] Narain D. Gupta and Said N. Sidki, On the Burnside problem for periodic groups, Math. Z.
+182 (1983), 385–388.
+[11] Ju. Š. Gurevič, The problem of equality of words for certain classes of semigroups, Algebra
+i Logika Sem. 5 (1966), no. 5, 25–35 (Russian). MR0206079
+
+THE WORD AND ORDER PROBLEMS FOR SELF-SIMILAR AND AUTOMATA GROUPS 17
+
+[12] Jarkko Kari, The nilpotency problem of one-dimensional cellular automata, SIAM J. Comput.
+21 (1992), no. 3, 571–586, DOI 10.1137/0221036. MR1163346
+[13] Ines Klimann, Jean Mairesse, and Matthieu Picantin, Implementing computations in automaton (semi)groups, Implementation and application of automata, Lecture Notes in Comput.
+Sci., vol. 7381, Springer, Heidelberg, 2012, pp. 240–252, DOI 10.1007/978-3-642-31606-7 21.
+MR2993189
+[14] Ville Lukkarila, The 4-way deterministic tiling problem is undecidable, Theoret. Comput. Sci.
+410 (2009), no. 16, 1516–1533, DOI 10.1016/j.tcs.2008.12.006. MR2502125 (2010d:03071)
+[15] Marvin L. Minsky, Recursive unsolvability of Post’s problem of “tag” and other topics in
+theory of Turing machines, Ann. of Math. (2) 74 (1961), 437–455, DOI 10.2307/1970290.
+MR0140405
+[16] Volodymyr V. Nekrashevych, Self-similar groups, Mathematical Surveys and Monographs,
+vol. 117, American Mathematical Society, Providence, RI, 2005. MR2162164 (2006e:20047)
+[17] Said N. Sidki, Automorphisms of one-rooted trees: growth, circuit structure, and acyclicity,
+J. Math. Sci. (New York) 100 (2000), no. 1, 1925–1943. Algebra, 12. MR1774 362
+Département de Mathématiques et Applications, École Normale Supérieure, Paris
+and Mathematisches Institut, Georg-August Universität zu Göttingen
+E-mail address: laurent.bartholdi@gmail.com
+E-mail address: phortim@yandex.ru
+
+

@@ -1,0 +1,22 @@
+Title: A Hybrid Recommender System for Recommending Smartphones to Prospective Customers
+
+Authors: Pratik K. Biswas, Songlin Liu
+
+Published: 2021-05-26
+
+Categories: cs.IR, cs.LG
+
+Abstract:
+Recommender Systems are a subclass of machine learning systems that employ sophisticated information filtering strategies to reduce the search time and suggest the most relevant items to any particular user. Hybrid recommender systems combine multiple recommendation strategies in different ways to benefit from their complementary advantages. Some hybrid recommender systems have combined collaborative filtering and content-based approaches to build systems that are more robust. In this paper, we propose a hybrid recommender system, which combines Alternating Least Squares (ALS) based collaborative filtering with deep learning to enhance recommendation performance as well as overcome the limitations associated with the collaborative filtering approach, especially concerning its cold start problem. In essence, we use the outputs from ALS (collaborative filtering) to influence the recommendations from a Deep Neural Network (DNN), which combines characteristic, contextual, structural and sequential information, in a big data processing framework. We have conducted several experiments in testing the efficacy of the proposed hybrid architecture in recommending smartphones to prospective customers and compared its performance with other open-source recommenders. The results have shown that the proposed system has outperformed several existing hybrid recommender systems.
+
+Paper ID: 2105.12876v2
+
+Summary:
+This paper titled "A Hybrid Recommender System for Recommending Smartphones to Prospective Customers" was authored by Pratik K. Biswas, Songlin Liu and published on 2021-05-26.
+It falls under the categories: cs.IR, cs.LG.
+The research explores the following topic: Recommender Systems are a subclass of machine learning systems that employ sophisticated information filtering strategies to reduce the search time and suggest the most relevant items to any particular user. Hybrid recommender systems combine multiple recommendation strategies in different ways to benefit from their complementary advantages. Some hybrid recommender systems have combined collaborative filtering and content-based approaches to build systems that are more robust. In this paper, we propose a hybrid recommender system, which combines Alternating Least Squares (ALS) based collaborative filtering with deep learning to enhance recommendation performance as well as overcome the limitations associated with the collaborative filtering approach, especially concerning its cold start problem. In essence, we use the outputs from ALS (collaborative filtering) to influence the recommendations from a Deep Neural Network (DNN), which combines characteristic, contextual, structural and sequential information, in a big data processing framework. We have conducted several experiments in testing the efficacy of the proposed hybrid architecture in recommending smartphones to prospective customers and compared its performance with other open-source recommenders. The results have shown that the proposed system has outperformed several existing hybrid recommender systems.
+
+Links:
+  - https://arxiv.org/abs/2105.12876v2
+  - https://arxiv.org/pdf/2105.12876v2
+  - https://doi.org/10.1016/j.eswa.2022.118058

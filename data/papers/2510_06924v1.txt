@@ -1,0 +1,22 @@
+Title: Ethical AI prompt recommendations in large language models using collaborative filtering
+
+Authors: Jordan Nelson, Almas Baimagambetov, Konstantinos Avgerinakis, Nikolaos Polatidis
+
+Published: 2025-10-08
+
+Categories: cs.IR
+
+Abstract:
+As large language models (LLMs) shape AI development, ensuring ethical prompt recommendations is crucial. LLMs offer innovation but risk bias, fairness issues, and accountability concerns. Traditional oversight methods struggle with scalability, necessitating dynamic solutions. This paper proposes using collaborative filtering, a technique from recommendation systems, to enhance ethical prompt selection. By leveraging user interactions, it promotes ethical guidelines while reducing bias. Contributions include a synthetic dataset for prompt recommendations and the application of collaborative filtering. The work also tackles challenges in ethical AI, such as bias mitigation, transparency, and preventing unethical prompt engineering.
+
+Paper ID: 2510.06924v1
+
+Summary:
+This paper titled "Ethical AI prompt recommendations in large language models using collaborative filtering" was authored by Jordan Nelson, Almas Baimagambetov, Konstantinos Avgerinakis, Nikolaos Polatidis and published on 2025-10-08.
+It falls under the categories: cs.IR.
+The research explores the following topic: As large language models (LLMs) shape AI development, ensuring ethical prompt recommendations is crucial. LLMs offer innovation but risk bias, fairness issues, and accountability concerns. Traditional oversight methods struggle with scalability, necessitating dynamic solutions. This paper proposes using collaborative filtering, a technique from recommendation systems, to enhance ethical prompt selection. By leveraging user interactions, it promotes ethical guidelines while reducing bias. Contributions include a synthetic dataset for prompt recommendations and the application of collaborative filtering. The work also tackles challenges in ethical AI, such as bias mitigation, transparency, and preventing unethical prompt engineering.
+
+Links:
+  - https://arxiv.org/abs/2510.06924v1
+  - https://arxiv.org/pdf/2510.06924v1
+  - https://doi.org/10.1080/17445760.2025.2573086

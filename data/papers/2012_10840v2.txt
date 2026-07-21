@@ -1,0 +1,21 @@
+Title: Analyzing the Performance of Graph Neural Networks with Pipe Parallelism
+
+Authors: Matthew T. Dearing, Xiaoyan Wang
+
+Published: 2020-12-20
+
+Categories: cs.LG, cs.AI, cs.CV, cs.DC
+
+Abstract:
+Many interesting datasets ubiquitous in machine learning and deep learning can be described via graphs. As the scale and complexity of graph-structured datasets increase, such as in expansive social networks, protein folding, chemical interaction networks, and material phase transitions, improving the efficiency of the machine learning techniques applied to these is crucial. In this study, we focus on Graph Neural Networks (GNN) that have found great success in tasks such as node or edge classification and link prediction. However, standard GNN models have scaling limits due to necessary recursive calculations performed through dense graph relationships that lead to memory and runtime bottlenecks. While new approaches for processing larger networks are needed to advance graph techniques, and several have been proposed, we study how GNNs could be parallelized using existing tools and frameworks that are known to be successful in the deep learning community. In particular, we investigate applying pipeline parallelism to GNN models with GPipe, introduced by Google in 2018.
+
+Paper ID: 2012.10840v2
+
+Summary:
+This paper titled "Analyzing the Performance of Graph Neural Networks with Pipe Parallelism" was authored by Matthew T. Dearing, Xiaoyan Wang and published on 2020-12-20.
+It falls under the categories: cs.LG, cs.AI, cs.CV, cs.DC.
+The research explores the following topic: Many interesting datasets ubiquitous in machine learning and deep learning can be described via graphs. As the scale and complexity of graph-structured datasets increase, such as in expansive social networks, protein folding, chemical interaction networks, and material phase transitions, improving the efficiency of the machine learning techniques applied to these is crucial. In this study, we focus on Graph Neural Networks (GNN) that have found great success in tasks such as node or edge classification and link prediction. However, standard GNN models have scaling limits due to necessary recursive calculations performed through dense graph relationships that lead to memory and runtime bottlenecks. While new approaches for processing larger networks are needed to advance graph techniques, and several have been proposed, we study how GNNs could be parallelized using existing tools and frameworks that are known to be successful in the deep learning community. In particular, we investigate applying pipeline parallelism to GNN models with GPipe, introduced by Google in 2018.
+
+Links:
+  - https://arxiv.org/abs/2012.10840v2
+  - https://arxiv.org/pdf/2012.10840v2

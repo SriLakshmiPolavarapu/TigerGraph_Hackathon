@@ -1,0 +1,1171 @@
+Title: arXiv paper 1010
+
+Categories: 2
+
+Abstract:
+arXiv:1701.03322v2 [cs.AI] 28 Apr 2017
+
+From First-Order Logic to Assertional Logic
+Yi Zhou
+Abstract
+First-Order Logic (FOL) is widely regarded as one of the most important foundations for knowledge representation. Nevertheless, in this paper, we argue that
+FOL has several critical issues for this purpose. Instead, we propose an alternative called assertional logic, in which all syntactic objects are categorized as set
+theoretic constructs including individuals, concepts and operators, and all kinds of
+knowledge are formalized by equality assertions. We first present a primitive form
+of assertional logic that uses minimal assumed knowledge and constructs. Then,
+we show how to extend it by definitions, which are special kinds of knowledge,
+i.e., assertions. We argue that assertional logic, although simpler, is more expressive and extensible than FOL. As a case study, we show how assertional logic can
+be used to unify logic and probability, and more building blocks in AI.
+
+1 Introduction
+Classical First-Order Logic (FOL) is widely regarded as one of the most important
+foundations of symbolic AI. FOL plays a central role in the field of Knowledge Representation and Reasoning (KR). Many of its fragments (such as propositional logic,
+modal and epistemic logic, description logics), extensions (such as second-order logic,
+situation calculus and first-order probabilistic logic) and variants (such as Datalog and
+first-order answer set programming) have been extensively studied in the literature
+[6, 22].
+Nevertheless, AI researchers have pointed out several issues regarding using FOL
+for knowledge representation and reasoning, mostly from the reasoning point of view.
+First, FOL is computationally very difficult. Reasoning about FOL is a well-known
+undecidable problem. Also, FOL is monotonic in the sense that adding new knowledge into a first-order knowledge base always results in more consequences. However,
+human reasoning is sometimes nonmonotonic.
+In this paper, we argue that FOL also has some critical issues from the knowledge
+representation point of view. First of all, although FOL is considered natural for welltrained logicians, it is not simple and flexible enough for knowledge engineers with
+less training. One reason is the distinction and hierarchy between term level, predicate
+level and formula level. From my own experience as a teacher in this subject, although
+strongly emphasized in the classes, many students failed to understand why a predicate
+or a formula cannot be in the scope of a function. Another reason is the notion of free
+occurrences of variables. For instance, it is not easily understandable for many students
+why the GEN inference rule has to enforce the variable occurrence restrictions. Last
+1
+
+but not least, arbitrary nesting also raises issues. Although natural from a mathematical
+point of view, a nested formula, e.g., (x∨¬(y ∧z))∧(¬y ∨¬x) is hard to be understood
+and used.
+Secondly, FOL has limitations in terms of expressive power. FOL cannot quantify
+over predicates/functions. This can be addressed by extending FOL into high-order
+logic. Nevertheless, high-order logic still cannot quantify over formulas. As a consequence, FOL and high-order logic are not able to represent an axiom or an inference
+rule in logic, such as Modus Ponens. Flexible quantification beyond the term level is
+needed in applications. As an example, in automated solving mathematical problems,
+we often use proof by induction. To represent this, we need to state that for some statement P with a number parameter, if that P holds for all numbers less than k implies
+that P holds for the number k as well, then P holds for all natural numbers. Here, P
+is a statement at a formula level, possibly with complex sub-statements within itself.
+Hence, in order to represent and use proof by induction, we need to quantify over P
+that is at a formula level.
+Thirdly, FOL is hard to be extended with new building blocks. FOL itself cannot
+formalize some important AI notions including probability, actions, time etc., which
+are needed in a wide range of applications. For this purpose, AI researchers have
+made significant progresses on extending FOL with these notions separately, such as
+first-order probabilistic logic [4, 12], situation calculus [15, 16], CTL [7] etc. Each is
+a challenging task in the sense that it has to completely re-define the syntax as well
+as the semantics. However, combing these notions together, even several of them,
+seems an extremely difficult task. Moreover, there are many more building blocks to
+be incorporated in applications. For instance, consider task planning for home service
+robots [13]. It is necessary to represent actions, probability, time and more building
+blocks such as preferences altogether at the same time.
+To address these issues, we propose assertional logic, in which all syntactic objects
+are categorized as set theoretic constructs including individuals, concepts and operators, and all kinds of knowledge are uniformly formalized by equality assertions of
+the form a = b, where a and b are either atomic individuals or compound individuals.
+Semantically, individuals, concepts and operators are interpreted as elements, sets and
+functions respectively in set theory, and knowledge of the form a = b means that the
+two individuals a and b are referring to the same element.
+We first present the primitive form of assertional logic that uses minimal assumed
+knowledge and primitive constructs. Then, we show how to extend it with more building blocks by definitions, which are special kinds of knowledge, i.e., assertions used
+to define new individuals, concepts and operators. Once these new syntactic objects
+are defined, they can be used as a basis to define more. As an example, we show how
+to define multi-assertions by using Cartesian product, and nested assertions by using
+multi-assertions.
+We show that assertional logic, although simpler, is more expressive and extensible
+than FOL. As a case study, we show how to extend assertional logic for unifying logic
+and probability, and more important AI building blocks including time. Note that our
+intention is not to reinvent the wheel of these building blocks but to borrow existing
+excellent work on formalizing these building blocks separately and to assemble them
+within one framework (i.e., assertional logic) so that they can live happily ever after.
+2
+
+2 Meta Language and Prior Knowledge
+One cannot build something from nothing. Hence, in order to establish assertional
+logic, we need some basic knowledge. Of course, for the purpose of explanation, we
+need an informal meta language whose syntax and semantics are pre-assumed. As
+usual, we use a natural language such as English. Nevertheless, this meta language is
+used merely for explanation and it should not affect the syntax as well as the semantics
+of anything defined formally.
+Only a meta level explanation language is not enough. Other than this, we also need
+some core objects and knowledge, whose syntax and semantics are pre-assumed as
+well. These are called prior objects and prior knowledge. For instance, when defining
+real numbers, we need some prior knowledge about natural numbers; when defining
+probability, we need some prior knowledge about real numbers.
+In assertional logic, we always treat the equality symbol “=” as a prior object.
+There are some prior knowledge associated with the equality symbol. For instance, “=”
+is an equivalence relation satisfying reflexivity, symmetricity, and transitivity. Also,
+“=” satisfies the general substitution property, that is, if a = b, then a can be used
+to replace b anywhere. Other than the equality symbol, we also assume some prior
+objects and their associated prior knowledge in set theory [11], including set operators
+such as set union and Cartesian product, Boolean values, set builder notations and
+natural numbers.
+
+3 Assertional Logic: the Primitive Form
+In this section, we present the primitive form of assertional logic. As the goal of assertional logic is to syntactically represent knowledge in application domains, there are
+two essential tasks, i.e., how to capture the syntax of the domain and how to represent
+knowledge in it.
+
+3.1 Capturing the syntax
+Given an application domain, a syntactic structure (structure for short if clear from
+the context) of the domain is a triple hI, C, Oi, where I is a collection of individuals,
+representing objects in the domain, C a collection of concepts, representing groups
+of objects sharing something in common and O a collection of operators, representing
+relationships and connections among individuals and concepts. Concepts and operators
+can be nested and considered as individuals as well. If needed, we can have concepts
+of concepts, concepts of operators, concepts of concepts of operators and so on.
+An operator could be multi-ary, that is, it maps a tuple of individuals into a single
+one. Each multi-ary operator O is associated with a domain of the form (C1 , . . . , Cn ),
+representing all possible values that the operator O can operate on, where Ci , 1 ≤ i ≤
+n, is a concept. We call n the arity of O. For a tuple (a1 , . . . , an ) matching the domain
+of an operator O, i.e., ai ∈ Ci , 1 ≤ i ≤ n, O maps (a1 , . . . , an ) into an individual,
+denoted by O(a1 , . . . , an ).
+
+3
+
+Operators are similar to functions in FOL but differs in two essential ways. First,
+operators are many-sorted as C1 , . . . , Cn could be different concepts. More importantly, C1 , . . . , Cn could be high-order constructs, e.g., concepts of concepts, concepts
+of operators.
+
+3.2 Representing knowledge
+Let hI, C, Oi be a syntactic structure. A term is an individual, either an atomic individual a ∈ I or the result O(a1 , . . . , an ) of an operator O operating on some individuals
+a1 , . . . , an . We also call the latter compound individuals.
+An assertion is of the form
+a = b,
+(1)
+where a and b are two terms. Intuitively, an assertion of the form (1) is a piece of
+knowledge in the application domain, claiming that the left and the right side refer to
+the same object. A knowledge base is a set of assertions. Terms and assertions can be
+considered as individuals as well.
+Similar to concepts that group individuals, we use schemas to group terms and assertions. A schema term is either an atomic concept C ∈ C or of the form O(C1 , . . . , Cn ),
+where Ci , 1 ≤ i ≤ n are concepts. Essentially, a schema term represents a set of
+terms, in which every concept is grounded by a corresponding individual. That is,
+O(C1 , . . . , Cn ) is the collection {O(a1 , . . . , an )}, where ai ∈ Ci , 1 ≤ i ≤ n are individuals. Then, a schema assertion is of the same form as form (1) except that terms
+can be replaced by schema terms. Similarly, a schema assertion represents a set of
+assertions.
+We say that a schema term/assertion mentions a set {C1 , . . . , Cn } of concepts if
+C1 , . . . , Cn occur in it, and only mentions if {C1 , . . . , Cn } contains all concepts mentioned in it. Note that it could be the case that two or more different individuals are
+referring to the same concept C in schema terms and assertions. In this case, we need
+to use different copies of C, denoted by C 1 , C 2 , . . . , to distinguish them. For instance,
+all assertions x = y, where x and y are human, are captured by the schema assertion
+Human1 = Human2 . On the other side, in a schema, the same copy of a concept C
+can only refer to the same individual. For instance, Human = Human is the set of
+all assertions of the form x = x, where x ∈ Human.
+
+3.3 The semantics
+We propose a set theoretic semantics for assertional logic. Since we assume set theory
+as the prior knowledge, in the semantics, we freely use those individuals (e.g., the
+empty set), concepts (e.g., the set of all natural numbers) and operators (e.g., the set
+union operator) without explanation.
+An interpretation (also called a possible world) is a pair h∆, .I i, where ∆ is a
+domain of elements, and .I is a mapping function that admits all prior knowledge, and
+maps each individual into a domain element in ∆, each concept into a set in ∆ and each
+n-ary operator into an n-ary function in ∆. The mapping function .I is generalized for
+
+4
+
+terms by mapping O(a1 , . . . , an ) to OI (aI1 , . . . , aIn ). Similar to terms and assertions,
+interpretations can also be considered as individuals to be studied.
+It is important to emphasize that an interpretation has to admit all prior knowledge.
+For instance, since we assume set theory, suppose that an interpretation maps two individuals x and y as the same element a in the domain, then the concepts {x} and {y}
+must be interpreted as {a}, and x = y must be interpreted as a = a.
+Let I be an interpretation and a = b an assertion. We say that I is a model of
+a = b, denoted by I |= a = b iff .I (a) = .I (b), also written aI = bI . Let KB be a
+knowledge base. We say that I is a model of KB, denoted by I |= KB, iff I is a model
+of all assertions in KB. We say that an assertion A is a property of KB, denoted by
+KB |= A, iff all models of KB are also models of A. In particular, we say that an
+assertion A is a tautology iff it is modeled by all interpretations.
+Since we assume set theory as our prior knowledge, we directly borrow some set
+theoretic constructs. For instance, we can use ∪(C1 , C2 ) (also written as C1 ∪ C2 ) to
+denote a new concept that unions two concepts C1 and C2 . Applying this to assertions,
+we can see that assertions of the primitive form (1) can indeed represent many important features in knowledge representation. For instance, the membership assertion,
+stating that an individual a is an instance of a concept C, is the following assertion
+∈ (a, C) = ⊤ (also written as a ∈ C). The containment assertion, stating that a concept C1 is contained by another concept C2 , is the following assertion ⊆ (C1 , C2 ) = ⊤
+(also written as C1 ⊆ C2 ). The range declaration, stating that the range of an operator O operating on some concepts C1 , . . . , Cn equals to another concept C, is the
+following assertion O(C1 , . . . , Cn ) = C.
+
+4 Extensibility via Definitions
+As argued in the introduction section, extensibility is a critical issue for knowledge
+representation. In assertional logic, we use definitions for this purpose. Definitions
+are (schema) assertions used to define new syntactic objects (including individuals,
+concepts and operators) based on existing ones. Once these new syntactic objects are
+defined, they can be used to define more. Note that definitions are nothing extra but
+special kinds of knowledge (i.e. assertions).
+We start with defining new individuals. An individual definition is an assertion of
+the form
+a = t,
+(2)
+where a is an atomic individual and t is a term. Here, a is the individual to be defined.
+This assertion claims that the left side a is defined as the right side t. For instance,
+0 = ∅ means that the individual 0 is defined as the empty set.
+Defining new operators is similar to defining new individuals except that we use
+schema assertions instead. Let O be an operator to be defined and (C1 , . . . , Cn ) its
+domain. An operator definition is a schema assertion of the form
+O(C1 , . . . , Cn ) = T,
+where T is a schema term that mentions concepts only from C1 , . . . , Cn .
+5
+
+(3)
+
+Since a schema assertion represents a set of assertions, essentially, an operator
+definition of the form (3) defines the operator O by defining the value of O(a1 , . . . , an )
+one-by-one, where ai ∈ Ci , 1 ≤ i ≤ n. For instance, for defining the successor
+operator Succ, we can use the schema assertion Succ(N) = {N, {N}}, meaning that,
+for every natural number n, the successor of n, is defined as {n, {n}}.
+Defining new concepts is somewhat different. As concepts are essentially sets, we
+directly borrow set theory notations for this purpose. There are four ways to define a
+new concept.
+Enumeration Let a1 , . . . , an be n individuals. Then, the collection {a1 , . . . , an } is a
+concept, written as
+C = {a1 , . . . , an }.
+(4)
+For instance, we can define the concept Digits by Digits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}.
+Operation Let C1 and C2 be two concepts. Then, C1 ∪ C2 (the union of C1 and
+C2 ), C1 ∩ C2 (the intersection of C1 and C2 ), C1 \ C2 (the difference of C1 and C2 ),
+C1 × C2 (the Cartesian product of C1 and C2 ), 2C1 (the power set of C1 ) are concepts.
+Operation can be written by assertions as well. For instance, the following assertion
+C = C1 ∪ C2
+
+(5)
+
+states that the concept C is defined as the union of C1 and C2 . As an example, one can
+define the concept M an by M an = Human ∩ M ale.
+Restricted Comprehension Let C be a concept and A(C) a schema assertion that only
+mentions concept C. Then, individuals in C satisfying A, denoted by {x ∈ C|A(x)}
+(or simply C|A(C)), form a concept, written as
+C ′ = C|A(C).
+
+(6)
+
+For instance, we can define the concept M ale by M ale = {Animal |Sex(Animal) =
+male}, meaning that M ale consists of all animals whose sexes are male.
+Replacement Let O be an operator and C a concept on which O is well defined. Then,
+the individuals mapped from C by O, denoted by {O(x) | x ∈ C} (or simply O(C)),
+form a concept, written as
+C ′ = O(C).
+(7)
+For instance, we can define the concept P arents by P arents = P arentOf (Human),
+meaning that it consists of all individuals who is a P arentOf some human.
+Definitions can be incremental. We may define some syntactic objects first. Once
+defined, they can be used to define more. One can always continue with this incremental process. For instance, in arithmetic, we define the successor operator first. Once
+defined, it can be used to define the add operator, which is further served as a basis to
+define more.
+Since terms and assertions can be considered as individuals, we can define new type
+of terms and assertions by definitions. As an example, we extend assertions of the form
+(1) into multi-assertions by using Cartesian product. We first define multi-assertions of
+a fixed number of assertions. Given a number n, we define a new operator Mn with
+arity n by the following schema assertion:
+Mn (C1 = D1 , . . . , Cn = Dn ) = (C1 , . . . , Cn ) = (D1 , . . . , Dn ),
+
+6
+
+where Ci , Di , 1 ≤ i ≤ n, are concepts of terms. Notice that, (C1 , . . . , Cn ) =
+(D1 , . . . , Dn ) is a single assertion of the form (1). In this sense, an n-ary multiassertion is just a syntax sugar. Then, we define the concept of multi-assertions:
+[
+M ulti − Assertion =
+Mi (A1 , . . . , Ai ),
+1≤i≤∞
+
+where A1 , . . . , Ai are i copies of standard assertions. For convenience, we use Assertion1 , . . . , Assertionn
+to denote an n-ary multi-assertion. Once multi-assertion is defined, it can be used to
+define more syntactic objects.
+As an example, we use multi-assertion to define nested assertions. We first define
+nested terms as follows:
+N ested − T erm =
+N − T erm =
+
+T erm ∪ N − T erm
+Op(N ested − T erm).
+
+Then, nested assertions can be defined as
+N ested − Assertion = N ested − T erm = N ested − T erm.
+Again, once nested assertion is defined, it can be used as basis to define more, so
+on and so forth. Using nested assertions can simplify the representation task. However,
+one cannot overuse it since, essentially, every use of a nested term introduces a new
+individual.
+
+5 Embedding FOL into Assertional Logic
+In the previous section, we show how to extend assertions of the primitive form (1)
+into multi-assertions and nested assertions. In this section, we continue with this task to
+show how to define more complex forms of assertions with logic connectives, including
+propositional connectives and quantifiers.
+We start with the propositional case. Let A be the concept of nested assertions.
+We introduce a number of operators over A in assertional logic, including ¬(A) (for
+negation), ∧(A1 , A2 ) (for conjunction), ∨(A1 , A2 ) (for disjunction) and → (A1 , A2 )
+(for implication).
+There could be different ways to define these operators in assertional logic. Let
+a = a′ and b = b′ be two (nested) assertions. The propositional connectives are
+defined as follows:
+¬(a = a′ ) =
+∧(a = a′ , b = b′ ) =
+′
+
+′
+
+∨(a = a , b = b ) =
+→ (a = a′ , b = b′ ) =
+
+{a} ∩ {a′ } = ∅
+({a} ∩ {a′ }) ∪ ({b} ∩ {b′ }) = {a, a′ , b, b′ }
+({a} ∩ {a′ }) ∪ ({b} ∩ {b′ }) 6= ∅
+({a, a′ } \ {a} ∩ {a′ }) ∪ ({b} ∩ {b′ }) 6= ∅,
+
+where a 6= a′ is used to also denote ¬(a = a′ ). One can observe that the ranges of
+all logic operators are nested assertions. Hence, similar to multi-assertion and nested
+assertion, propositional logic operators are syntactic sugar as well.
+7
+
+Now we consider to define operators for quantifiers, including ∀ (for the universal
+quantifier) and ∃ (for the existential quantifier). The domain of quantifiers is a pair
+(C, A(C)), where C is a concept and A(C) is a schema assertion that only mentions
+C.
+The quantifiers are defines as follows:
+∀(C, A(C))
+
+= C|A(C) = C
+
+(8)
+
+∃(C, A(C))
+
+= C|A(C) 6= ∅
+
+(9)
+
+Intuitively, ∀(C, A(C)) is true iff those individuals x in C such that A(x) holds equals
+to the concept C itself, that is, for all individuals x in C, A(x) holds; ∃(C, A(C)) is
+true iff those individuals x in C such that A(x) holds does not equal to the empty set,
+that is, there exists at least one individual x in C such that A(x) holds. We can see that
+the ranges of quantifiers are nested assertions as well. In this sense, quantifiers are also
+syntactic sugar of the primitive form.
+Note that quantifiers defined here are ranging from an arbitrary concept C. If C is
+a concept of all atomic individuals and all quantifiers range from the same concept C,
+then these quantifiers are first-order. Nevertheless, the concepts could be different. In
+this case, we have many-sorted FOL. Moreover, C could be complex concepts, e.g., a
+concept of all possible concepts. In this case, we have monadic second-order logic. Yet
+C could be many more, e.g., a concept of assertions, a concept of concepts of terms
+etc. In this sense, the quantifiers become high-order. Finally, the biggest difference
+is that C can even be a concept of assertions so that quantifiers in assertional logic
+can quantify over assertions (corresponding to formulas in classical logics), while this
+cannot be done in classical logics including high-order logic.
+It can be verified that all tautologies in propositional logic and FOL (e.g., DeMorgan’s laws) are also tautologies in assertional logic. For space reasons, we leave
+the theorems and their proofs to a full version of this paper.
+
+6 Incorporating Probability and More
+Probability is another important building block for knowledge representation. In the
+last several decades, with the development of uncertainty in artificial intelligence, a
+number of influential approaches [4, 8, 10, 17, 18, 20] have been developed, and important applications have been found in machine learning, natural language processing
+etc.
+Normally, to incorporate probability in logic, one has to complete redefine the
+whole semantics since the integrations between probability and logic connectives and
+quantifiers are complicated. In this section, we show how this can be easily done in
+assertional logic. The key point is, although the interactions between logic and probability are complicated, their interactions with assertions of the basic form (1) is relatively simple. As shown in the previous section, the interactions between logic and
+assertions can be defined by a few lines. In this section, following Gaifman’s idea [8],
+we show that this is indeed the case for integrating assertions with probability as well.
+Then, the interactions between logic and probability will be automatically established
+via assertions.
+8
+
+6.1 Integrating assertions with probability
+Since operations over real numbers are involved in defining probability, we need to
+assume a theory of real number as our prior knowledge.
+Gaifman [8] proposed to define the probability of a logic sentence by the sum of
+the probabilities of the possible worlds satisfying it. Following this idea, in assertional
+logic, we introduce an operator P r (for probability) over the concept A of assertions.
+The range of P r is the concept of real numbers. For each possible world w, we assign
+an associated weight Ww , which is a positive real number. Then, for an assertion A,
+the probability of A, denoted by P r(A), is define by the following schema assertion:
+P r(A) =
+
+Σw,w|=A Ww
+.
+Σw Ww
+
+(10)
+
+This definition defines the interactions between probability and assertions. In case that
+there are a number of infinite worlds, we need to use measure theory. Nevertheless,
+this is beyond the scope of our paper.
+Once we have defined the probability P r(A) of an assertion A as a real number, we
+can directly use it inside other assertions. In this sense, P r(A) = 0.5, P r(A) ≥ 0.3,
+P r(A) ≥ P r(∀(C, B(C))) − 0.3, P r(A) × 0.6 ≥ 0.4 and P r(P r(A) ≥ 0.3) ≥ 0.3
+are all valid assertions. We are able to vefiry some properties about probability, for
+instance, Kolmogorov’s first and second probability axioms.
+We also extend this definition for conditional probability. We again introduce a
+new operator P r over pairs of two assertions. Following a similar idea, the conditional probability P r(A1 , A2 ) of an assertion A1 providing another assertion A2 , also
+denoted by P r(A1 |A2 ), is defined by the following schema assertion:
+P r(A1 |A2 ) =
+
+Σw,w|=A1,w|=A2 Ww
+.
+Σw,w|=A2 Ww
+
+(11)
+
+Again, once conditional probability is defined as a real number, we can use it arbitrarily inside other assertions. Similarly, we can verify some properties about conditional probabilities, including the famous Bayes’ theorem, i.e.,
+P r(A1 ) × P r(A2 |A1 ) = P r(A2 ) × P r(A1 |A2 ).
+for all assertions A1 and A2 .
+
+6.2 Interactions between logic and probability via assertions
+Although we only define probabilities for assertions of the basic form, the interactions
+between probability and other building blocks, e.g., logic, are automatically established
+since assertions connected by logic operators can be reduced into the primitive form.
+In this sense, we can investigate some properties about the interactions between logic
+and probability. For instance, it can be observed that Kolmogorov’s third probability
+axiom is a tautology in assertion logic. That is, let A1 , . . . , An be n assertions that are
+pairwise disjoint. Then, P r(A1 ∨ · · · ∨ An ) = P r(A1 ) + · · · + P r(An ).
+
+9
+
+It can be verified that many axioms and properties regarding the interactions between logic and probability are tautologies in assertional logic, for instance, the additivity axiom: P r(φ) = P r(φ ∧ ψ) + P r(φ ∧ ¬ψ) and the distributivity axiom: φ ≡ ψ
+implies that P r(φ) = P r(ψ), for any two assertions φ and ψ. In this sense, assertional
+logic can also be used to validate existing properties about the interactions of logic and
+probability. In addition, it may foster new discoveries, e.g., the interactions between
+higher-order logic and probability and some properties about nested probabilities.
+Note that we do not intend to reinvent the wheel of defining probability nor its
+interactions with logic. All definitions about (conditional) probability are borrowed
+from the literature. Instead, we take probability as a case study to show how one
+building block (e.g., logic) and another (e.g., probability) can be interacted through
+assertions without going deeper into the interactions between themselves.
+
+6.3 More building blocks
+More critically, there are many more important building blocks to be incorporated. It
+is barely possible to clarify the interactions among them all. Nevertheless, it becomes
+possible to unify them altogether in assertional logic as one only needs to consider the
+interactions between these building blocks and the basic form of assertions separately.
+Consequently, the interactions among these building blocks themselves will be automatically established via assertions, as what we did for unifying logic and probability.
+As another case study, we consider how to formalize time in assertional logic. Time
+itself can be understood in different ways such as time points, time interval, LTL and
+CTL [1, 7, 19]. Following the same idea of incorporating probability, we only need
+to consider the interactions between time and assertions. In this paper, we only report
+the simple case of integrating assertions with time points. Let T p be a concept of time
+points. We introduce a new operator t whose domain is a pair (I, T p). Intuitively,
+t(i, tp), i ∈ T , tp ∈ T p, is the value of individual i at time point tp. Then, we introduce temporal formulas, a new Boolean operator T whose domain is a pair (A, T p),
+by the following schema assertion:
+T (a = b, tp) = t(a, tp) = t(b, tp).
+
+(12)
+
+Then, the interactions between time points and logic connectives and probability can
+be automatically established. We are able to investigate some properties. For instance,
+for all assertions A and B, T (A, tp) = ⊤ iff T (¬A, tp) = ⊥; T (A ∧ B, tp) = ⊤ |=
+T (A, tp) = ⊤ etc. Hence, we have an integrated formalism combing logic, probability
+and time points in assertional logic.
+
+7 Discussion, Related Work and Conclusion
+In this paper, we argue that, for the purpose of knowledge representation, classical firstorder logic has some critical issues, including simplicity, flexibility, expressivity and
+extensibility. To address these issues, we propose assertional logic instead, in which the
+syntax of an application domain is captured by individuals (i.e., objects in the domain),
+concepts (i.e., groups of objects sharing something in common) and operators (i.e.,
+10
+
+connections and relationships among objects), and knowledge in the domain is simply
+captured by equality assertions of the form a = b, where a and b are terms.
+In assertional logic, without redefining the semantics, one can extend a current system with new syntactic objects by definitions, which are special kinds of knowledge
+(i.e., assertions). Once defined, these syntactic objects can be used to define more.
+This can be done for assertional logic itself. We extend the primitive form of assertional logic with multi-assertions and nested assertions as well as logic connectives
+and quantifiers. We further consider how to extend assertional logic with other important AI building blocks. The key point is that, when one wants to integrate a new
+building block in assertional logic, she only needs to formalize it as syntactic objects
+(including individuals, concepts and operators) and defines its interactions with the basic form of assertions (i.e., a = b). Then, the interactions between this building block
+and others will be automatically established since all complicated assertions can essentially be reduced into the basic form. As a case study, we briefly discuss how to
+incorporate probability and time points in this paper.
+Of course, assertional logic is deeply rooted in first-order logic. Individuals, concepts and operators are analogous to constants, unary predicates and functions respectively, and assertions are originated from equality atoms. Nevertheless, they differ from
+many essential aspects. Firstly, individuals can be high-order objects, e.g., concepts
+and assertions, so are concepts and operators. Secondly, assertional logic is naturally
+many-sorted, that is, the domain of an operator can be a tuple of many different concepts including high-order ones. Thirdly, concepts play a central role in assertional
+logic, which is natural for human knowledge representation. While concepts can be
+formalized as unary predicates in FOL, they are not specifically emphasized. Fourthly,
+in assertional logic, all kinds of knowledge are uniformly formalized in the same form
+of equality assertions. As shown in Section 5, complicated logic sentences are defined
+as equality assertions as well by embedding connectives and quantifiers as operators
+over assertions. Fifthly, following the above, although connectives, quantifiers and
+nesting can be defined in assertional logic, they are not considered as primitive constructs. In this sense, they will only be used on demand when necessary. We argue that
+this is an important reason that makes assertional logic simpler than FOL. Sixthly, in
+assertional logic, the simple form of a = b is expressive as a and b can be high-order
+constructs and can be inherently related within the rich syntactic structure. In contrast,
+equality atoms in FOL do not have this power. Last but not least, assertional logic
+directly embraces extensibility within its own framework by syntactic definitions. For
+instance, to define quantifiers, assertional logic only needs two lines (see Equations 8
+and 9) without redefining a whole new semantics, which is much simpler than FOL.
+Assertional logic is also inspired by many approaches in symbolic AI. Traditionally in FOL, there is a strict hierarchy from the term level to the formula level. To
+some extent, this is broken in situation calculus [15, 16] and game description language [21] that have to quantify over situations, actions and fluents and to directly
+talk about whether a fluent holds in a particular situation by a meta-predicate Hold.
+Assertional logic goes much further by completely demolishing the distinction and hierarchy between term level, predicate level and formula level. In assertional logic, one
+can flexibly use, e.g., atoms and predicates in the scope of a function as long as they
+match its domain definition. Also, one can quantify over any well-defined concepts,
+11
+
+including a concept of assertions. This makes assertional logic even more expressive
+than high-order logic that cannot quantifier over formulas.
+Another inspiration comes from the family of description logics [2], where the terminologies individuals and concepts are borrowed from. The family of description
+logics allows a certain level of extensibility. By interpreting individuals, concepts and
+roles as domain elements, unary predicates and binary predicates respectively, one can
+extend the basic description logics with more building blocks (e.g., nominal, number
+restrictions, inverse and transitive roles etc.) based on the same foundational semantics. Also, one can freely assemble those building blocks into different fragments of
+description logics such as ALC, SHIQ, SHION and so on. However, many important
+AI building blocks, e.g., actions, probability, time, rules, etc. are still difficult to be
+incorporated by this method. Some interesting pioneering work have been done to
+consider more extensibility in description logics [3, 5, 9, 14]. Nevertheless, they differ from assertional logic that embraces extensibility at a syntactic level instead of a
+semantic one.
+This paper is only concerned with the representation task and the definition task.
+We leave the reasoning task to our future work. Certainly, complete reasoning in assertional logic is undecidable as FOL can be embedded in it. Traditionally, the way
+to address this issue is to find decidable fragments. Nevertheless, we shall propose an
+alternative approach that focuses on efficient but not necessarily complete reasoning.
+We have developed such an approach, in which the flexibility and extensibility of assertional logic play a critical role. We shall present this in another paper. Nevertheless, we
+argue that representation and definition are worth study on their own merits. Such successful stories include entity-relationship diagram, semantic network and many more.
+Besides, extending assertional logic with some important AI building blocks, e.g., actions and their effects, is indeed challenging and worth pursuing.
+
+Acknowledgement
+The author gratefully acknowledges Prof. Fangzhen Lin’s comments on a first draft of
+this paper.
+
+References
+[1] James F. Allen. Maintaining knowledge about temporal intervals. Commun. ACM,
+26(11):832–843, November 1983.
+[2] Franz Baader, Diego Calvanese, Deborah L. McGuinness, Daniele Nardi, and
+Peter F. Patel-Schneider, editors. The Description Logic Handbook: Theory, Implementation, and Applications. Cambridge University Press, New York, NY,
+USA, 2003.
+[3] Franz Baader and Philipp Hanschke. A scheme for integrating concrete domains
+into concept languages. In Proceedings of the 12th International Joint Conference
+
+12
+
+on Artificial Intelligence - Volume 1, IJCAI’91, pages 452–457, San Francisco,
+CA, USA, 1991. Morgan Kaufmann Publishers Inc.
+[4] Fahiem Bacchus. Representing and Reasoning with Probabilistic Knowledge: A
+Logical Approach to Probabilities. MIT Press, Cambridge, MA, USA, 1990.
+[5] Alexander Borgida. Extensible knowledge representation: the case of description
+reasoners. J. Artif. Intell. Res. (JAIR), 10:399–434, 1999.
+[6] Ronald J. Brachman and Hector J. Levesque. Knowledge Representation and
+Reasoning. Elsevier, 2004.
+[7] Edmund M. Clarke and E. Allen Emerson. Design and synthesis of synchronization skeletons using branching-time temporal logic. In Logic of Programs,
+Workshop, pages 52–71, London, UK, UK, 1982. Springer-Verlag.
+[8] Haim Gaifman. Concerning measures in first order calculi. Israel J. Math., 2:1–
+18, 1964.
+[9] Giuseppe De Giacomo, Maurizio Lenzerini, and Riccardo Rosati. Higher-order
+description logics for domain metamodeling. In Proceedings of the Twenty-Fifth
+AAAI Conference on Artificial Intelligence, AAAI’11, pages 183–188. AAAI
+Press, 2011.
+[10] Theodore Hailperin. Probability logic. Notre Dame J. Formal Logic, 25:198–212,
+1984.
+[11] Paul Halmos. Naive Set Theory. Van Nostrand, 1960. Reprinted by SpringerVerlag, Undergraduate Texts in Mathematics, 1974.
+[12] Joseph Y. Halpern. An analysis of first-order logics of probability. Artif. Intell.,
+46(3):311–350, 1990.
+[13] Thomas Keller, Patrick Eyerich, and Bernhard Nebel. Task planning for an autonomous service robot. In Proceedings of the 33rd Annual German Conference
+on Advances in Artificial Intelligence, KI’10, pages 358–365, Berlin, Heidelberg,
+2010. Springer-Verlag.
+[14] O. Kutz, C. Lutz, F. Wolter, and M. Zakharyaschev. E-connections of abstract
+description systems. Artificial Intelligence, 156(1):1–73, 2004.
+[15] Hector Levesque, Fiora Pirri, and Ray Reiter. Foundations for the situation calculus. Electronic Transactions on Artificial Intelligence, Vol. 2(1998), Issue 3-4:pp.
+159–178, 1991.
+[16] Fangzhen Lin. Situation calculus. In Handbook of Knowledge Representation,
+pages 649–669. 2008.
+[17] Brian Christopher Milch. Probabilistic Models with Unknown Objects. PhD
+thesis, Berkeley, CA, USA, 2006. AAI3253991.
+
+13
+
+[18] Judea Pearl. Probabilistic Reasoning in Intelligent Systems: Networks of Plausible Inference. Morgan Kaufmann Publishers Inc., San Francisco, CA, USA,
+1988.
+[19] Amir Pnueli. The temporal logic of programs. In Proceedings of the 18th Annual Symposium on Foundations of Computer Science, SFCS ’77, pages 46–57,
+Washington, DC, USA, 1977. IEEE Computer Society.
+[20] Matthew Richardson and Pedro Domingos. Markov logic networks. Machine
+learning, 62(1-2):107–136, 2006.
+[21] Michael Thielscher. GDL-III: A proposal to extend the game description language to general epistemic games. In ECAI 2016 - 22nd European Conference on
+Artificial Intelligence, 29 August-2 September 2016, The Hague, The Netherlands
+- Including Prestigious Applications of Artificial Intelligence (PAIS 2016), pages
+1630–1631, 2016.
+[22] Frank van Harmelen, Vladimir Lifschitz, and Bruce W. Porter, editors. Handbook
+of Knowledge Representation, volume 3 of Foundations of Artificial Intelligence.
+Elsevier, 2008.
+
+14
+
+
+
+Summary:
+This research paper covers the following topic: arXiv:1701.03322v2 [cs.AI] 28 Apr 2017
+
+From First-Order Logic to Assertional Logic
+Yi Zhou
+Abstract
+First-Order Logic (FOL) is widely regarded as one of the most important foundations for knowledge representation. Nevertheless, in this paper, we argue that
+FOL has several critical issues for this purpose. Instead, we propose an alternative called assertional logic, in which all syntactic objects are categorized as set
+theoretic constructs including individuals, concepts and operators, and all kinds of
+knowledge are formalized by equality assertions. We first present a primitive form
+of assertional logic that uses minimal assumed knowledge and constructs. Then,
+we show how to extend it by definitions, which are special kinds of knowledge,
+i.e., assertions. We argue that assertional logic, although simpler, is more expressive and extensible than FOL. As a case study, we show how assertional logic can
+be used to unify logic and probability, and more building blocks in AI.
+
+1 Introduction
+Classical First-Order Logic (FOL) is widely regarded as one of the most important
+foundations of symbolic AI. FOL plays a central role in the field of Knowledge Representation and Reasoning (KR). Many of its fragments (such as propositional logic,
+modal and epistemic logic, description logics), extensions (such as second-order logic,
+situation calculus and first-order probabilistic logic) and variants (such as Datalog and
+first-order answer set programming) have been extensively studied in the literature
+[6, 22].
+Nevertheless, AI researchers have pointed out several issues regarding using FOL
+for knowledge representation and reasoning, mostly from the reasoning point of view.
+First, FOL is computationally very difficult. Reasoning about FOL is a well-known
+undecidable problem. Also, FOL is monotonic in the sense that adding new knowledge into a first-order knowledge base always results in more consequences. However,
+human reasoning is sometimes nonmonotonic.
+In this paper, we argue that FOL also has some critical issues from the knowledge
+representation point of view. First of all, although FOL is considered natural for welltrained logicians, it is not simple and flexible enough for knowledge engineers with
+less training. One reason is the distinction and hierarchy between term level, predicate
+level and formula level. From my own experience as a teacher in this subject, although
+strongly emphasized in the classes, many students failed to understand why a predicate
+or a formula cannot be in the scope of a function. Another reason is the notion of free
+occurrences of variables. For instance, it is not easily understandable for many students
+why the GEN inference rule has to enforce the variable occurrence restrictions. Last
+1
+
+but not least, arbitrary nesting also raises issues. Although natural from a mathematical
+point of view, a nested formula, e.g., (x∨¬(y ∧z))∧(¬y ∨¬x) is hard to be understood
+and used.
+Secondly, FOL has limitations in terms of expressive power. FOL cannot quantify
+over predicates/functions. This can be addressed by extending FOL into high-order
+logic. Nevertheless, high-order logic still cannot quantify over formulas. As a consequence, FOL and high-order logic are not able to represent an axiom or an inference
+rule in logic, such as Modus Ponens. Flexible quantification beyond the term level is
+needed in applications. As an example, in automated solving mathematical problems,
+we often use proof by induction. To represent this, we need to state that for some statement P with a number parameter, if that P holds for all numbers less than k implies
+that P holds for the number k as well, then P holds for all natural numbers. Here, P
+is a statement at a formula level, possibly with complex sub-statements within itself.
+Hence, in order to represent and use proof by induction, we need to quantify over P
+that is at a formula level.
+Thirdly, FOL is hard to be extended with new building blocks. FOL itself cannot
+formalize some important AI notions including probability, actions, time etc., which
+are needed in a wide range of applications. For this purpose, AI researchers have
+made significant progresses on extending FOL with these notions separately, such as
+first-order probabilistic logic [4, 12], situation calculus [15, 16], CTL [7] etc. Each is
+a challenging task in the sense that it has to completely re-define the syntax as well
+as the semantics. However, combing these notions together, even several of them,
+seems an extremely difficult task. Moreover, there are many more building blocks to
+be incorporated in applications. For instance, consider task planning for home service
+robots [13]. It is necessary to represent actions, probability, time and more building
+blocks such as preferences altogether at the same time.
+To address these issues, we propose assertional logic, in which all syntactic objects
+are categorized as set theoretic constructs including individuals, concepts and operators, and all kinds of knowledge are uniformly formalized by equality assertions of
+the form a = b, where a and b are either atomic individuals or compound individuals.
+Semantically, individuals, concepts and operators are interpreted as elements, sets and
+functions respectively in set theory, and knowledge of the form a = b means that the
+two individuals a and b are referring to the same element.
+We first present the primitive form of assertional logic that uses minimal assumed
+knowledge and primitive constructs. Then, we show how to extend it with more building blocks by definitions, which are special kinds of knowledge, i.e., assertions used
+to define new individuals, concepts and operators. Once these new syntactic objects
+are defined, they can be used as a basis to define more. As an example, we show how
+to define multi-assertions by using Cartesian product, and nested assertions by using
+multi-assertions.
+We show that assertional logic, although simpler, is more expressive and extensible
+than FOL. As a case study, we show how to extend assertional logic for unifying logic
+and probability, and more important AI building blocks including time. Note that our
+intention is not to reinvent the wheel of these building blocks but to borrow existing
+excellent work on formalizing these building blocks separately and to assemble them
+within one framework (i.e., assertional logic) so that they can live happily ever after.
+2
+
+2 Meta Language and Prior Knowledge
+One cannot build something from nothing. Hence, in order to establish assertional
+logic, we need some basic knowledge. Of course, for the purpose of explanation, we
+need an informal meta language whose syntax and semantics are pre-assumed. As
+usual, we use a natural language such as English. Nevertheless, this meta language is
+used merely for explanation and it should not affect the syntax as well as the semantics
+of anything defined formally.
+Only a meta level explanation language is not enough. Other than this, we also need
+some core objects and knowledge, whose syntax and semantics are pre-assumed as
+well. These are called prior objects and prior knowledge. For instance, when defining
+real numbers, we need some prior knowledge about natural numbers; when defining
+probability, we need some prior knowledge about real numbers.
+In assertional logic, we always treat the equality symbol “=” as a prior object.
+There are some prior knowledge associated with the equality symbol. For instance, “=”
+is an equivalence relation satisfying reflexivity, symmetricity, and transitivity. Also,
+“=” satisfies the general substitution property, that is, if a = b, then a can be used
+to replace b anywhere. Other than the equality symbol, we also assume some prior
+objects and their associated prior knowledge in set theory [11], including set operators
+such as set union and Cartesian product, Boolean values, set builder notations and
+natural numbers.
+
+3 Assertional Logic: the Primitive Form
+In this section, we present the primitive form of assertional logic. As the goal of assertional logic is to syntactically represent knowledge in application domains, there are
+two essential tasks, i.e., how to capture the syntax of the domain and how to represent
+knowledge in it.
+
+3.1 Capturing the syntax
+Given an application domain, a syntactic structure (structure for short if clear from
+the context) of the domain is a triple hI, C, Oi, where I is a collection of individuals,
+representing objects in the domain, C a collection of concepts, representing groups
+of objects sharing something in common and O a collection of operators, representing
+relationships and connections among individuals and concepts. Concepts and operators
+can be nested and considered as individuals as well. If needed, we can have concepts
+of concepts, concepts of operators, concepts of concepts of operators and so on.
+An operator could be multi-ary, that is, it maps a tuple of individuals into a single
+one. Each multi-ary operator O is associated with a domain of the form (C1 , . . . , Cn ),
+representing all possible values that the operator O can operate on, where Ci , 1 ≤ i ≤
+n, is a concept. We call n the arity of O. For a tuple (a1 , . . . , an ) matching the domain
+of an operator O, i.e., ai ∈ Ci , 1 ≤ i ≤ n, O maps (a1 , . . . , an ) into an individual,
+denoted by O(a1 , . . . , an ).
+
+3
+
+Operators are similar to functions in FOL but differs in two essential ways. First,
+operators are many-sorted as C1 , . . . , Cn could be different concepts. More importantly, C1 , . . . , Cn could be high-order constructs, e.g., concepts of concepts, concepts
+of operators.
+
+3.2 Representing knowledge
+Let hI, C, Oi be a syntactic structure. A term is an individual, either an atomic individual a ∈ I or the result O(a1 , . . . , an ) of an operator O operating on some individuals
+a1 , . . . , an . We also call the latter compound individuals.
+An assertion is of the form
+a = b,
+(1)
+where a and b are two terms. Intuitively, an assertion of the form (1) is a piece of
+knowledge in the application domain, claiming that the left and the right side refer to
+the same object. A knowledge base is a set of assertions. Terms and assertions can be
+considered as individuals as well.
+Similar to concepts that group individuals, we use schemas to group terms and assertions. A schema term is either an atomic concept C ∈ C or of the form O(C1 , . . . , Cn ),
+where Ci , 1 ≤ i ≤ n are concepts. Essentially, a schema term represents a set of
+terms, in which every concept is grounded by a corresponding individual. That is,
+O(C1 , . . . , Cn ) is the collection {O(a1 , . . . , an )}, where ai ∈ Ci , 1 ≤ i ≤ n are individuals. Then, a schema assertion is of the same form as form (1) except that terms
+can be replaced by schema terms. Similarly, a schema assertion represents a set of
+assertions.
+We say that a schema term/assertion mentions a set {C1 , . . . , Cn } of concepts if
+C1 , . . . , Cn occur in it, and only mentions if {C1 , . . . , Cn } contains all concepts mentioned in it. Note that it could be the case that two or more different individuals are
+referring to the same concept C in schema terms and assertions. In this case, we need
+to use different copies of C, denoted by C 1 , C 2 , . . . , to distinguish them. For instance,
+all assertions x = y, where x and y are human, are captured by the schema assertion
+Human1 = Human2 . On the other side, in a schema, the same copy of a concept C
+can only refer to the same individual. For instance, Human = Human is the set of
+all assertions of the form x = x, where x ∈ Human.
+
+3.3 The semantics
+We propose a set theoretic semantics for assertional logic. Since we assume set theory
+as the prior knowledge, in the semantics, we freely use those individuals (e.g., the
+empty set), concepts (e.g., the set of all natural numbers) and operators (e.g., the set
+union operator) without explanation.
+An interpretation (also called a possible world) is a pair h∆, .I i, where ∆ is a
+domain of elements, and .I is a mapping function that admits all prior knowledge, and
+maps each individual into a domain element in ∆, each concept into a set in ∆ and each
+n-ary operator into an n-ary function in ∆. The mapping function .I is generalized for
+
+4
+
+terms by mapping O(a1 , . . . , an ) to OI (aI1 , . . . , aIn ). Similar to terms and assertions,
+interpretations can also be considered as individuals to be studied.
+It is important to emphasize that an interpretation has to admit all prior knowledge.
+For instance, since we assume set theory, suppose that an interpretation maps two individuals x and y as the same element a in the domain, then the concepts {x} and {y}
+must be interpreted as {a}, and x = y must be interpreted as a = a.
+Let I be an interpretation and a = b an assertion. We say that I is a model of
+a = b, denoted by I |= a = b iff .I (a) = .I (b), also written aI = bI . Let KB be a
+knowledge base. We say that I is a model of KB, denoted by I |= KB, iff I is a model
+of all assertions in KB. We say that an assertion A is a property of KB, denoted by
+KB |= A, iff all models of KB are also models of A. In particular, we say that an
+assertion A is a tautology iff it is modeled by all interpretations.
+Since we assume set theory as our prior knowledge, we directly borrow some set
+theoretic constructs. For instance, we can use ∪(C1 , C2 ) (also written as C1 ∪ C2 ) to
+denote a new concept that unions two concepts C1 and C2 . Applying this to assertions,
+we can see that assertions of the primitive form (1) can indeed represent many important features in knowledge representation. For instance, the membership assertion,
+stating that an individual a is an instance of a concept C, is the following assertion
+∈ (a, C) = ⊤ (also written as a ∈ C). The containment assertion, stating that a concept C1 is contained by another concept C2 , is the following assertion ⊆ (C1 , C2 ) = ⊤
+(also written as C1 ⊆ C2 ). The range declaration, stating that the range of an operator O operating on some concepts C1 , . . . , Cn equals to another concept C, is the
+following assertion O(C1 , . . . , Cn ) = C.
+
+4 Extensibility via Definitions
+As argued in the introduction section, extensibility is a critical issue for knowledge
+representation. In assertional logic, we use definitions for this purpose. Definitions
+are (schema) assertions used to define new syntactic objects (including individuals,
+concepts and operators) based on existing ones. Once these new syntactic objects are
+defined, they can be used to define more. Note that definitions are nothing extra but
+special kinds of knowledge (i.e. assertions).
+We start with defining new individuals. An individual definition is an assertion of
+the form
+a = t,
+(2)
+where a is an atomic individual and t is a term. Here, a is the individual to be defined.
+This assertion claims that the left side a is defined as the right side t. For instance,
+0 = ∅ means that the individual 0 is defined as the empty set.
+Defining new operators is similar to defining new individuals except that we use
+schema assertions instead. Let O be an operator to be defined and (C1 , . . . , Cn ) its
+domain. An operator definition is a schema assertion of the form
+O(C1 , . . . , Cn ) = T,
+where T is a schema term that mentions concepts only from C1 , . . . , Cn .
+5
+
+(3)
+
+Since a schema assertion represents a set of assertions, essentially, an operator
+definition of the form (3) defines the operator O by defining the value of O(a1 , . . . , an )
+one-by-one, where ai ∈ Ci , 1 ≤ i ≤ n. For instance, for defining the successor
+operator Succ, we can use the schema assertion Succ(N) = {N, {N}}, meaning that,
+for every natural number n, the successor of n, is defined as {n, {n}}.
+Defining new concepts is somewhat different. As concepts are essentially sets, we
+directly borrow set theory notations for this purpose. There are four ways to define a
+new concept.
+Enumeration Let a1 , . . . , an be n individuals. Then, the collection {a1 , . . . , an } is a
+concept, written as
+C = {a1 , . . . , an }.
+(4)
+For instance, we can define the concept Digits by Digits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}.
+Operation Let C1 and C2 be two concepts. Then, C1 ∪ C2 (the union of C1 and
+C2 ), C1 ∩ C2 (the intersection of C1 and C2 ), C1 \ C2 (the difference of C1 and C2 ),
+C1 × C2 (the Cartesian product of C1 and C2 ), 2C1 (the power set of C1 ) are concepts.
+Operation can be written by assertions as well. For instance, the following assertion
+C = C1 ∪ C2
+
+(5)
+
+states that the concept C is defined as the union of C1 and C2 . As an example, one can
+define the concept M an by M an = Human ∩ M ale.
+Restricted Comprehension Let C be a concept and A(C) a schema assertion that only
+mentions concept C. Then, individuals in C satisfying A, denoted by {x ∈ C|A(x)}
+(or simply C|A(C)), form a concept, written as
+C ′ = C|A(C).
+
+(6)
+
+For instance, we can define the concept M ale by M ale = {Animal |Sex(Animal) =
+male}, meaning that M ale consists of all animals whose sexes are male.
+Replacement Let O be an operator and C a concept on which O is well defined. Then,
+the individuals mapped from C by O, denoted by {O(x) | x ∈ C} (or simply O(C)),
+form a concept, written as
+C ′ = O(C).
+(7)
+For instance, we can define the concept P arents by P arents = P arentOf (Human),
+meaning that it consists of all individuals who is a P arentOf some human.
+Definitions can be incremental. We may define some syntactic objects first. Once
+defined, they can be used to define more. One can always continue with this incremental process. For instance, in arithmetic, we define the successor operator first. Once
+defined, it can be used to define the add operator, which is further served as a basis to
+define more.
+Since terms and assertions can be considered as individuals, we can define new type
+of terms and assertions by definitions. As an example, we extend assertions of the form
+(1) into multi-assertions by using Cartesian product. We first define multi-assertions of
+a fixed number of assertions. Given a number n, we define a new operator Mn with
+arity n by the following schema assertion:
+Mn (C1 = D1 , . . . , Cn = Dn ) = (C1 , . . . , Cn ) = (D1 , . . . , Dn ),
+
+6
+
+where Ci , Di , 1 ≤ i ≤ n, are concepts of terms. Notice that, (C1 , . . . , Cn ) =
+(D1 , . . . , Dn ) is a single assertion of the form (1). In this sense, an n-ary multiassertion is just a syntax sugar. Then, we define the concept of multi-assertions:
+[
+M ulti − Assertion =
+Mi (A1 , . . . , Ai ),
+1≤i≤∞
+
+where A1 , . . . , Ai are i copies of standard assertions. For convenience, we use Assertion1 , . . . , Assertionn
+to denote an n-ary multi-assertion. Once multi-assertion is defined, it can be used to
+define more syntactic objects.
+As an example, we use multi-assertion to define nested assertions. We first define
+nested terms as follows:
+N ested − T erm =
+N − T erm =
+
+T erm ∪ N − T erm
+Op(N ested − T erm).
+
+Then, nested assertions can be defined as
+N ested − Assertion = N ested − T erm = N ested − T erm.
+Again, once nested assertion is defined, it can be used as basis to define more, so
+on and so forth. Using nested assertions can simplify the representation task. However,
+one cannot overuse it since, essentially, every use of a nested term introduces a new
+individual.
+
+5 Embedding FOL into Assertional Logic
+In the previous section, we show how to extend assertions of the primitive form (1)
+into multi-assertions and nested assertions. In this section, we continue with this task to
+show how to define more complex forms of assertions with logic connectives, including
+propositional connectives and quantifiers.
+We start with the propositional case. Let A be the concept of nested assertions.
+We introduce a number of operators over A in assertional logic, including ¬(A) (for
+negation), ∧(A1 , A2 ) (for conjunction), ∨(A1 , A2 ) (for disjunction) and → (A1 , A2 )
+(for implication).
+There could be different ways to define these operators in assertional logic. Let
+a = a′ and b = b′ be two (nested) assertions. The propositional connectives are
+defined as follows:
+¬(a = a′ ) =
+∧(a = a′ , b = b′ ) =
+′
+
+′
+
+∨(a = a , b = b ) =
+→ (a = a′ , b = b′ ) =
+
+{a} ∩ {a′ } = ∅
+({a} ∩ {a′ }) ∪ ({b} ∩ {b′ }) = {a, a′ , b, b′ }
+({a} ∩ {a′ }) ∪ ({b} ∩ {b′ }) 6= ∅
+({a, a′ } \ {a} ∩ {a′ }) ∪ ({b} ∩ {b′ }) 6= ∅,
+
+where a 6= a′ is used to also denote ¬(a = a′ ). One can observe that the ranges of
+all logic operators are nested assertions. Hence, similar to multi-assertion and nested
+assertion, propositional logic operators are syntactic sugar as well.
+7
+
+Now we consider to define operators for quantifiers, including ∀ (for the universal
+quantifier) and ∃ (for the existential quantifier). The domain of quantifiers is a pair
+(C, A(C)), where C is a concept and A(C) is a schema assertion that only mentions
+C.
+The quantifiers are defines as follows:
+∀(C, A(C))
+
+= C|A(C) = C
+
+(8)
+
+∃(C, A(C))
+
+= C|A(C) 6= ∅
+
+(9)
+
+Intuitively, ∀(C, A(C)) is true iff those individuals x in C such that A(x) holds equals
+to the concept C itself, that is, for all individuals x in C, A(x) holds; ∃(C, A(C)) is
+true iff those individuals x in C such that A(x) holds does not equal to the empty set,
+that is, there exists at least one individual x in C such that A(x) holds. We can see that
+the ranges of quantifiers are nested assertions as well. In this sense, quantifiers are also
+syntactic sugar of the primitive form.
+Note that quantifiers defined here are ranging from an arbitrary concept C. If C is
+a concept of all atomic individuals and all quantifiers range from the same concept C,
+then these quantifiers are first-order. Nevertheless, the concepts could be different. In
+this case, we have many-sorted FOL. Moreover, C could be complex concepts, e.g., a
+concept of all possible concepts. In this case, we have monadic second-order logic. Yet
+C could be many more, e.g., a concept of assertions, a concept of concepts of terms
+etc. In this sense, the quantifiers become high-order. Finally, the biggest difference
+is that C can even be a concept of assertions so that quantifiers in assertional logic
+can quantify over assertions (corresponding to formulas in classical logics), while this
+cannot be done in classical logics including high-order logic.
+It can be verified that all tautologies in propositional logic and FOL (e.g., DeMorgan’s laws) are also tautologies in assertional logic. For space reasons, we leave
+the theorems and their proofs to a full version of this paper.
+
+6 Incorporating Probability and More
+Probability is another important building block for knowledge representation. In the
+last several decades, with the development of uncertainty in artificial intelligence, a
+number of influential approaches [4, 8, 10, 17, 18, 20] have been developed, and important applications have been found in machine learning, natural language processing
+etc.
+Normally, to incorporate probability in logic, one has to complete redefine the
+whole semantics since the integrations between probability and logic connectives and
+quantifiers are complicated. In this section, we show how this can be easily done in
+assertional logic. The key point is, although the interactions between logic and probability are complicated, their interactions with assertions of the basic form (1) is relatively simple. As shown in the previous section, the interactions between logic and
+assertions can be defined by a few lines. In this section, following Gaifman’s idea [8],
+we show that this is indeed the case for integrating assertions with probability as well.
+Then, the interactions between logic and probability will be automatically established
+via assertions.
+8
+
+6.1 Integrating assertions with probability
+Since operations over real numbers are involved in defining probability, we need to
+assume a theory of real number as our prior knowledge.
+Gaifman [8] proposed to define the probability of a logic sentence by the sum of
+the probabilities of the possible worlds satisfying it. Following this idea, in assertional
+logic, we introduce an operator P r (for probability) over the concept A of assertions.
+The range of P r is the concept of real numbers. For each possible world w, we assign
+an associated weight Ww , which is a positive real number. Then, for an assertion A,
+the probability of A, denoted by P r(A), is define by the following schema assertion:
+P r(A) =
+
+Σw,w|=A Ww
+.
+Σw Ww
+
+(10)
+
+This definition defines the interactions between probability and assertions. In case that
+there are a number of infinite worlds, we need to use measure theory. Nevertheless,
+this is beyond the scope of our paper.
+Once we have defined the probability P r(A) of an assertion A as a real number, we
+can directly use it inside other assertions. In this sense, P r(A) = 0.5, P r(A) ≥ 0.3,
+P r(A) ≥ P r(∀(C, B(C))) − 0.3, P r(A) × 0.6 ≥ 0.4 and P r(P r(A) ≥ 0.3) ≥ 0.3
+are all valid assertions. We are able to vefiry some properties about probability, for
+instance, Kolmogorov’s first and second probability axioms.
+We also extend this definition for conditional probability. We again introduce a
+new operator P r over pairs of two assertions. Following a similar idea, the conditional probability P r(A1 , A2 ) of an assertion A1 providing another assertion A2 , also
+denoted by P r(A1 |A2 ), is defined by the following schema assertion:
+P r(A1 |A2 ) =
+
+Σw,w|=A1,w|=A2 Ww
+.
+Σw,w|=A2 Ww
+
+(11)
+
+Again, once conditional probability is defined as a real number, we can use it arbitrarily inside other assertions. Similarly, we can verify some properties about conditional probabilities, including the famous Bayes’ theorem, i.e.,
+P r(A1 ) × P r(A2 |A1 ) = P r(A2 ) × P r(A1 |A2 ).
+for all assertions A1 and A2 .
+
+6.2 Interactions between logic and probability via assertions
+Although we only define probabilities for assertions of the basic form, the interactions
+between probability and other building blocks, e.g., logic, are automatically established
+since assertions connected by logic operators can be reduced into the primitive form.
+In this sense, we can investigate some properties about the interactions between logic
+and probability. For instance, it can be observed that Kolmogorov’s third probability
+axiom is a tautology in assertion logic. That is, let A1 , . . . , An be n assertions that are
+pairwise disjoint. Then, P r(A1 ∨ · · · ∨ An ) = P r(A1 ) + · · · + P r(An ).
+
+9
+
+It can be verified that many axioms and properties regarding the interactions between logic and probability are tautologies in assertional logic, for instance, the additivity axiom: P r(φ) = P r(φ ∧ ψ) + P r(φ ∧ ¬ψ) and the distributivity axiom: φ ≡ ψ
+implies that P r(φ) = P r(ψ), for any two assertions φ and ψ. In this sense, assertional
+logic can also be used to validate existing properties about the interactions of logic and
+probability. In addition, it may foster new discoveries, e.g., the interactions between
+higher-order logic and probability and some properties about nested probabilities.
+Note that we do not intend to reinvent the wheel of defining probability nor its
+interactions with logic. All definitions about (conditional) probability are borrowed
+from the literature. Instead, we take probability as a case study to show how one
+building block (e.g., logic) and another (e.g., probability) can be interacted through
+assertions without going deeper into the interactions between themselves.
+
+6.3 More building blocks
+More critically, there are many more important building blocks to be incorporated. It
+is barely possible to clarify the interactions among them all. Nevertheless, it becomes
+possible to unify them altogether in assertional logic as one only needs to consider the
+interactions between these building blocks and the basic form of assertions separately.
+Consequently, the interactions among these building blocks themselves will be automatically established via assertions, as what we did for unifying logic and probability.
+As another case study, we consider how to formalize time in assertional logic. Time
+itself can be understood in different ways such as time points, time interval, LTL and
+CTL [1, 7, 19]. Following the same idea of incorporating probability, we only need
+to consider the interactions between time and assertions. In this paper, we only report
+the simple case of integrating assertions with time points. Let T p be a concept of time
+points. We introduce a new operator t whose domain is a pair (I, T p). Intuitively,
+t(i, tp), i ∈ T , tp ∈ T p, is the value of individual i at time point tp. Then, we introduce temporal formulas, a new Boolean operator T whose domain is a pair (A, T p),
+by the following schema assertion:
+T (a = b, tp) = t(a, tp) = t(b, tp).
+
+(12)
+
+Then, the interactions between time points and logic connectives and probability can
+be automatically established. We are able to investigate some properties. For instance,
+for all assertions A and B, T (A, tp) = ⊤ iff T (¬A, tp) = ⊥; T (A ∧ B, tp) = ⊤ |=
+T (A, tp) = ⊤ etc. Hence, we have an integrated formalism combing logic, probability
+and time points in assertional logic.
+
+7 Discussion, Related Work and Conclusion
+In this paper, we argue that, for the purpose of knowledge representation, classical firstorder logic has some critical issues, including simplicity, flexibility, expressivity and
+extensibility. To address these issues, we propose assertional logic instead, in which the
+syntax of an application domain is captured by individuals (i.e., objects in the domain),
+concepts (i.e., groups of objects sharing something in common) and operators (i.e.,
+10
+
+connections and relationships among objects), and knowledge in the domain is simply
+captured by equality assertions of the form a = b, where a and b are terms.
+In assertional logic, without redefining the semantics, one can extend a current system with new syntactic objects by definitions, which are special kinds of knowledge
+(i.e., assertions). Once defined, these syntactic objects can be used to define more.
+This can be done for assertional logic itself. We extend the primitive form of assertional logic with multi-assertions and nested assertions as well as logic connectives
+and quantifiers. We further consider how to extend assertional logic with other important AI building blocks. The key point is that, when one wants to integrate a new
+building block in assertional logic, she only needs to formalize it as syntactic objects
+(including individuals, concepts and operators) and defines its interactions with the basic form of assertions (i.e., a = b). Then, the interactions between this building block
+and others will be automatically established since all complicated assertions can essentially be reduced into the basic form. As a case study, we briefly discuss how to
+incorporate probability and time points in this paper.
+Of course, assertional logic is deeply rooted in first-order logic. Individuals, concepts and operators are analogous to constants, unary predicates and functions respectively, and assertions are originated from equality atoms. Nevertheless, they differ from
+many essential aspects. Firstly, individuals can be high-order objects, e.g., concepts
+and assertions, so are concepts and operators. Secondly, assertional logic is naturally
+many-sorted, that is, the domain of an operator can be a tuple of many different concepts including high-order ones. Thirdly, concepts play a central role in assertional
+logic, which is natural for human knowledge representation. While concepts can be
+formalized as unary predicates in FOL, they are not specifically emphasized. Fourthly,
+in assertional logic, all kinds of knowledge are uniformly formalized in the same form
+of equality assertions. As shown in Section 5, complicated logic sentences are defined
+as equality assertions as well by embedding connectives and quantifiers as operators
+over assertions. Fifthly, following the above, although connectives, quantifiers and
+nesting can be defined in assertional logic, they are not considered as primitive constructs. In this sense, they will only be used on demand when necessary. We argue that
+this is an important reason that makes assertional logic simpler than FOL. Sixthly, in
+assertional logic, the simple form of a = b is expressive as a and b can be high-order
+constructs and can be inherently related within the rich syntactic structure. In contrast,
+equality atoms in FOL do not have this power. Last but not least, assertional logic
+directly embraces extensibility within its own framework by syntactic definitions. For
+instance, to define quantifiers, assertional logic only needs two lines (see Equations 8
+and 9) without redefining a whole new semantics, which is much simpler than FOL.
+Assertional logic is also inspired by many approaches in symbolic AI. Traditionally in FOL, there is a strict hierarchy from the term level to the formula level. To
+some extent, this is broken in situation calculus [15, 16] and game description language [21] that have to quantify over situations, actions and fluents and to directly
+talk about whether a fluent holds in a particular situation by a meta-predicate Hold.
+Assertional logic goes much further by completely demolishing the distinction and hierarchy between term level, predicate level and formula level. In assertional logic, one
+can flexibly use, e.g., atoms and predicates in the scope of a function as long as they
+match its domain definition. Also, one can quantify over any well-defined concepts,
+11
+
+including a concept of assertions. This makes assertional logic even more expressive
+than high-order logic that cannot quantifier over formulas.
+Another inspiration comes from the family of description logics [2], where the terminologies individuals and concepts are borrowed from. The family of description
+logics allows a certain level of extensibility. By interpreting individuals, concepts and
+roles as domain elements, unary predicates and binary predicates respectively, one can
+extend the basic description logics with more building blocks (e.g., nominal, number
+restrictions, inverse and transitive roles etc.) based on the same foundational semantics. Also, one can freely assemble those building blocks into different fragments of
+description logics such as ALC, SHIQ, SHION and so on. However, many important
+AI building blocks, e.g., actions, probability, time, rules, etc. are still difficult to be
+incorporated by this method. Some interesting pioneering work have been done to
+consider more extensibility in description logics [3, 5, 9, 14]. Nevertheless, they differ from assertional logic that embraces extensibility at a syntactic level instead of a
+semantic one.
+This paper is only concerned with the representation task and the definition task.
+We leave the reasoning task to our future work. Certainly, complete reasoning in assertional logic is undecidable as FOL can be embedded in it. Traditionally, the way
+to address this issue is to find decidable fragments. Nevertheless, we shall propose an
+alternative approach that focuses on efficient but not necessarily complete reasoning.
+We have developed such an approach, in which the flexibility and extensibility of assertional logic play a critical role. We shall present this in another paper. Nevertheless, we
+argue that representation and definition are worth study on their own merits. Such successful stories include entity-relationship diagram, semantic network and many more.
+Besides, extending assertional logic with some important AI building blocks, e.g., actions and their effects, is indeed challenging and worth pursuing.
+
+Acknowledgement
+The author gratefully acknowledges Prof. Fangzhen Lin’s comments on a first draft of
+this paper.
+
+References
+[1] James F. Allen. Maintaining knowledge about temporal intervals. Commun. ACM,
+26(11):832–843, November 1983.
+[2] Franz Baader, Diego Calvanese, Deborah L. McGuinness, Daniele Nardi, and
+Peter F. Patel-Schneider, editors. The Description Logic Handbook: Theory, Implementation, and Applications. Cambridge University Press, New York, NY,
+USA, 2003.
+[3] Franz Baader and Philipp Hanschke. A scheme for integrating concrete domains
+into concept languages. In Proceedings of the 12th International Joint Conference
+
+12
+
+on Artificial Intelligence - Volume 1, IJCAI’91, pages 452–457, San Francisco,
+CA, USA, 1991. Morgan Kaufmann Publishers Inc.
+[4] Fahiem Bacchus. Representing and Reasoning with Probabilistic Knowledge: A
+Logical Approach to Probabilities. MIT Press, Cambridge, MA, USA, 1990.
+[5] Alexander Borgida. Extensible knowledge representation: the case of description
+reasoners. J. Artif. Intell. Res. (JAIR), 10:399–434, 1999.
+[6] Ronald J. Brachman and Hector J. Levesque. Knowledge Representation and
+Reasoning. Elsevier, 2004.
+[7] Edmund M. Clarke and E. Allen Emerson. Design and synthesis of synchronization skeletons using branching-time temporal logic. In Logic of Programs,
+Workshop, pages 52–71, London, UK, UK, 1982. Springer-Verlag.
+[8] Haim Gaifman. Concerning measures in first order calculi. Israel J. Math., 2:1–
+18, 1964.
+[9] Giuseppe De Giacomo, Maurizio Lenzerini, and Riccardo Rosati. Higher-order
+description logics for domain metamodeling. In Proceedings of the Twenty-Fifth
+AAAI Conference on Artificial Intelligence, AAAI’11, pages 183–188. AAAI
+Press, 2011.
+[10] Theodore Hailperin. Probability logic. Notre Dame J. Formal Logic, 25:198–212,
+1984.
+[11] Paul Halmos. Naive Set Theory. Van Nostrand, 1960. Reprinted by SpringerVerlag, Undergraduate Texts in Mathematics, 1974.
+[12] Joseph Y. Halpern. An analysis of first-order logics of probability. Artif. Intell.,
+46(3):311–350, 1990.
+[13] Thomas Keller, Patrick Eyerich, and Bernhard Nebel. Task planning for an autonomous service robot. In Proceedings of the 33rd Annual German Conference
+on Advances in Artificial Intelligence, KI’10, pages 358–365, Berlin, Heidelberg,
+2010. Springer-Verlag.
+[14] O. Kutz, C. Lutz, F. Wolter, and M. Zakharyaschev. E-connections of abstract
+description systems. Artificial Intelligence, 156(1):1–73, 2004.
+[15] Hector Levesque, Fiora Pirri, and Ray Reiter. Foundations for the situation calculus. Electronic Transactions on Artificial Intelligence, Vol. 2(1998), Issue 3-4:pp.
+159–178, 1991.
+[16] Fangzhen Lin. Situation calculus. In Handbook of Knowledge Representation,
+pages 649–669. 2008.
+[17] Brian Christopher Milch. Probabilistic Models with Unknown Objects. PhD
+thesis, Berkeley, CA, USA, 2006. AAI3253991.
+
+13
+
+[18] Judea Pearl. Probabilistic Reasoning in Intelligent Systems: Networks of Plausible Inference. Morgan Kaufmann Publishers Inc., San Francisco, CA, USA,
+1988.
+[19] Amir Pnueli. The temporal logic of programs. In Proceedings of the 18th Annual Symposium on Foundations of Computer Science, SFCS ’77, pages 46–57,
+Washington, DC, USA, 1977. IEEE Computer Society.
+[20] Matthew Richardson and Pedro Domingos. Markov logic networks. Machine
+learning, 62(1-2):107–136, 2006.
+[21] Michael Thielscher. GDL-III: A proposal to extend the game description language to general epistemic games. In ECAI 2016 - 22nd European Conference on
+Artificial Intelligence, 29 August-2 September 2016, The Hague, The Netherlands
+- Including Prestigious Applications of Artificial Intelligence (PAIS 2016), pages
+1630–1631, 2016.
+[22] Frank van Harmelen, Vladimir Lifschitz, and Bruce W. Porter, editors. Handbook
+of Knowledge Representation, volume 3 of Foundations of Artificial Intelligence.
+Elsevier, 2008.
+
+14
+
+

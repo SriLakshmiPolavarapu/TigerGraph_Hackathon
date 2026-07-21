@@ -1,0 +1,21 @@
+Title: Catastrophic Forgetting is Low-Rank: A Function-Space Theory for Continual Adaptation
+
+Authors: Ido Nitzan Hidekel, Dan Raviv
+
+Published: 2026-06-16
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+Catastrophic forgetting in continual adaptation is usually studied through parameter drift, replay, or distillation, but these views do not identify which output-space directions are vulnerable. We give a function-space account in the NTK regime: new-task training induces old-task prediction drift through the cross-task kernel, yielding a closed-form predictor for the forgetting vector before any new-task gradient step. In frozen-backbone linear-head PEFT-CL, where the model is linear in the trainable parameters, the predictor is exact up to numerical precision; for nonlinear adapters/full fine-tuning, it is a local NTK approximation. The same expression reveals that forgetting concentrates in a small number of old-task NTK eigenmodes and under frozen linear heads gives a Kronecker scaling rule for the vulnerable rank. These results clarify the relation to prior NTK-overlap theory, explain why parameter-space regularizers can miss output-space interference, and motivate a targeted spectral regularizer.
+
+Paper ID: 2606.18024v1
+
+Summary:
+This paper titled "Catastrophic Forgetting is Low-Rank: A Function-Space Theory for Continual Adaptation" was authored by Ido Nitzan Hidekel, Dan Raviv and published on 2026-06-16.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: Catastrophic forgetting in continual adaptation is usually studied through parameter drift, replay, or distillation, but these views do not identify which output-space directions are vulnerable. We give a function-space account in the NTK regime: new-task training induces old-task prediction drift through the cross-task kernel, yielding a closed-form predictor for the forgetting vector before any new-task gradient step. In frozen-backbone linear-head PEFT-CL, where the model is linear in the trainable parameters, the predictor is exact up to numerical precision; for nonlinear adapters/full fine-tuning, it is a local NTK approximation. The same expression reveals that forgetting concentrates in a small number of old-task NTK eigenmodes and under frozen linear heads gives a Kronecker scaling rule for the vulnerable rank. These results clarify the relation to prior NTK-overlap theory, explain why parameter-space regularizers can miss output-space interference, and motivate a targeted spectral regularizer.
+
+Links:
+  - https://arxiv.org/abs/2606.18024v1
+  - https://arxiv.org/pdf/2606.18024v1

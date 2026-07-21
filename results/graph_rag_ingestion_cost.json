@@ -1,0 +1,8 @@
+{
+  "filings_ingested": 400,
+  "companies": 100,
+  "topics": 35,
+  "embedding_time_seconds": 513.58,
+  "embedding_model": "all-MiniLM-L6-v2",
+  "embedding_api_cost_usd": 0.0
+}

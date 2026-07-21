@@ -1,0 +1,21 @@
+Title: Improving Retrieval-Augmented Large Language Models via Data Importance Learning
+
+Authors: Xiaozhong Lyu, Stefan Grafberger, Samantha Biegel, Shaopeng Wei, Meng Cao, Sebastian Schelter, Ce Zhang
+
+Published: 2023-07-06
+
+Categories: cs.LG, cs.CL, cs.IR
+
+Abstract:
+Retrieval augmentation enables large language models to take advantage of external knowledge, for example on tasks like question answering and data imputation. However, the performance of such retrieval-augmented models is limited by the data quality of their underlying retrieval corpus. In this paper, we propose an algorithm based on multilinear extension for evaluating the data importance of retrieved data points. There are exponentially many terms in the multilinear extension, and one key contribution of this paper is a polynomial time algorithm that computes exactly, given a retrieval-augmented model with an additive utility function and a validation set, the data importance of data points in the retrieval corpus using the multilinear extension of the model's utility function. We further proposed an even more efficient (ε, δ)-approximation algorithm. Our experimental results illustrate that we can enhance the performance of large language models by only pruning or reweighting the retrieval corpus, without requiring further training. For some tasks, this even allows a small model (e.g., GPT-JT), augmented with a search engine API, to outperform GPT-3.5 (without retrieval augmentation). Moreover, we show that weights based on multilinear extension can be computed efficiently in practice (e.g., in less than ten minutes for a corpus with 100 million elements).
+
+Paper ID: 2307.03027v1
+
+Summary:
+This paper titled "Improving Retrieval-Augmented Large Language Models via Data Importance Learning" was authored by Xiaozhong Lyu, Stefan Grafberger, Samantha Biegel, Shaopeng Wei, Meng Cao, Sebastian Schelter, Ce Zhang and published on 2023-07-06.
+It falls under the categories: cs.LG, cs.CL, cs.IR.
+The research explores the following topic: Retrieval augmentation enables large language models to take advantage of external knowledge, for example on tasks like question answering and data imputation. However, the performance of such retrieval-augmented models is limited by the data quality of their underlying retrieval corpus. In this paper, we propose an algorithm based on multilinear extension for evaluating the data importance of retrieved data points. There are exponentially many terms in the multilinear extension, and one key contribution of this paper is a polynomial time algorithm that computes exactly, given a retrieval-augmented model with an additive utility function and a validation set, the data importance of data points in the retrieval corpus using the multilinear extension of the model's utility function. We further proposed an even more efficient (ε, δ)-approximation algorithm. Our experimental results illustrate that we can enhance the performance of large language models by only pruning or reweighting the retrieval corpus, without requiring further training. For some tasks, this even allows a small model (e.g., GPT-JT), augmented with a search engine API, to outperform GPT-3.5 (without retrieval augmentation). Moreover, we show that weights based on multilinear extension can be computed efficiently in practice (e.g., in less than ten minutes for a corpus with 100 million elements).
+
+Links:
+  - https://arxiv.org/abs/2307.03027v1
+  - https://arxiv.org/pdf/2307.03027v1

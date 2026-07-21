@@ -1,0 +1,21 @@
+Title: Prompt-with-Me: in-IDE Structured Prompt Management for LLM-Driven Software Engineering
+
+Authors: Ziyou Li, Agnia Sergeyuk, Maliheh Izadi
+
+Published: 2025-09-21
+
+Categories: cs.SE, cs.AI, cs.HC
+
+Abstract:
+Large Language Models are transforming software engineering, yet prompt management in practice remains ad hoc, hindering reliability, reuse, and integration into industrial workflows. We present Prompt-with-Me, a practical solution for structured prompt management embedded directly in the development environment. The system automatically classifies prompts using a four-dimensional taxonomy encompassing intent, author role, software development lifecycle stage, and prompt type. To enhance prompt reuse and quality, Prompt-with-Me suggests language refinements, masks sensitive information, and extracts reusable templates from a developer's prompt library. Our taxonomy study of 1108 real-world prompts demonstrates that modern LLMs can accurately classify software engineering prompts. Furthermore, our user study with 11 participants shows strong developer acceptance, with high usability (Mean SUS=73), low cognitive load (Mean NASA-TLX=21), and reported gains in prompt quality and efficiency through reduced repetitive effort. Lastly, we offer actionable insights for building the next generation of prompt management and maintenance tools for software engineering workflows.
+
+Paper ID: 2509.17096v1
+
+Summary:
+This paper titled "Prompt-with-Me: in-IDE Structured Prompt Management for LLM-Driven Software Engineering" was authored by Ziyou Li, Agnia Sergeyuk, Maliheh Izadi and published on 2025-09-21.
+It falls under the categories: cs.SE, cs.AI, cs.HC.
+The research explores the following topic: Large Language Models are transforming software engineering, yet prompt management in practice remains ad hoc, hindering reliability, reuse, and integration into industrial workflows. We present Prompt-with-Me, a practical solution for structured prompt management embedded directly in the development environment. The system automatically classifies prompts using a four-dimensional taxonomy encompassing intent, author role, software development lifecycle stage, and prompt type. To enhance prompt reuse and quality, Prompt-with-Me suggests language refinements, masks sensitive information, and extracts reusable templates from a developer's prompt library. Our taxonomy study of 1108 real-world prompts demonstrates that modern LLMs can accurately classify software engineering prompts. Furthermore, our user study with 11 participants shows strong developer acceptance, with high usability (Mean SUS=73), low cognitive load (Mean NASA-TLX=21), and reported gains in prompt quality and efficiency through reduced repetitive effort. Lastly, we offer actionable insights for building the next generation of prompt management and maintenance tools for software engineering workflows.
+
+Links:
+  - https://arxiv.org/abs/2509.17096v1
+  - https://arxiv.org/pdf/2509.17096v1

@@ -1,0 +1,22 @@
+Title: Graph Neural Networks for Graph Drawing
+
+Authors: Matteo Tiezzi, Gabriele Ciravegna, Marco Gori
+
+Published: 2021-09-21
+
+Categories: cs.LG
+
+Abstract:
+Graph Drawing techniques have been developed in the last few years with the purpose of producing aesthetically pleasing node-link layouts. Recently, the employment of differentiable loss functions has paved the road to the massive usage of Gradient Descent and related optimization algorithms. In this paper, we propose a novel framework for the development of Graph Neural Drawers (GND), machines that rely on neural computation for constructing efficient and complex maps. GNDs are Graph Neural Networks (GNNs) whose learning process can be driven by any provided loss function, such as the ones commonly employed in Graph Drawing. Moreover, we prove that this mechanism can be guided by loss functions computed by means of Feedforward Neural Networks, on the basis of supervision hints that express beauty properties, like the minimization of crossing edges. In this context, we show that GNNs can nicely be enriched by positional features to deal also with unlabelled vertexes. We provide a proof-of-concept by constructing a loss function for the edge-crossing and provide quantitative and qualitative comparisons among different GNN models working under the proposed framework.
+
+Paper ID: 2109.10061v3
+
+Summary:
+This paper titled "Graph Neural Networks for Graph Drawing" was authored by Matteo Tiezzi, Gabriele Ciravegna, Marco Gori and published on 2021-09-21.
+It falls under the categories: cs.LG.
+The research explores the following topic: Graph Drawing techniques have been developed in the last few years with the purpose of producing aesthetically pleasing node-link layouts. Recently, the employment of differentiable loss functions has paved the road to the massive usage of Gradient Descent and related optimization algorithms. In this paper, we propose a novel framework for the development of Graph Neural Drawers (GND), machines that rely on neural computation for constructing efficient and complex maps. GNDs are Graph Neural Networks (GNNs) whose learning process can be driven by any provided loss function, such as the ones commonly employed in Graph Drawing. Moreover, we prove that this mechanism can be guided by loss functions computed by means of Feedforward Neural Networks, on the basis of supervision hints that express beauty properties, like the minimization of crossing edges. In this context, we show that GNNs can nicely be enriched by positional features to deal also with unlabelled vertexes. We provide a proof-of-concept by constructing a loss function for the edge-crossing and provide quantitative and qualitative comparisons among different GNN models working under the proposed framework.
+
+Links:
+  - https://arxiv.org/abs/2109.10061v3
+  - https://arxiv.org/pdf/2109.10061v3
+  - https://doi.org/10.1109/TNNLS.2022.3184967

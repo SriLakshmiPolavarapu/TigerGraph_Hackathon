@@ -1,0 +1,2559 @@
+Title: arXiv paper 1003
+
+Categories: 3
+
+Abstract:
+1
+
+Theory and Application on Adaptive-Robust
+Control of Euler-Lagrange Systems with Linearly
+Parametrizable Uncertainty Bound
+
+arXiv:1708.01442v1 [cs.SY] 4 Aug 2017
+
+Spandan Roy, Sayan Basu Roy and Indra Narayan Kar, Senior Member, IEEE
+
+Abstract—This work proposes a new adaptive-robust control
+(ARC) architecture for a class of uncertain Euler-Lagrange (EL)
+systems where the upper bound of the uncertainty satisfies linear
+in parameters (LIP) structure. Conventional ARC strategies
+either require structural knowledge of the system or presume
+that the overall uncertainties or its time derivative is norm
+bounded by a constant. Due to unmodelled dynamics and
+modelling imperfection, true structural knowledge of the system
+is not always available. Further, for the class of systems under
+consideration, prior assumption regarding the uncertainties (or
+its time derivative) being upper bounded by a constant, puts
+a restriction on states beforehand. Conventional ARC laws
+invite overestimation-underestimation problem of switching gain.
+Towards this front, Adaptive Switching-gain based Robust Control (ASRC) is proposed which alleviates the overestimationunderestimation problem of switching gain. Moreover, ASRC
+avoids any presumption of constant upper bound on the overall
+uncertainties and can negotiate uncertainties regardless of being
+linear or nonlinear in parameters. Experimental results of
+ASRC using a wheeled mobile robot notes improved control
+performance in comparison to adaptive sliding mode control.
+Index Terms—Adaptive-robust control, Euler-Lagrange systems, Wheeled mobile robot, Uncertainty.
+
+I. I NTRODUCTION
+A. Background
+HE controller design aspect for nonlinear systems subjected to parametric and nonparametric uncertainties has
+always been a challenging task. Adaptive control and Robust
+control are the two popular control strategies to deal with
+uncertain nonlinear systems. In case of adaptive control, online
+computation of the unknown system parameters and controller
+gains for complex systems is significantly intensive [1]. On
+the other front, robust control reduces computation burden
+for complex systems compared to adaptive control, while
+requiring a predefined upper bound on the uncertainties. However, in practice it is not always possible to estimate a prior
+uncertainty bound due to the effect of unmodelled dynamics.
+Again, to increase the operating region of the controller, often
+higher uncertainty bounds are assumed. This in turn leads to
+overestimation of switching gain and high control effort [2].
+Considering the individual constraints of adaptive and robust control, recently global research is reoriented towards
+adaptive-robust control (ARC). The series of publications [1],
+
+T
+
+S. Roy, S. Basu Roy and I. N. Kar are with the Department of Electrical
+Engineering, Indian Institute of Technology-Delhi, New Delhi, India e-mail:
+(sroy002@gmail.com, sayanetce@gmail.com, ink@ee.iitd.ac.in).
+
+[3]-[11] regarding ARC, estimate the individual uncertain
+system parameters through adaptive law and robust control
+is utilized to negate the effect of external disturbances. These
+works utilize the projection operator in their respective adaptive laws which necessitate the knowledge of lower and upper
+bound of individual uncertain system parameters. Adaptive
+sliding mode control (ASMC) is designed in [12] for parameter
+identification of mechanical servo systems with LuGre friction
+considering the uncertainties to be linear in parameters (LIP).
+In contrast, the controllers [13]-[20] assume that the overall
+uncertainty (or its time derivative) is bounded by some constant. Thereafter, that constant term is estimated by adaptive
+law, rather estimating individual uncertain system parameters.
+The adaptive laws in [17]-[18] involve a predefined threshold
+value; as a matter of fact, until the threshold value is achieved,
+the switching gain may still be increasing (resp. decreasing)
+even if the tracking error decreases (resp. increases) and
+thus creates overestimation (resp. underestimation) problem
+of switching gain.While the underestimation problem compromises the controller accuracy by applying lower switching
+gain than the required amount, the overestimation problem
+causes larger gain and high control input requirement. The
+adaptive law reported in [19] requires predefined bound on
+the time derivative of the uncertainties. As observed in [20],
+the method in [19] also requires frequency characteristics of
+the perturbation to design the filter for equivalent control.
+However, the work in [20] assumed that the time derivative of
+the uncertainties are bounded by an unknown constant.
+B. Motivation
+Let us consider the following system representing a chemostat operating under Monod kinetic [21]:
+ż1 = f1 (z1 , z2 ) − Dz1 , ż2 = f2 (z1 , z2 ) + S0 − Dz2 ,
+δ1 z1 z2
+−δ3 z1 z2
+where f1 (z1 , z2 ) =
+, f2 (z1 , z2 ) =
+.
+δ2 + z2
+δ2 + z2
+
+(1)
+
+Here z1 ≥ 0, z2 ≥ 0 ∀t ≥ 0 are states; δ1 , δ2 , δ3 are uncertain
+positive parameters; S0 is a known constant and D is the
+control input. For the system (1), the following relations hold:
+|f1 | ≤ y1 f (z), |f2 | ≤ y2 f (z),
+
+(2)
+
+where y1 = |δ1 |/|δ2 |, y2 = |δ3 |/|δ2 |, f (z) = |z1 ||z2 |.
+Inspection of the uncertainties f1 and f2 from (1)-(2) reveal
+that though f1 , f2 are nonlinear in parameters (NLIP) but their
+upper bounds are LIP.
+
+2
+
+Similarly Euler-Lagrange (EL) systems can have uncertainties with LIP or NLIP (e.g. system with nonlinear friction
+([22])) structure. However, the upper bound of the overall (or
+lumped) uncertainty for such systems has LIP property [23].
+EL systems, in general, represent a large class of real world
+systems like robotic manipulators [24]-[25], mobile robots
+[26], ship dynamics, aircraft, pneumatic muscles [27] etc.
+These systems have immense applications in various domains
+such as defence, automation industry, surveillance, space missions etc. The controllers [13]-[18] assume that the overall
+uncertainties are upper bounded by some constant, while [19][20] assume the time derivative of the overall uncertainty to
+be bounded by some constant. Hence, for the aforementioned
+class of systems, consideration of such constant bound (known
+or unknown) restricts the system state a priori. Further, the
+switching gain in [17]-[18] suffers from over- and underestimation problems. In practice, it is also not always possible
+to have prior knowledge of bounds for system parameters as
+required in [1], [3]-[11] for projection operator.
+
+where q ∈ Rn denotes system state, τ ∈ Rn denotes vector
+of generalized control input forces, M (q) ∈ Rn×n represents
+mass/inertia matrix, C(q, q̇) ∈ Rn×n denotes Coriolis, centripetal terms, g(q) ∈ Rn denotes gravity vector, f (q̇) ∈ Rn
+represents the vector of slip, damping and friction forces and
+ds (t) denotes the bounded external disturbances. The system
+(3) possesses the following properties [23]:
+Property 1: The matrix (Ṁ − 2C) is skew symmetric.
+Property 2: ∃gb , fb , d¯ ∈ R+ such that ||g(q)|| ≤ gb , ||f (q̇)|| ≤
+¯
+fb ||q̇|| and ||ds (t)|| ≤ d.
+Property 3: The matrix M (q) is uniformly positive definite
+and there exist two positive constants µ1 , µ2 such that
+0 < µ1 I ≤ M (q) ≤ µ2 I.
+
+Property 4: ∃Cb ∈ R such that ||C(q, q̇)|| ≤ Cb ||q̇||.
+Let q d (t) is the desired trajectory to be tracked and it is
+selected such that q d , q̇ d , q̈ d ∈ L∞ . Let e(t) , q(t) − q d (t) be
+the tracking error and ef be the filtered tracking error:
+ef , ė + Ωe ⇒ ef = Γξ,
+T
+
+C. Contribution
+In view of the above discussion and the importance of EL
+systems in real-life scenarios, it is imperative to formulate a
+dedicated ARC framework for uncertain EL systems. Towards
+this front, Adaptive Switching-gain based Robust Control
+(ASRC) is presented in this paper for tracking control of
+uncertain EL systems. The formulation of ASRC is insensitive
+towards the nature of the uncertainties, i.e., it can negotiate
+uncertainties that can be either LIP or NLIP. ASRC utilizes
+LIP structure of the upper bound of uncertainty and does
+not presume the overall uncertainty (or its time derivative) to
+be upper bounded by a constant. The adaptive law of ASRC
+prevents the switching gain from becoming a monotonically
+increasing function by allowing the switching gain to decrease
+within a finite time when tracking error decreases. Moreover,
+ASRC alleviates the overestimation-underestimation problem
+of switching gain. To realize the effectiveness, the performance
+of ASRC is compared with ASMC [17]-[18] experimentally
+using PIONEER 3 wheeled mobile robot (WMR).
+D. Organization and Notations
+The remainder of the article is organized as follows: The
+proposed ASRC framework for second order EL systems is
+detailed in Section II. This is followed by the experimental
+results of ASRC and its comparison with ASMC [17]-[18] in
+Section III. Section IV presents concluding remarks.
+The following notations are used in this paper: λmin (•) and
+|| • || represent minimum eigenvalue and Euclidean norm of
+(•) respectively; I denotes identity matrix with appropriate
+dimension; R+ denotes the set of positive real numbers.
+
+(4)
+
++
+
+T T
+
+(5)
+n×n
+
+where Γ , [Ω I], ξ , [e ė ] and Ω ∈ R
+is a positive
+definite matrix. Multiplying the time derivative of (5) by M
+and using (3) yields
+M ėf = M (q̈ − q̈ d + Ωė) = τ − C(q, q̇)ef + σ,
+
+where σ , −(C(q, q̇)q̇ + g(q) + f (q̇) + ds + M q̈ −
+M Ωė − C(q, q̇)ef ) represents the overall uncertainty. Further
+ξ = [eT ėT ]T implies ||ξ|| ≥ ||e||, ||ξ|| ≥ ||ė||.
+Characterization of the upper bound of σ: Relation (5)
+and system Property 4 yields
+||Cef − C q̇|| = ||C(ė + Ωe) − C q̇|| = || − C q̇ d + CΩe||
+≤ Cb ||q̇||||q̇ d || + Cb ||q̇||||Ω||||e||
+≤ Cb ||ė + q̇ d ||||q̇ d || + Cb ||ė + q̇ d ||||Ω||||ξ||
+≤ Cb {||ξ||||q̇ d || + ||q̇ d ||2 + ||ξ||2 ||Ω|| + ||q̇ d ||||Ω||||ξ||}. (7)
+Further, system Properties 2 and 3 provide the following:
+||g(q) + f (q̇) + ds + M q̈ d − M Ωė||
+≤ gb + fb ||q̇|| + d¯ + µ2 ||q̈ d || + µ2 ||Ω||||ė||
+≤ gb + fb ||ė + q̇ d || + d¯ + µ2 ||q̈ d || + µ2 ||Ω||||ξ||
+≤ gb + fb ||ξ|| + fb ||q̇ d || + d¯ + µ2 ||q̈ d || + µ2 ||Ω||||ξ||. (8)
+Since q d , q̇ d , q̈ d ∈ L∞ , it can be verified using (7)-(8) that
+∃θi∗ ∈ R+ i = 0, 1, 2 such that the upper bound of σ holds
+the following LIP structure [23]:
+||σ|| ≤ θ0∗ + θ1∗ ||ξ|| + θ2∗ ||ξ||2 , Y (ξ)T Θ∗ ,
+
+A. Problem Formulation
+In general, an EL system with second order dynamics can
+be written as
+M (q)q̈ + C(q, q̇)q̇ + g(q) + f (q̇) + ds = τ,
+
+(3)
+
+(9)
+
+where Y (ξ) = [1 ||ξ|| ||ξ||2 ]T and Θ∗ = [θ0∗ θ1∗ θ2∗ ]T .
+Let Θ̄ , {Θ ∈ R3 : θi ≥ θi∗ ∀i = 0, 1, 2} such that the
+following condition always holds from (9):
+||σ|| ≤ Y (ξ)T Θ, ∀Θ ∈ Θ̄.
+
+II. C ONTROLLER D ESIGN
+
+(6)
+d
+
+(10)
+
+A robust controller for the system (3) can be designed as [23]
+( e
+ρ ||eff || if ||ef || ≥ $
+(11)
+τ = −e − Gef − ∆τ, ∆τ =
+e
+ρ $f
+if ||ef || < $,
+ρ = Y (ξ)T Θ,
+
+(12)
+
+3
+
+where ∆τ provides robustness against σ through switching
+gain ρ; $ ∈ R+ is a small scalar used for chattering removal;
+G ∈ Rn×n is a positive definite matrix.
+Evaluation of Switching Gain: Evaluation of ρ like (12)
+is conservative in nature and evidently requires the knowledge
+of Θ∗ , which is not always possible in the face of uncertain
+parametric variations and external disturbances. The control
+laws developed in [13]-[18] and [19]-[20] assume that σ
+and σ̇ is upper bounded by constant, respectively. Exploring
+the structure of ||σ|| from (9) it can be easily inferred that
+such constant bound assumption on the uncertainties, whether
+known or unknwon, puts a restriction on the states a priori. Moreover, the switching gain in [17]-[18] suffers from
+overestimation-underestimation problem.
+B. Adaptive Switching-gain based Robust Control (ASRC)
+The major aims of the proposed ASRC framework are:
+• To compensate the uncertainties that can be either LIP
+or NLIP. However, the upper bound of the uncertainties
+satisfies the LIP property (9).
+• To alleviate the overestimation-underestimation problem
+of switching gain.
+The control input of the proposed ASRC is designed as
+( e
+ρ̂ ||eff || if ||ef || ≥ $
+(13)
+τ = −e − Gef − ∆τ, ∆τ =
+e
+if ||ef || < $,
+ρ̂ $f
+ρ̂ = θ̂0 + θ̂1 ||ξ|| + θ̂2 ||ξ||2 + γ , Y (ξ)T Θ̂ + γ,
+
+(14)
+
+where ∆τ provides robustness against σ through ρ̂; Θ̂ =
+[θ̂0 θ̂1 θ̂2 ]T is the estimate of Θ; γ is an auxiliary gain.
+The importance of γ will be explained later. The gains γ, θ̂i ,
+i = 0, 1, 2 are evaluated using the following adaptive laws:
+(i) for ||ef || ≥ $
+
+S2
+i
+T
+
+αi ||ξ|| ||ef || if {e ė > 0} ∪ { i=0 θ̂i ≤ 0}
+˙
+θ̂i =
+∪{γ ≤ β}
+
+
+i
+−αi ||ξ|| ||ef || otherwise,
+
+S2
+T
+
+α3 ||ef || if {e ė > 0} ∪ { i=0 θ̂i ≤ 0}
+γ̇ =
+∪{γ ≤ β}
+
+
+−ςα3 ||ξ||4 otherwise,
+
+(15)
+
+with θ̂i (t0 ) > 0, i = 0, 1, 2, γ(t0 ) > β.
+
+Remark 2. For ||ef || < $, the tracking error remains
+bounded inside the ball B$ , {||Γξ|| < $} using the relation
+ef = Γξ. This implies that the switching gains are sufficient
+enough to keep the error within B$ . Hence, the gains are
+kept unchanged for ||ef || < $. One can choose small $ to
+improve tracking accuracy (as B$ gets reduced) as long as
+the value of $ does not invite chattering.
+Remark 3. The initial condition of the gains are selected
+as θ̂i (t0 ) > 0, γ(t0 ) > β. Further, for ||ef || ≥ $, the
+adaptive laws (15)-(16) force the gains to increase if either
+of the gains attempt
+S2 to breach their respective lower bounds
+(governed by { i=0 θ̂i ≤ 0} ∪ {γ ≤ β}). This ensures that
+γ(t) ≮ β, θ̂i (t) ≮ 0 ∀i = 0, 1, 2 when ||ef || ≥ $. Again,
+gains remain unchanged for ||ef || < $. Hence, combination
+of the conditions mentioned above implies
+θ̂i (t) ≥ 0 ∀i = 0, 1, 2 and γ(t) ≥ β ∀t ≥ t0 .
+
+(20)
+
+The condition (20) is later exploited in stability analysis.
+To guarantee the alleviation of the overestimation problem
+of switching gain, it is necessary that θ̂i , γ decrease within a
+finite time. This is shown through Theorem 1.
+Theorem 1. Let t = tin be any time instant when gains start
+increasing. Then there exist finite times t1 , t2 , t3 , δt such that
+the gains θ̂0 , θ̂1 , θ̂2 , γ decrease for t ≥ tin + T where T ≤
+t̄ + δt, t̄ = max{t1 , t2 , t3 }. These times are obtained as
+θ∗ ||Γ||
+θ∗ ||Γ||2
+θ0∗
+, t2 ≤ 1 2 , t3 ≤ 2 3 ,
+(α0 + α3 )$
+α1 $
+α2 $
+2
+δt ≤ (1/%)ln{2V (t̄)/(||e(t̄)|| )},
+t1 ≤
+
+where V = 21 eTf M ef + 21 eT e, % ,
+
+(21)
+(22)
+
+min{λmin (G),λmin (Ω)}
+.
+max{µ2 ,1}
+
+(17)
+
+Proof. Here, tin can be any time when gains start increasing
+and it is solely used for analysis. The objective of Theorem
+1 is to find when the gains start to decrease. Further, it is to
+be noted from the laws (15)-(17) that the gains increase only
+when ||ef || ≥ $. So, it is sufficient to investigate the condition
+when all the gains increase and ||ef || ≥ $. Moreover, using
+ef = Γξ from (5) one has
+
+(18)
+
+$ ≤ ||ef || ≤ ||Γ||||ξ|| ⇒ ||ξ|| ≥ ($/||Γ||).
+
+(16)
+
+(ii) for ||ef || < $
+˙
+θ̂i = 0, γ̇ = 0,
+
+the proposed law certainly does not make the switching gain
+a monotonically increasing function and thus alleviates the
+overestimation problem.
+
+(23)
+
++
+
+Here t0 is the initial time and β, ς, α0 , α1 , α2 , α3 ∈ R are
+user defined scalars. Substituting (13) into (6), the closed loop
+system is formed as:
+M ėf = −e − Gef − ∆τ − Cef + σ.
+
+(19)
+
+Remark 1. For ||ef || ≥ $, it can be noticed from the
+adaptive laws (15)-(16) that the gains θ̂i , γ increase if error
+trajectories move away from ||e|| = 0 (governed by eT ė > 0)
+and decrease if error trajectories do not move away from
+||e|| = 0 (governed by the ’otherwise’
+condition in (15)-(16)
+S2
+which implies {eT ė ≤ 0} ∩ { i=0 θ̂i > 0} ∩ {γ > β}). Hence,
+
+So, the first laws of (15), (16) and the condition (23) yields
+˙
+˙
+˙
+θ̂0 ≥ α0 $, θ̂1 ≥ (α1 $2 )/||Γ||, θ̂2 ≥ (α2 $3 )/||Γ||2 , γ̇ ≥ α3 $.
+(24)
+Let V be a Lypaunov function. Using (19) and the relation
+eT ė = eT (ef − Ωe) (from (5)), the time derivative of V yields
+V̇ = eTf M ėf + (1/2)eTf Ṁ ef + eT ė
+= eTf (−e − Gef − ∆τ + σ) + (1/2)eTf (Ṁ − 2C)ef
++ eT (ef − Ωe).
+
+(25)
+
+4
+
+Further, substituting (13) into (25) and using Property 1
+(implying eTf (Ṁ − 2C)ef = 0), V̇ is simplified as
+
+C. Stability Analysis
+
+Exploring the structures of the adaptive laws (15)-(17), three
+˙
+possible
+scenarios are identified: Case (1): θ̂i , γ̇ increase and
+V̇ = −eTf Gef − eT Ωe + eTf (−ρ̂(ef /||ef ||) + σ)
+˙
+||ef || ≥ $; Case (2): θ̂i , γ̇ decrease and ||ef || ≥ $; Case (3)
+≤ −eTf Gef − eT Ωe − (Y (ξ)T Θ̂ + γ)||ef || + Y (ξ)T Θ∗ ||ef || ˙
+θ̂i = 0, γ̇ = 0 when ||ef || < $ ∀i = 0, 1, 2.
+≤ −λmin (G)||ef ||2 − λmin (Ω)||e||2 − {(θ̂0 + γ − θ0∗ )
+Theorem 2. The closed loop system (19) with control input
++ (θ̂1 − θ1∗ )||ξ|| + (θ̂2 − θ2∗ )||ξ||2 }||ef ||.
+(26) (13)-(17) guarantees e(t), ef (t), θ̃i (t), γ(t) to be Uniformly
+Ultimately Bounded (UUB) where θ̃i , (θ̂i − θi∗ ), i = 0, 1, 2.
+Thus, the sufficient condition to achieve V̇ < 0 would be
+Proof. The stability analysis of the overall system is carried
+∗
+∗
+∗
+θ̂0 + γ ≥ θ0 , θ̂1 ≥ θ1 and θ̂2 ≥ θ2 .
+(27) out for the three cases mentioned above using the following
+common Lyapunov function:
+Let the system (3) does not posses finite time escape [28].
+2
+X
+1 2
+1 2
+Then integrating both sides of the inequalities in (24) and
+θ̃i +
+γ .
+(33)
+V1 = V +
+2α
+2α
+i
+3
+using those results in (27) lead to the expressions of t1 , t2 , t3
+i=0
+in (21). So, for t ≥ tin + t̄
+˙
+Case (1): θ̂i , γ̇ increase ∀i = 0, 1, 2 and ||ef || ≥ $.
+P
+˙
+2
+V̇ ≤ −λmin (G)||ef ||2 − λmin (Ω)||e||2
+Note that i=0 α1i θ̃i θ̂i = Y (ξ)T (Θ̂ − Θ∗ )||ef ||. Then using
+≤ −%m (||ef ||2 + ||e||2 ),
+(28) (15)-(16) and following the procedure in (26) one obtains
+where %m , min{λmin (G), λmin (Ω)}. Further, the definition
+of V yields
+2
+
+2
+
+V ≤ %M (||ef || + ||e|| ),
+
+(29)
+
+V̇ ≤ −%V ⇒ V (t) ≤ V (tin + t̄)e−%(t−t̄) ∀t ≥ tin + t̄, (30)
+where % , %m /%M . Here θ̂i > 0, γ > β as gains were
+T
+increasing.
+S2 So, to ensure the ‘otherwise’ condition (i.e.T{e ė ≤
+0} ∩ { i=0 θ̂i > 0} ∩ {γ > β}), the condition e ė ≤ 0
+(i.e. ||e(t)|| does not increase) needs to take place. From the
+definition of V , the upper bound of e follows
+p
+V (t) ≥ (1/2)||e(t)||2 ⇒ ||e(t)|| ≤ 2V (t) ∀t ≥ t0 . (31)
+Let ||e(tin + t̄)|| = ψ which implies V (tin + t̄) ≥ ψ 2 /2 from
+(31). As V (t) decreases exponentially ∀t ≥ tin + t̄ following
+(30), there exist a finite time δt = t − (tin + t̄) such that
+V (tin + t̄ + δt) =Sψ 2 /2 implying ||e(tin + t̄ + δt)|| ≤ ψ.
+2
+So, {eT ė ≤ 0} ∩ { i=0 θ̂i > 0} ∩ {γ > β} would occur at
+t ≥ tin +T where T ≤ t̄+δt and θ̂i , γ would start decreasing.
+The time δt is found from (30):
+∀t ≥ tin + t̄
+2
+
+⇒ δt ≤ (1/%)ln{2V (tin + t̄)/ψ }.
+
++ Y (ξ)T (Θ̂ − Θ∗ )||ef || + γ||ef ||
+≤ −eTf Gef − eT Ωe − (Y (ξ)T Θ̂ + γ)||ef || + Y (ξ)T Θ∗ ||ef ||
+
+where %M , max{µ2 , 1}. Substituting (29) into (28) and
+using the comparison Lemma [29] yields
+
+ψ 2 ≤ 2V (tin + t̄)e−%δt ,
+
+V̇1 ≤ −eTf Gef − eT Ωe + eTf (−ρ̂(ef /||ef ||) + σ)
+
+(32)
+
++ Y (ξ)T (Θ̂ − Θ∗ )||ef || + γ||ef ||
+≤ −λmin (G)||ef ||2 − λmin (Ω)||e||2 ≤ 0.
+
+From (34) it can be inferred that V1 (t) ∈ L∞ . Thus, the definition of V1 yields γ(t), θ̃i (t), e(t), ef (t) ∈ L∞ ⇒ ξ(t), θ̂i ∈
+L∞ . Thus, for this case the closed-loop system remains stable.
+The gains γ, θ̂i , i = 0, 1, 2 remain bounded for Case (1),
+decrease for Case (2) and remain constant for Case (3). Hence,
+∃ γ̄, θ̄i ∈ R+ such that
+θ̂0 (t) ≤ θ̄0 , θ̂1 (t) ≤ θ̄1 , θ̂2 (t) ≤ θ̄2 , γ(t) ≤ γ̄ ∀t ≥ t0 . (35)
+˙
+Case (2): θ̂i , γ̇ decrease ∀i = 0, 1, 2 and ||ef || ≥ $.
+Using γ ≥ β (from (20)) and ||ef || ≤ ||Γ||||ξ|| yields:
+V̇1 ≤ −eTf Gef − eT Ωe + eTf (−ρ̂(ef /||ef ||) + σ)
+− Y (ξ)T (Θ̂ − Θ∗ )||ef || − γς||ξ||4
+≤ −eTf Gef − eT Ωe − (Y (ξ)T Θ̂ + γ)||ef || + Y (ξ)T Θ∗ ||ef ||
+− ςβ||ξ||4 − Y (ξ)T (Θ̂ − Θ∗ )||ef ||
+≤ −ςβ||ξ||4 + 2||Γ||{θ0∗ + θ1∗ ||ξ|| + θ2∗ ||ξ||2 }||ξ||
+− λmin (G)||ef ||2 − λmin (Ω)||e||2 .
+
+(36)
+
+Since 0 ≤ θ̂i (t) ≤ θ̄i , β ≤ γ ≤ γ̄ (from (20) and (35)), the
+definition of V1 in (33) yields
+V1 ≤ %M (||ef ||2 + ||e||2 ) + ζ,
+where ζ ,
+
+Remark 4. The increment and decrement of θ̂i , γ can occur
+several times depending on the error incurred by the system.
+However, time interval ∆t between two successive decrement
+will always satisfy ∆t ≤ t̄ + δt. Moreover, high values of
+α0 , α1 , α2 , α3 help to reduce t̄ and achieve faster adaptation.
+
+(34)
+
+P2
+
+1
+∗2
+i=0 α i (θi
+
++ θ̄i2 ) +
+
+1 2
+α3 γ̄ .
+
+(37)
+
+Thus using (37)
+
+−λmin (G)||ef ||2 − λmin (Ω)||e||2 ≤ −%V1 + %ζ.
+
+(38)
+
+Substitution of (38) into (36) yields
+V̇1 ≤ −%V1 + fp (||ξ||),
+
+(39)
+
+5
+
+where fp (||ξ||) = −ςβ||ξ||4 + 2||Γ||{θ0∗ ||ξ|| + θ1∗ ||ξ||2 +
++ %ζ. Applying Descarte’s rule of sign change [31],
+one can verify that fp (||ξ||) has maximum one positive real
+root. Further, it is to be noticed that fp (||ξ|| = 0) = %ζ ∈ R+
+and fp (||ξ||) → −∞ as ||ξ|| → ∞. Hence, according to
+Bolzano’s Intermediate Value Theorem [32], fp (||ξ||) will have
+at least one positive real root. So, combination of the Intermediate Value Theorem and Descarte’s rule of sign change reveals
+that fp (||ξ||) has exactly one positive real root. Therefore, the
+nature of roots of fp (||ξ||) will be either (i) one positive real
+root and three negative real roots or (ii) one positive real root,
+one negative real root and a pair of complex conjugate roots.
+θ2∗ ||ξ||3 }
+
+Let ι ∈ R+ be the positive real root of fp (||ξ||). Figure
+1 depicts the nature of fp (||ξ||) depending on the various
+combination of roots [33]. It is to be noted that the actual
+graph and values of the roots of the polynomial fp (||ξ||) would
+depend on the values of the coefficients of fp (||ξ||). However,
+θ0∗ , θ1∗ , θ2∗ and ζ are unknown here. Nevertheless, to study the
+stability of the system, it is sufficient to analyse the nature of
+fp (||ξ||) (i.e. the instances when fp (||ξ||) > 0 or fp (||ξ||) ≤ 0)
+rather than determining the values of the roots. The nature of
+any polynomial can be understood from the occurrence of its
+real roots [33]. Moreover, the leading coefficient of fp (||ξ||)
+(the coefficient of the highest degree term ||ξ||4 ) is negative
+(as ς, β ∈ R+ ). As a matter of fact, one can notice from
+Fig. 1 that fp (||ξ||) ≤ 0 when ||ξ|| ≥ ι. Hence, the overall
+system would be UUB for this case. From the point of view
+of controller design, it is important to reduce ι such that better
+tracking accuracy can be achieved and this can be obtained by
+increasing ς.
+
+Similar to Case (1), V̇1 can be simplified for this case as
+V̇1 ≤ −eTf Gef − eT Ωe + eTf (−ρ̂(ef /$) + σ)
+≤ −eTf Gef − eT Ωe − (Y (ξ)T Θ̂ + γ)(||ef ||2 /$)
++ Y (ξ)T Θ∗ ||ef ||
+≤ −λmin (G)||ef ||2 − λmin (Ω)||e||2 + Y (ξ)T Θ∗ ||ef ||.
+(40)
+For ||ef || < $, the system remains bounded inside the ball
+B$ , {||Γξ|| < $} as ef = Γξ. This implies that Y (||ξ||) ∈
+L∞ . Hence, for ||ef || < $, ∃ϑ ∈ R+ such that
+||Y (ξ)T Θ∗ ||||ef || ≤ $ϑ.
+
+(41)
+
+Let us define a scalar z as 0 < z < λmin (G). Then using (37)
+and (41), (40) is modified as
+V̇1 ≤ −λmin (Ω)||e||2 − {λmin (G) − z}||ef ||2 − z||ef ||2 + $ϑ
+≤ −%1 V1 − z||ef ||2 + %1 ζ + $ϑ,
+
+(42)
+
+where %1 , {min{(λmin (G) − z), λmin (Ω)}}/%M . Hence, the
+system would be UUB when
+p
+(43)
+||ef || = ||Γξ|| ≥ (%1 ζ + $ϑ)/z.
+Since the closed loop system remains UUB for both the cases
+||ef || ≥ $ and ||ef || < $ using the common Lyapunov
+function (33), the overall closed loop system also remains
+UUB [34].
+Remark 5. It is noteworthy that the condition (20) is necessary for stability of the system. Moreover, high values of ς
+helps to reduce ι which consequently can improve controller
+accuracy. However, one needs to be careful that too high
+value of ς may excite the condition γ ≤ β leading to the
+increment in all the gains γ, θ̂i , i = 0, 1, 2. Further, the scalar
+terms z, ϑ, ψ, µ2 , ζ, θ̄i and γ̄ are only used for the purpose of
+analysis and not used to design control law.
+Remark 6. The importance of the auxiliary gain γ can be
+realized from Theorems 1 and 2. It can be observed from (21)
+that t1 gets reduced due to the presence of α3 (contributed
+by γ̇ > 0) which leads to faster adaptation. Moreover, the
+negative fourth degree term −ςβ||ξ||4 in fp (||ξ||) (contributed
+by γ̇ < 0) ensures system stability for Case (2) by making
+fp (||ξ||) ≤ 0 for ||ξ|| ≥ ι. This also indicates the reason
+for selecting β > 0 while lower bounds of other gains θ̂i
+i = 0, 1, 2 are selected as zero.
+
+Figure 1.
+fp (||ξ||) with (a) one positive real root and three negative real
+roots (b) one positive real root, one negative real root and a pair of complex
+conjugate roots.
+
+Hence, the overall system would be UUB [29] for this case.
+˙
+Case 3: θ̂i = 0, γ̇ = 0, ∀i = 0, 1, 2 when ||ef || < $.
+
+Special Case: The quadratic term ||ξ||2 in uncertainty
+bound (9) is contributed by the matrix C(q, q̇) (through
+property 4 in (7)). EL systems such as robotic manipulator,
+underwater vehicles, ship dynamics etc. includes C(q, q̇).
+However, there also exist second order EL system (e.g. reduced
+order WMR system) which does not have the term C(q, q̇).
+For such systems, the following LIP structure would hold:
+||σ|| ≤ θ0∗ + θ1∗ ||ξ|| , Y (ξ)T Θ∗ ,
+
+(44)
+
+6
+
+where Y (ξ) = [1 ||ξ||]T and Θ∗ = [θ0∗ θ1∗ ]T . Hence,
+following the switching gain laws (14)-(17), the control laws
+for uncertainty structure (44) are modified as
+ρ̂ = θ̂0 + θ̂1 ||ξ|| + γ , Y (ξ)T Θ̂ + γ,
+
+(45)
+
+(i) for ||ef || ≥ $
+
+S1
+i
+T
+
+αi ||ξ|| ||ef || if {e ė > 0} ∪ { i=0 θ̂i ≤ 0}
+˙
+θ̂i =
+∪{γ ≤ β}
+
+
+−αi ||ξ||i ||ef || otherwise,
+(46)
+
+S1
+T
+
+α3 ||ef || if {e ė > 0} ∪ { i=0 θ̂i ≤ 0}
+γ̇ =
+(47)
+∪{γ ≤ β}
+
+
+3
+−ςα3 ||ξ|| otherwise,
+(ii) for ||ef || < $
+˙
+θ̂i = 0, γ̇ = 0,
+
+insufficient and error will increase again. However, K will not
+increase (rather it keeps on decreasing) until ||s|| > , which
+creates underestimation problem. Low (resp. High) value of 
+may force K to increase (resp. decrease) for longer duration
+when ||s|| ≥  (resp. ||s|| < ) resulting in escalation of the
+overestimation (resp. underestimation) problem of ASMC.
+Whereas, ASRC allows its gains to decrease when error trajectories move towards ||e|| = 0 and ||ef || ≥ $
+(overcoming overestimation problem) and keeps the gains
+unchanged when they are sufficient to keep the error within
+the ball B$ (overcoming underestimation problem). Since
+the overestimation-underestimation problems are alleviated by
+ASRC for any $, one can in fact reduce $ for better tracking
+accuracy as long as chattering does not occur.
+III. A PPLICATION : N ONHOLONOMIC WMR
+
+(48)
+
+with θ̂i (t0 ) > 0, i = 0, 1, γ(t0 ) > β.
+
+(49)
+
+System stability employing (45)-(48) can be analysed exactly
+like Theorem 2 using the following Lyapunov function:
+V1 = V +
+
+1
+X
+(1/2αi )θ̃i2 + (1/2α3 )γ 2 .
+
+(50)
+
+i=0
+
+One can verify that the cubic polynomial 2||Γ||{θ0∗ + θ1∗ ||ξ|| +
+θ2∗ ||ξ||2 }||ξ|| in fp (||ξ||) of Case (2) would be modified as
+quadratic polynomial 2||Γ||{θ0∗ + θ1∗ ||ξ||}||ξ|| using (44) and
+(50). Hence, following the argument in Remark 6, it can be
+noticed that a cubic term −ςα3 ||ξ||3 is selected in the adaptive
+law (48) for system stability.
+Thus, with EL system (3), only two structures are possible
+for ||σ||: (i) Y (ξ) = [1 ||ξ|| ||ξ||2 ]T , Θ∗ = [θ0∗ θ1∗ θ2∗ ]T and
+(ii) Y (ξ) = [1 ||ξ||]T , Θ∗ = [θ0∗ θ1∗ ]T . Both these situations
+are covered here. For better inference, the ASRC algorithm is
+summarized in Table I for various system structures.
+Table I
+ASRC A LGORITHM FOR VARIOUS S YSTEM S TRUCTURES
+System Structure
+(3)
+
+C(q, q̇) 6= 0
+C(q, q̇) = 0
+
+LIP structure of ||σ||
+
+Control law
+
+(9)
+(44)
+
+(13) - (18)
+(13), (45) - (49)
+
+Comparison with existing Adaptive-Robust law: To gain
+further insight into the advantage of the proposed adaptive law,
+the following adaptive law of ASMC [17]-[18] for switching
+gain K is provided:
+(
+K̄||s||sgn(||s|| − ), if K > β
+K̇(t) =
+(51)
+β
+if K ≤ β,
+where , K̄ ∈ R+ are user defined scalars and s is the sliding
+surface. It can be observed from (51) that when ||s|| ≥ 
+the switching gain K increases monotonically even if error
+trajectories move close to ||s|| = 0. This gives rise to the
+overestimation problem of switching gain. Again, even if K
+is sufficient to keep ||s|| within , it decreases monotonically
+when ||s|| < . So, at certain time, K would become
+
+Figure 2. Schematic of a WMR.
+
+Nonholonomic WMR, which has vast applications in transportation, planetary exploration, surveillance, security, humanmachine-interfaces etc., provides a unique platform to test the
+proposed control law. Hence, the performance of the proposed
+ASRC is verified using a commercially available ’PIONEER
+3’ WMR in comparison to Adaptive Sliding Mode Control
+(ASMC) [17]-[18]. The ASMC law is detailed in [17]-[18]
+while it follows the adaptive law (51).
+The Euler-Lagrangian formulation of a nonholonomic
+WMR (Fig. 2) is given as [35]:
+M (q)q̈ + C(q, q̇)q̇ = Lτ − A∗ T λ∗ ,
+
+
+m
+0
+mdsinϕ
+0
+ 0
+m
+−mdcosϕ
+0
+
+¯
+mdsinϕ
+−mdcosϕ
+I
+0
+where M = 
+
+ 0
+0
+0
+Iw
+0
+0
+0
+0
+
+
+
+
+2
+0 0
+mdϕ̇ cosϕ
+0 0
+mdϕ̇2 sinϕ
+ 
+
+
+
+
+ , C(q, q̇)q̇ = 
+ , τ = τr .
+0
+0
+0
+L =
+
+
+
+
+τl
+
+
+1 0
+0
+0 1
+0
+
+(52)
+
+0
+0
+
+0
+,
+0
+Iw
+
+7
+
+Here q ∈ R5 = {xc , yc , ϕ, θr , θl } is the generalized coordinate
+vector of the system; (xc , yc ) are the coordinates of the center
+of mass (CM) of the system and ϕ is the heading angle;
+(θr , θl ) and (τr , τl ) are rotation and torque inputs of the right
+¯ Iw , rw and b represent the
+and left wheels respectively; m, I,
+system mass, system inertia, wheel inertia, wheel radius and
+robot width respectively; d is the distance to the CM from
+the center of the line joining the two wheel axis; A∗ and λ∗
+represent the constraint matrix and vector of constraint forces
+(Lagrange multipliers) respectively. Expressions of A∗ and I¯
+can be found in [35].
+It is noteworthy that the system (52) has only two control
+inputs although having five generalized coordinates. In fact,
+for WMR, one can only directly control wheel positions
+(θr , θl ) rather than (xc , yc , ϕ). So, the system dynamics can
+be represented as a combination of a reduced order dynamics
+and kinematic model for efficient controller design as in [30],
+[35]:
+
+specifically in the face of unmodeled dynamics and timevarying uncertainty. During the experiment, the payload of the
+system may be varied due to addition or removal of sensors
+according to the application requirement; this causes variations
+in overall system mass, center of mass, inertia etc. Further, the
+original systems dynamics (53) is formed based on the pure
+rolling assumption. This assumption is not satisfied in practice
+due to the friction effect between wheel and surface; this is
+denoted by f (q̇R ) in the WMR dynamics (57). Apart from this,
+there are also effects of external disturbances ds . However,
+the evaluation of switching gain for robust controller like [26]
+requires prior knowledge of the bound of the uncertainties.
+This implies the designer needs to have the knowledge of
+θ0∗ , θ1∗ for WMR (due to the absence of Coriolis term in the
+WMR dynamics). This further means that the designer should
+have the knowledge of the parametric variations in systems
+as well as bound of f (q̇R ) and ds . This demands tedious
+modelling job which is also not always accurate.
+The benefit, applicability and efficacy of the proposed
+MR q̈R + CR q̇R = τ,
+(53) ASRC can be realized in this context. ASRC does not require
+any knowledge of the systems dynamics terms MR , f (q̇R ) and
+ rw b
+
+ rw b
+d
+s of WMR system (57) (and for the matter of fact any EL sysb
+2 cos(ϕ) − dsin(ϕ)
+b
+2 cos(ϕ) + dsin(ϕ)
+rw b
+tem
+representing dynamics (3)). Further, while implementing
+
+ rw b sin(ϕ) + dcos(ϕ)
+ b 2
+b
+2 sin(ϕ) − dcos(ϕ) 
+the
+control
+law, it does not need any knowledge of θ0∗ , θ1∗ and
+
+
+q̇ = 
+rw /b
+−rw /b
+ q̇R ,
+rather adapts these terms by the adaptive law (46)-(49) (since
+
+
+1
+0
+Coriolis component is zero, the ASRC algorithm applied to
+0
+1
+|
+{z
+}
+WMR is based on the control laws (13), (45)-(49)). Hence,
+S(q)
+ASRC eliminates any effort to model the system as well as
+(54) avoids any need to characterize the time-varying uncertain
+parameters and disturbances. It is to be noted that S(q) is only
+
+
+used
+for coordinate transformation and WMR pose (xc , yc , ϕ)
+k k2
+where MR = S T M S = 1
+,
+(55) representation and, not for control law design.
+k2 k1
+Hence, the objective is to apply ASRC and ASMC to the
+k1 = Iw + {I¯ + m(b2 /4 − d2 )}(rw 2 /b2 ),
+d
+reduced
+order WMR system (57) to track a desired qR
+(t)
+¯ w 2 /b2 ),
+k2 = {m(b2 /4 + d2 ) − I}(r
+d
+which
+in
+effect
+track
+a
+desired
+q
+(t)
+through
+(54).
+To
+illustrate
+
+
+0 0
+CR = S T (M Ṡ + CS) =
+, qR = [θr θl ]T .
+(56) the fact: one can direct a WMR to move in a specified circular
+0 0
+path by designing two suitable different and fixed wheel
+velocities or in a Lawn-Mower path by applying approximated
+As WMR moves on ground, the gravity vector g(q) and the
+square-wave velocity profile to the wheels [26].
+potential function would certainly be zero which implies that
+MR , CR satisfies the Properties 1 and 3 [30], [36]. The main
+implication of system Property 1 is to hold eTf (Ṁ −2C)ef = 0 A. Experimental Scenario
+and this can be easily verified from (55)-(56). The WMR
+The WMR is directed to follow a circular path using the
+dynamics (52) is based on rolling without slipping condition following desired trajectories:
+and hence the term f (q̇R ) is omitted. However, in practical
+θrd = (4t + π/10)rad, θld = (3t + π/10)rad.
+circumstances a WMR is always subjected to uncertainties like
+friction, slip, skid, external disturbance etc. Hence, incorpoPIONEER 3 uses two quadrature incremental encoders (500
+rating (56), the system dynamics (53) is modified as
+ppr) and always starts from θr (t0 ) = θl (t0 ) = 0 and the
+initial
+wheel position error (π/10, π/10) rad helps to realize
+MR q̈R + f (q̇R ) + ds = τ,
+(57)
+the error convergence ability of the controllers. The desired
+where f (q̇R ) and ds are considered to be the unmodelled dy- WMR pose (xdc , ycd , ϕd ) and actual WMR pose (xc , yc , ϕ)
+namics and disturbance respectively. Often, simple controllers can be determined from (54) using (θ̇rd , θ̇ld ) and (θ̇r , θ̇l )
+such as open loop control (OLC), PID controller are used (obtained from encoder) respectively with rw = 0.097m, b =
+in practice for their simplicity. However, the various works 0.381m, d = 0.02m (supplied by the manufacturer). The
+such as [26] and the references of [26] (e.g., reference [15] control laws for both ASRC and ASMC are written in VC++
+in [26]) have discussed the need to formulate advanced robust environment. Considering the hardware response time, the
+tracking controllers for WMR compared to conventional open sampling interval is selected as 20ms for all the controllers.
+loop control or PID control to improve tracking accuracy, Further, to create a dynamic payload variation, a 3.5kg payload
+
+8
+
+is added (kept for 5 sec) and removed (for 5 sec) periodically
+on the robotic platform at different places.
+The controller parameters for ASRC are selected as: G =
+Ω = I, $ = 0.5, θ̂i (t0 ) = γ(t0 ) = 20, αi = α3 = 10 ∀i =
+0, 1, β = 0.1, ς = 10. Further, the controller parameters for
+ASMC are selected as s = ef , K̄ = 10, K(t0 ) = 35,  = 0.5.
+B. Experimental Results and Comparison
+The path tracking performance of ASRC is depicted in
+Fig. 3 while following the desired circular path. The tracking
+performance comparison of ASRC with ASMC is illustrated
+in Fig. 4 in terms of Ep ( defined by the Euclidean distance
+in xc , yc error) and Eτ (defined as ||τ ||). ASMC framework is
+built on the assumption that uncertainties are upper bounded
+by an unknown constant (i.e. θ1∗ = θ2∗ = 0 for general EL
+systems and θ1∗ = 0 for this particular WMR based experiment
+as CR = 0). This assumption is restrictive in nature for EL
+systems and the switching gain is thus insufficient to provide
+the necessary robustness. As a matter of fact, ASRC provides
+better tracking accuracy over ASMC.
+To evaluate the benefit of the proposed adaptive-robust law,
+the evaluation of switching gain for ASMC and ASRC are
+provided in Fig. 5 and 6 respectively. Figure 5 reveals that
+K, the switching gain of ASMC, increases even when ||s||
+approaches towards ||s|| = 0 during the time t=0−1.2 sec.
+This is due to the fact that K does not decrease unless ||s|| < 
+and this gives rise to the overestimation problem. On the other
+hand for ASRC, it can be seen from Fig. 6 that all the gains
+d
+) decreases
+(i.e. γ, θ̂0 , θ̂1 ) decrease when ||eR || (eR = qR − qR
+during t=0−1 sec when ||efR || ≥ $ (||efR || = ėR + ΩeR ).
+So, ASRC overcomes the overestimation problem which is
+encountered in ASMC. Further, K decreases monotonically
+for time durations t=1.2−38.5 sec, when ||s|| < . This
+monotonic decrement makes K insufficient to tackle uncertainties at certain time creating underestimation problem. As
+a result, ||s|| starts increasing again for t > 38.5 sec leading to
+poor tracking accuracy and K increases again when ||s|| ≥ .
+Gains of ASRC, on the contrary, stay unchanged for t > 1 sec
+when the gains are sufficient to keep ||efR || < $ avoiding any
+underestimation problem. Further the evaluation ρ̂ of ASRC is
+shown in Fig. 7. It is to be noted that ρ̂ = θ̂0 + θ̂1 ||ξ|| + γ for
+WMR. Hence, though θ̂0 , θ̂1 and γ remain constant for t > 1
+sec, ρ̂ is not constant for t > 1 due to the presence of ξ. This
+is shown by magnifying ρ̂ for time durations t = 1−5 sec and
+t = 20 − 25 sec in Fig. 7. While reduction of  would cause
+more overestimation problem for ASMC, Table II shows how
+tracking accuracy of ASRC improves with reduced $ (other
+control parameters are kept unchanged) while chattering is not
+observed in control input.
+
+$ = 0.5
+0.053
+89.78
+
+$ = 0.3
+0.0421
+75.46
+
+Figure 4. Performance comparison between ASRC and ASMC.
+
+Figure 5. Switching gain evaluation of ASMC.
+
+Table II
+P ERFORMANCE OF ASRC FOR VARIOUS $
+
+RMS (root mean squared) Ep (m)
+RMS ||τ || (Nm)
+
+Figure 3. Circular path tracking with ASRC.
+
+$ = 0.1
+0.0362
+67.13
+
+It can be noticed from Fig. 7 that initials gains are high
+enough such that ||eR || decreases from the beginning and
+so do the gains γ, γ̂i . Hence, it would be prudent to verify
+the capability of ASRC in alleviating the overestimation-
+
+9
+
+Figure 8. Performance comparison between various controllers.
+
+Figure 6. Switching gain evaluation of ASRC.
+
+Figure 9. Switching gain evaluation of ASRC2.
+
+of the gains.
+Figure 7.
+
+Evaluation of ρ̂ of ASRC.
+
+underestimation problem while starting with relatively low
+gains. Therefore, the same experiment for ASRC is repeated
+with much lower initial value of the gains θ̂i , i = 0, 1 and γ.
+Previously, the initial values were γ(t0 ) = θ̂i (t0 ) = 20. This
+time they are selected to be γ(t0 ) = θ̂i (t0 ) = 10. The tracking
+performance and evaluation of the switching gain for the later
+case is shown in Fig. 8 and 9 respectively. Here ASRC1
+denotes when γ(t0 ) = θ̂i (t0 ) = 20 and ASRC2 denotes when
+γ(t0 ) = θ̂i (t0 ) = 10.
+It can be noticed from Fig. 8 and 9 that initially the tracking
+error is high for ASRC2 compared to ASRC1 and ASMC
+(initial gain K(t0 ) = 35) due to low initial gains. However, at
+t ≥ 5sec tracking accuracy of ASRC2 begins to improve as the
+gains became sufficient enough to negotiate the uncertainties
+and eventually the tracking performance of ASRC2 is found
+to be similar to ASRC1 from t ≥ 12sec and much improved
+compared to ASMC. This proves that the proposed adaptive
+law can perform satisfactorily even with low initial conditions
+
+Another important aspect to verify is whether ASRC2
+can alleviate the over- and under-estimation issue similar to
+ASRC1. It can verified from Fig. 9 that when ||efR || > $, the
+gains follow the pattern of ||eR || according to the adaptive laws
+(46)-(47). Due to the initial low values, ||eR || increases and so
+do the gains; similarly at t ≥ 5sec the gains decrease as ||eR ||
+decreases. Further, at t ≥ 8sec the gains remain unchanged
+when they were sufficient to keep the filtered tracking error
+||efR || ≤ $, according to the law (48), thus overcoming
+the underestimation problem. Moreover, that gains do not
+increase during t = 3.78 − 8sec when ||eR || decrease sand
+thus avoids the overestimation problem. Hence, low initial
+gain conditions do not affect the capability ASRC2 in
+alleviating the over- and under-estimation problem.
+Moreover, it can be noticed from the first conditions of (46)(47) that the rate of increment of θ̂0 and γ are same; hence they
+have similar value in Fig. 9 when ||eR || increases during t =
+0 − 3.7sec (please note that we have selected α0 = α3 = 10
+in the experiment) . However, their rate of falling are different
+(second conditions of (46)-(47)); thus, they exhibit different
+falling pattern in Fig. 9.
+
+10
+
+IV. C ONCLUSIONS
+A novel ASRC law is proposed for a class of uncertain EL
+systems where the upper bound of uncertainty possesses a LIP
+structure. The benefit of the ASRC lies in the fact that it is
+independent of the nature of the uncertainty and can negotiate
+uncertainties which can be LIP or NLIP. ASRC does not
+presume the overall uncertainty to be bounded by a constant
+and avoids putting any prior restriction on states. Moreover, the proposed adaptive law alleviates the overestimationunderestimation problem of switching gain. The experimental
+results validate the efficacy of the proposed control law in
+comparison with the existing adaptive sliding mode control.
+The future work would be to extend the ASRC law for systems
+with unmatched disturbances.
+R EFERENCES
+[1] X. Liu, H. Su, B. Yao and J. Chu, Adaptive robust control of a class
+of uncertain nonlinear systems with unknown sinusoidal disturbances,
+47th IEEE Conference on Decision and Control, pp. 2594-2599, 2008.
+[2] B. Bandyopadhayay, S. Janardhanan and S. K. Spurgeon, Advances in
+Sliding Mode Control, Springer-Verlag, New York, 2013.
+[3] X. Zhu, G. Tao, B. Yao and J. Cao, Adaptive robust posture control
+of parallel manipulator driven by pneumatic muscles with redundancy,
+IEEE/ASME Transactions on Mechatronics, vol. 13(4), pp. 441-450,
+2008.
+[4] X. Zhu, G. Tao, B. Yao and J. Cao, Integrated direct/indirect adaptive
+robust posture control of parallel manipulator driven by pneumatic
+muscles, IEEE Transactions on Control System Technology, vol. 17(3),
+pp. 576-588, 2009.
+[5] G. Zhang, J. Chen and Z. Lee, Adaptive robust control of servo
+mechanisms with partially known states via dynamic surface control
+approach, IEEE Transactions on Control System Technology, vol. 18(3),
+pp. 723-731, 2010.
+[6] C.Guan and S. Pan, Nonlinear adaptive robust Control of single-rod
+electro-hydraulic actuator with unknown nonlinear parameters, IEEE
+Transactions on Control System Technology, vol. 16(3), pp. 434-445,
+2008.
+[7] C. Hu, B. Yao, Z. Chen, and Q. Wang, Adaptive robust repetitive control
+of an industrial biaxial precision gantry for contouring tasks, IEEE
+Transactions on Control System Technology, vol. 19(6), pp. 1559-1568,
+2011.
+[8] W. Sun, Z. Zhao and H. Gao, Saturated adaptive robust control for active
+suspension systems, IEEE Transactions on Industrial Electronics, vol.
+60(9), pp. 3889-3896, 2013.
+[9] S. Islam, P. X. Liu and A. E. Saddik, Robust control of four rotor unmanned aerial vehicle with disturbance uncertainty, IEEE Transactions
+on Industrial Electronics, vol. 63(3), pp. 1563-1571, 2015.
+[10] Z. Chen, B. Yao and Q. Wang, µ-synthesis based adaptive robust posture
+control of linear motor driven stages with high frequency dynamics: a
+case study, IEEE/ASME Transactions on Mechatronics, vol. 20(3), pp.
+1482-1490, 2015.
+[11] Z. Liu, H. Su and S. Pan, A new adaptive sliding mode control of
+uncertain nonlinear dynamics, Asian Journal of Control, vol. 16(1), pp.
+198-208, 2014.
+[12] Q. Chen, L. Tao, Y. Nan and X. Ren, Adaptive nonlinear sliding mode
+control of mechanical servo system with lugre friction compensation,
+ASME Journal of Dynamic Systems, Measurement, and Control, vol.
+138, DOI: 10.1115/1.4032068, 2016.
+[13] A. Nasiri, S. K. Nguang and A. Swain, Adaptive sliding mode control
+for a class of MIMO nonlinear systems with uncertainty, Journal of The
+Franklin Institute, vol. 351, pp. 2048-2061, 2014.
+[14] Q. Meng, T. Zhang, X. Gao and J. Y. Song, Adaptive sliding mode
+fault-tolerant control of the uncertain stewart platform based on offline
+multibody Dynamics, IEEE/ASME Transactions on Mechatronics, vol.
+19(3), pp. 882-894, 2014.
+[15] S. Liu, H. Zhou, X. Luo and J. Xiao, Adaptive sliding fault tolerant
+control for nonlinear uncertain active suspension systems, Journal of
+The Franklin Institute, DOI 10.1016/j.jfranklin.2015.11.002, 2015.
+[16] S. Mobayen, An adaptive chattering-free PID sliding mode control based
+on dynamic sliding manifolds for a class of uncertain nonlinear systems,
+Nonlinear Dynamics, DOI 10.1007/s11071-015-2137-7, 2015.
+
+[17] F. Plestan, Y. Shtessel, V. Bregeault and A. Poznyak, New methodologies
+for adaptive sliding mode control, International Journal of Control, vol.
+83(9), pp. 1907-1919, 2010.
+[18] F. Plestan, Y. Shtessel, V. Bregeault and A. Poznyak, Sliding mode
+control with gain adaptation - application to an electropneumatic actuator
+state, Control Engineering Practice, vol. 21, pp. 679-688, 2013.
+[19] V. Utkin and A. Poznyak, Adaptive sliding mode control with application
+to super-twist algorithm: equivalent control method, Automatica, vol. 49,
+pp. 39-47, 2013.
+[20] J. A. Moreno, D. Y. Negrete, V. Torres-Gonzalez and L. Fridman, Adaptive continuous twisting algorithm, International Journal of Control,
+DOI: 10.1080/00207179.2015.1116713, 2015.
+[21] V. Adetola, M. Guay and D. Lehrer, Adaptive estimation for a class
+of nonlinearly parametrized dynamical systems, IEEE Transactions on
+Automatic Control, vol. 59(10), pp. 2818-2824, 2014.
+[22] A. M. Annaswamy, F. P. Skantze and A-P Loh, Adaptive control of continuous time systems with convex/concave Parametrization, Automatica,
+vol. 34(1), pp. 33-49, 1998.
+[23] M. W. Spong, S. Hutchinson and M. Vidyasagar, Robot Dynamics and
+Control, John Wiley and Sons, New York, 2004.
+[24] W. Shang and S. Cong, Motion Control of parallel manipulators using
+acceleration feedback, IEEE Transactions on Control System Technology, vol. 20(1), pp. 314-320, 2014.
+[25] T. Y. Choi, B. S. Choi and K. H. Seo, Position and compliance control
+of a pneumatic muscle actuated manipulator for enhanced safety, IEEE
+Transactions on Control System Technology, vol. 19(4), pp. 832-842,
+2011.
+[26] S. Roy, S. Nandy, R. Ray and S. N. Shome, Time delay sliding mode
+control nonholonomic wheeled mobile robot: experimental validation,
+IEEE International Conference on Robotics and Automation, pp. 28862892, 2014.
+[27] J. Wu, J. Huang, Y. Wang and K. Xing, Nonlinear disturbance observerbased dynamic surface control for trajectory tracking of pneumatic
+muscle system, IEEE Transactions on Control System Technology, vol.
+22(2), pp. 440-455, 2014.
+[28] W. M. Haddad and V. Chellaboina, Nonlinear dynamical systems and
+control: a Lyapunov-based approach, Princeton University Press, 2008.
+[29] H. Khalil, Nonlinear systems, 3rd ed. Prentice Hall, 2002.
+[30] T. Das and I. N. Kar, Design and implementation of an adaptive fuzzy
+logic-based controller for wheeled mobile robots, IEEE Transactions on
+Control System Technology, vol. 14(3), pp. 501-510, 2006.
+[31] B. Anderson, J. Jackson and M. Sitharam, Descartes’ Rule of Signs
+Revisited, The American Mathematical Monthly, vol. 150, pp. 447-451,
+1998.
+[32] S. B Russ, A Translation of Bolzano’s Paper on the Intermediate Value
+Theorem, Historia Mathematica, vol. 2, pp. 156-185, 1980.
+[33] K. T. Leung, I. A. C Mok and S. N. Suen Polynomials and functions,
+Honk Kong University Press, 1992.
+[34] D. Liberzon, Switching in systems and control, Birkhäuser, 2003.
+[35] P. Coelho and U. Nunes, Path-following control of mobile robots in presence of uncertainties, IEEE Transactions on Robotics and Automation,
+vol. 21, no. 2, pp. 252-261, 2005.
+[36] G. Campion, B. d’Andrea-Novel and G. Bastin, Modelling and state
+feedback control of nonholonomic mechanical systems, 30th IEEE
+Conference on Decision and Control, pp. 1184-1189, 1991.
+
+
+
+Summary:
+This research paper covers the following topic: 1
+
+Theory and Application on Adaptive-Robust
+Control of Euler-Lagrange Systems with Linearly
+Parametrizable Uncertainty Bound
+
+arXiv:1708.01442v1 [cs.SY] 4 Aug 2017
+
+Spandan Roy, Sayan Basu Roy and Indra Narayan Kar, Senior Member, IEEE
+
+Abstract—This work proposes a new adaptive-robust control
+(ARC) architecture for a class of uncertain Euler-Lagrange (EL)
+systems where the upper bound of the uncertainty satisfies linear
+in parameters (LIP) structure. Conventional ARC strategies
+either require structural knowledge of the system or presume
+that the overall uncertainties or its time derivative is norm
+bounded by a constant. Due to unmodelled dynamics and
+modelling imperfection, true structural knowledge of the system
+is not always available. Further, for the class of systems under
+consideration, prior assumption regarding the uncertainties (or
+its time derivative) being upper bounded by a constant, puts
+a restriction on states beforehand. Conventional ARC laws
+invite overestimation-underestimation problem of switching gain.
+Towards this front, Adaptive Switching-gain based Robust Control (ASRC) is proposed which alleviates the overestimationunderestimation problem of switching gain. Moreover, ASRC
+avoids any presumption of constant upper bound on the overall
+uncertainties and can negotiate uncertainties regardless of being
+linear or nonlinear in parameters. Experimental results of
+ASRC using a wheeled mobile robot notes improved control
+performance in comparison to adaptive sliding mode control.
+Index Terms—Adaptive-robust control, Euler-Lagrange systems, Wheeled mobile robot, Uncertainty.
+
+I. I NTRODUCTION
+A. Background
+HE controller design aspect for nonlinear systems subjected to parametric and nonparametric uncertainties has
+always been a challenging task. Adaptive control and Robust
+control are the two popular control strategies to deal with
+uncertain nonlinear systems. In case of adaptive control, online
+computation of the unknown system parameters and controller
+gains for complex systems is significantly intensive [1]. On
+the other front, robust control reduces computation burden
+for complex systems compared to adaptive control, while
+requiring a predefined upper bound on the uncertainties. However, in practice it is not always possible to estimate a prior
+uncertainty bound due to the effect of unmodelled dynamics.
+Again, to increase the operating region of the controller, often
+higher uncertainty bounds are assumed. This in turn leads to
+overestimation of switching gain and high control effort [2].
+Considering the individual constraints of adaptive and robust control, recently global research is reoriented towards
+adaptive-robust control (ARC). The series of publications [1],
+
+T
+
+S. Roy, S. Basu Roy and I. N. Kar are with the Department of Electrical
+Engineering, Indian Institute of Technology-Delhi, New Delhi, India e-mail:
+(sroy002@gmail.com, sayanetce@gmail.com, ink@ee.iitd.ac.in).
+
+[3]-[11] regarding ARC, estimate the individual uncertain
+system parameters through adaptive law and robust control
+is utilized to negate the effect of external disturbances. These
+works utilize the projection operator in their respective adaptive laws which necessitate the knowledge of lower and upper
+bound of individual uncertain system parameters. Adaptive
+sliding mode control (ASMC) is designed in [12] for parameter
+identification of mechanical servo systems with LuGre friction
+considering the uncertainties to be linear in parameters (LIP).
+In contrast, the controllers [13]-[20] assume that the overall
+uncertainty (or its time derivative) is bounded by some constant. Thereafter, that constant term is estimated by adaptive
+law, rather estimating individual uncertain system parameters.
+The adaptive laws in [17]-[18] involve a predefined threshold
+value; as a matter of fact, until the threshold value is achieved,
+the switching gain may still be increasing (resp. decreasing)
+even if the tracking error decreases (resp. increases) and
+thus creates overestimation (resp. underestimation) problem
+of switching gain.While the underestimation problem compromises the controller accuracy by applying lower switching
+gain than the required amount, the overestimation problem
+causes larger gain and high control input requirement. The
+adaptive law reported in [19] requires predefined bound on
+the time derivative of the uncertainties. As observed in [20],
+the method in [19] also requires frequency characteristics of
+the perturbation to design the filter for equivalent control.
+However, the work in [20] assumed that the time derivative of
+the uncertainties are bounded by an unknown constant.
+B. Motivation
+Let us consider the following system representing a chemostat operating under Monod kinetic [21]:
+ż1 = f1 (z1 , z2 ) − Dz1 , ż2 = f2 (z1 , z2 ) + S0 − Dz2 ,
+δ1 z1 z2
+−δ3 z1 z2
+where f1 (z1 , z2 ) =
+, f2 (z1 , z2 ) =
+.
+δ2 + z2
+δ2 + z2
+
+(1)
+
+Here z1 ≥ 0, z2 ≥ 0 ∀t ≥ 0 are states; δ1 , δ2 , δ3 are uncertain
+positive parameters; S0 is a known constant and D is the
+control input. For the system (1), the following relations hold:
+|f1 | ≤ y1 f (z), |f2 | ≤ y2 f (z),
+
+(2)
+
+where y1 = |δ1 |/|δ2 |, y2 = |δ3 |/|δ2 |, f (z) = |z1 ||z2 |.
+Inspection of the uncertainties f1 and f2 from (1)-(2) reveal
+that though f1 , f2 are nonlinear in parameters (NLIP) but their
+upper bounds are LIP.
+
+2
+
+Similarly Euler-Lagrange (EL) systems can have uncertainties with LIP or NLIP (e.g. system with nonlinear friction
+([22])) structure. However, the upper bound of the overall (or
+lumped) uncertainty for such systems has LIP property [23].
+EL systems, in general, represent a large class of real world
+systems like robotic manipulators [24]-[25], mobile robots
+[26], ship dynamics, aircraft, pneumatic muscles [27] etc.
+These systems have immense applications in various domains
+such as defence, automation industry, surveillance, space missions etc. The controllers [13]-[18] assume that the overall
+uncertainties are upper bounded by some constant, while [19][20] assume the time derivative of the overall uncertainty to
+be bounded by some constant. Hence, for the aforementioned
+class of systems, consideration of such constant bound (known
+or unknown) restricts the system state a priori. Further, the
+switching gain in [17]-[18] suffers from over- and underestimation problems. In practice, it is also not always possible
+to have prior knowledge of bounds for system parameters as
+required in [1], [3]-[11] for projection operator.
+
+where q ∈ Rn denotes system state, τ ∈ Rn denotes vector
+of generalized control input forces, M (q) ∈ Rn×n represents
+mass/inertia matrix, C(q, q̇) ∈ Rn×n denotes Coriolis, centripetal terms, g(q) ∈ Rn denotes gravity vector, f (q̇) ∈ Rn
+represents the vector of slip, damping and friction forces and
+ds (t) denotes the bounded external disturbances. The system
+(3) possesses the following properties [23]:
+Property 1: The matrix (Ṁ − 2C) is skew symmetric.
+Property 2: ∃gb , fb , d¯ ∈ R+ such that ||g(q)|| ≤ gb , ||f (q̇)|| ≤
+¯
+fb ||q̇|| and ||ds (t)|| ≤ d.
+Property 3: The matrix M (q) is uniformly positive definite
+and there exist two positive constants µ1 , µ2 such that
+0 < µ1 I ≤ M (q) ≤ µ2 I.
+
+Property 4: ∃Cb ∈ R such that ||C(q, q̇)|| ≤ Cb ||q̇||.
+Let q d (t) is the desired trajectory to be tracked and it is
+selected such that q d , q̇ d , q̈ d ∈ L∞ . Let e(t) , q(t) − q d (t) be
+the tracking error and ef be the filtered tracking error:
+ef , ė + Ωe ⇒ ef = Γξ,
+T
+
+C. Contribution
+In view of the above discussion and the importance of EL
+systems in real-life scenarios, it is imperative to formulate a
+dedicated ARC framework for uncertain EL systems. Towards
+this front, Adaptive Switching-gain based Robust Control
+(ASRC) is presented in this paper for tracking control of
+uncertain EL systems. The formulation of ASRC is insensitive
+towards the nature of the uncertainties, i.e., it can negotiate
+uncertainties that can be either LIP or NLIP. ASRC utilizes
+LIP structure of the upper bound of uncertainty and does
+not presume the overall uncertainty (or its time derivative) to
+be upper bounded by a constant. The adaptive law of ASRC
+prevents the switching gain from becoming a monotonically
+increasing function by allowing the switching gain to decrease
+within a finite time when tracking error decreases. Moreover,
+ASRC alleviates the overestimation-underestimation problem
+of switching gain. To realize the effectiveness, the performance
+of ASRC is compared with ASMC [17]-[18] experimentally
+using PIONEER 3 wheeled mobile robot (WMR).
+D. Organization and Notations
+The remainder of the article is organized as follows: The
+proposed ASRC framework for second order EL systems is
+detailed in Section II. This is followed by the experimental
+results of ASRC and its comparison with ASMC [17]-[18] in
+Section III. Section IV presents concluding remarks.
+The following notations are used in this paper: λmin (•) and
+|| • || represent minimum eigenvalue and Euclidean norm of
+(•) respectively; I denotes identity matrix with appropriate
+dimension; R+ denotes the set of positive real numbers.
+
+(4)
+
++
+
+T T
+
+(5)
+n×n
+
+where Γ , [Ω I], ξ , [e ė ] and Ω ∈ R
+is a positive
+definite matrix. Multiplying the time derivative of (5) by M
+and using (3) yields
+M ėf = M (q̈ − q̈ d + Ωė) = τ − C(q, q̇)ef + σ,
+
+where σ , −(C(q, q̇)q̇ + g(q) + f (q̇) + ds + M q̈ −
+M Ωė − C(q, q̇)ef ) represents the overall uncertainty. Further
+ξ = [eT ėT ]T implies ||ξ|| ≥ ||e||, ||ξ|| ≥ ||ė||.
+Characterization of the upper bound of σ: Relation (5)
+and system Property 4 yields
+||Cef − C q̇|| = ||C(ė + Ωe) − C q̇|| = || − C q̇ d + CΩe||
+≤ Cb ||q̇||||q̇ d || + Cb ||q̇||||Ω||||e||
+≤ Cb ||ė + q̇ d ||||q̇ d || + Cb ||ė + q̇ d ||||Ω||||ξ||
+≤ Cb {||ξ||||q̇ d || + ||q̇ d ||2 + ||ξ||2 ||Ω|| + ||q̇ d ||||Ω||||ξ||}. (7)
+Further, system Properties 2 and 3 provide the following:
+||g(q) + f (q̇) + ds + M q̈ d − M Ωė||
+≤ gb + fb ||q̇|| + d¯ + µ2 ||q̈ d || + µ2 ||Ω||||ė||
+≤ gb + fb ||ė + q̇ d || + d¯ + µ2 ||q̈ d || + µ2 ||Ω||||ξ||
+≤ gb + fb ||ξ|| + fb ||q̇ d || + d¯ + µ2 ||q̈ d || + µ2 ||Ω||||ξ||. (8)
+Since q d , q̇ d , q̈ d ∈ L∞ , it can be verified using (7)-(8) that
+∃θi∗ ∈ R+ i = 0, 1, 2 such that the upper bound of σ holds
+the following LIP structure [23]:
+||σ|| ≤ θ0∗ + θ1∗ ||ξ|| + θ2∗ ||ξ||2 , Y (ξ)T Θ∗ ,
+
+A. Problem Formulation
+In general, an EL system with second order dynamics can
+be written as
+M (q)q̈ + C(q, q̇)q̇ + g(q) + f (q̇) + ds = τ,
+
+(3)
+
+(9)
+
+where Y (ξ) = [1 ||ξ|| ||ξ||2 ]T and Θ∗ = [θ0∗ θ1∗ θ2∗ ]T .
+Let Θ̄ , {Θ ∈ R3 : θi ≥ θi∗ ∀i = 0, 1, 2} such that the
+following condition always holds from (9):
+||σ|| ≤ Y (ξ)T Θ, ∀Θ ∈ Θ̄.
+
+II. C ONTROLLER D ESIGN
+
+(6)
+d
+
+(10)
+
+A robust controller for the system (3) can be designed as [23]
+( e
+ρ ||eff || if ||ef || ≥ $
+(11)
+τ = −e − Gef − ∆τ, ∆τ =
+e
+ρ $f
+if ||ef || < $,
+ρ = Y (ξ)T Θ,
+
+(12)
+
+3
+
+where ∆τ provides robustness against σ through switching
+gain ρ; $ ∈ R+ is a small scalar used for chattering removal;
+G ∈ Rn×n is a positive definite matrix.
+Evaluation of Switching Gain: Evaluation of ρ like (12)
+is conservative in nature and evidently requires the knowledge
+of Θ∗ , which is not always possible in the face of uncertain
+parametric variations and external disturbances. The control
+laws developed in [13]-[18] and [19]-[20] assume that σ
+and σ̇ is upper bounded by constant, respectively. Exploring
+the structure of ||σ|| from (9) it can be easily inferred that
+such constant bound assumption on the uncertainties, whether
+known or unknwon, puts a restriction on the states a priori. Moreover, the switching gain in [17]-[18] suffers from
+overestimation-underestimation problem.
+B. Adaptive Switching-gain based Robust Control (ASRC)
+The major aims of the proposed ASRC framework are:
+• To compensate the uncertainties that can be either LIP
+or NLIP. However, the upper bound of the uncertainties
+satisfies the LIP property (9).
+• To alleviate the overestimation-underestimation problem
+of switching gain.
+The control input of the proposed ASRC is designed as
+( e
+ρ̂ ||eff || if ||ef || ≥ $
+(13)
+τ = −e − Gef − ∆τ, ∆τ =
+e
+if ||ef || < $,
+ρ̂ $f
+ρ̂ = θ̂0 + θ̂1 ||ξ|| + θ̂2 ||ξ||2 + γ , Y (ξ)T Θ̂ + γ,
+
+(14)
+
+where ∆τ provides robustness against σ through ρ̂; Θ̂ =
+[θ̂0 θ̂1 θ̂2 ]T is the estimate of Θ; γ is an auxiliary gain.
+The importance of γ will be explained later. The gains γ, θ̂i ,
+i = 0, 1, 2 are evaluated using the following adaptive laws:
+(i) for ||ef || ≥ $
+
+S2
+i
+T
+
+αi ||ξ|| ||ef || if {e ė > 0} ∪ { i=0 θ̂i ≤ 0}
+˙
+θ̂i =
+∪{γ ≤ β}
+
+
+i
+−αi ||ξ|| ||ef || otherwise,
+
+S2
+T
+
+α3 ||ef || if {e ė > 0} ∪ { i=0 θ̂i ≤ 0}
+γ̇ =
+∪{γ ≤ β}
+
+
+−ςα3 ||ξ||4 otherwise,
+
+(15)
+
+with θ̂i (t0 ) > 0, i = 0, 1, 2, γ(t0 ) > β.
+
+Remark 2. For ||ef || < $, the tracking error remains
+bounded inside the ball B$ , {||Γξ|| < $} using the relation
+ef = Γξ. This implies that the switching gains are sufficient
+enough to keep the error within B$ . Hence, the gains are
+kept unchanged for ||ef || < $. One can choose small $ to
+improve tracking accuracy (as B$ gets reduced) as long as
+the value of $ does not invite chattering.
+Remark 3. The initial condition of the gains are selected
+as θ̂i (t0 ) > 0, γ(t0 ) > β. Further, for ||ef || ≥ $, the
+adaptive laws (15)-(16) force the gains to increase if either
+of the gains attempt
+S2 to breach their respective lower bounds
+(governed by { i=0 θ̂i ≤ 0} ∪ {γ ≤ β}). This ensures that
+γ(t) ≮ β, θ̂i (t) ≮ 0 ∀i = 0, 1, 2 when ||ef || ≥ $. Again,
+gains remain unchanged for ||ef || < $. Hence, combination
+of the conditions mentioned above implies
+θ̂i (t) ≥ 0 ∀i = 0, 1, 2 and γ(t) ≥ β ∀t ≥ t0 .
+
+(20)
+
+The condition (20) is later exploited in stability analysis.
+To guarantee the alleviation of the overestimation problem
+of switching gain, it is necessary that θ̂i , γ decrease within a
+finite time. This is shown through Theorem 1.
+Theorem 1. Let t = tin be any time instant when gains start
+increasing. Then there exist finite times t1 , t2 , t3 , δt such that
+the gains θ̂0 , θ̂1 , θ̂2 , γ decrease for t ≥ tin + T where T ≤
+t̄ + δt, t̄ = max{t1 , t2 , t3 }. These times are obtained as
+θ∗ ||Γ||
+θ∗ ||Γ||2
+θ0∗
+, t2 ≤ 1 2 , t3 ≤ 2 3 ,
+(α0 + α3 )$
+α1 $
+α2 $
+2
+δt ≤ (1/%)ln{2V (t̄)/(||e(t̄)|| )},
+t1 ≤
+
+where V = 21 eTf M ef + 21 eT e, % ,
+
+(21)
+(22)
+
+min{λmin (G),λmin (Ω)}
+.
+max{µ2 ,1}
+
+(17)
+
+Proof. Here, tin can be any time when gains start increasing
+and it is solely used for analysis. The objective of Theorem
+1 is to find when the gains start to decrease. Further, it is to
+be noted from the laws (15)-(17) that the gains increase only
+when ||ef || ≥ $. So, it is sufficient to investigate the condition
+when all the gains increase and ||ef || ≥ $. Moreover, using
+ef = Γξ from (5) one has
+
+(18)
+
+$ ≤ ||ef || ≤ ||Γ||||ξ|| ⇒ ||ξ|| ≥ ($/||Γ||).
+
+(16)
+
+(ii) for ||ef || < $
+˙
+θ̂i = 0, γ̇ = 0,
+
+the proposed law certainly does not make the switching gain
+a monotonically increasing function and thus alleviates the
+overestimation problem.
+
+(23)
+
++
+
+Here t0 is the initial time and β, ς, α0 , α1 , α2 , α3 ∈ R are
+user defined scalars. Substituting (13) into (6), the closed loop
+system is formed as:
+M ėf = −e − Gef − ∆τ − Cef + σ.
+
+(19)
+
+Remark 1. For ||ef || ≥ $, it can be noticed from the
+adaptive laws (15)-(16) that the gains θ̂i , γ increase if error
+trajectories move away from ||e|| = 0 (governed by eT ė > 0)
+and decrease if error trajectories do not move away from
+||e|| = 0 (governed by the ’otherwise’
+condition in (15)-(16)
+S2
+which implies {eT ė ≤ 0} ∩ { i=0 θ̂i > 0} ∩ {γ > β}). Hence,
+
+So, the first laws of (15), (16) and the condition (23) yields
+˙
+˙
+˙
+θ̂0 ≥ α0 $, θ̂1 ≥ (α1 $2 )/||Γ||, θ̂2 ≥ (α2 $3 )/||Γ||2 , γ̇ ≥ α3 $.
+(24)
+Let V be a Lypaunov function. Using (19) and the relation
+eT ė = eT (ef − Ωe) (from (5)), the time derivative of V yields
+V̇ = eTf M ėf + (1/2)eTf Ṁ ef + eT ė
+= eTf (−e − Gef − ∆τ + σ) + (1/2)eTf (Ṁ − 2C)ef
++ eT (ef − Ωe).
+
+(25)
+
+4
+
+Further, substituting (13) into (25) and using Property 1
+(implying eTf (Ṁ − 2C)ef = 0), V̇ is simplified as
+
+C. Stability Analysis
+
+Exploring the structures of the adaptive laws (15)-(17), three
+˙
+possible
+scenarios are identified: Case (1): θ̂i , γ̇ increase and
+V̇ = −eTf Gef − eT Ωe + eTf (−ρ̂(ef /||ef ||) + σ)
+˙
+||ef || ≥ $; Case (2): θ̂i , γ̇ decrease and ||ef || ≥ $; Case (3)
+≤ −eTf Gef − eT Ωe − (Y (ξ)T Θ̂ + γ)||ef || + Y (ξ)T Θ∗ ||ef || ˙
+θ̂i = 0, γ̇ = 0 when ||ef || < $ ∀i = 0, 1, 2.
+≤ −λmin (G)||ef ||2 − λmin (Ω)||e||2 − {(θ̂0 + γ − θ0∗ )
+Theorem 2. The closed loop system (19) with control input
++ (θ̂1 − θ1∗ )||ξ|| + (θ̂2 − θ2∗ )||ξ||2 }||ef ||.
+(26) (13)-(17) guarantees e(t), ef (t), θ̃i (t), γ(t) to be Uniformly
+Ultimately Bounded (UUB) where θ̃i , (θ̂i − θi∗ ), i = 0, 1, 2.
+Thus, the sufficient condition to achieve V̇ < 0 would be
+Proof. The stability analysis of the overall system is carried
+∗
+∗
+∗
+θ̂0 + γ ≥ θ0 , θ̂1 ≥ θ1 and θ̂2 ≥ θ2 .
+(27) out for the three cases mentioned above using the following
+common Lyapunov function:
+Let the system (3) does not posses finite time escape [28].
+2
+X
+1 2
+1 2
+Then integrating both sides of the inequalities in (24) and
+θ̃i +
+γ .
+(33)
+V1 = V +
+2α
+2α
+i
+3
+using those results in (27) lead to the expressions of t1 , t2 , t3
+i=0
+in (21). So, for t ≥ tin + t̄
+˙
+Case (1): θ̂i , γ̇ increase ∀i = 0, 1, 2 and ||ef || ≥ $.
+P
+˙
+2
+V̇ ≤ −λmin (G)||ef ||2 − λmin (Ω)||e||2
+Note that i=0 α1i θ̃i θ̂i = Y (ξ)T (Θ̂ − Θ∗ )||ef ||. Then using
+≤ −%m (||ef ||2 + ||e||2 ),
+(28) (15)-(16) and following the procedure in (26) one obtains
+where %m , min{λmin (G), λmin (Ω)}. Further, the definition
+of V yields
+2
+
+2
+
+V ≤ %M (||ef || + ||e|| ),
+
+(29)
+
+V̇ ≤ −%V ⇒ V (t) ≤ V (tin + t̄)e−%(t−t̄) ∀t ≥ tin + t̄, (30)
+where % , %m /%M . Here θ̂i > 0, γ > β as gains were
+T
+increasing.
+S2 So, to ensure the ‘otherwise’ condition (i.e.T{e ė ≤
+0} ∩ { i=0 θ̂i > 0} ∩ {γ > β}), the condition e ė ≤ 0
+(i.e. ||e(t)|| does not increase) needs to take place. From the
+definition of V , the upper bound of e follows
+p
+V (t) ≥ (1/2)||e(t)||2 ⇒ ||e(t)|| ≤ 2V (t) ∀t ≥ t0 . (31)
+Let ||e(tin + t̄)|| = ψ which implies V (tin + t̄) ≥ ψ 2 /2 from
+(31). As V (t) decreases exponentially ∀t ≥ tin + t̄ following
+(30), there exist a finite time δt = t − (tin + t̄) such that
+V (tin + t̄ + δt) =Sψ 2 /2 implying ||e(tin + t̄ + δt)|| ≤ ψ.
+2
+So, {eT ė ≤ 0} ∩ { i=0 θ̂i > 0} ∩ {γ > β} would occur at
+t ≥ tin +T where T ≤ t̄+δt and θ̂i , γ would start decreasing.
+The time δt is found from (30):
+∀t ≥ tin + t̄
+2
+
+⇒ δt ≤ (1/%)ln{2V (tin + t̄)/ψ }.
+
++ Y (ξ)T (Θ̂ − Θ∗ )||ef || + γ||ef ||
+≤ −eTf Gef − eT Ωe − (Y (ξ)T Θ̂ + γ)||ef || + Y (ξ)T Θ∗ ||ef ||
+
+where %M , max{µ2 , 1}. Substituting (29) into (28) and
+using the comparison Lemma [29] yields
+
+ψ 2 ≤ 2V (tin + t̄)e−%δt ,
+
+V̇1 ≤ −eTf Gef − eT Ωe + eTf (−ρ̂(ef /||ef ||) + σ)
+
+(32)
+
++ Y (ξ)T (Θ̂ − Θ∗ )||ef || + γ||ef ||
+≤ −λmin (G)||ef ||2 − λmin (Ω)||e||2 ≤ 0.
+
+From (34) it can be inferred that V1 (t) ∈ L∞ . Thus, the definition of V1 yields γ(t), θ̃i (t), e(t), ef (t) ∈ L∞ ⇒ ξ(t), θ̂i ∈
+L∞ . Thus, for this case the closed-loop system remains stable.
+The gains γ, θ̂i , i = 0, 1, 2 remain bounded for Case (1),
+decrease for Case (2) and remain constant for Case (3). Hence,
+∃ γ̄, θ̄i ∈ R+ such that
+θ̂0 (t) ≤ θ̄0 , θ̂1 (t) ≤ θ̄1 , θ̂2 (t) ≤ θ̄2 , γ(t) ≤ γ̄ ∀t ≥ t0 . (35)
+˙
+Case (2): θ̂i , γ̇ decrease ∀i = 0, 1, 2 and ||ef || ≥ $.
+Using γ ≥ β (from (20)) and ||ef || ≤ ||Γ||||ξ|| yields:
+V̇1 ≤ −eTf Gef − eT Ωe + eTf (−ρ̂(ef /||ef ||) + σ)
+− Y (ξ)T (Θ̂ − Θ∗ )||ef || − γς||ξ||4
+≤ −eTf Gef − eT Ωe − (Y (ξ)T Θ̂ + γ)||ef || + Y (ξ)T Θ∗ ||ef ||
+− ςβ||ξ||4 − Y (ξ)T (Θ̂ − Θ∗ )||ef ||
+≤ −ςβ||ξ||4 + 2||Γ||{θ0∗ + θ1∗ ||ξ|| + θ2∗ ||ξ||2 }||ξ||
+− λmin (G)||ef ||2 − λmin (Ω)||e||2 .
+
+(36)
+
+Since 0 ≤ θ̂i (t) ≤ θ̄i , β ≤ γ ≤ γ̄ (from (20) and (35)), the
+definition of V1 in (33) yields
+V1 ≤ %M (||ef ||2 + ||e||2 ) + ζ,
+where ζ ,
+
+Remark 4. The increment and decrement of θ̂i , γ can occur
+several times depending on the error incurred by the system.
+However, time interval ∆t between two successive decrement
+will always satisfy ∆t ≤ t̄ + δt. Moreover, high values of
+α0 , α1 , α2 , α3 help to reduce t̄ and achieve faster adaptation.
+
+(34)
+
+P2
+
+1
+∗2
+i=0 α i (θi
+
++ θ̄i2 ) +
+
+1 2
+α3 γ̄ .
+
+(37)
+
+Thus using (37)
+
+−λmin (G)||ef ||2 − λmin (Ω)||e||2 ≤ −%V1 + %ζ.
+
+(38)
+
+Substitution of (38) into (36) yields
+V̇1 ≤ −%V1 + fp (||ξ||),
+
+(39)
+
+5
+
+where fp (||ξ||) = −ςβ||ξ||4 + 2||Γ||{θ0∗ ||ξ|| + θ1∗ ||ξ||2 +
++ %ζ. Applying Descarte’s rule of sign change [31],
+one can verify that fp (||ξ||) has maximum one positive real
+root. Further, it is to be noticed that fp (||ξ|| = 0) = %ζ ∈ R+
+and fp (||ξ||) → −∞ as ||ξ|| → ∞. Hence, according to
+Bolzano’s Intermediate Value Theorem [32], fp (||ξ||) will have
+at least one positive real root. So, combination of the Intermediate Value Theorem and Descarte’s rule of sign change reveals
+that fp (||ξ||) has exactly one positive real root. Therefore, the
+nature of roots of fp (||ξ||) will be either (i) one positive real
+root and three negative real roots or (ii) one positive real root,
+one negative real root and a pair of complex conjugate roots.
+θ2∗ ||ξ||3 }
+
+Let ι ∈ R+ be the positive real root of fp (||ξ||). Figure
+1 depicts the nature of fp (||ξ||) depending on the various
+combination of roots [33]. It is to be noted that the actual
+graph and values of the roots of the polynomial fp (||ξ||) would
+depend on the values of the coefficients of fp (||ξ||). However,
+θ0∗ , θ1∗ , θ2∗ and ζ are unknown here. Nevertheless, to study the
+stability of the system, it is sufficient to analyse the nature of
+fp (||ξ||) (i.e. the instances when fp (||ξ||) > 0 or fp (||ξ||) ≤ 0)
+rather than determining the values of the roots. The nature of
+any polynomial can be understood from the occurrence of its
+real roots [33]. Moreover, the leading coefficient of fp (||ξ||)
+(the coefficient of the highest degree term ||ξ||4 ) is negative
+(as ς, β ∈ R+ ). As a matter of fact, one can notice from
+Fig. 1 that fp (||ξ||) ≤ 0 when ||ξ|| ≥ ι. Hence, the overall
+system would be UUB for this case. From the point of view
+of controller design, it is important to reduce ι such that better
+tracking accuracy can be achieved and this can be obtained by
+increasing ς.
+
+Similar to Case (1), V̇1 can be simplified for this case as
+V̇1 ≤ −eTf Gef − eT Ωe + eTf (−ρ̂(ef /$) + σ)
+≤ −eTf Gef − eT Ωe − (Y (ξ)T Θ̂ + γ)(||ef ||2 /$)
++ Y (ξ)T Θ∗ ||ef ||
+≤ −λmin (G)||ef ||2 − λmin (Ω)||e||2 + Y (ξ)T Θ∗ ||ef ||.
+(40)
+For ||ef || < $, the system remains bounded inside the ball
+B$ , {||Γξ|| < $} as ef = Γξ. This implies that Y (||ξ||) ∈
+L∞ . Hence, for ||ef || < $, ∃ϑ ∈ R+ such that
+||Y (ξ)T Θ∗ ||||ef || ≤ $ϑ.
+
+(41)
+
+Let us define a scalar z as 0 < z < λmin (G). Then using (37)
+and (41), (40) is modified as
+V̇1 ≤ −λmin (Ω)||e||2 − {λmin (G) − z}||ef ||2 − z||ef ||2 + $ϑ
+≤ −%1 V1 − z||ef ||2 + %1 ζ + $ϑ,
+
+(42)
+
+where %1 , {min{(λmin (G) − z), λmin (Ω)}}/%M . Hence, the
+system would be UUB when
+p
+(43)
+||ef || = ||Γξ|| ≥ (%1 ζ + $ϑ)/z.
+Since the closed loop system remains UUB for both the cases
+||ef || ≥ $ and ||ef || < $ using the common Lyapunov
+function (33), the overall closed loop system also remains
+UUB [34].
+Remark 5. It is noteworthy that the condition (20) is necessary for stability of the system. Moreover, high values of ς
+helps to reduce ι which consequently can improve controller
+accuracy. However, one needs to be careful that too high
+value of ς may excite the condition γ ≤ β leading to the
+increment in all the gains γ, θ̂i , i = 0, 1, 2. Further, the scalar
+terms z, ϑ, ψ, µ2 , ζ, θ̄i and γ̄ are only used for the purpose of
+analysis and not used to design control law.
+Remark 6. The importance of the auxiliary gain γ can be
+realized from Theorems 1 and 2. It can be observed from (21)
+that t1 gets reduced due to the presence of α3 (contributed
+by γ̇ > 0) which leads to faster adaptation. Moreover, the
+negative fourth degree term −ςβ||ξ||4 in fp (||ξ||) (contributed
+by γ̇ < 0) ensures system stability for Case (2) by making
+fp (||ξ||) ≤ 0 for ||ξ|| ≥ ι. This also indicates the reason
+for selecting β > 0 while lower bounds of other gains θ̂i
+i = 0, 1, 2 are selected as zero.
+
+Figure 1.
+fp (||ξ||) with (a) one positive real root and three negative real
+roots (b) one positive real root, one negative real root and a pair of complex
+conjugate roots.
+
+Hence, the overall system would be UUB [29] for this case.
+˙
+Case 3: θ̂i = 0, γ̇ = 0, ∀i = 0, 1, 2 when ||ef || < $.
+
+Special Case: The quadratic term ||ξ||2 in uncertainty
+bound (9) is contributed by the matrix C(q, q̇) (through
+property 4 in (7)). EL systems such as robotic manipulator,
+underwater vehicles, ship dynamics etc. includes C(q, q̇).
+However, there also exist second order EL system (e.g. reduced
+order WMR system) which does not have the term C(q, q̇).
+For such systems, the following LIP structure would hold:
+||σ|| ≤ θ0∗ + θ1∗ ||ξ|| , Y (ξ)T Θ∗ ,
+
+(44)
+
+6
+
+where Y (ξ) = [1 ||ξ||]T and Θ∗ = [θ0∗ θ1∗ ]T . Hence,
+following the switching gain laws (14)-(17), the control laws
+for uncertainty structure (44) are modified as
+ρ̂ = θ̂0 + θ̂1 ||ξ|| + γ , Y (ξ)T Θ̂ + γ,
+
+(45)
+
+(i) for ||ef || ≥ $
+
+S1
+i
+T
+
+αi ||ξ|| ||ef || if {e ė > 0} ∪ { i=0 θ̂i ≤ 0}
+˙
+θ̂i =
+∪{γ ≤ β}
+
+
+−αi ||ξ||i ||ef || otherwise,
+(46)
+
+S1
+T
+
+α3 ||ef || if {e ė > 0} ∪ { i=0 θ̂i ≤ 0}
+γ̇ =
+(47)
+∪{γ ≤ β}
+
+
+3
+−ςα3 ||ξ|| otherwise,
+(ii) for ||ef || < $
+˙
+θ̂i = 0, γ̇ = 0,
+
+insufficient and error will increase again. However, K will not
+increase (rather it keeps on decreasing) until ||s|| > , which
+creates underestimation problem. Low (resp. High) value of 
+may force K to increase (resp. decrease) for longer duration
+when ||s|| ≥  (resp. ||s|| < ) resulting in escalation of the
+overestimation (resp. underestimation) problem of ASMC.
+Whereas, ASRC allows its gains to decrease when error trajectories move towards ||e|| = 0 and ||ef || ≥ $
+(overcoming overestimation problem) and keeps the gains
+unchanged when they are sufficient to keep the error within
+the ball B$ (overcoming underestimation problem). Since
+the overestimation-underestimation problems are alleviated by
+ASRC for any $, one can in fact reduce $ for better tracking
+accuracy as long as chattering does not occur.
+III. A PPLICATION : N ONHOLONOMIC WMR
+
+(48)
+
+with θ̂i (t0 ) > 0, i = 0, 1, γ(t0 ) > β.
+
+(49)
+
+System stability employing (45)-(48) can be analysed exactly
+like Theorem 2 using the following Lyapunov function:
+V1 = V +
+
+1
+X
+(1/2αi )θ̃i2 + (1/2α3 )γ 2 .
+
+(50)
+
+i=0
+
+One can verify that the cubic polynomial 2||Γ||{θ0∗ + θ1∗ ||ξ|| +
+θ2∗ ||ξ||2 }||ξ|| in fp (||ξ||) of Case (2) would be modified as
+quadratic polynomial 2||Γ||{θ0∗ + θ1∗ ||ξ||}||ξ|| using (44) and
+(50). Hence, following the argument in Remark 6, it can be
+noticed that a cubic term −ςα3 ||ξ||3 is selected in the adaptive
+law (48) for system stability.
+Thus, with EL system (3), only two structures are possible
+for ||σ||: (i) Y (ξ) = [1 ||ξ|| ||ξ||2 ]T , Θ∗ = [θ0∗ θ1∗ θ2∗ ]T and
+(ii) Y (ξ) = [1 ||ξ||]T , Θ∗ = [θ0∗ θ1∗ ]T . Both these situations
+are covered here. For better inference, the ASRC algorithm is
+summarized in Table I for various system structures.
+Table I
+ASRC A LGORITHM FOR VARIOUS S YSTEM S TRUCTURES
+System Structure
+(3)
+
+C(q, q̇) 6= 0
+C(q, q̇) = 0
+
+LIP structure of ||σ||
+
+Control law
+
+(9)
+(44)
+
+(13) - (18)
+(13), (45) - (49)
+
+Comparison with existing Adaptive-Robust law: To gain
+further insight into the advantage of the proposed adaptive law,
+the following adaptive law of ASMC [17]-[18] for switching
+gain K is provided:
+(
+K̄||s||sgn(||s|| − ), if K > β
+K̇(t) =
+(51)
+β
+if K ≤ β,
+where , K̄ ∈ R+ are user defined scalars and s is the sliding
+surface. It can be observed from (51) that when ||s|| ≥ 
+the switching gain K increases monotonically even if error
+trajectories move close to ||s|| = 0. This gives rise to the
+overestimation problem of switching gain. Again, even if K
+is sufficient to keep ||s|| within , it decreases monotonically
+when ||s|| < . So, at certain time, K would become
+
+Figure 2. Schematic of a WMR.
+
+Nonholonomic WMR, which has vast applications in transportation, planetary exploration, surveillance, security, humanmachine-interfaces etc., provides a unique platform to test the
+proposed control law. Hence, the performance of the proposed
+ASRC is verified using a commercially available ’PIONEER
+3’ WMR in comparison to Adaptive Sliding Mode Control
+(ASMC) [17]-[18]. The ASMC law is detailed in [17]-[18]
+while it follows the adaptive law (51).
+The Euler-Lagrangian formulation of a nonholonomic
+WMR (Fig. 2) is given as [35]:
+M (q)q̈ + C(q, q̇)q̇ = Lτ − A∗ T λ∗ ,
+
+
+m
+0
+mdsinϕ
+0
+ 0
+m
+−mdcosϕ
+0
+
+¯
+mdsinϕ
+−mdcosϕ
+I
+0
+where M = 
+
+ 0
+0
+0
+Iw
+0
+0
+0
+0
+
+
+
+
+2
+0 0
+mdϕ̇ cosϕ
+0 0
+mdϕ̇2 sinϕ
+ 
+
+
+
+
+ , C(q, q̇)q̇ = 
+ , τ = τr .
+0
+0
+0
+L =
+
+
+
+
+τl
+
+
+1 0
+0
+0 1
+0
+
+(52)
+
+0
+0
+
+0
+,
+0
+Iw
+
+7
+
+Here q ∈ R5 = {xc , yc , ϕ, θr , θl } is the generalized coordinate
+vector of the system; (xc , yc ) are the coordinates of the center
+of mass (CM) of the system and ϕ is the heading angle;
+(θr , θl ) and (τr , τl ) are rotation and torque inputs of the right
+¯ Iw , rw and b represent the
+and left wheels respectively; m, I,
+system mass, system inertia, wheel inertia, wheel radius and
+robot width respectively; d is the distance to the CM from
+the center of the line joining the two wheel axis; A∗ and λ∗
+represent the constraint matrix and vector of constraint forces
+(Lagrange multipliers) respectively. Expressions of A∗ and I¯
+can be found in [35].
+It is noteworthy that the system (52) has only two control
+inputs although having five generalized coordinates. In fact,
+for WMR, one can only directly control wheel positions
+(θr , θl ) rather than (xc , yc , ϕ). So, the system dynamics can
+be represented as a combination of a reduced order dynamics
+and kinematic model for efficient controller design as in [30],
+[35]:
+
+specifically in the face of unmodeled dynamics and timevarying uncertainty. During the experiment, the payload of the
+system may be varied due to addition or removal of sensors
+according to the application requirement; this causes variations
+in overall system mass, center of mass, inertia etc. Further, the
+original systems dynamics (53) is formed based on the pure
+rolling assumption. This assumption is not satisfied in practice
+due to the friction effect between wheel and surface; this is
+denoted by f (q̇R ) in the WMR dynamics (57). Apart from this,
+there are also effects of external disturbances ds . However,
+the evaluation of switching gain for robust controller like [26]
+requires prior knowledge of the bound of the uncertainties.
+This implies the designer needs to have the knowledge of
+θ0∗ , θ1∗ for WMR (due to the absence of Coriolis term in the
+WMR dynamics). This further means that the designer should
+have the knowledge of the parametric variations in systems
+as well as bound of f (q̇R ) and ds . This demands tedious
+modelling job which is also not always accurate.
+The benefit, applicability and efficacy of the proposed
+MR q̈R + CR q̇R = τ,
+(53) ASRC can be realized in this context. ASRC does not require
+any knowledge of the systems dynamics terms MR , f (q̇R ) and
+ rw b
+
+ rw b
+d
+s of WMR system (57) (and for the matter of fact any EL sysb
+2 cos(ϕ) − dsin(ϕ)
+b
+2 cos(ϕ) + dsin(ϕ)
+rw b
+tem
+representing dynamics (3)). Further, while implementing
+
+ rw b sin(ϕ) + dcos(ϕ)
+ b 2
+b
+2 sin(ϕ) − dcos(ϕ) 
+the
+control
+law, it does not need any knowledge of θ0∗ , θ1∗ and
+
+
+q̇ = 
+rw /b
+−rw /b
+ q̇R ,
+rather adapts these terms by the adaptive law (46)-(49) (since
+
+
+1
+0
+Coriolis component is zero, the ASRC algorithm applied to
+0
+1
+|
+{z
+}
+WMR is based on the control laws (13), (45)-(49)). Hence,
+S(q)
+ASRC eliminates any effort to model the system as well as
+(54) avoids any need to characterize the time-varying uncertain
+parameters and disturbances. It is to be noted that S(q) is only
+
+
+used
+for coordinate transformation and WMR pose (xc , yc , ϕ)
+k k2
+where MR = S T M S = 1
+,
+(55) representation and, not for control law design.
+k2 k1
+Hence, the objective is to apply ASRC and ASMC to the
+k1 = Iw + {I¯ + m(b2 /4 − d2 )}(rw 2 /b2 ),
+d
+reduced
+order WMR system (57) to track a desired qR
+(t)
+¯ w 2 /b2 ),
+k2 = {m(b2 /4 + d2 ) − I}(r
+d
+which
+in
+effect
+track
+a
+desired
+q
+(t)
+through
+(54).
+To
+illustrate
+
+
+0 0
+CR = S T (M Ṡ + CS) =
+, qR = [θr θl ]T .
+(56) the fact: one can direct a WMR to move in a specified circular
+0 0
+path by designing two suitable different and fixed wheel
+velocities or in a Lawn-Mower path by applying approximated
+As WMR moves on ground, the gravity vector g(q) and the
+square-wave velocity profile to the wheels [26].
+potential function would certainly be zero which implies that
+MR , CR satisfies the Properties 1 and 3 [30], [36]. The main
+implication of system Property 1 is to hold eTf (Ṁ −2C)ef = 0 A. Experimental Scenario
+and this can be easily verified from (55)-(56). The WMR
+The WMR is directed to follow a circular path using the
+dynamics (52) is based on rolling without slipping condition following desired trajectories:
+and hence the term f (q̇R ) is omitted. However, in practical
+θrd = (4t + π/10)rad, θld = (3t + π/10)rad.
+circumstances a WMR is always subjected to uncertainties like
+friction, slip, skid, external disturbance etc. Hence, incorpoPIONEER 3 uses two quadrature incremental encoders (500
+rating (56), the system dynamics (53) is modified as
+ppr) and always starts from θr (t0 ) = θl (t0 ) = 0 and the
+initial
+wheel position error (π/10, π/10) rad helps to realize
+MR q̈R + f (q̇R ) + ds = τ,
+(57)
+the error convergence ability of the controllers. The desired
+where f (q̇R ) and ds are considered to be the unmodelled dy- WMR pose (xdc , ycd , ϕd ) and actual WMR pose (xc , yc , ϕ)
+namics and disturbance respectively. Often, simple controllers can be determined from (54) using (θ̇rd , θ̇ld ) and (θ̇r , θ̇l )
+such as open loop control (OLC), PID controller are used (obtained from encoder) respectively with rw = 0.097m, b =
+in practice for their simplicity. However, the various works 0.381m, d = 0.02m (supplied by the manufacturer). The
+such as [26] and the references of [26] (e.g., reference [15] control laws for both ASRC and ASMC are written in VC++
+in [26]) have discussed the need to formulate advanced robust environment. Considering the hardware response time, the
+tracking controllers for WMR compared to conventional open sampling interval is selected as 20ms for all the controllers.
+loop control or PID control to improve tracking accuracy, Further, to create a dynamic payload variation, a 3.5kg payload
+
+8
+
+is added (kept for 5 sec) and removed (for 5 sec) periodically
+on the robotic platform at different places.
+The controller parameters for ASRC are selected as: G =
+Ω = I, $ = 0.5, θ̂i (t0 ) = γ(t0 ) = 20, αi = α3 = 10 ∀i =
+0, 1, β = 0.1, ς = 10. Further, the controller parameters for
+ASMC are selected as s = ef , K̄ = 10, K(t0 ) = 35,  = 0.5.
+B. Experimental Results and Comparison
+The path tracking performance of ASRC is depicted in
+Fig. 3 while following the desired circular path. The tracking
+performance comparison of ASRC with ASMC is illustrated
+in Fig. 4 in terms of Ep ( defined by the Euclidean distance
+in xc , yc error) and Eτ (defined as ||τ ||). ASMC framework is
+built on the assumption that uncertainties are upper bounded
+by an unknown constant (i.e. θ1∗ = θ2∗ = 0 for general EL
+systems and θ1∗ = 0 for this particular WMR based experiment
+as CR = 0). This assumption is restrictive in nature for EL
+systems and the switching gain is thus insufficient to provide
+the necessary robustness. As a matter of fact, ASRC provides
+better tracking accuracy over ASMC.
+To evaluate the benefit of the proposed adaptive-robust law,
+the evaluation of switching gain for ASMC and ASRC are
+provided in Fig. 5 and 6 respectively. Figure 5 reveals that
+K, the switching gain of ASMC, increases even when ||s||
+approaches towards ||s|| = 0 during the time t=0−1.2 sec.
+This is due to the fact that K does not decrease unless ||s|| < 
+and this gives rise to the overestimation problem. On the other
+hand for ASRC, it can be seen from Fig. 6 that all the gains
+d
+) decreases
+(i.e. γ, θ̂0 , θ̂1 ) decrease when ||eR || (eR = qR − qR
+during t=0−1 sec when ||efR || ≥ $ (||efR || = ėR + ΩeR ).
+So, ASRC overcomes the overestimation problem which is
+encountered in ASMC. Further, K decreases monotonically
+for time durations t=1.2−38.5 sec, when ||s|| < . This
+monotonic decrement makes K insufficient to tackle uncertainties at certain time creating underestimation problem. As
+a result, ||s|| starts increasing again for t > 38.5 sec leading to
+poor tracking accuracy and K increases again when ||s|| ≥ .
+Gains of ASRC, on the contrary, stay unchanged for t > 1 sec
+when the gains are sufficient to keep ||efR || < $ avoiding any
+underestimation problem. Further the evaluation ρ̂ of ASRC is
+shown in Fig. 7. It is to be noted that ρ̂ = θ̂0 + θ̂1 ||ξ|| + γ for
+WMR. Hence, though θ̂0 , θ̂1 and γ remain constant for t > 1
+sec, ρ̂ is not constant for t > 1 due to the presence of ξ. This
+is shown by magnifying ρ̂ for time durations t = 1−5 sec and
+t = 20 − 25 sec in Fig. 7. While reduction of  would cause
+more overestimation problem for ASMC, Table II shows how
+tracking accuracy of ASRC improves with reduced $ (other
+control parameters are kept unchanged) while chattering is not
+observed in control input.
+
+$ = 0.5
+0.053
+89.78
+
+$ = 0.3
+0.0421
+75.46
+
+Figure 4. Performance comparison between ASRC and ASMC.
+
+Figure 5. Switching gain evaluation of ASMC.
+
+Table II
+P ERFORMANCE OF ASRC FOR VARIOUS $
+
+RMS (root mean squared) Ep (m)
+RMS ||τ || (Nm)
+
+Figure 3. Circular path tracking with ASRC.
+
+$ = 0.1
+0.0362
+67.13
+
+It can be noticed from Fig. 7 that initials gains are high
+enough such that ||eR || decreases from the beginning and
+so do the gains γ, γ̂i . Hence, it would be prudent to verify
+the capability of ASRC in alleviating the overestimation-
+
+9
+
+Figure 8. Performance comparison between various controllers.
+
+Figure 6. Switching gain evaluation of ASRC.
+
+Figure 9. Switching gain evaluation of ASRC2.
+
+of the gains.
+Figure 7.
+
+Evaluation of ρ̂ of ASRC.
+
+underestimation problem while starting with relatively low
+gains. Therefore, the same experiment for ASRC is repeated
+with much lower initial value of the gains θ̂i , i = 0, 1 and γ.
+Previously, the initial values were γ(t0 ) = θ̂i (t0 ) = 20. This
+time they are selected to be γ(t0 ) = θ̂i (t0 ) = 10. The tracking
+performance and evaluation of the switching gain for the later
+case is shown in Fig. 8 and 9 respectively. Here ASRC1
+denotes when γ(t0 ) = θ̂i (t0 ) = 20 and ASRC2 denotes when
+γ(t0 ) = θ̂i (t0 ) = 10.
+It can be noticed from Fig. 8 and 9 that initially the tracking
+error is high for ASRC2 compared to ASRC1 and ASMC
+(initial gain K(t0 ) = 35) due to low initial gains. However, at
+t ≥ 5sec tracking accuracy of ASRC2 begins to improve as the
+gains became sufficient enough to negotiate the uncertainties
+and eventually the tracking performance of ASRC2 is found
+to be similar to ASRC1 from t ≥ 12sec and much improved
+compared to ASMC. This proves that the proposed adaptive
+law can perform satisfactorily even with low initial conditions
+
+Another important aspect to verify is whether ASRC2
+can alleviate the over- and under-estimation issue similar to
+ASRC1. It can verified from Fig. 9 that when ||efR || > $, the
+gains follow the pattern of ||eR || according to the adaptive laws
+(46)-(47). Due to the initial low values, ||eR || increases and so
+do the gains; similarly at t ≥ 5sec the gains decrease as ||eR ||
+decreases. Further, at t ≥ 8sec the gains remain unchanged
+when they were sufficient to keep the filtered tracking error
+||efR || ≤ $, according to the law (48), thus overcoming
+the underestimation problem. Moreover, that gains do not
+increase during t = 3.78 − 8sec when ||eR || decrease sand
+thus avoids the overestimation problem. Hence, low initial
+gain conditions do not affect the capability ASRC2 in
+alleviating the over- and under-estimation problem.
+Moreover, it can be noticed from the first conditions of (46)(47) that the rate of increment of θ̂0 and γ are same; hence they
+have similar value in Fig. 9 when ||eR || increases during t =
+0 − 3.7sec (please note that we have selected α0 = α3 = 10
+in the experiment) . However, their rate of falling are different
+(second conditions of (46)-(47)); thus, they exhibit different
+falling pattern in Fig. 9.
+
+10
+
+IV. C ONCLUSIONS
+A novel ASRC law is proposed for a class of uncertain EL
+systems where the upper bound of uncertainty possesses a LIP
+structure. The benefit of the ASRC lies in the fact that it is
+independent of the nature of the uncertainty and can negotiate
+uncertainties which can be LIP or NLIP. ASRC does not
+presume the overall uncertainty to be bounded by a constant
+and avoids putting any prior restriction on states. Moreover, the proposed adaptive law alleviates the overestimationunderestimation problem of switching gain. The experimental
+results validate the efficacy of the proposed control law in
+comparison with the existing adaptive sliding mode control.
+The future work would be to extend the ASRC law for systems
+with unmatched disturbances.
+R EFERENCES
+[1] X. Liu, H. Su, B. Yao and J. Chu, Adaptive robust control of a class
+of uncertain nonlinear systems with unknown sinusoidal disturbances,
+47th IEEE Conference on Decision and Control, pp. 2594-2599, 2008.
+[2] B. Bandyopadhayay, S. Janardhanan and S. K. Spurgeon, Advances in
+Sliding Mode Control, Springer-Verlag, New York, 2013.
+[3] X. Zhu, G. Tao, B. Yao and J. Cao, Adaptive robust posture control
+of parallel manipulator driven by pneumatic muscles with redundancy,
+IEEE/ASME Transactions on Mechatronics, vol. 13(4), pp. 441-450,
+2008.
+[4] X. Zhu, G. Tao, B. Yao and J. Cao, Integrated direct/indirect adaptive
+robust posture control of parallel manipulator driven by pneumatic
+muscles, IEEE Transactions on Control System Technology, vol. 17(3),
+pp. 576-588, 2009.
+[5] G. Zhang, J. Chen and Z. Lee, Adaptive robust control of servo
+mechanisms with partially known states via dynamic surface control
+approach, IEEE Transactions on Control System Technology, vol. 18(3),
+pp. 723-731, 2010.
+[6] C.Guan and S. Pan, Nonlinear adaptive robust Control of single-rod
+electro-hydraulic actuator with unknown nonlinear parameters, IEEE
+Transactions on Control System Technology, vol. 16(3), pp. 434-445,
+2008.
+[7] C. Hu, B. Yao, Z. Chen, and Q. Wang, Adaptive robust repetitive control
+of an industrial biaxial precision gantry for contouring tasks, IEEE
+Transactions on Control System Technology, vol. 19(6), pp. 1559-1568,
+2011.
+[8] W. Sun, Z. Zhao and H. Gao, Saturated adaptive robust control for active
+suspension systems, IEEE Transactions on Industrial Electronics, vol.
+60(9), pp. 3889-3896, 2013.
+[9] S. Islam, P. X. Liu and A. E. Saddik, Robust control of four rotor unmanned aerial vehicle with disturbance uncertainty, IEEE Transactions
+on Industrial Electronics, vol. 63(3), pp. 1563-1571, 2015.
+[10] Z. Chen, B. Yao and Q. Wang, µ-synthesis based adaptive robust posture
+control of linear motor driven stages with high frequency dynamics: a
+case study, IEEE/ASME Transactions on Mechatronics, vol. 20(3), pp.
+1482-1490, 2015.
+[11] Z. Liu, H. Su and S. Pan, A new adaptive sliding mode control of
+uncertain nonlinear dynamics, Asian Journal of Control, vol. 16(1), pp.
+198-208, 2014.
+[12] Q. Chen, L. Tao, Y. Nan and X. Ren, Adaptive nonlinear sliding mode
+control of mechanical servo system with lugre friction compensation,
+ASME Journal of Dynamic Systems, Measurement, and Control, vol.
+138, DOI: 10.1115/1.4032068, 2016.
+[13] A. Nasiri, S. K. Nguang and A. Swain, Adaptive sliding mode control
+for a class of MIMO nonlinear systems with uncertainty, Journal of The
+Franklin Institute, vol. 351, pp. 2048-2061, 2014.
+[14] Q. Meng, T. Zhang, X. Gao and J. Y. Song, Adaptive sliding mode
+fault-tolerant control of the uncertain stewart platform based on offline
+multibody Dynamics, IEEE/ASME Transactions on Mechatronics, vol.
+19(3), pp. 882-894, 2014.
+[15] S. Liu, H. Zhou, X. Luo and J. Xiao, Adaptive sliding fault tolerant
+control for nonlinear uncertain active suspension systems, Journal of
+The Franklin Institute, DOI 10.1016/j.jfranklin.2015.11.002, 2015.
+[16] S. Mobayen, An adaptive chattering-free PID sliding mode control based
+on dynamic sliding manifolds for a class of uncertain nonlinear systems,
+Nonlinear Dynamics, DOI 10.1007/s11071-015-2137-7, 2015.
+
+[17] F. Plestan, Y. Shtessel, V. Bregeault and A. Poznyak, New methodologies
+for adaptive sliding mode control, International Journal of Control, vol.
+83(9), pp. 1907-1919, 2010.
+[18] F. Plestan, Y. Shtessel, V. Bregeault and A. Poznyak, Sliding mode
+control with gain adaptation - application to an electropneumatic actuator
+state, Control Engineering Practice, vol. 21, pp. 679-688, 2013.
+[19] V. Utkin and A. Poznyak, Adaptive sliding mode control with application
+to super-twist algorithm: equivalent control method, Automatica, vol. 49,
+pp. 39-47, 2013.
+[20] J. A. Moreno, D. Y. Negrete, V. Torres-Gonzalez and L. Fridman, Adaptive continuous twisting algorithm, International Journal of Control,
+DOI: 10.1080/00207179.2015.1116713, 2015.
+[21] V. Adetola, M. Guay and D. Lehrer, Adaptive estimation for a class
+of nonlinearly parametrized dynamical systems, IEEE Transactions on
+Automatic Control, vol. 59(10), pp. 2818-2824, 2014.
+[22] A. M. Annaswamy, F. P. Skantze and A-P Loh, Adaptive control of continuous time systems with convex/concave Parametrization, Automatica,
+vol. 34(1), pp. 33-49, 1998.
+[23] M. W. Spong, S. Hutchinson and M. Vidyasagar, Robot Dynamics and
+Control, John Wiley and Sons, New York, 2004.
+[24] W. Shang and S. Cong, Motion Control of parallel manipulators using
+acceleration feedback, IEEE Transactions on Control System Technology, vol. 20(1), pp. 314-320, 2014.
+[25] T. Y. Choi, B. S. Choi and K. H. Seo, Position and compliance control
+of a pneumatic muscle actuated manipulator for enhanced safety, IEEE
+Transactions on Control System Technology, vol. 19(4), pp. 832-842,
+2011.
+[26] S. Roy, S. Nandy, R. Ray and S. N. Shome, Time delay sliding mode
+control nonholonomic wheeled mobile robot: experimental validation,
+IEEE International Conference on Robotics and Automation, pp. 28862892, 2014.
+[27] J. Wu, J. Huang, Y. Wang and K. Xing, Nonlinear disturbance observerbased dynamic surface control for trajectory tracking of pneumatic
+muscle system, IEEE Transactions on Control System Technology, vol.
+22(2), pp. 440-455, 2014.
+[28] W. M. Haddad and V. Chellaboina, Nonlinear dynamical systems and
+control: a Lyapunov-based approach, Princeton University Press, 2008.
+[29] H. Khalil, Nonlinear systems, 3rd ed. Prentice Hall, 2002.
+[30] T. Das and I. N. Kar, Design and implementation of an adaptive fuzzy
+logic-based controller for wheeled mobile robots, IEEE Transactions on
+Control System Technology, vol. 14(3), pp. 501-510, 2006.
+[31] B. Anderson, J. Jackson and M. Sitharam, Descartes’ Rule of Signs
+Revisited, The American Mathematical Monthly, vol. 150, pp. 447-451,
+1998.
+[32] S. B Russ, A Translation of Bolzano’s Paper on the Intermediate Value
+Theorem, Historia Mathematica, vol. 2, pp. 156-185, 1980.
+[33] K. T. Leung, I. A. C Mok and S. N. Suen Polynomials and functions,
+Honk Kong University Press, 1992.
+[34] D. Liberzon, Switching in systems and control, Birkhäuser, 2003.
+[35] P. Coelho and U. Nunes, Path-following control of mobile robots in presence of uncertainties, IEEE Transactions on Robotics and Automation,
+vol. 21, no. 2, pp. 252-261, 2005.
+[36] G. Campion, B. d’Andrea-Novel and G. Bastin, Modelling and state
+feedback control of nonholonomic mechanical systems, 30th IEEE
+Conference on Decision and Control, pp. 1184-1189, 1991.
+
+

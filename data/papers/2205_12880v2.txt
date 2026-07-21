@@ -1,0 +1,21 @@
+Title: Trust-based Consensus in Multi-Agent Reinforcement Learning Systems
+
+Authors: Ho Long Fung, Victor-Alexandru Darvariu, Stephen Hailes, Mirco Musolesi
+
+Published: 2022-05-25
+
+Categories: cs.MA, cs.AI, cs.LG
+
+Abstract:
+An often neglected issue in multi-agent reinforcement learning (MARL) is the potential presence of unreliable agents in the environment whose deviations from expected behavior can prevent a system from accomplishing its intended tasks. In particular, consensus is a fundamental underpinning problem of cooperative distributed multi-agent systems. Consensus requires different agents, situated in a decentralized communication network, to reach an agreement out of a set of initial proposals that they put forward. Learning-based agents should adopt a protocol that allows them to reach consensus despite having one or more unreliable agents in the system. This paper investigates the problem of unreliable agents in MARL, considering consensus as a case study. Echoing established results in the distributed systems literature, our experiments show that even a moderate fraction of such agents can greatly impact the ability of reaching consensus in a networked environment. We propose Reinforcement Learning-based Trusted Consensus (RLTC), a decentralized trust mechanism, in which agents can independently decide which neighbors to communicate with. We empirically demonstrate that our trust mechanism is able to handle unreliable agents effectively, as evidenced by higher consensus success rates.
+
+Paper ID: 2205.12880v2
+
+Summary:
+This paper titled "Trust-based Consensus in Multi-Agent Reinforcement Learning Systems" was authored by Ho Long Fung, Victor-Alexandru Darvariu, Stephen Hailes, Mirco Musolesi and published on 2022-05-25.
+It falls under the categories: cs.MA, cs.AI, cs.LG.
+The research explores the following topic: An often neglected issue in multi-agent reinforcement learning (MARL) is the potential presence of unreliable agents in the environment whose deviations from expected behavior can prevent a system from accomplishing its intended tasks. In particular, consensus is a fundamental underpinning problem of cooperative distributed multi-agent systems. Consensus requires different agents, situated in a decentralized communication network, to reach an agreement out of a set of initial proposals that they put forward. Learning-based agents should adopt a protocol that allows them to reach consensus despite having one or more unreliable agents in the system. This paper investigates the problem of unreliable agents in MARL, considering consensus as a case study. Echoing established results in the distributed systems literature, our experiments show that even a moderate fraction of such agents can greatly impact the ability of reaching consensus in a networked environment. We propose Reinforcement Learning-based Trusted Consensus (RLTC), a decentralized trust mechanism, in which agents can independently decide which neighbors to communicate with. We empirically demonstrate that our trust mechanism is able to handle unreliable agents effectively, as evidenced by higher consensus success rates.
+
+Links:
+  - https://arxiv.org/abs/2205.12880v2
+  - https://arxiv.org/pdf/2205.12880v2

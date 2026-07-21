@@ -1,0 +1,22 @@
+Title: In-Context Learning for Knowledge Base Question Answering for Unmanned Systems based on Large Language Models
+
+Authors: Yunlong Chen, Yaming Zhang, Jianfei Yu, Li Yang, Rui Xia
+
+Published: 2023-11-06
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Knowledge Base Question Answering (KBQA) aims to answer factoid questions based on knowledge bases. However, generating the most appropriate knowledge base query code based on Natural Language Questions (NLQ) poses a significant challenge in KBQA. In this work, we focus on the CCKS2023 Competition of Question Answering with Knowledge Graph Inference for Unmanned Systems. Inspired by the recent success of large language models (LLMs) like ChatGPT and GPT-3 in many QA tasks, we propose a ChatGPT-based Cypher Query Language (CQL) generation framework to generate the most appropriate CQL based on the given NLQ. Our generative framework contains six parts: an auxiliary model predicting the syntax-related information of CQL based on the given NLQ, a proper noun matcher extracting proper nouns from the given NLQ, a demonstration example selector retrieving similar examples of the input sample, a prompt constructor designing the input template of ChatGPT, a ChatGPT-based generation model generating the CQL, and an ensemble model to obtain the final answers from diversified outputs. With our ChatGPT-based CQL generation framework, we achieved the second place in the CCKS 2023 Question Answering with Knowledge Graph Inference for Unmanned Systems competition, achieving an F1-score of 0.92676.
+
+Paper ID: 2311.02956v1
+
+Summary:
+This paper titled "In-Context Learning for Knowledge Base Question Answering for Unmanned Systems based on Large Language Models" was authored by Yunlong Chen, Yaming Zhang, Jianfei Yu, Li Yang, Rui Xia and published on 2023-11-06.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Knowledge Base Question Answering (KBQA) aims to answer factoid questions based on knowledge bases. However, generating the most appropriate knowledge base query code based on Natural Language Questions (NLQ) poses a significant challenge in KBQA. In this work, we focus on the CCKS2023 Competition of Question Answering with Knowledge Graph Inference for Unmanned Systems. Inspired by the recent success of large language models (LLMs) like ChatGPT and GPT-3 in many QA tasks, we propose a ChatGPT-based Cypher Query Language (CQL) generation framework to generate the most appropriate CQL based on the given NLQ. Our generative framework contains six parts: an auxiliary model predicting the syntax-related information of CQL based on the given NLQ, a proper noun matcher extracting proper nouns from the given NLQ, a demonstration example selector retrieving similar examples of the input sample, a prompt constructor designing the input template of ChatGPT, a ChatGPT-based generation model generating the CQL, and an ensemble model to obtain the final answers from diversified outputs. With our ChatGPT-based CQL generation framework, we achieved the second place in the CCKS 2023 Question Answering with Knowledge Graph Inference for Unmanned Systems competition, achieving an F1-score of 0.92676.
+
+Links:
+  - https://arxiv.org/abs/2311.02956v1
+  - https://arxiv.org/pdf/2311.02956v1
+  - https://doi.org/10.1007/978-981-99-7224-1_26

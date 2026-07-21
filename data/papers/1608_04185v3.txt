@@ -1,0 +1,21 @@
+Title: Learning to Rank Questions for Community Question Answering with Ranking SVM
+
+Authors: Minh-Tien Nguyen, Viet-Anh Phan, Truong-Son Nguyen, Minh-Le Nguyen
+
+Published: 2016-08-15
+
+Categories: cs.IR
+
+Abstract:
+This paper presents our method to retrieve relevant queries given a new question in the context of Discovery Challenge: Learning to Re-Ranking Questions for Community Question Answering competition. In order to do that, a set of learning to rank methods was investigated to select an appropriate method. The selected method was optimized on training data by using a search strategy. After optimizing, the method was applied to development and test set. Results from the competition indicate that the performance of our method outperforms almost participants and show that Ranking SVM is efficient for retrieving relevant queries in community question answering.
+
+Paper ID: 1608.04185v3
+
+Summary:
+This paper titled "Learning to Rank Questions for Community Question Answering with Ranking SVM" was authored by Minh-Tien Nguyen, Viet-Anh Phan, Truong-Son Nguyen, Minh-Le Nguyen and published on 2016-08-15.
+It falls under the categories: cs.IR.
+The research explores the following topic: This paper presents our method to retrieve relevant queries given a new question in the context of Discovery Challenge: Learning to Re-Ranking Questions for Community Question Answering competition. In order to do that, a set of learning to rank methods was investigated to select an appropriate method. The selected method was optimized on training data by using a search strategy. After optimizing, the method was applied to development and test set. Results from the competition indicate that the performance of our method outperforms almost participants and show that Ranking SVM is efficient for retrieving relevant queries in community question answering.
+
+Links:
+  - https://arxiv.org/abs/1608.04185v3
+  - https://arxiv.org/pdf/1608.04185v3

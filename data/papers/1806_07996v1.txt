@@ -1,0 +1,21 @@
+Title: Novel Convolution Kernels for Computer Vision and Shape Analysis based on Electromagnetism
+
+Authors: Dominique Beaini, Sofiane Achiche, Yann-Seing Law-Kam Cio, Maxime Raison
+
+Published: 2018-06-20
+
+Categories: cs.CV
+
+Abstract:
+Computer vision is a growing field with a lot of new applications in automation and robotics, since it allows the analysis of images and shapes for the generation of numerical or analytical information. One of the most used method of information extraction is image filtering through convolution kernels, with each kernel specialized for specific applications. The objective of this paper is to present a novel convolution kernels, based on principles of electromagnetic potentials and fields, for a general use in computer vision and to demonstrate its usage for shape and stroke analysis. Such filtering possesses unique geometrical properties that can be interpreted using well understood physics theorems. Therefore, this paper focuses on the development of the electromagnetic kernels and on their application on images for shape and stroke analysis. It also presents several interesting features of electromagnetic kernels, such as resolution, size and orientation independence, robustness to noise and deformation, long distance stroke interaction and ability to work with 3D images
+
+Paper ID: 1806.07996v1
+
+Summary:
+This paper titled "Novel Convolution Kernels for Computer Vision and Shape Analysis based on Electromagnetism" was authored by Dominique Beaini, Sofiane Achiche, Yann-Seing Law-Kam Cio, Maxime Raison and published on 2018-06-20.
+It falls under the categories: cs.CV.
+The research explores the following topic: Computer vision is a growing field with a lot of new applications in automation and robotics, since it allows the analysis of images and shapes for the generation of numerical or analytical information. One of the most used method of information extraction is image filtering through convolution kernels, with each kernel specialized for specific applications. The objective of this paper is to present a novel convolution kernels, based on principles of electromagnetic potentials and fields, for a general use in computer vision and to demonstrate its usage for shape and stroke analysis. Such filtering possesses unique geometrical properties that can be interpreted using well understood physics theorems. Therefore, this paper focuses on the development of the electromagnetic kernels and on their application on images for shape and stroke analysis. It also presents several interesting features of electromagnetic kernels, such as resolution, size and orientation independence, robustness to noise and deformation, long distance stroke interaction and ability to work with 3D images
+
+Links:
+  - https://arxiv.org/abs/1806.07996v1
+  - https://arxiv.org/pdf/1806.07996v1

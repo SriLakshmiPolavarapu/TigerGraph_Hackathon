@@ -1,0 +1,22 @@
+Title: Global Adaptive Filtering Layer for Computer Vision
+
+Authors: Viktor Shipitsin, Iaroslav Bespalov, Dmitry V. Dylov
+
+Published: 2020-10-02
+
+Categories: eess.IV, cs.CV
+
+Abstract:
+We devise a universal adaptive neural layer to "learn" optimal frequency filter for each image together with the weights of the base neural network that performs some computer vision task. The proposed approach takes the source image in the spatial domain, automatically selects the best frequencies from the frequency domain, and transmits the inverse-transform image to the main neural network. Remarkably, such a simple add-on layer dramatically improves the performance of the main network regardless of its design. We observe that the light networks gain a noticeable boost in the performance metrics; whereas, the training of the heavy ones converges faster when our adaptive layer is allowed to "learn" alongside the main architecture. We validate the idea in four classical computer vision tasks: classification, segmentation, denoising, and erasing, considering popular natural and medical data benchmarks.
+
+Paper ID: 2010.01177v4
+
+Summary:
+This paper titled "Global Adaptive Filtering Layer for Computer Vision" was authored by Viktor Shipitsin, Iaroslav Bespalov, Dmitry V. Dylov and published on 2020-10-02.
+It falls under the categories: eess.IV, cs.CV.
+The research explores the following topic: We devise a universal adaptive neural layer to "learn" optimal frequency filter for each image together with the weights of the base neural network that performs some computer vision task. The proposed approach takes the source image in the spatial domain, automatically selects the best frequencies from the frequency domain, and transmits the inverse-transform image to the main neural network. Remarkably, such a simple add-on layer dramatically improves the performance of the main network regardless of its design. We observe that the light networks gain a noticeable boost in the performance metrics; whereas, the training of the heavy ones converges faster when our adaptive layer is allowed to "learn" alongside the main architecture. We validate the idea in four classical computer vision tasks: classification, segmentation, denoising, and erasing, considering popular natural and medical data benchmarks.
+
+Links:
+  - https://arxiv.org/abs/2010.01177v4
+  - https://arxiv.org/pdf/2010.01177v4
+  - https://doi.org/10.1016/j.cviu.2022.103519

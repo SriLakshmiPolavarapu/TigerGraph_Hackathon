@@ -1,0 +1,23 @@
+Title: On Trojan Signatures in Large Language Models of Code
+
+Authors: Aftab Hussain, Md Rafiqul Islam Rabin, Mohammad Amin Alipour
+
+Published: 2024-02-23
+
+Categories: cs.CR, cs.LG, cs.SE
+
+Abstract:
+Trojan signatures, as described by Fields et al. (2021), are noticeable differences in the distribution of the trojaned class parameters (weights) and the non-trojaned class parameters of the trojaned model, that can be used to detect the trojaned model. Fields et al. (2021) found trojan signatures in computer vision classification tasks with image models, such as, Resnet, WideResnet, Densenet, and VGG. In this paper, we investigate such signatures in the classifier layer parameters of large language models of source code.
+  Our results suggest that trojan signatures could not generalize to LLMs of code. We found that trojaned code models are stubborn, even when the models were poisoned under more explicit settings (finetuned with pre-trained weights frozen). We analyzed nine trojaned models for two binary classification tasks: clone and defect detection. To the best of our knowledge, this is the first work to examine weight-based trojan signature revelation techniques for large-language models of code and furthermore to demonstrate that detecting trojans only from the weights in such models is a hard problem.
+
+Paper ID: 2402.16896v2
+
+Summary:
+This paper titled "On Trojan Signatures in Large Language Models of Code" was authored by Aftab Hussain, Md Rafiqul Islam Rabin, Mohammad Amin Alipour and published on 2024-02-23.
+It falls under the categories: cs.CR, cs.LG, cs.SE.
+The research explores the following topic: Trojan signatures, as described by Fields et al. (2021), are noticeable differences in the distribution of the trojaned class parameters (weights) and the non-trojaned class parameters of the trojaned model, that can be used to detect the trojaned model. Fields et al. (2021) found trojan signatures in computer vision classification tasks with image models, such as, Resnet, WideResnet, Densenet, and VGG. In this paper, we investigate such signatures in the classifier layer parameters of large language models of source code.
+  Our results suggest that trojan signatures could not generalize to LLMs of code. We found that trojaned code models are stubborn, even when the models were poisoned under more explicit settings (finetuned with pre-trained weights frozen). We analyzed nine trojaned models for two binary classification tasks: clone and defect detection. To the best of our knowledge, this is the first work to examine weight-based trojan signature revelation techniques for large-language models of code and furthermore to demonstrate that detecting trojans only from the weights in such models is a hard problem.
+
+Links:
+  - https://arxiv.org/abs/2402.16896v2
+  - https://arxiv.org/pdf/2402.16896v2

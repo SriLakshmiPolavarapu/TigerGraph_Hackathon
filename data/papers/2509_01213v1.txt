@@ -1,0 +1,21 @@
+Title: Mitigating Catastrophic Forgetting in Continual Learning through Model Growth
+
+Authors: Ege Süalp, Mina Rezaei
+
+Published: 2025-09-01
+
+Categories: cs.CL
+
+Abstract:
+Catastrophic forgetting is a significant challenge in continual learning, in which a model loses prior knowledge when it is fine-tuned on new tasks. This problem is particularly critical for large language models (LLMs) undergoing continual learning, as retaining performance across diverse domains is important for their general utility. In this paper, we explore model growth, a promising strategy that leverages smaller models to expedite and structure the training of larger ones for mitigating the catastrophic forgetting problem. Although growth-based pretraining, particularly via transformer stacking, has shown promise in accelerating convergence, its impact on forgetting remains under-explored. Therefore, we evaluate whether growth-based models can retain previously learned capabilities more effectively across a sequence of fine-tuning tasks involving domain knowledge, reasoning, reading comprehension, and bias. Our findings show that both models -- one trained with growth (Stack LLM) and one without (LLM) -- exhibit improvements in domain knowledge. However, reasoning and reading comprehension degrade over time, indicating signs of catastrophic forgetting. Stack LLM consistently shows less degradation, especially in reading comprehension, suggesting enhanced retention capabilities. Interestingly, in bias evaluation, the baseline LLM becomes progressively more neutral with continued fine-tuning, while Stack LLM maintains a steady bias ratio around 60--61\%. These results indicate that growth-based pretraining may deliver modest improvements in resisting catastrophic forgetting, though trade-offs remain in handling social biases.
+
+Paper ID: 2509.01213v1
+
+Summary:
+This paper titled "Mitigating Catastrophic Forgetting in Continual Learning through Model Growth" was authored by Ege Süalp, Mina Rezaei and published on 2025-09-01.
+It falls under the categories: cs.CL.
+The research explores the following topic: Catastrophic forgetting is a significant challenge in continual learning, in which a model loses prior knowledge when it is fine-tuned on new tasks. This problem is particularly critical for large language models (LLMs) undergoing continual learning, as retaining performance across diverse domains is important for their general utility. In this paper, we explore model growth, a promising strategy that leverages smaller models to expedite and structure the training of larger ones for mitigating the catastrophic forgetting problem. Although growth-based pretraining, particularly via transformer stacking, has shown promise in accelerating convergence, its impact on forgetting remains under-explored. Therefore, we evaluate whether growth-based models can retain previously learned capabilities more effectively across a sequence of fine-tuning tasks involving domain knowledge, reasoning, reading comprehension, and bias. Our findings show that both models -- one trained with growth (Stack LLM) and one without (LLM) -- exhibit improvements in domain knowledge. However, reasoning and reading comprehension degrade over time, indicating signs of catastrophic forgetting. Stack LLM consistently shows less degradation, especially in reading comprehension, suggesting enhanced retention capabilities. Interestingly, in bias evaluation, the baseline LLM becomes progressively more neutral with continued fine-tuning, while Stack LLM maintains a steady bias ratio around 60--61\%. These results indicate that growth-based pretraining may deliver modest improvements in resisting catastrophic forgetting, though trade-offs remain in handling social biases.
+
+Links:
+  - https://arxiv.org/abs/2509.01213v1
+  - https://arxiv.org/pdf/2509.01213v1

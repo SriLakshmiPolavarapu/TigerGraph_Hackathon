@@ -1,0 +1,21 @@
+Title: A Collaborative Filtering Based Approach for Recommending Elective Courses
+
+Authors: Sanjog Ray, Anuj Sharma
+
+Published: 2013-09-26
+
+Categories: cs.IR
+
+Abstract:
+In management education programmes today, students face a difficult time in choosing electives as the number of electives available are many. As the range and diversity of different elective courses available for selection have increased, course recommendation systems that help students in making choices about courses have become more relevant. In this paper we extend the concept of collaborative filtering approach to develop a course recommendation system. The proposed approach provides student an accurate prediction of the grade they may get if they choose a particular course, which will be helpful when they decide on selecting elective courses, as grade is an important parameter for a student while deciding on an elective course. We experimentally evaluate the collaborative filtering approach on a real life data set and show that the proposed system is effective in terms of accuracy.
+
+Paper ID: 1309.6908v1
+
+Summary:
+This paper titled "A Collaborative Filtering Based Approach for Recommending Elective Courses" was authored by Sanjog Ray, Anuj Sharma and published on 2013-09-26.
+It falls under the categories: cs.IR.
+The research explores the following topic: In management education programmes today, students face a difficult time in choosing electives as the number of electives available are many. As the range and diversity of different elective courses available for selection have increased, course recommendation systems that help students in making choices about courses have become more relevant. In this paper we extend the concept of collaborative filtering approach to develop a course recommendation system. The proposed approach provides student an accurate prediction of the grade they may get if they choose a particular course, which will be helpful when they decide on selecting elective courses, as grade is an important parameter for a student while deciding on an elective course. We experimentally evaluate the collaborative filtering approach on a real life data set and show that the proposed system is effective in terms of accuracy.
+
+Links:
+  - https://arxiv.org/abs/1309.6908v1
+  - https://arxiv.org/pdf/1309.6908v1

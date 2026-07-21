@@ -1,0 +1,21 @@
+Title: Integrating SPARQL and LLMs for Question Answering over Scholarly Data Sources
+
+Authors: Fomubad Borista Fondi, Azanzi Jiomekong Fidel, Gaoussou Camara
+
+Published: 2024-09-11
+
+Categories: cs.IR, cs.AI
+
+Abstract:
+The Scholarly Hybrid Question Answering over Linked Data (QALD) Challenge at the International Semantic Web Conference (ISWC) 2024 focuses on Question Answering (QA) over diverse scholarly sources: DBLP, SemOpenAlex, and Wikipedia-based texts. This paper describes a methodology that combines SPARQL queries, divide and conquer algorithms, and a pre-trained extractive question answering model. It starts with SPARQL queries to gather data, then applies divide and conquer to manage various question types and sources, and uses the model to handle personal author questions. The approach, evaluated with Exact Match and F-score metrics, shows promise for improving QA accuracy and efficiency in scholarly contexts.
+
+Paper ID: 2409.18969v2
+
+Summary:
+This paper titled "Integrating SPARQL and LLMs for Question Answering over Scholarly Data Sources" was authored by Fomubad Borista Fondi, Azanzi Jiomekong Fidel, Gaoussou Camara and published on 2024-09-11.
+It falls under the categories: cs.IR, cs.AI.
+The research explores the following topic: The Scholarly Hybrid Question Answering over Linked Data (QALD) Challenge at the International Semantic Web Conference (ISWC) 2024 focuses on Question Answering (QA) over diverse scholarly sources: DBLP, SemOpenAlex, and Wikipedia-based texts. This paper describes a methodology that combines SPARQL queries, divide and conquer algorithms, and a pre-trained extractive question answering model. It starts with SPARQL queries to gather data, then applies divide and conquer to manage various question types and sources, and uses the model to handle personal author questions. The approach, evaluated with Exact Match and F-score metrics, shows promise for improving QA accuracy and efficiency in scholarly contexts.
+
+Links:
+  - https://arxiv.org/abs/2409.18969v2
+  - https://arxiv.org/pdf/2409.18969v2

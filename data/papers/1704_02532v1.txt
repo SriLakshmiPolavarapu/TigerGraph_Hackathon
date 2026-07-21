@@ -1,0 +1,22 @@
+Title: Deep Reinforcement Learning framework for Autonomous Driving
+
+Authors: Ahmad El Sallab, Mohammed Abdou, Etienne Perot, Senthil Yogamani
+
+Published: 2017-04-08
+
+Categories: stat.ML, cs.LG, cs.RO
+
+Abstract:
+Reinforcement learning is considered to be a strong AI paradigm which can be used to teach machines through interaction with the environment and learning from their mistakes. Despite its perceived utility, it has not yet been successfully applied in automotive applications. Motivated by the successful demonstrations of learning of Atari games and Go by Google DeepMind, we propose a framework for autonomous driving using deep reinforcement learning. This is of particular relevance as it is difficult to pose autonomous driving as a supervised learning problem due to strong interactions with the environment including other vehicles, pedestrians and roadworks. As it is a relatively new area of research for autonomous driving, we provide a short overview of deep reinforcement learning and then describe our proposed framework. It incorporates Recurrent Neural Networks for information integration, enabling the car to handle partially observable scenarios. It also integrates the recent work on attention models to focus on relevant information, thereby reducing the computational complexity for deployment on embedded hardware. The framework was tested in an open source 3D car racing simulator called TORCS. Our simulation results demonstrate learning of autonomous maneuvering in a scenario of complex road curvatures and simple interaction of other vehicles.
+
+Paper ID: 1704.02532v1
+
+Summary:
+This paper titled "Deep Reinforcement Learning framework for Autonomous Driving" was authored by Ahmad El Sallab, Mohammed Abdou, Etienne Perot, Senthil Yogamani and published on 2017-04-08.
+It falls under the categories: stat.ML, cs.LG, cs.RO.
+The research explores the following topic: Reinforcement learning is considered to be a strong AI paradigm which can be used to teach machines through interaction with the environment and learning from their mistakes. Despite its perceived utility, it has not yet been successfully applied in automotive applications. Motivated by the successful demonstrations of learning of Atari games and Go by Google DeepMind, we propose a framework for autonomous driving using deep reinforcement learning. This is of particular relevance as it is difficult to pose autonomous driving as a supervised learning problem due to strong interactions with the environment including other vehicles, pedestrians and roadworks. As it is a relatively new area of research for autonomous driving, we provide a short overview of deep reinforcement learning and then describe our proposed framework. It incorporates Recurrent Neural Networks for information integration, enabling the car to handle partially observable scenarios. It also integrates the recent work on attention models to focus on relevant information, thereby reducing the computational complexity for deployment on embedded hardware. The framework was tested in an open source 3D car racing simulator called TORCS. Our simulation results demonstrate learning of autonomous maneuvering in a scenario of complex road curvatures and simple interaction of other vehicles.
+
+Links:
+  - https://arxiv.org/abs/1704.02532v1
+  - https://arxiv.org/pdf/1704.02532v1
+  - https://doi.org/10.2352/ISSN.2470-1173.2017.19.AVM-023

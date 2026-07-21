@@ -1,0 +1,21 @@
+Title: DualAD: Dual-Layer Planning for Reasoning in Autonomous Driving
+
+Authors: Dingrui Wang, Marc Kaufeld, Johannes Betz
+
+Published: 2024-09-26
+
+Categories: cs.RO, cs.AI
+
+Abstract:
+We present a novel autonomous driving framework, DualAD, designed to imitate human reasoning during driving. DualAD comprises two layers: a rule-based motion planner at the bottom layer that handles routine driving tasks requiring minimal reasoning, and an upper layer featuring a rule-based text encoder that converts driving scenarios from absolute states into text description. This text is then processed by a large language model (LLM) to make driving decisions. The upper layer intervenes in the bottom layer's decisions when potential danger is detected, mimicking human reasoning in critical situations. Closed-loop experiments demonstrate that DualAD, using a zero-shot pre-trained model, significantly outperforms rule-based motion planners that lack reasoning abilities. Our experiments also highlight the effectiveness of the text encoder, which considerably enhances the model's scenario understanding. Additionally, the integrated DualAD model improves with stronger LLMs, indicating the framework's potential for further enhancement. Code and benchmarks are available at github.com/TUM-AVS/DualAD.
+
+Paper ID: 2409.18053v3
+
+Summary:
+This paper titled "DualAD: Dual-Layer Planning for Reasoning in Autonomous Driving" was authored by Dingrui Wang, Marc Kaufeld, Johannes Betz and published on 2024-09-26.
+It falls under the categories: cs.RO, cs.AI.
+The research explores the following topic: We present a novel autonomous driving framework, DualAD, designed to imitate human reasoning during driving. DualAD comprises two layers: a rule-based motion planner at the bottom layer that handles routine driving tasks requiring minimal reasoning, and an upper layer featuring a rule-based text encoder that converts driving scenarios from absolute states into text description. This text is then processed by a large language model (LLM) to make driving decisions. The upper layer intervenes in the bottom layer's decisions when potential danger is detected, mimicking human reasoning in critical situations. Closed-loop experiments demonstrate that DualAD, using a zero-shot pre-trained model, significantly outperforms rule-based motion planners that lack reasoning abilities. Our experiments also highlight the effectiveness of the text encoder, which considerably enhances the model's scenario understanding. Additionally, the integrated DualAD model improves with stronger LLMs, indicating the framework's potential for further enhancement. Code and benchmarks are available at github.com/TUM-AVS/DualAD.
+
+Links:
+  - https://arxiv.org/abs/2409.18053v3
+  - https://arxiv.org/pdf/2409.18053v3

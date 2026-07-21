@@ -1,0 +1,21 @@
+Title: Neural content-aware collaborative filtering for cold-start music recommendation
+
+Authors: Paul Magron, Cédric Févotte
+
+Published: 2021-02-24
+
+Categories: cs.IR
+
+Abstract:
+State-of-the-art music recommender systems are based on collaborative filtering, which builds upon learning similarities between users and songs from the available listening data. These approaches inherently face the cold-start problem, as they cannot recommend novel songs with no listening history. Content-aware recommendation addresses this issue by incorporating content information about the songs on top of collaborative filtering. However, methods falling in this category rely on a shallow user/item interaction that originates from a matrix factorization framework. In this work, we introduce neural content-aware collaborative filtering, a unified framework which alleviates these limits, and extends the recently introduced neural collaborative filtering to its content-aware counterpart. We propose a generative model which leverages deep learning for both extracting content information from low-level acoustic features and for modeling the interaction between users and songs embeddings. The deep content feature extractor can either directly predict the item embedding, or serve as a regularization prior, yielding two variants (strict and relaxed) of our model. Experimental results show that the proposed method reaches state-of-the-art results for a cold-start music recommendation task. We notably observe that exploiting deep neural networks for learning refined user/item interactions outperforms approaches using a more simple interaction model in a content-aware framework.
+
+Paper ID: 2102.12369v3
+
+Summary:
+This paper titled "Neural content-aware collaborative filtering for cold-start music recommendation" was authored by Paul Magron, Cédric Févotte and published on 2021-02-24.
+It falls under the categories: cs.IR.
+The research explores the following topic: State-of-the-art music recommender systems are based on collaborative filtering, which builds upon learning similarities between users and songs from the available listening data. These approaches inherently face the cold-start problem, as they cannot recommend novel songs with no listening history. Content-aware recommendation addresses this issue by incorporating content information about the songs on top of collaborative filtering. However, methods falling in this category rely on a shallow user/item interaction that originates from a matrix factorization framework. In this work, we introduce neural content-aware collaborative filtering, a unified framework which alleviates these limits, and extends the recently introduced neural collaborative filtering to its content-aware counterpart. We propose a generative model which leverages deep learning for both extracting content information from low-level acoustic features and for modeling the interaction between users and songs embeddings. The deep content feature extractor can either directly predict the item embedding, or serve as a regularization prior, yielding two variants (strict and relaxed) of our model. Experimental results show that the proposed method reaches state-of-the-art results for a cold-start music recommendation task. We notably observe that exploiting deep neural networks for learning refined user/item interactions outperforms approaches using a more simple interaction model in a content-aware framework.
+
+Links:
+  - https://arxiv.org/abs/2102.12369v3
+  - https://arxiv.org/pdf/2102.12369v3

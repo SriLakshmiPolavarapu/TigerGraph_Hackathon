@@ -1,0 +1,22 @@
+Title: A Novel Reconfigurable Architecture of a DSP Processor for Efficient Mapping of DSP Functions using Field Programmable DSP Arrays
+
+Authors: Amitabha Sinha, Mitrava Sarkar, Soumojit Acharyya, Suranjan Chakraborty
+
+Published: 2013-06-01
+
+Categories: cs.AR
+
+Abstract:
+Development of modern integrated circuit technologies makes it feasible to develop cheaper, faster and smaller special purpose signal processing function circuits. Digital Signal processing functions are generally implemented either on ASICs with inflexibility, or on FPGAs with bottlenecks of relatively smaller utilization factor or lower speed compared to ASIC. Field Programmable DSP Array (FPDA) is the proposed DSP dedicated device, redolent to FPGA, but with basic fixed common modules (CMs) (like adders, subtractors, multipliers, scaling units, shifters) instead of CLBs. This paper introduces the development of reconfigurable system architecture with a focus on FPDA that integrates different DSP functions like DFT, FFT, DCT, FIR, IIR, and DWT etc. The switching between DSP functions is occurred by reconfiguring the interconnection between CMs. Validation of the proposed architecture has been achieved on Virtex5 FPGA. The architecture provides sufficient amount of flexibility, parallelism and scalability.
+
+Paper ID: 1306.0089v1
+
+Summary:
+This paper titled "A Novel Reconfigurable Architecture of a DSP Processor for Efficient Mapping of DSP Functions using Field Programmable DSP Arrays" was authored by Amitabha Sinha, Mitrava Sarkar, Soumojit Acharyya, Suranjan Chakraborty and published on 2013-06-01.
+It falls under the categories: cs.AR.
+The research explores the following topic: Development of modern integrated circuit technologies makes it feasible to develop cheaper, faster and smaller special purpose signal processing function circuits. Digital Signal processing functions are generally implemented either on ASICs with inflexibility, or on FPGAs with bottlenecks of relatively smaller utilization factor or lower speed compared to ASIC. Field Programmable DSP Array (FPDA) is the proposed DSP dedicated device, redolent to FPGA, but with basic fixed common modules (CMs) (like adders, subtractors, multipliers, scaling units, shifters) instead of CLBs. This paper introduces the development of reconfigurable system architecture with a focus on FPDA that integrates different DSP functions like DFT, FFT, DCT, FIR, IIR, and DWT etc. The switching between DSP functions is occurred by reconfiguring the interconnection between CMs. Validation of the proposed architecture has been achieved on Virtex5 FPGA. The architecture provides sufficient amount of flexibility, parallelism and scalability.
+
+Links:
+  - https://arxiv.org/abs/1306.0089v1
+  - https://arxiv.org/pdf/1306.0089v1
+  - https://doi.org/10.1145/2490302.2490304

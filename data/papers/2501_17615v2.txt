@@ -1,0 +1,22 @@
+Title: Cross-lingual Embedding Clustering for Hierarchical Softmax in Low-Resource Multilingual Speech Recognition
+
+Authors: Zhengdong Yang, Qianying Liu, Sheng Li, Fei Cheng, Chenhui Chu
+
+Published: 2025-01-29
+
+Categories: cs.CL, cs.SD, eess.AS
+
+Abstract:
+We present a novel approach centered on the decoding stage of Automatic Speech Recognition (ASR) that enhances multilingual performance, especially for low-resource languages. It utilizes a cross-lingual embedding clustering method to construct a hierarchical Softmax (H-Softmax) decoder, which enables similar tokens across different languages to share similar decoder representations. It addresses the limitations of the previous Huffman-based H-Softmax method, which relied on shallow features in token similarity assessments. Through experiments on a downsampled dataset of 15 languages, we demonstrate the effectiveness of our approach in improving low-resource multilingual ASR accuracy.
+
+Paper ID: 2501.17615v2
+
+Summary:
+This paper titled "Cross-lingual Embedding Clustering for Hierarchical Softmax in Low-Resource Multilingual Speech Recognition" was authored by Zhengdong Yang, Qianying Liu, Sheng Li, Fei Cheng, Chenhui Chu and published on 2025-01-29.
+It falls under the categories: cs.CL, cs.SD, eess.AS.
+The research explores the following topic: We present a novel approach centered on the decoding stage of Automatic Speech Recognition (ASR) that enhances multilingual performance, especially for low-resource languages. It utilizes a cross-lingual embedding clustering method to construct a hierarchical Softmax (H-Softmax) decoder, which enables similar tokens across different languages to share similar decoder representations. It addresses the limitations of the previous Huffman-based H-Softmax method, which relied on shallow features in token similarity assessments. Through experiments on a downsampled dataset of 15 languages, we demonstrate the effectiveness of our approach in improving low-resource multilingual ASR accuracy.
+
+Links:
+  - https://arxiv.org/abs/2501.17615v2
+  - https://arxiv.org/pdf/2501.17615v2
+  - https://doi.org/10.1109/TASLPRO.2025.3617233

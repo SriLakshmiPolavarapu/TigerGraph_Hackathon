@@ -1,0 +1,21 @@
+Title: Graph Neural Networks for Transmission Grid Topology Control: Busbar Information Asymmetry and Heterogeneous Representations
+
+Authors: Matthijs de Jong, Jan Viebahn, Yuliya Shapovalova
+
+Published: 2025-01-13
+
+Categories: cs.LG, cs.AI, stat.ML
+
+Abstract:
+Factors such as the proliferation of renewable energy and electrification contribute to grid congestion as a pressing problem. Topology control is an appealing method for relieving congestion, but traditional approaches for topology discovery have proven too slow for practical application. Recent research has focused on machine learning (ML) as an efficient alternative. Graph neural networks (GNNs) are particularly well-suited for topology control applications due to their ability to model the graph structure of power grids. This study investigates the effect of the graph representation on GNN effectiveness for topology control. We identify the busbar information asymmetry problem inherent to the popular homogeneous graph representation. We propose a heterogeneous graph representation that resolves this problem. We apply GNNs with both representations and a fully connected neural network (FCNN) baseline on an imitation learning task. The models are evaluated by classification accuracy and grid operation ability. We find that heterogeneous GNNs perform best on in-distribution network configurations, followed by FCNNs, and lastly, homogeneous GNNs. We also find that both GNN types generalize better to out-of-distribution network configurations than FCNNs.
+
+Paper ID: 2501.07186v3
+
+Summary:
+This paper titled "Graph Neural Networks for Transmission Grid Topology Control: Busbar Information Asymmetry and Heterogeneous Representations" was authored by Matthijs de Jong, Jan Viebahn, Yuliya Shapovalova and published on 2025-01-13.
+It falls under the categories: cs.LG, cs.AI, stat.ML.
+The research explores the following topic: Factors such as the proliferation of renewable energy and electrification contribute to grid congestion as a pressing problem. Topology control is an appealing method for relieving congestion, but traditional approaches for topology discovery have proven too slow for practical application. Recent research has focused on machine learning (ML) as an efficient alternative. Graph neural networks (GNNs) are particularly well-suited for topology control applications due to their ability to model the graph structure of power grids. This study investigates the effect of the graph representation on GNN effectiveness for topology control. We identify the busbar information asymmetry problem inherent to the popular homogeneous graph representation. We propose a heterogeneous graph representation that resolves this problem. We apply GNNs with both representations and a fully connected neural network (FCNN) baseline on an imitation learning task. The models are evaluated by classification accuracy and grid operation ability. We find that heterogeneous GNNs perform best on in-distribution network configurations, followed by FCNNs, and lastly, homogeneous GNNs. We also find that both GNN types generalize better to out-of-distribution network configurations than FCNNs.
+
+Links:
+  - https://arxiv.org/abs/2501.07186v3
+  - https://arxiv.org/pdf/2501.07186v3

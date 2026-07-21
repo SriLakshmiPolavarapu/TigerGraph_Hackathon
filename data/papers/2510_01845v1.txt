@@ -1,0 +1,21 @@
+Title: Model Merging to Maintain Language-Only Performance in Developmentally Plausible Multimodal Models
+
+Authors: Ece Takmaz, Lisa Bylinina, Jakub Dotlacil
+
+Published: 2025-10-02
+
+Categories: cs.CL, cs.CV
+
+Abstract:
+State-of-the-art vision-and-language models consist of many parameters and learn from enormous datasets, surpassing the amounts of linguistic data that children are exposed to as they acquire a language. This paper presents our approach to the multimodal track of the BabyLM challenge addressing this discrepancy. We develop language-only and multimodal models in low-resource settings using developmentally plausible datasets, with our multimodal models outperforming previous BabyLM baselines. One finding in the multimodal language model literature is that these models tend to underperform in \textit{language-only} tasks. Therefore, we focus on maintaining language-only abilities in multimodal models. To this end, we experiment with \textit{model merging}, where we fuse the parameters of multimodal models with those of language-only models using weighted linear interpolation. Our results corroborate the findings that multimodal models underperform in language-only benchmarks that focus on grammar, and model merging with text-only models can help alleviate this problem to some extent, while maintaining multimodal performance.
+
+Paper ID: 2510.01845v1
+
+Summary:
+This paper titled "Model Merging to Maintain Language-Only Performance in Developmentally Plausible Multimodal Models" was authored by Ece Takmaz, Lisa Bylinina, Jakub Dotlacil and published on 2025-10-02.
+It falls under the categories: cs.CL, cs.CV.
+The research explores the following topic: State-of-the-art vision-and-language models consist of many parameters and learn from enormous datasets, surpassing the amounts of linguistic data that children are exposed to as they acquire a language. This paper presents our approach to the multimodal track of the BabyLM challenge addressing this discrepancy. We develop language-only and multimodal models in low-resource settings using developmentally plausible datasets, with our multimodal models outperforming previous BabyLM baselines. One finding in the multimodal language model literature is that these models tend to underperform in \textit{language-only} tasks. Therefore, we focus on maintaining language-only abilities in multimodal models. To this end, we experiment with \textit{model merging}, where we fuse the parameters of multimodal models with those of language-only models using weighted linear interpolation. Our results corroborate the findings that multimodal models underperform in language-only benchmarks that focus on grammar, and model merging with text-only models can help alleviate this problem to some extent, while maintaining multimodal performance.
+
+Links:
+  - https://arxiv.org/abs/2510.01845v1
+  - https://arxiv.org/pdf/2510.01845v1

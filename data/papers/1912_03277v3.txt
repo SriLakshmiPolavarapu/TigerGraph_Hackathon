@@ -1,0 +1,21 @@
+Title: Preserving Causal Constraints in Counterfactual Explanations for Machine Learning Classifiers
+
+Authors: Divyat Mahajan, Chenhao Tan, Amit Sharma
+
+Published: 2019-12-06
+
+Categories: cs.LG, cs.AI, stat.ML
+
+Abstract:
+To construct interpretable explanations that are consistent with the original ML model, counterfactual examples---showing how the model's output changes with small perturbations to the input---have been proposed. This paper extends the work in counterfactual explanations by addressing the challenge of feasibility of such examples. For explanations of ML models in critical domains such as healthcare and finance, counterfactual examples are useful for an end-user only to the extent that perturbation of feature inputs is feasible in the real world. We formulate the problem of feasibility as preserving causal relationships among input features and present a method that uses (partial) structural causal models to generate actionable counterfactuals. When feasibility constraints cannot be easily expressed, we consider an alternative mechanism where people can label generated CF examples on feasibility: whether it is feasible to intervene and realize the candidate CF example from the original input. To learn from this labelled feasibility data, we propose a modified variational auto encoder loss for generating CF examples that optimizes for feasibility as people interact with its output. Our experiments on Bayesian networks and the widely used ''Adult-Income'' dataset show that our proposed methods can generate counterfactual explanations that better satisfy feasibility constraints than existing methods.. Code repository can be accessed here: \textit{https://github.com/divyat09/cf-feasibility}
+
+Paper ID: 1912.03277v3
+
+Summary:
+This paper titled "Preserving Causal Constraints in Counterfactual Explanations for Machine Learning Classifiers" was authored by Divyat Mahajan, Chenhao Tan, Amit Sharma and published on 2019-12-06.
+It falls under the categories: cs.LG, cs.AI, stat.ML.
+The research explores the following topic: To construct interpretable explanations that are consistent with the original ML model, counterfactual examples---showing how the model's output changes with small perturbations to the input---have been proposed. This paper extends the work in counterfactual explanations by addressing the challenge of feasibility of such examples. For explanations of ML models in critical domains such as healthcare and finance, counterfactual examples are useful for an end-user only to the extent that perturbation of feature inputs is feasible in the real world. We formulate the problem of feasibility as preserving causal relationships among input features and present a method that uses (partial) structural causal models to generate actionable counterfactuals. When feasibility constraints cannot be easily expressed, we consider an alternative mechanism where people can label generated CF examples on feasibility: whether it is feasible to intervene and realize the candidate CF example from the original input. To learn from this labelled feasibility data, we propose a modified variational auto encoder loss for generating CF examples that optimizes for feasibility as people interact with its output. Our experiments on Bayesian networks and the widely used ''Adult-Income'' dataset show that our proposed methods can generate counterfactual explanations that better satisfy feasibility constraints than existing methods.. Code repository can be accessed here: \textit{https://github.com/divyat09/cf-feasibility}
+
+Links:
+  - https://arxiv.org/abs/1912.03277v3
+  - https://arxiv.org/pdf/1912.03277v3

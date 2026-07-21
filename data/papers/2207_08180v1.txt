@@ -1,0 +1,22 @@
+Title: Federated Learning and catastrophic forgetting in pervasive computing: demonstration in HAR domain
+
+Authors: Anastasiia Usmanova, François Portet, Philippe Lalanda, German Vega
+
+Published: 2022-07-17
+
+Categories: cs.LG, cs.AI, eess.SP
+
+Abstract:
+Federated Learning has been introduced as a new machine learning paradigm enhancing the use of local devices. At a server level, FL regularly aggregates models learned locally on distributed clients to obtain a more general model. In this way, no private data is sent over the network, and the communication cost is reduced. However, current solutions rely on the availability of large amounts of stored data at the client side in order to fine-tune the models sent by the server. Such setting is not realistic in mobile pervasive computing where data storage must be kept low and data characteristic (distribution) can change dramatically. To account for this variability, a solution is to use the data regularly collected by the client to progressively adapt the received model. But such naive approach exposes clients to the well-known problem of catastrophic forgetting. The purpose of this paper is to demonstrate this problem in the mobile human activity recognition context on smartphones.
+
+Paper ID: 2207.08180v1
+
+Summary:
+This paper titled "Federated Learning and catastrophic forgetting in pervasive computing: demonstration in HAR domain" was authored by Anastasiia Usmanova, François Portet, Philippe Lalanda, German Vega and published on 2022-07-17.
+It falls under the categories: cs.LG, cs.AI, eess.SP.
+The research explores the following topic: Federated Learning has been introduced as a new machine learning paradigm enhancing the use of local devices. At a server level, FL regularly aggregates models learned locally on distributed clients to obtain a more general model. In this way, no private data is sent over the network, and the communication cost is reduced. However, current solutions rely on the availability of large amounts of stored data at the client side in order to fine-tune the models sent by the server. Such setting is not realistic in mobile pervasive computing where data storage must be kept low and data characteristic (distribution) can change dramatically. To account for this variability, a solution is to use the data regularly collected by the client to progressively adapt the received model. But such naive approach exposes clients to the well-known problem of catastrophic forgetting. The purpose of this paper is to demonstrate this problem in the mobile human activity recognition context on smartphones.
+
+Links:
+  - https://arxiv.org/abs/2207.08180v1
+  - https://arxiv.org/pdf/2207.08180v1
+  - https://doi.org/10.1109/PerComWorkshops53856.2022.9767246

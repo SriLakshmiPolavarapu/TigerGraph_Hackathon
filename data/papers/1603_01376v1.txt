@@ -1,0 +1,22 @@
+Title: Lasso estimation for GEFCom2014 probabilistic electric load forecasting
+
+Authors: Florian Ziel, Bidong Liu
+
+Published: 2016-03-04
+
+Categories: stat.AP, stat.ML
+
+Abstract:
+We present a methodology for probabilistic load forecasting that is based on lasso (least absolute shrinkage and selection operator) estimation. The model considered can be regarded as a bivariate time-varying threshold autoregressive(AR) process for the hourly electric load and temperature. The joint modeling approach incorporates the temperature effects directly, and reflects daily, weekly, and annual seasonal patterns and public holiday effects. We provide two empirical studies, one based on the probabilistic load forecasting track of the Global Energy Forecasting Competition 2014 (GEFCom2014-L), and the other based on another recent probabilistic load forecasting competition that follows a setup similar to that of GEFCom2014-L. In both empirical case studies, the proposed methodology outperforms two multiple linear regression based benchmarks from among the top eight entries to GEFCom2014-L.
+
+Paper ID: 1603.01376v1
+
+Summary:
+This paper titled "Lasso estimation for GEFCom2014 probabilistic electric load forecasting" was authored by Florian Ziel, Bidong Liu and published on 2016-03-04.
+It falls under the categories: stat.AP, stat.ML.
+The research explores the following topic: We present a methodology for probabilistic load forecasting that is based on lasso (least absolute shrinkage and selection operator) estimation. The model considered can be regarded as a bivariate time-varying threshold autoregressive(AR) process for the hourly electric load and temperature. The joint modeling approach incorporates the temperature effects directly, and reflects daily, weekly, and annual seasonal patterns and public holiday effects. We provide two empirical studies, one based on the probabilistic load forecasting track of the Global Energy Forecasting Competition 2014 (GEFCom2014-L), and the other based on another recent probabilistic load forecasting competition that follows a setup similar to that of GEFCom2014-L. In both empirical case studies, the proposed methodology outperforms two multiple linear regression based benchmarks from among the top eight entries to GEFCom2014-L.
+
+Links:
+  - https://arxiv.org/abs/1603.01376v1
+  - https://arxiv.org/pdf/1603.01376v1
+  - https://doi.org/10.1016/j.ijforecast.2016.01.001

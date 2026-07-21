@@ -1,0 +1,21 @@
+Title: An Approach for Efficient Neural Architecture Search Space Definition
+
+Authors: Léo Pouy, Fouad Khenfri, Patrick Leserf, Chokri Mraidha, Cherif Larouci
+
+Published: 2023-10-25
+
+Categories: cs.LG, cs.NE
+
+Abstract:
+As we advance in the fast-growing era of Machine Learning, various new and more complex neural architectures are arising to tackle problem more efficiently. On the one hand their efficient usage requires advanced knowledge and expertise, which is most of the time difficult to find on the labor market. On the other hand, searching for an optimized neural architecture is a time-consuming task when it is performed manually using a trial and error approach. Hence, a method and a tool support is needed to assist users of neural architectures, leading to an eagerness in the field of Automatic Machine Learning (AutoML). When it comes to Deep Learning, an important part of AutoML is the Neural Architecture Search (NAS). In this paper, we propose a novel cell-based hierarchical search space, easy to comprehend and manipulate. The objectives of the proposed approach are to optimize the search-time and to be general enough to handle most of state of the art Convolutional Neural Networks (CNN) architectures.
+
+Paper ID: 2310.17669v1
+
+Summary:
+This paper titled "An Approach for Efficient Neural Architecture Search Space Definition" was authored by Léo Pouy, Fouad Khenfri, Patrick Leserf, Chokri Mraidha, Cherif Larouci and published on 2023-10-25.
+It falls under the categories: cs.LG, cs.NE.
+The research explores the following topic: As we advance in the fast-growing era of Machine Learning, various new and more complex neural architectures are arising to tackle problem more efficiently. On the one hand their efficient usage requires advanced knowledge and expertise, which is most of the time difficult to find on the labor market. On the other hand, searching for an optimized neural architecture is a time-consuming task when it is performed manually using a trial and error approach. Hence, a method and a tool support is needed to assist users of neural architectures, leading to an eagerness in the field of Automatic Machine Learning (AutoML). When it comes to Deep Learning, an important part of AutoML is the Neural Architecture Search (NAS). In this paper, we propose a novel cell-based hierarchical search space, easy to comprehend and manipulate. The objectives of the proposed approach are to optimize the search-time and to be general enough to handle most of state of the art Convolutional Neural Networks (CNN) architectures.
+
+Links:
+  - https://arxiv.org/abs/2310.17669v1
+  - https://arxiv.org/pdf/2310.17669v1

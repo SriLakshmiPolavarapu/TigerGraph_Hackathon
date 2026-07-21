@@ -1,0 +1,21 @@
+Title: Web Engineering
+
+Authors: Yogesh Deshpande, San Murugesan, Athula Ginige, Steve Hansen, Daniel Schwabe, Martin Gaedke, Bebo White
+
+Published: 2003-06-18
+
+Categories: cs.SE
+
+Abstract:
+Web Engineering is the application of systematic, disciplined and quantifiable approaches to development, operation, and maintenance of Web-based applications. It is both a pro-active approach and a growing collection of theoretical and empirical research in Web application development. This paper gives an overview of Web Engineering by addressing the questions: a) why is it needed? b) what is its domain of operation? c) how does it help and what should it do to improve Web application development? and d) how should it be incorporated in education and training? The paper discusses the significant differences that exist between Web applications and conventional software, the taxonomy of Web applications, the progress made so far and the research issues and experience of creating a specialisation at the master's level. The paper reaches a conclusion that Web Engineering at this stage is a moving target since Web technologies are constantly evolving, making new types of applications possible, which in turn may require innovations in how they are built, deployed and maintained.
+
+Paper ID: 0306108v1
+
+Summary:
+This paper titled "Web Engineering" was authored by Yogesh Deshpande, San Murugesan, Athula Ginige, Steve Hansen, Daniel Schwabe, Martin Gaedke, Bebo White and published on 2003-06-18.
+It falls under the categories: cs.SE.
+The research explores the following topic: Web Engineering is the application of systematic, disciplined and quantifiable approaches to development, operation, and maintenance of Web-based applications. It is both a pro-active approach and a growing collection of theoretical and empirical research in Web application development. This paper gives an overview of Web Engineering by addressing the questions: a) why is it needed? b) what is its domain of operation? c) how does it help and what should it do to improve Web application development? and d) how should it be incorporated in education and training? The paper discusses the significant differences that exist between Web applications and conventional software, the taxonomy of Web applications, the progress made so far and the research issues and experience of creating a specialisation at the master's level. The paper reaches a conclusion that Web Engineering at this stage is a moving target since Web technologies are constantly evolving, making new types of applications possible, which in turn may require innovations in how they are built, deployed and maintained.
+
+Links:
+  - https://arxiv.org/abs/cs/0306108v1
+  - https://arxiv.org/pdf/cs/0306108v1

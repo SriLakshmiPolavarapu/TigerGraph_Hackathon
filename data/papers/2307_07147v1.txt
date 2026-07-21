@@ -1,0 +1,21 @@
+Title: Linking vision and motion for self-supervised object-centric perception
+
+Authors: Kaylene C. Stocking, Zak Murez, Vijay Badrinarayanan, Jamie Shotton, Alex Kendall, Claire Tomlin, Christopher P. Burgess
+
+Published: 2023-07-14
+
+Categories: cs.CV
+
+Abstract:
+Object-centric representations enable autonomous driving algorithms to reason about interactions between many independent agents and scene features. Traditionally these representations have been obtained via supervised learning, but this decouples perception from the downstream driving task and could harm generalization. In this work we adapt a self-supervised object-centric vision model to perform object decomposition using only RGB video and the pose of the vehicle as inputs. We demonstrate that our method obtains promising results on the Waymo Open perception dataset. While object mask quality lags behind supervised methods or alternatives that use more privileged information, we find that our model is capable of learning a representation that fuses multiple camera viewpoints over time and successfully tracks many vehicles and pedestrians in the dataset. Code for our model is available at https://github.com/wayveai/SOCS.
+
+Paper ID: 2307.07147v1
+
+Summary:
+This paper titled "Linking vision and motion for self-supervised object-centric perception" was authored by Kaylene C. Stocking, Zak Murez, Vijay Badrinarayanan, Jamie Shotton, Alex Kendall, Claire Tomlin, Christopher P. Burgess and published on 2023-07-14.
+It falls under the categories: cs.CV.
+The research explores the following topic: Object-centric representations enable autonomous driving algorithms to reason about interactions between many independent agents and scene features. Traditionally these representations have been obtained via supervised learning, but this decouples perception from the downstream driving task and could harm generalization. In this work we adapt a self-supervised object-centric vision model to perform object decomposition using only RGB video and the pose of the vehicle as inputs. We demonstrate that our method obtains promising results on the Waymo Open perception dataset. While object mask quality lags behind supervised methods or alternatives that use more privileged information, we find that our model is capable of learning a representation that fuses multiple camera viewpoints over time and successfully tracks many vehicles and pedestrians in the dataset. Code for our model is available at https://github.com/wayveai/SOCS.
+
+Links:
+  - https://arxiv.org/abs/2307.07147v1
+  - https://arxiv.org/pdf/2307.07147v1

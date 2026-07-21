@@ -1,0 +1,21 @@
+Title: Defining and Evaluating Fair Natural Language Generation
+
+Authors: Catherine Yeo, Alyssa Chen
+
+Published: 2020-07-28
+
+Categories: cs.CL, cs.LG
+
+Abstract:
+Our work focuses on the biases that emerge in the natural language generation (NLG) task of sentence completion. In this paper, we introduce a framework of fairness for NLG followed by an evaluation of gender biases in two state-of-the-art language models. Our analysis provides a theoretical formulation for biases in NLG and empirical evidence that existing language generation models embed gender bias.
+
+Paper ID: 2008.01548v1
+
+Summary:
+This paper titled "Defining and Evaluating Fair Natural Language Generation" was authored by Catherine Yeo, Alyssa Chen and published on 2020-07-28.
+It falls under the categories: cs.CL, cs.LG.
+The research explores the following topic: Our work focuses on the biases that emerge in the natural language generation (NLG) task of sentence completion. In this paper, we introduce a framework of fairness for NLG followed by an evaluation of gender biases in two state-of-the-art language models. Our analysis provides a theoretical formulation for biases in NLG and empirical evidence that existing language generation models embed gender bias.
+
+Links:
+  - https://arxiv.org/abs/2008.01548v1
+  - https://arxiv.org/pdf/2008.01548v1

@@ -1,0 +1,1571 @@
+Title: arXiv paper 1031
+
+Categories: 8
+
+Abstract:
+A Fast Parameterized Algorithm for Co-Path Set
+Blair D. Sullivan, Andrew van der Poel
+Department of Computer Science, North Carolina State University,
+Raleigh, NC 27695
+
+arXiv:1603.04376v3 [cs.DS] 27 Jul 2016
+
+{blair sullivan,ajvande4}@ncsu.edu
+
+January 4, 2018
+Abstract
+The k-Co-Path Set problem asks, given a graph G and a positive
+integer k, whether one can delete k edges from G so that the remainder
+is a collection of disjoint paths. We give a linear-time fpt algorithm
+with complexity O∗ (1.588k ) for deciding k-Co-Path Set, significantly
+improving the previously best known O∗ (2.17k ) of Feng, Zhou, and Wang
+(2015). Our main tool is a new O∗ (4tw(G) ) algorithm for Co-Path Set
+using the Cut&Count framework, where tw(G) denotes treewidth. In
+general graphs, we combine this with a branching algorithm which refines
+a 6k-kernel into reduced instances, which we prove have bounded treewidth.
+
+1
+
+Introduction
+
+We study parameterized versions of Co-Path Set [3, 16], an NP-complete
+problem asking for the minimum number of edges whose deletion from a graph
+results in a collection of disjoint paths (the deleted edges being a co-path set –
+see Figure 1). Specifically, we are concerned with k-Co-Path Set, which uses
+the natural parameter of the number of edges deleted.
+k-Co-Path Set
+Input: A graph G = (V, E) and a non-negative integer k.
+Parameter: k
+Problem: Does there exist F ⊆ E of size exactly k such that
+G[E \ F ] is a set of disjoint paths?
+These problems are naturally motivated by determining the ordering of
+genetic markers in DNA using fragment data created by breaking chromosomes
+with gamma radiation (a technique known as radiation hybrid mapping) [4,13,15].
+Unfortunately, human error in distinguishing markers often means the constraints
+implied by markers’ co-occurrence on fragments are incompatible with all possible
+linear orderings, necessitating an algorithm to find the “best” ordering (that
+violates the fewest constraints). Co-Path Set solves the special case where
+each DNA fragment contains exactly two genetic markers (corresponding to an
+edge in the graph); any linear ordering of the markers must correspond to some
+
+1
+
+Figure 1: Three co-path sets (dashed edges), including one of minimum size
+(rightmost).
+set of paths, and we minimize the number of unsatisfied constraints (edges in
+the co-path set).
+Recent algorithmic results related to Co-Path Set include a (10/7)-approximation
+algorithm [2], and two parameterized algorithms deciding k-Co-Path Set [6, 7],
+the faster of which [7] has time complexity1 O∗ (2.17k ). However, as written,
+both parameterized results [6,7] contain a flaw in their analysis which invalidates
+their probability of a correct solution in the given time2 . The best known bound
+prior to [6] is an O∗ (2.45k ) algorithm [16]. In this paper, we prove:
+Theorem 1. k-Co-Path Set is decidable in O∗ (1.588k ) linear-fpt time with
+probability at least 2/3.
+We note that standard amplification arguments apply, and Theorem 1 holds
+for any success probability less than 1. Further, if f is an increasing function
+with limn→∞ f (n) = 1, we can solve k-Co-Path Set with success probability
+at least f (n) in O(1.588k npolylog(n)).
+The remainder of this paper is organized as follows: after essential definitions
+and notation in Section 2, we start in Section 3 by giving a new O∗ (4tw(G) )
+algorithm tw-copath for solving Co-Path Set parameterized by treewidth (tw)
+using the Cut&Count framework [5]. Finally, Section 4 describes the linear-fpt
+algorithm referenced in Theorem 1, which solves k-Co-Path Set on general
+graphs in O∗ (1.588k ) by applying tw-copath to a set of “reduced instances”
+generated via kernelization and a branching procedure3 deg-branch.
+
+2
+
+Preliminaries
+
+Let G(V, E) be the graph with vertex set V and edge set E. Unless otherwise
+noted, we assume |V | = n; we let N (v) denote the set of neighbors of a vertex v,
+and let deg(v) = |N (v)|. Given a graph G(V, E) and F ⊆ E, we write G[F ] for
+the graph G(V, F ).
+Our tw-copath algorithm in Section 3 uses dynamic programming over a
+tree decomposition, and its running time depends on the related measure of
+treewidth [14], which we denote tw(G). To simplify the dynamic programming,
+1 Throughout this paper, we use the notation O ∗ (f (k)) for the fpt (fixed-parameter tractable)
+complexity O(f (k)nO(1) ); we say an algorithm is linear-fpt if the complexity is O(f (k)n).
+2 Step 2.11 in both versions of Algorithm R-MCP checks if a candidate co-path set F has
+size ≤ k1 (as they are sweeping over all possible sizes of candidates and want to restrict the size
+accordingly). If F is too large, the algorithm discards it and continues to the next iteration.
+However, in order for their analysis to hold, the probability that the candidate is contained
+in a co-path set must be ≥ (1/2.17)k1 (or (1/2.29)k1 in [6]) for every iteration. Candidates
+which are too large may have significantly smaller probability of containment, yet are counted
+in the exponent of the analysis.
+3 The properties of our reduced instances guarantee we can find a tree decomposition in
+poly(k) time.
+
+2
+
+we will use a variant of nice tree decompositions [5, 10] where each node in the
+tree has one of five specific types: leaf, introduce vertex, introduce edge, forget
+vertex, or join. The “introduce edge” nodes are labelled with an edge uv and
+have one child (with an identical bag); we require each edge in E is introduced
+exactly once. Additionally, we enforce that the root node is of type “forget
+vertex” (and thus has an empty bag). A tree decomposition can be transformed
+into a nice decomposition of the same width in time linear in the size of the
+input graph [5].
+When describing the dynamic programming portion of the algorithm we use
+Iverson’s bracket notation: if p is a predicate we let JpK be 1 if p is true and 0
+otherwise. We also use the shorthand f [x → y] to denote updating a function f
+so that f (x) = y and all other values are unchanged.
+Finally, we use fast subset convolution [1] to reduce the complexity of handling
+join nodes in the nice tree decomposition (Section 3). This technique maps
+functions of the vertices in a join bag to values in Zp = Z/pZ (where p is chosen
+based on the application). The key complexity result we rely on uses the Zp
+product, which is defined below. We write ZB
+p for the set of all vectors t of
+length |B| assigning a value t(b) ∈ Zp to each element of b ∈ B.
+Definition 1 (Zp product). Let p ≥ 2 be a fixed integer and let B be a finite set.
+For t1 , t2 , t ∈ ZB
+p we say that t1 + t2 = t if t1 (b) + t2 (b) = t(b) (in Zp ) for all
+p
+b ∈ B. For a ring R and functions f, g : ZB
+p → R, define the Zp product, ∗x as
+P
+(f ∗px g)(t) =
+f (t1 )g(t2 ).
+t1 +t2 =t
+
+Fast subset convolution guarantees that certain Zp products can be computed
+quickly.
+Lemma 1 (Cygan et al. [5]). Let R = Z or R = Zq for some constant q. The Z4
+product of functions f, g : ZB
+4 → R can be computed in time and ring operations
+4|B| |B|O(1) .
+
+3
+
+An O∗ (4tw(G) ) Algorithm via Cut&Count
+
+We start by giving an fpt algorithm for Co-Path Set parameterized by treewidth.
+Our primary tool is the the Cut&Count framework, which enables ctw nO(1) onesided Monte Carlo algorithms for connectivity-type problems with constant
+probability of a false negative. Cut&Count has previously been used to improve
+the best-known bounds for several well-studied problems, including Connected
+Vertex Cover, Hamiltonian Cycle, and Feedback Vertex Set [5].
+Pilipczuk showed that an O∗ (ctw ) algorithm for some constant c can be designed
+with the Cut&Count approach for Co-Path Set because the problem can be
+expressed in the specialized graph logic known as ECML+C [12]. However, since
+our end goal is to improve on existing algorithms for k-Co-Path Set in general
+graphs using a bounded treewidth kernel, we need to develop a specialized
+dynamic programming algorithm with a small value of c. We show:
+Theorem 2. There exists a one-sided fpt Monte Carlo algorithm tw-copath
+deciding k-Co-Path Set for all k in a graph G in O∗ (4tw(G) ) time with failure
+probability ≤ 1/3.
+
+3
+
+The Cut&Count technique has two main ingredients: an algebraic approach
+to counting which uses arithmetic in Z2 (enabling faster algorithms) alongside
+a guarantee that undesirable objects are seen an even number of times (so a
+non-zero result implies a desired solution has been seen), and the idea of defining
+the problem’s connectivity requirement through consistent cuts. In this context,
+a consistent cut is a partitioning (V1 , V2 ) of the vertices of a graph into two sets
+such that no edge uv has u ∈ V1 and v ∈ V2 and all vertices of degree 0 are in V1 .
+Since each connected component must lie completely on one side of any consistent
+cut, we see that a graph G has exactly 2cc(G)−nI (G) such cuts, where cc(G) is the
+number of connected components and nI (G) is the number of isolated vertices. In
+order to utilize parity with the number of consistent cuts, we introduce markers,
+which create even numbers of consistent cuts for graphs that are not collections of
+disjoint paths. Our counting algorithm tw-copath, which computes the parity of
+the size of the collection of subgraphs with consistent cuts which adhere to specific
+properties pertaining to Co-Path Set, employs dynamic programming over a
+nice tree decomposition. We further use weights and the Isolation Lemma to
+bound the probability of a false negative arising from multiple valid markings of a
+solution. We use fast subset convolution [1] to reduce the complexity required for
+handling join bags in the dynamic programming. In the remainder of this section,
+we present the specifics for applying these techniques to solve Co-Path Set.
+
+3.1
+
+Cutting
+
+We first provide formal definitions of markers and marked consistent cuts, which
+we use to ensure that sets of disjoint paths are counted exactly once in some
+entry of our dynamic programming table.
+Definition 2. A triple (V1 , V2 , M ) is a marked consistent cut of a graph G
+if (V1 , V2 ) is a consistent cut and M ⊆ E(G[V1 ]). We refer to the edges in M
+as the markers. A marker set is proper if it contains at least one edge in each
+non-isolate connected component of G.
+Note that if a marker set is proper, all vertices are on the V1 side of the cut.
+This is because by the definition of a consistent cut, all isolates are on the V1
+side, and if every connected component contains a marker then all connected
+components must fall entirely on the V1 side as well. Therefore for any proper
+marker set there exists exactly one consistent cut, while all marker sets which
+are not proper will be paired with an even number of consistent cuts because
+unmarked components may lie in V1 or V2 . We use proper marker sets to
+distinguish desired subgraphs by assigning markers in such a way that when we
+prune the dynamic programming table for solutions (as described later in the
+section), the only subgraphs we consider which may have a proper marker set
+are collections of disjoint paths. We know because the marker set is proper that
+the subgraph has a unique consistent cut, and thus these collections of disjoint
+paths will only be counted once in some entry of the dynamic programming
+table, while all other subgraphs will be counted an even number of times. Note
+that we are not claiming that all collections of disjoint paths will have proper
+marker sets.
+We refer to the complement of a co-path set (the edges in the disjoint paths) as
+a cc-solution, and call it a marked-cc-solution when paired with a proper marker
+set of size exactly equal to its number of non-isolate connected components. While
+4
+
+cc-solutions can be viewed as solutions due to their complementary nature, being
+marked is crucial in our counting algorithm and thus subgraphs which are markedcc-solutions are what correspond to solutions in the dynamic programming table.
+We now describe our use of the Isolation Lemma, which P
+guarantees we are
+able to use parity to distinguish solutions. Let f (X) denote x∈X f (x).
+Isolation Lemma ([11]). Let F ⊆ 2U be a non-empty set family over universe
+U . A function ω : U → Z is said to isolate F if there is a unique S ∈ F with
+ω(S) = minF ∈F ω(F ). Assign weights ω : U → {1, 2, ..., N } uniformly at random.
+Then the probability that ω isolates F is at least 1 − |U |/N .
+Intuitively, if F is the set of solutions (or complements of solutions) to an
+instance of Co-Path Set and |F| is even, then tw-copath would return a false
+negative. This is because while each solution is counted an odd number of times
+in tw-copath, because there are an even number of solutions the total count
+of solutions is even, making the combined count of solutions and non-solutions
+even and the algorithm would incorrectly determine a solution does not exist
+(a false negative). The Isolation Lemma allows us to partition F based on the
+weight of each solution (as assigned by ω), and guarantees at least one of the
+partition’s blocks has odd size with constant probability. We let U contain
+two copies of every edge e ∈ E: one representing e as a marker and one as an
+edge in the cc-solution. Then 2U denotes all pairs of edge subsets (potential
+marked-cc-solutions), and we set N = 3|U | = 6E (selected to achieve success
+probability in Theorem 1). Each copy of an edge is assigned a weight in [1, N ]
+uniformly at random by ω and the probability of finding an isolating ω is thus
+2/3. We denote the values assigned by ω to the set of marker copies by ωM , and
+likewise to the set of edge-in-cc-solution copies by ωE .
+
+3.2
+
+Counting
+
+A marked-cc-solution C of a graph G corresponds to a co-path set of size k when
+the number of edges and markers in C match specific values which depend on
+k and |E(G)|. These values are easily deduced because we know the deletion
+of a co-path set solution of size k will leave |E(G)| − k edges in a cc-solution.
+Furthermore, because a forest has n − m connected components, the number of
+markers in C needs to be at most |V (C)| − |E(G)| + k. All isolates from a forest
+can be removed and the resulting graph is still a forest, and thus the actual
+number of markers necessary in C is |V (C)| − nI (C) − |E(G)| + k.
+We now describe a dynamic programming (DP) algorithm over a nice tree
+decomposition which returns mod 2 the number of appropriately sized markedcc-solutions in the root’s subtree (for a fixed k). Since no-instances have no
+appropriately sized marked-cc-solutions, and yes-instances have at least one, odd
+parity for the number of marked-cc-solutions of size corresponding to k implies
+a solution to the k-Co-Path Set instance must exist.
+During the DP algorithm we actually count (for all values (m, e)) the number
+of cc-candidates, which are subgraphs G0 ⊆ G with maximum degree 2, exactly
+e edges, and a marked consistent cut with m markers. The following lemma
+justifies counting cc-candidates in place of marked-cc-solutions.
+Lemma 2. The parity of the number of marked-cc-solutions in G with e edges
+and weight w is the same as the parity of the number of cc-candidates G0 ⊆ G
+with e edges, |V (G0 )| − e − nI (G0 ) markers, and weight w.
+5
+
+Proof. Consider a subgraph G0 ⊆ G with maximum degree 2 and e edges. Let
+M 0 be a marking of G0 such that ωE (E(G0 )) + ωM (M 0 ) = w. Assume first
+that G0 is a collection of paths. We know that G0 has |V (G0 )| − e − nI (G0 )
+non-isolate connected components. If M 0 is a proper marker set of G0 , then
+|M 0 | = |V (G0 )|−e−nI (G0 ) and (G0 , M 0 ) has exactly one consistent cut. Therefore
+(G0 , M 0 ) contributes one to both the number of marked-cc-solutions and the
+number of cc-candidates, respectively.
+If otherwise M 0 is not a proper marker set, then (G0 , M 0 ) contains an unmarked connected component and has an even number of consistent cuts, and
+therefore contributes an even number to the count of cc-candidates and zero
+to the number of marked-cc-solutions. Finally, if G0 contains at least one cycle
+then cc(G0 ) > |V (G0 )| − e − nI (G0 ). Therefore at least one connected component
+does not contain a marker, and the number of consistent cuts is even, so the
+contribution to the count of cc-candidates is again even and the contribution
+to the count of marked-cc-solutions is zero. We conclude that the parity of the
+number of marked-cc-solutions and the parity of the number of cc-candidates is
+the same.
+Our dynamic programming algorithm is a bottom-up approach over a nice
+tree decomposition. We build cc-candidates for all values of m and e (encoding
+the option to add/not add edges and select/not select edges as markers), and
+keep track of various parameters ensuring that when pruning the DP table we
+only consider cc-candidates which could be valid solutions to the k-Co-Path
+Set instance. We use the number of edges to ensure our solution is of the
+correct size, and the number of markers and non-isolate vertices to determine
+when a subgraph is acyclic. The weight parameter allows us to distinguish
+between solutions and decreases the likelihood of a false negative occurring via
+the Isolation Lemma. Finally, we need a parameter that encodes the degree
+information required to properly combine cc-candidates as we iterate up the tree.
+We call this parameter a degree-function and define on the vertices V of a bag as
+Variable
+a
+e
+m
+w
+
+Parameter
+
+Maximum value
+
+# of non-isolated vertices
+# of edges
+# of markers
+weight of edges and markers
+
+n
+n2
+n2
+4n4
+
+Table 1: Dynamic programming table parameters and upper bounds.
+f : V → Σ = {0, 11 , 12 , 2}, where f (v) corresponds to v’s degree in the associated
+cc-candidates of the table entry — for vertices of degree 1, their value 1j denotes
+which side of the partition (V1 , V2 ) they are on. Vertices with degree 0 are on the
+V1 side of the cut by definition so we need not keep track of their side of the cut.
+Similarly degree 2 vertices cannot have additional incident edges, thus the side of
+the cut they fall on will not matter for selecting markers. In summary, we have
+table entries Ax (a, e, m, w, s) counting the number of cc-candidates at bag x
+with a non-isolated vertices, e edges, m markers, weight w, and degree-function
+s.
+In the following description of the dynamic programming algorithm over
+a nice tree decomposition T , we let z1 , z2 denote the children of a join node;
+
+6
+
+otherwise, the unique child is denoted y.
+Leaf :
+Ax (0, 0, 0, 0, ∅) = 1; Ax (a, e, m, w, s) = 0 for all other inputs.
+Introduce vertex v:
+Ax (a, e, m, w, s) = Js(v) = 0KAy (a, e, m, w, s).
+Introduce edge uv:
+Ax (a, e, m, w, s) = Ay (a, e, m, w, s) +
+
+X
+
+Jφ2 (αu , αv )KAy (a0 , e − 1, m, w0 , s0 )
+
+αt ∈subs(s(t))
+t∈{u,v}
+
++
+
+X
+
+
+
+Jφ1 (αu , αv )K Ay (a0 , e − 1, m, w0 , s0 ) + Ay (a0 , e − 1, m − 1, w00 , s0 ) ,
+
+αt ∈subs(s(t))
+t∈{u,v}
+
+where φj (αu , αv ) = (αu = 1j ∨ s(u) = 1j ) ∧ (αv = 1j ∨ s(v) = 1j ), a0 =
+a − (|{11 , 12 } ∩ {s(u), s(v)}|), w0 = w − ωE (uv), w00 = w − ωE (uv) − ωM (uv),
+s0 = s[u → αu , v → αv ], and the subs function returns all the values the degreefunction in child node y could have assigned to vertices u and v based on current
+degree-function s (summarized below).
+s(v)
+
+0
+
+11
+
+12
+
+2
+
+subs(s(v)) ∅
+
+0
+
+0
+
+{11 , 12 }
+
+We now argue this formula’s correctness. The term Ay (a, e, m, w, s) handles
+the case when uv is excluded from the cc-solution. We handle the case when
+uv is added to the cc-solution by iterating over all possible subs values for each
+endpoint, only considering counts in child y’s entries where u and v have the
+appropriate subs values (preventing us from ever having a vertex with degree
+greater than 2). Note that we use the φj function to guarantee that if s labels
+u or v as an isolate, we do not use the introduced edge. We have a summation
+for both possible j values in order to consider uv falling on either side of the cut.
+The formulation of a0 assures that each endpoint of degree 1 is now included in
+the count of non-isolates (i.e. when u and/or v had degree 0 in y). We utilize
+the marker weight of uv to distinguish when we choose it as a marker (only if
+on V1 side of cut), and increment m accordingly. In either case, we update w
+appropriately (with w0 if no marker, w00 if marker introduced).
+Forget vertex h:
+X
+Ax (a, e, m, w, s) =
+Ay (a, e, m, w, s[h → α]).
+α∈{0,11 ,12 ,2}
+
+As a forgotten vertex can have degree 0, 1 or 2 in a cc-candidate, we must
+consider all possible values that s assigns to h in child bag y. Note that cccandidates in which h is both not an isolate and not a member of a connected
+component that contains a marker will cancel mod 2, as h can be on either side
+of the cut and all parameters will be identical.
+7
+
+Join:
+We compute Ax from Az1 and Az2 via fast subset convolution [1] taking care to
+only combine table entries whose degree-functions are compatible.
+Definition 3. At a join node x with children z1 and z2 , the degree-functions s1
+from Az1 , s2 from Az2 , and s from Ax are compatible if one of the following
+holds for every vertex v in x: (i) si (v) = 0 and sl (v) = s(v), i 6= l or (ii)
+s1 (v) = s2 (v) = 1j and s(v) = 2 for i, j, l ∈ [1, 2].
+In order to apply Lemma 1, we let B be the bag at x, and transform the values
+assigned by the degree function s to values in Z4 . Let φ : {0, 11 , 12 , 2} → Z4 and
+ρ : {0, 11 , 12 , 2} → Z be defined as in the table below, extending to vectors by
+component-wise application.
+
+φ
+ρ
+
+0
+
+11
+
+12
+
+2
+
+0
+0
+
+1
+1
+
+3
+1
+
+2
+2
+
+We use φ to apply Lemma 1, while the function ρ (which corresponds to a
+vertex’s degree) is used in tandem to ensure the compatibility requirements are
+met: if φ(s1 ) + φ(s2 ) = φ(s), then necessarily ρ(s1 ) + ρ(s2 ) ≥ ρ(s). From the
+above table it is easy to verify that φ(s1 ) + φ(s2 ) = φ(s) and ρ(s1 ) + ρ(s2 ) = ρ(s)
+together imply that s1 , s2 and s are compatible. We sum over both functions
+when computing values for join nodes, to make sure that solutions from the
+children are combined only when there is compatibility.
+Assign P
+t1 = φ(s1 ), t2 = φ(s2 ), and t = φ(s) in accordance with Lemma 1.
+Let ρ(s) = v∈B ρ(s(v)); that is ρ(s) is the sum of the degrees of all the vertices
+in the join node, as assigned by degree-function s. By defining functions f and
+g as follows:
+f hd,a,e,m,wi (φ(s)) = Jρ(s) = dKAz1 (a, e, m, w, s),
+g hd,a,e,m,wi (φ(s)) = Jρ(s) = dKAz2 (a, e, m, w, s),
+
+and writing r~i for the vector hdi , ai , ei , mi , wi i, we can now compute
+X
+Ax (a, e, m, w, s) =
+(f r~1 ∗4x g r~2 )(φ(s))
+r~1 +r~2 =hρ(s),a0 ,e,m,wi
+−1
+where a0 = a + |s−1
+1 {11 , 12 } ∩ s2 {11 , 12 }|. We point out that
+X
+(f r~1 ∗4x g r~2 )(φ(s)) = 1
+r~1 +r~2 =hρ(s),a0 ,e,m,wi
+
+only if both φ(s1 ) + φ(s2 ) = φ(s) and ρ(s1 ) + ρ(s2 ) = ρ(s); that is, exactly when
+s1 , s2 and s are compatible.
+We conclude this section by describing how we search the DP table for
+marked-cc-solutions at the root node r. By Lemma 2, the parity of the number
+of marked-cc-solutions with |E| − k edges and weight w is the same as the parity
+of the number of cc-candidates G0 with |E| − k edges, |V (G0 )| − (|E| − k) − nI (G0 )
+markers and weight w. These candidates are recorded in the table entries
+8
+
+Ar (a, |E| − k, a − |E| + k, w, ∅), where a is the number of non-isolates. Therefore,
+if there exists some a and w so that Ar (a, |E| − k, a − |E| + k, w, ∅) = 1, then we
+have a yes-instance of k-Co-Path Set. Note that the degree-function is ∅ in
+this entry because there are no vertices contained in the root node by definition.
+By Lemma 1, the time complexity of tw-copath for a join node B is O∗ (4|B| ),
+which is O∗ (4tw ). Note that for the other four types of bags, as we only consider
+one instance of s per table entry, the complexity for each is O∗ (4tw ). We point
+out that the size of the table is polynomial in n because there are a linear number
+of bags and a polynomial number of entries (combinations of parameters) for
+each bag. Since the nice tree decomposition has size linear in n, the bottomup dynamic programming runs in total time O∗ (4tw ). This complexity bound
+combined with the correctness of tw-copath discussed above proves Theorem 2.
+
+4
+
+Achieving O∗ (1.588k ) in General Graphs
+
+In order to use tw-copath to solve k-CoPath Set in graphs with unbounded
+treewidth, we combine kernelization and a branching procedure to generate a
+set of reduced instances – bounded treewidth subgraphs of the input graph G.
+Specifically, we begin by constructing a kernel of size at most 6k as described
+in [7]. Our reduced instances are bounded degree subgraphs of the kernel given
+by a branching technique. We prove that (1) at least one reduced instance is an
+equivalent instance; (2) we can bound the number of reduced instances; and (3)
+each reduced instance has bounded treewidth. Finally, we analyze the overall
+computational complexity of this process.
+
+4.1
+
+Kernelization and Branching
+
+We start by describing our branching procedure deg-branch (Algorithm 1),
+which uses a degree-bounding technique similar to that of Zhang et al. [16]. Our
+implementation takes an instance (G, k) of Co-Path Set and two non-negative
+integers ` and D, and returns a set of reduced instances {(Gi , k − `)} so that (1)
+each Gi is a subgraph of G with exactly |E| − ` edges and maximum degree at
+most D; and (2) at least one (Gi , k − `) is an equivalent instance to (G, k). The
+size of the output (and hence the running time) of deg-branch depends on both
+input parameters ` and D. We will select D to achieve the desired complexity in
+copath in Section 4.3. We also make use of a budget parameter b, which keeps
+track of how many more edges can be removed per the constraints of ` (b is
+initially set to `).
+Our branching procedure leverages the observation that if a co-path set S
+exists, then every vertex has at most two incident edges not in S. Specifically, for
+every vertex of degree greater than D, we branch on pairs of incident edges which
+could remain after removing a valid co-path set (calling each pair a candidate),
+creating a search tree of subgraphs.
+Algorithm 1 returns the set of reduced instances, the size of which is at most
+the number of leaves in the search tree of the branching process (inequality
+can result from the algorithm discarding branches in which the number of
+edits necessary to branch on a vertex exceeds the number of allowed deletions
+remaining). We now give an upper bound on the size of this set.
+
+9
+
+Algorithm 1: Generating reduced instances
+1
+2
+3
+4
+5
+6
+7
+8
+
+Algorithm deg-branch(G, k, `, D, b)
+Let v be a vertex of maximum degree in G
+if deg(v) ≥ D + 1 and b ≥ D − 1 then
+Select vertices u1 , . . . uD+1 uniformly at random from N (v)
+R = ∅, Ev = {{v, ui }}
+for e1 , e2 ∈ Ev , e1 6= e2 do
+Ev0 = Ev \ {e1 , e2 }
+R = R ∪ deg-branch(G \ Ev0 , k, `, D, b − (D − 1))
+
+9
+10
+11
+
+return R
+else if b = 0 and deg(v) ≤ D then return {(G, k − `)}
+else return ∅
+// Discard G
+
+Lemma 3. Let T be a search tree formed by deg-branch(G, `, D, k, b). The
+`/(D−1)
+number of leaves of T is at most D+1
+.
+2
+
+Proof of Lemma 3. The number of children of each interior node of T is D+1
+,
+2
+
+D+1 depth(T )
+resulting in at most
+leaves. The depth of T is limited by the
+2
+second condition of the if on line 3 of Algorithm 1. For each recursive call, b is
+decremented by (D − 1), until b ≤ D − 1. As b is initally set to `, this implies
+depth(T ) ≤ `/(D − 1), proving the claim.
+Finally, we argue that at least one member of the set of reduced instances
+returned by deg-branch is equivalent to the original. Consider a solution F
+to k-Co-Path Set in the original instance (G, k). Every vertex has at most
+two incident edges in G[E\F ], and since all candidates are considered at every
+high-degree vertex, at least one branch correctly keeps all of these edges.
+
+4.2
+
+Treewidth of Reduced Instances
+
+Our algorithm deg-branch produces reduced instances with bounded degree;
+in order to bound their treewidth, we make use of the following result, which
+originated from Lemma 1 in [8] and was extended in [9].
+Lemma 4. For  > 0, there exists n ∈ Z+ s.t. for every graph G with n > n
+vertices,
+!
+17
+X
+tw(G) ≤
+ci ni + n≥18 + n,
+i=3
+
+where ni is the number of vertices of degree i in G for i ∈ {3, . . . , 17}, n≥18 is
+the number of vertices of degree at least 18, and ci is given in Table 2. Moreover,
+a tree decomposition of the corresponding width can be constructed in polynomial
+time in n.
+Since the structure of k-Co-Path Set naturally provides some constraints
+on the degree sequence of yes-instances, we are able to apply Lemma 4 to our
+reduced instances to effectively bound treewidth. We first find an upper bound
+on the number of degree-3 vertices in any yes-instance of k-Co-Path Set.
+
+10
+
+d
+cd
+
+3
+4
+5
+6
+7
+8
+9
+10
+0.1667 0.3334 0.4334 0.5112 0.5699 0.6163 0.6538 0.6847
+
+d
+cd
+
+11
+12
+13
+14
+15
+16
+17
+0.7105 0.7325 0.7514 0.7678 0.7822 0.7949 0.8062
+
+Table 2: Numerically obtained constants cd , 3 ≤ d ≤ 17, used in Lemma 4;
+originally given in Table 6.1 of [9].
+Lemma 5. Let ni be the number of vertices of degree i in a graph G for any
+i ∈ Z+ , and ∆ be the maximum degree of G. If (G, k) is a yes-instance of
+P∆
+k-Co-Path Set, then n3 ≤ 2k − ( i=4 (i − 2)ni ).
+Proof. Since (G, k) is a yes-instance, removing some set of at most k edges results
+in a graph of maximum degree 2. For a vertex of degree j ≥ 3, at least j − 2
+incident edges must be removed. Thus, n3 + 2n4 + 3n5 + . . . + (∆ − 2)n∆ ≤ 2k
+(each removed edge counts twice – once for each endpoint).
+Lemma 6. Let (G, k) be an instance of k-Co-Path Set such that G has n
+vertices and max degree at most ∆ ∈ {3, . . . , 17}. Then the treewidth of G is
+bounded by k/3 + n + c, for some constant c and any  > 0. A tree decomposition
+of the corresponding width can be constructed in polynomial time in n.
+Proof. Let n be defined as in Lemma 4. Let G0 be the graph formed by adding
+N = n isolates to G. By Lemma 4, because G0 has maximum degree at most
+∆, tw(G0 ) ≤ (1/6)n3 + (1/3)n4 + . . . + c∆ n∆ + (N + n). We can substitute the
+bound for n3 from Lemma 5, which yields:
+P∆
+2k − ( i=4 (i − 2)ni ) n4
++
++ . . . + c∆ n∆ + (N + n)
+tw(G ) ≤
+6
+3
+k
+≤ + (n + N ).
+3
+0
+
+Note
+P∆ that the inequality holds because we can pair the negative terms of
+( i=4 (i − 2)ni )/6 with the corresponding terms of n4 /3 + . . . + c∆ n∆ and
+the value of cj nj − (j − 2)(nj )/6 is non-positive for all j ∈ [4, 17]. Since N = n
+is a constant, we have tw(G0 ) ≤ k/3 + n + c. Since G ⊆ G0 and treewidth is
+monotone under subgraph inclusion, this proves the claim.
+We point out that when applying Lemma 6 to reduced instances, computing
+the desired tree decomposition is polynomial in k (since they are subgraphs of a
+6k-kernel).
+
+4.3
+
+The Algorithm copath
+
+This section describes how we combine the above techniques to prove Theorem 1.
+As shown in Algorithm 2, we start by applying 6k-kernel [7] to find G0 , a kernel
+of size at most 6k; this process deletes k − k 0 edges. We then guess the number
+of edges k1 ∈ [0, k 0 ] to remove during branching, and use deg-branch to create
+a set of reduced instances Qk1 , each of which have k 0 − k1 edges. Note that
+deg-branch considers all possible reduced instances, and thus if a (cc-)solution
+
+11
+
+exists, it is contained in at least one reduced instance. To ensure the complexity
+of finding the reduced instances does not dominate the running time, we set the
+degree bound D of the reduced instances to be 10 (any choice of 10 ≤ D ≤ 17 is
+valid). By considering all possible values of k1 , we are assured that if (G, k) is a
+yes-instance, some Qk1 contains a yes-instance. Each reduced instance is then
+passed to tw-copath, which correctly decides the problem with probability 2/3.
+Algorithm 2: Deciding k-Co-Path Set
+1
+2
+3
+4
+5
+6
+7
+
+Algorithm copath (G,k)
+(G0 , k 0 ) = 6k-kernel(G, k)
+for k1 ← 0 to k 0 do
+Qk1 = deg-branch(G0 , k 0 , k1 , 10, k1 )
+foreach (Gi , k2 ) ∈ Qk1 do
+if tw-copath(Gi , k2 ) then return true
+return false
+
+Proof of Theorem 1. We now analyze the running time of copath, as given in
+Algorithm 2. By Lemma 3, the size of each Qk1 is O(1.561k1 ). For each reduced
+instance (Gi , k2 ) in Qk1 , we have tw(Gi ) ≤ k2 /3 + (6k) + c by Lemma 6.
+Applying Theorem 2, tw-copath runs in time O∗ (4k2 /3+6k ) for each reduced
+instance (Gi , k2 ) in Qk1 (with success probability at least 2/3). Each iteration
+of the outer for loop can then be completed in time
+O∗ (1.561k1 4k2 /3+6k ) = O∗ (4k/3+6k ) = O∗ (1.588k ),
+where we use that k1 + k2 = k 0 ≤ k, and choose  < 10−5 . Since this loop runs at
+most k + 1 times, this is also a bound on the overall computational complexity
+of copath. Additionally copath is linear-fpt, as the kernelization of [7] is O(n),
+and the kernel has size O(k), avoiding any additional poly(n) complexity from
+the tw-copath subroutine. Note that by Lemma 4 the tree decomposition can
+be found in polynomial time in the size of the reduced instance. Since reduced
+instances are subsets of 6k-kernels, the linearity is unaffected because the graph
+has size polynomial in k.
+
+5
+
+Conclusion
+
+This paper gives an O∗ (4tw ) fpt algorithm for Co-Path Set. By coupling this
+with kernelization and branching, we derive an O∗ (1.588k ) linear-fpt algorithm
+for deciding k-Co-Path, significantly improving the previous best-known result
+of O∗ (2.17k ). We believe that the idea of combining a branching algorithm
+which guarantees equivalent instances with bounds on the degree sequence from
+the problem’s constraints can be applied to other problems in order to obtain
+a bound on the treewidth (allowing treewidth-parameterized approaches to be
+extended to general graphs).
+One natural question is whether similar techniques extend to the generalization of Co-Path Set to k-uniform hypergraphs (as treated in Zhang et al. [16]).
+It is also open whether the combined parameterization asking for a co-path set
+of size k resulting in ` disjoint paths is solvable in sub-exponential fpt time.
+
+12
+
+Acknowledgements
+This work supported in part by the Gordon & Betty Moore Foundation under DDD Investigator
+Award GBMF4560 and the DARPA GRAPHS program under SPAWAR Grant N66001-14-14063. Any opinions, findings, and conclusions or recommendations expressed in this publication
+are those of the author(s) and do not necessarily reflect the views of DARPA, SSC Pacific, or
+the Moore Foundation. We thank two anonymous reviewers for providing a simplification of
+our previous branching algorithm and pointing out the result from [9] enabling us to branch
+on vertices with degree greater than 7. We also thank Felix Reidl for helpful suggestions on an
+earlier draft that significantly improved the presentation of the results.
+
+References
+[1] A. Björklund, T. Husfeldt, P. Kaski, and M. Koivisto. Fourier meets Möbius: fast subset
+convolution. In Proceedings of STOC, pages 67–74, 2007.
+[2] Z. Chen, G. Lin, and L. Wang. An approximation algorithm for the minimum co-path set
+problem. Algorithmica, 60(4):969–986, 2011.
+[3] Y. Cheng, Z. Cai, R. Goebel, G. Lin, and B. Zhu. The radiation hybrid map construction
+problem: recognition, hardness, and approximation algorithms. Unpublished Manuscript,
+2008.
+[4] D. Cox, M. Burmeister, E. Price, S. Kim, and R. Myers. Radiation hybrid mapping:
+a somatic cell genetic method for constructing high-resolution maps of mammalian
+chromosomes. Science, 250:245–50, 1990.
+[5] M. Cygan, J. Nederlof, M. Pilipczuk, M. Pilipczuk, J. van Rooij, and J. Wojtaszczyk.
+Solving connectivity problems parameterized by treewidth in single exponential time. In
+FOCS, pages 150–159. IEEE, 2011.
+[6] Q. Feng, Q. Zhou, and S. Li. Randomized parameterized algorithms for co-path set
+problem. In FAW, pages 82–93. Springer, 2014.
+[7] Q. Feng, Q. Zhou, and J. Wang. Kernelization and randomized parameterized algorithms
+for co-path set problem. J. Comb. Optim., 2015. in press, DOI 10.1007/s10878-015-9901-y.
+[8] F. Fomin, S. Gaspers, S. Saurabh, and A. Stepanov. On two techniques of combining
+branching and treewidth. Algorithmica, 54(2):181–207, April 2009.
+[9] S. Gaspers. Exponential Time Algorithms - Structures, Measures, and Bounds. VDM,
+2010.
+[10] T. Kloks. Treewidth, Computations and Approximations, volume 842 of LNCS. Springer,
+1994.
+[11] K. Mulmuley, U. Vazirani, and V. Vazirani. Matching is as easy as matrix inversion. In
+Proceedings of STOC, pages 345–354. ACM, 1987.
+[12] M. Pilipczuk. Solving connectivity problems parameterized by treewidth in single exponential time. In MFCS, pages 520–531, 2011.
+[13] C. Richard III, D. Withers, T. Meeker, S. Maurer, G. Evans, R. Myers, and D. Cox. A
+radiation hybrid map of the proximal long arm of human chromosome 11 containing the
+multiple endocrine neoplasia type 1 (men-1) and bcl-1 disease loci. Am. J. Hum. Genet.,
+49(6):1189–1196, 1991.
+[14] N. Robertson and P. Seymour. Graph minors. II. Algorithmic aspects of tree-width. J.
+Algorithms, 7(3):309–322, 1986.
+[15] D. Slonim, L. Kruglyak, L. Stein, and E. Lander. Building human genome maps with
+radiation hybrids. J. Comp. Biol., 4(4):487–504, 1997.
+[16] C. Zhang, H. Jiang, and B. Zhu. Radiation hybrid map construction problem parameterized. Journal of Combinatorial Optimization, 27(1):3–13, 2014.
+
+13
+
+
+
+Summary:
+This research paper covers the following topic: A Fast Parameterized Algorithm for Co-Path Set
+Blair D. Sullivan, Andrew van der Poel
+Department of Computer Science, North Carolina State University,
+Raleigh, NC 27695
+
+arXiv:1603.04376v3 [cs.DS] 27 Jul 2016
+
+{blair sullivan,ajvande4}@ncsu.edu
+
+January 4, 2018
+Abstract
+The k-Co-Path Set problem asks, given a graph G and a positive
+integer k, whether one can delete k edges from G so that the remainder
+is a collection of disjoint paths. We give a linear-time fpt algorithm
+with complexity O∗ (1.588k ) for deciding k-Co-Path Set, significantly
+improving the previously best known O∗ (2.17k ) of Feng, Zhou, and Wang
+(2015). Our main tool is a new O∗ (4tw(G) ) algorithm for Co-Path Set
+using the Cut&Count framework, where tw(G) denotes treewidth. In
+general graphs, we combine this with a branching algorithm which refines
+a 6k-kernel into reduced instances, which we prove have bounded treewidth.
+
+1
+
+Introduction
+
+We study parameterized versions of Co-Path Set [3, 16], an NP-complete
+problem asking for the minimum number of edges whose deletion from a graph
+results in a collection of disjoint paths (the deleted edges being a co-path set –
+see Figure 1). Specifically, we are concerned with k-Co-Path Set, which uses
+the natural parameter of the number of edges deleted.
+k-Co-Path Set
+Input: A graph G = (V, E) and a non-negative integer k.
+Parameter: k
+Problem: Does there exist F ⊆ E of size exactly k such that
+G[E \ F ] is a set of disjoint paths?
+These problems are naturally motivated by determining the ordering of
+genetic markers in DNA using fragment data created by breaking chromosomes
+with gamma radiation (a technique known as radiation hybrid mapping) [4,13,15].
+Unfortunately, human error in distinguishing markers often means the constraints
+implied by markers’ co-occurrence on fragments are incompatible with all possible
+linear orderings, necessitating an algorithm to find the “best” ordering (that
+violates the fewest constraints). Co-Path Set solves the special case where
+each DNA fragment contains exactly two genetic markers (corresponding to an
+edge in the graph); any linear ordering of the markers must correspond to some
+
+1
+
+Figure 1: Three co-path sets (dashed edges), including one of minimum size
+(rightmost).
+set of paths, and we minimize the number of unsatisfied constraints (edges in
+the co-path set).
+Recent algorithmic results related to Co-Path Set include a (10/7)-approximation
+algorithm [2], and two parameterized algorithms deciding k-Co-Path Set [6, 7],
+the faster of which [7] has time complexity1 O∗ (2.17k ). However, as written,
+both parameterized results [6,7] contain a flaw in their analysis which invalidates
+their probability of a correct solution in the given time2 . The best known bound
+prior to [6] is an O∗ (2.45k ) algorithm [16]. In this paper, we prove:
+Theorem 1. k-Co-Path Set is decidable in O∗ (1.588k ) linear-fpt time with
+probability at least 2/3.
+We note that standard amplification arguments apply, and Theorem 1 holds
+for any success probability less than 1. Further, if f is an increasing function
+with limn→∞ f (n) = 1, we can solve k-Co-Path Set with success probability
+at least f (n) in O(1.588k npolylog(n)).
+The remainder of this paper is organized as follows: after essential definitions
+and notation in Section 2, we start in Section 3 by giving a new O∗ (4tw(G) )
+algorithm tw-copath for solving Co-Path Set parameterized by treewidth (tw)
+using the Cut&Count framework [5]. Finally, Section 4 describes the linear-fpt
+algorithm referenced in Theorem 1, which solves k-Co-Path Set on general
+graphs in O∗ (1.588k ) by applying tw-copath to a set of “reduced instances”
+generated via kernelization and a branching procedure3 deg-branch.
+
+2
+
+Preliminaries
+
+Let G(V, E) be the graph with vertex set V and edge set E. Unless otherwise
+noted, we assume |V | = n; we let N (v) denote the set of neighbors of a vertex v,
+and let deg(v) = |N (v)|. Given a graph G(V, E) and F ⊆ E, we write G[F ] for
+the graph G(V, F ).
+Our tw-copath algorithm in Section 3 uses dynamic programming over a
+tree decomposition, and its running time depends on the related measure of
+treewidth [14], which we denote tw(G). To simplify the dynamic programming,
+1 Throughout this paper, we use the notation O ∗ (f (k)) for the fpt (fixed-parameter tractable)
+complexity O(f (k)nO(1) ); we say an algorithm is linear-fpt if the complexity is O(f (k)n).
+2 Step 2.11 in both versions of Algorithm R-MCP checks if a candidate co-path set F has
+size ≤ k1 (as they are sweeping over all possible sizes of candidates and want to restrict the size
+accordingly). If F is too large, the algorithm discards it and continues to the next iteration.
+However, in order for their analysis to hold, the probability that the candidate is contained
+in a co-path set must be ≥ (1/2.17)k1 (or (1/2.29)k1 in [6]) for every iteration. Candidates
+which are too large may have significantly smaller probability of containment, yet are counted
+in the exponent of the analysis.
+3 The properties of our reduced instances guarantee we can find a tree decomposition in
+poly(k) time.
+
+2
+
+we will use a variant of nice tree decompositions [5, 10] where each node in the
+tree has one of five specific types: leaf, introduce vertex, introduce edge, forget
+vertex, or join. The “introduce edge” nodes are labelled with an edge uv and
+have one child (with an identical bag); we require each edge in E is introduced
+exactly once. Additionally, we enforce that the root node is of type “forget
+vertex” (and thus has an empty bag). A tree decomposition can be transformed
+into a nice decomposition of the same width in time linear in the size of the
+input graph [5].
+When describing the dynamic programming portion of the algorithm we use
+Iverson’s bracket notation: if p is a predicate we let JpK be 1 if p is true and 0
+otherwise. We also use the shorthand f [x → y] to denote updating a function f
+so that f (x) = y and all other values are unchanged.
+Finally, we use fast subset convolution [1] to reduce the complexity of handling
+join nodes in the nice tree decomposition (Section 3). This technique maps
+functions of the vertices in a join bag to values in Zp = Z/pZ (where p is chosen
+based on the application). The key complexity result we rely on uses the Zp
+product, which is defined below. We write ZB
+p for the set of all vectors t of
+length |B| assigning a value t(b) ∈ Zp to each element of b ∈ B.
+Definition 1 (Zp product). Let p ≥ 2 be a fixed integer and let B be a finite set.
+For t1 , t2 , t ∈ ZB
+p we say that t1 + t2 = t if t1 (b) + t2 (b) = t(b) (in Zp ) for all
+p
+b ∈ B. For a ring R and functions f, g : ZB
+p → R, define the Zp product, ∗x as
+P
+(f ∗px g)(t) =
+f (t1 )g(t2 ).
+t1 +t2 =t
+
+Fast subset convolution guarantees that certain Zp products can be computed
+quickly.
+Lemma 1 (Cygan et al. [5]). Let R = Z or R = Zq for some constant q. The Z4
+product of functions f, g : ZB
+4 → R can be computed in time and ring operations
+4|B| |B|O(1) .
+
+3
+
+An O∗ (4tw(G) ) Algorithm via Cut&Count
+
+We start by giving an fpt algorithm for Co-Path Set parameterized by treewidth.
+Our primary tool is the the Cut&Count framework, which enables ctw nO(1) onesided Monte Carlo algorithms for connectivity-type problems with constant
+probability of a false negative. Cut&Count has previously been used to improve
+the best-known bounds for several well-studied problems, including Connected
+Vertex Cover, Hamiltonian Cycle, and Feedback Vertex Set [5].
+Pilipczuk showed that an O∗ (ctw ) algorithm for some constant c can be designed
+with the Cut&Count approach for Co-Path Set because the problem can be
+expressed in the specialized graph logic known as ECML+C [12]. However, since
+our end goal is to improve on existing algorithms for k-Co-Path Set in general
+graphs using a bounded treewidth kernel, we need to develop a specialized
+dynamic programming algorithm with a small value of c. We show:
+Theorem 2. There exists a one-sided fpt Monte Carlo algorithm tw-copath
+deciding k-Co-Path Set for all k in a graph G in O∗ (4tw(G) ) time with failure
+probability ≤ 1/3.
+
+3
+
+The Cut&Count technique has two main ingredients: an algebraic approach
+to counting which uses arithmetic in Z2 (enabling faster algorithms) alongside
+a guarantee that undesirable objects are seen an even number of times (so a
+non-zero result implies a desired solution has been seen), and the idea of defining
+the problem’s connectivity requirement through consistent cuts. In this context,
+a consistent cut is a partitioning (V1 , V2 ) of the vertices of a graph into two sets
+such that no edge uv has u ∈ V1 and v ∈ V2 and all vertices of degree 0 are in V1 .
+Since each connected component must lie completely on one side of any consistent
+cut, we see that a graph G has exactly 2cc(G)−nI (G) such cuts, where cc(G) is the
+number of connected components and nI (G) is the number of isolated vertices. In
+order to utilize parity with the number of consistent cuts, we introduce markers,
+which create even numbers of consistent cuts for graphs that are not collections of
+disjoint paths. Our counting algorithm tw-copath, which computes the parity of
+the size of the collection of subgraphs with consistent cuts which adhere to specific
+properties pertaining to Co-Path Set, employs dynamic programming over a
+nice tree decomposition. We further use weights and the Isolation Lemma to
+bound the probability of a false negative arising from multiple valid markings of a
+solution. We use fast subset convolution [1] to reduce the complexity required for
+handling join bags in the dynamic programming. In the remainder of this section,
+we present the specifics for applying these techniques to solve Co-Path Set.
+
+3.1
+
+Cutting
+
+We first provide formal definitions of markers and marked consistent cuts, which
+we use to ensure that sets of disjoint paths are counted exactly once in some
+entry of our dynamic programming table.
+Definition 2. A triple (V1 , V2 , M ) is a marked consistent cut of a graph G
+if (V1 , V2 ) is a consistent cut and M ⊆ E(G[V1 ]). We refer to the edges in M
+as the markers. A marker set is proper if it contains at least one edge in each
+non-isolate connected component of G.
+Note that if a marker set is proper, all vertices are on the V1 side of the cut.
+This is because by the definition of a consistent cut, all isolates are on the V1
+side, and if every connected component contains a marker then all connected
+components must fall entirely on the V1 side as well. Therefore for any proper
+marker set there exists exactly one consistent cut, while all marker sets which
+are not proper will be paired with an even number of consistent cuts because
+unmarked components may lie in V1 or V2 . We use proper marker sets to
+distinguish desired subgraphs by assigning markers in such a way that when we
+prune the dynamic programming table for solutions (as described later in the
+section), the only subgraphs we consider which may have a proper marker set
+are collections of disjoint paths. We know because the marker set is proper that
+the subgraph has a unique consistent cut, and thus these collections of disjoint
+paths will only be counted once in some entry of the dynamic programming
+table, while all other subgraphs will be counted an even number of times. Note
+that we are not claiming that all collections of disjoint paths will have proper
+marker sets.
+We refer to the complement of a co-path set (the edges in the disjoint paths) as
+a cc-solution, and call it a marked-cc-solution when paired with a proper marker
+set of size exactly equal to its number of non-isolate connected components. While
+4
+
+cc-solutions can be viewed as solutions due to their complementary nature, being
+marked is crucial in our counting algorithm and thus subgraphs which are markedcc-solutions are what correspond to solutions in the dynamic programming table.
+We now describe our use of the Isolation Lemma, which P
+guarantees we are
+able to use parity to distinguish solutions. Let f (X) denote x∈X f (x).
+Isolation Lemma ([11]). Let F ⊆ 2U be a non-empty set family over universe
+U . A function ω : U → Z is said to isolate F if there is a unique S ∈ F with
+ω(S) = minF ∈F ω(F ). Assign weights ω : U → {1, 2, ..., N } uniformly at random.
+Then the probability that ω isolates F is at least 1 − |U |/N .
+Intuitively, if F is the set of solutions (or complements of solutions) to an
+instance of Co-Path Set and |F| is even, then tw-copath would return a false
+negative. This is because while each solution is counted an odd number of times
+in tw-copath, because there are an even number of solutions the total count
+of solutions is even, making the combined count of solutions and non-solutions
+even and the algorithm would incorrectly determine a solution does not exist
+(a false negative). The Isolation Lemma allows us to partition F based on the
+weight of each solution (as assigned by ω), and guarantees at least one of the
+partition’s blocks has odd size with constant probability. We let U contain
+two copies of every edge e ∈ E: one representing e as a marker and one as an
+edge in the cc-solution. Then 2U denotes all pairs of edge subsets (potential
+marked-cc-solutions), and we set N = 3|U | = 6E (selected to achieve success
+probability in Theorem 1). Each copy of an edge is assigned a weight in [1, N ]
+uniformly at random by ω and the probability of finding an isolating ω is thus
+2/3. We denote the values assigned by ω to the set of marker copies by ωM , and
+likewise to the set of edge-in-cc-solution copies by ωE .
+
+3.2
+
+Counting
+
+A marked-cc-solution C of a graph G corresponds to a co-path set of size k when
+the number of edges and markers in C match specific values which depend on
+k and |E(G)|. These values are easily deduced because we know the deletion
+of a co-path set solution of size k will leave |E(G)| − k edges in a cc-solution.
+Furthermore, because a forest has n − m connected components, the number of
+markers in C needs to be at most |V (C)| − |E(G)| + k. All isolates from a forest
+can be removed and the resulting graph is still a forest, and thus the actual
+number of markers necessary in C is |V (C)| − nI (C) − |E(G)| + k.
+We now describe a dynamic programming (DP) algorithm over a nice tree
+decomposition which returns mod 2 the number of appropriately sized markedcc-solutions in the root’s subtree (for a fixed k). Since no-instances have no
+appropriately sized marked-cc-solutions, and yes-instances have at least one, odd
+parity for the number of marked-cc-solutions of size corresponding to k implies
+a solution to the k-Co-Path Set instance must exist.
+During the DP algorithm we actually count (for all values (m, e)) the number
+of cc-candidates, which are subgraphs G0 ⊆ G with maximum degree 2, exactly
+e edges, and a marked consistent cut with m markers. The following lemma
+justifies counting cc-candidates in place of marked-cc-solutions.
+Lemma 2. The parity of the number of marked-cc-solutions in G with e edges
+and weight w is the same as the parity of the number of cc-candidates G0 ⊆ G
+with e edges, |V (G0 )| − e − nI (G0 ) markers, and weight w.
+5
+
+Proof. Consider a subgraph G0 ⊆ G with maximum degree 2 and e edges. Let
+M 0 be a marking of G0 such that ωE (E(G0 )) + ωM (M 0 ) = w. Assume first
+that G0 is a collection of paths. We know that G0 has |V (G0 )| − e − nI (G0 )
+non-isolate connected components. If M 0 is a proper marker set of G0 , then
+|M 0 | = |V (G0 )|−e−nI (G0 ) and (G0 , M 0 ) has exactly one consistent cut. Therefore
+(G0 , M 0 ) contributes one to both the number of marked-cc-solutions and the
+number of cc-candidates, respectively.
+If otherwise M 0 is not a proper marker set, then (G0 , M 0 ) contains an unmarked connected component and has an even number of consistent cuts, and
+therefore contributes an even number to the count of cc-candidates and zero
+to the number of marked-cc-solutions. Finally, if G0 contains at least one cycle
+then cc(G0 ) > |V (G0 )| − e − nI (G0 ). Therefore at least one connected component
+does not contain a marker, and the number of consistent cuts is even, so the
+contribution to the count of cc-candidates is again even and the contribution
+to the count of marked-cc-solutions is zero. We conclude that the parity of the
+number of marked-cc-solutions and the parity of the number of cc-candidates is
+the same.
+Our dynamic programming algorithm is a bottom-up approach over a nice
+tree decomposition. We build cc-candidates for all values of m and e (encoding
+the option to add/not add edges and select/not select edges as markers), and
+keep track of various parameters ensuring that when pruning the DP table we
+only consider cc-candidates which could be valid solutions to the k-Co-Path
+Set instance. We use the number of edges to ensure our solution is of the
+correct size, and the number of markers and non-isolate vertices to determine
+when a subgraph is acyclic. The weight parameter allows us to distinguish
+between solutions and decreases the likelihood of a false negative occurring via
+the Isolation Lemma. Finally, we need a parameter that encodes the degree
+information required to properly combine cc-candidates as we iterate up the tree.
+We call this parameter a degree-function and define on the vertices V of a bag as
+Variable
+a
+e
+m
+w
+
+Parameter
+
+Maximum value
+
+# of non-isolated vertices
+# of edges
+# of markers
+weight of edges and markers
+
+n
+n2
+n2
+4n4
+
+Table 1: Dynamic programming table parameters and upper bounds.
+f : V → Σ = {0, 11 , 12 , 2}, where f (v) corresponds to v’s degree in the associated
+cc-candidates of the table entry — for vertices of degree 1, their value 1j denotes
+which side of the partition (V1 , V2 ) they are on. Vertices with degree 0 are on the
+V1 side of the cut by definition so we need not keep track of their side of the cut.
+Similarly degree 2 vertices cannot have additional incident edges, thus the side of
+the cut they fall on will not matter for selecting markers. In summary, we have
+table entries Ax (a, e, m, w, s) counting the number of cc-candidates at bag x
+with a non-isolated vertices, e edges, m markers, weight w, and degree-function
+s.
+In the following description of the dynamic programming algorithm over
+a nice tree decomposition T , we let z1 , z2 denote the children of a join node;
+
+6
+
+otherwise, the unique child is denoted y.
+Leaf :
+Ax (0, 0, 0, 0, ∅) = 1; Ax (a, e, m, w, s) = 0 for all other inputs.
+Introduce vertex v:
+Ax (a, e, m, w, s) = Js(v) = 0KAy (a, e, m, w, s).
+Introduce edge uv:
+Ax (a, e, m, w, s) = Ay (a, e, m, w, s) +
+
+X
+
+Jφ2 (αu , αv )KAy (a0 , e − 1, m, w0 , s0 )
+
+αt ∈subs(s(t))
+t∈{u,v}
+
++
+
+X
+
+
+
+Jφ1 (αu , αv )K Ay (a0 , e − 1, m, w0 , s0 ) + Ay (a0 , e − 1, m − 1, w00 , s0 ) ,
+
+αt ∈subs(s(t))
+t∈{u,v}
+
+where φj (αu , αv ) = (αu = 1j ∨ s(u) = 1j ) ∧ (αv = 1j ∨ s(v) = 1j ), a0 =
+a − (|{11 , 12 } ∩ {s(u), s(v)}|), w0 = w − ωE (uv), w00 = w − ωE (uv) − ωM (uv),
+s0 = s[u → αu , v → αv ], and the subs function returns all the values the degreefunction in child node y could have assigned to vertices u and v based on current
+degree-function s (summarized below).
+s(v)
+
+0
+
+11
+
+12
+
+2
+
+subs(s(v)) ∅
+
+0
+
+0
+
+{11 , 12 }
+
+We now argue this formula’s correctness. The term Ay (a, e, m, w, s) handles
+the case when uv is excluded from the cc-solution. We handle the case when
+uv is added to the cc-solution by iterating over all possible subs values for each
+endpoint, only considering counts in child y’s entries where u and v have the
+appropriate subs values (preventing us from ever having a vertex with degree
+greater than 2). Note that we use the φj function to guarantee that if s labels
+u or v as an isolate, we do not use the introduced edge. We have a summation
+for both possible j values in order to consider uv falling on either side of the cut.
+The formulation of a0 assures that each endpoint of degree 1 is now included in
+the count of non-isolates (i.e. when u and/or v had degree 0 in y). We utilize
+the marker weight of uv to distinguish when we choose it as a marker (only if
+on V1 side of cut), and increment m accordingly. In either case, we update w
+appropriately (with w0 if no marker, w00 if marker introduced).
+Forget vertex h:
+X
+Ax (a, e, m, w, s) =
+Ay (a, e, m, w, s[h → α]).
+α∈{0,11 ,12 ,2}
+
+As a forgotten vertex can have degree 0, 1 or 2 in a cc-candidate, we must
+consider all possible values that s assigns to h in child bag y. Note that cccandidates in which h is both not an isolate and not a member of a connected
+component that contains a marker will cancel mod 2, as h can be on either side
+of the cut and all parameters will be identical.
+7
+
+Join:
+We compute Ax from Az1 and Az2 via fast subset convolution [1] taking care to
+only combine table entries whose degree-functions are compatible.
+Definition 3. At a join node x with children z1 and z2 , the degree-functions s1
+from Az1 , s2 from Az2 , and s from Ax are compatible if one of the following
+holds for every vertex v in x: (i) si (v) = 0 and sl (v) = s(v), i 6= l or (ii)
+s1 (v) = s2 (v) = 1j and s(v) = 2 for i, j, l ∈ [1, 2].
+In order to apply Lemma 1, we let B be the bag at x, and transform the values
+assigned by the degree function s to values in Z4 . Let φ : {0, 11 , 12 , 2} → Z4 and
+ρ : {0, 11 , 12 , 2} → Z be defined as in the table below, extending to vectors by
+component-wise application.
+
+φ
+ρ
+
+0
+
+11
+
+12
+
+2
+
+0
+0
+
+1
+1
+
+3
+1
+
+2
+2
+
+We use φ to apply Lemma 1, while the function ρ (which corresponds to a
+vertex’s degree) is used in tandem to ensure the compatibility requirements are
+met: if φ(s1 ) + φ(s2 ) = φ(s), then necessarily ρ(s1 ) + ρ(s2 ) ≥ ρ(s). From the
+above table it is easy to verify that φ(s1 ) + φ(s2 ) = φ(s) and ρ(s1 ) + ρ(s2 ) = ρ(s)
+together imply that s1 , s2 and s are compatible. We sum over both functions
+when computing values for join nodes, to make sure that solutions from the
+children are combined only when there is compatibility.
+Assign P
+t1 = φ(s1 ), t2 = φ(s2 ), and t = φ(s) in accordance with Lemma 1.
+Let ρ(s) = v∈B ρ(s(v)); that is ρ(s) is the sum of the degrees of all the vertices
+in the join node, as assigned by degree-function s. By defining functions f and
+g as follows:
+f hd,a,e,m,wi (φ(s)) = Jρ(s) = dKAz1 (a, e, m, w, s),
+g hd,a,e,m,wi (φ(s)) = Jρ(s) = dKAz2 (a, e, m, w, s),
+
+and writing r~i for the vector hdi , ai , ei , mi , wi i, we can now compute
+X
+Ax (a, e, m, w, s) =
+(f r~1 ∗4x g r~2 )(φ(s))
+r~1 +r~2 =hρ(s),a0 ,e,m,wi
+−1
+where a0 = a + |s−1
+1 {11 , 12 } ∩ s2 {11 , 12 }|. We point out that
+X
+(f r~1 ∗4x g r~2 )(φ(s)) = 1
+r~1 +r~2 =hρ(s),a0 ,e,m,wi
+
+only if both φ(s1 ) + φ(s2 ) = φ(s) and ρ(s1 ) + ρ(s2 ) = ρ(s); that is, exactly when
+s1 , s2 and s are compatible.
+We conclude this section by describing how we search the DP table for
+marked-cc-solutions at the root node r. By Lemma 2, the parity of the number
+of marked-cc-solutions with |E| − k edges and weight w is the same as the parity
+of the number of cc-candidates G0 with |E| − k edges, |V (G0 )| − (|E| − k) − nI (G0 )
+markers and weight w. These candidates are recorded in the table entries
+8
+
+Ar (a, |E| − k, a − |E| + k, w, ∅), where a is the number of non-isolates. Therefore,
+if there exists some a and w so that Ar (a, |E| − k, a − |E| + k, w, ∅) = 1, then we
+have a yes-instance of k-Co-Path Set. Note that the degree-function is ∅ in
+this entry because there are no vertices contained in the root node by definition.
+By Lemma 1, the time complexity of tw-copath for a join node B is O∗ (4|B| ),
+which is O∗ (4tw ). Note that for the other four types of bags, as we only consider
+one instance of s per table entry, the complexity for each is O∗ (4tw ). We point
+out that the size of the table is polynomial in n because there are a linear number
+of bags and a polynomial number of entries (combinations of parameters) for
+each bag. Since the nice tree decomposition has size linear in n, the bottomup dynamic programming runs in total time O∗ (4tw ). This complexity bound
+combined with the correctness of tw-copath discussed above proves Theorem 2.
+
+4
+
+Achieving O∗ (1.588k ) in General Graphs
+
+In order to use tw-copath to solve k-CoPath Set in graphs with unbounded
+treewidth, we combine kernelization and a branching procedure to generate a
+set of reduced instances – bounded treewidth subgraphs of the input graph G.
+Specifically, we begin by constructing a kernel of size at most 6k as described
+in [7]. Our reduced instances are bounded degree subgraphs of the kernel given
+by a branching technique. We prove that (1) at least one reduced instance is an
+equivalent instance; (2) we can bound the number of reduced instances; and (3)
+each reduced instance has bounded treewidth. Finally, we analyze the overall
+computational complexity of this process.
+
+4.1
+
+Kernelization and Branching
+
+We start by describing our branching procedure deg-branch (Algorithm 1),
+which uses a degree-bounding technique similar to that of Zhang et al. [16]. Our
+implementation takes an instance (G, k) of Co-Path Set and two non-negative
+integers ` and D, and returns a set of reduced instances {(Gi , k − `)} so that (1)
+each Gi is a subgraph of G with exactly |E| − ` edges and maximum degree at
+most D; and (2) at least one (Gi , k − `) is an equivalent instance to (G, k). The
+size of the output (and hence the running time) of deg-branch depends on both
+input parameters ` and D. We will select D to achieve the desired complexity in
+copath in Section 4.3. We also make use of a budget parameter b, which keeps
+track of how many more edges can be removed per the constraints of ` (b is
+initially set to `).
+Our branching procedure leverages the observation that if a co-path set S
+exists, then every vertex has at most two incident edges not in S. Specifically, for
+every vertex of degree greater than D, we branch on pairs of incident edges which
+could remain after removing a valid co-path set (calling each pair a candidate),
+creating a search tree of subgraphs.
+Algorithm 1 returns the set of reduced instances, the size of which is at most
+the number of leaves in the search tree of the branching process (inequality
+can result from the algorithm discarding branches in which the number of
+edits necessary to branch on a vertex exceeds the number of allowed deletions
+remaining). We now give an upper bound on the size of this set.
+
+9
+
+Algorithm 1: Generating reduced instances
+1
+2
+3
+4
+5
+6
+7
+8
+
+Algorithm deg-branch(G, k, `, D, b)
+Let v be a vertex of maximum degree in G
+if deg(v) ≥ D + 1 and b ≥ D − 1 then
+Select vertices u1 , . . . uD+1 uniformly at random from N (v)
+R = ∅, Ev = {{v, ui }}
+for e1 , e2 ∈ Ev , e1 6= e2 do
+Ev0 = Ev \ {e1 , e2 }
+R = R ∪ deg-branch(G \ Ev0 , k, `, D, b − (D − 1))
+
+9
+10
+11
+
+return R
+else if b = 0 and deg(v) ≤ D then return {(G, k − `)}
+else return ∅
+// Discard G
+
+Lemma 3. Let T be a search tree formed by deg-branch(G, `, D, k, b). The
+`/(D−1)
+number of leaves of T is at most D+1
+.
+2
+
+Proof of Lemma 3. The number of children of each interior node of T is D+1
+,
+2
+
+D+1 depth(T )
+resulting in at most
+leaves. The depth of T is limited by the
+2
+second condition of the if on line 3 of Algorithm 1. For each recursive call, b is
+decremented by (D − 1), until b ≤ D − 1. As b is initally set to `, this implies
+depth(T ) ≤ `/(D − 1), proving the claim.
+Finally, we argue that at least one member of the set of reduced instances
+returned by deg-branch is equivalent to the original. Consider a solution F
+to k-Co-Path Set in the original instance (G, k). Every vertex has at most
+two incident edges in G[E\F ], and since all candidates are considered at every
+high-degree vertex, at least one branch correctly keeps all of these edges.
+
+4.2
+
+Treewidth of Reduced Instances
+
+Our algorithm deg-branch produces reduced instances with bounded degree;
+in order to bound their treewidth, we make use of the following result, which
+originated from Lemma 1 in [8] and was extended in [9].
+Lemma 4. For  > 0, there exists n ∈ Z+ s.t. for every graph G with n > n
+vertices,
+!
+17
+X
+tw(G) ≤
+ci ni + n≥18 + n,
+i=3
+
+where ni is the number of vertices of degree i in G for i ∈ {3, . . . , 17}, n≥18 is
+the number of vertices of degree at least 18, and ci is given in Table 2. Moreover,
+a tree decomposition of the corresponding width can be constructed in polynomial
+time in n.
+Since the structure of k-Co-Path Set naturally provides some constraints
+on the degree sequence of yes-instances, we are able to apply Lemma 4 to our
+reduced instances to effectively bound treewidth. We first find an upper bound
+on the number of degree-3 vertices in any yes-instance of k-Co-Path Set.
+
+10
+
+d
+cd
+
+3
+4
+5
+6
+7
+8
+9
+10
+0.1667 0.3334 0.4334 0.5112 0.5699 0.6163 0.6538 0.6847
+
+d
+cd
+
+11
+12
+13
+14
+15
+16
+17
+0.7105 0.7325 0.7514 0.7678 0.7822 0.7949 0.8062
+
+Table 2: Numerically obtained constants cd , 3 ≤ d ≤ 17, used in Lemma 4;
+originally given in Table 6.1 of [9].
+Lemma 5. Let ni be the number of vertices of degree i in a graph G for any
+i ∈ Z+ , and ∆ be the maximum degree of G. If (G, k) is a yes-instance of
+P∆
+k-Co-Path Set, then n3 ≤ 2k − ( i=4 (i − 2)ni ).
+Proof. Since (G, k) is a yes-instance, removing some set of at most k edges results
+in a graph of maximum degree 2. For a vertex of degree j ≥ 3, at least j − 2
+incident edges must be removed. Thus, n3 + 2n4 + 3n5 + . . . + (∆ − 2)n∆ ≤ 2k
+(each removed edge counts twice – once for each endpoint).
+Lemma 6. Let (G, k) be an instance of k-Co-Path Set such that G has n
+vertices and max degree at most ∆ ∈ {3, . . . , 17}. Then the treewidth of G is
+bounded by k/3 + n + c, for some constant c and any  > 0. A tree decomposition
+of the corresponding width can be constructed in polynomial time in n.
+Proof. Let n be defined as in Lemma 4. Let G0 be the graph formed by adding
+N = n isolates to G. By Lemma 4, because G0 has maximum degree at most
+∆, tw(G0 ) ≤ (1/6)n3 + (1/3)n4 + . . . + c∆ n∆ + (N + n). We can substitute the
+bound for n3 from Lemma 5, which yields:
+P∆
+2k − ( i=4 (i − 2)ni ) n4
++
++ . . . + c∆ n∆ + (N + n)
+tw(G ) ≤
+6
+3
+k
+≤ + (n + N ).
+3
+0
+
+Note
+P∆ that the inequality holds because we can pair the negative terms of
+( i=4 (i − 2)ni )/6 with the corresponding terms of n4 /3 + . . . + c∆ n∆ and
+the value of cj nj − (j − 2)(nj )/6 is non-positive for all j ∈ [4, 17]. Since N = n
+is a constant, we have tw(G0 ) ≤ k/3 + n + c. Since G ⊆ G0 and treewidth is
+monotone under subgraph inclusion, this proves the claim.
+We point out that when applying Lemma 6 to reduced instances, computing
+the desired tree decomposition is polynomial in k (since they are subgraphs of a
+6k-kernel).
+
+4.3
+
+The Algorithm copath
+
+This section describes how we combine the above techniques to prove Theorem 1.
+As shown in Algorithm 2, we start by applying 6k-kernel [7] to find G0 , a kernel
+of size at most 6k; this process deletes k − k 0 edges. We then guess the number
+of edges k1 ∈ [0, k 0 ] to remove during branching, and use deg-branch to create
+a set of reduced instances Qk1 , each of which have k 0 − k1 edges. Note that
+deg-branch considers all possible reduced instances, and thus if a (cc-)solution
+
+11
+
+exists, it is contained in at least one reduced instance. To ensure the complexity
+of finding the reduced instances does not dominate the running time, we set the
+degree bound D of the reduced instances to be 10 (any choice of 10 ≤ D ≤ 17 is
+valid). By considering all possible values of k1 , we are assured that if (G, k) is a
+yes-instance, some Qk1 contains a yes-instance. Each reduced instance is then
+passed to tw-copath, which correctly decides the problem with probability 2/3.
+Algorithm 2: Deciding k-Co-Path Set
+1
+2
+3
+4
+5
+6
+7
+
+Algorithm copath (G,k)
+(G0 , k 0 ) = 6k-kernel(G, k)
+for k1 ← 0 to k 0 do
+Qk1 = deg-branch(G0 , k 0 , k1 , 10, k1 )
+foreach (Gi , k2 ) ∈ Qk1 do
+if tw-copath(Gi , k2 ) then return true
+return false
+
+Proof of Theorem 1. We now analyze the running time of copath, as given in
+Algorithm 2. By Lemma 3, the size of each Qk1 is O(1.561k1 ). For each reduced
+instance (Gi , k2 ) in Qk1 , we have tw(Gi ) ≤ k2 /3 + (6k) + c by Lemma 6.
+Applying Theorem 2, tw-copath runs in time O∗ (4k2 /3+6k ) for each reduced
+instance (Gi , k2 ) in Qk1 (with success probability at least 2/3). Each iteration
+of the outer for loop can then be completed in time
+O∗ (1.561k1 4k2 /3+6k ) = O∗ (4k/3+6k ) = O∗ (1.588k ),
+where we use that k1 + k2 = k 0 ≤ k, and choose  < 10−5 . Since this loop runs at
+most k + 1 times, this is also a bound on the overall computational complexity
+of copath. Additionally copath is linear-fpt, as the kernelization of [7] is O(n),
+and the kernel has size O(k), avoiding any additional poly(n) complexity from
+the tw-copath subroutine. Note that by Lemma 4 the tree decomposition can
+be found in polynomial time in the size of the reduced instance. Since reduced
+instances are subsets of 6k-kernels, the linearity is unaffected because the graph
+has size polynomial in k.
+
+5
+
+Conclusion
+
+This paper gives an O∗ (4tw ) fpt algorithm for Co-Path Set. By coupling this
+with kernelization and branching, we derive an O∗ (1.588k ) linear-fpt algorithm
+for deciding k-Co-Path, significantly improving the previous best-known result
+of O∗ (2.17k ). We believe that the idea of combining a branching algorithm
+which guarantees equivalent instances with bounds on the degree sequence from
+the problem’s constraints can be applied to other problems in order to obtain
+a bound on the treewidth (allowing treewidth-parameterized approaches to be
+extended to general graphs).
+One natural question is whether similar techniques extend to the generalization of Co-Path Set to k-uniform hypergraphs (as treated in Zhang et al. [16]).
+It is also open whether the combined parameterization asking for a co-path set
+of size k resulting in ` disjoint paths is solvable in sub-exponential fpt time.
+
+12
+
+Acknowledgements
+This work supported in part by the Gordon & Betty Moore Foundation under DDD Investigator
+Award GBMF4560 and the DARPA GRAPHS program under SPAWAR Grant N66001-14-14063. Any opinions, findings, and conclusions or recommendations expressed in this publication
+are those of the author(s) and do not necessarily reflect the views of DARPA, SSC Pacific, or
+the Moore Foundation. We thank two anonymous reviewers for providing a simplification of
+our previous branching algorithm and pointing out the result from [9] enabling us to branch
+on vertices with degree greater than 7. We also thank Felix Reidl for helpful suggestions on an
+earlier draft that significantly improved the presentation of the results.
+
+References
+[1] A. Björklund, T. Husfeldt, P. Kaski, and M. Koivisto. Fourier meets Möbius: fast subset
+convolution. In Proceedings of STOC, pages 67–74, 2007.
+[2] Z. Chen, G. Lin, and L. Wang. An approximation algorithm for the minimum co-path set
+problem. Algorithmica, 60(4):969–986, 2011.
+[3] Y. Cheng, Z. Cai, R. Goebel, G. Lin, and B. Zhu. The radiation hybrid map construction
+problem: recognition, hardness, and approximation algorithms. Unpublished Manuscript,
+2008.
+[4] D. Cox, M. Burmeister, E. Price, S. Kim, and R. Myers. Radiation hybrid mapping:
+a somatic cell genetic method for constructing high-resolution maps of mammalian
+chromosomes. Science, 250:245–50, 1990.
+[5] M. Cygan, J. Nederlof, M. Pilipczuk, M. Pilipczuk, J. van Rooij, and J. Wojtaszczyk.
+Solving connectivity problems parameterized by treewidth in single exponential time. In
+FOCS, pages 150–159. IEEE, 2011.
+[6] Q. Feng, Q. Zhou, and S. Li. Randomized parameterized algorithms for co-path set
+problem. In FAW, pages 82–93. Springer, 2014.
+[7] Q. Feng, Q. Zhou, and J. Wang. Kernelization and randomized parameterized algorithms
+for co-path set problem. J. Comb. Optim., 2015. in press, DOI 10.1007/s10878-015-9901-y.
+[8] F. Fomin, S. Gaspers, S. Saurabh, and A. Stepanov. On two techniques of combining
+branching and treewidth. Algorithmica, 54(2):181–207, April 2009.
+[9] S. Gaspers. Exponential Time Algorithms - Structures, Measures, and Bounds. VDM,
+2010.
+[10] T. Kloks. Treewidth, Computations and Approximations, volume 842 of LNCS. Springer,
+1994.
+[11] K. Mulmuley, U. Vazirani, and V. Vazirani. Matching is as easy as matrix inversion. In
+Proceedings of STOC, pages 345–354. ACM, 1987.
+[12] M. Pilipczuk. Solving connectivity problems parameterized by treewidth in single exponential time. In MFCS, pages 520–531, 2011.
+[13] C. Richard III, D. Withers, T. Meeker, S. Maurer, G. Evans, R. Myers, and D. Cox. A
+radiation hybrid map of the proximal long arm of human chromosome 11 containing the
+multiple endocrine neoplasia type 1 (men-1) and bcl-1 disease loci. Am. J. Hum. Genet.,
+49(6):1189–1196, 1991.
+[14] N. Robertson and P. Seymour. Graph minors. II. Algorithmic aspects of tree-width. J.
+Algorithms, 7(3):309–322, 1986.
+[15] D. Slonim, L. Kruglyak, L. Stein, and E. Lander. Building human genome maps with
+radiation hybrids. J. Comp. Biol., 4(4):487–504, 1997.
+[16] C. Zhang, H. Jiang, and B. Zhu. Radiation hybrid map construction problem parameterized. Journal of Combinatorial Optimization, 27(1):3–13, 2014.
+
+13
+
+

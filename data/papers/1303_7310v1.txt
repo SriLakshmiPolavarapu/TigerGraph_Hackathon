@@ -1,0 +1,21 @@
+Title: Exploring the Role of Logically Related Non-Question Phrases for Answering Why-Questions
+
+Authors: Niraj Kumar, Rashmi Gangadharaiah, Kannan Srinathan, Vasudeva Varma
+
+Published: 2013-03-29
+
+Categories: cs.CL, cs.IR
+
+Abstract:
+In this paper, we show that certain phrases although not present in a given question/query, play a very important role in answering the question. Exploring the role of such phrases in answering questions not only reduces the dependency on matching question phrases for extracting answers, but also improves the quality of the extracted answers. Here matching question phrases means phrases which co-occur in given question and candidate answers. To achieve the above discussed goal, we introduce a bigram-based word graph model populated with semantic and topical relatedness of terms in the given document. Next, we apply an improved version of ranking with a prior-based approach, which ranks all words in the candidate document with respect to a set of root words (i.e. non-stopwords present in the question and in the candidate document). As a result, terms logically related to the root words are scored higher than terms that are not related to the root words. Experimental results show that our devised system performs better than state-of-the-art for the task of answering Why-questions.
+
+Paper ID: 1303.7310v1
+
+Summary:
+This paper titled "Exploring the Role of Logically Related Non-Question Phrases for Answering Why-Questions" was authored by Niraj Kumar, Rashmi Gangadharaiah, Kannan Srinathan, Vasudeva Varma and published on 2013-03-29.
+It falls under the categories: cs.CL, cs.IR.
+The research explores the following topic: In this paper, we show that certain phrases although not present in a given question/query, play a very important role in answering the question. Exploring the role of such phrases in answering questions not only reduces the dependency on matching question phrases for extracting answers, but also improves the quality of the extracted answers. Here matching question phrases means phrases which co-occur in given question and candidate answers. To achieve the above discussed goal, we introduce a bigram-based word graph model populated with semantic and topical relatedness of terms in the given document. Next, we apply an improved version of ranking with a prior-based approach, which ranks all words in the candidate document with respect to a set of root words (i.e. non-stopwords present in the question and in the candidate document). As a result, terms logically related to the root words are scored higher than terms that are not related to the root words. Experimental results show that our devised system performs better than state-of-the-art for the task of answering Why-questions.
+
+Links:
+  - https://arxiv.org/abs/1303.7310v1
+  - https://arxiv.org/pdf/1303.7310v1

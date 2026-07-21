@@ -1,0 +1,22 @@
+Title: A comparative assessment of deep learning models for day-ahead load forecasting: Investigating key accuracy drivers
+
+Authors: Sotiris Pelekis, Ioannis-Konstantinos Seisopoulos, Evangelos Spiliotis, Theodosios Pountridis, Evangelos Karakolis, Spiros Mouzakitis, Dimitris Askounis
+
+Published: 2023-02-23
+
+Categories: cs.LG, cs.AI
+
+Abstract:
+Short-term load forecasting (STLF) is vital for the effective and economic operation of power grids and energy markets. However, the non-linearity and non-stationarity of electricity demand as well as its dependency on various external factors renders STLF a challenging task. To that end, several deep learning models have been proposed in the literature for STLF, reporting promising results. In order to evaluate the accuracy of said models in day-ahead forecasting settings, in this paper we focus on the national net aggregated STLF of Portugal and conduct a comparative study considering a set of indicative, well-established deep autoregressive models, namely multi-layer perceptrons (MLP), long short-term memory networks (LSTM), neural basis expansion coefficient analysis (N-BEATS), temporal convolutional networks (TCN), and temporal fusion transformers (TFT). Moreover, we identify factors that significantly affect the demand and investigate their impact on the accuracy of each model. Our results suggest that N-BEATS consistently outperforms the rest of the examined models. MLP follows, providing further evidence towards the use of feed-forward networks over relatively more sophisticated architectures. Finally, certain calendar and weather features like the hour of the day and the temperature are identified as key accuracy drivers, providing insights regarding the forecasting approach that should be used per case.
+
+Paper ID: 2302.12168v2
+
+Summary:
+This paper titled "A comparative assessment of deep learning models for day-ahead load forecasting: Investigating key accuracy drivers" was authored by Sotiris Pelekis, Ioannis-Konstantinos Seisopoulos, Evangelos Spiliotis, Theodosios Pountridis, Evangelos Karakolis, Spiros Mouzakitis, Dimitris Askounis and published on 2023-02-23.
+It falls under the categories: cs.LG, cs.AI.
+The research explores the following topic: Short-term load forecasting (STLF) is vital for the effective and economic operation of power grids and energy markets. However, the non-linearity and non-stationarity of electricity demand as well as its dependency on various external factors renders STLF a challenging task. To that end, several deep learning models have been proposed in the literature for STLF, reporting promising results. In order to evaluate the accuracy of said models in day-ahead forecasting settings, in this paper we focus on the national net aggregated STLF of Portugal and conduct a comparative study considering a set of indicative, well-established deep autoregressive models, namely multi-layer perceptrons (MLP), long short-term memory networks (LSTM), neural basis expansion coefficient analysis (N-BEATS), temporal convolutional networks (TCN), and temporal fusion transformers (TFT). Moreover, we identify factors that significantly affect the demand and investigate their impact on the accuracy of each model. Our results suggest that N-BEATS consistently outperforms the rest of the examined models. MLP follows, providing further evidence towards the use of feed-forward networks over relatively more sophisticated architectures. Finally, certain calendar and weather features like the hour of the day and the temperature are identified as key accuracy drivers, providing insights regarding the forecasting approach that should be used per case.
+
+Links:
+  - https://arxiv.org/abs/2302.12168v2
+  - https://arxiv.org/pdf/2302.12168v2
+  - https://doi.org/10.1016/j.segan.2023.101171

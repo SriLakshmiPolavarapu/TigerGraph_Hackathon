@@ -1,0 +1,21 @@
+Title: Safe Deep Reinforcement Learning for Multi-Agent Systems with Continuous Action Spaces
+
+Authors: Ziyad Sheebaelhamd, Konstantinos Zisis, Athina Nisioti, Dimitris Gkouletsos, Dario Pavllo, Jonas Kohler
+
+Published: 2021-08-09
+
+Categories: cs.LG, cs.RO
+
+Abstract:
+Multi-agent control problems constitute an interesting area of application for deep reinforcement learning models with continuous action spaces. Such real-world applications, however, typically come with critical safety constraints that must not be violated. In order to ensure safety, we enhance the well-known multi-agent deep deterministic policy gradient (MADDPG) framework by adding a safety layer to the deep policy network. In particular, we extend the idea of linearizing the single-step transition dynamics, as was done for single-agent systems in Safe DDPG (Dalal et al., 2018), to multi-agent settings. We additionally propose to circumvent infeasibility problems in the action correction step using soft constraints (Kerrigan & Maciejowski, 2000). Results from the theory of exact penalty functions can be used to guarantee constraint satisfaction of the soft constraints under mild assumptions. We empirically find that the soft formulation achieves a dramatic decrease in constraint violations, making safety available even during the learning procedure.
+
+Paper ID: 2108.03952v2
+
+Summary:
+This paper titled "Safe Deep Reinforcement Learning for Multi-Agent Systems with Continuous Action Spaces" was authored by Ziyad Sheebaelhamd, Konstantinos Zisis, Athina Nisioti, Dimitris Gkouletsos, Dario Pavllo, Jonas Kohler and published on 2021-08-09.
+It falls under the categories: cs.LG, cs.RO.
+The research explores the following topic: Multi-agent control problems constitute an interesting area of application for deep reinforcement learning models with continuous action spaces. Such real-world applications, however, typically come with critical safety constraints that must not be violated. In order to ensure safety, we enhance the well-known multi-agent deep deterministic policy gradient (MADDPG) framework by adding a safety layer to the deep policy network. In particular, we extend the idea of linearizing the single-step transition dynamics, as was done for single-agent systems in Safe DDPG (Dalal et al., 2018), to multi-agent settings. We additionally propose to circumvent infeasibility problems in the action correction step using soft constraints (Kerrigan & Maciejowski, 2000). Results from the theory of exact penalty functions can be used to guarantee constraint satisfaction of the soft constraints under mild assumptions. We empirically find that the soft formulation achieves a dramatic decrease in constraint violations, making safety available even during the learning procedure.
+
+Links:
+  - https://arxiv.org/abs/2108.03952v2
+  - https://arxiv.org/pdf/2108.03952v2

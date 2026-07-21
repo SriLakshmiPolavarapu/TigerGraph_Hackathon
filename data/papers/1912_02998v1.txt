@@ -1,0 +1,21 @@
+Title: Machine Translation Evaluation Meets Community Question Answering
+
+Authors: Francisco Guzmán, Lluís Màrquez, Preslav Nakov
+
+Published: 2019-12-06
+
+Categories: cs.CL, cs.IR, cs.LG
+
+Abstract:
+We explore the applicability of machine translation evaluation (MTE) methods to a very different problem: answer ranking in community Question Answering. In particular, we adopt a pairwise neural network (NN) architecture, which incorporates MTE features, as well as rich syntactic and semantic embeddings, and which efficiently models complex non-linear interactions. The evaluation results show state-of-the-art performance, with sizeable contribution from both the MTE features and from the pairwise NN architecture.
+
+Paper ID: 1912.02998v1
+
+Summary:
+This paper titled "Machine Translation Evaluation Meets Community Question Answering" was authored by Francisco Guzmán, Lluís Màrquez, Preslav Nakov and published on 2019-12-06.
+It falls under the categories: cs.CL, cs.IR, cs.LG.
+The research explores the following topic: We explore the applicability of machine translation evaluation (MTE) methods to a very different problem: answer ranking in community Question Answering. In particular, we adopt a pairwise neural network (NN) architecture, which incorporates MTE features, as well as rich syntactic and semantic embeddings, and which efficiently models complex non-linear interactions. The evaluation results show state-of-the-art performance, with sizeable contribution from both the MTE features and from the pairwise NN architecture.
+
+Links:
+  - https://arxiv.org/abs/1912.02998v1
+  - https://arxiv.org/pdf/1912.02998v1

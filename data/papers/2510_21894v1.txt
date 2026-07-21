@@ -1,0 +1,21 @@
+Title: Understanding Network Behaviors through Natural Language Question-Answering
+
+Authors: Mingzhe Xing, Chang Tian, Jianan Zhang, Lichen Pan, Peipei Liu, Zhaoteng Yan, Yinliang Yue
+
+Published: 2025-10-24
+
+Categories: cs.CL, cs.AI
+
+Abstract:
+Modern large-scale networks introduce significant complexity in understanding network behaviors, increasing the risk of misconfiguration. Prior work proposed to understand network behaviors by mining network configurations, typically relying on domain-specific languages interfaced with formal models. While effective, they suffer from a steep learning curve and limited flexibility. In contrast, natural language (NL) offers a more accessible and interpretable interface, motivating recent research on NL-guided network behavior understanding. Recent advances in large language models (LLMs) further enhance this direction, leveraging their extensive prior knowledge of network concepts and strong reasoning capabilities. However, three key challenges remain: 1) numerous router devices with lengthy configuration files challenge LLM's long-context understanding ability; 2) heterogeneity across devices and protocols impedes scalability; and 3) complex network topologies and protocols demand advanced reasoning abilities beyond the current capabilities of LLMs. To tackle the above challenges, we propose NetMind, a novel framework for querying networks using NL. Our approach introduces a tree-based configuration chunking strategy to preserve semantic coherence while enabling efficient partitioning. We then construct a unified fact graph as an intermediate representation to normalize vendor-specific configurations. Finally, we design a hybrid imperative-declarative language to reduce the reasoning burden on LLMs and enhance precision. We contribute a benchmark consisting of NL question-answer pairs paired with network configurations. Experiments demonstrate that NetMind achieves accurate and scalable network behavior understanding, outperforming existing baselines.
+
+Paper ID: 2510.21894v1
+
+Summary:
+This paper titled "Understanding Network Behaviors through Natural Language Question-Answering" was authored by Mingzhe Xing, Chang Tian, Jianan Zhang, Lichen Pan, Peipei Liu, Zhaoteng Yan, Yinliang Yue and published on 2025-10-24.
+It falls under the categories: cs.CL, cs.AI.
+The research explores the following topic: Modern large-scale networks introduce significant complexity in understanding network behaviors, increasing the risk of misconfiguration. Prior work proposed to understand network behaviors by mining network configurations, typically relying on domain-specific languages interfaced with formal models. While effective, they suffer from a steep learning curve and limited flexibility. In contrast, natural language (NL) offers a more accessible and interpretable interface, motivating recent research on NL-guided network behavior understanding. Recent advances in large language models (LLMs) further enhance this direction, leveraging their extensive prior knowledge of network concepts and strong reasoning capabilities. However, three key challenges remain: 1) numerous router devices with lengthy configuration files challenge LLM's long-context understanding ability; 2) heterogeneity across devices and protocols impedes scalability; and 3) complex network topologies and protocols demand advanced reasoning abilities beyond the current capabilities of LLMs. To tackle the above challenges, we propose NetMind, a novel framework for querying networks using NL. Our approach introduces a tree-based configuration chunking strategy to preserve semantic coherence while enabling efficient partitioning. We then construct a unified fact graph as an intermediate representation to normalize vendor-specific configurations. Finally, we design a hybrid imperative-declarative language to reduce the reasoning burden on LLMs and enhance precision. We contribute a benchmark consisting of NL question-answer pairs paired with network configurations. Experiments demonstrate that NetMind achieves accurate and scalable network behavior understanding, outperforming existing baselines.
+
+Links:
+  - https://arxiv.org/abs/2510.21894v1
+  - https://arxiv.org/pdf/2510.21894v1

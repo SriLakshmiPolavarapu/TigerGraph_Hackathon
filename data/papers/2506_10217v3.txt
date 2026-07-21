@@ -1,0 +1,21 @@
+Title: Data-Centric Safety and Ethical Measures for Data and AI Governance
+
+Authors: Srija Chakraborty
+
+Published: 2025-06-11
+
+Categories: cs.CY
+
+Abstract:
+Datasets play a key role in imparting advanced capabilities to artificial intelligence (AI) foundation models that can be adapted to various downstream tasks. These downstream applications can introduce both beneficial and harmful capabilities -- resulting in dual use AI foundation models, with various technical and regulatory approaches to monitor and manage these risks. However, despite the crucial role of datasets, responsible dataset design and ensuring data-centric safety and ethical practices have received less attention. In this study, we pro-pose responsible dataset design framework that encompasses various stages in the AI and dataset lifecycle to enhance safety measures and reduce the risk of AI misuse due to low quality, unsafe and unethical data content. This framework is domain agnostic, suitable for adoption for various applications and can promote responsible practices in dataset creation, use, and sharing to facilitate red teaming, minimize risks, and increase trust in AI models.
+
+Paper ID: 2506.10217v3
+
+Summary:
+This paper titled "Data-Centric Safety and Ethical Measures for Data and AI Governance" was authored by Srija Chakraborty and published on 2025-06-11.
+It falls under the categories: cs.CY.
+The research explores the following topic: Datasets play a key role in imparting advanced capabilities to artificial intelligence (AI) foundation models that can be adapted to various downstream tasks. These downstream applications can introduce both beneficial and harmful capabilities -- resulting in dual use AI foundation models, with various technical and regulatory approaches to monitor and manage these risks. However, despite the crucial role of datasets, responsible dataset design and ensuring data-centric safety and ethical practices have received less attention. In this study, we pro-pose responsible dataset design framework that encompasses various stages in the AI and dataset lifecycle to enhance safety measures and reduce the risk of AI misuse due to low quality, unsafe and unethical data content. This framework is domain agnostic, suitable for adoption for various applications and can promote responsible practices in dataset creation, use, and sharing to facilitate red teaming, minimize risks, and increase trust in AI models.
+
+Links:
+  - https://arxiv.org/abs/2506.10217v3
+  - https://arxiv.org/pdf/2506.10217v3

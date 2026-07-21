@@ -1,0 +1,21 @@
+Title: Language as the Medium: Multimodal Video Classification through text only
+
+Authors: Laura Hanu, Anita L. Verő, James Thewlis
+
+Published: 2023-09-19
+
+Categories: cs.CV, cs.AI, cs.CL
+
+Abstract:
+Despite an exciting new wave of multimodal machine learning models, current approaches still struggle to interpret the complex contextual relationships between the different modalities present in videos. Going beyond existing methods that emphasize simple activities or objects, we propose a new model-agnostic approach for generating detailed textual descriptions that captures multimodal video information. Our method leverages the extensive knowledge learnt by large language models, such as GPT-3.5 or Llama2, to reason about textual descriptions of the visual and aural modalities, obtained from BLIP-2, Whisper and ImageBind. Without needing additional finetuning of video-text models or datasets, we demonstrate that available LLMs have the ability to use these multimodal textual descriptions as proxies for ``sight'' or ``hearing'' and perform zero-shot multimodal classification of videos in-context. Our evaluations on popular action recognition benchmarks, such as UCF-101 or Kinetics, show these context-rich descriptions can be successfully used in video understanding tasks. This method points towards a promising new research direction in multimodal classification, demonstrating how an interplay between textual, visual and auditory machine learning models can enable more holistic video understanding.
+
+Paper ID: 2309.10783v1
+
+Summary:
+This paper titled "Language as the Medium: Multimodal Video Classification through text only" was authored by Laura Hanu, Anita L. Verő, James Thewlis and published on 2023-09-19.
+It falls under the categories: cs.CV, cs.AI, cs.CL.
+The research explores the following topic: Despite an exciting new wave of multimodal machine learning models, current approaches still struggle to interpret the complex contextual relationships between the different modalities present in videos. Going beyond existing methods that emphasize simple activities or objects, we propose a new model-agnostic approach for generating detailed textual descriptions that captures multimodal video information. Our method leverages the extensive knowledge learnt by large language models, such as GPT-3.5 or Llama2, to reason about textual descriptions of the visual and aural modalities, obtained from BLIP-2, Whisper and ImageBind. Without needing additional finetuning of video-text models or datasets, we demonstrate that available LLMs have the ability to use these multimodal textual descriptions as proxies for ``sight'' or ``hearing'' and perform zero-shot multimodal classification of videos in-context. Our evaluations on popular action recognition benchmarks, such as UCF-101 or Kinetics, show these context-rich descriptions can be successfully used in video understanding tasks. This method points towards a promising new research direction in multimodal classification, demonstrating how an interplay between textual, visual and auditory machine learning models can enable more holistic video understanding.
+
+Links:
+  - https://arxiv.org/abs/2309.10783v1
+  - https://arxiv.org/pdf/2309.10783v1

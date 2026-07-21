@@ -1,0 +1,21 @@
+Title: HCFContext: Smartphone Context Inference via Sequential History-based Collaborative Filtering
+
+Authors: Vidyasagar Sadhu, Saman Zonouz, Vincent Sritapan, Dario Pompili
+
+Published: 2019-04-21
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Mobile context determination is an important step for many context aware services such as location-based services, enterprise policy enforcement, building or room occupancy detection for power or HVAC operation, etc. Especially in enterprise scenarios where policies (e.g., attending a confidential meeting only when the user is in "Location X") are defined based on mobile context, it is paramount to verify the accuracy of the mobile context. To this end, two stochastic models based on the theory of Hidden Markov Models (HMMs) to obtain mobile context are proposed-personalized model (HPContext) and collaborative filtering model (HCFContext). The former predicts the current context using sequential history of the user's past context observations, the latter enhances HPContext with collaborative filtering features, which enables it to predict the current context of the primary user based on the context observations of users related to the primary user, e.g., same team colleagues in company, gym friends, family members, etc. Each of the proposed models can also be used to enhance or complement the context obtained from sensors. Furthermore, since privacy is a concern in collaborative filtering, a privacy-preserving method is proposed to derive HCFContext model parameters based on the concepts of homomorphic encryption. Finally, these models are thoroughly validated on a real-life dataset.
+
+Paper ID: 1904.09631v2
+
+Summary:
+This paper titled "HCFContext: Smartphone Context Inference via Sequential History-based Collaborative Filtering" was authored by Vidyasagar Sadhu, Saman Zonouz, Vincent Sritapan, Dario Pompili and published on 2019-04-21.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Mobile context determination is an important step for many context aware services such as location-based services, enterprise policy enforcement, building or room occupancy detection for power or HVAC operation, etc. Especially in enterprise scenarios where policies (e.g., attending a confidential meeting only when the user is in "Location X") are defined based on mobile context, it is paramount to verify the accuracy of the mobile context. To this end, two stochastic models based on the theory of Hidden Markov Models (HMMs) to obtain mobile context are proposed-personalized model (HPContext) and collaborative filtering model (HCFContext). The former predicts the current context using sequential history of the user's past context observations, the latter enhances HPContext with collaborative filtering features, which enables it to predict the current context of the primary user based on the context observations of users related to the primary user, e.g., same team colleagues in company, gym friends, family members, etc. Each of the proposed models can also be used to enhance or complement the context obtained from sensors. Furthermore, since privacy is a concern in collaborative filtering, a privacy-preserving method is proposed to derive HCFContext model parameters based on the concepts of homomorphic encryption. Finally, these models are thoroughly validated on a real-life dataset.
+
+Links:
+  - https://arxiv.org/abs/1904.09631v2
+  - https://arxiv.org/pdf/1904.09631v2

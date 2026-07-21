@@ -1,0 +1,22 @@
+Title: Configurable EBEN: Extreme Bandwidth Extension Network to enhance body-conducted speech capture
+
+Authors: Julien Hauret, Thomas Joubaud, Véronique Zimpfer, Éric Bavu
+
+Published: 2023-03-17
+
+Categories: eess.AS, cs.SD
+
+Abstract:
+This paper presents a configurable version of Extreme Bandwidth Extension Network (EBEN), a Generative Adversarial Network (GAN) designed to improve audio captured with body-conduction microphones. We show that although these microphones significantly reduce environmental noise, this insensitivity to ambient noise happens at the expense of the bandwidth of the speech signal acquired by the wearer of the devices. The obtained captured signals therefore require the use of signal enhancement techniques to recover the full-bandwidth speech. EBEN leverages a configurable multiband decomposition of the raw captured signal. This decomposition allows the data time domain dimensions to be reduced and the full band signal to be better controlled. The multiband representation of the captured signal is processed through a U-Net-like model, which combines feature and adversarial losses to generate an enhanced speech signal. We also benefit from this original representation in the proposed configurable discriminators architecture. The configurable EBEN approach can achieve state-of-the-art enhancement results on synthetic data with a lightweight generator that allows real-time processing.
+
+Paper ID: 2303.10008v2
+
+Summary:
+This paper titled "Configurable EBEN: Extreme Bandwidth Extension Network to enhance body-conducted speech capture" was authored by Julien Hauret, Thomas Joubaud, Véronique Zimpfer, Éric Bavu and published on 2023-03-17.
+It falls under the categories: eess.AS, cs.SD.
+The research explores the following topic: This paper presents a configurable version of Extreme Bandwidth Extension Network (EBEN), a Generative Adversarial Network (GAN) designed to improve audio captured with body-conduction microphones. We show that although these microphones significantly reduce environmental noise, this insensitivity to ambient noise happens at the expense of the bandwidth of the speech signal acquired by the wearer of the devices. The obtained captured signals therefore require the use of signal enhancement techniques to recover the full-bandwidth speech. EBEN leverages a configurable multiband decomposition of the raw captured signal. This decomposition allows the data time domain dimensions to be reduced and the full band signal to be better controlled. The multiband representation of the captured signal is processed through a U-Net-like model, which combines feature and adversarial losses to generate an enhanced speech signal. We also benefit from this original representation in the proposed configurable discriminators architecture. The configurable EBEN approach can achieve state-of-the-art enhancement results on synthetic data with a lightweight generator that allows real-time processing.
+
+Links:
+  - https://arxiv.org/abs/2303.10008v2
+  - https://arxiv.org/pdf/2303.10008v2
+  - https://doi.org/10.1109/TASLP.2023.3313433

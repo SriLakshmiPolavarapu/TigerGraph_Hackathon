@@ -1,0 +1,21 @@
+Title: Exploring text-to-image generation for historical document image retrieval
+
+Authors: Melissa Cote, Alexandra Branzan Albu
+
+Published: 2025-07-28
+
+Categories: cs.CV
+
+Abstract:
+Attribute-based document image retrieval (ABDIR) was recently proposed as an alternative to query-by-example (QBE) searches, the dominant document image retrieval (DIR) paradigm. One drawback of QBE searches is that they require sample query documents on hand that may not be available. ABDIR aims to offer users a flexible way to retrieve document images based on memorable visual features of document contents, describing document images with combinations of visual attributes determined via convolutional neural network (CNN)-based binary classifiers. We present an exploratory study of the use of generative AI to bridge the gap between QBE and ABDIR, focusing on historical documents as a use case for their diversity and uniqueness in visual features. We hypothesize that text-to-image (T2I) generation can be leveraged to create query document images using text prompts based on ABDIR-like attributes. We propose T2I-QBE, which uses Leonardo.Ai as the T2I generator with prompts that include a rough description of the desired document type and a list of the desired ABDIR-style attributes. This creates query images that are then used within the traditional QBE paradigm, which compares CNN-extracted query features to those of the document images in the dataset to retrieve the most relevant documents. Experiments on the HisIR19 dataset of historical documents confirm our hypothesis and suggest that T2I-QBE is a viable option for historical document image retrieval. To the authors' knowledge, this is the first attempt at utilizing T2I generation for DIR.
+
+Paper ID: 2507.20934v1
+
+Summary:
+This paper titled "Exploring text-to-image generation for historical document image retrieval" was authored by Melissa Cote, Alexandra Branzan Albu and published on 2025-07-28.
+It falls under the categories: cs.CV.
+The research explores the following topic: Attribute-based document image retrieval (ABDIR) was recently proposed as an alternative to query-by-example (QBE) searches, the dominant document image retrieval (DIR) paradigm. One drawback of QBE searches is that they require sample query documents on hand that may not be available. ABDIR aims to offer users a flexible way to retrieve document images based on memorable visual features of document contents, describing document images with combinations of visual attributes determined via convolutional neural network (CNN)-based binary classifiers. We present an exploratory study of the use of generative AI to bridge the gap between QBE and ABDIR, focusing on historical documents as a use case for their diversity and uniqueness in visual features. We hypothesize that text-to-image (T2I) generation can be leveraged to create query document images using text prompts based on ABDIR-like attributes. We propose T2I-QBE, which uses Leonardo.Ai as the T2I generator with prompts that include a rough description of the desired document type and a list of the desired ABDIR-style attributes. This creates query images that are then used within the traditional QBE paradigm, which compares CNN-extracted query features to those of the document images in the dataset to retrieve the most relevant documents. Experiments on the HisIR19 dataset of historical documents confirm our hypothesis and suggest that T2I-QBE is a viable option for historical document image retrieval. To the authors' knowledge, this is the first attempt at utilizing T2I generation for DIR.
+
+Links:
+  - https://arxiv.org/abs/2507.20934v1
+  - https://arxiv.org/pdf/2507.20934v1

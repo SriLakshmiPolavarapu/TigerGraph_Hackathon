@@ -1,0 +1,21 @@
+Title: Social Influence Prediction with Train and Test Time Augmentation for Graph Neural Networks
+
+Authors: Hongbo Bo, Ryan McConville, Jun Hong, Weiru Liu
+
+Published: 2021-04-23
+
+Categories: cs.SI
+
+Abstract:
+Data augmentation has been widely used in machine learning for natural language processing and computer vision tasks to improve model performance. However, little research has studied data augmentation on graph neural networks, particularly using augmentation at both train- and test-time. Inspired by the success of augmentation in other domains, we have designed a method for social influence prediction using graph neural networks with train- and test-time augmentation, which can effectively generate multiple augmented graphs for social networks by utilising a variational graph autoencoder in both scenarios. We have evaluated the performance of our method on predicting user influence on multiple social network datasets. Our experimental results show that our end-to-end approach, which jointly trains a graph autoencoder and social influence behaviour classification network, can outperform state-of-the-art approaches, demonstrating the effectiveness of train- and test-time augmentation on graph neural networks for social influence prediction. We observe that this is particularly effective on smaller graphs.
+
+Paper ID: 2104.11641v1
+
+Summary:
+This paper titled "Social Influence Prediction with Train and Test Time Augmentation for Graph Neural Networks" was authored by Hongbo Bo, Ryan McConville, Jun Hong, Weiru Liu and published on 2021-04-23.
+It falls under the categories: cs.SI.
+The research explores the following topic: Data augmentation has been widely used in machine learning for natural language processing and computer vision tasks to improve model performance. However, little research has studied data augmentation on graph neural networks, particularly using augmentation at both train- and test-time. Inspired by the success of augmentation in other domains, we have designed a method for social influence prediction using graph neural networks with train- and test-time augmentation, which can effectively generate multiple augmented graphs for social networks by utilising a variational graph autoencoder in both scenarios. We have evaluated the performance of our method on predicting user influence on multiple social network datasets. Our experimental results show that our end-to-end approach, which jointly trains a graph autoencoder and social influence behaviour classification network, can outperform state-of-the-art approaches, demonstrating the effectiveness of train- and test-time augmentation on graph neural networks for social influence prediction. We observe that this is particularly effective on smaller graphs.
+
+Links:
+  - https://arxiv.org/abs/2104.11641v1
+  - https://arxiv.org/pdf/2104.11641v1

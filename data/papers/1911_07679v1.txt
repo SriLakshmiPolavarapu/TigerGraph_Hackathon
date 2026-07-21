@@ -1,0 +1,21 @@
+Title: Towards Quantification of Bias in Machine Learning for Healthcare: A Case Study of Renal Failure Prediction
+
+Authors: Josie Williams, Narges Razavian
+
+Published: 2019-11-18
+
+Categories: cs.LG, stat.AP, stat.ML
+
+Abstract:
+As machine learning (ML) models, trained on real-world datasets, become common practice, it is critical to measure and quantify their potential biases. In this paper, we focus on renal failure and compare a commonly used traditional risk score, Tangri, with a more powerful machine learning model, which has access to a larger variable set and trained on 1.6 million patients' EHR data. We will compare and discuss the generalization and applicability of these two models, in an attempt to quantify biases of status quo clinical practice, compared to ML-driven models.
+
+Paper ID: 1911.07679v1
+
+Summary:
+This paper titled "Towards Quantification of Bias in Machine Learning for Healthcare: A Case Study of Renal Failure Prediction" was authored by Josie Williams, Narges Razavian and published on 2019-11-18.
+It falls under the categories: cs.LG, stat.AP, stat.ML.
+The research explores the following topic: As machine learning (ML) models, trained on real-world datasets, become common practice, it is critical to measure and quantify their potential biases. In this paper, we focus on renal failure and compare a commonly used traditional risk score, Tangri, with a more powerful machine learning model, which has access to a larger variable set and trained on 1.6 million patients' EHR data. We will compare and discuss the generalization and applicability of these two models, in an attempt to quantify biases of status quo clinical practice, compared to ML-driven models.
+
+Links:
+  - https://arxiv.org/abs/1911.07679v1
+  - https://arxiv.org/pdf/1911.07679v1

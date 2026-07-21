@@ -1,0 +1,21 @@
+Title: A Bayesian Approach to Conversational Recommendation Systems
+
+Authors: Francesca Mangili, Denis Broggini, Alessandro Antonucci, Marco Alberti, Lorenzo Cimasoni
+
+Published: 2020-02-12
+
+Categories: cs.AI, cs.IR
+
+Abstract:
+We present a conversational recommendation system based on a Bayesian approach. A probability mass function over the items is updated after any interaction with the user, with information-theoretic criteria optimally shaping the interaction and deciding when the conversation should be terminated and the most probable item consequently recommended. Dedicated elicitation techniques for the prior probabilities of the parameters modeling the interactions are derived from basic structural judgements. Such prior information can be combined with historical data to discriminate items with different recommendation histories. A case study based on the application of this approach to \emph{stagend.com}, an online platform for booking entertainers, is finally discussed together with an empirical analysis showing the advantages in terms of recommendation quality and efficiency.
+
+Paper ID: 2002.05063v1
+
+Summary:
+This paper titled "A Bayesian Approach to Conversational Recommendation Systems" was authored by Francesca Mangili, Denis Broggini, Alessandro Antonucci, Marco Alberti, Lorenzo Cimasoni and published on 2020-02-12.
+It falls under the categories: cs.AI, cs.IR.
+The research explores the following topic: We present a conversational recommendation system based on a Bayesian approach. A probability mass function over the items is updated after any interaction with the user, with information-theoretic criteria optimally shaping the interaction and deciding when the conversation should be terminated and the most probable item consequently recommended. Dedicated elicitation techniques for the prior probabilities of the parameters modeling the interactions are derived from basic structural judgements. Such prior information can be combined with historical data to discriminate items with different recommendation histories. A case study based on the application of this approach to \emph{stagend.com}, an online platform for booking entertainers, is finally discussed together with an empirical analysis showing the advantages in terms of recommendation quality and efficiency.
+
+Links:
+  - https://arxiv.org/abs/2002.05063v1
+  - https://arxiv.org/pdf/2002.05063v1

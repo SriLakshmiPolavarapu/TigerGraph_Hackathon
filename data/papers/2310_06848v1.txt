@@ -1,0 +1,21 @@
+Title: DeepTriNet: A Tri-Level Attention Based DeepLabv3+ Architecture for Semantic Segmentation of Satellite Images
+
+Authors: Tareque Bashar Ovi, Shakil Mosharrof, Nomaiya Bashree, Md Shofiqul Islam, Muhammad Nazrul Islam
+
+Published: 2023-09-05
+
+Categories: cs.CV, cs.AI, cs.LG
+
+Abstract:
+The segmentation of satellite images is crucial in remote sensing applications. Existing methods face challenges in recognizing small-scale objects in satellite images for semantic segmentation primarily due to ignoring the low-level characteristics of the underlying network and due to containing distinct amounts of information by different feature maps. Thus, in this research, a tri-level attention-based DeepLabv3+ architecture (DeepTriNet) is proposed for the semantic segmentation of satellite images. The proposed hybrid method combines squeeze-and-excitation networks (SENets) and tri-level attention units (TAUs) with the vanilla DeepLabv3+ architecture, where the TAUs are used to bridge the semantic feature gap among encoders output and the SENets used to put more weight on relevant features. The proposed DeepTriNet finds which features are the more relevant and more generalized way by its self-supervision rather we annotate them. The study showed that the proposed DeepTriNet performs better than many conventional techniques with an accuracy of 98% and 77%, IoU 80% and 58%, precision 88% and 68%, and recall of 79% and 55% on the 4-class Land-Cover.ai dataset and the 15-class GID-2 dataset respectively. The proposed method will greatly contribute to natural resource management and change detection in rural and urban regions through efficient and semantic satellite image segmentation
+
+Paper ID: 2310.06848v1
+
+Summary:
+This paper titled "DeepTriNet: A Tri-Level Attention Based DeepLabv3+ Architecture for Semantic Segmentation of Satellite Images" was authored by Tareque Bashar Ovi, Shakil Mosharrof, Nomaiya Bashree, Md Shofiqul Islam, Muhammad Nazrul Islam and published on 2023-09-05.
+It falls under the categories: cs.CV, cs.AI, cs.LG.
+The research explores the following topic: The segmentation of satellite images is crucial in remote sensing applications. Existing methods face challenges in recognizing small-scale objects in satellite images for semantic segmentation primarily due to ignoring the low-level characteristics of the underlying network and due to containing distinct amounts of information by different feature maps. Thus, in this research, a tri-level attention-based DeepLabv3+ architecture (DeepTriNet) is proposed for the semantic segmentation of satellite images. The proposed hybrid method combines squeeze-and-excitation networks (SENets) and tri-level attention units (TAUs) with the vanilla DeepLabv3+ architecture, where the TAUs are used to bridge the semantic feature gap among encoders output and the SENets used to put more weight on relevant features. The proposed DeepTriNet finds which features are the more relevant and more generalized way by its self-supervision rather we annotate them. The study showed that the proposed DeepTriNet performs better than many conventional techniques with an accuracy of 98% and 77%, IoU 80% and 58%, precision 88% and 68%, and recall of 79% and 55% on the 4-class Land-Cover.ai dataset and the 15-class GID-2 dataset respectively. The proposed method will greatly contribute to natural resource management and change detection in rural and urban regions through efficient and semantic satellite image segmentation
+
+Links:
+  - https://arxiv.org/abs/2310.06848v1
+  - https://arxiv.org/pdf/2310.06848v1

@@ -1,0 +1,21 @@
+Title: Benchmarking Soundtrack Recommendation Systems with SRBench
+
+Authors: Aleksandar Stupar, Sebastian Michel
+
+Published: 2013-08-06
+
+Categories: cs.IR, cs.MM
+
+Abstract:
+In this work, a benchmark to evaluate the retrieval performance of soundtrack recommendation systems is proposed. Such systems aim at finding songs that are played as background music for a given set of images. The proposed benchmark is based on preference judgments, where relevance is considered a continuous ordinal variable and judgments are collected for pairs of songs with respect to a query (i.e., set of images). To capture a wide variety of songs and images, we use a large space of possible music genres, different emotions expressed through music, and various query-image themes. The benchmark consists of two types of relevance assessments: (i) judgments obtained from a user study, that serve as a "gold standard" for (ii) relevance judgments gathered through Amazon's Mechanical Turk. We report on an analysis of relevance judgments based on different levels of user agreement and investigate the performance of two state-of-the-art soundtrack recommendation systems using the proposed benchmark.
+
+Paper ID: 1308.1224v1
+
+Summary:
+This paper titled "Benchmarking Soundtrack Recommendation Systems with SRBench" was authored by Aleksandar Stupar, Sebastian Michel and published on 2013-08-06.
+It falls under the categories: cs.IR, cs.MM.
+The research explores the following topic: In this work, a benchmark to evaluate the retrieval performance of soundtrack recommendation systems is proposed. Such systems aim at finding songs that are played as background music for a given set of images. The proposed benchmark is based on preference judgments, where relevance is considered a continuous ordinal variable and judgments are collected for pairs of songs with respect to a query (i.e., set of images). To capture a wide variety of songs and images, we use a large space of possible music genres, different emotions expressed through music, and various query-image themes. The benchmark consists of two types of relevance assessments: (i) judgments obtained from a user study, that serve as a "gold standard" for (ii) relevance judgments gathered through Amazon's Mechanical Turk. We report on an analysis of relevance judgments based on different levels of user agreement and investigate the performance of two state-of-the-art soundtrack recommendation systems using the proposed benchmark.
+
+Links:
+  - https://arxiv.org/abs/1308.1224v1
+  - https://arxiv.org/pdf/1308.1224v1

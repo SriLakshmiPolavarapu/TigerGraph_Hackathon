@@ -1,0 +1,21 @@
+Title: DeepCFL: Deep Contextual Features Learning from a Single Image
+
+Authors: Indra Deep Mastan, Shanmuganathan Raman
+
+Published: 2020-11-07
+
+Categories: cs.CV
+
+Abstract:
+Recently, there is a vast interest in developing image feature learning methods that are independent of the training data, such as deep image prior, InGAN, SinGAN, and DCIL. These methods are unsupervised and are used to perform low-level vision tasks such as image restoration, image editing, and image synthesis. In this work, we proposed a new training data-independent framework, called Deep Contextual Features Learning (DeepCFL), to perform image synthesis and image restoration based on the semantics of the input image. The contextual features are simply the high dimensional vectors representing the semantics of the given image. DeepCFL is a single image GAN framework that learns the distribution of the context vectors from the input image. We show the performance of contextual learning in various challenging scenarios: outpainting, inpainting, and restoration of randomly removed pixels. DeepCFL is applicable when the input source image and the generated target image are not aligned. We illustrate image synthesis using DeepCFL for the task of image resizing.
+
+Paper ID: 2011.03712v1
+
+Summary:
+This paper titled "DeepCFL: Deep Contextual Features Learning from a Single Image" was authored by Indra Deep Mastan, Shanmuganathan Raman and published on 2020-11-07.
+It falls under the categories: cs.CV.
+The research explores the following topic: Recently, there is a vast interest in developing image feature learning methods that are independent of the training data, such as deep image prior, InGAN, SinGAN, and DCIL. These methods are unsupervised and are used to perform low-level vision tasks such as image restoration, image editing, and image synthesis. In this work, we proposed a new training data-independent framework, called Deep Contextual Features Learning (DeepCFL), to perform image synthesis and image restoration based on the semantics of the input image. The contextual features are simply the high dimensional vectors representing the semantics of the given image. DeepCFL is a single image GAN framework that learns the distribution of the context vectors from the input image. We show the performance of contextual learning in various challenging scenarios: outpainting, inpainting, and restoration of randomly removed pixels. DeepCFL is applicable when the input source image and the generated target image are not aligned. We illustrate image synthesis using DeepCFL for the task of image resizing.
+
+Links:
+  - https://arxiv.org/abs/2011.03712v1
+  - https://arxiv.org/pdf/2011.03712v1

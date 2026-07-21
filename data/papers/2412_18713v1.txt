@@ -1,0 +1,21 @@
+Title: Enhanced Recommendation Combining Collaborative Filtering and Large Language Models
+
+Authors: Xueting Lin, Zhan Cheng, Longfei Yun, Qingyi Lu, Yuanshuai Luo
+
+Published: 2024-12-25
+
+Categories: cs.AI, cs.IR
+
+Abstract:
+With the advent of the information explosion era, the importance of recommendation systems in various applications is increasingly significant. Traditional collaborative filtering algorithms are widely used due to their effectiveness in capturing user behavior patterns, but they encounter limitations when dealing with cold start problems and data sparsity. Large Language Models (LLMs), with their strong natural language understanding and generation capabilities, provide a new breakthrough for recommendation systems. This study proposes an enhanced recommendation method that combines collaborative filtering and LLMs, aiming to leverage collaborative filtering's advantage in modeling user preferences while enhancing the understanding of textual information about users and items through LLMs to improve recommendation accuracy and diversity. This paper first introduces the fundamental theories of collaborative filtering and LLMs, then designs a recommendation system architecture that integrates both, and validates the system's effectiveness through experiments. The results show that the hybrid model based on collaborative filtering and LLMs significantly improves precision, recall, and user satisfaction, demonstrating its potential in complex recommendation scenarios.
+
+Paper ID: 2412.18713v1
+
+Summary:
+This paper titled "Enhanced Recommendation Combining Collaborative Filtering and Large Language Models" was authored by Xueting Lin, Zhan Cheng, Longfei Yun, Qingyi Lu, Yuanshuai Luo and published on 2024-12-25.
+It falls under the categories: cs.AI, cs.IR.
+The research explores the following topic: With the advent of the information explosion era, the importance of recommendation systems in various applications is increasingly significant. Traditional collaborative filtering algorithms are widely used due to their effectiveness in capturing user behavior patterns, but they encounter limitations when dealing with cold start problems and data sparsity. Large Language Models (LLMs), with their strong natural language understanding and generation capabilities, provide a new breakthrough for recommendation systems. This study proposes an enhanced recommendation method that combines collaborative filtering and LLMs, aiming to leverage collaborative filtering's advantage in modeling user preferences while enhancing the understanding of textual information about users and items through LLMs to improve recommendation accuracy and diversity. This paper first introduces the fundamental theories of collaborative filtering and LLMs, then designs a recommendation system architecture that integrates both, and validates the system's effectiveness through experiments. The results show that the hybrid model based on collaborative filtering and LLMs significantly improves precision, recall, and user satisfaction, demonstrating its potential in complex recommendation scenarios.
+
+Links:
+  - https://arxiv.org/abs/2412.18713v1
+  - https://arxiv.org/pdf/2412.18713v1

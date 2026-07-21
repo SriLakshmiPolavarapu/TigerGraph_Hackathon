@@ -1,0 +1,21 @@
+Title: MONCAE: Multi-Objective Neuroevolution of Convolutional Autoencoders
+
+Authors: Daniel Dimanov, Emili Balaguer-Ballester, Colin Singleton, Shahin Rostami
+
+Published: 2021-06-07
+
+Categories: cs.NE, cs.LG
+
+Abstract:
+In this paper, we present a novel neuroevolutionary method to identify the architecture and hyperparameters of convolutional autoencoders. Remarkably, we used a hypervolume indicator in the context of neural architecture search for autoencoders, for the first time to our current knowledge. Results show that images were compressed by a factor of more than 10, while still retaining enough information to achieve image classification for the majority of the tasks. Thus, this new approach can be used to speed up the AutoML pipeline for image compression.
+
+Paper ID: 2106.11914v1
+
+Summary:
+This paper titled "MONCAE: Multi-Objective Neuroevolution of Convolutional Autoencoders" was authored by Daniel Dimanov, Emili Balaguer-Ballester, Colin Singleton, Shahin Rostami and published on 2021-06-07.
+It falls under the categories: cs.NE, cs.LG.
+The research explores the following topic: In this paper, we present a novel neuroevolutionary method to identify the architecture and hyperparameters of convolutional autoencoders. Remarkably, we used a hypervolume indicator in the context of neural architecture search for autoencoders, for the first time to our current knowledge. Results show that images were compressed by a factor of more than 10, while still retaining enough information to achieve image classification for the majority of the tasks. Thus, this new approach can be used to speed up the AutoML pipeline for image compression.
+
+Links:
+  - https://arxiv.org/abs/2106.11914v1
+  - https://arxiv.org/pdf/2106.11914v1

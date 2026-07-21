@@ -1,0 +1,21 @@
+Title: Model Selection for Offline Reinforcement Learning: Practical Considerations for Healthcare Settings
+
+Authors: Shengpu Tang, Jenna Wiens
+
+Published: 2021-07-23
+
+Categories: cs.LG
+
+Abstract:
+Reinforcement learning (RL) can be used to learn treatment policies and aid decision making in healthcare. However, given the need for generalization over complex state/action spaces, the incorporation of function approximators (e.g., deep neural networks) requires model selection to reduce overfitting and improve policy performance at deployment. Yet a standard validation pipeline for model selection requires running a learned policy in the actual environment, which is often infeasible in a healthcare setting. In this work, we investigate a model selection pipeline for offline RL that relies on off-policy evaluation (OPE) as a proxy for validation performance. We present an in-depth analysis of popular OPE methods, highlighting the additional hyperparameters and computational requirements (fitting/inference of auxiliary models) when used to rank a set of candidate policies. We compare the utility of different OPE methods as part of the model selection pipeline in the context of learning to treat patients with sepsis. Among all the OPE methods we considered, fitted Q evaluation (FQE) consistently leads to the best validation ranking, but at a high computational cost. To balance this trade-off between accuracy of ranking and computational efficiency, we propose a simple two-stage approach to accelerate model selection by avoiding potentially unnecessary computation. Our work serves as a practical guide for offline RL model selection and can help RL practitioners select policies using real-world datasets. To facilitate reproducibility and future extensions, the code accompanying this paper is available online at https://github.com/MLD3/OfflineRL_ModelSelection.
+
+Paper ID: 2107.11003v1
+
+Summary:
+This paper titled "Model Selection for Offline Reinforcement Learning: Practical Considerations for Healthcare Settings" was authored by Shengpu Tang, Jenna Wiens and published on 2021-07-23.
+It falls under the categories: cs.LG.
+The research explores the following topic: Reinforcement learning (RL) can be used to learn treatment policies and aid decision making in healthcare. However, given the need for generalization over complex state/action spaces, the incorporation of function approximators (e.g., deep neural networks) requires model selection to reduce overfitting and improve policy performance at deployment. Yet a standard validation pipeline for model selection requires running a learned policy in the actual environment, which is often infeasible in a healthcare setting. In this work, we investigate a model selection pipeline for offline RL that relies on off-policy evaluation (OPE) as a proxy for validation performance. We present an in-depth analysis of popular OPE methods, highlighting the additional hyperparameters and computational requirements (fitting/inference of auxiliary models) when used to rank a set of candidate policies. We compare the utility of different OPE methods as part of the model selection pipeline in the context of learning to treat patients with sepsis. Among all the OPE methods we considered, fitted Q evaluation (FQE) consistently leads to the best validation ranking, but at a high computational cost. To balance this trade-off between accuracy of ranking and computational efficiency, we propose a simple two-stage approach to accelerate model selection by avoiding potentially unnecessary computation. Our work serves as a practical guide for offline RL model selection and can help RL practitioners select policies using real-world datasets. To facilitate reproducibility and future extensions, the code accompanying this paper is available online at https://github.com/MLD3/OfflineRL_ModelSelection.
+
+Links:
+  - https://arxiv.org/abs/2107.11003v1
+  - https://arxiv.org/pdf/2107.11003v1

@@ -1,0 +1,22 @@
+Title: Morescient GAI for Software Engineering (Extended Version)
+
+Authors: Marcus Kessel, Colin Atkinson
+
+Published: 2024-06-07
+
+Categories: cs.SE, cs.AI
+
+Abstract:
+The ability of Generative AI (GAI) technology to automatically check, synthesize and modify software engineering artifacts promises to revolutionize all aspects of software engineering. Using GAI for software engineering tasks is consequently one of the most rapidly expanding fields of software engineering research, with over a hundred LLM-based code models having been published since 2021. However, the overwhelming majority of existing code models share a major weakness - they are exclusively trained on the syntactic facet of software, significantly lowering their trustworthiness in tasks dependent on software semantics. To address this problem, a new class of "Morescient" GAI is needed that is "aware" of (i.e., trained on) both the semantic and static facets of software. This, in turn, will require a new generation of software observation platforms capable of generating large quantities of execution observations in a structured and readily analyzable way. In this paper, we present a vision and roadmap for how such "Morescient" GAI models can be engineered, evolved and disseminated according to the principles of open science.
+
+Paper ID: 2406.04710v2
+
+Summary:
+This paper titled "Morescient GAI for Software Engineering (Extended Version)" was authored by Marcus Kessel, Colin Atkinson and published on 2024-06-07.
+It falls under the categories: cs.SE, cs.AI.
+The research explores the following topic: The ability of Generative AI (GAI) technology to automatically check, synthesize and modify software engineering artifacts promises to revolutionize all aspects of software engineering. Using GAI for software engineering tasks is consequently one of the most rapidly expanding fields of software engineering research, with over a hundred LLM-based code models having been published since 2021. However, the overwhelming majority of existing code models share a major weakness - they are exclusively trained on the syntactic facet of software, significantly lowering their trustworthiness in tasks dependent on software semantics. To address this problem, a new class of "Morescient" GAI is needed that is "aware" of (i.e., trained on) both the semantic and static facets of software. This, in turn, will require a new generation of software observation platforms capable of generating large quantities of execution observations in a structured and readily analyzable way. In this paper, we present a vision and roadmap for how such "Morescient" GAI models can be engineered, evolved and disseminated according to the principles of open science.
+
+Links:
+  - https://arxiv.org/abs/2406.04710v2
+  - https://arxiv.org/pdf/2406.04710v2
+  - https://doi.org/10.1145/3709354

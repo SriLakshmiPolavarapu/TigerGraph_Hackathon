@@ -1,0 +1,23 @@
+Title: FastSecAgg: Scalable Secure Aggregation for Privacy-Preserving Federated Learning
+
+Authors: Swanand Kadhe, Nived Rajaraman, O. Ozan Koyluoglu, Kannan Ramchandran
+
+Published: 2020-09-23
+
+Categories: cs.CR, cs.IT, cs.LG, stat.ML
+
+Abstract:
+Recent attacks on federated learning demonstrate that keeping the training data on clients' devices does not provide sufficient privacy, as the model parameters shared by clients can leak information about their training data. A 'secure aggregation' protocol enables the server to aggregate clients' models in a privacy-preserving manner. However, existing secure aggregation protocols incur high computation/communication costs, especially when the number of model parameters is larger than the number of clients participating in an iteration -- a typical scenario in federated learning.
+  In this paper, we propose a secure aggregation protocol, FastSecAgg, that is efficient in terms of computation and communication, and robust to client dropouts. The main building block of FastSecAgg is a novel multi-secret sharing scheme, FastShare, based on the Fast Fourier Transform (FFT), which may be of independent interest. FastShare is information-theoretically secure, and achieves a trade-off between the number of secrets, privacy threshold, and dropout tolerance. Riding on the capabilities of FastShare, we prove that FastSecAgg is (i) secure against the server colluding with 'any' subset of some constant fraction (e.g. $\sim10\%$) of the clients in the honest-but-curious setting; and (ii) tolerates dropouts of a 'random' subset of some constant fraction (e.g. $\sim10\%$) of the clients. FastSecAgg achieves significantly smaller computation cost than existing schemes while achieving the same (orderwise) communication cost. In addition, it guarantees security against adaptive adversaries, which can perform client corruptions dynamically during the execution of the protocol.
+
+Paper ID: 2009.11248v1
+
+Summary:
+This paper titled "FastSecAgg: Scalable Secure Aggregation for Privacy-Preserving Federated Learning" was authored by Swanand Kadhe, Nived Rajaraman, O. Ozan Koyluoglu, Kannan Ramchandran and published on 2020-09-23.
+It falls under the categories: cs.CR, cs.IT, cs.LG, stat.ML.
+The research explores the following topic: Recent attacks on federated learning demonstrate that keeping the training data on clients' devices does not provide sufficient privacy, as the model parameters shared by clients can leak information about their training data. A 'secure aggregation' protocol enables the server to aggregate clients' models in a privacy-preserving manner. However, existing secure aggregation protocols incur high computation/communication costs, especially when the number of model parameters is larger than the number of clients participating in an iteration -- a typical scenario in federated learning.
+  In this paper, we propose a secure aggregation protocol, FastSecAgg, that is efficient in terms of computation and communication, and robust to client dropouts. The main building block of FastSecAgg is a novel multi-secret sharing scheme, FastShare, based on the Fast Fourier Transform (FFT), which may be of independent interest. FastShare is information-theoretically secure, and achieves a trade-off between the number of secrets, privacy threshold, and dropout tolerance. Riding on the capabilities of FastShare, we prove that FastSecAgg is (i) secure against the server colluding with 'any' subset of some constant fraction (e.g. $\sim10\%$) of the clients in the honest-but-curious setting; and (ii) tolerates dropouts of a 'random' subset of some constant fraction (e.g. $\sim10\%$) of the clients. FastSecAgg achieves significantly smaller computation cost than existing schemes while achieving the same (orderwise) communication cost. In addition, it guarantees security against adaptive adversaries, which can perform client corruptions dynamically during the execution of the protocol.
+
+Links:
+  - https://arxiv.org/abs/2009.11248v1
+  - https://arxiv.org/pdf/2009.11248v1

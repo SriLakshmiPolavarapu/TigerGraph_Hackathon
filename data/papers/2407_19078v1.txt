@@ -1,0 +1,21 @@
+Title: Practical Marketplace Optimization at Uber Using Causally-Informed Machine Learning
+
+Authors: Bobby Chen, Siyu Chen, Jason Dowlatabadi, Yu Xuan Hong, Vinayak Iyer, Uday Mantripragada, Rishabh Narang, Apoorv Pandey, Zijun Qin, Abrar Sheikh, Hongtao Sun, Jiaqi Sun, Matthew Walker, Kaichen Wei, Chen Xu, Jingnan Yang, Allen T. Zhang, Guoqing Zhang
+
+Published: 2024-07-26
+
+Categories: cs.LG, stat.ML
+
+Abstract:
+Budget allocation of marketplace levers, such as incentives for drivers and promotions for riders, has long been a technical and business challenge at Uber; understanding lever budget changes' impact and estimating cost efficiency to achieve predefined budgets is crucial, with the goal of optimal allocations that maximize business value; we introduce an end-to-end machine learning and optimization procedure to automate budget decision-making for cities, relying on feature store, model training and serving, optimizers, and backtesting; proposing state-of-the-art deep learning (DL) estimator based on S-Learner and a novel tensor B-Spline regression model, we solve high-dimensional optimization with ADMM and primal-dual interior point convex optimization, substantially improving Uber's resource allocation efficiency.
+
+Paper ID: 2407.19078v1
+
+Summary:
+This paper titled "Practical Marketplace Optimization at Uber Using Causally-Informed Machine Learning" was authored by Bobby Chen, Siyu Chen, Jason Dowlatabadi, Yu Xuan Hong, Vinayak Iyer, Uday Mantripragada, Rishabh Narang, Apoorv Pandey, Zijun Qin, Abrar Sheikh, Hongtao Sun, Jiaqi Sun, Matthew Walker, Kaichen Wei, Chen Xu, Jingnan Yang, Allen T. Zhang, Guoqing Zhang and published on 2024-07-26.
+It falls under the categories: cs.LG, stat.ML.
+The research explores the following topic: Budget allocation of marketplace levers, such as incentives for drivers and promotions for riders, has long been a technical and business challenge at Uber; understanding lever budget changes' impact and estimating cost efficiency to achieve predefined budgets is crucial, with the goal of optimal allocations that maximize business value; we introduce an end-to-end machine learning and optimization procedure to automate budget decision-making for cities, relying on feature store, model training and serving, optimizers, and backtesting; proposing state-of-the-art deep learning (DL) estimator based on S-Learner and a novel tensor B-Spline regression model, we solve high-dimensional optimization with ADMM and primal-dual interior point convex optimization, substantially improving Uber's resource allocation efficiency.
+
+Links:
+  - https://arxiv.org/abs/2407.19078v1
+  - https://arxiv.org/pdf/2407.19078v1

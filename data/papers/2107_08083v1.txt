@@ -1,0 +1,21 @@
+Title: Robust Risk-Sensitive Reinforcement Learning Agents for Trading Markets
+
+Authors: Yue Gao, Kry Yik Chau Lui, Pablo Hernandez-Leal
+
+Published: 2021-07-16
+
+Categories: cs.LG, cs.MA
+
+Abstract:
+Trading markets represent a real-world financial application to deploy reinforcement learning agents, however, they carry hard fundamental challenges such as high variance and costly exploration. Moreover, markets are inherently a multiagent domain composed of many actors taking actions and changing the environment. To tackle these type of scenarios agents need to exhibit certain characteristics such as risk-awareness, robustness to perturbations and low learning variance. We take those as building blocks and propose a family of four algorithms. First, we contribute with two algorithms that use risk-averse objective functions and variance reduction techniques. Then, we augment the framework to multi-agent learning and assume an adversary which can take over and perturb the learning process. Our third and fourth algorithms perform well under this setting and balance theoretical guarantees with practical use. Additionally, we consider the multi-agent nature of the environment and our work is the first one extending empirical game theory analysis for multi-agent learning by considering risk-sensitive payoffs.
+
+Paper ID: 2107.08083v1
+
+Summary:
+This paper titled "Robust Risk-Sensitive Reinforcement Learning Agents for Trading Markets" was authored by Yue Gao, Kry Yik Chau Lui, Pablo Hernandez-Leal and published on 2021-07-16.
+It falls under the categories: cs.LG, cs.MA.
+The research explores the following topic: Trading markets represent a real-world financial application to deploy reinforcement learning agents, however, they carry hard fundamental challenges such as high variance and costly exploration. Moreover, markets are inherently a multiagent domain composed of many actors taking actions and changing the environment. To tackle these type of scenarios agents need to exhibit certain characteristics such as risk-awareness, robustness to perturbations and low learning variance. We take those as building blocks and propose a family of four algorithms. First, we contribute with two algorithms that use risk-averse objective functions and variance reduction techniques. Then, we augment the framework to multi-agent learning and assume an adversary which can take over and perturb the learning process. Our third and fourth algorithms perform well under this setting and balance theoretical guarantees with practical use. Additionally, we consider the multi-agent nature of the environment and our work is the first one extending empirical game theory analysis for multi-agent learning by considering risk-sensitive payoffs.
+
+Links:
+  - https://arxiv.org/abs/2107.08083v1
+  - https://arxiv.org/pdf/2107.08083v1

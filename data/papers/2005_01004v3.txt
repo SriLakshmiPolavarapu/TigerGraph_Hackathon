@@ -1,0 +1,21 @@
+Title: Explaining How Deep Neural Networks Forget by Deep Visualization
+
+Authors: Giang Nguyen, Shuan Chen, Tae Joon Jun, Daeyoung Kim
+
+Published: 2020-05-03
+
+Categories: cs.LG, cs.CV
+
+Abstract:
+Explaining the behaviors of deep neural networks, usually considered as black boxes, is critical especially when they are now being adopted over diverse aspects of human life. Taking the advantages of interpretable machine learning (interpretable ML), this paper proposes a novel tool called Catastrophic Forgetting Dissector (or CFD) to explain catastrophic forgetting in continual learning settings. We also introduce a new method called Critical Freezing based on the observations of our tool. Experiments on ResNet articulate how catastrophic forgetting happens, particularly showing which components of this famous network are forgetting. Our new continual learning algorithm defeats various recent techniques by a significant margin, proving the capability of the investigation. Critical freezing not only attacks catastrophic forgetting but also exposes explainability.
+
+Paper ID: 2005.01004v3
+
+Summary:
+This paper titled "Explaining How Deep Neural Networks Forget by Deep Visualization" was authored by Giang Nguyen, Shuan Chen, Tae Joon Jun, Daeyoung Kim and published on 2020-05-03.
+It falls under the categories: cs.LG, cs.CV.
+The research explores the following topic: Explaining the behaviors of deep neural networks, usually considered as black boxes, is critical especially when they are now being adopted over diverse aspects of human life. Taking the advantages of interpretable machine learning (interpretable ML), this paper proposes a novel tool called Catastrophic Forgetting Dissector (or CFD) to explain catastrophic forgetting in continual learning settings. We also introduce a new method called Critical Freezing based on the observations of our tool. Experiments on ResNet articulate how catastrophic forgetting happens, particularly showing which components of this famous network are forgetting. Our new continual learning algorithm defeats various recent techniques by a significant margin, proving the capability of the investigation. Critical freezing not only attacks catastrophic forgetting but also exposes explainability.
+
+Links:
+  - https://arxiv.org/abs/2005.01004v3
+  - https://arxiv.org/pdf/2005.01004v3

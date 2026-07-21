@@ -1,0 +1,21 @@
+Title: Metalearning Continual Learning Algorithms
+
+Authors: Kazuki Irie, Róbert Csordás, Jürgen Schmidhuber
+
+Published: 2023-12-01
+
+Categories: cs.LG
+
+Abstract:
+General-purpose learning systems should improve themselves in open-ended fashion in ever-changing environments. Conventional learning algorithms for neural networks, however, suffer from catastrophic forgetting (CF), i.e., previously acquired skills are forgotten when a new task is learned. Instead of hand-crafting new algorithms for avoiding CF, we propose Automated Continual Learning (ACL) to train self-referential neural networks to metalearn their own in-context continual (meta)learning algorithms. ACL encodes continual learning (CL) desiderata -- good performance on both old and new tasks -- into its metalearning objectives. Our experiments demonstrate that ACL effectively resolves "in-context catastrophic forgetting," a problem that naive in-context learning algorithms suffer from; ACL-learned algorithms outperform both hand-crafted learning algorithms and popular meta-continual learning methods on the Split-MNIST benchmark in the replay-free setting, and enables continual learning of diverse tasks consisting of multiple standard image classification datasets. We also discuss the current limitations of in-context CL by comparing ACL with state-of-the-art CL methods that leverage pre-trained models. Overall, we bring several novel perspectives into the long-standing problem of CL.
+
+Paper ID: 2312.00276v3
+
+Summary:
+This paper titled "Metalearning Continual Learning Algorithms" was authored by Kazuki Irie, Róbert Csordás, Jürgen Schmidhuber and published on 2023-12-01.
+It falls under the categories: cs.LG.
+The research explores the following topic: General-purpose learning systems should improve themselves in open-ended fashion in ever-changing environments. Conventional learning algorithms for neural networks, however, suffer from catastrophic forgetting (CF), i.e., previously acquired skills are forgotten when a new task is learned. Instead of hand-crafting new algorithms for avoiding CF, we propose Automated Continual Learning (ACL) to train self-referential neural networks to metalearn their own in-context continual (meta)learning algorithms. ACL encodes continual learning (CL) desiderata -- good performance on both old and new tasks -- into its metalearning objectives. Our experiments demonstrate that ACL effectively resolves "in-context catastrophic forgetting," a problem that naive in-context learning algorithms suffer from; ACL-learned algorithms outperform both hand-crafted learning algorithms and popular meta-continual learning methods on the Split-MNIST benchmark in the replay-free setting, and enables continual learning of diverse tasks consisting of multiple standard image classification datasets. We also discuss the current limitations of in-context CL by comparing ACL with state-of-the-art CL methods that leverage pre-trained models. Overall, we bring several novel perspectives into the long-standing problem of CL.
+
+Links:
+  - https://arxiv.org/abs/2312.00276v3
+  - https://arxiv.org/pdf/2312.00276v3

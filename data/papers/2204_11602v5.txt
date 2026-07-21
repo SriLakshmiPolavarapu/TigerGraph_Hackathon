@@ -1,0 +1,21 @@
+Title: Broad Recommender System: An Efficient Nonlinear Collaborative Filtering Approach
+
+Authors: Ling Huang, Can-Rong Guan, Zhen-Wei Huang, Yuefang Gao, Yingjie Kuang, Chang-Dong Wang, C. L. Philip Chen
+
+Published: 2022-04-20
+
+Categories: cs.IR, cs.LG
+
+Abstract:
+Recently, Deep Neural Networks (DNNs) have been widely introduced into Collaborative Filtering (CF) to produce more accurate recommendation results due to their capability of capturing the complex nonlinear relationships between items and users.However, the DNNs-based models usually suffer from high computational complexity, i.e., consuming very long training time and storing huge amount of trainable parameters. To address these problems, we propose a new broad recommender system called Broad Collaborative Filtering (BroadCF), which is an efficient nonlinear collaborative filtering approach. Instead of DNNs, Broad Learning System (BLS) is used as a mapping function to learn the complex nonlinear relationships between users and items, which can avoid the above issues while achieving very satisfactory recommendation performance. However, it is not feasible to directly feed the original rating data into BLS. To this end, we propose a user-item rating collaborative vector preprocessing procedure to generate low-dimensional user-item input data, which is able to harness quality judgments of the most similar users/items. Extensive experiments conducted on seven benchmark datasets have confirmed the effectiveness of the proposed BroadCF algorithm
+
+Paper ID: 2204.11602v5
+
+Summary:
+This paper titled "Broad Recommender System: An Efficient Nonlinear Collaborative Filtering Approach" was authored by Ling Huang, Can-Rong Guan, Zhen-Wei Huang, Yuefang Gao, Yingjie Kuang, Chang-Dong Wang, C. L. Philip Chen and published on 2022-04-20.
+It falls under the categories: cs.IR, cs.LG.
+The research explores the following topic: Recently, Deep Neural Networks (DNNs) have been widely introduced into Collaborative Filtering (CF) to produce more accurate recommendation results due to their capability of capturing the complex nonlinear relationships between items and users.However, the DNNs-based models usually suffer from high computational complexity, i.e., consuming very long training time and storing huge amount of trainable parameters. To address these problems, we propose a new broad recommender system called Broad Collaborative Filtering (BroadCF), which is an efficient nonlinear collaborative filtering approach. Instead of DNNs, Broad Learning System (BLS) is used as a mapping function to learn the complex nonlinear relationships between users and items, which can avoid the above issues while achieving very satisfactory recommendation performance. However, it is not feasible to directly feed the original rating data into BLS. To this end, we propose a user-item rating collaborative vector preprocessing procedure to generate low-dimensional user-item input data, which is able to harness quality judgments of the most similar users/items. Extensive experiments conducted on seven benchmark datasets have confirmed the effectiveness of the proposed BroadCF algorithm
+
+Links:
+  - https://arxiv.org/abs/2204.11602v5
+  - https://arxiv.org/pdf/2204.11602v5
