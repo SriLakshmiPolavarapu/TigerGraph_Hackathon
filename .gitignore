@@ -1,1 +1,3 @@
 .envdata/chroma_db/
+.env
+data/chroma_db/
