@@ -323,6 +323,34 @@ with tab3:
             st.caption("Not found. Run `python -m pipelines.graph_rag --setup` to generate.")
 
     st.divider()
+    st.subheader("Failed or Unanswered Questions")
+    st.caption("Questions where the pipeline raised an execution error (network/API failure, etc.). "
+               "Per round 3 requirements, these remain in the reported results rather than being dropped.")
+
+    pipeline_result_sets = {"LLM-Only": p1_results, "Basic RAG": p2_results, "GraphRAG": p3_results}
+    failed_rows = []
+    for pname, presults in pipeline_result_sets.items():
+        for i, r in enumerate(presults):
+            err = r.get("error")
+            if err:
+                failed_rows.append({
+                    "Pipeline": pname,
+                    "Question #": i + 1,
+                    "Question": r["question"][:80],
+                    "Error": err[:150],
+                })
+
+    if failed_rows:
+        st.dataframe(pd.DataFrame(failed_rows), use_container_width=True, hide_index=True)
+        fail_counts = pd.DataFrame(failed_rows)["Pipeline"].value_counts()
+        for pname in ["LLM-Only", "Basic RAG", "GraphRAG"]:
+            n = fail_counts.get(pname, 0)
+            total = len(pipeline_result_sets[pname])
+            st.caption(f"{pname}: {n}/{total} questions failed")
+    else:
+        st.success("No execution failures recorded across all 150 pipeline runs (50 questions x 3 pipelines).")
+
+    st.divider()
     st.subheader("Summary Table")
     summary_df = pd.DataFrame({
         "Metric": ["Total Tokens", "Avg Input Tokens", "Avg Output Tokens",
