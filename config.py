@@ -29,4 +29,4 @@ TG_USERNAME = os.getenv("TG_USERNAME", "tigergraph")
 TG_PASSWORD = os.getenv("TG_PASSWORD", "")
 
 
-BENCHMARK_QUESTIONS_FILE = "data/benchmark_questions.json"
+BENCHMARK_QUESTIONS_FILE = "data/benchmark_questions3.json"
